@@ -1,0 +1,1 @@
+# qtlibs_mingw730_32
