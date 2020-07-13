@@ -1,1 +1,1 @@
-\1 \2set_\3\(\1 _val\)\n{\n    \3 = _val;\n    return \3;\n}\n\n
+\1 \2set_\3\(\1 _val\)\n{\n\t\3 = _val;\n\treturn \3;\n}\n\n
