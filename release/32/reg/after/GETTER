@@ -1,1 +1,1 @@
-\1 \2get_\3\()\n{\n\treturn \3;\n}\n\n
+\1 \2get_\3()$NL{$NL$TBreturn \3;$NL}$NL$NL
