@@ -1,0 +1,1 @@
+#define PUB_UNUSED(object) (void) object
