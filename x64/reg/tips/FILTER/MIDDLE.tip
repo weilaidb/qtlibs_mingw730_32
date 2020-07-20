@@ -1,0 +1,8 @@
+	libQt5Widgets.so.5 => /home/duo/Qt5.13.2/5.13.2/gcc_64/lib/libQt5Widgets.so.5 (0x00007f7aca5ef000)
+	libQt5Gui.so.5 => /home/duo/Qt5.13.2/5.13.2/gcc_64/lib/libQt5Gui.so.5 (0x00007f7ac9da3000)
+	libQt5Sql.so.5 => /home/duo/Qt5.13.2/5.13.2/gcc_64/lib/libQt5Sql.so.5 (0x00007f7ac9b5b000)
+	libQt5Core.so.5 => /home/duo/Qt5.13.2/5.13.2/gcc_64/lib/libQt5Core.so.5 (0x00007f7ac93ab000)
+	libicui18n.so.56 => /home/duo/Qt5.13.2/5.13.2/gcc_64/lib/libicui18n.so.56 (0x00007f7ac7c67000)
+	libicuuc.so.56 => /home/duo/Qt5.13.2/5.13.2/gcc_64/lib/libicuuc.so.56 (0x00007f7ac78af000)
+	libicudata.so.56 => /home/duo/Qt5.13.2/5.13.2/gcc_64/lib/libicudata.so.56 (0x00007f7ac5ecc000)
+[duo@localhost qtlibs_mingw730_32]$ 

@@ -1,1 +1,0 @@
-void printDateTime()$NL{$NL$TBprintf("Date : %s\n", __DATE__);$NL$TBprintf("Time : %s\n", __TIME__);$NL$TBprintf("File : %s\n", __FILE__);$NL$TBprintf("Line : %d\n", __LINE__);$NL$NL}
