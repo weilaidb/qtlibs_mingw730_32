@@ -1,0 +1,9 @@
+#include <QDesktopWidget>
+
+int CUIPub::deskWidth()
+{
+    QDesktopWidget *desk=QApplication::desktop();
+    int wd=desk->width();
+    //    int ht=desk->height();
+    return wd;
+}
