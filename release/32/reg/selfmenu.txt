@@ -1,6 +1,6 @@
 C/INCLUDE/GENERATE
 C/INCLUDE/FILTER
-C/INCLUDE/³£ÓÃÍ·ÎÄ¼þ
+C/INCLUDE/å¸¸ç”¨å¤´æ–‡ä»¶
 C/MAIN
 C/PRINT/SWITCH
 C/PRINT/DEFINE
@@ -20,12 +20,31 @@ DEFINE/UNUSED
 
 CXX/INCLUDE/GENERATE
 CXX/INCLUDE/FILTER
-CXX/INCLUDE/³£ÓÃÍ·ÎÄ¼þ
+CXX/INCLUDE/å¸¸ç”¨å¤´æ–‡ä»¶
 CXX/DECLARE_TO_IMPLEMENT
 CXX/ARRAYSIZE
 
 
 QT/PRINT/debugApp
+QT/UI/Menu
+QT/UI/Action
+QT/UI/Settings
+QT/UI/Desktop/Width
+QT/UI/Desktop/Heigth
+QT/UI/Desktop/SetCenter
+QT/UI/progressBar
+QT/UI/ClipBoard/getClipBoardText
+QT/UI/ClipBoard/setClipBoardText
+QT/UI/QTextEdit/getSelectTextEdit
+QT/UI/QTextEdit/getSelectLine
+QT/UI/QTextEdit/getSelectLineTextEdit
+QT/UI/QTextEdit/getTextEdit
+QT/UI/QTextEdit/getTextEditLen
+QT/UI/QTextEdit/clearTextEdit
+QT/UI/QTextEdit/hideTextEdit
+QT/UI/QTextEdit/showTextEdit
+QT/UI/QTextEdit/setTextEdit
+QT/UI/execCmd
 
 BASH/usage
 
