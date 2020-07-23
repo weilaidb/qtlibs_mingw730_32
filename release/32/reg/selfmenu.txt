@@ -46,6 +46,7 @@ QT/UI/QTextEdit/hideTextEdit
 QT/UI/QTextEdit/showTextEdit
 QT/UI/QTextEdit/setTextEdit
 QT/UI/execCmd
+QT/UI/QTIMER
 
 BASH/usage
 
