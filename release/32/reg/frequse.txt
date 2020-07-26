@@ -1,0 +1,4 @@
+CXX/DECLARE_TO_IMPLEMENT
+MAKEFILE/test
+QT/PRINT/debugApp
+test
