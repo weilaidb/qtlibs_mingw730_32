@@ -1,3 +1,4 @@
+
 C/INCLUDE/GENERATE
 C/INCLUDE/FILTER
 C/INCLUDE/常用头文件
@@ -12,7 +13,6 @@ C/GETSET/GETTER
 C/GETSET/SETTER
 C/GETSET/GETTER_AND_SETTER
 C/ARRAYSIZE
-C/PTHREAD
 
 DEFINE/FILTER
 DEFINE/GENERATE
@@ -46,8 +46,16 @@ QT/UI/QTextEdit/hideTextEdit
 QT/UI/QTextEdit/showTextEdit
 QT/UI/QTextEdit/setTextEdit
 QT/UI/execCmd
-QT/UI/QTIMER
 
 BASH/usage
 
 MAKEFILE/test
+
+Python/Print
+正则表达式/所有转一行_替换为NL
+test
+
+
+
+
+
