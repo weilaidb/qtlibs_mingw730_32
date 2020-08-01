@@ -1,12 +1,10 @@
-BASH/usage
-C/ARRAYSIZE
-C/DATE_TIME
-C/INCLUDE/常用头文件
-CXX/DECLARE_TO_IMPLEMENT
 CXX/INCLUDE/常用头文件
 DEFINE/GENERATESTRINGSAME
 MAKEFILE/test
 Pthread/Create
+Python/Print
 QT/PRINT/debugApp
+QT/UI/Action
+QT/UI/Desktop/Heigth
 test
 正则表达式/所有转一行_替换为NL
