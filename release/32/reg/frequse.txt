@@ -1,5 +1,5 @@
-C/PRINT/DEFINE
 DEFINE/GENERATESTRINGSAME
+LINUX/并发与竞争/自旋锁和信号量
 MAKEFILE/test
 Pthread/Create
 Python/Print
