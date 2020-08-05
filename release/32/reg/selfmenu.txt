@@ -49,12 +49,10 @@ QT/UI/execCmd
 
 BASH/usage
 
-MAKEFILE/test
 
 Python/Print
 正则表达式/所有转一行_替换为NL
 Pthread/Create
-Pthread/test
 
 LINUX/并发与竞争/自旋锁和信号量
 
@@ -62,4 +60,28 @@ LINUX/并发与竞争/自旋锁和信号量
 
 
 
+
+
+Makefile/testtarget
+Makefile/wildcard
+Makefile/PHONY
+Makefile/depend
+Makefile/echo
+Makefile/parameter/-k--keep-going
+Makefile/parameter/-i--ignore-errors
+Makefile/parameter/-s--slient
+Makefile/parameter/-n--just-print
+Makefile/parameter/-w--print-directory
+Makefile/parameter/--no-print-directory
+Makefile/parameter/-e系统环境变量覆盖Makefile定义
+Makefile/define
+Makefile/var/readme
+Makefile/变量值的替换
+Makefile/override命令行参数设置
+Makefile/多行变量
+Makefile/模式变量
+Makefile/条件判断/ifeq
+Makefile/条件判断/ifneq
+Makefile/条件判断/ifdef
+Makefile/条件判断/ifndef
 
