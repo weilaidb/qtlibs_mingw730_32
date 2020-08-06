@@ -1,3 +1,20 @@
+BASH/hello
+BASH/chmod
+BASH/usage
+BASH/文件系统/ls-l
+BASH/文件系统/chmod
+BASH/注释/单行
+BASH/注释/多行
+BASH/注释/多行2
+BASH/引号
+BASH/变量/赋值
+BASH/变量/引号字符串
+BASH/变量/命令行参数
+BASH/打印/变量名
+BASH/读取用户输入/单个或多个
+BASH/读取用户输入/单个或多个PROMPT
+BASH/读取用户输入/单个或多个PROMPT-SLIENT
+
 
 C/INCLUDE/GENERATE
 C/INCLUDE/FILTER
@@ -47,7 +64,6 @@ QT/UI/QTextEdit/showTextEdit
 QT/UI/QTextEdit/setTextEdit
 QT/UI/execCmd
 
-BASH/usage
 
 
 Python/Print
