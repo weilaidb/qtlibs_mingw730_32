@@ -1,4 +1,4 @@
-Makefile/函数/文件名/join连接函数
+BASH/读取用户输入/单个或多个PROMPT
 Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量
