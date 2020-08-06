@@ -1,4 +1,4 @@
-Makefile/函数/字符串/firstword首单词函数
+Makefile/函数/文件名/join连接函数
 Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量
