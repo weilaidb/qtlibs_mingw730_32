@@ -1,4 +1,4 @@
-Makefile/条件判断/ifdef
+Makefile/函数/字符串/wordlist取单词串函数
 Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量

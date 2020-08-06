@@ -1,0 +1,1 @@
+$(wordlist <s>;,<e>;,<text>;)
