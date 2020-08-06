@@ -30,12 +30,14 @@ BASH/基本运算符/拼接字符串
 BASH/语句/if语句
 BASH/语句/if语句&&&&
 BASH/语句/if语句或
+BASH/语句/if语句或2
 BASH/语句/if语句&&&&_或
 BASH/语句/if语句选项常用列表
 BASH/语句/if-else语句
-BASH/语句/else-if语句
+BASH/语句/if-elif-else语句
 BASH/语句/case语句
-BASH/语句/for语句
+BASH/语句/for语句-1
+BASH/语句/for语句-2
 BASH/语句/while语句
 BASH/语句/until语句
 BASH/函数
