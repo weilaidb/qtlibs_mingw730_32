@@ -1,0 +1,21 @@
+第三个条件关键字是“ifdef”。语法是：跟我一起写 Makefile 
+ifdef <variable-name>; 
+如果变量<variable-name>;的值非空，那到表达式为真。否则，表达式为假。当然， 
+<variable-name>;同样可以是一个函数的返回值。注意，ifdef只是测试一个变量是否有值， 
+其并不会把变量扩展到当前位置。还是来看两个例子： 
+示例一： 
+bar = 
+foo = $(bar) 
+ifdef foo 
+frobozz = yes 
+else 
+frobozz = no 
+endif 
+示例二： 
+foo = 
+ifdef foo 
+frobozz = yes 
+else 
+frobozz = no 
+endif 
+第一个例子中，“$(frobozz)”值是“yes”，第二个则是“no”。 

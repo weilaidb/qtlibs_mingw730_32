@@ -49,13 +49,63 @@ QT/UI/execCmd
 
 BASH/usage
 
-MAKEFILE/test
 
 Python/Print
 正则表达式/所有转一行_替换为NL
-test
+Pthread/Create
+
+LINUX/并发与竞争/自旋锁和信号量
 
 
 
 
+
+
+
+Makefile/testtarget
+Makefile/wildcard
+Makefile/PHONY
+Makefile/depend
+Makefile/echo
+Makefile/parameter/-k--keep-going
+Makefile/parameter/-i--ignore-errors
+Makefile/parameter/-s--slient
+Makefile/parameter/-n--just-print
+Makefile/parameter/-w--print-directory
+Makefile/parameter/--no-print-directory
+Makefile/parameter/-e系统环境变量覆盖Makefile定义
+Makefile/define
+Makefile/var/readme
+Makefile/变量值的替换
+Makefile/override命令行参数设置
+Makefile/多行变量
+Makefile/模式变量
+Makefile/条件判断/ifeq
+Makefile/条件判断/ifneq
+Makefile/条件判断/ifdef
+Makefile/条件判断/ifndef
+Makefile/函数/字符串/subst字符串替换函数
+Makefile/函数/字符串/patsubst模式字符串替换函数
+Makefile/函数/字符串/strip去空格函数
+Makefile/函数/字符串/findstring查找字符串函数
+Makefile/函数/字符串/filter过滤函数
+Makefile/函数/字符串/filter-out反过滤函数
+Makefile/函数/字符串/sort排序函数
+Makefile/函数/字符串/word取单词函数
+Makefile/函数/字符串/wordlist取单词串函数
+Makefile/函数/字符串/words单词个数统计函数
+Makefile/函数/字符串/firstword首单词函数
+Makefile/函数/文件名/dir取目录函数
+Makefile/函数/文件名/notdir取文件函数
+Makefile/函数/文件名/suffix取后缀函数
+Makefile/函数/文件名/basename取前缀函数
+Makefile/函数/文件名/addsuffix加后缀函数
+Makefile/函数/文件名/addprefix加前缀函数
+Makefile/函数/文件名/join连接函数
+Makefile/函数/foreach
+Makefile/函数/if
+Makefile/函数/call
+Makefile/函数/origin
+Makefile/函数/shell
+Makefile/函数/控制 make
 

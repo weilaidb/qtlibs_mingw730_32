@@ -1,4 +1,0 @@
-void CUIPub::clearTextEdit(QTextEdit *pEdit)
-{
-    pEdit->clear();
-}

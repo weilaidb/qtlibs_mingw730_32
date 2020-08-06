@@ -1,0 +1,3 @@
+define $(dir)_print 
+lpr $($(dir)_sources) 
+endef 
