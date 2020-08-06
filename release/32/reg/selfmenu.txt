@@ -28,6 +28,10 @@ BASH/基本运算符/拆分字符串
 BASH/基本运算符/提取子字符串
 BASH/基本运算符/拼接字符串
 BASH/语句/if语句
+BASH/语句/if语句&&&&
+BASH/语句/if语句或
+BASH/语句/if语句&&&&_或
+BASH/语句/if语句选项常用列表
 BASH/语句/if-else语句
 BASH/语句/else-if语句
 BASH/语句/case语句
