@@ -14,6 +14,30 @@ BASH/打印/变量名
 BASH/读取用户输入/单个或多个
 BASH/读取用户输入/单个或多个PROMPT
 BASH/读取用户输入/单个或多个PROMPT-SLIENT
+BASH/读取用户输入/-a数组多个输入
+BASH/日期/选项
+BASH/日期/Month-Date-Year
+BASH/休眠
+BASH/基本运算符/算术运算符列表
+BASH/基本运算符/关系运算符列表
+BASH/基本运算符/逻辑运算符列表
+BASH/基本运算符/算术运算
+BASH/基本运算符/字符串
+BASH/基本运算符/查找字符串长度
+BASH/基本运算符/拆分字符串
+BASH/基本运算符/提取子字符串
+BASH/基本运算符/拼接字符串
+BASH/语句/if语句
+BASH/语句/if-else语句
+BASH/语句/else-if语句
+BASH/语句/case语句
+BASH/语句/for语句
+BASH/语句/while语句
+BASH/语句/until语句
+BASH/函数
+BASH/数组
+BASH/读取文件
+BASH/重定向
 
 
 C/INCLUDE/GENERATE

@@ -1,4 +1,4 @@
-BASH/读取用户输入/单个或多个PROMPT
+BASH/语句/if语句
 Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量
