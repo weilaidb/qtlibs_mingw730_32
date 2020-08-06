@@ -1,4 +1,4 @@
-BASH/字符串/查找字符串长度
+BASH/重定向
 Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量

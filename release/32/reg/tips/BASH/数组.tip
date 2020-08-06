@@ -1,1 +1,135 @@
-condition;ifblockcommands;elseblockcommands
+Bash 数组
+数组声明
+索引数组
+使用declare加-a选项，将变量来声明数组，语法如下：
+#声明数组
+declare -a Array_Name
+#创建数组元素
+Array_Name[index_1]=value_1
+Array_Name[index_2]=value_2
+#或
+Array_Name=(
+    [index_1]=value_1
+    [index_2]=value_2
+)
+注：
+在 Bash 中命名数组的规则与变量的命名规则相同。
+Array_Name是数组名称。
+index是为正整数的索引。
+关联数组
+使用declare加-A选项来声明数组，语法如下：
+#声明数组
+declare -A Array_Name
+#创建数组元素
+Array_Name[index_1]=value_1
+Array_Name[index_2]=value_2
+#或
+Array_Name=(
+    [index_1]=value_1
+    [index_2]=value_2
+)
+数组初始化
+Array_Name=(element_1 element_2 element_3)
+注：
+此处索引从0开始。
+=两侧无空格。
+打印数组
+declare -p Array_Name
+数组运算
+访问元素
+您要想访问一个元素，首先需要知道该元素的索引下标，然后使用以下语法进行访问获取。
+${Array_Name[index]}
+如果您使用@或*作为索引进行访问获取，那么将会得到数组中的所有元素。
+#!/bin/bash
+declare -a arr=("welcome" "to" "W3Cschool")
+echo "@"
+for i in "${arr[@]}"
+do
+echo "$i"
+done
+echo "*"
+for i in "${arr[*]}"
+do
+echo "$i"
+done
+执行后得到以下结果：
+@
+welcome
+to
+W3Cschool
+*
+welcome to W3Cschool
+注：
+@和 *两者的区别主要体现在循环结果的不同。
+打印数组键
+您还可以检索和打印在数组中使用的键。语法如下：
+${!Array_Name[index]}
+示例：
+#!/bin/bash
+declare -a arr=( "Welcome" "To" "W3Cschool" )
+echo "${!arr[@]}"
+执行后得到以下结果：
+0 1 2
+查找数组长度
+数组长度即数组中的元素个数，语法如下：
+${#ARRAY_NAME[@]}
+示例：
+#!/bin/bash
+declare -a arr=( "Welcome" "To" "W3Cschool" )
+echo "The array contains    ${#arr[@]} elements"
+执行后得到以下结果：
+The array contains 3 elements
+遍历数组
+遍历数组的通用方法是 for 循环，如下所示：
+#!/bin/bash
+declare -a arr=( "Welcome" "To" "W3Cschool" )
+for i in "${!arr[@]}"
+do
+echo The key value of element "${arr[$i]}" is "$i"
+done
+执行后得到以下结果：
+The key value of element Welcome is 0
+The key value of element to is 1
+The key value of element W3Cschool is 2
+添加或删除元素
+添加元素
+Array_Name[index]="New Element"
+示例：
+#!/bin/bash
+declare -a arr=( "Java" "Python" "PHP" "HTML" )
+arr[4]="JavaScript"
+echo "${arr[@]}"
+执行后得到以下结果：
+Java Python PHP JavaScript CSS SQL
+删除元素
+unset ARRAY_NAME[index]
+示例：
+#!/bin/bash
+declare -a arr=( "Java" "Python" "HTML" "CSS" "JavaScript" )
+unset arr[1]
+echo "${arr[@]}"
+执行后得到以下结果：
+Java HTML CSS JavaScript
+删除数组
+可以通过将数组名称作为参数传递给unset命令执行删除操作，如下所示：
+#!/bin/bash
+declare -a arr=( "Java" "Python" "HTML" "CSS" "JavaScript" )
+unset arr
+echo ${!arr[@]}
+echo ${!arr[@]}
+执行后返回空结果，数组已不存在。
+数组切片
+Bash 数组也可以从指定的起始索引切片至指定的结束索引，语法如下：
+Slieced_Array=(${Array_Name[@]:m:n}")
+示例：
+#!/bin/bash
+example_array=( "Java" "Python" "HTML" "CSS" "JavaScript" )
+sliced_array=("${example_array[@]:1:3}")
+for i in "${sliced_array[@]}"
+do
+echo $i
+done
+执行后得到以下结果：
+Python
+HTML
+CSS

@@ -1,1 +1,1 @@
-if [ \1 ];$NLthen$NL$TB\2$NLelse$NL$TB\3$NLfi
+\1
