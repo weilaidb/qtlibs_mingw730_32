@@ -1,0 +1,1 @@
+echo "Total characters in a String: ${#\1} "$NLsubstr="${\1:\2:\3}"$NLecho "Substring: $substr"$NLecho "Total characters in Substring: ${#substr} "$NL$NL$NL$NL$NL#从指定字符开始提取至结尾结束$NLsubstr="${\1:\2}"$NLecho "$substr"
