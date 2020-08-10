@@ -100,7 +100,7 @@ QT/UI/execCmd
 
 
 
-Python/Print
+
 正则表达式/所有转一行_替换为NL
 Pthread/Create
 
@@ -158,4 +158,19 @@ Makefile/函数/call
 Makefile/函数/origin
 Makefile/函数/shell
 Makefile/函数/控制 make
+
+
+
+JAVA/print/println
+
+Python/Print
+Python/main
+Python/idea快捷键
+Python/from_xxx_import_all
+Python/pyQt5_import
+Python/引用其它目录
+Python/语法/tryException
+Python/语法/循环/string
+Python/语法/pyQt5/创建菜单
+Python/语法/pyQt5/创建Action
 

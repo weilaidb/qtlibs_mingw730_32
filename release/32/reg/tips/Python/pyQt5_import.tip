@@ -1,0 +1,10 @@
+import re
+import os
+import sys
+import html
+import time
+import platform
+import pyperclip
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
