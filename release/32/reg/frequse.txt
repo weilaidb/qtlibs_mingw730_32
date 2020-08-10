@@ -1,4 +1,4 @@
-Python/pyQt5_import
+Pthread/Create
 Python/引用其它目录
 Python/语法/pyQt5/创建Action
 Python/语法/pyQt5/创建菜单
