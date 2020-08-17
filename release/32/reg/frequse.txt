@@ -1,9 +1,9 @@
-C/DEFINE/添加TAB
-Python/引用其它目录
+Python/Print
 Python/语法/pyQt5/创建Action
 Python/语法/pyQt5/创建菜单
 Python/语法/tryException
 Python/语法/循环/string
+Python/语法/排序去重复
 QT/PRINT/debugApp
 QT/UI/Action
 QT/UI/Desktop/Heigth
