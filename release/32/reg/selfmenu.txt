@@ -56,6 +56,14 @@ C/INCLUDE/常用头文件
 C/MAIN
 C/PRINT/SWITCH
 C/PRINT/DEFINE
+C/PRINT/int
+C/PRINT/uintxx
+C/PRINT/float
+C/PRINT/double
+C/PRINT/long_int
+C/PRINT/unsigned_long_int
+C/PRINT/string
+C/PRINT/address
 C/STRNCPY_2_SNPRINTF
 C/DATE_TIME
 C/LOOP/FOR
@@ -176,6 +184,7 @@ Python/语法/循环/string
 Python/语法/pyQt5/创建菜单
 Python/语法/pyQt5/创建Action
 Python/语法/排序去重复
+Python/时间/引用头
 
 
 
