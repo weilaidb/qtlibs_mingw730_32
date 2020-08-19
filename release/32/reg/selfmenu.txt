@@ -73,6 +73,7 @@ C/GETSET/SETTER
 C/GETSET/GETTER_AND_SETTER
 C/ARRAYSIZE
 C/DEFINE/添加TAB
+C/DEFINE/static_inline空间换时间
 
 DEFINE/FILTER
 DEFINE/GENERATE
@@ -112,6 +113,7 @@ QT/UI/execCmd
 
 正则表达式/所有转一行_替换为NL
 Pthread/Create
+Pthread/pthread_mutex
 
 LINUX/并发与竞争/自旋锁和信号量
 LINUX/Makefile
@@ -186,3 +188,16 @@ Python/语法/pyQt5/创建Action
 Python/语法/排序去重复
 Python/时间/引用头
 
+
+
+KERNEL/module/makefile
+KERNEL/LIST_HEAD
+KERNEL/basetype
+KERNEL/log_format
+KERNEL/进制相关/hex_to_bin
+KERNEL/时间相关/raid6_jiffies
+KERNEL/大小写/tolower toupper
+KERNEL/宏/__setup
+KERNEL/宏/_initcall
+KERNEL/宏/_IO
+KERNEL/FS/mount-flags
