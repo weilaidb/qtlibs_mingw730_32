@@ -201,3 +201,7 @@ KERNEL/宏/__setup
 KERNEL/宏/_initcall
 KERNEL/宏/_IO
 KERNEL/FS/mount-flags
+KERNEL/调度/调度策略
+KERNEL/调度/最大CPU
+KERNEL/调度/进程标志
+KERNEL/调度/最大优先级

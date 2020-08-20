@@ -1,4 +1,4 @@
-C/DEFINE/static_inline空间换时间
+KERNEL/调度/调度策略
 Python/语法/pyQt5/创建Action
 Python/语法/pyQt5/创建菜单
 Python/语法/tryException
