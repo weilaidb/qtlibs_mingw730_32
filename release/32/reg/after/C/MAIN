@@ -1,1 +1,1 @@
-\1
+int main(int argc, char **argv)$NL{$NL$TBreturn 0;$NL}
