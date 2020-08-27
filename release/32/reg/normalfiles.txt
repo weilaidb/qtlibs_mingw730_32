@@ -4,3 +4,15 @@ D:
 I:\研究文档\通用文档工程\books\驱动\Linux驱动开发入门与实战.pdf
 https://github.com/weilaidb
 https://github.com/weilaidb/linux_driver
+E:
+F:
+G:
+I:
+G:\迅雷下载
+http://kerneltravel.net/blog/2020/lp_824/
+http://localhost:8080/source/
+
+http://localhost:8080/weilai/sql/bselectdb.jsp
+
+
+D:\Software\apache-tomcat-9.0.27-windows-x64\apache-tomcat-9.0.27\webapps
