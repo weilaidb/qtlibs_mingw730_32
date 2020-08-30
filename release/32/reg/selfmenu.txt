@@ -177,6 +177,7 @@ JAVA/print/println
 
 Python/Print
 Python/main
+Python/header
 Python/idea快捷键
 Python/from_xxx_import_all
 Python/pyQt5_import
@@ -187,6 +188,9 @@ Python/语法/pyQt5/创建菜单
 Python/语法/pyQt5/创建Action
 Python/语法/排序去重复
 Python/时间/引用头
+Python/示例/字符串转 md5 
+Python/示例/网络/服务端
+Python/示例/网络/客户端
 
 
 
