@@ -118,6 +118,15 @@ Pthread/pthread_mutex
 
 LINUX/并发与竞争/自旋锁和信号量
 LINUX/Makefile
+LINUX/Printk/说明
+LINUX/Printk/KERN_EMERG
+LINUX/Printk/KERN_ALERT
+LINUX/Printk/KERN_CRIT
+LINUX/Printk/KERN_ERR
+LINUX/Printk/KERN_WARNING
+LINUX/Printk/KERN_NOTICE
+LINUX/Printk/KERN_INFO
+LINUX/Printk/KERN_DEBUG
 
 
 
