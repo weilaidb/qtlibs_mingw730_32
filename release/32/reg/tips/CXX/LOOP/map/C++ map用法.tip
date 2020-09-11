@@ -1,0 +1,157 @@
+C++ map用法
+map是C++中的一个标准容器，她提供了很好一对一的关系，在一些程序中建立一个map可以起到事半功倍的效果，本文为大家总结了map的一些基本简单的操作！  
+
+
+
+Map的使用
+需要导入头文件
+#include <map> // STL头文件没有扩展名.h
+map 对象是一个模版类，需要关键字和存储对象两个模版参数
+ std::map<int , std::string> person;
+可以对模版进行类型定义使其使用方便
+typedef std::map<int , std::string> MAP_INI_STRING;
+MAP_INI_STRING person;
+
+
+Map的构造
+1、map最基本的构造函数；
+std::map<int , std::string> mapPerson;
+
+
+
+2、map添加数据；
+1)insert函数插入pair数据
+std::map<int , std::string> mapPerson;
+mapPerson.insert(pair<int,string>(1,"Jim"));
+2)insert函数插入value_type数据
+mapPerson.insert(std::map<int, std::string>::value_type (2, "Tom"));
+3)用数组方式插入数据
+mapPerson[3]="Jerry";
+3、Map数据的遍历
+三种最常用的遍历方法：
+1)前向迭代器
+std::map<int ,std::string>::iterator it;
+    std::map<int ,std::string>::iterator itEnd;
+    it = mapPerson.begin();
+    itEnd = mapPerson.end();
+    while (it != itEnd) {
+	cout<<it->first<<' '<<it->second<<endl;  
+	it++;
+}
+2)反向迭代器
+std::map<int, string>::reverse_iterator iter;  
+for(iter = mapPerson.rbegin(); iter != mapPerson.rend(); iter++) 
+	cout<<iter->first<<"  "<<iter->second<<endl;  
+
+3)数组形式
+mapPerson.insert(std::map<int, std::string>::value_type (1, "Tom"));
+mapPerson[2]= "Jim";
+mapPerson[3]= "Jerry";
+
+int nSize = mapPerson.size();
+for(int n=1; n<= nSize; n++)
+	qDebug()<<QString::fromStdString(mapPerson[n]);
+三种都是遍历，建议使用前向迭代器，慎用使用数组形成（角标开始位置谨慎）。
+4、map中元素的查找：
+   find()函数返回一个迭代器指向键值为key的元素，如果没找到就返回指向map尾部的迭代器。        
+ map<int ,string >::iterator l_it;; 
+   l_it=maplive.find(112);
+   if(l_it==maplive.end())
+                cout<<"we do not find 112"<<endl;
+   else cout<<"wo find 112"<<endl;
+
+
+5、map中元素的删除：
+   如果删除112；
+iterator erase（iterator it)	;//通过一个条目对象删除
+iterator erase（iterator first，iterator last）；	//删除一个范围
+size_type erase(const Key&key);	//通过关键字删除
+clear()；//就相当于enumMap.erase(enumMap.begin(),enumMap.end());
+
+
+
+6、map中 swap的用法：
+  Map中的swap不是一个容器中的元素交换，而是两个容器交换；
+  示例：
+ #include <map> 
+ #include <iostream>
+  using namespace std;
+  int main( )
+  {
+      map <int, int> m1, m2, m3;
+      map <int, int>::iterator m1_Iter;
+      m1.insert ( pair <int, int>  ( 1, 10 ) );
+      m1.insert ( pair <int, int>  ( 2, 20 ) );
+      m1.insert ( pair <int, int>  ( 3, 30 ) );
+      m2.insert ( pair <int, int>  ( 10, 100 ) );
+      m2.insert ( pair <int, int>  ( 20, 200 ) );
+      m3.insert ( pair <int, int>  ( 30, 300 ) );
+   cout << "The original map m1 is:";
+   for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ )
+      cout << " " << m1_Iter->second;
+      cout   << "." << endl;
+   // This is the member function version of swap
+   //m2 is said to be the argument map; m1 the target map
+   m1.swap( m2 );
+   cout << "After swapping with m2, map m1 is:";
+   for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ )
+      cout << " " << m1_Iter -> second;
+      cout  << "." << endl;
+   cout << "After swapping with m2, map m2 is:";
+   for ( m1_Iter = m2.begin( ); m1_Iter != m2.end( ); m1_Iter++ )
+      cout << " " << m1_Iter -> second;
+      cout  << "." << endl;
+   // This is the specialized template version of swap
+   swap( m1, m3 );
+   cout << "After swapping with m3, map m1 is:";
+   for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ )
+      cout << " " << m1_Iter -> second;
+      cout   << "." << endl;
+}
+
+
+7、map的sort问题：
+  Map中的元素是自动按key升序排序,所以不能对map用sort函数：
+  示例：
+ #include <map>  #include <iostream>
+ using namespace std;
+ int main( )
+ {
+   map <int, int> m1;
+   map <int, int>::iterator m1_Iter;
+   m1.insert ( pair <int, int>  ( 1, 20 ) );
+   m1.insert ( pair <int, int>  ( 4, 40 ) );
+   m1.insert ( pair <int, int>  ( 3, 60 ) );
+   m1.insert ( pair <int, int>  ( 2, 50 ) );
+   m1.insert ( pair <int, int>  ( 6, 40 ) );
+   m1.insert ( pair <int, int>  ( 7, 30 ) );
+   cout << "The original map m1 is:"<<endl;
+   for ( m1_Iter = m1.begin( ); m1_Iter != m1.end( ); m1_Iter++ )
+      cout <<  m1_Iter->first<<" "<<m1_Iter->second<<endl;
+}
+
+
+8、map的基本操作函数：
+    C++ Maps是一种关联式容器，包含“关键字/值”对
+    begin()          返回指向map头部的迭代器
+    clear(）         删除所有元素
+    begin()          返回指向map头部的迭代器
+    clear(）         删除所有元素
+    count()          返回指定元素出现的次数
+    empty()          如果map为空则返回true
+    end()            返回指向map末尾的迭代器
+    equal_range()    返回特殊条目的迭代器对
+    erase()          删除一个元素
+    find()           查找一个元素
+    get_allocator()  返回map的配置器
+    insert()         插入元素
+    key_comp()       返回比较元素key的函数
+    lower_bound()    返回键值>=给定元素的第一个位置
+    max_size()       返回可以容纳的最大元素个数
+    rbegin()         返回一个指向map尾部的逆向迭代器
+    rend()           返回一个指向map头部的逆向迭代器
+    size()           返回map中元素的个数
+    swap()            交换两个map
+    upper_bound()     返回键值>给定元素的第一个位置
+    value_comp()      返回比较元素value的函数
+
