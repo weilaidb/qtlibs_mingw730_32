@@ -118,6 +118,9 @@ QT/UI/execCmd
 
 
 正则表达式/所有转一行_替换为NL
+正则表达式/所有转一行_替换为逗号
+正则表达式/所有转一行_替换为空格
+正则表达式/添加引号
 正则表达式/去除开头的数字
 Pthread/Create
 Pthread/pthread_mutex
