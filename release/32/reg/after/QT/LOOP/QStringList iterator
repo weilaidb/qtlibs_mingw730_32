@@ -1,0 +1,1 @@
+QStringList::iterator iter = \1.begin();$NLfor(;iter != \1.end();iter++)$NL{$NL$NL}
