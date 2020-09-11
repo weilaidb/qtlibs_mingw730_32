@@ -90,6 +90,8 @@ CXX/DECLARE_TO_IMPLEMENT CLASS
 CXX/ARRAYSIZE
 CXX/LOOP/list iterator
 CXX/LOOP/list reverse_iterator
+CXX/LOOP/map/C++ map用法
+CXX/LOOP/map/map
 
 QT/PRINT/debugApp
 QT/LOOP/QStringList iterator
