@@ -87,9 +87,12 @@ CXX/INCLUDE/常用头文件
 CXX/DECLARE_TO_IMPLEMENT
 CXX/DECLARE_TO_IMPLEMENT CLASS
 CXX/ARRAYSIZE
-
+CXX/LOOP/list iterator
+CXX/LOOP/list reverse_iterator
 
 QT/PRINT/debugApp
+QT/LOOP/QStringList iterator
+QT/LOOP/QStringList reverse_iterator
 QT/UI/Menu
 QT/UI/Action
 QT/UI/Settings
