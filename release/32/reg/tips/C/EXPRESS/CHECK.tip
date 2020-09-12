@@ -1,0 +1,19 @@
+#define CHECK(condition, tag, format...) ({				\
+	int __ret = !!(condition);					\
+	if (__ret) {							\
+		printf("%s(%d):FAIL:%s ", __func__, __LINE__, tag);	\
+		printf(format);						\
+		printf("\n");						\
+	}								\
+})
+
+
+
+#define CHECK(condition, format...) ({					\
+	int __ret = !!(condition);					\
+	if (__ret) {							\
+		fprintf(stderr, "%s:%d:FAIL ", __func__, __LINE__);	\
+		fprintf(stderr, format);				\
+	}								\
+	__ret;								\
+})
