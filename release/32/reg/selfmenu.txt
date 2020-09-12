@@ -191,6 +191,7 @@ Makefile/函数/if
 Makefile/函数/call
 Makefile/函数/origin
 Makefile/函数/shell
+Makefile/函数/forloop
 Makefile/函数/控制 make
 
 
