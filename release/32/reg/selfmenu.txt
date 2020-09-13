@@ -106,6 +106,7 @@ QT/UI/Desktop/Heigth
 QT/UI/Desktop/SetCenter
 QT/UI/progressBar
 QT/UI/QObject_connect/QAction
+QT/UI/QObject_connect/QPushButton
 QT/UI/ClipBoard/getClipBoardText
 QT/UI/ClipBoard/setClipBoardText
 QT/UI/QTextEdit/getSelectTextEdit
