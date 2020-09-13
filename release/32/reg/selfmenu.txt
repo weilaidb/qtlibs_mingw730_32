@@ -96,6 +96,7 @@ CXX/LOOP/map/map
 CXX/LOOP/vector
 
 QT/PRINT/debugApp
+QT/PRINT/ENTERTIPS
 QT/LOOP/QStringList iterator
 QT/LOOP/QStringList reverse_iterator
 QT/UI/Menu
@@ -119,6 +120,8 @@ QT/UI/QTextEdit/hideTextEdit
 QT/UI/QTextEdit/showTextEdit
 QT/UI/QTextEdit/setTextEdit
 QT/UI/execCmd
+QT/UI/newUi
+QT/UI/问题项
 
 
 
