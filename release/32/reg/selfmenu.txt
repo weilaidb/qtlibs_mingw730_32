@@ -122,6 +122,7 @@ QT/UI/QTextEdit/setTextEdit
 QT/UI/execCmd
 QT/UI/newUi
 QT/UI/问题项
+QT/UI/Settings eg
 
 
 
