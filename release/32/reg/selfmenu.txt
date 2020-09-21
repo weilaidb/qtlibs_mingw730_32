@@ -119,6 +119,7 @@ QT/UI/QTextEdit/clearTextEdit
 QT/UI/QTextEdit/hideTextEdit
 QT/UI/QTextEdit/showTextEdit
 QT/UI/QTextEdit/setTextEdit
+QT/UI/Dialog/CDialogNewUt
 QT/UI/execCmd
 QT/UI/newUi
 QT/UI/问题项
