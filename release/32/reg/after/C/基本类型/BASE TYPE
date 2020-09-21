@@ -1,0 +1,1 @@
+typedef unsigned char \1BYTE;$NLtypedef char \1CHAR;$NLtypedef unsigned short \1WORD16;$NLtypedef signed short \1SWROD16;$NLtypedef unsigned int \1WORD32;$NLtypedef signed int \1SWROD32;$NLtypedef unsigned long long \1WORD64;$NLtypedef signed long long \1SWORD64;$NL
