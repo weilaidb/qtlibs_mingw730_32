@@ -209,6 +209,7 @@ Makefile/函数/控制 make
 
 JAVA/print/println
 JAVA/JSP/知识点
+JAVA/JSP/new jsp
 
 Python/Print
 Python/main
