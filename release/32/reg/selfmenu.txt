@@ -211,6 +211,7 @@ JAVA/print/println
 JAVA/JSP/知识点
 JAVA/JSP/new jsp
 JAVA/JSP/synchronized
+JAVA/JSP/request.getParameter
 
 Python/Print
 Python/main
