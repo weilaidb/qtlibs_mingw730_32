@@ -212,6 +212,8 @@ JAVA/JSP/知识点
 JAVA/JSP/new jsp
 JAVA/JSP/synchronized
 JAVA/JSP/request.getParameter
+JAVA/JSP/form/submit
+JAVA/JSP/form/text
 
 Python/Print
 Python/main
