@@ -1,0 +1,63 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="static java.lang.Math.*" %>
+<%@ page import="java.util.*", "java.awt.*", "java.io.*", "java.sql.*" %>
+
+<%@ page import="java.util.*"%>
+<%@ page import="java.awt.*"%>
+<%@ page import="java.io.*"%>
+<%@ page import="java.sql.*" %>
+
+<%@ page import="java.util.Date"%>
+
+#default import
+<%@ page import="java.lang.*" %>
+<%@ page import="javax.servlet.*" %>
+<%@ page import="javax.servlet.jsp.*" %>
+<%@ page import="javax.servlet.http.*" %>
+
+
+#contentType
+默认为
+<%@ page contentType="text/html;charset=ISO-8859-1"%>
+#其它MS-Word
+<%@ page contentType="application/msword"%>
+
+#属性值
+text/html
+text/plain
+image/gif
+image/x-xbitmap
+image/jpeg
+image/pjpeg
+application/x-shockwave-flash
+application/vnd.ms-powerpoint
+application/vnd.ms-excel
+application/msword
+
+
+#session
+默认true
+
+#buffer
+默认8KB
+<%@ page buffer="24KB" %>
+<%@ page buffer="none" %>
+
+#autoFlash
+out缓冲区填满时，缓冲区是否自动刷新。
+默认true 
+<%@ page autoFlash="true" %>
+<%@ page autoFlash="false" %>
+
+
+#isThreadSafe
+true时，JSP页面能同时响应多个用户的请求
+false时，JSP页面同一时刻只能响应一个用户的请求，其他用户排除等等。
+默认为true
+<%@ page isThreadSafe="true" %>
+<%@ page isThreadSafe="false" %>
+
+
+
+
+
