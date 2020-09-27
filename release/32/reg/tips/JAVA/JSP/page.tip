@@ -57,7 +57,14 @@ false时，JSP页面同一时刻只能响应一个用户的请求，其他用户
 <%@ page isThreadSafe="true" %>
 <%@ page isThreadSafe="false" %>
 
+#info
+<%@ page info="we are engineer" %>
+getServletInfo()
 
-
+#include
+#插入一个静态文件
+<%@ page include file="file's URL" %>
+中文乱码
+<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8"%>
 
 
