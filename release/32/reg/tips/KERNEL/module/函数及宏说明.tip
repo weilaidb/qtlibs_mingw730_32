@@ -1,0 +1,35 @@
+static int __init bt_6lowpan_init(void)
+{
+	lowpan_enable_debugfs = debugfs_create_file_unsafe("6lowpan_enable",
+							   0644, bt_debugfs,
+							   NULL,
+							   &lowpan_enable_fops);
+	lowpan_control_debugfs = debugfs_create_file("6lowpan_control", 0644,
+						     bt_debugfs, NULL,
+						     &lowpan_control_fops);
+
+	return register_netdevice_notifier(&bt_6lowpan_dev_notifier);
+}
+
+static void __exit bt_6lowpan_exit(void)
+{
+	debugfs_remove(lowpan_enable_debugfs);
+	debugfs_remove(lowpan_control_debugfs);
+
+	if (listen_chan) {
+		l2cap_chan_close(listen_chan, 0);
+		l2cap_chan_put(listen_chan);
+	}
+
+	disconnect_devices();
+
+	unregister_netdevice_notifier(&bt_6lowpan_dev_notifier);
+}
+
+module_init(bt_6lowpan_init);
+module_exit(bt_6lowpan_exit);
+
+MODULE_AUTHOR("Jukka Rissanen <jukka.rissanen@linux.intel.com>");
+MODULE_DESCRIPTION("Bluetooth 6LoWPAN");
+MODULE_VERSION(VERSION);
+MODULE_LICENSE("GPL");

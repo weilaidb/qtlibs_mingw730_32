@@ -245,6 +245,7 @@ Python/示例/网络/2/客户端
 
 
 KERNEL/module/makefile
+KERNEL/module/函数及宏说明
 KERNEL/LIST_HEAD
 KERNEL/basetype
 KERNEL/log_format
