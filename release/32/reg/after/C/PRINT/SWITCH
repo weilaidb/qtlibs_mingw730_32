@@ -1,1 +1,1 @@
-\1 \2\3 = \4;$NL#define PRINT_SWITCH_\3(fmt,args...) \$NLif(\3)\$NL{\$NL$TBprintf("F:%-30s,L:%-4d" fmt, __FUNCTION__, __LINE__, ##args);\$NL}
+\1 \2\3 = \4;$NL#define PRINT_SWITCH_\3(fmt,args...) \$NLif(\3)\$NL{\$NL$TBprintf("F:%-30s,L:%-4d" fmt, __FUNCTION__, __LINE__, ##args);\$NL}$NL$NL$NL#define PRINT_SWITCH_\3(fmt,...) \$NLif(\3)\$NL{\$NL$TBprintf("F:%-30s,L:%-4d" fmt, __FUNCTION__, __LINE__, ##__VA_ARGS__);\$NL}$NL
