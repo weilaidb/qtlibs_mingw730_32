@@ -32,3 +32,28 @@ jsp 使用tag 中文乱码 解决
 由于我的是utf-8所以是utf-8，各位观摩一下自己的jsp文件是不是utf-8，有可能是gbk
 
 
+<%@taglib prefix="look" tagdir="/WEB-INF/tags" %>
+
+<look:Show>
+    北京奥运圆满成功！
+</look:Show>
+
+
+<%@ tag pageEncoding="utf-8" %>
+<body bgcolor="yellow">
+<p>
+    <%
+        int size = 1;
+        for(int i = 1; i <=30; i++)
+        {
+            size = size + 1;
+
+        }
+    %>
+    <font size="<%=size%>">
+        <jsp:doBody/>
+    </font>
+</p>
+</body>
+
+
