@@ -1,0 +1,34 @@
+Tag文件具有两点好处:
+1)在设计Web应用时，可以通过编写Tab文件实现代码复用
+2)可将JSP页面中关于数据处理的代码放在一个Tag文件中，让JSP页面只负责显示数据，即通过使用Tag文件将数据的处理和显示相分离。
+
+Tag文件结构
+.以tag的文本文件
+存储目录
+.ch3\WEB-INF\tags
+.Tag文件必须使用ANSI编码保存
+Tag标记
+.标记格式：
+<Tag文件名字/>
+或
+<Tag文件名字>
+    标记体
+</Tag文件名字>
+Tag标记的使用 -- JSP页面使用Tab标记调用Tag文件前，要用tablib指令标记引用该Web服务目录下的标记库
+.tablib指令格式:
+<%@tablib tagdir="自定义标记库的位置" prefix="前缀">
+<%@tablib tagdir="/WEB-INF/tags" prefix="beijing">
+<%@tablib tagdir="/WEB-INF/tags/geng" prefix="dalian">
+.引用文件
+<beijing:AddSum/>
+<dalian:EvenSum/>
+
+
+
+jsp 使用tag 中文乱码 解决
+在tag文件开头加上一句
+
+<%@ tag pageEncoding="utf-8" %>
+由于我的是utf-8所以是utf-8，各位观摩一下自己的jsp文件是不是utf-8，有可能是gbk
+
+
