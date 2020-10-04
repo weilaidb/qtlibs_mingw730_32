@@ -1,3 +1,10 @@
+常用tag代码
+<%@ tag pageEncoding="utf-8" %>
+<%@ tag import="java.util.*" %>
+<%@ attribute name="number" required="true" %>
+<%@ variable name-given="listNumber" variable-class="java.util.LinkedList" scope="AT_END" %>
+
+
 Tag文件具有两点好处:
 1)在设计Web应用时，可以通过编写Tab文件实现代码复用
 2)可将JSP页面中关于数据处理的代码放在一个Tag文件中，让JSP页面只负责显示数据，即通过使用Tag文件将数据的处理和显示相分离。
@@ -27,6 +34,8 @@ Tag标记的使用 -- JSP页面使用Tab标记调用Tag文件前，要用tablib�
 
 jsp 使用tag 中文乱码 解决
 在tag文件开头加上一句
+
+<%@ tag pageEncoding="utf-8" %>
 
 <%@ tag pageEncoding="utf-8" %>
 由于我的是utf-8所以是utf-8，各位观摩一下自己的jsp文件是不是utf-8，有可能是gbk
@@ -66,6 +75,28 @@ Tag常用指令
 .tag类似于pgae指令，可指定某些属性的值，示例:
     <%@tag 属性1="属性值" 属性n="属性值" %>
     属性有 body-content、language、import、pageEncoding
+.variable指令格式:
+<%@variable name-given="对象名字" variable-class="对象的类型" scope="有效范围" %>
+ scope指定为AT_BEGIN NESTED AT_END
+ 示例
+ <%@ variable name-given="time" variable-class="java.util.Date" scope="AT_END" %>
+.对象的返回 将对象名字和对象的引用存储到jspContent中 jspContent 调用  setAttribute("对象的名字",对象的引用 )；
+jspContent.setAttribute("time", new Date());
+
+==GiveDate.tag
+<%@ tag pageEncoding="utf-8" %>
+<%@ tag import="java.util.*" %>
+<%@ variable name-given="time" variable-class="java.util.Date" scope="AT_END" %>
+<% jspContext.setAttribute("time", new Date());
+%>
+
+--引用处
+<showTime:GiveDate/> <%--Tag标记 --%>
+<h3>当前时间:</h3>
+<%=time%>
+
+
+
 
 
 

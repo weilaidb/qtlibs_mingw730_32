@@ -219,6 +219,7 @@ JAVA/JSP/form/text
 JAVA/JSP/page
 JAVA/JSP/动作标记
 JAVA/JSP/Tag文件与标记
+JAVA/JSP/table
 
 
 
