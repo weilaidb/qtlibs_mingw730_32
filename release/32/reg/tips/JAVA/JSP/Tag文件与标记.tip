@@ -86,8 +86,8 @@ Tag常用指令
  scope指定为AT_BEGIN NESTED AT_END
  示例
  <%@ variable name-given="time" variable-class="java.util.Date" scope="AT_END" %>
-.对象的返回 将对象名字和对象的引用存储到jspContent中 jspContent 调用  setAttribute("对象的名字",对象的引用 )；
-jspContent.setAttribute("time", new Date());
+.对象的返回 将对象名字和对象的引用存储到jspContext中 jspContext 调用  setAttribute("对象的名字",对象的引用 )；
+jspContext.setAttribute("time", new Date());
 
 ==GiveDate.tag
 <%@ tag pageEncoding="utf-8" %>
@@ -101,7 +101,22 @@ jspContent.setAttribute("time", new Date());
 <h3>当前时间:</h3>
 <%=time%>
 
+--一个Tag文件中通过使用 attribute 指令:
+<%@ attribute name="对象名字" required="true|false" type="对象的类型" %>
+使得JSP页面调用Tag文件时，可以向该Tag文件中的对象传递一个引用，方式如下:
+<前缀:Tag文件名字 对象名字="对象的引用" />
+或
+<前缀:Tag文件名字 对象名字="对象的引用" >
+    标记体
+</前缀:Tag文件名字 >
 
+
+---Tag文件把一个对象返回给调用它的JSP页面，步骤如下:
+1)Tag文件使用variable指令:
+<%@ variable name-given="对象名字" variable-class="对象的类型" scope="有效范围" %>
+给出返回的对象的名字、类型和有效范围。
+2)将返回的对象的名字和引用存储在内置对象jspContext中:
+jspContext.setAttribute("对象名字", 对象的引用);
 
 
 
