@@ -1,6 +1,12 @@
-常用tag代码
+----JSP引用
+<%@ page import="java.util.*" %>
+<%@ taglib prefix="first" tagdir="/WEB-INF/tags" %>
+
+
+----Tag文件中引用的内容
 <%@ tag pageEncoding="utf-8" %>
 <%@ tag import="java.util.*" %>
+<%@ taglib prefix="getNumber" tagdir="/WEB-INF/
 <%@ attribute name="number" required="true" %>
 <%@ variable name-given="listNumber" variable-class="java.util.LinkedList" scope="AT_END" %>
 
