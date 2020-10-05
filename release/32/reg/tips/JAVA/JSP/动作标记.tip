@@ -1,0 +1,42 @@
+#include动作标记
+<jsp:include page="文件的URL"/>
+或
+<jsp:include page="文件的URL">
+	param子标记
+</jsp:include>
+
+#param动作标记,不能独立使用，作为jsp:include、jsp:forward、jsp:plugin标记的子标记
+<jsp:param name="属性名字" value="属性的值"/>
+
+
+#forward动作标记
+<jsp:forward page="要转向的页面"/>
+或
+<jsp:forward page="要转向的页面">
+	param子标记
+</jsp:forward>
+
+
+#plugin动作标记
+<jsp:plugin type="applet" code="小程序的字节码文件"
+jreversion="Java虚拟机版本号" width="小程序的宽度值" height="小程序高度值">
+	<jsp:fallback>
+		提示信息:用来提示用户的浏览器是否支持插件下载
+	</jsp:fallback>
+</jsp:plugin>
+
+
+#useBean动作标记
+用HTML完成JSP页面静态部分，用JavaBean完成动态部分。
+
+
+
+
+
+
+
+
+
+
+
+

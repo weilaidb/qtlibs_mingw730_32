@@ -1,11 +1,14 @@
-    CDialogNewUt *pDiaglog = new CDialogNewUt();
+CDialogNewUt *pDiaglog = new CDialogNewUt();
 
-    if(CStringPub::strSimLen(dir_cur_loaded))
-    {
-        QString newPath = dir_cur_loaded + getUtNamePrefix() + CSignPub::signDot();
-        pDiaglog->setPath(newPath);
-    }
+if(CStringPub::strSimLen(dir_cur_loaded))
+{
+	QString newPath = dir_cur_loaded + getUtNamePrefix() + CSignPub::signDot();
+	pDiaglog->setPath(newPath);
+}
 
-    pDiaglog->exec();
+if(QDialog::Rejected == pDiaglog->exec())
+{
+	return;
+}
 
-    debugApp() << pDiaglog->getPath();
+debugApp() << pDiaglog->getPath();
