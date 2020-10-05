@@ -216,10 +216,19 @@ JAVA/JSP/synchronized
 JAVA/JSP/request.getParameter
 JAVA/JSP/form/submit
 JAVA/JSP/form/text
+JAVA/JSP/form/eg
 JAVA/JSP/page
 JAVA/JSP/动作标记
 JAVA/JSP/Tag文件与标记
 JAVA/JSP/table
+JAVA/JSP/内置对象/request
+JAVA/JSP/内置对象/response
+JAVA/JSP/内置对象/session
+JAVA/JSP/内置对象/out
+JAVA/JSP/内置对象/application
+JAVA/JSP/代码段/try catch
+JAVA/JSP/代码段/parseDouble
+JAVA/JSP/代码段/decode getBytes
 
 
 

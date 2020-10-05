@@ -1,0 +1,9 @@
+try{
+
+}
+catch (NumberFormatException e){
+    out.print("<br>" + "请输入数字字符");
+}
+catch (Exception e){
+    out.print("<br>" + "错误信息：" + e.toString());
+}
