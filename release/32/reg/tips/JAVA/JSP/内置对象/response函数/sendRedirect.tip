@@ -1,0 +1,20 @@
+sendRedirect(URL url)实现用户重定向
+
+<%
+    String str = null;
+    str = request.getParameter("boy");
+    if (str == null) {
+        str = "";
+    }
+    byte b[] = str.getBytes("ISO-8859-1");
+    str = new String(b);
+    if(str.equals(""))
+    {
+        response.sendRedirect("example4_13.jsp");
+    }
+    else
+    {
+        out.print("欢迎你来到本网页!");
+        out.print(str);
+    }
+%>
