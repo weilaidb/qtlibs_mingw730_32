@@ -224,6 +224,7 @@ JAVA/JSP/form/reset
 JAVA/JSP/form/select
 JAVA/JSP/form/textarea
 JAVA/JSP/form/table
+JAVA/JSP/form/img与image
 JAVA/JSP/form/eg
 JAVA/JSP/form/eg2
 JAVA/JSP/page
