@@ -221,6 +221,7 @@ JAVA/JSP/form/radio
 JAVA/JSP/form/checkbox
 JAVA/JSP/form/hidden
 JAVA/JSP/form/reset
+JAVA/JSP/form/select
 JAVA/JSP/form/eg
 JAVA/JSP/form/eg2
 JAVA/JSP/page
