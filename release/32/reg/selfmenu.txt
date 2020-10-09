@@ -225,6 +225,7 @@ JAVA/JSP/form/select
 JAVA/JSP/form/textarea
 JAVA/JSP/form/table
 JAVA/JSP/form/img与image
+JAVA/JSP/form/embed
 JAVA/JSP/form/eg
 JAVA/JSP/form/eg2
 JAVA/JSP/page
@@ -232,6 +233,7 @@ JAVA/JSP/动作标记
 JAVA/JSP/Tag文件与标记
 JAVA/JSP/内置对象/request
 JAVA/JSP/内置对象/response
+JAVA/JSP/内置对象/response函数/setContentType
 JAVA/JSP/内置对象/session
 JAVA/JSP/内置对象/out
 JAVA/JSP/内置对象/out-pair
