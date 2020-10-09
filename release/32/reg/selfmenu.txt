@@ -217,7 +217,12 @@ JAVA/JSP/synchronized
 JAVA/JSP/request.getParameter
 JAVA/JSP/form/submit
 JAVA/JSP/form/text
+JAVA/JSP/form/radio
+JAVA/JSP/form/checkbox
+JAVA/JSP/form/hidden
+JAVA/JSP/form/reset
 JAVA/JSP/form/eg
+JAVA/JSP/form/eg2
 JAVA/JSP/page
 JAVA/JSP/动作标记
 JAVA/JSP/Tag文件与标记
