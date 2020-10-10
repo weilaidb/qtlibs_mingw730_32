@@ -125,6 +125,7 @@ QT/UI/QTextEdit/showTextEdit
 QT/UI/QTextEdit/setTextEdit
 QT/UI/Dialog/CDialogNewUt
 QT/UI/QListWidget/newUi
+QT/UI/QSplitter/分割比例设定
 QT/UI/execCmd
 QT/UI/newUi
 QT/UI/问题项
