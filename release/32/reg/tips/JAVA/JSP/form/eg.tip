@@ -18,6 +18,11 @@
     <input type="submit" value="送出" name="submit">
 </form>
 
+<form action="" method="post" name="form">
+    <input type="text" name="boy">
+    <input type="submit" value="送出" name="submit">
+</form>
+
 
 <form action="showMessage.jsp" method="post" name="form">
     <input type="submit" value="查看留言板" name="submit">
