@@ -241,6 +241,7 @@ JAVA/JSP/内置对象/response函数/addHeader setHeader
 JAVA/JSP/内置对象/response函数/sendRedirect
 JAVA/JSP/内置对象/response函数/setStatus
 JAVA/JSP/内置对象/session
+JAVA/JSP/内置对象/out说明
 JAVA/JSP/内置对象/out
 JAVA/JSP/内置对象/out引号
 JAVA/JSP/内置对象/out println

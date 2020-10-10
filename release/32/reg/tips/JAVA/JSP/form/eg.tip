@@ -11,3 +11,9 @@
         <input type="submit" value="送出" name="submit">
     </form>
 </font>
+
+
+<form action="tree.jsp" method="post" name="form">
+    <input type="text" name="boy">
+    <input type="submit" value="送出" name="submit">
+</form>
