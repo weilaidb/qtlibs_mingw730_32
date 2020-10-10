@@ -7,3 +7,11 @@ catch (NumberFormatException e){
 catch (Exception e){
     out.print("<br>" + "错误信息：" + e.toString());
 }
+
+
+try{
+
+}
+catch (Exception e){
+    out.print("<br>" + "错误信息：" + e.toString());
+}
