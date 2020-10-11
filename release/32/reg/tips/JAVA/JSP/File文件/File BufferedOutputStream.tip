@@ -1,1 +1,1 @@
-out;myoutfile.dat;bufferWrite
+outfile;myoutfile.dat;bufferout

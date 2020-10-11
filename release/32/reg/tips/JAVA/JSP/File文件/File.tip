@@ -38,7 +38,7 @@ long skip(long numBytes)                -- 跳过 numBytes 个字节，并返回
 OutputStream类常用方法
 void write()                            -- 向输出流写入单个字节。
 void write(byte b[])                    -- 向输出流写入一个字节数组。
-void write(byte b[], int off, int len)  -- 从给定的字节数组中起始于偏移量off处取len个字节定稿到输出流。
+void write(byte b[], int off, int len)  -- 从给定的字节数组中起始于偏移量off处取len个字节写入到输出流。
 void close()                            -- 关闭输出流。
 
 
@@ -52,6 +52,49 @@ FileOutputStream(File file)
 
 BufferedInputStream 类
 BufferedOutputStream 类
+
+
+字符流读写文件
+字节流不能直接操作Unicode字符，由于汉字大文件中占用两个字节，如果使用字节流，读取不当会出现乱码现象，采用字符流就可以避免这个现象。在Unicode字符中，一个汉字被看作一个字符。
+Reader 类常用方法
+int read()                             -- 从源中读取一个字符，返回一个整数(0~65536之间的一个整数，Unicode字符值)。如果未读出字符返回-1 。
+int read(char b[])                     -- 从源中读取b.length个字符到字符数组b中，返回实际读取的字节数目。如果到达文件的末尾，则返回 -1。
+int read(char b[], int off, int len)   -- 从源中读取len个字符并存放到字符数组b中，返回实际读取的字节数目。如果到达文件的末尾，则返回 -1。
+void close()                           -- 关闭输入流。
+long skip(long numBytes)               -- 跳过 numBytes 个字节，并返回实际跳过的字节数目。
+
+Writer 类常用方法
+void write(int n)                         -- 向输出流写入一个字符。
+void write(char b[])                      -- 向输出流写入一个字节数组。
+void write(char b[], int off, int length) -- 从给定的字节数组中起始于偏移量off处取len个字节写入到输出流。
+void close()                              -- 关闭输出流。
+
+
+FileReader 类
+FileReader(String name)
+FileReader(File file)
+
+FileWriter 类
+FileWriter(String name)
+FileWriter(File file)
+
+
+BufferedReader 类
+String readLine()
+
+BufferedWriter 类
+void write(String s, int off, int length)
+newLine()
+
+
+
+
+
+
+
+
+
+
 
 
 
