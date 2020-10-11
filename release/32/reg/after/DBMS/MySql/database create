@@ -1,0 +1,1 @@
+create database \1;$NLuse \1;
