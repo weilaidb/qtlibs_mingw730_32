@@ -86,6 +86,22 @@ BufferedWriter 类
 void write(String s, int off, int length)
 newLine()
 
+RandomAccessFile 类
+既可作为源也可作为目的地。
+RandomAccessFile(String name,String mode) -- 参数name是一个文件名，给出创建流的源(也是流的目的地)。参数mode取"r"(只读)或"rw"(可读写),决定创建的流对文件的访问权利。
+RandomAccessFile(File file,String mode)   -- 参数file是一个File对象，给出创建的流的源（也是流的目的地）。参数mode意义同上。
+getFilePointer()                          -- 获取当前流在文件中的读/写的位置。
+length()                                  -- 获取文件的长度。
+readByte()                                -- 从文件中读取一个字节。
+readDouble()                              -- 从文件中读取一个双精度浮点值(8个字节)。
+readInt()                                 -- 从文件中读取一个int值(4个字节)。
+readLine()                                -- 从文件中读取一个文本行。
+readUTF()                                 -- 从文件中读取一个UTF字符串。
+seek(long a)                              -- 定位当前流在文件中的读/写的位置。
+write(byte b[])                           -- 写b.length个字节到文件。
+writeDouble(double v)                     -- 向文件写入一个双精度浮点值。
+writeInt(int v)                           -- 向文件写入一个int值。
+writeUTF(String s)                        -- 向文件写入一个UTF字符串。
 
 
 
