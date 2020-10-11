@@ -1,1 +1,1 @@
-\1
+try{$NL    RandomAccessFile \1 = new RandomAccessFile(\2,"r");$NL    String temp = null;$NL    while ((temp = \1.readUTF()) != null) {$NL        byte d[] = temp.getBytes("GBK");$NL        temp = new String(d);$NL        out.print("<br>" + temp);$NL    }$NL    \1.close();$NL} catch (Exception e) {$NL    e.printStackTrace();$NL}
