@@ -262,6 +262,12 @@ JAVA/JSP/File文件/File FileInputStream
 JAVA/JSP/File文件/File FileOutputStream
 JAVA/JSP/File文件/File BufferedInputStream
 JAVA/JSP/File文件/File BufferedOutputStream
+JAVA/JSP/File文件/File Reader
+JAVA/JSP/File文件/File Writer
+JAVA/JSP/File文件/File FileReader
+JAVA/JSP/File文件/File FileWriter
+JAVA/JSP/File文件/File BufferedReader
+JAVA/JSP/File文件/File BufferedWriter
 JAVA/JSP/常见问题点
 
 
