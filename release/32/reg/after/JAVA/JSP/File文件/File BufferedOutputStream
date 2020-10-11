@@ -1,0 +1,1 @@
+try{$NL	FileOutputStream \1 = new FileOutputStream("\2");$NL	BufferOutputStream \3 = new BufferOutputStream(\1);$NL}$NLcatch (IOException e){$NL	System.out.println("File read error:" + e);$NL    //out.print("<br>" + "错误信息：" + e.toString());$NL}$NL
