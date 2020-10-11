@@ -274,7 +274,11 @@ JAVA/JSP/File文件/File 文件上传
 JAVA/JSP/常见问题点
 
 
-
+DBMS/MySql/database create
+DBMS/MySql/database drop
+DBMS/MySql/table select
+DBMS/MySql/table create eg
+DBMS/MySql/table drop
 
 
 
@@ -320,6 +324,7 @@ KERNEL/调度/最大优先级
 Tools/查看代码工具/OpenGrok/配置
 Tools/VSCode快捷键
 Tools/Emacs快捷键
+
 
 
 
