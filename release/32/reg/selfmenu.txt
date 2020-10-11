@@ -251,6 +251,10 @@ JAVA/JSP/内置对象/application
 JAVA/JSP/代码段/try catch
 JAVA/JSP/代码段/parseDouble
 JAVA/JSP/代码段/decode getBytes
+JAVA/JSP/File文件/File
+JAVA/JSP/File文件/File file
+JAVA/JSP/File文件/File mkdir
+JAVA/JSP/File文件/File currentdir filelist
 JAVA/JSP/常见问题点
 
 
