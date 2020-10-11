@@ -260,6 +260,8 @@ JAVA/JSP/File文件/File InputStream
 JAVA/JSP/File文件/File OutputStream
 JAVA/JSP/File文件/File FileInputStream
 JAVA/JSP/File文件/File FileOutputStream
+JAVA/JSP/File文件/File BufferedInputStream
+JAVA/JSP/File文件/File BufferedOutputStream
 JAVA/JSP/常见问题点
 
 

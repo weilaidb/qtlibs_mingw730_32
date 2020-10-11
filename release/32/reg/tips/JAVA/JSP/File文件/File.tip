@@ -42,13 +42,17 @@ void write(byte b[], int off, int len)  -- 从给定的字节数组中起始于�
 void close()                            -- 关闭输出流。
 
 
-FileInputStream 类和 
+FileInputStream 类
 FileInputStream(String name)
 FileInputStream(File file)
 
 FileOutputStream 类
 FileOutputStream(String name)
 FileOutputStream(File file)
+
+BufferedInputStream 类
+BufferedOutputStream 类
+
 
 
 
