@@ -1,0 +1,27 @@
+文件类
+File(String filename)                          -- filename为文件名字或绝对路径
+File(String directoryPath, String filename)    -- directoryPath是文件路径， filename是文件名字
+File(File f, String filename)                  -- f是指定成一个目录的文件，filename是文件名字，如果f = new File("c:/mybook"), filename="A.txt"
+
+获取文件属性
+public String getName()                        -- 获取文件名字
+public boolean canRead()                       -- 判断文件是否可读
+public boolean canWrite()                      -- 判断文件是否可写
+public boolean exists()                        -- 判断文件是否存在
+public long length()                           -- 获取文件的长度(单位是字节)
+public String getAbsolutePath()                -- 获取文件的绝对路径
+public String getParent()                      -- 获取文件的父目录 
+public boolean isFile()                        -- 判断文件是否是一个正常文件，而不是一个目录
+public boolean isDirectory()                   -- 判断文件是否是一个目录 
+public boolean isHidden()                      -- 判断文件是否是隐藏文件
+public long lastModified()                     -- 获取文件最后修改的时间（时间从1970年午夜至文件最后修改时刻的毫秒数。
+
+创建目录
+public boolean mkdir()                         -- 创建一个目录，成功为true,否则为false（如果目录已经存在返回false）。
+
+删除文件和目录 
+public boolean delete()                        -- 删除当前对象代表的文件或目录。如果是目录，必须是空目录，删除成功返回true。
+
+
+
+
