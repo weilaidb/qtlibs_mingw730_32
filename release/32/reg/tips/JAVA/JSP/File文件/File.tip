@@ -22,6 +22,33 @@ public boolean mkdir()                         -- 创建一个目录，成功为
 删除文件和目录 
 public boolean delete()                        -- 删除当前对象代表的文件或目录。如果是目录，必须是空目录，删除成功返回true。
 
+字节流读写文件
+InputStream     -- 字节输入流类
+OutputStream    -- 字节输出流类
+Reader          -- 字符输入流类
+Writer          -- 字节输出流类
+
+InputStream类常用方法
+int read()                              -- 从源中读取单个字节的数据，该方法返回字节值(0~255之间的一个整数)。如果未读出字节返回 -1 。
+int read(byte b[])                      -- 从源中读取b.length个字节到字节数组b中，返回实际读取的字节数目。如果到达文件的末尾，则返回 -1。
+int read(byte b[], int off, int len)    -- 从源中试图读取len个字节到字节数组b中，并返回实际读取的字节数目。如果到达文件的末尾，则返回 -1。参数off指定从字节数组的某个位置开始存放读取的数据。
+void close()                            -- 关闭输入流。
+long skip(long numBytes)                -- 跳过 numBytes 个字节，并返回实际跳过的字节数目。
+
+OutputStream类常用方法
+void write()                            -- 向输出流写入单个字节。
+void write(byte b[])                    -- 向输出流写入一个字节数组。
+void write(byte b[], int off, int len)  -- 从给定的字节数组中起始于偏移量off处取len个字节定稿到输出流。
+void close()                            -- 关闭输出流。
+
+
+FileInputStream 类和 
+FileInputStream(String name)
+FileInputStream(File file)
+
+FileOutputStream 类
+FileOutputStream(String name)
+FileOutputStream(File file)
 
 
 

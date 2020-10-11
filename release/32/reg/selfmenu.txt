@@ -255,6 +255,11 @@ JAVA/JSP/File文件/File
 JAVA/JSP/File文件/File file
 JAVA/JSP/File文件/File mkdir
 JAVA/JSP/File文件/File currentdir filelist
+JAVA/JSP/File文件/File delete
+JAVA/JSP/File文件/File InputStream
+JAVA/JSP/File文件/File OutputStream
+JAVA/JSP/File文件/File FileInputStream
+JAVA/JSP/File文件/File FileOutputStream
 JAVA/JSP/常见问题点
 
 
