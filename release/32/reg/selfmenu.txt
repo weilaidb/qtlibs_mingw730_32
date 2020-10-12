@@ -226,6 +226,7 @@ JAVA/JSP/form/checkbox
 JAVA/JSP/form/hidden
 JAVA/JSP/form/reset
 JAVA/JSP/form/select
+JAVA/JSP/form/select option
 JAVA/JSP/form/textarea
 JAVA/JSP/form/table
 JAVA/JSP/form/img与image
