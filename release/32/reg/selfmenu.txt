@@ -217,6 +217,8 @@ JAVA/JSP/new jsp
 JAVA/JSP/synchronized
 JAVA/JSP/request.getParameter
 JAVA/JSP/request.referer
+JAVA/JSP/p 段落
+JAVA/JSP/br 换行符
 JAVA/JSP/form/submit
 JAVA/JSP/form/text
 JAVA/JSP/form/radio
