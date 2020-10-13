@@ -4,3 +4,40 @@ mysql-connector-java-x.x.xx.zip
 mysql -u 用户名 -p 密码
 mysql -h localhost -u 用户名 -p 密码
 mysql -h ip -u 用户名 -p 密码
+
+ResultSet 类若干方法
+boolean  next()
+byte getByte(int columnIndex)
+Date getDate(int columnIndex)
+double getDouble(int columnIndex)
+float getFloat(int columnIndex)
+int getInt(int columnIndex)
+long getLong(int columnIndex)
+String getString(int columnIndex)
+byte getByte(String columnName)
+Date getDate(String columnName)
+double getDouble(String columnName)
+float getFloat(String columnName)
+int getInt(String columnName)
+long getLong(String columnName)
+String getString(String columnName)
+
+注:当使用ResultSet的getXxx方法查看一行记录时，不可以颠倒字段的顺序。 yes ?
+
+表的字段信息
+DatabaseMetaData metadata = con.getMetaData();
+ResultSet tableMessage = metadata.getColumns(null, null, "product", null);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

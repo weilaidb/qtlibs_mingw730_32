@@ -290,6 +290,7 @@ DBMS/MySql/table drop
 DBMS/MySql/source sql script
 DBMS/MySql/mysql 加载驱动
 DBMS/MySql/mysql 建立连接
+DBMS/MySql/getColumns 表字段
 
 
 
