@@ -1,2 +1,6 @@
 JDBC驱动程序 mysql 
 mysql-connector-java-x.x.xx.zip
+
+mysql -u 用户名 -p 密码
+mysql -h localhost -u 用户名 -p 密码
+mysql -h ip -u 用户名 -p 密码
