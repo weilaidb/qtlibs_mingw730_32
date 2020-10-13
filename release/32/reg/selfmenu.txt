@@ -293,6 +293,7 @@ DBMS/MySql/source sql script
 DBMS/MySql/mysql 加载驱动
 DBMS/MySql/mysql 建立连接
 DBMS/MySql/getColumns 表字段
+DBMS/MySql/order by eg
 DBMS/MySql/order by
 
 
