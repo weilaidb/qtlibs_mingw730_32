@@ -1,1 +1,1 @@
-<%$NL	String string_\1 = request.getParameter("\1");$NL%>$NL<%--判断客串是否是空对象，如果是空对象就初始化--%>$NL<% $NL	if(null == string_\1 ){$NL		string_\1 = "0";$NL	}$NL%>
+String \1 = request.getParameter("\2");$NLif(null == \1 ){$NL    \1 = "";$NL}$NL
