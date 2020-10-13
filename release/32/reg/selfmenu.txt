@@ -284,6 +284,7 @@ DBMS/MySql/database create
 DBMS/MySql/database drop
 DBMS/MySql/table select
 DBMS/MySql/table create eg
+DBMS/MySql/table create eg2
 DBMS/MySql/table insert
 DBMS/MySql/table drop
 DBMS/MySql/source sql script
