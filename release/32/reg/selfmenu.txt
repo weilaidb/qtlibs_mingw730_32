@@ -296,6 +296,7 @@ DBMS/MySql/getColumns 表字段
 DBMS/MySql/order by eg
 DBMS/MySql/order by
 DBMS/MySql/like
+DBMS/MySql/update eg
 DBMS/MySql/update
 
 
