@@ -54,6 +54,10 @@ public int getRow():得到当前游标所指行的等号，等号从1开始，�
 public boolean absolute(int row):将游标移到参数row指定的行号。
       注:如果row取负值，就是倒数的行数。absolute(-1)表示移到最后一行。当移动到第1行前面或最后一行后面时，该方法返回false。
 
+添加记录
+Statement对象调用方法：
+public int executeUpdate(String sqlStatement);
+
 
 
 
