@@ -308,6 +308,8 @@ DBMS/MySql/like
 DBMS/MySql/update eg
 DBMS/MySql/update
 DBMS/MySql/delete
+DBMS/MySql/prepareStatement
+DBMS/MySql/setAutoCommit 事务
 
 
 
