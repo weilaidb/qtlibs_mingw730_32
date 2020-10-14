@@ -286,6 +286,7 @@ JAVA/JSP/Print/System.out.println
 JAVA/JSP/Print/System.out.print
 JAVA/JSP/mysql/insertRow eg
 JAVA/JSP/mysql/executeUpdate delete eg
+JAVA/JSP/mysql/prepareStatement eg
 
 
 DBMS/MySql/mysql 说明
