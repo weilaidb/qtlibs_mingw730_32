@@ -286,7 +286,8 @@ JAVA/JSP/Print/System.out.println
 JAVA/JSP/Print/System.out.print
 JAVA/JSP/mysql/insertRow eg
 JAVA/JSP/mysql/executeUpdate delete eg
-JAVA/JSP/mysql/prepareStatement eg
+JAVA/JSP/mysql/prepareStatement select eg
+JAVA/JSP/mysql/prepareStatement insert eg
 
 
 DBMS/MySql/mysql 说明
@@ -352,6 +353,8 @@ KERNEL/调度/最大优先级
 Tools/查看代码工具/OpenGrok/配置
 Tools/VSCode快捷键
 Tools/Emacs快捷键
+
+
 
 
 
