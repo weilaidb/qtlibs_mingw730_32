@@ -1,0 +1,1 @@
+DELETE FROM \1 WHERE number = '\2';
