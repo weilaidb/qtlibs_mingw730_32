@@ -1,1 +1,1 @@
-DELETE FROM \1 WHERE number = '\2';
+DELETE FROM \1 WHERE number = '\2';$NL$NL$NLString condition = "DELETE FROM \1 WHERE \2= '" + \2 + "'";$NL
