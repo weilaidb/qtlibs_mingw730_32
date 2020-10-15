@@ -1,5 +1,5 @@
 #ifndef ARRAYSIZE
-#define ARRAYSIZE(A) (unsigned int)(sizeof(A)/sizeof(A[0]))
+#define ARRAYSIZE(A) ((unsigned int)(sizeof(A)/sizeof(A[0])))
 #endif
 
 
