@@ -1,4 +1,3 @@
-<jsp:useBean id="apple" class="bean.Circle2" scope="page"/>
-<br>圆的半径是:<jsp:getProperty name="apple" property="radius"/>
-<br>圆的面积是:<jsp:getProperty name="apple" property="circleArea"/>
-<br>圆的周长是:<jsp:getProperty name="apple" property="circleLength"/>
+apple;bean.Circle;page;圆的半径是;radius
+apple;bean.Circle;page;圆的面积是;circleArea
+apple;bean.Circle;page;圆的周长是;circleLength

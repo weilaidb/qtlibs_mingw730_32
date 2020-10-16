@@ -291,6 +291,8 @@ JAVA/JSP/mysql/prepareStatement insert eg
 JAVA/JSP/JavaBean/介绍	
 JAVA/JSP/JavaBean/useBean	
 JAVA/JSP/JavaBean/getProperty	
+JAVA/JSP/JavaBean/setProperty	
+JAVA/JSP/JavaBean/parseInt Long Float Double	
 
 
 DBMS/MySql/mysql 说明
