@@ -12,6 +12,14 @@
     </form>
 </font>
 
+#action为空
+<font size="3">
+    <form action="" method="post" name="form">
+        <input type="text" name="boy">
+        <input type="submit" value="送出" name="submit">
+    </form>
+</font>
+
 
 <form action="tree.jsp" method="post" name="form">
     <input type="text" name="boy">
