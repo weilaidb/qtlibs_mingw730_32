@@ -235,6 +235,7 @@ JAVA/JSP/form/radio eg
 JAVA/JSP/form/checkbox
 JAVA/JSP/form/hidden
 JAVA/JSP/form/reset
+JAVA/JSP/form/select eg
 JAVA/JSP/form/select
 JAVA/JSP/form/select option
 JAVA/JSP/form/textarea
@@ -246,6 +247,7 @@ JAVA/JSP/form/eg
 JAVA/JSP/form/eg2
 JAVA/JSP/form/eg3 fileup
 JAVA/JSP/form/taglib
+JAVA/JSP/form/file enctype multipart
 JAVA/JSP/page
 JAVA/JSP/动作标记
 JAVA/JSP/Tag文件与标记
