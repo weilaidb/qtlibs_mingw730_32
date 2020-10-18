@@ -7,3 +7,17 @@ DEFINES += QT_NO_DEBUG_OUTPUT
 
 # release版本不输出
 DEFINES += QT_NO_DEBUG_OUTPUT
+
+
+
+//代码中实现 
+#ifdef QT_NO_DEBUG
+//## release版本不输出
+//#DEFINES += QT_NO_DEBUG_OUTPUT
+#define QT_NO_DEBUG_OUTPUT
+
+#else
+
+#endif
+#define debugApp qDebug
+

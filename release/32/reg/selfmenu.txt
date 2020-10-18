@@ -135,6 +135,7 @@ QT/UI/问题项
 QT/UI/Settings eg
 QT/UI/Cursor movePosition
 QT/UI/prj/qDebug no output
+QT/UI/problems/汇总
 
 
 
