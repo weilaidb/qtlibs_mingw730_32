@@ -1,0 +1,1 @@
+<p>选择要上传的文件：</p>$NL<form action="accept.jsp" method="post" ENCTYPE="multipart/form-data">$NL    <input type="file" name="boy" size="38">$NL    <br><input type="submit" value="提交" name="submit">$NL</form>$NL
