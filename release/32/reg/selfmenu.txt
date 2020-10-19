@@ -249,6 +249,7 @@ JAVA/JSP/form/eg3 fileup
 JAVA/JSP/form/taglib
 JAVA/JSP/form/file enctype multipart
 JAVA/JSP/page
+JAVA/JSP/string/String
 JAVA/JSP/动作标记
 JAVA/JSP/Tag文件与标记
 JAVA/JSP/内置对象/request
