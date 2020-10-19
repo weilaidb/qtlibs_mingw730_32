@@ -301,6 +301,7 @@ JAVA/JSP/JavaBean/useBean
 JAVA/JSP/JavaBean/getProperty	
 JAVA/JSP/JavaBean/setProperty	
 JAVA/JSP/JavaBean/parseInt Long Float Double	
+JAVA/JSP/Servlet/web.xml	
 
 
 DBMS/MySql/mysql 说明
