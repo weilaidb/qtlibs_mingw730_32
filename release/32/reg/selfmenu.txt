@@ -228,6 +228,7 @@ JAVA/JSP/p 段落
 JAVA/JSP/br 换行符
 JAVA/JSP/href
 JAVA/JSP/ifnull emptystring
+JAVA/JSP/form/basepath
 JAVA/JSP/form/submit
 JAVA/JSP/form/text
 JAVA/JSP/form/radio
