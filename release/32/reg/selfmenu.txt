@@ -220,6 +220,7 @@ Makefile/函数/控制 make
 JAVA/print/println
 JAVA/JSP/知识点
 JAVA/JSP/new jsp
+JAVA/JSP/import
 JAVA/JSP/synchronized
 JAVA/JSP/request.getParameter only
 JAVA/JSP/request.getParameter
@@ -305,6 +306,7 @@ JAVA/JSP/JavaBean/parseInt Long Float Double
 JAVA/JSP/Servlet/web.xml
 JAVA/JSP/Servlet/HttpServlet
 JAVA/JSP/Servlet/HttpServlet format
+JAVA/JSP/Servlet/HttpServlet format  doGet doPost
 
 
 DBMS/MySql/mysql 说明

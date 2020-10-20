@@ -17,3 +17,6 @@ http://localhost:8080/weilai/sql/bselectdb.jsp
 https://docs.python.org/3.8/
 
 D:\Software\apache-tomcat-9.0.27-windows-x64\apache-tomcat-9.0.27\webapps
+
+
+G:\svnlocal\小学生\二年级\
