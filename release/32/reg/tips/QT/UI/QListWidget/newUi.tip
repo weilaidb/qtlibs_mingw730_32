@@ -1,6 +1,9 @@
 void XXXXX::init_ListWidget()
 {
+	//双击
     QObject::connect(ui->listWidget_load_dir, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(proc_listWidget_load_dir_ItemDoubleClicked(QListWidgetItem *)));
+	//单击
+    QObject::connect(ui->listWidget_load_dir, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(proc_listWidget_load_dir_ItemDoubleClicked(QListWidgetItem *)));
 }
 
 void XXXXX::proc_listWidget_load_dir_ItemDoubleClicked(QListWidgetItem *item)
