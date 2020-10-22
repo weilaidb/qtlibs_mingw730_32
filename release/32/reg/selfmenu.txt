@@ -107,6 +107,7 @@ QT/PRINT/ENTERTIPS
 QT/LOOP/QStringList iterator
 QT/LOOP/QStringList reverse_iterator
 QT/UI/Menu
+QT/UI/Menu Custom
 QT/UI/Action
 QT/UI/Settings
 QT/UI/Desktop/Width
