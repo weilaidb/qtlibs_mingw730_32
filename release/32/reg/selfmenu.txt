@@ -332,7 +332,7 @@ DBMS/MySql/update
 DBMS/MySql/delete
 DBMS/MySql/prepareStatement
 DBMS/MySql/setAutoCommit 事务
-
+DBMS/Sqlite/sqlite 加载驱动
 
 
 Python/Print
