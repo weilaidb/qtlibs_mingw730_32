@@ -35,3 +35,18 @@
 <form action="showMessage.jsp" method="post" name="form">
     <input type="submit" value="查看留言板" name="submit">
 </form>
+
+##提交到后台数据是乱码，使用accept-charset定义编码
+<form action="" method="post" name="form" accept-charset="gbk">
+	在[<%=table%>]查询内容:<br>
+	<input type="text" name="findwords">
+	<input type="hidden" name="database" value="<%=database%>">
+	<input type="hidden" name="table" value="<%=table%>">
+	<input type="hidden" name="columns" value="ID,content">
+	<input type="checkbox" name="item" value="limit" checked="checked">限制
+	<input type="checkbox" name="order" value="order" checked="checked">反序
+	<input type="checkbox" name="showlittle" value="showlittle" checked="checked">缩略显示
+	<input type="submit" value="查询" name="submit">
+</form>
+
+	
