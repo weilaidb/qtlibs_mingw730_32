@@ -255,6 +255,7 @@ JAVA/JSP/form/eg2
 JAVA/JSP/form/eg3 fileup
 JAVA/JSP/form/taglib
 JAVA/JSP/form/file enctype multipart
+JAVA/JSP/form/button submit action
 JAVA/JSP/page
 JAVA/JSP/string/String
 JAVA/JSP/动作标记
@@ -334,7 +335,14 @@ DBMS/MySql/update
 DBMS/MySql/delete
 DBMS/MySql/prepareStatement
 DBMS/MySql/setAutoCommit 事务
+
+DBMS/Sqlite/sqlite 常见问题
 DBMS/Sqlite/sqlite 加载驱动
+DBMS/Sqlite/create table
+DBMS/Sqlite/drop table
+DBMS/Sqlite/insert table
+DBMS/Sqlite/update table
+DBMS/Sqlite/select table
 
 
 Python/Print

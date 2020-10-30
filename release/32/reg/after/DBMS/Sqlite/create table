@@ -1,0 +1,1 @@
+CREATE TABLE \1([ID] INTEGER PRIMARY KEY,[content] varchar(100),[note] varchar(100),delflag integer DEFAULT 0,CreatedTime TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));
