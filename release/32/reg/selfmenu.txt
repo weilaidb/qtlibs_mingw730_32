@@ -343,6 +343,7 @@ DBMS/Sqlite/drop table
 DBMS/Sqlite/insert table
 DBMS/Sqlite/update table
 DBMS/Sqlite/select table
+DBMS/Sqlite/delete table
 
 
 Python/Print
