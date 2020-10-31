@@ -258,6 +258,8 @@ JAVA/JSP/form/eg3 fileup
 JAVA/JSP/form/taglib
 JAVA/JSP/form/file enctype multipart
 JAVA/JSP/form/button submit action
+JAVA/JSP/bgcolor
+JAVA/JSP/bgcolor 护眼色
 JAVA/JSP/page
 JAVA/JSP/string/String
 JAVA/JSP/动作标记
@@ -386,7 +388,7 @@ KERNEL/调度/调度策略
 KERNEL/调度/最大CPU
 KERNEL/调度/进程标志
 KERNEL/调度/最大优先级
-
+KERNEL/GCC/__aligned
 
 Tools/查看代码工具/OpenGrok/配置
 Tools/VSCode快捷键
