@@ -1,0 +1,1 @@
+#include <linux/kernel.h>$NL#include <linux/module.h>$NL#include <linux/init.h>$NL$NLint __init \1_init(void)$NL{$NL    /* 模块\1加载时的初始化 */$NL$NL    return 0;$NL}$NL$NLint __init \1_exit(void)$NL{$NL    /* 模块\1卸载时的销毁工作 */$NL$NL    return 0;$NL}$NL$NLmodule_init(\1_init); /* 指定模块的初始化函数的宏 */$NLmodule_init(\1_exit); /* 指定模块的卸载函数的宏   */$NL$NL
