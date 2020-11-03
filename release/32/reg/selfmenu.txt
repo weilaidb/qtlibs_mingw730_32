@@ -227,6 +227,7 @@ JAVA/print/println
 JAVA/javascript/src引用
 JAVA/JSP/知识点
 JAVA/JSP/include
+JAVA/JSP/foreach list string
 JAVA/JSP/new jsp
 JAVA/JSP/import
 JAVA/JSP/synchronized
