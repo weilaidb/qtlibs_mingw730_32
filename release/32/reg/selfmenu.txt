@@ -129,6 +129,7 @@ QT/UI/QTextEdit/clearTextEdit
 QT/UI/QTextEdit/hideTextEdit
 QT/UI/QTextEdit/showTextEdit
 QT/UI/QTextEdit/setTextEdit
+QT/UI/QTextEdit/findText
 QT/UI/Dialog/CDialogNewUt
 QT/UI/QListWidget/newUi
 QT/UI/QSplitter/分割比例设定
