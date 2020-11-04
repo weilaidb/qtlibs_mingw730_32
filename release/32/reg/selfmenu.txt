@@ -397,6 +397,8 @@ KERNEL/调度/最大优先级
 KERNEL/GCC/__aligned
 
 Tools/查看代码工具/OpenGrok/配置
+Tools/git/order
+Tools/svn/order
 Tools/VSCode快捷键
 Tools/Emacs快捷键
 
