@@ -1,51 +1,181 @@
-package codec;
 
-import java.io.UnsupportedEncodingException;
+package file;
 
-public class CCodecPub {
-    //源码是UTF-8，编码成GBK
-    static public String UTF8ToGBK(String textContent)
-    {
-        try {
-            return new String(textContent.getBytes("GBK"), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return e.toString();
-        }
+
+
+
+import base.CStringPub;
+
+import codec.CCodecPub;
+
+
+
+import java.io.*;
+
+import java.text.ParseException;
+
+import java.util.ArrayList;
+
+import java.util.List;
+
+
+
+public class CFilePub {
+
+    public static String getM_errcode_filenoexist() {
+
+        return m_errcode_filenoexist;
+
     }
 
-    //源码是ISO-8859-1，编码成GBK
-    static public String ISOToGBK(String textContent)
+
+
+    static private String m_errcode_filenoexist = "文件不存在";
+
+    static public List<String> getCOntentFromFile(String predir, String filename)
+
     {
-        try {
-            return new String(textContent.getBytes("GBK"), "ISO-8859-1");
-        } catch (UnsupportedEncodingException e) {
+
+        List<String> resultList  = new  ArrayList<String>();
+
+        try{
+
+            predir = CCodecPub.UTF8ToISO(predir);
+
+            filename = CCodecPub.UTF8ToISO(filename);
+
+
+
+            File dir = new File(predir);
+
+            File f = new File(dir,filename);
+
+            if(!f.exists())
+
+            {
+
+                resultList.add(m_errcode_filenoexist + predir + filename);
+
+                return resultList;
+
+            }
+
+            InputStreamReader read = null;// 考虑到编码格式
+
+            String lineTxt = null;
+
+
+
+            try {
+
+                read = new InputStreamReader(new FileInputStream(f), "utf-8");
+
+            } catch (UnsupportedEncodingException e) {
+
+                e.printStackTrace();
+
+            } catch (FileNotFoundException e) {
+
+                e.printStackTrace();
+
+            }
+
+            BufferedReader bufferedReader = new BufferedReader(read);
+
+            while ((lineTxt = bufferedReader.readLine()) != null) {
+
+                if(CStringPub.isTrimEmpty(lineTxt))
+
+                {
+
+                    continue;
+
+                }
+
+                resultList.add((lineTxt.trim()));
+
+                System.out.println(lineTxt);
+
+//                System.out.println("temp gbk1:" + (lineTxt));
+
+            }
+
+            read.close();
+
+            System.out.println("found ");
+
+
+
+            return resultList;
+
+        } catch (Exception e) {
+
             e.printStackTrace();
-            return e.toString();
+
+            System.out.println("no found:" + e);
+
+            resultList.add((e.toString()));
+
+            return resultList;
+
         }
+
     }
 
-    //源码是ISO-8859-1，编码成UTF-8
-    static public String ISOToUTF8(String textContent)
+
+
+    static public String getFileFirstContent(String predir, String filename)
+
     {
-        try {
-            return new String(textContent.getBytes("UTF-8"), "ISO-8859-1");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return e.toString();
+
+        List<String> lstCont = getCOntentFromFile(predir, filename);
+
+        if(lstCont.size() > 0) {
+
+            return lstCont.get(0);
+
         }
+
+        return "";
+
     }
 
-    //源码是UTF-8，编码成ISO-8859-1
-    static public String UTF8ToISO(String textContent)
-    {
+
+
+    /** 读取数据，存入集合中 */
+
+    public static void readtFile(File file) throws IOException, ParseException {
+
+        InputStreamReader read = null;// 考虑到编码格式
+
         try {
-            return new String(textContent.getBytes("ISO-8859-1"), "UTF-8");
+
+            read = new InputStreamReader(new FileInputStream(file), "utf-8");
+
         } catch (UnsupportedEncodingException e) {
+
             e.printStackTrace();
-            return e.toString();
+
+        } catch (FileNotFoundException e) {
+
+            e.printStackTrace();
+
         }
+
+        BufferedReader bufferedReader = new BufferedReader(read);
+
+        String lineTxt = null;
+
+        while ((lineTxt = bufferedReader.readLine()) != null) {
+
+            System.out.println(lineTxt);
+
+        }
+
+        read.close();
+
     }
+
 
 
 }
