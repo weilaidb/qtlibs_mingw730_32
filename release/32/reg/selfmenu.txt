@@ -135,6 +135,7 @@ QT/UI/QListWidget/newUi
 QT/UI/QSplitter/分割比例设定
 QT/UI/execCmd
 QT/UI/newUi
+QT/UI/QT 窗口关闭自动销毁
 QT/UI/问题项
 QT/UI/Settings eg
 QT/UI/Cursor movePosition
@@ -227,6 +228,7 @@ JAVA/基本语句/CCodecPub
 JAVA/基本语句/CFilePub
 JAVA/基本语句/CStringPub
 JAVA/基本语句/CSqlitePub
+JAVA/基本语句/路径分隔符
 JAVA/print/println
 JAVA/javascript/src引用
 JAVA/JSP/知识点
