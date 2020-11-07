@@ -360,6 +360,9 @@ DBMS/Sqlite/insert table
 DBMS/Sqlite/update table
 DBMS/Sqlite/select table
 DBMS/Sqlite/delete table
+DBMS/Sqlite/查看表结构
+DBMS/Sqlite/常用命令
+DBMS/Sqlite/写入二进制数据
 
 
 Python/Print
