@@ -1,0 +1,23 @@
+Java以UTF-8编码读写文件
+￼
+李跃东 2013-07-28 18:51:13 ￼ 49648 ￼ 收藏 4
+分类专栏： Java 文章标签： Java 设计模式 编码
+版权
+java中文件操作体现了设计模式中的装饰者模式 。
+以utf-8编码写入文件：
+ FileOutputStream fos = new FileOutputStream("test.txt"); 
+        OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8"); 
+        osw.write(FileContent); 
+        osw.flush(); 
+
+
+   以utf-8编码读取文件： 
+      FileInputStream fis = new FileInputStream("test.txt"); 
+        InputStreamReader isr = new InputStreamReader(fis, "UTF-8"); 
+        BufferedReader br = new BufferedReader(isr); 
+        String line = null; 
+        while ((line = br.readLine()) != null) { 
+            FileContent += line; 
+            FileContent += "\r\n"; // 补上换行符 
+        } 
+
