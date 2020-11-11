@@ -210,6 +210,7 @@ JAVA/基本语句/路径分隔符
 JAVA/print/println
 JAVA/javascript/src引用
 JAVA/javascript/include引用
+JAVA/javascript/timeout返回原页面
 JAVA/css/include引用
 JAVA/JSP/知识点
 JAVA/JSP/include

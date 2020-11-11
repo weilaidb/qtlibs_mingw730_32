@@ -1,0 +1,10 @@
+<script type="text/javascript" src="../js/file.js"></script>
+
+<SCRIPT language=javascript>
+    //返回到原页面
+    function go() {
+        window.history.go(-1);
+    }
+
+    setTimeout("go()", 300);
+</SCRIPT>
