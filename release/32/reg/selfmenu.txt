@@ -49,10 +49,7 @@ BASH/函数
 BASH/数组
 BASH/读取文件
 BASH/重定向
-
 BAT/DATE TIME
-
-
 C/INCLUDE/GENERATE
 C/INCLUDE/FILTER
 C/INCLUDE/常用头文件
@@ -84,12 +81,10 @@ C/DEFINE/添加TAB
 C/DEFINE/static_inline空间换时间
 C/DEFINE/常用宏
 C/EXPRESS/CHECK
-
 DEFINE/FILTER
 DEFINE/GENERATE
 DEFINE/GENERATESTRINGSAME
 DEFINE/UNUSED
-
 CXX/INCLUDE/GENERATE
 CXX/INCLUDE/FILTER
 CXX/INCLUDE/常用头文件
@@ -103,7 +98,6 @@ CXX/LOOP/map/map
 CXX/LOOP/vector
 CXX/Cout_in/cout
 CXX/Cout_in/cout size
-
 QT/PRINT/debugApp
 QT/PRINT/ENTERTIPS
 QT/LOOP/QStringList iterator
@@ -141,10 +135,6 @@ QT/UI/Settings eg
 QT/UI/Cursor movePosition
 QT/UI/prj/qDebug no output
 QT/UI/problems/汇总
-
-
-
-
 正则表达式/所有转一行_替换为NL
 正则表达式/所有转一行_替换为逗号
 正则表达式/所有转一行_替换为空格
@@ -152,7 +142,6 @@ QT/UI/problems/汇总
 正则表达式/去除开头的数字
 Pthread/Create
 Pthread/pthread_mutex
-
 LINUX/并发与竞争/自旋锁和信号量
 LINUX/Makefile
 LINUX/Printk/说明
@@ -164,13 +153,6 @@ LINUX/Printk/KERN_WARNING
 LINUX/Printk/KERN_NOTICE
 LINUX/Printk/KERN_INFO
 LINUX/Printk/KERN_DEBUG
-
-
-
-
-
-
-
 Makefile/testtarget
 Makefile/wildcard
 Makefile/PHONY
@@ -218,10 +200,6 @@ Makefile/函数/origin
 Makefile/函数/shell
 Makefile/函数/forloop
 Makefile/函数/控制 make
-
-
-
-
 JAVA/基本语句/List String
 JAVA/基本语句/JAVA读写文件 read write
 JAVA/基本语句/CCodecPub
@@ -294,7 +272,7 @@ JAVA/JSP/代码段/try catch
 JAVA/JSP/代码段/parseDouble
 JAVA/JSP/代码段/decode getBytes
 JAVA/JSP/代码段/getBytes 方法
-JAVA/JSP/代码段/getBytes print all 
+JAVA/JSP/代码段/getBytes print all
 JAVA/JSP/代码段/utf8 to gbk
 JAVA/JSP/File文件/File
 JAVA/JSP/File文件/File file
@@ -322,17 +300,15 @@ JAVA/JSP/mysql/insertRow eg
 JAVA/JSP/mysql/executeUpdate delete eg
 JAVA/JSP/mysql/prepareStatement select eg
 JAVA/JSP/mysql/prepareStatement insert eg
-JAVA/JSP/JavaBean/介绍	
-JAVA/JSP/JavaBean/useBean	
-JAVA/JSP/JavaBean/getProperty	
-JAVA/JSP/JavaBean/setProperty	
-JAVA/JSP/JavaBean/parseInt Long Float Double	
+JAVA/JSP/JavaBean/介绍
+JAVA/JSP/JavaBean/useBean
+JAVA/JSP/JavaBean/getProperty
+JAVA/JSP/JavaBean/setProperty
+JAVA/JSP/JavaBean/parseInt Long Float Double
 JAVA/JSP/Servlet/web.xml
 JAVA/JSP/Servlet/HttpServlet
 JAVA/JSP/Servlet/HttpServlet format
 JAVA/JSP/Servlet/HttpServlet format  doGet doPost
-
-
 DBMS/MySql/mysql 说明
 DBMS/MySql/database create
 DBMS/MySql/database drop
@@ -353,7 +329,6 @@ DBMS/MySql/update
 DBMS/MySql/delete
 DBMS/MySql/prepareStatement
 DBMS/MySql/setAutoCommit 事务
-
 DBMS/Sqlite/sqlite 常见问题
 DBMS/Sqlite/sqlite 加载驱动
 DBMS/Sqlite/create table
@@ -365,8 +340,6 @@ DBMS/Sqlite/delete table
 DBMS/Sqlite/查看表结构
 DBMS/Sqlite/常用命令
 DBMS/Sqlite/写入二进制数据
-
-
 Python/Print
 Python/main
 Python/header
@@ -380,14 +353,11 @@ Python/语法/pyQt5/创建菜单
 Python/语法/pyQt5/创建Action
 Python/语法/排序去重复
 Python/时间/引用头
-Python/示例/字符串转 md5 
+Python/示例/字符串转 md5
 Python/示例/网络/服务端
 Python/示例/网络/客户端
 Python/示例/网络/2/服务端
 Python/示例/网络/2/客户端
-
-
-
 KERNEL/module/makefile
 KERNEL/module/函数及宏说明
 KERNEL/module/template
@@ -406,22 +376,12 @@ KERNEL/调度/最大CPU
 KERNEL/调度/进程标志
 KERNEL/调度/最大优先级
 KERNEL/GCC/__aligned
-
 Tools/查看代码工具/OpenGrok/配置
 Tools/git/order
 Tools/svn/order
 Tools/VSCode快捷键
 Tools/Emacs快捷键
-
-
-
 path路径/Android手机拷贝路径
-
-
 SoftWare/Understand
 SoftWare/Source Insight
-
-
-
 PhotoShop/常用快捷键 shortcut
-
