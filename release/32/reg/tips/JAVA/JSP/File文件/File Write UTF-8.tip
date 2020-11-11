@@ -21,3 +21,35 @@ java中文件操作体现了设计模式中的装饰者模式 。
             FileContent += "\r\n"; // 补上换行符 
         } 
 
+
+
+public static String writeContent(File f, String content) {
+    StringBuffer str = new StringBuffer();
+    try{
+        if(!f.exists())
+        {
+            return "";
+        }
+        FileOutputStream out = new FileOutputStream(f);
+        OutputStreamWriter bufferout = new OutputStreamWriter(out, "UTF-8");
+        bufferout.write(content);
+        bufferout.flush();
+        bufferout.close();
+        out.close();
+        str.append("写入成功<br>");
+    } catch (Exception e) {
+        e.printStackTrace();
+        str.append("写入失败:" + e.toString() + "<br>");
+    }
+    return new String(str);
+}
+
+
+//写文件
+public static String writeFile(String dir, String fileName, String  content)
+{
+    File f = new File(dir,fileName);
+    String result = writeContent(f,content);
+    return result;
+}
+
