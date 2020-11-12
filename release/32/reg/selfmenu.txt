@@ -207,6 +207,7 @@ JAVA/基本语句/CFilePub
 JAVA/基本语句/CStringPub
 JAVA/基本语句/CSqlitePub
 JAVA/基本语句/路径分隔符
+JAVA/RegExp/Pattern 
 JAVA/print/println
 JAVA/javascript/src引用
 JAVA/javascript/include引用
