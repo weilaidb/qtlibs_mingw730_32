@@ -84,6 +84,9 @@ C/DEFINE/添加TAB
 C/DEFINE/static_inline空间换时间
 C/DEFINE/常用宏
 C/EXPRESS/CHECK
+C/DEFINED/一个参数
+C/DEFINED/二个参数
+C/DEFINED/三个参数
 DEFINE/FILTER
 DEFINE/GENERATE
 DEFINE/GENERATESTRINGSAME
@@ -390,3 +393,4 @@ path路径/Android手机拷贝路径
 SoftWare/Understand
 SoftWare/Source Insight
 PhotoShop/常用快捷键 shortcut
+Windows/Fonts
