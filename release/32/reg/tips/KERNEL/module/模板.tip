@@ -1,0 +1,37 @@
+#include <linux/module.h>
+#include <linux/init.h>
+
+
+
+/* 模块许可声明（必须）*/
+MODULE_LICENSE("GPL");                           /* 任一版本的GNU公共许可权 */
+MODULE_LICENSE("GPL v2");                        /* GPL版本2许可权 */
+MODULE_LICENSE("GPL and additional rights");     /* GPL及其附加许可权 */
+MODULE_LICENSE("Dual BSD/GPL");                  /* BSD/GPL双重许可权 */
+MODULE_LICENSE("Dual MPL/GPL");                  /* MPL/GPL双重许可权 */
+MODULE_LICENSE("Proprietary");                   /* 专有许可权 */
+
+
+
+//加载模块
+insmod hello.ko
+insmod 模块.ko 参数1=值1 参数2=值2 参数3=值3   /*参数之间没有逗号*/
+//卸载模块
+rmmod hello
+//查看模块打印
+cat /var/log/messages
+demsg|tail
+#依赖加载
+modprobe
+#列出已经加载的模块和信息
+lsmod
+#查询模块的相关信息，比如作者、版权等
+modinfo
+#模块加载后文件系统的变化(加载Hello)
+cat /proc/modules| grep he*
+lsmod|grep hello
+/proc/devices文件没有变化
+/sys/module/目录会增加hello这个模块的基本信息
+/sys/module增加hello目录。使用tree -a hello命令可得到目录结构。
+
+
