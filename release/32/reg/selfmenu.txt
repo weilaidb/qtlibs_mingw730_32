@@ -2,6 +2,7 @@ TEST/RegExptest
 BASH/hello
 BASH/chmod
 BASH/usage
+BASH/常用命令/tree
 BASH/头文件 header
 BASH/文件系统/ls-l
 BASH/文件系统/chmod
@@ -397,5 +398,4 @@ SoftWare/Understand
 SoftWare/Source Insight
 PhotoShop/常用快捷键 shortcut
 Windows/Fonts
-
 Books/常用书籍列表
