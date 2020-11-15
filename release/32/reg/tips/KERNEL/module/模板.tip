@@ -16,6 +16,12 @@ MODULE_LICENSE("Proprietary");                   /* 专有许可权 */
 //加载模块
 insmod hello.ko
 insmod 模块.ko 参数1=值1 参数2=值2 参数3=值3   /*参数之间没有逗号*/
+insmod 模块.ko param=1
+module_param(参数名，参数数据类型，参数读写权限)
+static long a = 1;
+static int b = 1;
+module_param(a, long,  S_IRUGO);
+module_param(b, int,  S_IRUGO);
 //卸载模块
 rmmod hello
 //查看模块打印
@@ -33,5 +39,16 @@ lsmod|grep hello
 /proc/devices文件没有变化
 /sys/module/目录会增加hello这个模块的基本信息
 /sys/module增加hello目录。使用tree -a hello命令可得到目录结构。
+#模块的文件格式ELF
+file hello.ko
+ELF文件格式     ELF Header 
+ELF文件格式     .text
+ELF文件格式     .data
+ELF文件格式     其他
+ELF文件格式     Section Table
+ELF文件格式     .symtab
+ELF文件格式     其他
+
+
 
 
