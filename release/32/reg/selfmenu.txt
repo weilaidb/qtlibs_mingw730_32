@@ -368,6 +368,9 @@ Python/示例/网络/2/服务端
 Python/示例/网络/2/客户端
 KERNEL/module/makefile
 KERNEL/module/函数及宏说明
+KERNEL/module/模板
+KERNEL/module/模板 helloworld
+KERNEL/module/模板 here
 KERNEL/module/template
 KERNEL/LIST_HEAD
 KERNEL/basetype
@@ -394,3 +397,5 @@ SoftWare/Understand
 SoftWare/Source Insight
 PhotoShop/常用快捷键 shortcut
 Windows/Fonts
+
+Books/常用书籍列表
