@@ -49,4 +49,7 @@
 	<input type="submit" value="查询" name="submit">
 </form>
 
-	
+<form action="" method="post" name="form" target="_blank" >
+    <input type="text" name="boy">
+    <input type="submit" value="送出" name="submit">
+</form>
