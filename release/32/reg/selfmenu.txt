@@ -55,6 +55,10 @@ BASH/重定向
 BAT/DATE TIME
 BAT/COPY
 BAT/RMDIR
+BAT/网络network/route print
+BAT/网络network/route add
+BAT/网络network/route delete
+BAT/网络network/route change
 C/INCLUDE/GENERATE
 C/INCLUDE/FILTER
 C/INCLUDE/常用头文件
@@ -215,6 +219,7 @@ JAVA/基本语句/CFilePub
 JAVA/基本语句/CStringPub
 JAVA/基本语句/CSqlitePub
 JAVA/基本语句/路径分隔符
+JAVA/基本语句/Date Time/t1
 JAVA/RegExp/Pattern
 JAVA/print/println
 JAVA/javascript/src引用
