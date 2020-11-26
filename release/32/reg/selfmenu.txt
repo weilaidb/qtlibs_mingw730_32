@@ -60,6 +60,8 @@ BAT/网络network/route add
 BAT/网络network/route add if
 BAT/网络network/route delete
 BAT/网络network/route change
+BAT/网络network/ping大包
+BAT/网络network/tcpdump/wireshark源地址
 C/INCLUDE/GENERATE
 C/INCLUDE/FILTER
 C/INCLUDE/常用头文件
