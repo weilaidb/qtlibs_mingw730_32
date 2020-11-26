@@ -57,6 +57,7 @@ BAT/COPY
 BAT/RMDIR
 BAT/网络network/route print
 BAT/网络network/route add
+BAT/网络network/route add if
 BAT/网络network/route delete
 BAT/网络network/route change
 C/INCLUDE/GENERATE
