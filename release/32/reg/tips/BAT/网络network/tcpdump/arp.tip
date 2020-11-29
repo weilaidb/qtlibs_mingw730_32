@@ -1,1 +1,46 @@
 windows wireshark直接搜索 arp
+
+ARP
+网络层
+1.ARP协议:Address Resolution Protocol 地址解析协议
+2.ARP协议属于网络3层
+3.ARP协议作用:已知IP地址，获取MAC地址
+4.ARP报文：我的IP是10.1.1.1，我的MAC是AA
+		   你的IP是10.1.1.3，你的MAC是？
+5.ARP原理：发送ARP广播报文
+
+
+Frame 237: 42 bytes on wire (336 bits), 42 bytes captured (336 bits) on interface 0
+Ethernet II, Src: 8c:ec:4b:9b:b7:64 (8c:ec:4b:9b:b7:64), Dst: Broadcast (ff:ff:ff:ff:ff:ff)
+    Destination: Broadcast (ff:ff:ff:ff:ff:ff)
+    Source: 8c:ec:4b:9b:b7:64 (8c:ec:4b:9b:b7:64)
+    Type: ARP (0x0806)
+Address Resolution Protocol (request)
+    Hardware type: Ethernet (1)
+    Protocol type: IPv4 (0x0800)
+    Hardware size: 6
+    Protocol size: 4
+    Opcode: request (1)
+    Sender MAC address: 8c:ec:4b:9b:b7:64 (8c:ec:4b:9b:b7:64)
+    Sender IP address: 192.168.0.105
+    Target MAC address: 00:00:00_00:00:00 (00:00:00:00:00:00)
+    Target IP address: 192.168.0.103
+
+
+Frame 238: 60 bytes on wire (480 bits), 60 bytes captured (480 bits) on interface 0
+Ethernet II, Src: Apple_eb:5f:68 (a4:b8:05:eb:5f:68), Dst: 8c:ec:4b:9b:b7:64 (8c:ec:4b:9b:b7:64)
+    Destination: 8c:ec:4b:9b:b7:64 (8c:ec:4b:9b:b7:64)
+    Source: Apple_eb:5f:68 (a4:b8:05:eb:5f:68)
+    Type: ARP (0x0806)
+    Padding: 000000000000000000000000000000000000
+Address Resolution Protocol (reply)
+    Hardware type: Ethernet (1)
+    Protocol type: IPv4 (0x0800)
+    Hardware size: 6
+    Protocol size: 4
+    Opcode: reply (2)
+    Sender MAC address: Apple_eb:5f:68 (a4:b8:05:eb:5f:68)
+    Sender IP address: 192.168.0.103
+    Target MAC address: 8c:ec:4b:9b:b7:64 (8c:ec:4b:9b:b7:64)
+    Target IP address: 192.168.0.105
+
