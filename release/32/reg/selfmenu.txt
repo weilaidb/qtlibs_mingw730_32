@@ -83,6 +83,11 @@ C/PRINT/unsigned_long_int
 C/PRINT/string
 C/PRINT/address
 C/STRNCPY_2_SNPRINTF
+C/STRING/ascii转字符串
+C/STRING/字符串转ascii
+C/MEM/malloc free
+C/MEM/malloc free unsigned char 
+C/MEM/malloc free char
 C/DATE_TIME
 C/LOOP/FOR
 C/LOOP/FOR ARRAYSIZE

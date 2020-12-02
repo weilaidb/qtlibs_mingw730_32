@@ -1,0 +1,1 @@
+unsigned char *\2 = (\1 *)malloc(\3);$NLif(NULL == \2)$NL{$NL    return;$NL}$NLmemset((void *)\2,0,\3);$NL$NL$NLif(NULL != \2)$NL{$NL    free(\2);$NL    \2 = NULL;$NL}$NL
