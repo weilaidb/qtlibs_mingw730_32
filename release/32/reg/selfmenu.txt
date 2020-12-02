@@ -97,6 +97,8 @@ C/ARRAY/format diag
 C/DEFINE/添加TAB
 C/DEFINE/static_inline空间换时间
 C/DEFINE/常用宏
+C/DEFINE/MAX
+C/DEFINE/MIN
 C/EXPRESS/CHECK
 C/DEFINED/一个参数
 C/DEFINED/二个参数
