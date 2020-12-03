@@ -65,6 +65,7 @@ BAT/网络network/software cisco order
 BAT/网络network/tcpdump/wireshark源地址
 BAT/网络network/tcpdump/arp
 BAT/网络network/nat
+BAT/网络network/icmp
 BAT/网络network/知识点/复习
 C/INCLUDE/GENERATE
 C/INCLUDE/FILTER
