@@ -68,6 +68,7 @@ BAT/网络network/nat
 BAT/网络network/icmp
 BAT/网络network/知识点/复习
 BAT/网络network/知识点/IP地址 ipaddress
+BAT/网络network/知识点/dhcp
 C/INCLUDE/GENERATE
 C/INCLUDE/FILTER
 C/INCLUDE/常用头文件
