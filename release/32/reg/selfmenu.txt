@@ -55,6 +55,7 @@ BASH/重定向
 BAT/DATE TIME
 BAT/COPY
 BAT/RMDIR
+BAT/NET USER
 BAT/网络network/route print
 BAT/网络network/route add
 BAT/网络network/route delete
@@ -72,6 +73,7 @@ BAT/网络network/知识点/IP地址 ipaddress
 BAT/网络network/知识点/dhcp
 BAT/网络network/知识点/dhcp relay
 BAT/网络network/知识点/常用端口号大全 port
+BAT/网络network/知识点/Web服务器
 C/INCLUDE/GENERATE
 C/INCLUDE/FILTER
 C/INCLUDE/常用头文件
