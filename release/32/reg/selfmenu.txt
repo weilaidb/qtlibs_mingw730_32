@@ -193,6 +193,10 @@ LINUX/命令行/磁盘disk/查看dev设备的uuid和labelname
 LINUX/命令行/磁盘disk/e2label set labelname
 LINUX/命令行/磁盘disk/etc fstab自动挂载
 LINUX/命令行/输出/dmesg
+LINUX/命令行/software/install
+LINUX/命令行/software/samba smb.conf
+LINUX/命令行/software/yum
+LINUX/命令行/software/RedHat7配置yum源
 Makefile/testtarget
 Makefile/wildcard
 Makefile/PHONY
