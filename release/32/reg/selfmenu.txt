@@ -187,6 +187,11 @@ LINUX/Printk/KERN_WARNING
 LINUX/Printk/KERN_NOTICE
 LINUX/Printk/KERN_INFO
 LINUX/Printk/KERN_DEBUG
+LINUX/命令行/磁盘disk/fdisk -l
+LINUX/命令行/磁盘disk/查看dev设备的uuid和labelname
+LINUX/命令行/磁盘disk/e2label set labelname
+LINUX/命令行/磁盘disk/etc fstab自动挂载
+LINUX/命令行/输出/dmesg
 Makefile/testtarget
 Makefile/wildcard
 Makefile/PHONY
