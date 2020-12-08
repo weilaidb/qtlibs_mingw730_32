@@ -1,0 +1,2 @@
+安装Samba服务程序 
+yum -y install samba
