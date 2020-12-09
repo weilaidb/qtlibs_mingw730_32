@@ -138,6 +138,7 @@ QT/PRINT/debugApp
 QT/PRINT/ENTERTIPS
 QT/LOOP/QStringList iterator
 QT/LOOP/QStringList reverse_iterator
+QT/RegExp/Test
 QT/UI/Menu
 QT/UI/Menu Custom
 QT/UI/Action
