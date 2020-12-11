@@ -436,6 +436,7 @@ Tools/svn/order 忽略多值
 Tools/VSCode快捷键
 Tools/Emacs快捷键
 Tools/生成文件名 filename
+Tools/package 0xdot 添加0x和逗号
 path路径/Android手机拷贝路径
 SoftWare/Understand
 SoftWare/Source Insight
