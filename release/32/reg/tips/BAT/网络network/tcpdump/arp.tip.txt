@@ -5,12 +5,30 @@ ARP
 1.ARP协议:Address Resolution Protocol 地址解析协议
 2.ARP协议属于网络3层
 3.ARP协议作用:已知IP地址，获取MAC地址
+   --从HTTP或上层的数据包（包含IP地址），向下走到MAC层时，发现没有目的MAC。但二层MAC必须有目的MAC才行。引出ARP。
+   
 4.ARP报文：我的IP是10.1.1.1，我的MAC是AA
 		   你的IP是10.1.1.3，你的MAC是？
+ --格式
+ 12FF   AA  我的IP是10.1.1.1，我的MAC是AA   FCS     广播请求报文
+            谁的IP是10.1.1.3，你的MAC是？           广播请求报文
+            
+ AA  CC     我的IP是10.1.1.1，我的MAC是AA   FCS     单播应答报文
+            谁的IP是10.1.1.3，你的MAC是CC           单播应答报文
+
+
+第一步:广播请求报文
+第二步:单播应答报文
+第三步:生成ARP缓存表(在内存中，有老化时间,短则十几秒，长时一两分钟)
+       10.1.1.3 .... CC
+
+
+
 5.ARP原理：发送ARP广播报文
            接收ARP单播应答
 		   
 ARP缓存表		   
+
 
 
 Frame 237: 42 bytes on wire (336 bits), 42 bytes captured (336 bits) on interface 0
