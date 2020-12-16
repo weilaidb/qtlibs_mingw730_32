@@ -1,2 +1,2 @@
 0x\1,
-unsigned char aucBuf[] = {$NL\1$NL};
+unsigned char aucBuf[] = {$NL$NL\1$NL$NL};
