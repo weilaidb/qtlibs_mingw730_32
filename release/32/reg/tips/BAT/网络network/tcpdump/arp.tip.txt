@@ -30,6 +30,33 @@ ARP
 ARP缓存表		   
 
 
+ARP工作原理:
+ARP工作原理分为两个步骤:
+1)发送ARP广播报文：内容是:我的IP是XXX，我的MAC是xxx，谁的IP是xxx,你的MAC是？？？
+2)回应ARP单播报文
+
+注释:
+================
+pc与其他pc通信，ARP原理:
+1)首先判断目标IP与自己是否在同一网段
+2)如果在同一网段，则直接发送ARP广播请求报文询问目标IP地址的MAC
+3)如果不在同一网段，则发送ARP广播请求报文询问网关的MAC
+================
+
+四、面试题
+1）问：ARP协议工作在哪一层？
+2）问: ARP协议是干什么的？
+3）问：可以描述一下ARP的工作原理吗？
+4）问：ARP漏洞在哪里，为什么可以通过ARP漏洞进行攻击？
+5）问：如何进行ARP防护？
+
+
+hack通过伪造的ARP报文，发送虚假的不存在的MAC地址，实现ARP欺骗欑，结果是中断通信！
+
+中间人攻击:
+hack通过伪造的ARP报文，将自己的MAC地址伪装成被攻击目标的MAC地址，进行欺骗，实现中间人攻击
+
+
 
 Frame 237: 42 bytes on wire (336 bits), 42 bytes captured (336 bits) on interface 0
 Ethernet II, Src: 8c:ec:4b:9b:b7:64 (8c:ec:4b:9b:b7:64), Dst: Broadcast (ff:ff:ff:ff:ff:ff)
