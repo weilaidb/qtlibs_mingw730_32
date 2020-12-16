@@ -1,0 +1,139 @@
+VLAN
+1.原理
+》虚拟网建立在局域网交换机之上；
+》VLAN是一个广播域，是由一些局域网网段构成的与物理位置无关的逻辑组；
+》以软件方式实现对逻辑工作组的划分与和管理
+》一个逻辑工作组的结点可以分布在不同的物理网段上，但它们之间的通信就像在同一物理网段上一样；
+》一个VLAN就好像一个孤立的网段，VLAN间不能直接通信，实现VLAN间互联必须借助于路由器（或具有三层交换功能的交换机）。
+
+2.特点
+广播控制
+安全性
+灵活性
+
+3.VLAN分类 
+根据使用和管理VLAN的不同情况，VLAN分为两种：
+静态VLAN和动态VLAN
+》静态VLAN，基于端口的VLAN，因为用户的主机属于哪个VLAN是根据交换机的端口属于哪个VLAN而定的。网络管理员首先把端口分配到不同的VLAN内，根据规划把用户的主机与相应的端口相连，这样就把用户分配到了对应的VLAN内。
+》动态VLAN。动态VLAN的实现方法有多种，最普通的实现方法是基于MAC地址的动态VLAN。
+>基于MAC地址的动态VLAN需要一台VMPS（VLAN Management Policy Server),VMPS可以是一台具有该功能的交换机（如catdyst 5000交换机）或是一台外部服务器，VMPS中维护着MAC地址与VLAN的对应关系表。
+>需要把交换机的端口设置为支持动态VLAN属性的端口
+>当交换机的支持动态VLAN的端口接收到数据帧时，通过使用该数据帧的源MAC地址查询VMPS，从而建立起端口与VLANN的对应关系。
+
+
+4.VLAN标记技术 
+》VLAN可以跨越多台交换机，两个问题，物理通道的问题、区分不同VLAN数据的问题。
+》一个物理通道，但对于来自不同的VLAN的数据进行标记。这条通道上就承载看多个VLAN的数据，这样的链路称为trunk(干道）
+》Trunk链路是通过交换机上设置trunk端口，并把它们连接起来。
+》以太网中两种标记技术：CISCO的ISL（inter-switch link)和IEEE802.1Q
+
+5.符合IEEE802.1Q标准的以太网帧
+DA  SA　Type Data CRC          标准以太网帧
+DA  SA  tag Type Data CRC      带有IEEE802.1Q标记的以太网帧
+tag ｛TPID|Priority|CFI|VLAN ID｝  ｛2byte|3bit|1bit|12bit｝
+
+
+6.VLAN中继协议 
+》VLAN技术独立于地址位置根据工作组或业务类型组织网络资源
+》管理的不便（如VLAN跨交换机，则该交换机须配置VLAN），易生成网络规划的不一致。
+》解决办法：VLAN中继协议（VLAN Trunk Protocol)
+》VTP：
+>将添加的VLAN动态的报告给VTP域中的所有的主机
+>将网络中所有交换机上实现vlan配置的一致性
+>VTP信息通过中继(trunk)端口在交换机上传送 
+
+
+7.VLAN中继协议-VTP模式
+
+---Server---
+》创建VLANs
+》修改VLANs
+》删除VLANs
+》发送/转发通告到整个VTP域
+》同步
+》保存在NVRM中
+
+---Client---
+》发送接收通告
+》同步
+》不保存在NVRM中
+
+---Transparent---
+》创建VLANs
+》修改VLANs
+》删除VLANs
+》转发通告
+》不同步
+》保存在NVRM中
+
+
+8.VLAN中继协议-VTP操作
+》VTP通告以组播形式发送
+》VTP服务端和客户端将同步到最新的修订号
+》VTP通告每5分钟发送一次或者VTP信息被改动的时候将重新发送
+(revision number:修订号，越高则通告的VLAN信息越新，通告通过VLAN1传输）
+
+
+9.VLAN中继协议-VTP修剪
+》通过减少广播、组播和其他单播包的数量来保留带宽
+》如：A只广播发送到配了red vlan的中继链路上
+
+10.跨VLAN通信 
+》VLAN间的通信需要路由器作为中间设备
+》如何通信，路由器作为缺少网关，两种办法：外部路由器、使用具有三层交换功能的交换机
+
+
+11.跨VLAN通信-子接口 
+FastEthernet0/0.1   FastEthernet0/0
+FastEthernet0/0.2   FastEthernet0/0
+FastEthernet0/0.3   FastEthernet0/0
+》物理接口FastEthernet0/0可被划分成多个子接口。
+
+
+12.跨VLAN通信-802.1Q TRUNK
+》interface FastEthernet0/0.1
+description native lan - VLAN 1 is un frame tagged
+encapsulation dot1q 1 native 
+ip address 10.1.1.1 255.255.255.0
+!
+interface FastEthernet0/0.10
+encapsulation dot1q 10
+ip address 10.10.1.1 255.255.255.0
+!
+interface FastEthernet0/0.20
+encapsulation dot1q 20
+ip address 10.20.1.1 255.255.255.0
+!
+
+
+13.跨VLAN通信-内部路由方法 
+》使用一台具有三层交换功能的交换机
+》2层和三层的功能集成在一起，无需外部路由器
+》虚拟的具有第三层功能的接口与每一个VLAN相连，为跨VLAN的通信提供服务
+
+>10个VLAN，3550承担VLAN间通信 
+>3550和路由器相连
+>VLAN1~VLAN10的地址为: 10.10.1.0 ~ 10.10.10.0/24
+>3550的f0/1端口地址：10.10.11.2/24
+>路由器的f0/1端口地址:10.10.11.1/24
+》3550配置
+>打开IP路由
+Switch3550(config)#ip routing
+>Show vlan命令，确认3550有1~10号vlan
+>为每个vlan设置虚拟接口，并配置IP地址
+Switch3550(config)#interface vlan2
+Switch3550(config)#ip address 10.10.2.1 255.255.255.0
+Switch3550(config)#no shut
+>把f0/1接口设为路由器接口并配置IP地址 
+Switch3550(config)#interface Fa 0/1
+Switch3550(config)#no switchport
+Switch3550(config)#ip address 10.10.11.2 255.255.255.0
+Switch3550(config)#no shut
+>为访问Internet设置默认路由
+Switch3550(config)#ip route 0.0.0.0 0.0.0.0 10.10.11.1
+
+
+
+
+
+
