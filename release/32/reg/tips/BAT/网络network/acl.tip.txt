@@ -115,4 +115,11 @@ acc 1 permit any
 
 
 
+扩展ACL命令
+conf t 100-199 2000-2699
+access-list 表号 permit/deny 协议 源IP或网段 反子网掩码  目标IP或网段  反子网掩码 [eq 端口号]
+注释:
+协议：TCP 
+
+
 
