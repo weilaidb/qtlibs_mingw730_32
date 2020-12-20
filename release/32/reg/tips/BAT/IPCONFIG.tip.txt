@@ -1,0 +1,3 @@
+刷新 DNS 缓存
+在终端或CMD中，执行以下命令：
+ipconfig /flushdns

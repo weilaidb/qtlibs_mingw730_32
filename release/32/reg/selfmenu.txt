@@ -2,6 +2,8 @@ TEST/RegExptest
 BASH/hello
 BASH/chmod
 BASH/usage
+BASH/cdpath
+BASH/gitinfo
 BASH/常用命令/tree
 BASH/常用命令/find
 BASH/头文件 header
@@ -55,6 +57,7 @@ BASH/重定向
 BAT/DATE TIME
 BAT/COPY
 BAT/RMDIR
+BAT/IPCONFIG
 BAT/NET USER
 BAT/网络network/route print
 BAT/网络network/route add
@@ -436,6 +439,7 @@ KERNEL/调度/最大优先级
 KERNEL/GCC/__aligned
 Tools/查看代码工具/OpenGrok/配置
 Tools/git/order
+Tools/git/常用git库
 Tools/svn/order
 Tools/svn/order 忽略多值
 Tools/VSCode快捷键
