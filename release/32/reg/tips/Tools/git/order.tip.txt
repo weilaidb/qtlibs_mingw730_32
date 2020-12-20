@@ -1,1 +1,14 @@
-git强制覆盖：     git fetch --all     git reset --hard origin/master     git pull git强制覆盖本地命令（单条执行）：     git fetch --all && git reset --hard origin/master && git pull
+git强制覆盖：     
+git fetch --all     
+git reset --hard origin/master     
+git pull git
+
+强制覆盖本地命令（单条执行）：     
+git fetch --all && git reset --hard origin/master && git pull
+
+使用git clone时，出现RPC failed 解决办法：
+git config --global http.postBuffer 1024288000
+
+检查
+git config --list
+
