@@ -119,7 +119,46 @@ acc 1 permit any
 conf t 100-199 2000-2699
 access-list 表号 permit/deny 协议 源IP或网段 反子网掩码  目标IP或网段  反子网掩码 [eq 端口号]
 注释:
-协议：TCP 
+协议：TCP /UDP/IP/ICMP
+
+acc 100 deny tcp 10.1.1.0 0.0.0.255 host 30.1.1.1 eq 80
+acc 100 permit ip 10.1.1.0 0.0.0.255 host 30.1.1.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
