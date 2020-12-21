@@ -125,8 +125,26 @@ acc 100 deny tcp 10.1.1.0 0.0.0.255 host 30.1.1.1 eq 80
 acc 100 permit ip 10.1.1.0 0.0.0.255 host 30.1.1.1
 
 
+实验要求：
+1.IT部门只能访问OA系统，禁止访问OA的其他服务，也不能ping通OA系统
+2.市场部可以访问OA的所有服务，除80服务！
+3.IT部门和市场部禁止pingHR系统，但可以访问HR系统的其他所有服务
+4.其他流量正常放行
 
 
+ACL表
+
+acc 100 permit tcp 10.1.1.0 0.0.0.255 host 60.1.1.1 eq 80
+acc 100 deny ip 10.1.1.0 0.0.0.255 host 60.1.1.1
+
+acc 100 deny tcp 40.1.1.0 0.0.0.255 host 60.1.1.1 eq 80
+
+acc 100 deny icmp 10.1.1.0 0.0.0.255 host 60.1.1.2
+acc 100 deny icmp 40.1.1.0 0.0.0.255 host 60.1.1.2
+
+
+
+acc 100 permit ip any any 
 
 
 
