@@ -1,0 +1,328 @@
+VLAN与Trunk
+一、广播的危害
+广播的危害：当广播域越来越大，每个pc单位时间内收到的广播量就越大！会降低通信工作效率！
+如何降低广播量？分割广播域/隔离广播域！！！
+路由器可以分割/隔离广播域，而且是天然的隔离广播的设备。
+
+缺点：成本高！不灵活！！
+
+二、VLAN
+2.1 VLAN
+概述:Virtual Local Area Network  虚拟局域网
+
+2.2 VLAN的作用
+逻辑的分割广播域
+降低广播量
+如图:
+
+2.3
+MAC地址表   
+AA F0/1
+BB F0/2
+CC F0/3
+DD F0/4
+
+
+VLAN表
+VLAN1:F0/1 F0/3
+VLAN2:F0/2 F0/4
+
+耳麦：不同频段通信！
+VLAN：不同VLAN禁止通信！
+
+VLAN：限制只有相同的VLAN的PC可以相互通信，不同VLAN不能通信！
+VLAN实现以上目标的原理：依据VLAN表，入接口出接口不再同一VLAN，禁止通信！
+一个VLAN==一个广播域
+12FF  AA 10.1.1.1 10.1.1.4
+
+
+数据包交换过程：
+从入口来的数据包，先查找VLAN表，看F0/1是属于哪个VLAN（世界的），比如是VLAN1的（世界的），再查找目标MAC，，查找出端口，发现是F0/3，数据出时，查看一下端口是哪个世界的，同一世界，则转发。不是一个世界，则丢弃。
+
+这就比较明白了，同一个VLAN世界上，如果不知道对端的MAC地址，则发送广播数据，则在同一VLAN世界中的，和普通交换机没啥区别了。
+
+
+同一个端口加入到多个VLAN中，则端口支持多个VLAN（世界，耳麦）。
+
+
+2.4VLAN是如何做到控制广播的？
+交换机不允许不同的VLAN通信的！
+只允许相同VLAN的人通信！
+VLAN原理：在同一台交换机上，入口和出口不在同一VLAN，不能通过！
+VLAN技术属于二层技术
+
+2.5  配置静态VLAN
+1）创建VLAN
+conf t 
+    vlan ID 
+	   [name ceo]
+	   exit
+2)将端口加入到VLAN
+int f0/1  
+    switchport access vlan ID
+	sw ac vlan ID 
+	exit
+一次进入多个端口：
+Switch(config)#int range f0/9 - 20  (9-20范围的端口）
+Switch(config)#sw ac vlan 20
+3)查看VLAN表
+show vlan b
+
+2.6 VLAN-ID(了解即可）
+vland-id:0-4095
+0不能用，特殊用途
+4095不能用，特殊用途
+1-1001可以用
+1002-1005不能使用，保留用于特殊环境（然而这种特殊环境已经过时了，但依然保留 ）
+1006-2094
+
+
+实验：
+交换机 2960
+1）一个交换机，不同的端口配置不同的VLAN
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+Switch#
+Switch#
+Switch#
+Switch#
+Switch#
+Switch#
+Switch#
+Switch#vlan 10
+            ^
+% Invalid input detected at '^' marker.
+	
+Switch#
+Switch#en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#vlan 10
+Switch(config-vlan)#exit
+Switch(config)#
+Switch(config)#
+Switch(config)#do sh vlan b 
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+10   VLAN0010                         active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+Switch(config)#
+Switch(config)#
+Switch(config)#
+Switch(config)#
+Switch(config)#
+Switch(config)#vlan 20
+Switch(config-vlan)#exit
+Switch(config)#do sh vlan b
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+10   VLAN0010                         active    
+20   VLAN0020                         active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+Switch(config)#
+Switch(config)#
+Switch(config)#vlan 20 
+Switch(config-vlan)#name IT
+Switch(config-vlan)#exit
+Switch(config)#do show vlan b
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+10   VLAN0010                         active    
+20   IT                               active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+Switch(config)#
+Switch(config)#vlan 10
+Switch(config-vlan)#name HR
+Switch(config-vlan)#exit
+Switch(config)#do sh vlan b
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+10   HR                               active    
+20   IT                               active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+Switch(config)#
+Switch(config)#
+Switch(config)#
+Switch(config)#sc 
+Switch(config)#int f0/1 
+Switch(config-if)#swit
+Switch(config-if)#switchport ac
+Switch(config-if)#switchport access vlan 10
+Switch(config-if)#exit
+Switch(config)#do sh vlan b
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/2, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/10, Fa0/11, Fa0/12, Fa0/13
+                                                Fa0/14, Fa0/15, Fa0/16, Fa0/17
+                                                Fa0/18, Fa0/19, Fa0/20, Fa0/21
+                                                Fa0/22, Fa0/23, Fa0/24, Gig0/1
+                                                Gig0/2
+10   HR                               active    Fa0/1
+20   IT                               active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+Switch(config)#
+Switch(config)#int f0/3
+Switch(config-if)#sw
+Switch(config-if)#switchport vlan 10
+                              ^
+% Invalid input detected at '^' marker.
+	
+Switch(config-if)#swi
+Switch(config-if)#switchport ac
+Switch(config-if)#switchport access vlan 10
+Switch(config-if)#exit
+Switch(config)#do sh vlan b
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/2, Fa0/4, Fa0/5, Fa0/6
+                                                Fa0/7, Fa0/8, Fa0/9, Fa0/10
+                                                Fa0/11, Fa0/12, Fa0/13, Fa0/14
+                                                Fa0/15, Fa0/16, Fa0/17, Fa0/18
+                                                Fa0/19, Fa0/20, Fa0/21, Fa0/22
+                                                Fa0/23, Fa0/24, Gig0/1, Gig0/2
+10   HR                               active    Fa0/1, Fa0/3
+20   IT                               active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+Switch(config)#
+Switch(config)#int f0/2
+Switch(config-if)#swi
+Switch(config-if)#switchport ac
+Switch(config-if)#switchport access vlan 20
+Switch(config-if)#exit
+Switch(config)#int f0/4
+Switch(config-if)#sw
+Switch(config-if)#switchport ac
+Switch(config-if)#switchport access vlan 20
+Switch(config-if)#
+Switch(config-if)#exit
+Switch(config)#do show vlan b 
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+10   HR                               active    Fa0/1, Fa0/3
+20   IT                               active    Fa0/2, Fa0/4
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+Switch(config)#
+Switch(config)#
+Switch(config)#
+Switch(config)#
+
+
+
+
+2）两台交换机（用交叉网络连接）
+每台交换机有自己独立的一个VLAN表
+每台交换机必须单独配置VLAN
+一个端口只能放到一个VLAN（一个世界）
+采用的技术是Trunk
+Trunk端口，即是公共端口，不属于任何端口，允许所有VLAN通过
+有个问题：
+不同的VLAN数据，往外发到对端时，对端交换机怎么知道它是哪个VLAN的呢？
+比方，两个学校的同学，一年级、二年级、三年级往对方学校过，每人发一个标签，从公共端口对方收到后，看收到的标签是几年级的？
+
+数据发出时，经过Trunk端口之前，先打上标签，对端交换机收到后，取出标签，再进行转发。
+
+
+三、TRUNK
+3.1 Trunk概述
+trunk:是一种交换机之间的公共链路，它允许所有VLAN通过！
+       通过trunk链路的数据都加上一个vlan标签，
+trunk链路：实现不同交换机同一VLAN的通信
+
+3.2标签类型
+1）思科私有的：ISL标签
+2）国际通用的：802.1q
+交换机给其它
+
+3.3 Trunk命令
+int f0/8
+	switchport mode trunk 
+	简写 sw m t 
+	exit
+配置完成后，f0/8将不在VLAN表中存在。
+
+
+总结：
+1.VLAN技术属于二层技术
+
+
+
+
+
+
+
