@@ -75,6 +75,8 @@ BAT/网络network/icmp
 BAT/网络network/stp
 BAT/网络network/vlan
 BAT/网络network/vlan与Trunk
+BAT/网络network/三层交换机 L3 Switch
+BAT/网络network/ethertype
 BAT/网络network/acl
 BAT/网络network/router 路由器
 BAT/网络network/知识点/复习
