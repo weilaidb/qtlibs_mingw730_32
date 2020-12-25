@@ -1,0 +1,342 @@
+OSPF协议介绍
+￼
+zzjieee 2019-06-17 14:07:24 ￼ 61503 ￼ 收藏 239
+分类专栏： 网络
+概述
+路由协议OSPF全称为Open Shortest Path First，也就开放的最短路径优先协议，因为OSPF是由IETF开发的，它的使用不受任何厂商限制，所有人都可以使用，所以称为开放的，而最短路径优先（SPF）只是OSPF的核心思想，其使用的算法是Dijkstra算法，最短路径优先并没有太多特殊的含义，并没有任何一个路由协议是最长路径优先的，所有协议，都会选最短的。
+OSPF的流量使用IP协议号89。
+OSPF工作在单个AS，是个绝对的内部网关路由协议（Interior Gateway Protocol，即IGP）。
+OSPF对网络没有跳数限制，支持 Classless Interdomain Routing (CIDR)和Variable-Length Subnet Masks (VLSMs)，没有自动汇总功能，但可以手工在任意比特位汇总，并且手工汇总没有任何条件限制，可以汇总到任意掩码长度。
+OSPF支持认证，并且支持明文和MD5认证；OSPF不可以通过Offset list来改变路由的metric。
+OSPF并不会周期性更新路由表，而采用增量更新，即只在路由有变化时，才会发送更新，并且只发送有变化的路由信息；事实上，OSPF是间接设置了周期性更新路由的规则，因为所有路由都是有刷新时间的，当达到刷新时间阀值时，该路由就会产生一次更新，默认时间为1800秒，即30分钟，所以OSPF路由的定期更新周期默认为30分钟。
+OSPF所有路由的管理距离(Ddministrative Distance)为110，OSPF只支持等价负载均衡。
+距离矢量路由协议的根本特征就是自己的 路由表是完全从其它路由器学来的，并且将收到的路由条目一丝不变地放进自己的路由表，运行距离矢量路由协议的路由器之间交换的是路由表，距离矢量路由协议 是没有大脑的，路由表从来不会自己计算，总是把别人的路由表拿来就用；而OSPF完全抛弃了这种不可靠的算法，OSPF是典型的链路状态路由协议，路由器之间交换的并不是路由表，而是链路状态，OSPF通过获得网络中所有的链路状态信息，从而计算出到达每个目标精确的网络路径。
+术语
+Router-id
+必须给每一个OSPF路由器定义一个身份，就相当于人的名字，这就是Router-ID，并且Router-ID在网络中绝对不可以有重名，否则路由器收到的链路状态，就无法确定发起者的身份，也就无法通过链路状态信息确定网络位置，OSPF路由器发出的链路状态都会写上自己的Router-ID，可以理解为该链路状态的签名，不同路由器产生的链路状态，签名绝不会相同。
+每一台OSPF路由器只有一个Router-ID，Router-ID使用IP地址的形式来表示，确定Router-ID的方法为：
+1 .手工指定Router-ID。
+2 .路由器上活动Loopback接口中IP地址最大的，也就是数字最大的，如C类地址优先于B类地址，一个非活动的接口的IP地址是不能被选为Router-ID的。
+3 .如果没有活动的Loopback接口，则选择活动物理接口IP地址最大的。
+如果一台路由器收到一条链路状态，无法到达该Router-ID的位置，就无法到达链路状态中的目标网络。
+Router-ID只在OSPF启动时计算，或者重置OSPF进程后计算。
+Cost
+OSPF使用接口的带宽来计算Metric，例如一个10 Mbit/s的接口，计算Coast的方法为：
+将10 Mbit换算成bit，为10 000 000 bit，然后用10000 0000除以该带宽，结果为 10000 0000/10 000 000 bit = 10，所以一个10 Mbit/s的接口，OSPF认为该接口的Metric值为10，需要注意的是，计算中，带宽的单位取bit/s，而不是Kbit/s，例如一个100 Mbit/s的接口，Cost 值为 10000 0000 /100 000 000=1，因为Cost值必须为整数，所以即使是一个1000 Mbit/s（1GBbit/s）的接口，Cost值和100Mbit/s一样，为1。如果路由器要经过两个接口才能到达目标网络，那么很显然，两个接口的Cost值要累加起来，才算是到达目标网络的Metric值，所以OSPF路由器计算到达目标网络的Metric值，必须将沿途中所有接口的Cost值累加起来，在累加时，同EIGRP一样，只计算出接口，不计算进接口。
+OSPF会自动计算接口上的Cost值，但也可以通过手工指定该接口的Cost值，手工指定的优先于自动计算的值。
+OSPF计算的Cost，同样是和接口带宽成反比，带宽越高，Cost值越小。到达目标相同Cost值的路径，可以执行负载均衡，最多6条链路同时执行负载均衡。
+链路（Link）
+就是路由器上的接口，在这里，应该指运行在OSPF进程下的接口。
+链路状态（Link-State）
+链路状态（LSA）就是OSPF接口上的描述信息，例如接口上的IP地址，子网掩码，网络类型，Cost值等等，OSPF路由器之间交换的并不是路由表，而是链路状态（LSA），OSPF通过获得网络中所有的链路状态信息，从而计算出到达每个目标精确的网络路径。OSPF路由器会将自己所有的链路状态毫不保留地全部发给邻居，邻居将收到的链路状态全部放入链路状态数据库（Link-State Database），邻居再发给自己的所有邻居，并且在传递过程种，绝对不会有任何更改。通过这样的过程，最终，网络中所有的OSPF路 由器都拥有网络中所有的链路状态，并且所有路由器的链路状态应该能描绘出相同的网络拓朴。
+OSPF区域
+因为OSPF路由器之间会将所有的链路状态（LSA）相互交换，毫不保留，当网络规模达到一定程度时，LSA将形成一个庞大的数据库，势必会给OSPF计算带来巨大的压力；为了能够降低OSPF计算的复杂程度，缓存计算压力，OSPF采用分区域计算，将网络中所有OSPF路由器划分成不同的区域，每个区域负责各自区域精确的LSA传递与路由计算，然后再将一个区域的LSA简化和汇总之后转发到另外一个区域，这样一来，在区域内部，拥有网络精确的LSA，而在不同区域，则传递简化的LSA。区域的划分为了能够尽量设计成无环网络，所以采用了Hub-Spoke的拓朴架构，也就是采用核心与分支的拓朴
+￼
+￼
+区域的命名可以采用整数数字，如1、2、3、4，也可以采用IP地址的形式，0.0.0.1、0.0.0.2，因为采用了Hub-Spoke的架构，所以必须定义出一个核心，然后其它部分都与核心相连，OSPF的区域0就是所有区域的核心，称为BackBone 区域（骨干区域），而其它区域称为Normal 区域（常规区域），在理论上，所有的常规区域应该直接和骨干区域相连，常规区域只能和骨干区域交换LSA，常规区域与常规区域之间即使直连也无法互换LSA，如上图中Area 1、Area 2、Area 3、Area 4只能和Area 0互换LSA，然后再由Area 0转发，Area 0就像是一个中转站，两个常规区域需要交换LSA，只能先交给Area 0，再由Area 0转发，而常规区域之间无法互相转发。
+OSPF区域是基于路由器的接口划分的，而不是基于整台路由器划分的，一台路由器可以属于单个区域，也可以属于多个区域.
+￼
+￼
+如果一台OSPF路由器属于单个区域，即该路由器所有接口都属于同一个区域，那么这台路由器称为Internal Router（IR），如上图中的R2，R3和R4；如果一台OSPF路由器属于多个区域，即该路由器的接口不都属于一个区域，那么这台路由器称为Area Border Router （ABR），如上图中的R1，ABR可以将一个区域的LSA汇总后转发至另一个区域；如果一台OSPF路由器将外部路由协议重分布进OSPF，那么这台路由器称为Autonomous System Boundary Router （ASBR），如上图中，R5将EIGRP重分进OSPF，那么R5就是ASBR，但是如果只是将OSPF重分布进其它路由协议，则不能称为ASBR。
+可以配置任何OSPF路由器成为ABR或ASBR。
+由于OSPF有着多种区域，所以OSPF的路由在路由表中也以多种形式存在，共分以下几种：
+如果是同区域的路由，叫做Intra-Area Route，在路由表中使用O来表示；
+如果是不同区域的路由，叫做Inter-Area Route或Summary Route，在路由表中使用O IA来表示；
+如果并非OSPF的路由，或者是不同OSPF进程的路由，只是被重分布到OSPF的，叫做External Route，在路由表中使用O E2或OE 1来表示。
+当存在多种路由可以到达同一目的地时，OSPF将根据先后顺序来选择要使用的路由，所有路由的先后顺序为：
+Intra-Area — Inter-Area — External E1 — External E2，即 O — O IA — O E1 — O E2。
+一台路由器可以运行多个OSPF进程，不同进程的OSPF，可视为没有任何关系，如需要获得相互的路由信息，需要重分布。
+每个OSPF进程可以有多个区域，而路由器的链路状态数据库是分进程和分区域存放的。
+邻居（Neighbor）
+OSPF只有邻居之间才会交换LSA，路由器会将链路状态数据库中所有的内容毫不保留地发给所有邻居，要想在OSPF路由器之间交换LSA，必须先形成OSPF邻居，OSPF邻居靠发送Hello包来建立和维护，Hello包会在启动了OSPF的接口上周期性发送，在不同的网络中，发送Hello包的间隔也会不同，当超过4倍的Hello时间，也就是Dead时间过后还没有收到邻居的Hello包，邻居关系将被断开。
+两台OSPF路由器必须满足4个条件，才能形成OSPF邻居，4个必备条件如下：
+1.Area-id（区域号码）
+即路由器之间必须配置在相同的OSPF区域，否则无法形成邻居。
+2.Hello and Dead Interval（Hello时间与Dead时间）
+即路由器之间的Hello时间和Dead时间必须一致，否则无法形成邻居。
+3.Authentication（认证）
+路由器之间必须配置相同的认证密码，如果密码不同，则无法形成邻居。
+4.Stub Area Flag（末节标签）
+路由器之间的末节标签必须一致，即处在相同的末节区域内，否则无法形成邻居。
+OSPF只能使用接口的Primary地址建立邻居，不能使用Secondary建立邻居。
+路由器双方接口要么都为手工配置地址（Numbered），要么都为借用地址（Unnumbered），否则无法建立邻居。
+邻接（Adjacency）
+两台OSPF路由器能够形成邻居，但并不一定能相互交换LSA，只要能交换LSA，关系则称为邻接（Adjacency）。邻居之间只交换Hello包，而邻接（Adjacency）之间不仅交换Hello包，还要交换LSA。
+DR/BDR
+当多台OSPF路由器连到同一个多路访问网段时，如果每两台路由器之间都相互交换LSA，那么该网段将充满着众多LSA条目，为了能够尽量减少LSA的传播数量，通过在多路访问网段中选择出一个核心路由器，称为DR（Designated Router），网段中所有的OSPF路由器都和DR互换LSA，这样一来，DR就会拥有所有的LSA，并且将所有的LSA转发给每一台路由器；DR就像是该网段的LSA中转站，所有的路由器都与该中转站互换LSA，如果DR失效后，那么就会造成LSA的丢失与不完整，所以在多路访问网络中除了选举出DR之外，还会选举出一台路由器作为DR的备份，称为BDR（Backup Designated Router），BDR在DR不可用时，代替DR的工作，而既不是DR，也不是BDR的路由器称为Drother，事实上，Dother除了和DR互换LSA之外，同时还会和BDR互换LSA
+￼
+￼
+上图中R1被选为DR，R2被选为BDR，而R3和R4为Drother，R3同时和R1与R2互换LSA，R4也同时和R1与R2互换LSA，但R3与R4却不能互换LSA。
+其实不难看出，DR与BDR并没有任何本质与功能的区别，只有在多路访问的网络环境，才需要DR和BDR，DR与BDR的选举是在一个二层网段内选举的，即在多个路由器互连的接口范围内，与OSPF区域没有任何关系，一个区域可能有多个多路访问网段，那么就会存在多个DR和BDR，但一个多路访问网段，只能有一个DR和BDR；选举DR和BDR的规则为：
+比较接口优先级
+选举优先级最高的成为DR，优先级数字越大，表示优先级越高，被选为DR的几率就越大，次优先级的为BDR，优先级范围是0-255，默认为1，优先级为0表示没有资格选举DR和BDR。
+Route-Id大小
+如果在优先级都相同的情况下，Route-Id 最大的成为DR，其次是BDR，数字越大，被选为DR的几率就越大。
+因为所有路由器都能与DR和BDR互换LSA，所以所有路由器都与DR和BDR是邻接（Adjacency）关系，而Drother与Drother之间无法互换LSA，所以Drother与Drother之间只是邻居关系。
+在一个多路访问网络中，选举DR和BDR是有时间限制的，该时间为Wait时间，默认为4倍的Hello时间，即与Dead时间相同，如果OSPF路由器在超过Wait时间后也没有其它路由器与自己竞争DR与BDR的选举，那么就选自己为DR；当一个多路访问网络中选举出DR与BDR之后，在DR与BDR没有失效的情况下，不会进行重新选举，也就是在选举出DR与BDR之后，即使有更高优先级的路由器加入网络，也不会影响DR与BDR的角色，在越出选举时间（Wait时间）后，只有DR与BDR失效后，才会重新选举。DR失效后，会同时重新选举DR与BDR，而在BDR失效后，只会重新选举BDR。
+DR和BDR与Drother的数据包处理会有所不同
+所有OSPF路由器，包括DR与BDR，都能够接收和传递目标地址为224.0.0.5的数据包。
+只有DR和BDR才能接收和传递目标地址为224.0.0.6的数据包。
+由此可见，Drother路由器将数据包发向目标地址224.0.0.6，只能被DR和BDR接收，其它Drother不能接收；而DR和BDR将数据包发向目标地址224.0.0.5，可以被所有路由器接收。
+OSPF数据包交换过程
+从OSPF建立邻居，到LSA的互换，到路由表的计算，需要经过一系列的数据包交换过程，过程如下:
+**
+Hello
+↓
+Database Description Packets （DBD）
+↓
+Link-state Request （LSR）
+↓
+Link-state update（LSU）
+↓
+LSDB
+**
+具体情况如下:
+Hello
+Hello包是用来建立和维护OSPF邻居的，要交换LSA，必须先通过Hello包建立OSPF邻居。
+Database Description Packets （DBD）
+邻居建立之后，并不会立刻就将自己链路状态数据库中所有的LSA全部发给邻居，而是将LSA的基本描述信息发给邻居，这就是Database Description Packets （DBD），是LSA的目录信息，相当于书的目录，邻居在看完DBD之后，就能知道哪些LSA是需要邻居发送给自己的。
+Link-state Request （LSR）
+邻居在看完发来的LSA描述信息（DBD）之后，就知道哪些LSA是需要邻居发送给自己的，自己就会向邻居发送LSA请求（LSR），告诉邻居自己需要哪些LSA。
+Link-state update（LSU）
+当邻居收到其它路由器发来的LSA请求（LSR）之后，就知道对方需要哪些LSA，然后根据LSR，将完整的LSA内容全部发给邻居，以供计算路由表。
+LSDB
+就是已经收到了所有需要邻居发给自己的LSA，这时的链路状态数据库已经达到收敛状态。
+OSPF启动过程
+路由器从启动OSPF进程，到根据链路状态数据库计算出路由表，同样需要经历一系列的启动过程，总共有8种可能的启动过程，但并不是一定会经历这8个过程，具体过程如下：
+Down → Attempt → Init → Two-way → Exstart → Exchange → Loading → Full
+每个过程详细情况如下：
+Down
+路由器刚刚启动OSPF进程，还没有从任何路由器收到任何数据包，Hello包也没有收到，在此进程，可以向外发送Hello包，以试图发现邻居。
+Attempt
+因为OSPF使用组播发送数据包，如使用组播发送Hello包，如果Hello包不能发出去被其它路由器收到，就不能和其它路由器建立OSPF邻居；在一些组播不能发送的网络中，例如帧中继这样的非广播网络环境，组播不能够传递，在这种情况下，就需要指定OSPF使用单播向邻居发送Hello包，以此试图和指定的邻居建立OSPF邻居关系，在此状态下，OSPF称为Attempt状态。
+Init
+只是OSPF路由器一方收到了另一方的Hello，但并没有双方都交换Hello，也就是对方的Hello中还没有将自己列为邻居。
+Two-way
+双方都已经交换了Hello信息，并且从Hello中看到对方已经将自己列为邻居，此状态，就表示OSPF邻居关系已经建立，并且如果是需要选举DR和BDR的话，也已经选举出来，但OSPF邻居之间并不一定就会交换LSA，如果不需要交换LSA，则永远停留在此状态，如果需要形成邻接并互相交换LSA，则状态继续往下进行。（比如Drother与Drother之间将永远停留在Two-way状态，因为Drother与Drother之间不需要交换LSA。）
+Exstart
+因为在OSPF邻居之间交换完整的LSA之前，会先发送Database Description Packets （DBD），Link-state Request （LSR）等数据包，邻居之间是谁先发，谁后发，需要确定顺序，在Exstart状态，就是确定邻居之间的主从关系（Master—Slave关系），Router-ID数字大的为主路由器，另一端为从路由器，由主路由器先向从路由器发送信息。在选举DR与BDR的网络环境中，并不一定DR就是主路由器，BDR就是从路由器，因为DR和BDR可以通过调整接口优先级来控制，所以DR也许是因为优先级比BDR高，而Router-ID并不比BDR高。
+在任何网络环境下，OSPF在交换LSA之前，都需要确定主从关系。
+Exchange
+就是交换Database Description Packets （DBD）的过程，DBD只是LSA的简单描述，只包含LSA的一些头部信息，收到DBD的路由器会和自己的链路状态数据库作对比，确定需要哪些LSA的完整信息，就会发送LSR请求给邻居。
+Loading
+邻居根据收到的LSR（Link-State Request），向对方回复Link-state update（LSU）。
+Full
+等到OSPF都收到了邻居回复的所有Link-state update（LSU），那么此时的数据库状态就变成了收敛状态，此状态就是Full状态，但此时只是数据库已经同步，但路由表却还在计算当中。
+除了Two-way和Full这两个状态，邻居停留在任何状态，都是不正常。
+OSPF网络类型（Network Type）
+OSPF是一个在各方面都考虑比较周全的路由协议，也会因此将该协议变得更为复杂化，OSPF并不像RIP与EIGRP那样，RIP与EIGRP在运行时，并不考虑OSI模型在二层所定义的内容，即并不关心二层的链路介质类型，而OSPF在运行时，必须考虑链路层的类型，称为OSPF网络类型（Network Type），对于不同二层介质类型，OSPF将有不同的操作和运行过程，网络类型，可分为如下几种：
+点到点（Point-To-Point）
+点到多点（Point-To-Multipoint ）
+广播（Broadcast ）
+非广播（Non-Broadcast ）
+点到多点非广播（Point-To-Multipoint Non-Broadcast）
+对于不同的网络类型，将会影响到OSPF的Hello时间与Dead时间，关系到DR与BDR的选举与否，影响到OSPF邻居是自动建立还是手工建立，总结如下:
+
+网络类型
+Hello时间
+选举DR/BDR
+邻居建立方式
+点到点(p2p)
+10s
+否
+自动
+点到多点(p2mp)
+30s
+否
+自动
+广播(Boradcast)
+10s
+是
+自动
+非广播(Non-B)
+30s
+是
+手工
+点到多点非广播(p2mp-Non-B)
+30s
+否
+手工
+
+OSPF网络类型（Network Type）是根据二层链路层的介质决定的，但也可以手工定义网络类型，因此可以在各类型之间手工切换。
+OSPF邻居的成功建立，并不要求双方网络类型一致，但双方网络类型不一致，将可能导致链路状态数据库中的条目无法进入路由表。
+OSPF链路类型（Link Type）
+OSPF确实因为考虑问题的全面，而导致路由协议的复杂，OSPF不仅因为不同的二层链路层介质定义了不同的OSPF网络类型（Network Type），还因为链路上的邻居，而定义了OSPF链路类型（Link Type） 。
+OSPF网络类型（Network Type）是完全根据二层链路层的介质决定的，而OSPF链路类型（Link Type）不仅受二层链路层介质的影响，还受到链路中OSPF邻居的影响，同时还影响到LSA，因此变得复杂。
+OSPF链路类型（Link Type）不会影响人们操作OSPF，所以可以选择不深入理解OSPF链路类型（Link Type），但OSPF网络类型（Network Type）却影响到OSPF的操作，OSPF网络类型（Network Type）必须理解和牢记。
+OSPF链路类型（Link Type）与OSPF网络类型（Network Type）没有对应关系，没有因果关系.
+OSPF链路类型（Link Type）分为以下几种：
+Stub Network Link
+在一个网段中只有一台OSPF路由器的情况下，该网段被OSPF链路类型定义为Stub Network Link；因为一个网段中只有一台OSPF路由器，所以在这个网段就不可能有OSPF邻居，一个接口被通告进OSPF，无论其二层链路是什么介质，只要在该接口上没有OSPF邻居，那么就是Stub Network Link；Loopback接口永远被定义为Stub Network Link，默认使用32位掩码表示，无论将Loopback接口改为哪种OSPF网络类型（Network Type），始终改变不了它的OSPF链路类型（Link Type）属性，但可以改变它在LSA中的掩码长度。
+Point-To-Point Link
+OSPF网络类型（Network Type）为Point-To-Point的接口，OSPF链路类型（Link Type）为Point-To-Point Link，但Loopback接口除外；而网络类型为点到多点（Point-To-Multipoint）的接口，同样链路类型也为Point-To-Point Link。
+Point-To-Point Link可以是手工配置的地址（Numbered），也可以是借用的地址（Unnumbered），也可以是物理接口或逻辑子接口。
+Transit Link
+拥有两台或两台以上OSPF路由器的链路，简单理解为有邻居的OSPF接口就是Transit Link，但网络类型为Point-To-Point和点到多点（Point-To-Multipoint）的接口除外，因为它们被定义为Point-To-Point Link。
+Virtual link
+就是OSPF虚链路（Virtual Link），但希奇的是，虚链路（Virtual Link）被定义为手工配置的地址（Numbered）的Point-To-Point Link。
+OSPF外部路由
+OSPF同其它路由协议一样，可以将其它外部协议的路由信息或其它OSPF进程的路由信息重分布进自己的域内，这样的路由在OSPF域内就是OSPF外部路由（External Route），在路由表中的表示方法和OSPF自己的路由会有所不同，因为OSPF外部路由可以分为两类，分为Type 2和Type 1，所以在路由表中分别表示为OE2和OE1。
+OE2与OE1在路由条目上没有任何区别，只是对于路由的Metric值计算有区别；类型为OE2的外部路由，在该路由进入OSPF之前的Metric值为多少，进入OSPF域后，所有OSPF路由器看到关于该路由的Metric值全部相同，不会再为该路由增加任何Metric值，OE2默认Metric值为20。而OE1的路由在OSPF路由器上的Metric值包含该路由进入OSPF域之前的Metric值，再加上在OSPF域内传递的Metric值，也就是到达外部路由的Metric值为到达ASBR的Metric值再加上进入OSPF域之前的Metric值之和，不同OSPF路由器看到OE1的路由的Metric值可能会有不同。如下图：
+￼
+￼
+在上图中，R5将EIGRP重分布进OSPF，如果使用OE2类型重分布进OSPF，并且取默认Metric值20，那么OSPF域内的路由器R1，R2，R3，R4，R5看到外部路由的Metric值全部都为20，不会有任何变化。如果使用OE1类型重分布进OSPF，并且取默认Metric值20，那么OSPF域内的路由器在计算Metric值时，还会在原有Metric值的基础上，再加上到达ASBR（R5）所需的Metric值，假设R1选择从R3到R5再到外部路由，那么R1到外部路由的Metric值为20+1+10=31，所以使用OE2时，R1到外部路由的Metric值为20，而在使用OE1时，R1到外部路由的Metric值为31。
+所以必须给每一个OSPF路由器定义一个身份，就相当于人的名字，这就是Router-ID，并且Router-ID在网络中绝对不可以有重名，否则路由器收到的链路状态，就无法确定发起者的身份，也就无法通过链路状态信息确定网络位置，OSPF路由器发出的链路状态都会写上自己的Router-ID，可以理解为该链路状态的签名，不同路由器产生的链路状态，签名绝不会相同。
+之前说过，每一台OSPF路由器都有一个Router-ID，在自己产生LSA时，都会在LSA中写上自己的Router-ID，表示LSA的身份，类似于签名，如果一台路由器收到一条链路状态，无法到达该Router-ID的位置，就无法到达链路状态中的目标网络。其实，在同区域内，每台OSPF路由器的Router-ID对于每一台路由器都是可达的，因为同区域内会有精确的LSA信息，包含Router-ID，但需要说明，同区域路由器的Router-ID并不是单独通过LSA来通告的，而是通过精确的LSA计算出来的，也就是说Router-ID的位置是推算出来的，但您放心，这不会有错；因为同区域路由器的Router-ID都有精确的路径信息，所以网络是通畅的，然而，不同区域的OSPF路由器，Router-ID是不知道的，也可以理解为Router-ID不会跨区域传递，那么是否就意味着不同区域的路由是不可达的呢？答案当然是可达的，只要同区域所有路由器可达，那么不同区域自然就是可达的，理由是，不同区域是通过ABR相连的，因为ABR连接着不同区域，所以只要各个区域路由器和ABR是通的，那么不同区域当然可以实现网络连通，所以，ABR在将一个区域的LSA转发至另一个区域时，产生该LSA的Router-ID就不再是原来的Router-ID，会被修改为ABR的Router-ID，这样一来，和ABR相通的路由器只要到达ABR，就能到达其它区域；如下图所示：
+￼
+￼
+上图中，R2和R3是ABR，Area 0一定拥有全网的LSA，R2可以在Area 0与Area 2之间转发LSA，而R3可以在Area 0与Area 1之间转发LSA，但是对于其它区域的路由，R1无法到达，因为R1只有Area 2每台路由器的Router-ID，R4的情况同样如此；最终结果是，R2在将Area 0的LSA转发给Area 2时，已经将所有LSA的Router-ID改成了自己的，所以所有的路由对于R1来说，只要交给ABR（R2）即可，因为R2能够全网可达，在Area 1也是一样，R3在将Area 0的LSA转发给Area 1时，已经将所有LSA的Router-ID改成了自己的，所以所有的路由对于R4来说，只要交给ABR（R3）即可，由此可见，OSPF中，不同区域之间的路由互通，是由于ABR在转发区域是的LSA时，将LSA的Router-ID改成了自己的Router-ID，才使得该区域可以与其它区域通信，如果没有ABR这种自动修改Router-ID的行为，那么OSPF不同区域间将会无法通信。
+对于外部路由，执行重分布的路由器同样需要在LSA中写上自己的Router-ID，其实就是ASBR的Router-ID，因为外部路由会在多个OSPF区域之间传递，所以会被多个ABR转发，而ABR在转发外部路由的LSA时，是没有权限修改LSA的Router-ID，这样一来，外部路由的Router-ID在所有OSPF路由器上都不会改变，永远是ASBR的Router-ID，最终造成的结果是只有与ASBR同在一个区域的路由器才能到达外部路由，因为只有与ASBR同在一个区域的路由器才知道如何到达ASBR的Router-ID，而其它区域的路由器对此却无能为力；为了能够让OSPF所有区域都能与外部路由连通，在ABR将外部路由从ASBR所在的区域转发至其它区域时，需要发送单独的LSA来告知如何到达ASBR的Router-ID，因为ABR将外部路由的LSA告诉了其它区域，是有义务让它们与外部路由可达的，所以额外发送了单独的LSA来告知如何到达ASBR的Router-ID；从这里也可以看出，任何一个ASBR所在区域外的其它区域，都必须靠ABR通告一条通往ASBR 的Router-ID的LSA，此LSA就是后面将会详细解释的LSA 类型的第4类。如下图：
+￼
+￼
+在上图中，因为ASBR（R4）将外部路由（EIGRP）重分布进OSPF后，自己的Router-ID对于Area 1的所有路由器是可达的，但对于Area 2和Area 0中的路由器是不可达的，所以在ABR将外部路由的LSA发向Area 0和Area 2时，会额外通过单独的LSA 4将ASBR（R4）的Router-ID发向这些区域。
+OSPF外部路由有许多是需要理解的地方，外部LSA的Forward Address是一个其它LSA没有的特征，每一条外部LSA都带有一个Forward Address，该地址是用来告诉收到此LSA的路由器如何到达外部路由，那么一条外部路由的LSA，Forward Address究竟该是什么地址呢？在ASBR的路由表中，外部路由的下一跳地址是什么，那么在外部路由的LSA中Forward Address就是什么，但是OSPF内部路由器是通过Forward Address来到达外部路由的，如果它们连这个Forward Address都到达不了，比如Forward Address本身就是外部路由而不包含在OSPF进程中，那么可想而知，Forward Address的意义等于0，所以，如果ASBR的路由表中，外部路由的下一跳地址是OSPF进程自己的路由，那么外部路由LSA的Forward Address就是该地址，所有OSPF内部路由器则通过该地址去往外部路由，但如果ASBR的路由表中，外部路由的下一跳地址不在OSPF进程中，那么该地址对于其它所有OSPF路由器都不可达，这时，ASBR就将外部路由LSA的Forward Address设置为0.0.0.0，当Forward Address为0.0.0.0时，所有OSPF路由器通过外部LSA的Router-ID去往外部路由；如下图所示：
+￼
+￼
+在上图中，当R5（ASBR）将外部路由EIGRP重分布进OSPF时，因为R5到达外部路由的下一跳地址是56.1.1.6，如果该地址的网段被通告进OSPF进程，那么此时外部路由的Forward Address就是56.1.1.6，所有OSPF路由器通过去往地址56.1.1.6来去往外部路由；但如果该地址并不在OSPF进程中，那么外部路由的Forward Address就是0.0.0.0，则所有OSPF路由器通过去往ASBR（R5）的Router-ID去往外部路由。
+重分布外部路由时，默认类型为O E2，如果通过两个ASBR能到达相同的外部路由，选择O E1的优先，其次是O E2，但如果都为O E1或O E2，则选择到达Forward Address最小Metric的路径优先，如果Forward Address都为0.0.0.0，最后选择到达ASBR最小Metric的路径优先，但如果Forward Address地址一个为0.0.0.0，一个为真实地址，统一比较到ASBR的Metric。
+OSPF末节区域
+如果路由增加，就意味着LSA的增加，有时，在一个末梢网络中，许多路由信息是多余的，并不需要通告进来，因为一个OSPF区域内的所有路由器都能够通过该区域的ABR去往其它OSPF区域或者OSPF以外的外部网络，既然一个区域的路由器只要知道去往ABR，就能去往区域外的网络，所以可以过滤掉区域外的路由进入某个区域，这样的区域称为OSPF末节区域（Stub Area）；一个末节区域的所有路由器虽然可以从ABR去往区域外的网络，但路由器上还是得有指向ABR的路由，所以末节区域的路由器只需要有默认路由，而不需要明细路由，即可与区域外的网络通信，根据末节区域过滤掉区域外的不同路由，可将末节区域分为如下四类：
+Stub Area（末节区域）
+Totally Stub Area（完全末节区域）
+Not-so-Stubby Area（NSSA）
+Totally Not-so-Stubby Area（Totally NSSA）
+各类型的特征如下：
+Stub Area（末节区域）
+在Stub Area（末节区域）下，ABR将过滤掉所有外部路由进入末节区域，同时，末节区域内的路由器也不可以将外部路由重分布进OSPF进程，即末节区域内的路由器不可以成为ASBR，但其它OSPF区域的路由（Inter-Area Route）可以进入末节区域，由于没有去往外部网络的路由，所以ABR会自动向末节区域内发送一条指向自己的默认路由，如下图：
+￼
+￼
+Totally Stub Area（完全末节区域）
+在Totally Stub Area（完全末节区域）下，ABR将过滤掉所有外部路由和其它OSPF区域的路由（Inter-Area Route）进入完全末节区域，同时，末节区域内的路由器也不可以将外部路由重分布进OSPF进程，即完全末节区域内的路由器不可以成为ASBR，由于没有去往外部网络的路由，所以ABR会自动向完全末节区域内发送一条指向自己的默认路由，如下图：
+￼
+￼
+可以发现，末节区域与完全末节区域的不同之处在于，末节区域可以允许其它OSPF区域的路由（Inter-Area Route）进入，而完全末节区域却不可以。
+Not-so-Stubby Area（NSSA）
+在Not-so-Stubby Area（NSSA）下，ABR将过滤掉所有外部路由进入末节区域，同时也允许其它OSPF区域的路由（Inter-Area Route）进入NSSA区域，并且路由器还可以将外部路由重分布进OSPF进程，即NSSA区域内的路由器可以成为ASBR，由于自身可以将外部网络的路由重分布进OSPF进程，所以ABR不会自动向NSSA区域内发送一条指向自己的默认路由，但可以手工向NSSA域内发送默认路由，并且只可在ABR上发送默认路由；如下图：
+￼
+￼
+NSSA与末节区域的最大区别在于，NSSA区域可以允许自身将外部路由重分布进OSPF，而末节区域则不可以。
+Totally Not-so-Stubby Area（Totally NSSA）
+在Totally Not-so-Stubby Area（Totally NSSA）下，ABR将过滤掉所有外部路由和其它OSPF区域的路由（Inter-Area Route）进入Totally NSSA区域，但路由器可以将外部路由重分布进OSPF进程，即Totally NSSA区域内的路由器可以成为ASBR，由于没有去往其它OSPF区域的路由，所以ABR会自动向Totally NSSA内发送一条指向自己的默认路由，如下图：
+￼
+￼
+Totally NSSA与NSSA的区别在于，NSSA区域可以允许其它OSPF区域的路由（Inter-Area Route）进入，而Totally NSSA区域却不可以，但Totally NSSA区域的ABR会自动向Totally NSSA区域内发送一条指向自己的默认路由。
+总结各区域的特征如下：
+
+区域类型
+接收区域间路由
+ABR是否发送默认路由
+是否可以重分布外部路由
+Stub Area
+是
+是
+否
+Totally Stub Area
+否
+是
+否
+NSSA
+是
+否
+是
+Totally NSSA
+否
+是
+是
+
+在末节区域下，ABR自动发出的默认路由，Metric值默认为1，可通过命令area area-id default-cost cost修改，默认路由除了默认的Cost值以外，还会累加真实接口的Cost值。
+骨干区域不能配置为任何末节区域。
+当将某个区域配置为末节区域后，则区域中所有路由器都必须配置为末节区域，因为配置为末节区域的路由器上所有接口发出的Hello包中都会有末节标签，所有如果对方没有末节标签，则不能成为邻居。
+OSPF LSA类型
+OSPF由于有着多种区域类型，多种网络类型，多种链路类型，多种路由器身份，所以LSA（Link-State Advertisements）也是多样的。
+在详细讲解LSA之前，需要重点说明，只有同一个区域内的LSA，才是精确的，区域外的LSA，并不一定包含所有必备的信息，因此，所有LSA知识信息，并不一定可以套用到每一类LSA。
+OSPF中共有11类LSA，而在CCIE的要求中，只需要理解1、2、3、4、5、7共6类即可，这些LSA会因为区域类型，网络类型，链路类型，路由器身份的不同而不同，以下是详细介绍：
+类型 1 （Router Link）
+类型1的LSA是任何一台OSPF路由器都会产生的，每一台OSPF路由器的每一个OSPF接口都会有自己的链路状态，但是每台OSPF路由器只能产生一条类型1的LSA，即使有多个OSPF接口，也只有一条类型1的LSA，因为所有OSPF接口的链路状态是被打包成一条类型1的LSA发送的。
+一个区域正是由于LSA 1的存在，才有精确的路由表，一个区域如果只有LSA 1，同样可以正常通信。LSA 1 只能在单个区域内传递，ABR不能将LSA 1转到发另外一个区域，并且没有任何权利修改LSA 1。
+类型 2 （Network Link）
+类型2的LSA只有在需要选举DR/BDR的网络类型中才会产生，并且只是DR产生，BDR没有权利产生，LSA 2与LSA 1没有任何关联，没有任何依存关系，是相互独立的。
+类型 3 （Summary Link）
+类型3的LSA就是将一个区域的LSA发向另一个区域时的汇总和简化，ABR其实就是将LSA 1汇总和简化，变成LSA 3后再发到另一个区域的，如果是详细完整的LSA 1，是绝不允许的，LSA 3是LSA 1的缩略版。
+类型 4 （ASBR Summary Link）
+对于外部路由，执行重分布的路由器ASBR在LSA中写上自己的Router-ID，然后传递到多个OSPF区域，所以会被多个ABR转发，而ABR在转发外部路由的LSA时，是没有权限修改LSA的Router-ID，这样一来，外部路由的Router-ID在所有OSPF路由器上都不会改变，永远是ASBR的Router-ID，最终造成的结果是只有与ASBR同在一个区域的路由器才能到达外部路由，因为只有与ASBR同在一个区域的路由器才知道如何到达ASBR的Router-ID，而其它区域的路由器对此却无能为力；为了能够让OSPF所有区域都能与外部路由连通，在ABR将外部路由从ASBR所在的区域转发至其它区域时，需要发送单独的LSA来告知如何到达ASBR的Router-ID，因为ABR将外部路由的LSA告诉了其它区域，是有义务让它们与外部路由可达的，所以额外发送了单独的LSA来告知如何到达ASBR的Router-ID；这个单独的LSA就是类型4的LSA，LSA 4是包含的ASBR 的Router-ID，只要不是ASBR所在的区域，都需要ABR发送LSA 4来告知如何去往ASBR。
+类型 5 （External Link）
+类型5的LSA就是外部路由重分布进OSPF时产生的，并且是由ASBR产生的，LSA中包含ASBR的Router-ID，任何路由器都不允许更改该Router-ID，LSA 5中还包含Forward Address，对于LSA 5 的Metric值计算与选路规则也有所不同，详细信息请见OSPF外部路由部分。
+类型 7 （NSSA Link）
+因为NSSA区域可以将外部路由重分布进OSPF进程，而NSSA不是一般的常规区域，所以在NSSA将外部路由重分布进OSPF时，路由信息使用类型7来表示，LSA 7由NSSA区域的ASBR产生，LSA 7也只能在NSSA区域内传递，如果要传递到NSSA之外的其它区域，需要同时连接NSSA与其它区域的ABR将LSA 7 转变成LSA 5后再转发。
+LSA各参数
+在LSA的内容中，将有多个参数来表示，这些参数会因为LSA类型，区域类型，网络类型，链路类型，路由器身份的不同而不同，是真正的变化多端，非常的复杂，这些参数在我们操作OSPF时，可以帮助我们更好的分析LSA，但并不会起决定性的作用，所以对LSA参数的理解与否，不会影响到OSPF的配置与排错，若无特殊要求，LSA参数需要大家了解即可，不需要掌握，不需要牢记。
+LSA中包含的参数有LS Type，Link State ID，Link ID，Link Data，具体如下：
+LS Type
+LS Type就是前面讲到的LSA类型，如LSA 1，LSA 2，LSA 3，LSA 4，LSA 5，LSA 7。
+Link State ID
+因为OSPF接口的链路状态，是使用LSA发送的，接口的相关信息，如网络号，掩码等等，它们算是LSA真正的内容，而LSA也是有简明信息的，或者说是LSA的标题，或者说是LSA的名称，这就是Link State ID，如果将LSA比作一个包裹，那么Link State ID就是包裹外面写的信息，比如包裹里是一件衣服，那么Link State ID可能就是写的衣服是什么牌子，什么尺寸，什么颜色，等等；但不同类型的LSA，其Link State ID的表示也会不同，如下表：
+
+LSA类型
+Link State ID内容
+LSA 1
+是产生LSA 1的路由器的Router-ID
+LSA 2
+因为LSA 2是由DR产生的，所以LSA 2的Link State ID是DR的接口地址
+LSA 3
+是目标网络的网络地址，其实这个等同于路由条目
+LSA 4
+是ASBR的Router-ID
+LSA 5
+是目标网络的网络地址，其实这个等同于路由条目
+
+Link ID
+Link ID是用来表示链路自己的，也就是表示OSPF接口自己，再换句话说，就是OSPF接口的链路状态，可以理解为LSA的内容部分。
+Link ID会因为链路类型（Link Type）的不同而不同，对于链路类型（Link Type）的详细解释，请参见前面部分。
+需要注意，Link ID的内容有时与Link State ID的内容相同，但Link ID并非完全等于Link State ID，因为Link State ID是由LSA类型的不同而不同，而Link ID是由Link Type的不同而不同。
+Link ID的具体内容如下表：
+
+链路类型(Link Type)
+Link ID内容
+Stub Network Link
+使用接口的网络号和子网掩码来表示
+Point-To-Point Link
+邻居的Router-ID
+Transit Link
+是DR的接口地址
+Virtual link
+同Point-To-Point Link，是邻居的Router-ID
+
+Link Data
+是接口上的IP地址，如果链路类型（Link Type）为Stub Network Link，则Link Data是子网掩码。
+OSPF虚链路（Virtual Link）
+因为OSPF采用了区域化的设计，并且区域也采用了Hub-Spoke的架构，所有区域中定义出一个核心，然后其它部分都与核心相连，OSPF的区域0就是所有区域的核心，称为BackBone 区域（骨干区域），而其它Normal 区域（常规区域）应该直接和骨干区域相连，常规区域只能和骨干区域交换LSA，常规区域与常规区域之间即使直连也无法互换LSA，但在某些情况下，某些常规区域无法与骨干区域直连，这时便无法得到其它区域的路由，因此，设计了将骨干区域的范围通过虚拟的方法进行扩展到相邻常规区域的位置，因而让不能直接与骨干区域相连的区域，最终可以与骨干区域直连，这种对骨干虚拟的扩展和拉伸就是OSPF虚链路（Virtual Link）能实现的；因为某些常规区域不能与骨干区域直连而只能与其它常规区域直连，所以OSPF虚链路（Virtual Link）通过将相邻的常规区域虚拟为骨干区域，从而让那些不能与骨干区域直连的常规区域也能获得其它OSPF区域的路由。与骨干区域相邻的常规区域被扩展后，该区域被称为Transit Area，理论上Transit Area不应该为末节区域；在扩展后，原本为常规区域的Transit Area，将变成骨干区域，所以路由将从Inter-Area Route转变为Intra-Area Route，路由表示形式也将从O IA改变为O的形式；在进行OSPF虚链路扩展时，是将Transit Area中与骨干区域直连的ABR和连接另一个常规区域的ABR相连，连接这两个ABR时，使用双方的Router-ID来连接。如下图：
+￼
+￼
+在上图中，区域2只能与区域1直连，而无法与骨干区域直连，在这种情况下，由于常规区域与常规区域之间即使直连也无法互换LSA，所以R3虽然是ABR，但因为没有连接骨干区域，最后不可能将任何区域的LSA发进区域2，最终导致区域2无法外其它区域通信，在这种情况下，需要通过OSPF虚链路将骨干区域的范围扩展到相邻的区域1，如下图：
+￼
+￼
+在进行OSPF虚链路扩展后，区域1被虚拟成了骨干区域，而这时的R3等同于连接骨干区域和区域2的ABR，所以可以将自己所有的LSA发进区域2。在扩展OSPF虚链路时，是通过连接R2（ABR）与R3（ABR）的Router-ID 来建立的。
+因为OSPF虚链路（Virtual Link）能将骨干区域扩展到相邻的常规区域，从而将常规区域虚拟为骨干区域，所以在某些情况下，如公司合并，或者为了备份骨干区域，可能出现骨干区域被常规区域所隔离，如下图：
+￼
+￼
+图中骨干区域被区域1分割为两部分，将使得骨干区域自己的路由无法相互传递，在使用OSPF虚链路后，可以将区域1也扩展为骨干区域，如下图：
+￼
+￼
+在经过OSPF虚链路将区域1也扩展为骨干区域后，可见所有的区域都变成了骨干区域，从而使网络中骨干区域能够收到另外一边被分割的骨干区域的路由，并且最后骨干区域自己的路由都为Intra-Area Route，但Area 1与骨干区域的路由将仍然为O IA。
+OSPF虚链路必须是在两个拥有共同区域的ABR之间建立的，其中必须至少有一个ABR是连接骨干的。
+OSPF虚链路被认为是骨干区域的一个接口，一条链路，也需要建立OSPF邻居，但在邻居建立之后，链路上是没有Hello包传递的。
+OSPF认证
+同RIP和EIGRP一样，出于安全考虑，OSPF也使用了认证，OSPF同时支持明文和MD5认证，在启用OSPF认证后，Hello包中将携带密码，双方Hello包中的密码必须相同，才能建立OSPF邻居关系，需要注意，空密码也是密码的一种。
+当OSPF邻居的一方在接口上启用认证后，从该接口发出的Hello包中就会带有密码，双方的Hello包中拥有相同的密码时，邻居方可建立；一台OSPF路由器可能有多个OSPF接口，也可能多个接口在多个OSPF区域，只要在接口上输入OSPF认证的命令后，便表示开启了OSPF认证，可以在每个接口上一个一个启用，也可以一次性开启多个接口的认证，如果需要开启多个接口的认证功能，那么认证的命令就并非直接在接口上输入，而是到OSPF进程模式下输入，并且是对某个区域全局开启的，当在进程下对某个区域开启OSPF认证后，就表示在属于该区域的所有接口上开启了认证。所以，在进程下对区域配置认证，是快速配置多个接口认证的方法，与在多个接口上一个一个开启，没有本质区别。因为OSPF虚链路被认为是骨干区域的一个接口，一条链路，所以在OSPF进程下对骨干区域开启认证后，不仅表示开启了区域0下所有接口的认证，同时也开启了OSPF虚链路的认证，但OSPF虚链路在建立后，并没有Hello包的传递，所以认证在没有重置OSPF进程的情况下，是不会生效的。
+OSPF汇总路由
+在OSPF同区域内，LSA是绝对不允许以任何形式或任何手段更改的，但在一个区域与另一个区域之间，LSA可以被ABR修改后传递，从而得知，在同一个区域内，OSPF路由是不能被汇总的，而是当路由从一个区域被ABR转发到另外一个区域时，就可以执行路由汇总，并且汇总必须是在ABR上执行的，但该汇总不对OSPF外部路由生效；在将外部路由重分布进OSPF时，也可以执行路由汇总，此时的汇总必须在ASBR上配置。
+为了防止路由黑洞，需要在执行路由汇总的路由器上将汇总由指向空接口（null0），在IOS 12.1(6)以后的版本，配置汇总后会自动产生指向空接口的路由，但在IOS 12.1(6)及以前的版本需要手工创建。
+OSPF RFC (1583)并没有规定一个区域适合多少台路由器，一个网段多少个邻居，或如何布署网络。
+配置OSPF实验
+￼
+￼
+OSPF邻居
+OSPF LSA
+OSPF虚链路
+OSPF认证
+￼
+￼
+OSPF外部路由
+OSPF路由汇总
+OSPF末节区域
