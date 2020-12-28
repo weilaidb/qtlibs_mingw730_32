@@ -108,6 +108,7 @@ C/PRINT/address
 C/STRNCPY_2_SNPRINTF
 C/STRING/ascii转字符串
 C/STRING/字符串转ascii
+C/STRING/ASCII码对照表
 C/MEM/malloc free
 C/MEM/malloc free unsigned char 
 C/MEM/malloc free char
@@ -130,6 +131,7 @@ C/EXPRESS/CHECK
 C/DEFINED/一个参数
 C/DEFINED/二个参数
 C/DEFINED/三个参数
+C/NETWORK/linux网络编程常用转换函数api
 DEFINE/FILTER
 DEFINE/GENERATE
 DEFINE/GENERATESTRINGSAME
