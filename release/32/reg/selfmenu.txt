@@ -146,6 +146,7 @@ CXX/LOOP/map/map
 CXX/LOOP/vector
 CXX/Cout_in/cout
 CXX/Cout_in/cout size
+CXX/More/虚函数
 QT/PRINT/debugApp
 QT/PRINT/ENTERTIPS
 QT/LOOP/QStringList iterator
