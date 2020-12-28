@@ -10,3 +10,12 @@ DHCP relay 原理编辑
 事实上，从开始到最终完成配置，需要多个这样的交互过程。
 1 dhcp relay设备修改dhcp消息中的相应字段，把dhcp的广播包改成单播包，并负责在服务器与客户机之间转换。
 2 netcore路由器（2x05）可以作为dhcp relay 代理。
+
+选择路由器2811
+点击文件夹-2811
+
+Router(config)#int g0/1
+Router(config-if)#ip helper-address 192.168.1.1
+
+192.168.1.1 为dhcp的静态ip地址
+
