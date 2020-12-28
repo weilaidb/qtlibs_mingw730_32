@@ -169,6 +169,8 @@ QT/LOOP/QStringList reverse_iterator
 QT/RegExp/Test
 QT/QString/十六进制转十进制
 QT/QString/十进制转十六进制
+QT/QString/ascii_to_string
+QT/QString/string_to_ascii
 QT/UI/Menu
 QT/UI/Menu Custom
 QT/UI/Action
