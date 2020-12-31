@@ -220,6 +220,7 @@ LINUX/Printk/KERN_WARNING
 LINUX/Printk/KERN_NOTICE
 LINUX/Printk/KERN_INFO
 LINUX/Printk/KERN_DEBUG
+LINUX/Code/ERROR
 LINUX/命令行/磁盘disk/fdisk -l
 LINUX/命令行/磁盘disk/查看dev设备的uuid和labelname
 LINUX/命令行/磁盘disk/e2label set labelname
