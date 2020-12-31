@@ -4,3 +4,4 @@
 Tools/package 0xdot 添加0x和逗号
 Tools/package 0xdot 自带0x 添加逗号
 TEST/RegExptest
+CXX/externc __cplusplus

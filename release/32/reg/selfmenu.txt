@@ -155,6 +155,7 @@ CXX/INCLUDE/常用头文件
 CXX/DECLARE_TO_IMPLEMENT
 CXX/DECLARE_TO_IMPLEMENT CLASS
 CXX/ARRAYSIZE
+CXX/externc __cplusplus
 CXX/LOOP/list iterator
 CXX/LOOP/list reverse_iterator
 CXX/LOOP/map/C++ map用法
