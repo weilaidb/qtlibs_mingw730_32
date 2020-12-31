@@ -177,6 +177,8 @@ QT/Express/声明类declare class QT_BEGIN_NAMESPACE
 QT/UI/常用头文件 public header
 QT/UI/打印入参列表 showArgs 
 QT/UI/Randomnumber随机数
+QT/UI/Print/qDebug
+QT/UI/Print/qDebug only show string
 QT/UI/Menu
 QT/UI/Menu Custom
 QT/UI/Action
