@@ -179,6 +179,7 @@ QT/UI/打印入参列表 showArgs
 QT/UI/Randomnumber随机数
 QT/UI/Print/qDebug
 QT/UI/Print/qDebug only show string
+QT/UI/Print/stdout
 QT/UI/Menu
 QT/UI/Menu Custom
 QT/UI/Action
