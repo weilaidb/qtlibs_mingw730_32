@@ -480,6 +480,7 @@ Tools/VSCode快捷键
 Tools/Emacs快捷键
 Tools/生成文件名 filename
 Tools/dec to hex 十进制转十六进制
+Tools/hex to dec 十六进制转十进制
 Tools/package 0xdot 添加0x和逗号
 Tools/package 0xdot 自带0x 添加逗号
 path路径/Android手机拷贝路径
