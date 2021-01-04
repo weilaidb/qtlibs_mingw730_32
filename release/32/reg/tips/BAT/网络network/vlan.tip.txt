@@ -135,5 +135,34 @@ Switch3550(config)#ip route 0.0.0.0 0.0.0.0 10.10.11.1
 
 
 
+pvlan
+PVID即 Port Vlan id，代表端口的缺省VLAN。
+PVID英文为Port-base VLAN ID，是表示网络通信中基于端口的VLAN ID，一个端口可以属于多个VLAN，但是只能有一个PVID，收到一个不带tag头的数据包时，会打上PVID所表示的VLAN号，视同该VLAN的数据包处理。
+一个物理端口只能拥有一个PVID，当一个物理端口拥有了一个PVID的时候，必定会拥有和PVID相等的VID，而且在这个VID上，这个物理端口必定是Untagged Port。
+
+PVID的作用只是在交换机从外部接受到可以接受Untagged 数据帧的时候给数据帧添加TAG标记用的，在交换机内部转发数据的时候PVID不起任何作用。
+
+
+untag port与tag port编辑
+所谓的untagged Port和tagged Port不是讲述物理端口的状态，而是将是物理端口所拥有的某一个VID的状态，所以一个物理端口可以在某一个VID上是untagged Port，在另一个VID上是tagged Port。 [3] 
+untag port和tag port是针对VID来说的，和PVID没有什么关系。比如有一个交换机的端口设置成untag port，但是从这个端口进入交换机的网络包如果没有vlan tag的话，就会被打上该端口的PVID，不要以为它是untag port就不会被打上vlan tag。 [3] 
+
+收发规则编辑
+VLAN的端口分为三种类型：Access端口、Trunk端口、 Hybrid端口。 [1] 
+
+Access端口
+Access端口是交换机上用来连接用户主机的端口,它只能连接接人链路,并且只能允许唯一的 VLAN ID通过本端口。Access端口的特点是只允许符合PVID的流量通过。 [1] 
+
+Trunk端口
+Trunk端口是交换机上用来和其他交换机连接的端口，它只能连接干道链路。Trunk端口允许多个VLAN的帧（带标签）通过。 [1] 
+
+
+Hybrid端口
+Hybrid端口是交换机上既可以连接用户主机，又可以连接其他交换机的端口。Hybrid端口既可以连接接人链路又可以连接干道链路。混杂端口允许多个VLAN的帧通过，并可以在出端口方向将某些VLAN帧的标签剥掉。华为设备默认的端口类型是Hybrid。 [1] 
+
+
+
+
+
 
 
