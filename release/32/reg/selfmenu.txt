@@ -489,3 +489,4 @@ SoftWare/Source Insight
 PhotoShop/常用快捷键 shortcut
 Windows/Fonts
 Books/常用书籍列表
+Algorithm 算法/大数进制转换
