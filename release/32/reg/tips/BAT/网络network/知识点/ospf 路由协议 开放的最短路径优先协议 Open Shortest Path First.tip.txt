@@ -73,10 +73,10 @@ Topological Database
 .
 
 .OSPF网络类型（4种）
-.BMA 广播型多路访问
-.Point-to-Point 点对点
-.NBMA 非广播多路访问
-.点对多点（手动配置）
+.BMA 广播型多路访问      -- Ethernet  令牌环，FDDI
+.Point-to-Point 点对点   -- PPP,T1,DS-3等
+.NBMA 非广播多路访问     -- Frame-relay X.26  -- 通过使用单播的ospf数据包来代替组播，因为NBMA不支持组播和广播。
+.点对多点（手动配置）    --  由管理员配置  --   NBMA的一个特殊配置，OSPF数据包以单播形式发送
 
 
 .LSA的泛洪
@@ -88,6 +88,28 @@ Topological Database
 .选举规则：最高接口优先级被选作DR，如果优先级相等（默认为1），具有最高的路由器ID(Router-ID)的路由器被选举为DR,并且DR具有非抢占性
 .指定路由器(DR):DR负责使用该变化信息更新其它所有OSPF路由器(DRouter)
 .备用指定路由器(BDR):BDR会监控DR的状态，并在当前DR发生故障时接替其角色
+
+.RouterID
+.用于标识OSPF的路由器的ID，全网唯一性；可手动配置，也可动态选举（有Loopback接口时，选择最高的Loopback IP地址；否则，选择最高活跃物理接口的IP地址）。
+
+
+.LSA的泛洪
+.路由器R3用244.0.0.6通知DR路由器及BDR路由器
+.DR、BDR监听224.0.0.6这一组播地址
+.DR利用组播地址224.0.0.5通知其它路由器
+.所有的OSPF路由器监听224.0.0.5这一组播地址
+.路由器收到包含变化后的LSA的LSU后，更新自己的链路状态数据库，过一段时间（SPF延迟）。对更新的链路状态数据库执行SPF算法，必要时更新路由表。
+
+
+.基本配置
+Router(config)#router ospf process-id
+开启OSPF进程 
+
+Router(config-router)#network address wildcard-mask area aread-id
+宣告特定的网络到OSPF区域
+
+
+
 .
 
 
