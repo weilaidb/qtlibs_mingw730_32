@@ -1,3 +1,106 @@
+OSPF(开放式最短路径优先)
+Open Shortest Path First
+
+链路状态路由协议
+Shortest Path First Tree
+Topological Database
+
+。是一种链路状态路由协议，无路由循环（全局拓扑），RFC2328
+。“开放“意味着非私有的
+。管理性距离:110
+。OSP采用SPF算法计算达到目的地的最短路径：
+--什么叫链路(LINK)?=路由器接口
+--什么叫状态(STATE)?=描述接口以及其与邻居路由器之间的关系。
+
+.OSPF metric
+.每个路由器都把自己当做根，并且给予累积成本(Cost值）来计算到达目的地的最短路径
+.Cost=参考带宽(10^8)/接口带宽(b/s)
+路由上Cost值是传递过来的路径上所有入接口的累加
+
+
+.OSPF报文类型
+.Hello  建立和维护OSPF邻居关系
+.DBD    链路状态数据库描述信息（描述LSDB中LSA头部的信息）
+.LSR    链路状态请求，向OSPF邻居请求链路状态信息
+.LSU    链路状态更新（包含一条或多条LSA）
+.LSAck  对LSU中的LSA进行确认。
+.
+.术语：
+.DBD：Database Description
+.LSA: Link-State Advertisement。LSA(链路状态广播)是链接状态协议使用的一个分组，它包括有关邻居和通道成本的信息。 LSA被路由器接收用于维护它们的路由选择表。 LSA: Link-State Advertisement。
+
+
+.OSPF区域
+.在区域边界可以做路由汇总，减小了路由表
+.减小了LSA洪泛的范围，有效地把拓扑变化控制在区域内，提高了网络的稳定性
+.拓扑的变化影响可以只限制涉及本区域
+.多区域提高了网络的扩展性，有利于组建大规模的网络
+
+
+.OSPF的三张表
+.邻居表(neighbor table):
+ -- OSP用邻居机制来发现和维持路由的存在，邻居表存储了双向通信的邻居关系OSPF路由器列表的信息。
+.拓扑表(topology table):
+ -- OSPF用LSA(link state Advertisement链路状态通告）来描述网络拓扑信息，然后OSPF路由器用拓扑数据库来存储网络的这些LSA。
+.OSPF路由表(routing table):
+-- 对链路状态数据库进行SPF(Dijkstra)计算，而得出的OSPF路由表。
+
+
+.OSPF的基本运行步骤：
+.步骤1、建立邻接关系（Establish router adjacencies)
+.步骤2、必要的时候进行DR的选举(Elect the DR/BDR)
+.步骤3、发现路由(Discover routes)
+.步骤4、选择合适的路由器(Select appropriate routes)
+.步骤5、维护路由信息(Maintain routing information)
+
+
+.建立邻接关系 - Hello包
+.Hello包用来发现OSPF邻居并建立相邻关系，通过组播地址:224.0.0.5发送给ALL SPF Routers
+.通告两台路由器建立相邻关系所必需统一的参数
+.在以太网和帧中继网络等多路访问网络中选举指定路由器(DR)和备用指定路由器(BDR)
+.Hello包的内容有：
+   Router ID
+   Hello/dead intervals
+   Neighbors
+   Aread-ID
+   Router priority
+   DR IP address
+   BDR IP address
+   Authentication password
+   Stub aread flag 
+.OSPF over Ethernet - Multiaccess Network
+.OSPF over HDLC-Point-to-Point Network
+.
+
+.OSPF网络类型（4种）
+.BMA 广播型多路访问
+.Point-to-Point 点对点
+.NBMA 非广播多路访问
+.点对多点（手动配置）
+
+
+.LSA的泛洪
+.必要时选举DR及BDR
+.DR:指定路由  BDR:备用指定路由
+.主要针对多路访问路由，即MA路由，建立起来后，其它路由器只和DR和BDR来建立邻居关系，其它之间互不理睬
+.DR、BDR
+.为减小多路访问网络中的OSPF流量，OSPF会选举一个指定路由器(DR)和一个备用指定路由器(BDR)
+.选举规则：最高接口优先级被选作DR，如果优先级相等（默认为1），具有最高的路由器ID(Router-ID)的路由器被选举为DR,并且DR具有非抢占性
+.指定路由器(DR):DR负责使用该变化信息更新其它所有OSPF路由器(DRouter)
+.备用指定路由器(BDR):BDR会监控DR的状态，并在当前DR发生故障时接替其角色
+.
+
+
+
+
+
+
+
+
+
+
+
+
 OSPF协议介绍
 ￼
 zzjieee 2019-06-17 14:07:24 ￼ 61503 ￼ 收藏 239
@@ -340,3 +443,153 @@ OSPF认证
 OSPF外部路由
 OSPF路由汇总
 OSPF末节区域
+
+
+
+
+
+lsa 免费编辑 添加义项名
+ 添加义项 
+LSA(链路状态广播)是链接状态协议使用的一个分组，它包括有关邻居和通道成本的信息。 LSA被路由器接收用于维护它们的路由选择表。 LSA: Link-State Advertisement。
+
+基本信息
+中文名称
+链路状态广播
+
+外文名称
+ Link-State Advertisement
+
+缩写
+lsa
+
+ 
+属于
+链接状态协议使用的一个分组
+
+用于
+维护它们的路由选择表
+
+目录
+1分类
+2应用
+3原始特性
+4解决方法
+折叠编辑本段分类
+LSA类型代码
+
+描述
+
+1
+
+路由器LSA
+
+2
+
+网络LSA
+
+3
+
+网络汇总LSA
+
+4
+
+ASBR汇总LSA
+
+5
+
+AS外部LSA
+
+6
+
+组成员LSA
+
+7
+
+NSSA外部LSA
+
+8
+
+外部属性LSA
+
+9
+
+Opaque LSA (链路本地范围)
+
+10
+
+Opaque LSA (本地区域范围)
+
+11
+
+Opaque LSA (AS范围)
+
+●路由器LSA(Router LSA):每一台路由器都会产生路由器LSA通告。这个最基本的LSA通告列出了路由器所有的链路或接口，并指明了它们的状态和沿每条链路方向出站的开销，以及该链路上所有已知的OSPF邻居。这些LSA通告只会在始发它们的区域内部进行泛洪扩散。通过命令show ip ospf database router可以查看数据库中列出了所有路由器LSA通告。
+
+●网络LSA(Network LSA):每一个多路访问网络中的指定路由器(DR)将会产生网络LSA通告。正如前面讨论的，DR路由器可以看作一个"伪"节点，或是一个虚拟路由器，用来描绘一个多路访问网络和与之相连的所有路由器。从这个角度来看，一条网络LSA通告也可以描绘一个逻辑上的"伪"节点，就像一条路由器LSA通告描绘一个物理上的单台路由器一样。网络LSA通告列出了所有与之相连的路由器，包括DR路由器本身。就像路由器LSA一样，网络LSA也仅仅在产生这条网络LSA的区域内部进行泛洪扩散。使用命令show ip ospf database network可以查看一条网络LSA通告的信息。请注意，和路由器LSA不同，网络LSA中没有度量字段。
+
+●网络汇总LSA(Network Summary LSA):是由ABR路由器始发的。ABR路由器将发送网络汇总LSA到一个区域，用来通告该区域外部的目的地址。实际上，这些网络汇总LSA就是ABR路由器告诉在与之相连的区域内的内部路由器它所能到达的目的地址的一种方法。一台ABR路由器也可以通过网络汇总LSA向骨干区域通告与它相连的区域内部的目的地址。在一个区域外部，仍然在一个OSPF自主系统内部的缺省路由也可以通过这种LSA类型来通告。使用命令show ip ospf database summary可以显示链路状态数据库中的网络汇总LSA信息。当一台ABR路由器始发一条网络汇总LSA时，将包括从它本身到正在通告的这条LSA的目的地所耗费的代价。ABR路由器即使知道它有多条路由可以到达目的地，它也只会为这个目的地始发单条网络汇总LSA通告。因此，如果一台ABR路由器在与它本身相连的区域内有多条路由可以到达目的地，那么它将只会始发单一的一条网络汇总LSA到骨干区域，而且这条网络汇总LSA是上述多条路由中代价最低的。同样地，如果一台ABR路由器经过骨干区域从其他的ABR路由器收到多条网络汇总LSA，那么这台始发的ABR路由器将会选择这些LSA通告中代价最低的LSA，并且将把这个LSA的最低代价通告给与它相连的非骨干区域。当其他的路由器从一台ABR路由器收到一条网络汇总LSA通告时，它并不运行SPF算法。相反地，它只是简单地加上从它到那台ABR路由器之间路由的代价，并将这个代价包含在这个LSA通告当中。通过ABR路由器，到达所通告的目的地的路由连同所计算的代价一起被记录进了路由表。这个行为――依赖中间路由器代替确定到达目的地的全程路由(Full route)的做法――其实是距离矢量协议的行为。因此，虽然在一个区域内部OSPF协议是一个链路状态协议，但是它却使用了距离矢量的算法来查找域间路由。
+
+●ASBR汇总LSA(ASBR Summary LSA):也是由ABR路由器始发的。ASBR汇总LSA除了所通告的目的地是一台ASBR路由器而不是一个网络外，其他的和网络汇总LSA都是一样的。使用命令show ip ospf database asbr-summary可以查看ASBR汇总LSA的信息。这里要注意，其中目的地是一个主机地址，并且掩码是0;通过ASBR汇总LSA通告的目的地将总是一个主机地址，因为它是一条到达一台路由器的路由。
+
+●自治系统外部LSA(Autonomous System External LSA):或者称为外部LSA(External LSA)，是始发于ASBR路由器的，用来通告到达OSPF自治系统外部的目的地或者OSPF自治系统外部的缺省路由的LSA。自治系统外部LSA是链路状态数据库中唯一不与具体的区域相关联的LSA通告。外部LSA通告将在整个自治系统中进行泛洪扩散。使用命令show ip ospf database external可以查看AS外部LSA的信息。
+
+●组成员LSA(Group Membership LSA):是用在OSPF协议的一个增强版本――组播OSPF协议(MOSPF协议)中的。MOSPF协议将数据包从一个单一的源地址转发到多个目的地，或者是一组共享D类组播地址的成员。
+
+●NSSA外部LSA(NSSA External LSA):是指在非纯末梢区域(Not-So-Stubby Area， NSSA)内始发于ASBR路由器的LSA通告。NSSA外部LSA通告几乎和自主系统外部LSA通告是相同的。只是不像自主系统外部LSA通告那样在整个OSPF自主系统内进行泛洪扩散，NSSA外部LSA通告仅仅在始发这个NSSA外部LSA通告的非纯末梢区域内部进行泛洪扩散。可以通过命令show ip ospf database nssa-external来显示NSSA外部LSA通告的信息。
+
+●外部属性LSA(External Attributes LSA):是被提议作为运行内部BGP协议(iBGP协议)的另一种选择，以便用来传送BGP协议的信息穿过一个OSPF域。这个LSA从来没有在大范围部署过，IOS软件也不支持该LSA。
+
+●Opaque LSA:是由标准的LSA头部后面跟随专用信息组成的一类LSA。这个信息字段可以直接由OSPF协议使用，或者由其他应用分发信息到整个OSPF域间接使用。OpaqueLSA类型用于对OSPF增加可变的扩展特性，例如在MPLS网络中应用流量工程参数。
+
+折叠编辑本段应用
+在OSPF路由协议的数据包中，其数据包头长为24个字节，包含如下8个字段:
+
+* Version number-定义所采用的OSPF路由协议的版本。
+
+* Type-定义OSPF数据包类型。OSPF数据包共有五种:
+
+* Hello-用于建立和维护相邻的两个OSPF路由器的关系，该数据包是周期性地发送的。
+
+* Database Description-用于描述整个数据库，该数据包仅在OSPF初始化时发送。
+
+* Link state request-用于向相邻的OSPF路由器请求部分或全部的数据，这种数据包是在当路由器发现其数据已经过期时才发送的。
+
+* Link state update-这是对link state请求数据包的响应，即通常所说的LSA数据包。
+
+* Link state acknowledgment-是对LSA数据包的响应。
+
+* Packet length-定义整个数据包的长度。
+
+* Router ID-用于描述数据包的源地址，以IP地址来表示。
+
+* Area ID-用于区分OSPF数据包属于的区域号，所有的OSPF数据包都属于一个特定的OSPF区域。
+
+* Checksum-校验位，用于标记数据包在传递时有无误码。
+
+* Authentication type-定义OSPF验证类型。
+
+折叠编辑本段原始特性
+每一个OSPFLSA都有一个生存期，它指示LSA是否仍然还有效。一旦LSA到达了最大生存期(1小时)，它就会被抛弃。在生存期内，源路由器每 30分钟发送一个刷新包来刷新LSA。发送刷新包为了防止LSA过期，不管网络拓朴结构是否有变化。每10分钟在所有LSA上完成一次校验和。路由器对它产生的LSA和从其他路由器接收的LSA保持跟踪。路由器刷新它产生的LSA;计算从其他路由器接收的LSA的生存期。
+
+在具有LSA组定步特性之前，CiscoIOS软件在一个计时器上完成刷新，在另一个计时器上完成校验和及生存期计算。比如刷新时，软件每30分钟扫描一次整个数据库，刷新路由器产生的每一个LSA，不管它有多老了。图11-1表示所有的LSA立即被刷新。该过程浪费了CPU的资源，因为只有一小部分数据库需要被刷新。一个大型的OSPF数据库(几千个LSA)包括上千个具有不同生存期的LSA。在一个计时器上的刷新导致所有LSA的生存期同步，引起立即产生多个CPU进程。而且，巨大数量的LSA还能引起网络传输量剧增，在短时间消耗大量的网络资源。
+
+所有LSA被刷新，以太网上120个外部LSA需要3个包。
+
+折叠编辑本段解决方法
+这个问题通过使每个LSA具有自己的计时器来解决。还借用这个刷新示例，30分钟后每个LSA都得到刷新，与其他LSA无关。所以CPU只在需要时才被使用。但是，频繁地、随意地、刷新的LSA需要那些路由器必须发送出去的、很少被刷新的LSA提供许多包。这将降低带宽的利用率。
+
+在频繁地、随意的时间间隔内，另一个LSA需要被刷新这个被刷新的包只包含几个LSA单个LSA计时器
+
+因此，用路由器延迟一个时间间隔来代替单个计时器时间直至完成LSA刷新功能。累积的LSA组成一个组，然后被刷新，并在一个或几个包中被发送出去。这样，刷新包被定步、校验和及计算生存期也一样。定步间隔是可配置的，缺省值是4分钟，为进一步避免同步而被随意化了。
+
+组定步间隔与路由器正在刷新、做校验和及计算生存期的LSA的个数成反比。比如，假设有将近10，000个LSA，减小定步间隔是有益的。如果有一个很小的数据库(40~100个LSA)，那么将定步间隔增加到10~20分钟会稍有益处的。
+
+LSA组之间的定步缺省值是240秒(4分钟)。取值范围在10秒到1800秒之间(半小时)。为了修改LSA组定步间隔，在路由器配置方式中执行下列命令:
+
+命令作用
+
+lsa-group-pacingseconds修改LSA组定步。
+
+搜索发现
+
+
