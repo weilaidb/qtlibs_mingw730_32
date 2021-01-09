@@ -1,8 +1,9 @@
 注意事项:
 *.打开配置总表，填写相关操作项
 *.配置总表		--  selfmenu.txt
-*.单行多执行		--  selfmode_singleline_execmulti.txt
 *.所有多执行		--  selfmode_allline_execmulti.txt
+*.单行多执行		--  selfmode_singleline_execmulti.txt
+*.单行单执行		--  selfmode_singleline_execsingle.txt
 *.打开文件列表		--  normalfiles.txt
 *.常用配置列表		--  frequse.txt
 *.非全部处理限制值	--  contentmax.txt
