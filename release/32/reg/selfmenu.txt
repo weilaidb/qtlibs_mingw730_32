@@ -114,6 +114,7 @@ C/STRING/ASCII码对照表
 C/MEM/malloc free
 C/MEM/malloc free unsigned char 
 C/MEM/malloc free char
+C/MEM/strdup free
 C/DATE_TIME
 C/LOOP/FOR
 C/LOOP/FOR ARRAYSIZE
