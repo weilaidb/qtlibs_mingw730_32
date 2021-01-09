@@ -1,0 +1,11 @@
+strindex(s, t)      /* the easy way, as in K&P, p. 192 */
+  char *s, *t;
+{
+    int i, n;
+
+    n = strlen(t);
+    for (i = 0; s[i] != '\0'; i++)
+    if (strncmp(s + i, t, n) == 0)
+        return (i);
+    return (-1);
+}

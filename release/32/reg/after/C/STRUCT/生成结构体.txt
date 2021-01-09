@@ -1,0 +1,1 @@
+typedef struct T_\1 {$NL\1;$TB /* \2 */$NL}T_\1, *P_\1;

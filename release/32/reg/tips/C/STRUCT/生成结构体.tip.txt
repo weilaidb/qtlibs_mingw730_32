@@ -1,0 +1,5 @@
+regexp
+char *startp[NSUBEXP];start
+char program[1];Unwarranted chumminess with compiler.
+int m_hello;test
+regexp

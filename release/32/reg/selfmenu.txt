@@ -123,6 +123,8 @@ C/API/execvp
 C/API/oops
 C/API/fstat
 C/API/nlcount
+C/API/pfile
+C/API/strindex
 C/DATE_TIME
 C/LOOP/FOR
 C/LOOP/FOR ARRAYSIZE
@@ -144,6 +146,7 @@ C/EXPRESS/CHECK
 C/DEFINED/一个参数
 C/DEFINED/二个参数
 C/DEFINED/三个参数
+C/STRUCT/生成结构体
 C/NETWORK/linux网络编程常用转换函数api
 C/NETWORK/inet_addr     
 C/NETWORK/inet_network  
