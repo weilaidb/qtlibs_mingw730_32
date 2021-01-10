@@ -1,5 +1,6 @@
-regexp
-char *startp[NSUBEXP];start
-char program[1];Unwarranted chumminess with compiler.
-int m_hello;test
-regexp
+MlogNode
+MlogNode *pNext;next pointer
+MlogNode *pPrev;previous pointer
+CHAR *pLog;record logs
+BYTE *pMsg;record messages
+MlogNode
