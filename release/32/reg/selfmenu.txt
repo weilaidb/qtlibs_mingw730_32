@@ -95,6 +95,11 @@ C/INCLUDE/FILTER
 C/INCLUDE/常用头文件
 C/基本类型/BASE TYPE
 C/基本类型/basetype no change
+C/注释comments. 头文件
+C/注释comments. 源文件
+C/注释comments. insertFileHeader 头文件
+C/注释comments. insertFileHeader 源文件
+C/注释comments. insertFuncHeader 函数名
 C/MAIN
 C/Condition/Switch break
 C/PRINT/SWITCH
