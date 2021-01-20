@@ -114,6 +114,7 @@ C/STRNCPY_2_SNPRINTF
 C/STRING/ascii转字符串
 C/STRING/字符串转ascii
 C/STRING/ASCII码对照表
+C/STRING/mlogxByKey record log msg
 C/MEM/malloc free
 C/MEM/malloc free unsigned char 
 C/MEM/malloc free char
@@ -128,6 +129,9 @@ C/API/fstat
 C/API/nlcount
 C/API/pfile
 C/API/strindex
+C/API/errno
+C/API/strerror
+C/API/snprintf
 C/DATE_TIME
 C/LOOP/FOR
 C/LOOP/FOR ARRAYSIZE
@@ -145,6 +149,7 @@ C/DEFINE/static_inline空间换时间
 C/DEFINE/常用宏
 C/DEFINE/MAX
 C/DEFINE/MIN
+C/DEFINE/CHECK_POINTER_RET
 C/EXPRESS/CHECK
 C/DEFINED/一个参数
 C/DEFINED/二个参数
