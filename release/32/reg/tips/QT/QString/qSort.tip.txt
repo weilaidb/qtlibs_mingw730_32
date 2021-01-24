@@ -1,0 +1,11 @@
+QStringList list = CStringPub::stringSplitbyNewLineFilterEmptyUniqueSort(input_string);
+list.sort(Qt::CaseInsensitive);
+//定义排序算法，按长度大小 +字符大小
+qSort(list.begin(), list.end(), [](const QString& s1, const QString& s2)
+{
+    if(s1.length() < s2.length())
+    {
+        return true;
+    }
+    return s1.toInt() < s2.toInt();
+});

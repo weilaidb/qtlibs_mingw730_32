@@ -1,516 +1,518 @@
-TEST/RegExptest
-BASH/hello
-BASH/chmod
-BASH/usage
+Algorithm 算法/大数进制转换
 BASH/cdpath
+BASH/chmod
 BASH/gitinfo
-BASH/常用命令/tree
-BASH/常用命令/find
+BASH/hello
+BASH/usage
+BASH/休眠
+BASH/函数
+BASH/变量/命令行参数
+BASH/变量/引号字符串
+BASH/变量/赋值
+BASH/基本运算符/关系运算符列表
+BASH/基本运算符/算术运算
+BASH/基本运算符/算术运算符列表
+BASH/基本运算符/逻辑运算符列表
 BASH/头文件 header
-BASH/文件系统/ls-l
+BASH/字符串/字符串运算符eq
+BASH/字符串/字符串运算符length
+BASH/字符串/字符串运算符noeq
+BASH/字符串/字符串运算符null
+BASH/字符串/字符串运算符zero
+BASH/字符串/拆分字符串
+BASH/字符串/拼接字符串
+BASH/字符串/提取子字符串
+BASH/字符串/查找字符串长度
+BASH/常用命令/find
+BASH/常用命令/tree
+BASH/引号
+BASH/打印/变量名
+BASH/数组
 BASH/文件系统/chmod
+BASH/文件系统/ls-l
+BASH/日期/Month-Date-Year
+BASH/日期/选项
 BASH/注释/单行
 BASH/注释/多行
 BASH/注释/多行2
-BASH/引号
-BASH/变量/赋值
-BASH/变量/引号字符串
-BASH/变量/命令行参数
-BASH/打印/变量名
-BASH/读取用户输入/单个或多个
-BASH/读取用户输入/单个或多个PROMPT
-BASH/读取用户输入/单个或多个PROMPT-SLIENT
-BASH/读取用户输入/-a数组多个输入
-BASH/日期/选项
-BASH/日期/Month-Date-Year
-BASH/休眠
-BASH/基本运算符/算术运算符列表
-BASH/基本运算符/关系运算符列表
-BASH/基本运算符/逻辑运算符列表
-BASH/基本运算符/算术运算
-BASH/字符串/字符串运算符eq
-BASH/字符串/字符串运算符noeq
-BASH/字符串/字符串运算符zero
-BASH/字符串/字符串运算符length
-BASH/字符串/字符串运算符null
-BASH/字符串/查找字符串长度
-BASH/字符串/拆分字符串
-BASH/字符串/提取子字符串
-BASH/字符串/拼接字符串
-BASH/语句/if语句
-BASH/语句/if语句&&&&
-BASH/语句/if语句或
-BASH/语句/if语句或2
-BASH/语句/if语句&&&&_或
-BASH/语句/if语句选项常用列表
-BASH/语句/if-else语句
-BASH/语句/if-elif-else语句
 BASH/语句/case语句
 BASH/语句/for语句-1
 BASH/语句/for语句-2
-BASH/语句/while语句
+BASH/语句/if-elif-else语句
+BASH/语句/if-else语句
+BASH/语句/if语句
+BASH/语句/if语句&&&&
+BASH/语句/if语句&&&&_或
+BASH/语句/if语句或
+BASH/语句/if语句或2
+BASH/语句/if语句选项常用列表
 BASH/语句/until语句
-BASH/函数
-BASH/数组
+BASH/语句/while语句
 BASH/读取文件
+BASH/读取用户输入/-a数组多个输入
+BASH/读取用户输入/单个或多个
+BASH/读取用户输入/单个或多个PROMPT
+BASH/读取用户输入/单个或多个PROMPT-SLIENT
 BASH/重定向
-BAT/DATE TIME
 BAT/COPY
-BAT/RMDIR
+BAT/DATE TIME
 BAT/IPCONFIG
 BAT/NET USER
-BAT/网络network/route print
+BAT/RMDIR
+BAT/网络network/acl
+BAT/网络network/ethertype
+BAT/网络network/icmp
+BAT/网络network/lacp
+BAT/网络network/nat
+BAT/网络network/ping大包
 BAT/网络network/route add
 BAT/网络network/route add if
-BAT/网络network/route delete
 BAT/网络network/route change
-BAT/网络network/ping大包
-BAT/网络network/演示软件 software
+BAT/网络network/route delete
+BAT/网络network/route print
+BAT/网络network/router 路由器
 BAT/网络network/software cisco order
-BAT/网络network/tcpdump/wireshark源地址
-BAT/网络network/tcpdump/dhcp
-BAT/网络network/tcpdump/arp
-BAT/网络network/nat
-BAT/网络network/lacp
-BAT/网络network/icmp
 BAT/网络network/stp
+BAT/网络network/tcpdump/arp
+BAT/网络network/tcpdump/dhcp
+BAT/网络network/tcpdump/wireshark源地址
 BAT/网络network/vlan
 BAT/网络network/vlan与Trunk
 BAT/网络network/三层交换机 L3 Switch
-BAT/网络network/ethertype
-BAT/网络network/acl
-BAT/网络network/router 路由器
-BAT/网络network/知识点/复习
-BAT/网络network/知识点/IP地址 ipaddress
+BAT/网络network/演示软件 software
 BAT/网络network/知识点/IP协议号大全
+BAT/网络network/知识点/IP地址 ipaddress
+BAT/网络network/知识点/OSI七层功能
+BAT/网络network/知识点/RIP Routing Information Protocol 路由信息协议
+BAT/网络network/知识点/Web服务器
 BAT/网络network/知识点/dhcp
 BAT/网络network/知识点/dhcp relay
 BAT/网络network/知识点/ospf 路由协议 开放的最短路径优先协议 Open Shortest Path First
-BAT/网络network/知识点/RIP Routing Information Protocol 路由信息协议
+BAT/网络network/知识点/复习
 BAT/网络network/知识点/常用端口号大全 port
-BAT/网络network/知识点/Web服务器
-BAT/网络network/知识点/OSI七层功能
-C/INCLUDE/GENERATE
+Books/常用书籍列表
+C/API/atoi
+C/API/errno
+C/API/execvp
+C/API/fstat
+C/API/getopt
+C/API/nlcount
+C/API/oops
+C/API/pfile
+C/API/snprintf
+C/API/strcmp
+C/API/strerror
+C/API/strindex
+C/API/strrchr
+C/ARRAY/format
+C/ARRAY/format diag
+C/ARRAYSIZE
+C/Condition/Switch break
+C/DATE_TIME
+C/DEFINE/CHECK_POINTER_RET
+C/DEFINE/MAX
+C/DEFINE/MIN
+C/DEFINE/static_inline空间换时间
+C/DEFINE/一个参数
+C/DEFINE/一个参数 注释
+C/DEFINE/常用宏
+C/DEFINE/添加TAB
+C/DEFINED/一个参数
+C/DEFINED/三个参数
+C/DEFINED/二个参数
+C/EXPRESS/CHECK
+C/GETSET/GETTER
+C/GETSET/GETTER_AND_SETTER
+C/GETSET/SETTER
 C/INCLUDE/FILTER
+C/INCLUDE/GENERATE
 C/INCLUDE/常用头文件
+C/LOOP/FOR
+C/LOOP/FOR ARRAYSIZE
+C/LOOP/WHILE
+C/MAIN
+C/MEM/malloc free
+C/MEM/malloc free char
+C/MEM/malloc free unsigned char
+C/MEM/strdup free
+C/NETWORK/getaddrinfo
+C/NETWORK/gethostbyaddr
+C/NETWORK/gethostbyname
+C/NETWORK/gethostbyname2
+C/NETWORK/inet_addr
+C/NETWORK/inet_aton
+C/NETWORK/inet_lnaof
+C/NETWORK/inet_makeaddr
+C/NETWORK/inet_netof
+C/NETWORK/inet_network
+C/NETWORK/inet_ntoa
+C/NETWORK/linux网络编程常用转换函数api
+C/NETWORK/set/getsockopt
+C/PRINT/DEFINE
+C/PRINT/SWITCH
+C/PRINT/address
+C/PRINT/double
+C/PRINT/float
+C/PRINT/int
+C/PRINT/long_int
+C/PRINT/string
+C/PRINT/uintxx
+C/PRINT/unsigned_long_int
+C/STRING/ASCII码对照表
+C/STRING/ascii转字符串
+C/STRING/mlogxByKey record log msg
+C/STRING/字符串转ascii
+C/STRNCPY_2_SNPRINTF
+C/STRUCT/生成结构体
 C/基本类型/BASE TYPE
 C/基本类型/basetype no change
 C/注释comments. insertFileHeader 头文件
 C/注释comments. insertFileHeader 源文件
 C/注释comments. insertFuncHeader 函数名
-C/MAIN
-C/Condition/Switch break
-C/PRINT/SWITCH
-C/PRINT/DEFINE
-C/PRINT/int
-C/PRINT/uintxx
-C/PRINT/float
-C/PRINT/double
-C/PRINT/long_int
-C/PRINT/unsigned_long_int
-C/PRINT/string
-C/PRINT/address
-C/STRNCPY_2_SNPRINTF
-C/STRING/ascii转字符串
-C/STRING/字符串转ascii
-C/STRING/ASCII码对照表
-C/STRING/mlogxByKey record log msg
-C/MEM/malloc free
-C/MEM/malloc free unsigned char 
-C/MEM/malloc free char
-C/MEM/strdup free
-C/API/atoi
-C/API/strrchr
-C/API/strcmp
-C/API/getopt
-C/API/execvp
-C/API/oops
-C/API/fstat
-C/API/nlcount
-C/API/pfile
-C/API/strindex
-C/API/errno
-C/API/strerror
-C/API/snprintf
-C/DATE_TIME
-C/LOOP/FOR
-C/LOOP/FOR ARRAYSIZE
-C/LOOP/WHILE
-C/GETSET/GETTER
-C/GETSET/SETTER
-C/GETSET/GETTER_AND_SETTER
-C/ARRAYSIZE
-C/ARRAY/format
-C/ARRAY/format diag
-C/DEFINE/一个参数
-C/DEFINE/一个参数 注释
-C/DEFINE/添加TAB
-C/DEFINE/static_inline空间换时间
-C/DEFINE/常用宏
-C/DEFINE/MAX
-C/DEFINE/MIN
-C/DEFINE/CHECK_POINTER_RET
-C/EXPRESS/CHECK
-C/DEFINED/一个参数
-C/DEFINED/二个参数
-C/DEFINED/三个参数
-C/STRUCT/生成结构体
-C/NETWORK/linux网络编程常用转换函数api
-C/NETWORK/inet_addr     
-C/NETWORK/inet_network  
-C/NETWORK/inet_ntoa     
-C/NETWORK/inet_aton     
-C/NETWORK/inet_lnaof    
-C/NETWORK/inet_netof    
-C/NETWORK/inet_makeaddr 
-C/NETWORK/gethostbyname 
-C/NETWORK/gethostbyname2
-C/NETWORK/gethostbyaddr 
-C/NETWORK/getaddrinfo   
-C/NETWORK/set/getsockopt
-DEFINE/FILTER
-DEFINE/GENERATE
-DEFINE/GENERATESTRINGSAME
-DEFINE/UNUSED
-CXX/INCLUDE/GENERATE
-CXX/INCLUDE/FILTER
-CXX/INCLUDE/常用头文件
+CXX/ARRAYSIZE
+CXX/Cout_in/cout
+CXX/Cout_in/cout size
 CXX/DECLARE_TO_IMPLEMENT
 CXX/DECLARE_TO_IMPLEMENT CLASS
-CXX/ARRAYSIZE
-CXX/externc __cplusplus
+CXX/INCLUDE/FILTER
+CXX/INCLUDE/GENERATE
+CXX/INCLUDE/常用头文件
 CXX/LOOP/list iterator
 CXX/LOOP/list reverse_iterator
 CXX/LOOP/map/C++ map用法
 CXX/LOOP/map/map
 CXX/LOOP/vector
-CXX/Cout_in/cout
-CXX/Cout_in/cout size
 CXX/More/虚函数
-QT/PRINT/debugApp
-QT/PRINT/ENTERTIPS
-QT/LOOP/QStringList iterator
-QT/LOOP/QStringList reverse_iterator
-QT/RegExp/Test
-QT/QString/十六进制转十进制
-QT/QString/十进制转十六进制
-QT/QString/ascii_to_string
-QT/QString/string_to_ascii
-QT/Express/声明类declare class QT_BEGIN_NAMESPACE
-QT/UI/常用头文件 public header
-QT/UI/打印入参列表 showArgs 
-QT/UI/Randomnumber随机数
-QT/UI/Print/qDebug
-QT/UI/Print/qDebug only show string
-QT/UI/Print/stdout
-QT/UI/Menu
-QT/UI/Menu Custom
-QT/UI/Action
-QT/UI/Settings
-QT/UI/Desktop/Width
-QT/UI/Desktop/Heigth
-QT/UI/Desktop/SetCenter
-QT/UI/progressBar
-QT/UI/QObject_connect/QAction
-QT/UI/QObject_connect/QPushButton
-QT/UI/ClipBoard/getClipBoardText
-QT/UI/ClipBoard/setClipBoardText
-QT/UI/QTextEdit/getSelectTextEdit
-QT/UI/QTextEdit/getSelectLine
-QT/UI/QTextEdit/getSelectLineTextEdit
-QT/UI/QTextEdit/getTextEdit
-QT/UI/QTextEdit/getTextEditLen
-QT/UI/QTextEdit/clearTextEdit
-QT/UI/QTextEdit/hideTextEdit
-QT/UI/QTextEdit/showTextEdit
-QT/UI/QTextEdit/setTextEdit
-QT/UI/QTextEdit/findText
-QT/UI/Dialog/CDialogNewUt
-QT/UI/QListWidget/newUi
-QT/UI/QSplitter/分割比例设定
-QT/UI/execCmd
-QT/UI/newUi
-QT/UI/QT 窗口关闭自动销毁
-QT/UI/问题项
-QT/UI/Settings eg
-QT/UI/Cursor movePosition
-QT/UI/prj/qDebug no output
-QT/UI/problems/汇总
-正则表达式/所有转一行_替换为NL
-正则表达式/所有转一行_替换为逗号
-正则表达式/所有转一行_替换为空格
-正则表达式/添加引号
-正则表达式/去除开头的数字
-Pthread/Create
-Pthread/pthread_mutex
-LINUX/并发与竞争/自旋锁和信号量
-LINUX/Makefile
-LINUX/Printk/说明
-LINUX/Printk/KERN_EMERG
-LINUX/Printk/KERN_ALERT
-LINUX/Printk/KERN_CRIT
-LINUX/Printk/KERN_ERR
-LINUX/Printk/KERN_WARNING
-LINUX/Printk/KERN_NOTICE
-LINUX/Printk/KERN_INFO
-LINUX/Printk/KERN_DEBUG
-LINUX/Code/ERROR
-LINUX/命令行/磁盘disk/fdisk -l
-LINUX/命令行/磁盘disk/查看dev设备的uuid和labelname
-LINUX/命令行/磁盘disk/e2label set labelname
-LINUX/命令行/磁盘disk/etc fstab自动挂载
-LINUX/命令行/输出/dmesg
-LINUX/命令行/software/install
-LINUX/命令行/software/samba smb.conf
-LINUX/命令行/software/yum
-LINUX/命令行/software/RedHat7配置yum源
-LINUX/命令行/fgrep
-Makefile/testtarget
-Makefile/wildcard
-Makefile/PHONY
-Makefile/depend
-Makefile/echo
-Makefile/parameter/-k--keep-going
-Makefile/parameter/-i--ignore-errors
-Makefile/parameter/-s--slient
-Makefile/parameter/-n--just-print
-Makefile/parameter/-w--print-directory
-Makefile/parameter/--no-print-directory
-Makefile/parameter/-e系统环境变量覆盖Makefile定义
-Makefile/define
-Makefile/var/readme
-Makefile/变量值的替换
-Makefile/override命令行参数设置
-Makefile/多行变量
-Makefile/模式变量
-Makefile/条件判断/ifeq
-Makefile/条件判断/ifneq
-Makefile/条件判断/ifdef
-Makefile/条件判断/ifndef
-Makefile/函数/字符串/subst字符串替换函数
-Makefile/函数/字符串/patsubst模式字符串替换函数
-Makefile/函数/字符串/strip去空格函数
-Makefile/函数/字符串/findstring查找字符串函数
-Makefile/函数/字符串/filter过滤函数
-Makefile/函数/字符串/filter-out反过滤函数
-Makefile/函数/字符串/sort排序函数
-Makefile/函数/字符串/word取单词函数
-Makefile/函数/字符串/wordlist取单词串函数
-Makefile/函数/字符串/words单词个数统计函数
-Makefile/函数/字符串/firstword首单词函数
-Makefile/函数/文件名/dir取目录函数
-Makefile/函数/文件名/notdir取文件函数
-Makefile/函数/文件名/suffix取后缀函数
-Makefile/函数/文件名/basename取前缀函数
-Makefile/函数/文件名/addsuffix加后缀函数
-Makefile/函数/文件名/addprefix加前缀函数
-Makefile/函数/文件名/join连接函数
-Makefile/函数/foreach
-Makefile/函数/if
-Makefile/函数/call
-Makefile/函数/origin
-Makefile/函数/shell
-Makefile/函数/forloop
-Makefile/函数/控制 make
-JAVA/基本语句/List String
-JAVA/基本语句/JAVA读写文件 read write
-JAVA/基本语句/CCodecPub
-JAVA/基本语句/CFilePub
-JAVA/基本语句/CStringPub
-JAVA/基本语句/CSqlitePub
-JAVA/基本语句/路径分隔符
-JAVA/基本语句/Date Time/t1
-JAVA/RegExp/Pattern
-JAVA/print/println
-JAVA/javascript/src引用
-JAVA/javascript/include引用
-JAVA/javascript/timeout返回原页面
-JAVA/css/include引用
-JAVA/JSP/知识点
-JAVA/JSP/include
-JAVA/JSP/foreach list string
-JAVA/JSP/左右显示
-JAVA/JSP/new jsp
-JAVA/JSP/import
-JAVA/JSP/synchronized
-JAVA/JSP/request.getParameter only
-JAVA/JSP/request.getParameter
-JAVA/JSP/request.referer
-JAVA/JSP/p 段落
+CXX/externc __cplusplus
+DBMS/MySql/database create
+DBMS/MySql/database drop
+DBMS/MySql/delete
+DBMS/MySql/getColumns 表字段
+DBMS/MySql/like
+DBMS/MySql/mysql 加载驱动
+DBMS/MySql/mysql 建立连接
+DBMS/MySql/mysql 说明
+DBMS/MySql/order by
+DBMS/MySql/order by eg
+DBMS/MySql/prepareStatement
+DBMS/MySql/setAutoCommit 事务
+DBMS/MySql/source sql script
+DBMS/MySql/table create eg
+DBMS/MySql/table create eg2
+DBMS/MySql/table drop
+DBMS/MySql/table insert
+DBMS/MySql/table select
+DBMS/MySql/update
+DBMS/MySql/update eg
+DBMS/Sqlite/create table
+DBMS/Sqlite/delete table
+DBMS/Sqlite/drop table
+DBMS/Sqlite/insert table
+DBMS/Sqlite/select table
+DBMS/Sqlite/sqlite 加载驱动
+DBMS/Sqlite/sqlite 常见问题
+DBMS/Sqlite/update table
+DBMS/Sqlite/写入二进制数据
+DBMS/Sqlite/常用命令
+DBMS/Sqlite/查看表结构
+DEFINE/FILTER
+DEFINE/GENERATE
+DEFINE/GENERATESTRINGSAME
+DEFINE/UNUSED
+JAVA/JSP/File文件/File
+JAVA/JSP/File文件/File BufferedInputStream
+JAVA/JSP/File文件/File BufferedOutputStream
+JAVA/JSP/File文件/File BufferedReader
+JAVA/JSP/File文件/File BufferedWriter
+JAVA/JSP/File文件/File FileInputStream
+JAVA/JSP/File文件/File FileOutputStream
+JAVA/JSP/File文件/File FileReader
+JAVA/JSP/File文件/File FileWriter
+JAVA/JSP/File文件/File InputStream
+JAVA/JSP/File文件/File OutputStream
+JAVA/JSP/File文件/File RandomAccessFile
+JAVA/JSP/File文件/File Reader
+JAVA/JSP/File文件/File Writer
+JAVA/JSP/File文件/File currentdir filelist
+JAVA/JSP/File文件/File delete
+JAVA/JSP/File文件/File file
+JAVA/JSP/File文件/File mkdir
+JAVA/JSP/File文件/File 文件上传
+JAVA/JSP/JavaBean/getProperty
+JAVA/JSP/JavaBean/parseInt Long Float Double
+JAVA/JSP/JavaBean/setProperty
+JAVA/JSP/JavaBean/useBean
+JAVA/JSP/JavaBean/介绍
+JAVA/JSP/Print/System.out.print
+JAVA/JSP/Print/System.out.println
+JAVA/JSP/Servlet/HttpServlet
+JAVA/JSP/Servlet/HttpServlet format
+JAVA/JSP/Servlet/HttpServlet format doGet doPost
+JAVA/JSP/Servlet/web.xml
+JAVA/JSP/Tag文件与标记
+JAVA/JSP/bgcolor
+JAVA/JSP/bgcolor 护眼色
 JAVA/JSP/br 换行符
-JAVA/JSP/href
-JAVA/JSP/ifnull emptystring
+JAVA/JSP/foreach list string
 JAVA/JSP/form/basepath
-JAVA/JSP/form/submit
-JAVA/JSP/form/text
-JAVA/JSP/form/radio
-JAVA/JSP/form/radio eg
+JAVA/JSP/form/button submit action
 JAVA/JSP/form/checkbox
-JAVA/JSP/form/hidden
-JAVA/JSP/form/reset
-JAVA/JSP/form/select eg
-JAVA/JSP/form/select
-JAVA/JSP/form/select option
-JAVA/JSP/form/textarea
-JAVA/JSP/form/table
-JAVA/JSP/form/img与image
-JAVA/JSP/form/embed
-JAVA/JSP/form/font
 JAVA/JSP/form/eg
 JAVA/JSP/form/eg2
 JAVA/JSP/form/eg3 fileup
-JAVA/JSP/form/taglib
+JAVA/JSP/form/embed
 JAVA/JSP/form/file enctype multipart
-JAVA/JSP/form/button submit action
-JAVA/JSP/bgcolor
-JAVA/JSP/bgcolor 护眼色
+JAVA/JSP/form/font
+JAVA/JSP/form/hidden
+JAVA/JSP/form/img与image
+JAVA/JSP/form/radio
+JAVA/JSP/form/radio eg
+JAVA/JSP/form/reset
+JAVA/JSP/form/select
+JAVA/JSP/form/select eg
+JAVA/JSP/form/select option
+JAVA/JSP/form/submit
+JAVA/JSP/form/table
+JAVA/JSP/form/taglib
+JAVA/JSP/form/text
+JAVA/JSP/form/textarea
+JAVA/JSP/href
+JAVA/JSP/ifnull emptystring
+JAVA/JSP/import
+JAVA/JSP/include
+JAVA/JSP/mysql/executeUpdate delete eg
+JAVA/JSP/mysql/insertRow eg
+JAVA/JSP/mysql/prepareStatement insert eg
+JAVA/JSP/mysql/prepareStatement select eg
+JAVA/JSP/new jsp
+JAVA/JSP/p 段落
 JAVA/JSP/page
+JAVA/JSP/request.getParameter
+JAVA/JSP/request.getParameter only
+JAVA/JSP/request.referer
 JAVA/JSP/string/String
-JAVA/JSP/动作标记
-JAVA/JSP/Tag文件与标记
-JAVA/JSP/内置对象/request
-JAVA/JSP/内置对象/response
-JAVA/JSP/内置对象/response函数/setContentType
-JAVA/JSP/内置对象/response函数/addHeader setHeader
-JAVA/JSP/内置对象/response函数/sendRedirect
-JAVA/JSP/内置对象/response函数/setStatus
-JAVA/JSP/内置对象/session
-JAVA/JSP/内置对象/out说明
+JAVA/JSP/synchronized
+JAVA/JSP/代码段/decode getBytes
+JAVA/JSP/代码段/getBytes print all
+JAVA/JSP/代码段/getBytes 方法
+JAVA/JSP/代码段/parseDouble
+JAVA/JSP/代码段/try catch
+JAVA/JSP/代码段/utf8 to gbk
+JAVA/JSP/内置对象/application
 JAVA/JSP/内置对象/out
-JAVA/JSP/内置对象/out引号
 JAVA/JSP/内置对象/out println
 JAVA/JSP/内置对象/out println self
 JAVA/JSP/内置对象/out println引号
 JAVA/JSP/内置对象/out-pair
-JAVA/JSP/内置对象/application
-JAVA/JSP/代码段/try catch
-JAVA/JSP/代码段/parseDouble
-JAVA/JSP/代码段/decode getBytes
-JAVA/JSP/代码段/getBytes 方法
-JAVA/JSP/代码段/getBytes print all
-JAVA/JSP/代码段/utf8 to gbk
-JAVA/JSP/File文件/File
-JAVA/JSP/File文件/File file
-JAVA/JSP/File文件/File mkdir
-JAVA/JSP/File文件/File currentdir filelist
-JAVA/JSP/File文件/File delete
-JAVA/JSP/File文件/File InputStream
-JAVA/JSP/File文件/File OutputStream
-JAVA/JSP/File文件/File FileInputStream
-JAVA/JSP/File文件/File FileOutputStream
-JAVA/JSP/File文件/File BufferedInputStream
-JAVA/JSP/File文件/File BufferedOutputStream
-JAVA/JSP/File文件/File Reader
-JAVA/JSP/File文件/File Writer
-JAVA/JSP/File文件/File FileReader
-JAVA/JSP/File文件/File FileWriter
-JAVA/JSP/File文件/File BufferedReader
-JAVA/JSP/File文件/File BufferedWriter
-JAVA/JSP/File文件/File RandomAccessFile
-JAVA/JSP/File文件/File 文件上传
+JAVA/JSP/内置对象/out引号
+JAVA/JSP/内置对象/out说明
+JAVA/JSP/内置对象/request
+JAVA/JSP/内置对象/response
+JAVA/JSP/内置对象/response函数/addHeader setHeader
+JAVA/JSP/内置对象/response函数/sendRedirect
+JAVA/JSP/内置对象/response函数/setContentType
+JAVA/JSP/内置对象/response函数/setStatus
+JAVA/JSP/内置对象/session
+JAVA/JSP/动作标记
+JAVA/JSP/左右显示
 JAVA/JSP/常见问题点
-JAVA/JSP/Print/System.out.println
-JAVA/JSP/Print/System.out.print
-JAVA/JSP/mysql/insertRow eg
-JAVA/JSP/mysql/executeUpdate delete eg
-JAVA/JSP/mysql/prepareStatement select eg
-JAVA/JSP/mysql/prepareStatement insert eg
-JAVA/JSP/JavaBean/介绍
-JAVA/JSP/JavaBean/useBean
-JAVA/JSP/JavaBean/getProperty
-JAVA/JSP/JavaBean/setProperty
-JAVA/JSP/JavaBean/parseInt Long Float Double
-JAVA/JSP/Servlet/web.xml
-JAVA/JSP/Servlet/HttpServlet
-JAVA/JSP/Servlet/HttpServlet format
-JAVA/JSP/Servlet/HttpServlet format  doGet doPost
-DBMS/MySql/mysql 说明
-DBMS/MySql/database create
-DBMS/MySql/database drop
-DBMS/MySql/table select
-DBMS/MySql/table create eg
-DBMS/MySql/table create eg2
-DBMS/MySql/table insert
-DBMS/MySql/table drop
-DBMS/MySql/source sql script
-DBMS/MySql/mysql 加载驱动
-DBMS/MySql/mysql 建立连接
-DBMS/MySql/getColumns 表字段
-DBMS/MySql/order by eg
-DBMS/MySql/order by
-DBMS/MySql/like
-DBMS/MySql/update eg
-DBMS/MySql/update
-DBMS/MySql/delete
-DBMS/MySql/prepareStatement
-DBMS/MySql/setAutoCommit 事务
-DBMS/Sqlite/sqlite 常见问题
-DBMS/Sqlite/sqlite 加载驱动
-DBMS/Sqlite/create table
-DBMS/Sqlite/drop table
-DBMS/Sqlite/insert table
-DBMS/Sqlite/update table
-DBMS/Sqlite/select table
-DBMS/Sqlite/delete table
-DBMS/Sqlite/查看表结构
-DBMS/Sqlite/常用命令
-DBMS/Sqlite/写入二进制数据
-Python/Print
-Python/main
-Python/header
-Python/idea快捷键
-Python/from_xxx_import_all
-Python/pyQt5_import
-Python/引用其它目录
-Python/语法/tryException
-Python/语法/循环/string
-Python/语法/pyQt5/创建菜单
-Python/语法/pyQt5/创建Action
-Python/语法/排序去重复
-Python/时间/引用头
-Python/示例/字符串转 md5
-Python/示例/网络/服务端
-Python/示例/网络/客户端
-Python/示例/网络/2/服务端
-Python/示例/网络/2/客户端
+JAVA/JSP/知识点
+JAVA/RegExp/Pattern
+JAVA/css/include引用
+JAVA/javascript/include引用
+JAVA/javascript/src引用
+JAVA/javascript/timeout返回原页面
+JAVA/print/println
+JAVA/基本语句/CCodecPub
+JAVA/基本语句/CFilePub
+JAVA/基本语句/CSqlitePub
+JAVA/基本语句/CStringPub
+JAVA/基本语句/Date Time/t1
+JAVA/基本语句/JAVA读写文件 read write
+JAVA/基本语句/List String
+JAVA/基本语句/路径分隔符
+KERNEL/FS/mount-flags
+KERNEL/GCC/__aligned
+KERNEL/LIST_HEAD
+KERNEL/basetype
+KERNEL/log_format
 KERNEL/module/makefile
+KERNEL/module/template
 KERNEL/module/函数及宏说明
 KERNEL/module/模板
 KERNEL/module/模板 helloworld
 KERNEL/module/模板 here
-KERNEL/module/template
-KERNEL/LIST_HEAD
-KERNEL/basetype
-KERNEL/log_format
-KERNEL/进制相关/hex_to_bin
-KERNEL/时间相关/raid6_jiffies
 KERNEL/大小写/tolower toupper
+KERNEL/宏/_IO
 KERNEL/宏/__setup
 KERNEL/宏/_initcall
-KERNEL/宏/_IO
-KERNEL/FS/mount-flags
-KERNEL/调度/调度策略
+KERNEL/时间相关/raid6_jiffies
 KERNEL/调度/最大CPU
-KERNEL/调度/进程标志
 KERNEL/调度/最大优先级
-KERNEL/GCC/__aligned
-Tools/查看代码工具/OpenGrok/配置
+KERNEL/调度/调度策略
+KERNEL/调度/进程标志
+KERNEL/进制相关/hex_to_bin
+LINUX/Code/ERROR
+LINUX/Makefile
+LINUX/Printk/KERN_ALERT
+LINUX/Printk/KERN_CRIT
+LINUX/Printk/KERN_DEBUG
+LINUX/Printk/KERN_EMERG
+LINUX/Printk/KERN_ERR
+LINUX/Printk/KERN_INFO
+LINUX/Printk/KERN_NOTICE
+LINUX/Printk/KERN_WARNING
+LINUX/Printk/说明
+LINUX/命令行/fgrep
+LINUX/命令行/realpath
+LINUX/命令行/software/RedHat7配置yum源
+LINUX/命令行/software/install
+LINUX/命令行/software/samba smb.conf
+LINUX/命令行/software/yum
+LINUX/命令行/磁盘disk/e2label set labelname
+LINUX/命令行/磁盘disk/etc fstab自动挂载
+LINUX/命令行/磁盘disk/fdisk -l
+LINUX/命令行/磁盘disk/查看dev设备的uuid和labelname
+LINUX/命令行/输出/dmesg
+LINUX/并发与竞争/自旋锁和信号量
+Makefile/PHONY
+Makefile/define
+Makefile/depend
+Makefile/echo
+Makefile/override命令行参数设置
+Makefile/parameter/--no-print-directory
+Makefile/parameter/-e系统环境变量覆盖Makefile定义
+Makefile/parameter/-i--ignore-errors
+Makefile/parameter/-k--keep-going
+Makefile/parameter/-n--just-print
+Makefile/parameter/-s--slient
+Makefile/parameter/-w--print-directory
+Makefile/testtarget
+Makefile/var/readme
+Makefile/wildcard
+Makefile/函数/call
+Makefile/函数/foreach
+Makefile/函数/forloop
+Makefile/函数/if
+Makefile/函数/origin
+Makefile/函数/shell
+Makefile/函数/字符串/filter-out反过滤函数
+Makefile/函数/字符串/filter过滤函数
+Makefile/函数/字符串/findstring查找字符串函数
+Makefile/函数/字符串/firstword首单词函数
+Makefile/函数/字符串/patsubst模式字符串替换函数
+Makefile/函数/字符串/sort排序函数
+Makefile/函数/字符串/strip去空格函数
+Makefile/函数/字符串/subst字符串替换函数
+Makefile/函数/字符串/wordlist取单词串函数
+Makefile/函数/字符串/words单词个数统计函数
+Makefile/函数/字符串/word取单词函数
+Makefile/函数/控制 make
+Makefile/函数/文件名/addprefix加前缀函数
+Makefile/函数/文件名/addsuffix加后缀函数
+Makefile/函数/文件名/basename取前缀函数
+Makefile/函数/文件名/dir取目录函数
+Makefile/函数/文件名/join连接函数
+Makefile/函数/文件名/notdir取文件函数
+Makefile/函数/文件名/suffix取后缀函数
+Makefile/变量值的替换
+Makefile/多行变量
+Makefile/条件判断/ifdef
+Makefile/条件判断/ifeq
+Makefile/条件判断/ifndef
+Makefile/条件判断/ifneq
+Makefile/模式变量
+PhotoShop/常用快捷键 shortcut
+Pthread/Create
+Pthread/pthread_mutex
+Python/Print
+Python/from_xxx_import_all
+Python/header
+Python/header import
+Python/idea快捷键
+Python/main
+Python/pyQt5_import
+Python/引用其它目录
+Python/时间/引用头
+Python/示例/字符串转 md5
+Python/示例/网络/2/客户端
+Python/示例/网络/2/服务端
+Python/示例/网络/客户端
+Python/示例/网络/服务端
+Python/语法/pyQt5/创建Action
+Python/语法/pyQt5/创建菜单
+Python/语法/tryException
+Python/语法/循环/string
+Python/语法/排序去重复
+QT/Express/声明类declare class QT_BEGIN_NAMESPACE
+QT/LOOP/QStringList iterator
+QT/LOOP/QStringList reverse_iterator
+QT/PRINT/ENTERTIPS
+QT/PRINT/debugApp
+QT/QString/ascii_to_string
+QT/QString/string_to_ascii
+QT/QString/十六进制转十进制
+QT/QString/十进制转十六进制
+QT/RegExp/Test
+QT/UI/Action
+QT/UI/ClipBoard/getClipBoardText
+QT/UI/ClipBoard/setClipBoardText
+QT/UI/Cursor movePosition
+QT/UI/Desktop/Heigth
+QT/UI/Desktop/SetCenter
+QT/UI/Desktop/Width
+QT/UI/Dialog/CDialogNewUt
+QT/UI/Menu
+QT/UI/Menu Custom
+QT/UI/Print/qDebug
+QT/UI/Print/qDebug only show string
+QT/UI/Print/stdout
+QT/UI/QListWidget/newUi
+QT/UI/QObject_connect/QAction
+QT/UI/QObject_connect/QPushButton
+QT/UI/QSplitter/分割比例设定
+QT/UI/QT 窗口关闭自动销毁
+QT/UI/QTextEdit/clearTextEdit
+QT/UI/QTextEdit/findText
+QT/UI/QTextEdit/getSelectLine
+QT/UI/QTextEdit/getSelectLineTextEdit
+QT/UI/QTextEdit/getSelectTextEdit
+QT/UI/QTextEdit/getTextEdit
+QT/UI/QTextEdit/getTextEditLen
+QT/UI/QTextEdit/hideTextEdit
+QT/UI/QTextEdit/setTextEdit
+QT/UI/QTextEdit/showTextEdit
+QT/UI/Randomnumber随机数
+QT/UI/Settings
+QT/UI/Settings eg
+QT/UI/execCmd
+QT/UI/newUi
+QT/UI/prj/qDebug no output
+QT/UI/problems/汇总
+QT/UI/progressBar
+QT/UI/常用头文件 public header
+QT/UI/打印入参列表 showArgs
+QT/UI/问题项
+SoftWare/Source Insight
+SoftWare/Understand
+TEST/RegExptest
+Tools/Emacs快捷键
+Tools/VSCode快捷键
+Tools/dec to hex 十进制转十六进制
+Tools/git/gitclone下载失败方法
 Tools/git/order
 Tools/git/常用git库
-Tools/git/gitclone下载失败方法
-Tools/svn/order
-Tools/svn/order 忽略多值
-Tools/VSCode快捷键
-Tools/Emacs快捷键
-Tools/生成文件名 filename
-Tools/dec to hex 十进制转十六进制
 Tools/hex to dec 十六进制转十进制
 Tools/package 0xdot 添加0x和逗号
 Tools/package 0xdot 自带0x 添加逗号
-path路径/Android手机拷贝路径
-SoftWare/Understand
-SoftWare/Source Insight
-PhotoShop/常用快捷键 shortcut
+Tools/svn/order
+Tools/svn/order 忽略多值
+Tools/查看代码工具/OpenGrok/配置
+Tools/生成文件名 filename
 Windows/Fonts
-Books/常用书籍列表
-Algorithm 算法/大数进制转换
+path路径/Android手机拷贝路径
+正则表达式/去除开头的数字
+正则表达式/所有转一行_替换为NL
+正则表达式/所有转一行_替换为空格
+正则表达式/所有转一行_替换为逗号
+正则表达式/添加引号
