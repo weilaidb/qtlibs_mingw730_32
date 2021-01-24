@@ -425,6 +425,7 @@ Makefile/模式变量
 PhotoShop/常用快捷键 shortcut
 Pthread/Create
 Pthread/pthread_mutex
+Python/API/exec_command
 Python/Print
 Python/from_xxx_import_all
 Python/header
