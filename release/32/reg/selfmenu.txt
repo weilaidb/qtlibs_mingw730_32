@@ -92,6 +92,7 @@ BAT/网络network/知识点/ospf 路由协议 开放的最短路径优先协议 
 BAT/网络network/知识点/复习
 BAT/网络network/知识点/常用端口号大全 port
 Books/常用书籍列表
+Books/读后感/Linux Tcp IP协议栈 Linux2.6协议栈源代码分析
 C/API/atoi
 C/API/errno
 C/API/execvp
@@ -353,6 +354,7 @@ KERNEL/调度/最大优先级
 KERNEL/调度/调度策略
 KERNEL/调度/进程标志
 KERNEL/进制相关/hex_to_bin
+KERNEL/宏/大小端
 LINUX/Code/ERROR
 LINUX/Makefile
 LINUX/Printk/KERN_ALERT
@@ -519,3 +521,5 @@ path路径/Android手机拷贝路径
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
+
+术语/异或
