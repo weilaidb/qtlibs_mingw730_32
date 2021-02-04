@@ -171,6 +171,7 @@ C/基本类型/basetype no change
 C/注释comments. insertFileHeader 头文件
 C/注释comments. insertFileHeader 源文件
 C/注释comments. insertFuncHeader 函数名
+C/单链表 single list
 CXX/ARRAYSIZE
 CXX/Cout_in/cout
 CXX/Cout_in/cout size
@@ -521,5 +522,4 @@ path路径/Android手机拷贝路径
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
-
 术语/异或
