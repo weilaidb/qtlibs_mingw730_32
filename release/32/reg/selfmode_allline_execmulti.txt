@@ -6,3 +6,4 @@ Tools/package 0xdot 自带0x 添加逗号
 TEST/RegExptest
 CXX/externc __cplusplus
 QT/Express/声明类declare class QT_BEGIN_NAMESPACE
+C/enum/enum
