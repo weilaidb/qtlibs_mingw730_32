@@ -343,6 +343,9 @@ JAVA/基本语句/Date Time/t1
 JAVA/基本语句/JAVA读写文件 read write
 JAVA/基本语句/List String
 JAVA/基本语句/路径分隔符
+KERNEL/2.6.18/函数或结构体/alloc_skb
+KERNEL/2.6.18/函数或结构体/sk_buff.pkt_type
+KERNEL/2.6.18/函数或结构体/skbuff_head_cache
 KERNEL/FS/mount-flags
 KERNEL/GCC/__aligned
 KERNEL/LIST_HEAD
