@@ -344,8 +344,18 @@ JAVA/基本语句/JAVA读写文件 read write
 JAVA/基本语句/List String
 JAVA/基本语句/路径分隔符
 KERNEL/2.6.18/函数或结构体/alloc_skb
+KERNEL/2.6.18/函数或结构体/asm/AT&T_GCC_ASM
+KERNEL/2.6.18/函数或结构体/asm/AT&T汇编语言语法
+KERNEL/2.6.18/函数或结构体/asm/EAX、ECX、EDX、EBX寄存器的作用
+KERNEL/2.6.18/函数或结构体/asm/__asm__ eg
+KERNEL/2.6.18/函数或结构体/asm/__asm__ volatile 之 C语言嵌入式汇编
+KERNEL/2.6.18/函数或结构体/asm/atomic_set
 KERNEL/2.6.18/函数或结构体/sk_buff.pkt_type
+KERNEL/2.6.18/函数或结构体/skbuff_fclone_cache
 KERNEL/2.6.18/函数或结构体/skbuff_head_cache
+KERNEL/2.6.18/函数或结构体/struct sk_buff
+KERNEL/2.6.18/函数或结构体/网络内存管理函数
+KERNEL/2.6.18/函数或结构体/asm/AT&T ASM
 KERNEL/FS/mount-flags
 KERNEL/GCC/__aligned
 KERNEL/LIST_HEAD
