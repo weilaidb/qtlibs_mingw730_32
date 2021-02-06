@@ -109,6 +109,12 @@ C/API/strrchr
 C/ARRAY/format
 C/ARRAY/format diag
 C/ARRAYSIZE
+C/Check/Len Zero 1
+C/Check/Len Zero 2
+C/Check/Len Zero 3
+C/Check/Pointer NULL 1
+C/Check/Pointer NULL 2
+C/Check/Pointer NULL 3
 C/Condition/Switch break
 C/DATE_TIME
 C/DEFINE/CHECK_POINTER_RET
@@ -162,16 +168,17 @@ C/PRINT/uintxx
 C/PRINT/unsigned_long_int
 C/STRING/ASCII码对照表
 C/STRING/ascii转字符串
+C/STRING/hex2string 十六进制转字符串
 C/STRING/mlogxByKey record log msg
 C/STRING/字符串转ascii
 C/STRNCPY_2_SNPRINTF
 C/STRUCT/生成结构体
+C/单链表 single list
 C/基本类型/BASE TYPE
 C/基本类型/basetype no change
 C/注释comments. insertFileHeader 头文件
 C/注释comments. insertFileHeader 源文件
 C/注释comments. insertFuncHeader 函数名
-C/单链表 single list
 CXX/ARRAYSIZE
 CXX/Cout_in/cout
 CXX/Cout_in/cout size
@@ -222,6 +229,7 @@ DEFINE/FILTER
 DEFINE/GENERATE
 DEFINE/GENERATESTRINGSAME
 DEFINE/UNUSED
+FPGA/介绍
 JAVA/JSP/File文件/File
 JAVA/JSP/File文件/File BufferedInputStream
 JAVA/JSP/File文件/File BufferedOutputStream
@@ -349,13 +357,13 @@ KERNEL/大小写/tolower toupper
 KERNEL/宏/_IO
 KERNEL/宏/__setup
 KERNEL/宏/_initcall
+KERNEL/宏/大小端
 KERNEL/时间相关/raid6_jiffies
 KERNEL/调度/最大CPU
 KERNEL/调度/最大优先级
 KERNEL/调度/调度策略
 KERNEL/调度/进程标志
 KERNEL/进制相关/hex_to_bin
-KERNEL/宏/大小端
 LINUX/Code/ERROR
 LINUX/Makefile
 LINUX/Printk/KERN_ALERT
@@ -517,9 +525,9 @@ Tools/查看代码工具/OpenGrok/配置
 Tools/生成文件名 filename
 Windows/Fonts
 path路径/Android手机拷贝路径
+术语/异或
 正则表达式/去除开头的数字
 正则表达式/所有转一行_替换为NL
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
-术语/异或
