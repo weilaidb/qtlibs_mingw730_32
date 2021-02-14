@@ -84,6 +84,7 @@ BAT/网络network/三层交换机 L3 Switch
 BAT/网络network/演示软件 software
 BAT/网络network/知识点/ATM协议
 BAT/网络network/知识点/CE
+BAT/网络network/知识点/HDLC
 BAT/网络network/知识点/IP协议号大全
 BAT/网络network/知识点/IP地址 ipaddress
 BAT/网络network/知识点/ISP
