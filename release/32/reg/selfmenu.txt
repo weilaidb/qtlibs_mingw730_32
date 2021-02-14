@@ -408,6 +408,7 @@ LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
 LINUX/命令行/realpath
 LINUX/命令行/setenforce
+LINUX/命令行/software/RPM的强制安装和强制卸载
 LINUX/命令行/software/RedHat7配置yum源
 LINUX/命令行/software/install
 LINUX/命令行/software/rpm
