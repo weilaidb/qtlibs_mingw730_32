@@ -116,6 +116,8 @@ C/Check/Pointer NULL 1
 C/Check/Pointer NULL 2
 C/Check/Pointer NULL 3
 C/Condition/Switch break
+C/Condition/if else
+C/Condition/if only
 C/DATE_TIME
 C/DEFINE/CHECK_POINTER_RET
 C/DEFINE/MAX
@@ -398,8 +400,14 @@ LINUX/Printk/KERN_INFO
 LINUX/Printk/KERN_NOTICE
 LINUX/Printk/KERN_WARNING
 LINUX/Printk/说明
+LINUX/命令行/Centos 7 搭建samba
+LINUX/命令行/SELinux配置文件
 LINUX/命令行/fgrep
+LINUX/命令行/iptables clean -F
+LINUX/命令行/iptables help
+LINUX/命令行/iptables list -L
 LINUX/命令行/realpath
+LINUX/命令行/setenforce
 LINUX/命令行/software/RedHat7配置yum源
 LINUX/命令行/software/install
 LINUX/命令行/software/samba smb.conf
@@ -408,6 +416,7 @@ LINUX/命令行/磁盘disk/e2label set labelname
 LINUX/命令行/磁盘disk/etc fstab自动挂载
 LINUX/命令行/磁盘disk/fdisk -l
 LINUX/命令行/磁盘disk/查看dev设备的uuid和labelname
+LINUX/命令行/系统终端命令提示符设置 PS1
 LINUX/命令行/输出/dmesg
 LINUX/并发与竞争/自旋锁和信号量
 Makefile/PHONY
@@ -461,6 +470,7 @@ PhotoShop/常用快捷键 shortcut
 Pthread/Create
 Pthread/pthread_mutex
 Python/API/exec_command
+Python/PYTHONPATH
 Python/Print
 Python/from_xxx_import_all
 Python/header
@@ -468,6 +478,8 @@ Python/header import
 Python/idea快捷键
 Python/main
 Python/pyQt5_import
+Python/soft/pip install -Ur requirements.txt
+Python/soft/python -m pip install --upgrade pip
 Python/引用其它目录
 Python/时间/引用头
 Python/示例/字符串转 md5
@@ -480,6 +492,7 @@ Python/语法/pyQt5/创建菜单
 Python/语法/tryException
 Python/语法/循环/string
 Python/语法/排序去重复
+QT/CHECK/UNUSED
 QT/Express/声明类declare class QT_BEGIN_NAMESPACE
 QT/LOOP/QStringList iterator
 QT/LOOP/QStringList reverse_iterator
