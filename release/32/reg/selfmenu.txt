@@ -90,6 +90,7 @@ BAT/网络network/知识点/VRF
 BAT/网络network/知识点/Web服务器
 BAT/网络network/知识点/dhcp
 BAT/网络network/知识点/dhcp relay
+BAT/网络network/知识点/mpls
 BAT/网络network/知识点/ospf 路由协议 开放的最短路径优先协议 Open Shortest Path First
 BAT/网络network/知识点/复习
 BAT/网络network/知识点/常用端口号大全 port
