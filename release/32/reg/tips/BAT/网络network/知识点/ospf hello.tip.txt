@@ -1,0 +1,14 @@
+ospf hello,proto=89,dip=224.0.0.5
+   0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+0  version(2)     |type=1                | length(48)
+1  router-id(source ospf router,1.1.1.1)
+2  aread-id(0.0.0.0)
+3  checksum(0xf694)                      |autype(null)
+4  authenticatioin data(0)
+5  netmask(255.255.255.0)
+6  hello interval(10s,0x000a)            |dr|0|dd|i|n|m|E|m|router pri(1)
+7  dead interval(40s)
+8  designated router(0.0.0.0)
+9  backup designated router(0.0.0.0)
+a  active neighbor(2.2.2.2)
+    E:allow ase-lsa flood; n/p:deal with type-7 lsa
