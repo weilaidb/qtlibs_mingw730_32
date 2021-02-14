@@ -410,6 +410,13 @@ LINUX/命令行/realpath
 LINUX/命令行/setenforce
 LINUX/命令行/software/RedHat7配置yum源
 LINUX/命令行/software/install
+LINUX/命令行/software/rpm
+LINUX/命令行/software/rpm -qa 查询所有安装包
+LINUX/命令行/software/rpm help
+LINUX/命令行/software/rpm install
+LINUX/命令行/software/rpm uninstall
+LINUX/命令行/software/rpm包安装、卸载和升级
+LINUX/命令行/software/rpm命令查询软件包
 LINUX/命令行/software/samba smb.conf
 LINUX/命令行/software/yum
 LINUX/命令行/磁盘disk/e2label set labelname

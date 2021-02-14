@@ -6,3 +6,19 @@ centos7中yum安装ntfs-3g
 wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
 2，安装ntfs-3g
 yum -y install ntfs-3g
+
+安装git
+yum -y install git
+安装git（图形界面）
+yum -y install gitk
+
+yum -y install git-cola
+yum -y install gitg
+yum -y install SmartGit
+yum -y install giggle
+yum -y install git-gui
+yum -y install qgit
+
+
+
+
