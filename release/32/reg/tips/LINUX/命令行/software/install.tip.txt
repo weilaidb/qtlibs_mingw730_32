@@ -1,2 +1,8 @@
 安装Samba服务程序 
 yum -y install samba
+
+centos7中yum安装ntfs-3g
+1，添加epel yum源
+wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
+2，安装ntfs-3g
+yum -y install ntfs-3g
