@@ -60,6 +60,14 @@ BAT/DATE TIME
 BAT/IPCONFIG
 BAT/NET USER
 BAT/RMDIR
+BAT/网络network/AF/AF_INET
+BAT/网络network/AF/AF_UNIX
+BAT/网络network/AF/AF_UNIX和AF_INET
+BAT/网络network/AF/Socket理解之地址族
+BAT/网络network/AF/address families linux
+BAT/网络network/IPPROTO/IP protocols
+BAT/网络network/SOCK TYPE/sock type
+BAT/网络network/SOCK TYPE/原始套接字SOCK_RAW
 BAT/网络network/acl
 BAT/网络network/ethertype
 BAT/网络network/icmp
@@ -608,6 +616,7 @@ Tools/查看代码工具/OpenGrok/配置
 Tools/生成文件名 filename
 Windows/Fonts
 path路径/Android手机拷贝路径
+术语/Linux/FIB Forward Information Base
 术语/异或
 正则表达式/去除开头的数字
 正则表达式/所有转一行_替换为NL
