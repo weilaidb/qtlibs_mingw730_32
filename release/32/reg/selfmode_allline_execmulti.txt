@@ -7,3 +7,4 @@ TEST/RegExptest
 CXX/externc __cplusplus
 QT/Express/声明类declare class QT_BEGIN_NAMESPACE
 C/enum/enum
+PACKET Parse/报文处理成一行规则
