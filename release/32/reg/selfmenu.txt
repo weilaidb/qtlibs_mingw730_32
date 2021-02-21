@@ -621,6 +621,8 @@ Tools/git/git log pretty
 Tools/git/git log pretty=format help
 Tools/git/git log pretty酷
 Tools/git/git log since before
+Tools/git/git reset hard
+Tools/git/git reset soft
 Tools/git/gitclone下载失败方法
 Tools/git/order
 Tools/git/tig blame filename
