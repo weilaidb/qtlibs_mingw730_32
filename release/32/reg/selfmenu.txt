@@ -615,6 +615,8 @@ Tools/git/git log after before
 Tools/git/git log after until
 Tools/git/git log author
 Tools/git/git log committer
+Tools/git/git log pretty
+Tools/git/git log pretty=format help
 Tools/git/git log since before
 Tools/git/gitclone下载失败方法
 Tools/git/order
@@ -635,3 +637,22 @@ path路径/Android手机拷贝路径
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
