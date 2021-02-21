@@ -12,3 +12,21 @@ git config --global http.postBuffer 1024288000
 检查
 git config --list
 
+日志查看
+选项	说明
+-(n)	仅显示最近的 n 条提交
+--since, --after	仅显示指定时间之后的提交。
+--until, --before	仅显示指定时间之前的提交。
+--author	仅显示指定作者相关的提交。
+--committer	仅显示指定提交者相关的提交。
+
+git log 
+git log --since="2.weeks"
+git log --since="2 years 1 day 3 minutes ago"
+git log --since="2008-01-15"
+git log --pretty="%h - %s" --author=gitster --since="2008-10-01" \
+   --before="2008-11-01" --no-merges -- t/
+
+
+
+
