@@ -609,17 +609,22 @@ TEST/RegExptest
 Tools/Emacs快捷键
 Tools/VSCode快捷键
 Tools/dec to hex 十进制转十六进制
+Tools/git/git config
 Tools/git/git log -n
 Tools/git/git log -n --no-merges
 Tools/git/git log after before
 Tools/git/git log after until
 Tools/git/git log author
 Tools/git/git log committer
+Tools/git/git log graph
 Tools/git/git log pretty
 Tools/git/git log pretty=format help
+Tools/git/git log pretty酷
 Tools/git/git log since before
 Tools/git/gitclone下载失败方法
 Tools/git/order
+Tools/git/tig blame filename
+Tools/git/tig help
 Tools/git/常用git库
 Tools/hex to dec 十六进制转十进制
 Tools/package 0xdot 添加0x和逗号
@@ -637,22 +642,3 @@ path路径/Android手机拷贝路径
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

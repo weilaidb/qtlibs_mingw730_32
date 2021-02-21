@@ -1,0 +1,9 @@
+颠覆 Git 命令使用体验的神器 -- tig
+
+ubuntu: sudo apt-get install tig
+macOS: brew install tig
+
+
+help 
+在 Git 项目中敲 tig, 进入 tig 界面后再敲 h (代表help) 即可进入帮助界面
+
