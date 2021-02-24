@@ -439,6 +439,7 @@ LINUX/Printk/KERN_WARNING
 LINUX/Printk/说明
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
+LINUX/Vim/vim实用技巧
 LINUX/命令行/Centos 7 搭建samba
 LINUX/命令行/SELinux配置文件
 LINUX/命令行/fgrep
