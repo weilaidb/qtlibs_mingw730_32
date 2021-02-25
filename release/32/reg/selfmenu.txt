@@ -97,6 +97,7 @@ BAT/网络network/知识点/IP协议号大全
 BAT/网络network/知识点/IP地址 ipaddress
 BAT/网络network/知识点/ISP
 BAT/网络network/知识点/LCP
+BAT/网络network/知识点/LLDP
 BAT/网络network/知识点/Linux中iproute实现VRF
 BAT/网络network/知识点/NCP
 BAT/网络network/知识点/OSI七层功能
