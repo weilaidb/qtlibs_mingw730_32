@@ -568,6 +568,7 @@ QT/QString/十六进制转十进制
 QT/QString/十进制转十六进制
 QT/RegExp/Test
 QT/UI/Action
+QT/UI/Action setShortcut
 QT/UI/ClipBoard/getClipBoardText
 QT/UI/ClipBoard/setClipBoardText
 QT/UI/Cursor movePosition
