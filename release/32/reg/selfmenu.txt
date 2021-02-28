@@ -376,6 +376,7 @@ JAVA/javascript/include引用
 JAVA/javascript/src引用
 JAVA/javascript/timeout返回原页面
 JAVA/print/println
+JAVA/print/println 片段
 JAVA/基本语句/CCodecPub
 JAVA/基本语句/CFilePub
 JAVA/基本语句/CSqlitePub
@@ -384,6 +385,7 @@ JAVA/基本语句/Date Time/t1
 JAVA/基本语句/JAVA读写文件 read write
 JAVA/基本语句/List String
 JAVA/基本语句/路径分隔符
+JAVA/基本语句/main
 KERNEL/2.6.18/函数或结构体/alloc_skb
 KERNEL/2.6.18/函数或结构体/asm/AT&T ASM
 KERNEL/2.6.18/函数或结构体/asm/AT&T_GCC_ASM
