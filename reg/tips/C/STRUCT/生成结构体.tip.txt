@@ -1,0 +1,6 @@
+MlogNode
+MlogNode *pNext;next pointer
+MlogNode *pPrev;previous pointer
+CHAR *pLog;record logs
+BYTE *pMsg;record messages
+MlogNode

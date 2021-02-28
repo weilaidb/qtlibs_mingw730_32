@@ -1,0 +1,61 @@
+inet_aton和inet_network和inet_addr三者比较-《别怕Linux编程》之五
+http://roclinux.cn/?p=1160
+知识背景：
+
+210.25.132.181属于IP地址的ASCII表示法，也就是字符串形式。英语叫做IPv4 numbers-and-dots notation。
+如果把210.25.132.181转换为整数形式，是3524887733，这个就是整数形式的IP地址。英语叫做binary data。（其实binary是二进制的意思）
+问题所在：
+如何在字符串形式的IP和整数形式的IP之间转换呢？
+问题解决思路：
+有三个函数可以解决这个问题，当然不止这三个函数，只是这三个函数最常用且最易混淆。
+隆重推出他们：inet_network(), inet_addr(), inet_aton()！！
+三者定义：
+int inet_aton(const char *cp, struct in_addr *inp);
+in_addr_t inet_addr(const char *cp);
+in_addr_t inet_network(const char *cp);
+三者区别：
+先说出区别吧，不卖关子。但其实这样不好，因为我怕你因为知道了结论而不去动手实践了。（你不会的，是吧? ^_^）
+纸上得来终觉浅，绝知此事要躬行。
+inet_addr和inet_network函数都是用于将字符串形式转换为整数形式用的，两者区别很小，inet_addr返回的整数形式是网络字节序，而inet_network返回的整数形式是主机字节序。（你一定会纳闷，为什么函数叫inet_network，却返回的是主机字节序，呵呵，就是这么奇怪，你又有什么办法呢…）其他地方两者并无二异。他俩都有一个小缺陷，那就是当IP是255.255.255.255时，这两个“小子”（对这两个函数的昵称，请谅解…^_^）会认为这是个无效的IP地址，这是历史遗留问题，其实在目前大部分的路由器上，这个255.255.255.255的IP都是有效的。
+inet_aton函数和上面这俩小子的区别就是在于他认为255.255.255.255是有效的，他不会冤枉这个看似特殊的IP地址。所以我们建议你多多支持这个函数，那两个小子还是少用为好:)对了，inet_aton函数返回的是网络字节序的IP地址。
+
+
+#include<unistd.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<netinet/in.h>
+#include<sys/socket.h>
+#include<sys/types.h>
+ 
+int main()
+{
+        char str[]="255.255.255.255";
+        in_addr_t r1,r2,r3;
+        struct in_addr inp;
+        r1=inet_addr(str);
+        if(r1==-1){
+                printf("inet_addr return -1 when 255.255.255.255\n");
+        }else{
+                printf("inet_addr:ip=%lu\n",ntohl(r1));
+        }
+        r2=inet_network(str);
+        if(r2==-1){
+                printf("inet_network return -1 when 255.255.255.255\n");
+        }else{
+                printf("inet_network:ip=%lu\n",r2);
+        }
+        r3=inet_aton(str,&inp);
+        if(r3==0){
+                printf("inet_aton return -1 when 255.255.255.255\n");
+        }else{
+                printf("inet_aton:ip=%lu\n",ntohl(inp.s_addr));
+        }
+        return 0;
+}
+
+chmod +x  inet_network && ./inet_network
+inet_addr return -1 when 255.255.255.255
+inet_network return -1 when 255.255.255.255
+inet_aton:ip=4294967295
+~~end~~~

@@ -1,0 +1,45 @@
+AF_UNIX用于同一台机器上的进程间通信，AF_INET对于IPV4协议的TCP和UDP 。
+
+type参数代表套接字类型，SOCK_STREAM（流套接字）或者SOCK_DGRAM（数据报文套接字）。
+
+其中AF_INET类型有关的例子非常多，但AF_UNIX的少见，所以给出一个AF_UNIX简单的例子，并通过select实现非阻塞socket。
+
+Server端：
+
+
+复制代码
+<pre class="python" name="code">import os  
+import socket  
+import select  
+import sys  
+  
+sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)  
+path = './tt.d'  
+if os.path.exists(path):  
+   os.unlink(path)  
+sock.bind(path)  
+sock.listen(5)  
+  
+infds, outfds, errfds = select.select([sock,],[],[],5)  
+if len(infds) != 0:  
+   con,addr = sock.accept()  
+   print con.recv(1024)  
+   con.close()  
+   sock.close()  
+print '5 seconds later no data coming'  
+复制代码
+ 
+
+Client端：
+
+
+</pre><pre class="python" name="code">import socket    
+  
+sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)    
+sock.connect('./tt.d')    
+sock.send('Hello Socket')    
+sock.close()  
+
+
+
+

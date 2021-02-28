@@ -1,0 +1,761 @@
+IEEE 802 Numbers
+Last Updated
+2019-12-23
+Note
+This page has assignments under the control of the IEEE
+Registration Authority that are of primarily historic interest
+that and have traditionally been on the IANA web pages.
+For allocations under the IANA OUI [RFC7042], see the "Ethernet
+Numbers" IANA web page.  Contact information for the IEEE
+Registration Authority is as follows:
+
+   URL:     [http://standards.ieee.org/develop/regauth]
+   Phone:   +1 732 465 6481
+   Address: The IEEE Registration Authority
+            445 Hoes Lane
+            Piscataway, NJ 08854 USA
+  
+Available Formats
+
+XML  
+HTML  
+Plain text
+Registries included below
+
+ETHER TYPES
+ORGANIZATIONALLY UNIQUE IDENTIFIERS
+Logical Link Control (LLC) Numbers
+IANA Link Layer Discovery Protocol (LLDP) TLV Subtypes
+ETHER TYPES
+Registration Procedure(s)
+Not assigned by IANA. Per RFC 7042, updates to this registry 
+are coordinated with the expert.
+Expert(s)
+Donald Eastlake (primary), Juan Carlos Zuniga (secondary)
+Reference
+[IEEE][RFC7042]
+Note
+The following list of EtherTypes is contributed unverified
+information from various sources.  See the IEEE Registration
+Authority web pages at [http://standards.ieee.org/develop/regauth] 
+for a public list of Ethertypes.
+
+Another list of EtherTypes is maintained by Michael A. Patton
+and is accessible at:
+
+    [http://www.cavebear.com/archive/cavebear/Ethernet/index.html]
+    [ftp://ftp.cavebear.com/pub/Ethernet.txt]
+    
+Available Formats
+
+CSV
+Ethertype (decimal) 	Ethertype (hex) 	Exp. Ethernet (decimal)  	Exp. Ethernet (octal) 	Description 	Reference 
+0000	0000-05DC	-	-	IEEE802.3 Length Field	[Neil_Sembower]
+0257	0101-01FF	-	-	Experimental	[Neil_Sembower]
+0512	0200	512	1000	XEROX PUP (see 0A00)	[Boggs, D., J. Shoch, E. Taft, and R. Metcalfe, "PUP: An Internetwork Architecture", XEROX Palo Alto Research Center, CSL-79-10, July 1979; also in IEEE Transactions on Communication, Volume COM-28, Number 4, April 1980.][Neil_Sembower]
+0513	0201	-	-	PUP Addr Trans (see 0A01)	[Neil_Sembower]
+0400			Nixdorf	[Neil_Sembower]
+1536	0600	1536	3000	XEROX NS IDP	["The Ethernet, A Local Area Network: Data Link Layer and Physical Layer Specification", AA-K759B-TK, Digital Equipment Corporation, Maynard, MA. Also as: "The Ethernet - A Local Area Network", Version 1.0, Digital Equipment Corporation, Intel Corporation, Xerox Corporation, September 1980. And: "The Ethernet, A Local Area Network: Data Link Layer and Physical Layer Specifications", Digital, Intel and Xerox, November 1982. And: XEROX, "The Ethernet, A Local Area Network: Data Link Layer and Physical Layer Specification", X3T51/80-50, Xerox Corporation, Stamford, CT., October 1980.][Neil_Sembower]
+0660			DLOG	[Neil_Sembower]
+0661			DLOG	[Neil_Sembower]
+2048	0800	513	1001	Internet Protocol version 4 (IPv4)	[RFC7042]
+2049	0801	-	-	X.75 Internet	[Neil_Sembower]
+2050	0802	-	-	NBS Internet	[Neil_Sembower]
+2051	0803	-	-	ECMA Internet	[Neil_Sembower]
+2052	0804	-	-	Chaosnet	[Neil_Sembower]
+2053	0805	-	-	X.25 Level 3	[Neil_Sembower]
+2054	0806	-	-	Address Resolution Protocol (ARP)	[RFC7042]
+2055	0807	-	-	XNS Compatability	[Neil_Sembower]
+2056	0808	-	-	Frame Relay ARP	[RFC1701]
+2076	081C	-	-	Symbolics Private	[David_Plummer]
+2184	0888-088A	-	-	Xyplex	[Neil_Sembower]
+2304	0900	-	-	Ungermann-Bass net debugr	[Neil_Sembower]
+2560	0A00	-	-	Xerox IEEE802.3 PUP	[Neil_Sembower]
+2561	0A01	-	-	PUP Addr Trans	[Neil_Sembower]
+2989	0BAD	-	-	Banyan VINES	[Neil_Sembower]
+2990	0BAE	-	-	VINES Loopback	[RFC1701]
+2991	0BAF	-	-	VINES Echo	[RFC1701]
+4096	1000	-	-	Berkeley Trailer nego	[Neil_Sembower]
+4097	1001-100F	-	-	Berkeley Trailer encap/IP	[Neil_Sembower]
+5632	1600	-	-	Valid Systems	[Neil_Sembower]
+22F3			TRILL	[RFC6325]
+22F4			L2-IS-IS	[RFC6325]
+16962	4242	-	-	PCS Basic Block Protocol	[Neil_Sembower]
+21000	5208	-	-	BBN Simnet	[Neil_Sembower]
+24576	6000	-	-	DEC Unassigned (Exp.)	[Neil_Sembower]
+24577	6001	-	-	DEC MOP Dump/Load	[Neil_Sembower]
+24578	6002	-	-	DEC MOP Remote Console	[Neil_Sembower]
+24579	6003	-	-	DEC DECNET Phase IV Route	[Neil_Sembower]
+24580	6004	-	-	DEC LAT	[Neil_Sembower]
+24581	6005	-	-	DEC Diagnostic Protocol	[Neil_Sembower]
+24582	6006	-	-	DEC Customer Protocol	[Neil_Sembower]
+24583	6007	-	-	DEC LAVC, SCA	[Neil_Sembower]
+24584	6008-6009	-	-	DEC Unassigned	[Neil_Sembower]
+24592	6010-6014	-	-	3Com Corporation	[Neil_Sembower]
+25944	6558	-	-	Trans Ether Bridging	[RFC1701]
+25945	6559	-	-	Raw Frame Relay	[RFC1701]
+28672	7000	-	-	Ungermann-Bass download	[Neil_Sembower]
+28674	7002	-	-	Ungermann-Bass dia/loop	[Neil_Sembower]
+28704	7020-7029	-	-	LRT	[Neil_Sembower]
+28720	7030	-	-	Proteon	[Neil_Sembower]
+28724	7034	-	-	Cabletron	[Neil_Sembower]
+32771	8003	-	-	Cronus VLN	[RFC824][Daniel_Tappan]
+32772	8004	-	-	Cronus Direct	[RFC824][Daniel_Tappan]
+32773	8005	-	-	HP Probe	[Neil_Sembower]
+32774	8006	-	-	Nestar	[Neil_Sembower]
+32776	8008	-	-	AT&T	[Neil_Sembower]
+32784	8010	-	-	Excelan	[Neil_Sembower]
+32787	8013	-	-	SGI diagnostics	[Andrew_Cherenson]
+32788	8014	-	-	SGI network games	[Andrew_Cherenson]
+32789	8015	-	-	SGI reserved	[Andrew_Cherenson]
+32790	8016	-	-	SGI bounce server	[Andrew_Cherenson]
+32793	8019	-	-	Apollo Domain	[Neil_Sembower]
+32814	802E	-	-	Tymshare	[Neil_Sembower]
+32815	802F	-	-	Tigan, Inc.	[Neil_Sembower]
+32821	8035	-	-	Reverse Address Resolution Protocol (RARP)	[RFC903][Joseph_Murdock]
+32822	8036	-	-	Aeonic Systems	[Neil_Sembower]
+32824	8038	-	-	DEC LANBridge	[Neil_Sembower]
+32825	8039-803C	-	-	DEC Unassigned	[Neil_Sembower]
+32829	803D	-	-	DEC Ethernet Encryption	[Neil_Sembower]
+32830	803E	-	-	DEC Unassigned	[Neil_Sembower]
+32831	803F	-	-	DEC LAN Traffic Monitor	[Neil_Sembower]
+32832	8040-8042	-	-	DEC Unassigned	[Neil_Sembower]
+32836	8044	-	-	Planning Research Corp.	[Neil_Sembower]
+32838	8046	-	-	AT&T	[Neil_Sembower]
+32839	8047	-	-	AT&T	[Neil_Sembower]
+32841	8049	-	-	ExperData	[Neil_Sembower]
+32859	805B	-	-	Stanford V Kernel exp.	[Neil_Sembower]
+32860	805C	-	-	Stanford V Kernel prod.	[Neil_Sembower]
+32861	805D	-	-	Evans & Sutherland	[Neil_Sembower]
+32864	8060	-	-	Little Machines	[Neil_Sembower]
+32866	8062	-	-	Counterpoint Computers	[Neil_Sembower]
+32869	8065	-	-	Univ. of Mass. @ Amherst	[Neil_Sembower]
+32870	8066	-	-	Univ. of Mass. @ Amherst	[Neil_Sembower]
+32871	8067	-	-	Veeco Integrated Auto.	[Neil_Sembower]
+32872	8068	-	-	General Dynamics	[Neil_Sembower]
+32873	8069	-	-	AT&T	[Neil_Sembower]
+32874	806A	-	-	Autophon	[Neil_Sembower]
+32876	806C	-	-	ComDesign	[Neil_Sembower]
+32877	806D	-	-	Computgraphic Corp.	[Neil_Sembower]
+32878	806E-8077	-	-	Landmark Graphics Corp.	[Neil_Sembower]
+32890	807A	-	-	Matra	[Neil_Sembower]
+32891	807B	-	-	Dansk Data Elektronik	[Neil_Sembower]
+32892	807C	-	-	Merit Internodal	[Hans_Werner_Braun]
+32893	807D-807F	-	-	Vitalink Communications	[Neil_Sembower]
+32896	8080	-	-	Vitalink TransLAN III	[Neil_Sembower]
+32897	8081-8083	-	-	Counterpoint Computers	[Neil_Sembower]
+32923	809B	-	-	Appletalk	[Neil_Sembower]
+32924	809C-809E	-	-	Datability	[Neil_Sembower]
+32927	809F	-	-	Spider Systems Ltd.	[Neil_Sembower]
+32931	80A3	-	-	Nixdorf Computers	[Neil_Sembower]
+32932	80A4-80B3	-	-	Siemens Gammasonics Inc.	[Neil_Sembower]
+32960	80C0-80C3	-	-	DCA Data Exchange Cluster	[Neil_Sembower]
+32964	80C4	-	-	Banyan Systems	[Neil_Sembower]
+32965	80C5	-	-	Banyan Systems	[Neil_Sembower]
+32966	80C6	-	-	Pacer Software	[Neil_Sembower]
+32967	80C7	-	-	Applitek Corporation	[Neil_Sembower]
+32968	80C8-80CC	-	-	Intergraph Corporation	[Neil_Sembower]
+32973	80CD-80CE	-	-	Harris Corporation	[Neil_Sembower]
+32975	80CF-80D2	-	-	Taylor Instrument	[Neil_Sembower]
+32979	80D3-80D4	-	-	Rosemount Corporation	[Neil_Sembower]
+32981	80D5	-	-	IBM SNA Service on Ether	[Neil_Sembower]
+32989	80DD	-	-	Varian Associates	[Neil_Sembower]
+32990	80DE-80DF	-	-	Integrated Solutions TRFS	[Neil_Sembower]
+32992	80E0-80E3	-	-	Allen-Bradley	[Neil_Sembower]
+32996	80E4-80F0	-	-	Datability	[Neil_Sembower]
+33010	80F2	-	-	Retix	[Neil_Sembower]
+33011	80F3	-	-	AppleTalk AARP (Kinetics)	[Neil_Sembower]
+33012	80F4-80F5	-	-	Kinetics	[Neil_Sembower]
+33015	80F7	-	-	Apollo Computer	[Neil_Sembower]
+33023	80FF	-	-	Wellfleet Communications	[Neil_Sembower]
+33024	8100	-	-	Customer VLAN Tag Type (C-Tag, formerly called the Q-Tag) (initially Wellfleet)	[RFC7042]
+33025	8101-8103	-	-	Wellfleet Communications	[Neil_Sembower]
+33031	8107-8109	-	-	Symbolics Private	[Neil_Sembower]
+33072	8130	-	-	Hayes Microcomputers	[Neil_Sembower]
+33073	8131	-	-	VG Laboratory Systems	[Neil_Sembower]
+33074	8132-8136			Bridge Communications	[Neil_Sembower]
+33079	8137-8138	-	-	Novell, Inc.	[Neil_Sembower]
+33081	8139-813D	-	-	KTI	[Neil_Sembower]
+8148			Logicraft	[Neil_Sembower]
+8149			Network Computing Devices	[Neil_Sembower]
+814A			Alpha Micro	[Neil_Sembower]
+33100	814C	-	-	SNMP	[Joyce_K_Reynolds]
+814D			BIIN	[Neil_Sembower]
+814E			BIIN	[Neil_Sembower]
+814F			Technically Elite Concept	[Neil_Sembower]
+8150			Rational Corp	[Neil_Sembower]
+8151-8153			Qualcomm	[Neil_Sembower]
+815C-815E			Computer Protocol Pty Ltd	[Neil_Sembower]
+8164-8166			Charles River Data System	[Neil_Sembower]
+817D			XTP	[Neil_Sembower]
+817E			SGI/Time Warner prop.	[Neil_Sembower]
+8180			HIPPI-FP encapsulation	[Neil_Sembower]
+8181			STP, HIPPI-ST	[Neil_Sembower]
+8182			Reserved for HIPPI-6400	[Neil_Sembower]
+8183			Reserved for HIPPI-6400	[Neil_Sembower]
+8184-818C			Silicon Graphics prop.	[Neil_Sembower]
+818D			Motorola Computer	[Neil_Sembower]
+819A-81A3			Qualcomm	[Neil_Sembower]
+81A4			ARAI Bunkichi	[Neil_Sembower]
+81A5-81AE			RAD Network Devices	[Neil_Sembower]
+81B7-81B9			Xyplex	[Neil_Sembower]
+81CC-81D5			Apricot Computers	[Neil_Sembower]
+81D6-81DD			Artisoft	[Neil_Sembower]
+81E6-81EF			Polygon	[Neil_Sembower]
+81F0-81F2			Comsat Labs	[Neil_Sembower]
+81F3-81F5			SAIC	[Neil_Sembower]
+81F6-81F8			VG Analytical	[Neil_Sembower]
+8203-8205			Quantum Software	[Neil_Sembower]
+8221-8222			Ascom Banking Systems	[Neil_Sembower]
+823E-8240			Advanced Encryption Syste	[Neil_Sembower]
+827F-8282			Athena Programming	[Neil_Sembower]
+8263-826A			Charles River Data System	[Neil_Sembower]
+829A-829B			Inst Ind Info Tech	[Neil_Sembower]
+829C-82AB			Taurus Controls	[Neil_Sembower]
+82AC-8693			Walker Richer & Quinn	[Neil_Sembower]
+8694-869D			Idea Courier	[Neil_Sembower]
+869E-86A1			Computer Network Tech	[Neil_Sembower]
+86A3-86AC			Gateway Communications	[Neil_Sembower]
+86DB			SECTRA	[Neil_Sembower]
+86DE			Delta Controls	[Neil_Sembower]
+86DD			Internet Protocol version 6 (IPv6)	[RFC7042]
+34527	86DF	-	-	ATOMIC	[Joe_Touch]
+86E0-86EF			Landis & Gyr Powers	[Neil_Sembower]
+8700-8710			Motorola	[Neil_Sembower]
+34667	876B	-	-	TCP/IP Compression	[RFC1144][RFC1701]
+34668	876C	-	-	IP Autonomous Systems	[RFC1701]
+34669	876D	-	-	Secure Data	[RFC1701]
+8808			IEEE Std 802.3 - Ethernet Passive Optical Network (EPON)	[EPON][RFC7042]
+880B			Point-to-Point Protocol (PPP)	[RFC7042]
+880C			General Switch Management Protocol (GSMP)	[RFC7042]
+8847			MPLS	[RFC5332]
+8848			MPLS with upstream-assigned label	[RFC5332]
+8861			Multicast Channel Allocation Protocol (MCAP)	[RFC7042]
+34915	8863	-	-	PPP over Ethernet (PPPoE) Discovery Stage	[RFC2516]
+34916	8864	-	-	PPP over Ethernet (PPPoE) Session Stage	[RFC2516]
+34958	888E	-	-	IEEE Std 802.1X - Port-based network access control	[IEEE]
+34984	88A8	-	-	IEEE Std 802.1Q - Service VLAN tag identifier (S-Tag)	[IEEE]
+8A96-8A97			Invisible Software	[Neil_Sembower]
+34997	88B5	-	-	IEEE Std 802 - Local Experimental Ethertype	[IEEE]
+34998	88B6	-	-	IEEE Std 802 - Local Experimental Ethertype	[IEEE]
+34999	88B7	-	-	IEEE Std 802 - OUI Extended Ethertype	[IEEE]
+35015	88C7	-	-	IEEE Std 802.11 - Pre-Authentication (802.11i)	[IEEE]
+35020	88CC	-	-	IEEE Std 802.1AB - Link Layer Discovery Protocol (LLDP)	[IEEE]
+35045	88E5	-	-	IEEE Std 802.1AE - Media Access Control Security	[IEEE]
+35047	88E7	-	-	Provider Backbone Bridging Instance tag	[IEEE Std 802.1Q-2014]
+35061	88F5	-	-	IEEE Std 802.1Q - Multiple VLAN Registration Protocol (MVRP)	[IEEE]
+35062	88F6	-	-	IEEE Std 802.1Q - Multiple Multicast Registration Protocol (MMRP)	[IEEE]
+35085	890D	-	-	IEEE Std 802.11 - Fast Roaming Remote Request (802.11r)	[IEEE]
+35095	8917	-	-	IEEE Std 802.21 - Media Independent Handover Protocol	[IEEE]
+35113	8929	-	-	IEEE Std 802.1Qbe - Multiple I-SID Registration Protocol	[IEEE]
+35131	893B	-	-	TRILL Fine Grained Labeling (FGL)	[RFC7172]
+35136	8940	-	-	IEEE Std 802.1Qbg - ECP Protocol (also used in 802.1BR)	[IEEE]
+35142	8946	-	-	TRILL RBridge Channel	[RFC7178]
+35143	8947	-	-	GeoNetworking as defined in ETSI EN 302 636-4-1	[IEEE]
+35151	894F	-	-	NSH (Network Service Header)	[RFC8300]
+36864	9000	-	-	Loopback	[Neil_Sembower]
+36865	9001	-	-	3Com(Bridge) XNS Sys Mgmt	[Neil_Sembower]
+36866	9002	-	-	3Com(Bridge) TCP-IP Sys	[Neil_Sembower]
+36867	9003	-	-	3Com(Bridge) loop detect	[Neil_Sembower]
+39458	9A22	-	-	Multi-Topology	[RFC8377]
+41197	A0ED	-	-	LoWPAN encapsulation	[RFC7973]
+47082	B7EA	-	-	The Ethertype will be used to identify a "Channel" in which control messages are encapsulated as payload of GRE packets. When a GRE packet tagged with the Ethertype is received, the payload will be handed to the network processor for processing.	[RFC8157]
+65280	FF00	-	-	BBN VITAL-LanBridge cache	[Neil_Sembower]
+FF00-FF0F			ISC Bunker Ramo	[Neil_Sembower]
+65535	FFFF	-	-	Reserved	[RFC1701]
+ORGANIZATIONALLY UNIQUE IDENTIFIERS
+Registration Procedure(s)
+Not assigned by IANA. Per RFC 7042, updates to this registry 
+are coordinated with the expert.
+Expert(s)
+Donald Eastlake (primary), Juan Carlos Zuniga (secondary)
+Reference
+[IEEE]
+Note
+Another list of Ethernet vendor address components is maintained by
+Michael A. Patton and is accessible at:
+
+    [http://www.cavebear.com/archive/cavebear/Ethernet/Ethernet.txt]
+    
+Available Formats
+
+CSV
+Hex 	Name 	Reference 
+00000C	Cisco	
+00000E	Fujitsu	
+00000F	NeXT	
+000010	Sytek	
+00001D	Cabletron	
+000020	DIAB (Data Intdustrier AB)	
+000022	Visual Technology	
+00002A	TRW	
+000032	GPT Limited (reassigned from GEC Computers Ltd)	
+00005A	S & Koch	
+00005E	IANA	
+000065	NetScout Systems, Inc.	[Ashwani_Singhal]
+00006B	MIPS	
+000077	Interphase Corporation	
+00007A	Ardent	
+000080	Cray Communications A/S	
+000089	Cayman Systems Gatorbox	
+000093	Proteon	
+00009F	Ameristar Technology	
+0000A2	Wellfleet	
+0000A3	Network Application Technology	
+0000A6	NetScout Systems, Inc. (internal assignment, not for products)	[Ashwani_Singhal]
+0000A7	NCD X-terminals	
+0000A9	Network Systems	
+0000AA	Xerox Xerox machines	
+0000B3	CIMLinc	
+0000B7	Dove Fastnet	
+0000BC	Allen-Bradley	
+0000C0	Western Digital	
+0000C5	Farallon phone net card	
+0000C6	HP Intelligent Networks Operation (formerly Eon Systems)	
+0000C8	Altos	
+0000C9	Emulex Terminal Servers	
+0000D0	Develcon	
+0000D7	Dartmouth College (NED Router)	
+0000D8	3Com? Novell? PS/2	
+0000DD	Gould	
+0000DE	Unigraph	
+0000E2	Acer Counterpoint	
+0000EF	Alantec	
+0000FD	High Level Hardvare (Orion, UK)	
+000102	BBN BBN internal usage (not registered)	
+0010D1	BlazeNet	
+001700	Kabel	
+0020AF	3COM ???	
+0020C9	Victron	
+002094	Cubix	
+00256D	Broadband Forum (BBF)	
+00802B	IMAC ???	
+00802D	Xylogics, Inc. Annex terminal servers	
+008037	Ericsson	[Ericsson Group, Telefonaktiebolaget, LM Ericsson Corp. 126 25 STOCKHOLM, SWEDEN, SWEDEN]
+008064	Wyse Technology / Link Technologies	
+00808C	NetScout Systems, Inc.	[Ashwani_Singhal]
+0080C2	IEEE 802.1 Committee	
+0080D3	Shiva	
+00A03E	ATM Forum	
+00AA00	Intel	
+00DD00	Ungermann-Bass	
+00DD01	Ungermann-Bass	
+020701	Racal InterLan	
+020406	BBN BBN internal usage (not registered)	
+026086	Satelcom MegaPac (UK)	
+02608C	3Com IBM PC; Imagen; Valid; Cisco	
+02CF1F	CMC Masscomp; Silicon Graphics; Prime EXL	
+080002	3Com (Formerly Bridge)	
+080003	ACC (Advanced Computer Communications)	
+080005	Symbolics Symbolics LISP machines	
+080008	BBN	
+080009	Hewlett-Packard	
+08000A	Nestar Systems	
+08000B	Unisys	
+080011	Tektronix, Inc.	
+080014	Excelan BBN Butterfly, Masscomp, Silicon Graphics	
+080017	NSC	
+08001A	Data General	
+08001B	Data General	
+08001E	Apollo	
+080020	Sun Sun machines	
+080022	NBI	
+080025	CDC	
+080026	Norsk Data (Nord)	
+080027	PCS Computer Systems GmbH	
+080028	TI Explorer	
+08002B	DEC	
+08002E	Metaphor	
+08002F	Prime Computer Prime 50-Series LHC300	
+080036	Intergraph CAE stations	
+080037	Fuji-Xerox	
+080038	Bull	
+080039	Spider Systems	
+080041	DCA Digital Comm. Assoc.	
+080045	???? (maybe Xylogics, but they claim not to know this number)	
+080046	Sony	
+080047	Sequent	
+080049	Univation	
+08004C	Encore	
+08004E	BICC	
+080056	Stanford University	
+080058	??? DECsystem-20	
+08005A	IBM	
+080067	Comdesign	
+080068	Ridge	
+080069	Silicon Graphics	
+08006E	Concurrent Masscomp	
+080075	DDE (Danish Data Elektronik A/S)	
+08007C	Vitalink TransLAN III	
+080080	XIOS	
+080086	Imagen/QMS	
+080087	Xyplex terminal servers	
+080089	Kinetics AppleTalk-Ethernet interface	
+08008B	Pyramid	
+08008D	XyVision XyVision machines	
+080090	Retix Inc Bridges	
+484453	HDS ???	
+800010	AT&T	
+AA0000	DEC obsolete	
+AA0001	DEC obsolete	
+AA0002	DEC obsolete	
+AA0003	DEC Global physical address for some DEC machines	
+AA0004	DEC Local logical address for systems running DECNET	
+Logical Link Control (LLC) Numbers
+Registration Procedure(s)
+Not assigned by IANA. Per RFC 7042, updates to this registry 
+are coordinated with the expert.
+Expert(s)
+Donald Eastlake (primary), Juan Carlos Zuniga (secondary)
+Reference
+[IEEE]
+Note
+There is also a public listing of LLC numbers on the IEEE
+Registration Authority web pages at
+[http://standards.ieee.org/develop/regauth].
+
+The IEEE likes to describe numbers in binary in bit transmission
+order, which is the opposite of the big-endian order used throughout
+the Internet protocol documentation.
+    
+Available Formats
+
+CSV
+Link Service Access Point (IEEE Binary) 	Link Service Access Point (Internet Binary ) 	Link Service Access Point (Decimal) 	Description 	Reference 
+00000000	00000000	0	Null LSAP	[IEEE]
+01000000	00000010	2	Indiv LLC Sublayer Mgt	[IEEE]
+11000000	00000011	3	Group LLC Sublayer Mgt	[IEEE]
+00100000	00000100	4	SNA Path Control	[IEEE]
+01100000	00000110	6	Reserved (DOD IP)	[RFC768][JBP]
+01110000	00001110	14	PROWAY-LAN	[IEEE]
+01110010	01001110	78	EIA-RS 511	[IEEE]
+01111010	01011110	94	ISI IP	[JBP]
+01110001	10001110	142	PROWAY-LAN	[IEEE]
+01010101	10101010	170	SNAP	[IEEE]
+01111111	11111110	254	ISO CLNS IS 8473	[RFC926][JXJ]
+11111111	11111111	255	Global DSAP	[IEEE]
+IANA Link Layer Discovery Protocol (LLDP) TLV Subtypes
+Registration Procedure(s)
+Expert Review
+Expert(s)
+Eliot Lear, Dan Romascanu
+Reference
+[RFC8520]
+Available Formats
+
+CSV
+Value 	Description 	Reference 
+0	Unassigned	
+1	the Manufacturer Usage Description (MUD) Uniform Resource Locator (URL)	[RFC8520]
+2-255	Unassigned	
+Contact Information
+ID 	Name 	Organization 	Contact URI 	Last Updated 
+[Andrew_Cherenson]	Andrew Cherenson		mailto:arc&sgi.com	
+[Ashwani_Singhal]	Ashwani Singhal		mailto:Ashwani.Singhal&netscout.com	2010-04-05
+[Daniel_Tappan]	Daniel Tappan		mailto:Tappan&bbn.com	
+[David_Plummer]	David Plummer		mailto:DCP&scrc-quabbin.arpa	
+[Hans_Werner_Braun]	Hans-Werner Braun		mailto:HWB&mcr.umich.edu	
+[IANA]	Internet Assigned Numbers Authority		mailto:iana&iana.org	1996-10
+[JBP]	Jon Postel		mailto:postel&isi.edu	
+[Joe_Touch]	Joe Touch		mailto:touch&strayalpha.com	2018-07-26
+[Joseph_Murdock]	Joseph Murdock			
+[Joyce_K_Reynolds]	Joyce K. Reynolds		mailto:jkrey&isi.edu	
+[JXJ]	mystery contact			
+[Neil_Sembower]	Neil Sembower	XEROX	mailto:sembower&eso.mc.xerox.com	
+[IEEE]		The IEEE Registration Authority	http://standards.ieee.org/develop/regauth/	
+
+
+EtherType ：以太网类型字段及值
+
+eydwyz 2017-03-23 17:30:56   42886   收藏 50
+分类专栏： Linux
+Ethernet II即DIX 2.0：Xerox与DEC、Intel在1982年制定的以太网标准帧格式。Cisco名称为：ARPA
+
+
+
+Ethernet II类型以太网帧的最小长度为64字节（6＋6＋2＋46＋4），最大长度为1518字节（6＋6＋2＋1500＋4）。其中前12字节分别标识出发送数据帧的源节点MAC地址和接收数据帧的目标节点MAC地址。（注：ISL封装后可达1548字节，802.1Q封装后可达1522字节）
+
+接下来的2个字节标识出以太网帧所携带的上层数据类型，如下：
+
+IPv4: 0x0800
+
+ARP:0x0806
+
+PPPoE:0x8864
+
+802.1Q tag: 0x8100
+
+IPV6: 0x86DD
+
+MPLS Label:0x8847
+
+在不定长的数据字段后是4个字节的帧校验序列（Frame. Check Sequence，FCS）
+
+
+
+EtherType 是以太帧里的一个字段，用来指明应用于帧数据字段的协议。根据 IEEE802.3，Length/EtherType 字段是两个八字节的字段，含义两者取一，这取决于其数值。在量化评估中，字段中的第一个八位字节是最重要的。而当字段值大于等于十进制值 1536 （即十六进制为 0600）时， EtherType 字段表示为 MAC 客户机协议（EtherType 解释）的种类。该字段的长度和 EtherType 详解是互斥的。
+
+该类字段值取自 IEEE EtherType 字段寄存器。EtherType 字段是个极限空间，因此其分配是有限的。只有开发新的数据传输协议的人员需要使用 EtherType 字段，而不管他们实际上是否真正生产任何设备。IEEE RAC EtherType 字段批准权威机构负责检查和批准 EtherType 字段。
+
+知名协议已经分配了 EtherType 值，下面表格中列出了 EtherType 字段中常用值及其对应的协议：
+
+Ethertype 
+( 十六进制 )
+
+协议
+
+0x0000 - 0x05DC
+
+IEEE 802.3 长度
+
+0x0101 – 0x01FF
+
+实验
+
+0x0600
+
+XEROX NS IDP
+
+0x0660 
+0x0661
+
+DLOG
+
+0x0800
+
+网际协议（IP）
+
+0x0801
+
+X.75 Internet
+
+0x0802
+
+NBS Internet
+
+0x0803
+
+ECMA Internet
+
+0x0804
+
+Chaosnet
+
+0x0805
+
+X.25 Level 3
+
+0x0806
+
+地址解析协议（ARP ： Address Resolution Protocol）
+
+0x0808
+
+帧中继 ARP （Frame Relay ARP） [RFC1701]
+0x6559
+
+原始帧中继（Raw Frame Relay） [RFC1701]
+0x8035
+
+动态 DARP （DRARP：Dynamic RARP）
+反向地址解析协议（RARP：Reverse Address Resolution Protocol）
+
+0x8037
+
+Novell Netware IPX
+0x809B
+
+EtherTalk
+0x80D5
+
+IBM SNA Services over Ethernet
+0x 80F 3
+
+AppleTalk 地址解析协议（AARP：AppleTalk Address Resolution Protocol）
+
+0x8100
+
+以太网自动保护开关（EAPS：Ethernet Automatic Protection Switching）
+
+0x8137
+
+因特网包交换（IPX：Internet Packet Exchange）
+
+0x 814C
+
+简单网络管理协议（SNMP：Simple Network Management Protocol）
+
+0x86DD
+
+网际协议v6 （IPv6，Internet Protocol version 6）
+
+0x880B
+
+点对点协议（PPP：Point-to-Point Protocol）
+
+0x 880C
+
+通用交换管理协议（GSMP：General Switch Management Protocol）
+
+0x8847
+
+多协议标签交换（单播） MPLS：Multi-Protocol Label Switching <unicast>）
+
+0x8848
+
+多协议标签交换（组播）（MPLS, Multi-Protocol Label Switching <multicast>）
+
+0x8863
+
+以太网上的 PPP（发现阶段）（PPPoE：PPP Over Ethernet <Discovery Stage>）
+
+0x8864
+
+以太网上的 PPP（PPP 会话阶段） （PPPoE，PPP Over Ethernet<PPP Session Stage>）
+
+0x88BB
+
+轻量级访问点协议（LWAPP：Light Weight Access Point Protocol）
+
+0x88CC
+
+链接层发现协议（LLDP：Link Layer Discovery Protocol）
+
+0x8E88
+
+局域网上的 EAP（EAPOL：EAP over LAN）
+
+0x9000
+
+配置测试协议（Loopback）
+0x9100
+
+VLAN 标签协议标识符（VLAN Tag Protocol Identifier）
+
+0x9200
+
+VLAN 标签协议标识符（VLAN Tag Protocol Identifier）
+
+0xFFFF
+
+保留
+
+EtherType :以太网类型字段及值
+
+EtherType ：以太网类型字段及值
+
+
+2. ARP （ARP Header长度:8字节）
+
+
+
+硬件类型：1 表示以太网
+
+协议类型：和Ethernet数据帧中类型字段相同
+
+OP操作字段：1 表示ARP请求
+
+2 表示ARP应答
+
+3 表示RARP请求
+
+4 表示RARP应答
+
+3. 802.1q VLAN数据帧(4字节）
+
+基于802.1Q的VLAN帧格式
+
+
+
+Type：长度为2字节，取值为0x8100，表示此帧的类型为802.1Q Tag帧。
+PRI：长度为3比特，可取0～7之间的值，表示帧的优先级，值越大优先级越高。该优先级主要为QoS差分服务提供参考依据（COS）。
+VLAN Identifier (VID) : 长度12bits，可配置的VLAN ID取值范围为1～4094。通常vlan 0和vlan 4095预留，vlan1为缺省vlan，一般用于网管。
+QinQ帧格式
+
+
+
+4. PPP帧（除去信息字段后长度为：8字节）
+
+PPP报文格式
+
+
+
+PPP报文的内容是指Address、Control、Protocol和Information四个域的内容。各字段的含义如下。
+
+Flag域Flag域标识了一个物理帧的起始和结束，该字节为0x7E。
+Address域PPP协议是被运用在点对点的链路上，它可以唯一标识对方。因此使用PPP协议互连的两个通信设备无须知道对方的数据链路层地址。所以该字节已无任何意义，按照协议的规定将该字节填充为全1的广播地址。
+Control域同Address域一样，PPP数据帧的Control域也没有实际意义，按照协议的规定通信双方将该字节的内容填充为0x03。Address和Control域一起表示了此报文为PPP报文，即PPP报文头为FF03。
+Protocol域协议域可用来区分PPP数据帧中信息域所承载的数据报文的内容。
+协议代码
+
+协议类型
+
+0021
+
+Internet Protocol
+
+8021
+
+Internet Protocol Control Protocol
+
+C021
+
+Link Control Protocol
+
+C023
+
+Password Authentication Protocol
+
+C223
+
+Challenge Handshake Authentication Protocol
+
+Information域信息域最大长度是1500字节，其中包括填充域的内容。信息域的最大长度等于PPP协议中MRU（Maximum Receive Unit）的缺省值。
+5. HDLC帧（除去信息字段后长度为：8字节）
+
+HDLC帧格式
+
+
+
+各字段的含义解释：
+
+字段
+
+长度（字节）
+
+含义
+
+Protocol
+
+2
+
+协议字段。表示Information域中的数据封装的协议类型。
+
+Information
+
+N
+
+信息字段。可以是任意的二进制比特串，长度未作限定。其上限由FCS字段或通信节点的缓冲容量来决定，目前国际上用得较多的是1000～2000比特，而下限可以是0，即无信息字段。但是监控帧中不可有信息字段。
+
+6. PPPoE报文（报文头长度为6字节）
+
+
+
+windows系统pppoe MTU大小
+
+默认和最大 PPPoE MTU 大小为 1,480 字节。对于某些 Internet 服务提供商 (ISP)，您可能需要将 PPPoE 连接的 MTU 大小降至 1,400 和 1,480 之间的一个值（例如 1,454）。不要将 MTU 大小设置为小于 1,400。
+
+路由器pppoe拨号时MTU为1492
+
+7. MPLS Label
+
+Label报文格式：
+
+
+
+MPLS uses a 32-bit label field that contains the following information:
+
+20-bit label (a number)
+3-bit experimental field (usually used to carry IP precedence value)
+1-bit bottom-of-stack indicator (indicates whether this is the last label before the IP header)
+8-bit TTL (equal to the TTL in IP header)，used to prevent indefinite looping of packets.

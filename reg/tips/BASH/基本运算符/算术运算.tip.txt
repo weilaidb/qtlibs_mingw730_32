@@ -1,0 +1,57 @@
+Bash 算术运算
+双括号的使用
+
+基本语法：
+
+((expression))
+可采用四种大同小异的方法来实现所需的目标运算。
+
+Num=$((5+3))
+echo "Num = $Num
+((Num=5+3))
+echo "Num = $Num"
+Num1=5
+Num2=3
+((Num3=Num1+Num2))
+echo "Num3 = $Num3"
+Num1=5
+Num2=3
+Num3=((Num1+Num2))
+echo "Num3 = $Num3"
+以上四种方法结果均相同。
+
+反引号的使用
+
+反引号要与expr（通用表达式求值器）执行算术扩展。
+
+`expr`在算术运算结束后不会将结果保存到变量中，而是直接将结果打印输出，如下示例：
+
+#!/bin/bash
+echo "Num1=5, Num2=3"
+echo "Num3 is the value of addition Num3=Num1+Num2"
+Num1=5
+Num2=3
+echo "Num3= `expr $Num1 + $Num2`"
+执行后得到以下结果：
+
+Num1=5,Num2=3
+Num3 is the value of addition Num3=Num1+Num2
+Num3= 8
+let 命令的构建
+
+let 是 Bash 的内置命令，用于执行算术运算，算术运算完成后会将结果存储至变量中，语法为：
+
+let <arithmetic expression>
+示例：
+
+#!/bin/bash
+Num1=10
+Num2=6
+Num3=0
+echo "W3Cschool"
+let "Num3 = $(( Num1 + Num2 ))"
+echo "Num3= $Num3"
+执行后得到一下结果：
+
+W3Cschool
+Num3= 16

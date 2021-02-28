@@ -1,0 +1,1 @@
+if((0 == \1)||(0 == \2))$NL{$NL    printf("len zero\n");$NL    return NULL;$NL}

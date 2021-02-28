@@ -1,0 +1,23 @@
+Qt：禁止qDebug的输出
+时间  2012-08-01
+标签 qt output
+原文   http://blog.csdn.net/yuanzhangmei1/article/details/7816818
+在工程的.pro文件里加上以下编译批令即可：
+DEFINES += QT_NO_DEBUG_OUTPUT
+
+# release版本不输出
+DEFINES += QT_NO_DEBUG_OUTPUT
+
+
+
+//代码中实现 
+#ifdef QT_NO_DEBUG
+//## release版本不输出
+//#DEFINES += QT_NO_DEBUG_OUTPUT
+#define QT_NO_DEBUG_OUTPUT
+
+#else
+
+#endif
+#define debugApp qDebug
+

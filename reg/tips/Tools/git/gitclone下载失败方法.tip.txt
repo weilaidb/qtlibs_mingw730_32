@@ -1,0 +1,20 @@
+git clone --depth=1 后获取其他分支
+1.先转换存储库为完整存储库
+git pull --unshallow
+#或者
+git fetch  --unshallow
+此命令用于 将浅层转换为完整的存储库，消除浅层存储库所施加的所有限制。
+2.修改.git文件夹内config文件的[remote "origin"]节的内容
+修改前
+
+[remote "origin"]
+    url = https://xxx.com/abc/xxx.git
+    fetch = +refs/heads/master:refs/remotes/origin/master
+修改后
+[remote "origin"]
+    url = https://xxx.com/abc/xxx.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+以上步骤也可用命令代替
+git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+3.然后执行以下命令获取所有分支
+git fetch -pv

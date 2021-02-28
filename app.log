@@ -1,0 +1,64 @@
+
+2F686F6D652F64756F2F776F726B2F6769742F71746C6962735F6D696E67773733305F33322F636F646573657473
+2F686F6D652F64756F2F776F726B2F6769742F71746C6962735F6D696E67773733305F33322E6C696E75782F636F646573657473/home/duo/work/git/qtlibs_mingw730_32.linux/codesets
+
+2F686F6D652F64756F2F776F726B2F6769742F71746C6962735F6D696E67773733305F33322E6C696E75782F636F646573657473/home/duo/work/git/qtlibs_mingw730_32.linux/reg/normalfiles.txt
+/home/duo/work/git/qtlibs_mingw730_32.linux/reg/normalfiles.txt
+2f686f6d652f64756f2f776f726b2f6769742f71746c6962735f6d696e67773733305f33322e6c696e75782f7265672f6e6f726d616c66696c65732e7478740a/home/duo/work/git/qtlibs_mingw730_32.linux/reg/selfmode_allline_execmulti.txt
+/home/duo/work/git/qtlibs_mingw730_32.linux/reg/selfmode_allline_execmulti.txt
+2f686f6d652f64756f2f776f726b2f6769742f71746c6962735f6d696e67773733305f33322e6c696e75782f7265672f73656c666d6f64655f616c6c6c696e655f657865636d756c74692e7478740a/home/duo/work/git/qtlibs_mingw730_32.linux/reg/selfmode_singleline_execmulti.txt
+/home/duo/work/git/qtlibs_mingw730_32.linux/reg/selfmode_singleline_execmulti.txt
+2f686f6d652f64756f2f776f726b2f6769742f71746c6962735f6d696e67773733305f33322e6c696e75782f7265672f73656c666d6f64655f73696e676c656c696e655f657865636d756c74692e7478740a/home/duo/work/git/qtlibs_mingw730_32.linux/reg/selfmode_singleline_execsingle.txt
+/home/duo/work/git/qtlibs_mingw730_32.linux/reg/selfmode_singleline_execsingle.txt
+2f686f6d652f64756f2f776f726b2f6769742f71746c6962735f6d696e67773733305f33322e6c696e75782f7265672f73656c666d6f64655f73696e676c656c696e655f6578656373696e676c652e7478740a/home/duo/work/git/qtlibs_mingw730_32.linux/reg/selfmenu.txt
+/home/duo/work/git/qtlibs_mingw730_32.linux/reg/selfmenu.txt
+2f686f6d652f64756f2f776f726b2f6769742f71746c6962735f6d696e67773733305f33322e6c696e75782f7265672f73656c666d656e752e7478740a/home/duo/work/git/qtlibs_mingw730_32.linux/reg/selfmenu_user.txt
+/home/duo/work/git/qtlibs_mingw730_32.linux/reg/selfmenu_user.txt
+2f686f6d652f64756f2f776f726b2f6769742f71746c6962735f6d696e67773733305f33322e6c696e75782f7265672f73656c666d656e755f757365722e7478740a[proc_frequse_config]add config:PACKET Parse/HTTP
+[proc_frequse_config]add config:PACKET Parse/ICMP
+[proc_frequse_config]add config:PACKET Parse/TCP
+[proc_frequse_config]add config:PACKET Parse/test
+[proc_frequse_config]add config:PACKET Parse/IGMP
+[proc_frequse_config]add config:PACKET Parse/ICMP destination unreachable
+[proc_frequse_config]add config:PACKET Parse/ICMP destination unreachable
+[proc_frequse_config]add config:PACKET Parse/ICMP
+[proc_frequse_config]add config:PACKET Parse/HTTP
+[proc_frequse_config]add config:PACKET Parse/Ethernet II
+[proc_frequse_config]add config:PACKET Parse/ARP
+[proc_frequse_config]add config:PACKET Parse/生成序号
+[proc_frequse_config]add config:PACKET Parse/报文处理成一行规则
+[proc_frequse_config]add config:PACKET Parse/生成序号
+[proc_frequse_config]add config:PACKET Parse/报文处理成一行规则
+[proc_frequse_config]add config:PACKET Parse/报文处理成一行规则
+[proc_frequse_config]add config:PACKET Parse/生成序号
+[proc_frequse_config]add config:PACKET Parse/报文处理成一行规则
+[proc_frequse_config]add config:PACKET Parse/test2
+[proc_frequse_config]add config:PACKET Parse/test
+[proc_frequse_config]add config:PACKET Parse/UDP
+[proc_frequse_config]add config:PACKET Parse/TCP
+[proc_frequse_config]add config:PACKET Parse/IP
+[proc_frequse_config]add config:PACKET Parse/TCP
+[proc_frequse_config]add config:PACKET Parse/UDP
+[proc_frequse_config]add config:PACKET Parse/TCP
+[proc_frequse_config]add config:PACKET Parse/IP
+[proc_frequse_config]add config:PACKET Parse/IGMP
+[proc_frequse_config]add config:PACKET Parse/IP
+[proc_frequse_config]add config:PACKET Parse/ICMP destination unreachable
+[proc_frequse_config]add config:PACKET Parse/ICMP
+[proc_frequse_config]add config:PACKET Parse/HTTP
+[proc_frequse_config]add config:PACKET Parse/Ethernet II
+[proc_frequse_config]add config:PACKET Parse/ARP
+[proc_frequse_config]add config:PACKET Parse/TCP
+[proc_frequse_config]add config:PACKET Parse/TCP
+[proc_frequse_config]add config:PACKET Parse/test
+[proc_frequse_config]add config:PACKET Parse/test2
+[proc_frequse_config]add config:PACKET Parse/报文处理成一行规则
+[proc_frequse_config]add config:PACKET Parse/生成序号
+[proc_frequse_config]add config:PACKET Parse/TCP
+[proc_frequse_config]add config:PACKET Parse/ICMP
+[proc_frequse_config]add config:PACKET Parse/IGMP
+[proc_frequse_config]add config:PACKET Parse/IP
+[proc_frequse_config]add config:PACKET Parse/TCP
+[proc_frequse_config]add config:PACKET Parse/test2
+[proc_frequse_config]add config:PACKET Parse/报文处理成一行规则
+[proc_frequse_config]add config:PACKET Parse/生成序号

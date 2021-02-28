@@ -1,0 +1,12 @@
+addHeader(String head, String value);
+或
+setHeader(String head, String value);
+动态添加新的响应头和头的值，并将这些头发送给用户的浏览器。如果添加头的已经存在，则先前的头被覆盖。
+
+<font size="4">
+<p>现在的时间是:<br>
+    <%
+        out.println("" + new Date());
+        response.setHeader("Refresh", "5");
+    %>
+</font>

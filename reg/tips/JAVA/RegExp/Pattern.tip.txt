@@ -1,0 +1,61 @@
+public static String procPatternInfo(String bf, String pattern, String af)
+    {
+        //正则表达式使用字符解析和从网页中获取的数据解析，发现不一样
+        //原来从网页获取的长度多了1个字节，原来是换行
+        //查看pattern后的长度是 pattern.length()
+        af = CStringPub.trimString(af);
+        pattern = CStringPub.trimString(pattern);
+        System.out.println("bf:" + bf);
+        System.out.println("pattern:" + pattern);
+        System.out.println("af:" + af);
+        //转换为普通字符
+//        pattern = quoteReplacement(pattern);
+//        pattern = "(\\w+)(\\d+)(.*)";
+
+        System.out.println("pattern af:" + pattern);
+        String result = CStringPub.emptyString();
+        String[] list = bf.split("\n");
+        System.out.println("list.length:" + list.length);
+//        Pattern r = Pattern.compile(pattern);
+        for (String line :
+                list) {
+            System.out.println("line:" + line);
+            // 创建 Pattern 对象
+            int reFlags = 0;
+//            reFlags |= Pattern.UNIX_LINES;
+//            reFlags |= Pattern.MULTILINE;
+//            reFlags |= Pattern.CASE_INSENSITIVE;
+//            reFlags |= Pattern.UNICODE_CASE;
+//            reFlags |= Pattern.CANON_EQ;
+//            reFlags |= Pattern.UNICODE_CHARACTER_CLASS;
+            reFlags |= Pattern.DOTALL;
+//            reFlags |= Pattern.COMMENTS;
+//            reFlags |= Pattern.LITERAL;
+            try{
+                Pattern r = Pattern.compile(pattern, reFlags);
+//                Pattern r = Pattern.compile(pattern);
+                System.out.println("pattern.length():" + pattern.length());
+//            line.f
+//            boolean ret = Pattern.matches(pattern,line);
+//            System.out.println("ret1 :" + ret);
+//            ret = line.matches(pattern);
+//            System.out.println("ret2 :" + ret);
+                // 现在创建 matcher 对象
+                Matcher m = r.matcher(line);
+                //m.find()或m.matches()只能调用一次，再次调用就可能为false了。
+            while (m.find()) {
+                System.out.println("seq:" + m.group());
+                for (int i = 0; i < m.groupCount(); i++) {
+                    System.out.println("Found value[" + i + "]: " + m.group(i));
+                }
+            }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("end~~");
+
+        }
+        return result;
+    }

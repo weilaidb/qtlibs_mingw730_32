@@ -1,0 +1,1 @@
+路由表:目标 方向$NLroute print \1$NLroute print$NL

@@ -1,0 +1,3 @@
+apple;bean.Circle;page;圆的半径是;radius
+apple;bean.Circle;page;圆的面积是;circleArea
+apple;bean.Circle;page;圆的周长是;circleLength

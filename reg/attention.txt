@@ -1,0 +1,37 @@
+注意事项:
+*.打开配置总表，填写相关操作项
+*.配置总表		--  selfmenu.txt
+*.所有多执行		--  selfmode_allline_execmulti.txt
+*.单行多执行		--  selfmode_singleline_execmulti.txt
+*.单行单执行		--  selfmode_singleline_execsingle.txt
+*.打开文件列表		--  normalfiles.txt
+*.常用配置列表		--  frequse.txt
+*.非全部处理限制值	--  contentmax.txt
+*.特殊字符		--  $NL:换行
+*.特殊字符		--  $TB:Tab
+*.特殊字符		--  $SP:空格
+*.特殊字符		--  $DATE:日期时间
+*.特殊字符		--  $DATEX:日期时间(_号连接)
+*.特殊字符		--  $H2D(\1):十六进制转换十进制
+*.特殊字符		--  $D2H(\1):十进制转换十六进制
+*.特殊字符		--  $H2B(\1):十六进制转换二进制
+*.特殊字符		--  $B2H(\1):二进制转换十六进制
+*.特殊字符		--  $D2B(\1):十进制转换二进制
+*.特殊字符		--  $B2D(\1):二进制转换十进制
+*.特殊字符		--  $UP(\1):转大写
+*.特殊字符		--  $LO(\1):转小写
+*.特殊字符		--  $FORFX(\1):生成递增的反斜线 \1\2\3...
+*.特殊字符		--  $FORW(\1):生成相同个数的内容(\w{2})(\w{2})...(\w{2})(.*)
+
+快捷键:
+Ctrl+D    -- 删除/退出配置文件
+Ctrl+E    -- 报文转一行
+Ctrl+F    -- 查找
+Ctrl+M    -- 新建标准节点
+Ctrl+N    -- 新建用户节点
+Ctrl+O    -- 打开配置文件
+Ctrl+R    -- Try Again
+Ctrl+S    -- 编辑配置文件
+Ctrl+T    -- clearTry
+Ctrl+U    -- 更新一次(配置文件)
+Ctrl+W    -- 切换清除左侧内容

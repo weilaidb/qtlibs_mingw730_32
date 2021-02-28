@@ -1,0 +1,1 @@
+#include <string>$NL$NLusing namespace std;$NL$NL$NLstring \1;$NLstring::reverse_iterator irter;$NLcout<<"\1.rbegin()--- \1.rend(), size:"<< \1.size() << endl;$NLfor (irter = \1.rbegin(); irter != \1.rend(); ++irter)$NL{$NL    cout << *irter << " ";$NL}$NL$NLcout << endl;$NL$NL

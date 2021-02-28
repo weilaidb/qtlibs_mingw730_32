@@ -1,0 +1,44 @@
+linux/include/linux/net.h
+
+ /**
+107   *  struct socket - general BSD socket
+108   *  @state: socket state (%SS_CONNECTED, etc)
+109   *  @type: socket type (%SOCK_STREAM, etc)
+110   *  @flags: socket flags (%SOCK_NOSPACE, etc)
+111   *  @ops: protocol specific socket operations
+112   *  @file: File back pointer for gc
+113   *  @sk: internal networking protocol agnostic socket representation
+114   *  @wq: wait queue for several uses
+115   */
+116  struct socket {
+117  	socket_state		state;
+118  
+119  	short			type;
+120  
+121  	unsigned long		flags;
+122  
+123  	struct file		*file;
+124  	struct sock		*sk;
+125  	const struct proto_ops	*ops;
+126  
+127  	struct socket_wq	wq;
+128  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

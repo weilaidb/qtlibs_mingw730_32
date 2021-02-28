@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+
+#ifndef ARRAYSIZE
+#define ARRAYSIZE(A) ((unsigned int)(sizeof(A)/sizeof(A[0])))
+#endif
+
+char *hextostring(char *pBuf, unsigned char *pByteBuf, unsigned int dwLen)
+{
+
+
+    if((NULL == pBuf) || (NULL == pByteBuf))
+    {
+        printf("null ponter\n");
+        return NULL;
+    }
+
+    if((0 == dwLen))
+    {
+        printf("len zero\n");
+        return NULL;
+    }
+
+    unsigned int dwLp =  0;
+    unsigned int dwSeq =  0;
+    for(dwLp = 0;dwLp < dwLen;dwLp++, dwSeq+=2)
+    {
+        //printf("No:%-03u -- %-03u\n", dwLp+1, uacArray[dwLp]);
+        int iLen = 0;
+        iLen = snprintf(pBuf + dwSeq, 2,"%02x", pByteBuf[dwLp]);
+        if(iLen < 0)
+        {
+            //TODO
+            return pBuf;
+        }
+    }
+
+    return pBuf;
+}
+
+
+int main()
+{
+    char buf[33] = {0};
+    unsigned char uacByteBuf[16] = {0};
+
+    memset(uacByteBuf, 1, sizeof(uacByteBuf));
+    uacByteBuf[0] = 0xaa;
+    uacByteBuf[1] = 0xbb;
+    uacByteBuf[2] = 0xcc;
+    uacByteBuf[3] = 0xdd;
+    hextostring(buf, uacByteBuf, sizeof(uacByteBuf));
+    printf("buf : %s\n", buf);
+
+
+    printf("Hello World!\n");
+    return 0;
+}

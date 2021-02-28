@@ -1,0 +1,1 @@
+test:$NL	@for subdir in $(\1);\$NL	do\$NL		echo "building " $$subdir; \$NL	done

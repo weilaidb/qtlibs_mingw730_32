@@ -1,0 +1,14 @@
+nlcount(bstart, bstop)    /* flail interval to totalize newlines. */
+  char *bstart, *bstop;
+{
+    register char *s = bstart;
+    register char *t = bstop;
+    register int count = 0;
+
+    do {      /* loop unroll for older architectures */
+    if (*t == NL) /* ... ask ames!jaw for sample code */
+      count++;
+    } while (t-- > s);
+
+    return (count);
+}

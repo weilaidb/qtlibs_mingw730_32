@@ -1,0 +1,1 @@
+ip.dst == \1$NLip.src == \1$NLip.dst == \1 || ip.src == \1

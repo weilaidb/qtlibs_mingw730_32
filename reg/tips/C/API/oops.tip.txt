@@ -1,0 +1,6 @@
+oops(message)
+  char *message;
+{
+    fprintf(stderr, "%s: %s\n", progname, message);
+    exit(2);
+}

@@ -1,0 +1,26 @@
+时序约束四大步骤
+一、时钟
+二、input delays
+三、output delays
+四、时序例外
+
+一、时钟
+1.输入时钟
+A.输入管脚是CLK
+B.输入管脚是差分
+C.GT或恢复的时钟
+
+2.PLL等衍生时钟
+3.自己分步的时钟
+
+二、input delays
+1.系统同步
+2.源同步
+
+三、output delays
+
+四、时序例外
+
+
+
+

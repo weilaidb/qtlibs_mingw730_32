@@ -1,0 +1,25 @@
+#include <QtWidgets>
+#include <QtNetwork>
+#include <QDebug>
+
+#include <QProgressDialog>
+#include <QNetworkAccessManager>
+#include <QUrl>
+
+
+#include <memory>
+
+
+#include <QApplication>
+#include <QCoreApplication>
+#include <QDir>
+#include <QScreen>
+
+#include <QMetaEnum>
+#include <QTextStream>
+
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QRandomGenerator>
+#include <QTextStream>

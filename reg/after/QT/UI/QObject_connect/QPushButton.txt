@@ -1,0 +1,1 @@
+QObject::connect(ui->\1, SIGNAL(clicked()), this, SLOT(proc_\1()));

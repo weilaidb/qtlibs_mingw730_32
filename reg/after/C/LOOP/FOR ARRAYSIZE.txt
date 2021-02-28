@@ -1,0 +1,1 @@
+#ifndef ARRAYSIZE$NL#define ARRAYSIZE(A) ((unsigned int)(sizeof(A)/sizeof(A[0])))$NL#endif$NL$NL$NL$NL\1\2 = \3;$NLfor(\2 = 0;\2 < ARRAYSIZE(\4);\2++)$NL{$NL    //printf("No:%-03u -- %-03u\n", \2+1, \4[\2]);$NL$NL}

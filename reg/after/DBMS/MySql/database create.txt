@@ -1,0 +1,1 @@
+create database \1;$NLuse \1;$NL$NLcreate database if not exists \1;$NLuse \1;$NL$NL$NLcreate database CHARACTER SET \2;$NLuse \1;$NL$NL

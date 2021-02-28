@@ -1,0 +1,10 @@
+unsigned long tmp;
+
+__asm__ __volatile__("@ atomic_set\n"
+"1:	ldrex	%0, [%1]\n"
+"	strex	%0, %2, [%1]\n"
+"	teq	%0, #0\n"
+"	bne	1b"
+: "=&r" (tmp)
+: "r" (&v->counter), "r" (i)
+: "cc");

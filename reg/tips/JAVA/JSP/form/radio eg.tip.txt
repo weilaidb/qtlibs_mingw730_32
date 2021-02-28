@@ -1,0 +1,5 @@
+球王"贝利"是哪个国家的人:<br>
+<input type="radio" name="R" value="巴西">巴西
+<input type="radio" name="R" value="德国">德国
+<input type="radio" name="R" value="美国">美国
+<input type="radio" name="R" value="法国" checked="ok">法国

@@ -1,0 +1,39 @@
+char *
+pfile(pfname)     /* absorb expression from file */
+  char *pfname;
+{
+    FILE *pf;
+    struct stat patstat;
+    static char *pat;
+
+    if ((pf = fopen(pfname, "r")) == NULL)
+        oops("can't read pattern file");
+    if (fstat(fileno(pf), &patstat) != 0)
+        oops("can't stat pattern file");
+    if (patstat.st_size > PATSIZE) {
+        if (fgrepflag) {  /* defer to unix version */
+            fgrepold++;
+            return "dummy";
+        } else
+            oops("pattern file too big");
+    }
+    if ((pat = malloc((unsigned) patstat.st_size + 1)) == NULL)
+        oops("out of memory to read pattern file");
+    if (patstat.st_size !=
+      fread(pat, sizeof(char), patstat.st_size + 1, pf))
+        oops("error reading pattern file");
+    (void) fclose(pf);
+
+    pat[patstat.st_size] = EOS;
+    if (pat[patstat.st_size - 1] == NL) /* NOP for egrep; helps grep */
+        pat[patstat.st_size - 1] = EOS;
+
+    if (nlcount(pat, &pat[patstat.st_size]) > NALT) {
+        if (fgrepflag)
+            fgrepold++; /* "what's it all about, alfie?" */
+        else
+            egrepold++;
+    }
+    return (pat);
+}
+
