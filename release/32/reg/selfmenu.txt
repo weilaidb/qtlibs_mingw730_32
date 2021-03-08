@@ -565,6 +565,7 @@ QT/LOOP/QStringList iterator
 QT/LOOP/QStringList reverse_iterator
 QT/PRINT/ENTERTIPS
 QT/PRINT/debugApp
+QT/QDir/toNativeSeparators
 QT/QString/ascii_to_string
 QT/QString/qSort
 QT/QString/string_to_ascii
