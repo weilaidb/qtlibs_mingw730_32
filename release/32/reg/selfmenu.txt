@@ -226,6 +226,7 @@ CXX/Cout_in/cout
 CXX/Cout_in/cout size
 CXX/DECLARE_TO_IMPLEMENT
 CXX/DECLARE_TO_IMPLEMENT CLASS
+CXX/DECLARE_TO_IMPLEMENT static
 CXX/INCLUDE/FILTER
 CXX/INCLUDE/GENERATE
 CXX/INCLUDE/常用头文件
@@ -653,8 +654,3 @@ path路径/Android手机拷贝路径
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
-
-
-
-
-
