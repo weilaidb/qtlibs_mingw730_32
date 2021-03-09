@@ -141,6 +141,7 @@ C/API/strcmp
 C/API/strerror
 C/API/strindex
 C/API/strrchr
+C/API/strtok
 C/ARRAY/format
 C/ARRAY/format diag
 C/ARRAYSIZE
@@ -166,6 +167,9 @@ C/DEFINED/一个参数
 C/DEFINED/三个参数
 C/DEFINED/二个参数
 C/EXPRESS/CHECK
+C/Function/int no para
+C/Function/int pointer 1
+C/Function/int pointer 2
 C/GETSET/GETTER
 C/GETSET/GETTER_AND_SETTER
 C/GETSET/SETTER

@@ -1,0 +1,1 @@
+int \1(char *\2, char *\3)$NL{$NL    (void)\2;$NL    (void)\3;$NL    $NL    return 0;$NL}
