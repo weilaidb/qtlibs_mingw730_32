@@ -1,1 +1,1 @@
-snprintf(\1\2, sizeof(\2), "%s", \3);
+int j = 0;$NL$NLj = snprintf(\1\2, sizeof(\2), "%s", \3);$NLif(j < 0)$NL{$NL    printf("error:snprintf\n");$NL    return -1;$NL}$NLprintf("string:\n%s\ncharacter count = %d\n", \2, j);

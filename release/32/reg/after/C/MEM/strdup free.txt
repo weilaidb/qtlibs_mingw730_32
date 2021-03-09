@@ -1,1 +1,1 @@
-char *\1 = NULL;$NL$NL\1 = strdup(\2);$NL//TODO$NL$NL$NL//放在最后判断$NLif(\1)$NL{$NL	free(\1);$NL}
+char *\1 = NULL;$NL$NL\1 = strdup(\2);$NLif(NULL == \1)$NL{$NL    return NULL;$NL//    return;$NL//    return 0;$NL}$NL//TODO$NL$NL$NL//放在最后判断$NLif(\1)$NL{$NL	free(\1);$NL}
