@@ -4,6 +4,11 @@ BASH/cdpath
 BASH/chmod
 BASH/gitinfo
 BASH/hello
+BASH/echo
+BASH/printf
+BASH/printf string 1
+BASH/printf string 2
+BASH/printf string 3
 BASH/usage
 BASH/休眠
 BASH/函数
