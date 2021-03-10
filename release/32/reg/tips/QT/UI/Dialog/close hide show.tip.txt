@@ -1,0 +1,131 @@
+[Qt]从close()与hide()引发的一些思考
+2020-03-10阅读 9710
+原创文章
+原文链接：https://blog.csdn.net/humanking7/article/details/86091087
+
+文章目录
+
+@[toc]
+1. 问题来源
+2. 梳理
+2.1.QWidget 的 show()、hide()、setVisible()、setHidden()
+2.2.QWidget 的 close()
+2.3. QDialog 的 exec()、open()、done()、reject ()和 accept ()
+3. 使用实例
+3.1.  关闭只是隐藏
+3.2. 关闭前2次确认
+Qt从close()与hide()引发的一些思考
+1. 问题来源
+我把Matlab Command Window嵌入到一个MatlabCmdDlg（继承与QDialog，是主窗口的一个子窗口MatlabCmdDlg* m_pMatCmdDlg = nullptr;），当我关闭这个子窗口后（相当于调用close()），不销毁指针m_pMatCmdDlg，当我再次打开这个子窗口时（调用m_pMatCmdDlg->showNormal()），子窗口可以打开，但是Matlab Command Window已经无法再显示了，对应的Matlab进程也已经不存在了（查看进程管理器）。
+最后我重写了virtual void closeEvent(QCloseEvent *event) override;函数，直接显示的调用hide()函数，然后然后忽略这个关闭事件event->ignore()，这样Matlab的进程就不会消失了。
+void MatlabCmdDlg::closeEvent(QCloseEvent *event)
+{
+	this->hide();//只是隐藏，不关闭[关闭之后，Matlab会消失]
+	event->ignore();
+}
+为了让这个子窗口有自己的关闭函数，我又定义了一个 公有函数 void closeDlg()，用于被主程序真正关闭子窗口时使用。
+void MatlabCmdDlg::closeDlg()
+{
+	this->~MatlabCmdDlg();//显示调用析构函数，将Matlab Engine关闭，销毁线程	
+}
+
+MatlabCmdDlg::~MatlabCmdDlg()
+{
+	closeMatlabEngine();
+	
+	
+	if (nullptr != m_pThreadMatlab)
+	{
+		disconnect(m_pThreadMatlab, SIGNAL(openMatlabEngine(bool)), this, SLOT(slot_openMatlabEngine(bool)));
+		m_pThreadMatlab->quitThead();//退出机制
+		m_pThreadMatlab->quit();
+		m_pThreadMatlab->wait();
+		delete m_pThreadMatlab;
+	}
+	
+}
+这个问题也一直也让我很不明白，因为close()在不设定窗口属性为Qt::WA_DeleteOnClose时（QWidget::setAttribute(Qt::WidgetAttribute attribute, bool on = true)），就是调用hide()函数。但是这个实验说明，还是close()还是做了些什么的。
+本文的目的就是梳理一下，关于close()、hide()、show()等一些用法，以及一般的操作。
+2. 梳理
+Qt的窗口close()之后，不是马上就不存在了（看对窗口属性的设置），指向窗口的指针还不一定马上调用它的析构函数。
+2.1.QWidget 的 show()、hide()、setVisible()、setHidden()
+QWidget 的show()、hide()、setVisible()、setHidden() 这4个函数最终调用的只是一个函数：setVisible(bool visible)。这4个函数中只有 setVisible 是独立的，它使得一个Widget可见或不可见，其他3个函数都在调用它。setVisible(false)代表Widget不在界面上显示，但是对象还存在，没有被销毁析构。
+virtual void setVisible(bool visible);
+inline void setHidden(bool hidden) { setVisible(!hidden); }
+inline void hide() { setVisible(false); }
+#ifndef Q_WS_WINCE
+	inline void show() { setVisible(true); }
+#else
+	void show(); // 此函数在Qwidget_wince.cpp中实现，最终还是调用了setVisible(true);
+#endif
+2.2.QWidget 的 close()
+QWidget的close()函数在帮助文档中是这样的：
+ Closes this widget. Returns true if the widget was closed; otherwise returns false.
+ 关闭窗口，当窗口关闭了返回true，否则false
+ First it sends the widget a QCloseEvent. The widget is hidden if it accepts the close event. If it ignores the event, nothing happens. The default implementation of QWidget::closeEvent() accepts the close event.
+ 首先这个函数会产生一个QCloseEvent事件，如果接受了这个事件（默认调用QWidget::closeEvent()接受这个关闭事件），它就调用hide()函数，隐藏界面。如果忽略这个事件，什么事情都不会发生。
+ If the widget has the Qt::WA_DeleteOnClose flag, the widget is also deleted. A close events is delivered to the widget no matter if the widget is visible or not.
+ 如果窗口设置过标记位：Qt::WA_DeleteOnClose（关闭时销毁窗口），则出来调用hide()外，还会调用deleteLater()函数。不管窗口显示或者不显示，关闭事件都会发送给窗体。
+ 
+2.3. QDialog 的 exec()、open()、done()、reject ()和 accept ()
+QDialog 和 QWidget 相比，多了 exec()、open()、done()、reject ()和 accept () 5个相关函数。
+ 模态对话框（Modal Dialog） 与 非模态对话框（Modeless Dialog） 的概念不是Qt所独有的，在各种不同的平台下都存在。又有叫法是称为模式对话框，无模式对话框等。
+ 模态对话框就是在其没有被关闭之前，用户不能与同一个应用程序的其他窗口进行交互，直到该对话框关闭。
+ 非模态对话框，当被打开时，用户既可选择和该对话框进行交互，也可以选择同应用程序的其他窗口交互。
+ 
+QDialog::show()
+//非模态窗口显示，但是如果在窗口中显示设置为模态对话框：setModal (true)，则显示半模态对话框。
+
+QDailog::open()
+//模态(窗口级)窗口显示。
+
+QDialog::exec()
+//模态(应用程序级)窗口显示。exec() 先设置modal属性，而后调用 show() 显示对话框，
+//最后启用事件循环。在用户关闭这个对话框之前，不能和同一应用程序中的其它窗口交互。
+
+QDialog::done(int)
+//和close比较类似，因为它调用了close所调用的 close_helper 函数。
+//只不过不同于close函数，它始终会先让Widget不可见，然后close操作，最后根据参数发射信号。
+
+QDialog::reject()
+//调用done()函数，源码为：done(Rejected)。
+
+QDialog::accept()
+//调用done()函数，源码为：done(Accepted)。
+3. 使用实例
+首先类的声明头文件里面都得有
+#include <QDialog>
+#include "ui_MatlabCmdDlg.h"
+#include <QCloseEvent>
+#pragma execution_character_set("utf-8") 
+//...
+class MatlabCmdDlg : public QDialog
+{
+	Q_OBJECT
+
+public:
+//...
+protected:
+	virtual void closeEvent(QCloseEvent *event) override;//重写
+	
+};
+3.1.  关闭只是隐藏
+void MatlabCmdDlg::closeEvent(QCloseEvent *event)
+{
+	this->hide();//只是隐藏，不关闭[关闭之后，Matlab会消失]
+	event->ignore();
+}
+3.2. 关闭前2次确认
+void MatlabCmdDlg::closeEvent(QCloseEvent *event)
+{
+    int ret = QMessageBox::question(this, "关闭窗口?", "是否要关闭本窗口?", 
+              QMessageBox::Yes | QMessageBox::Default, QMessageBox::No | QMessageBox::Escape);
+    
+    if (ret == QMessageBox::Yes) {
+        event->accept();
+    }
+    else {
+        event->ignore();
+    }
+}
+
