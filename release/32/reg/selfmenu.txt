@@ -2,9 +2,9 @@ Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 BASH/cdpath
 BASH/chmod
+BASH/echo
 BASH/gitinfo
 BASH/hello
-BASH/echo
 BASH/printf
 BASH/printf string 1
 BASH/printf string 2
@@ -569,6 +569,8 @@ Python/语法/tryException
 Python/语法/循环/string
 Python/语法/排序去重复
 QT/CHECK/UNUSED
+QT/CMD/execute bat
+QT/CMD/execute linux cmd
 QT/Express/声明类declare class QT_BEGIN_NAMESPACE
 QT/LOOP/QStringList iterator
 QT/LOOP/QStringList reverse_iterator
@@ -590,6 +592,7 @@ QT/UI/Desktop/Heigth
 QT/UI/Desktop/SetCenter
 QT/UI/Desktop/Width
 QT/UI/Dialog/CDialogNewUt
+QT/UI/Dialog/close hide show
 QT/UI/Menu
 QT/UI/Menu Custom
 QT/UI/Print/qDebug
