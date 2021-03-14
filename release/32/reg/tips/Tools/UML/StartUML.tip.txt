@@ -1,0 +1,8 @@
+https://www.cnblogs.com/applerosa/p/10488942.html
+https://www.lanzous.com/b695678
+
+下载地址在文末；
+
+1. 安装下载好的安装包：  StarUML Setup 3.1.0.exe 
+2. 安装完毕之后找到安装位置(可以右键安装图标查找起始位置):进入resource 文件夹，用下载下来的 app.asar 替换原来的；不放心可以做备份。
+4. 打开 菜单栏上的 Help >> Enter License Key, 输入任意字符串，点击OK；弹出注册成功；
