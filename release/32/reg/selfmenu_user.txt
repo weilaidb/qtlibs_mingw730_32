@@ -1,2 +1,0 @@
-Tools/UML/StartUML
-Tools/UML/常用软件
