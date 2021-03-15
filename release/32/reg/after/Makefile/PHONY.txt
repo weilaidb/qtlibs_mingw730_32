@@ -1,1 +1,1 @@
-.PHONY: \1
+.PHONY: \1$NL$NLcat > dirmak/PHONY.mak <<EOF$NL.PHONY: \1$NL$NLEOF

@@ -489,6 +489,8 @@ Makefile/PHONY
 Makefile/define
 Makefile/depend
 Makefile/echo
+Makefile/echo @
+Makefile/include
 Makefile/override命令行参数设置
 Makefile/parameter/--no-print-directory
 Makefile/parameter/-e系统环境变量覆盖Makefile定义
@@ -665,6 +667,7 @@ Tools/svn/order 忽略多值
 Tools/查看代码工具/OpenGrok/配置
 Tools/生成文件名 filename
 Windows/Fonts
+makefile inc
 path路径/Android手机拷贝路径
 术语/Linux/FIB Forward Information Base
 术语/异或
