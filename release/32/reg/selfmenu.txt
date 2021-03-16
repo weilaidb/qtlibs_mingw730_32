@@ -3,6 +3,7 @@ Algorithm 算法/大数进制转换
 BASH/cdpath
 BASH/chmod
 BASH/echo
+BASH/eg
 BASH/gitinfo
 BASH/hello
 BASH/printf
@@ -150,6 +151,7 @@ C/API/strtok
 C/ARRAY/format
 C/ARRAY/format diag
 C/ARRAYSIZE
+C/ARRAY_SIZE
 C/Check/Len Zero 1
 C/Check/Len Zero 2
 C/Check/Len Zero 3
