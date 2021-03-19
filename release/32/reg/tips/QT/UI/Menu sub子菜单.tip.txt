@@ -1,0 +1,30 @@
+void MainWindow::nodes_menu_left(QMenu *pMenu)
+{
+    if(CExpressPub::isNullPtr(pMenu))
+    {
+        return;
+    }
+
+    pMenu->addMenu(proc_frequse_menu());    
+}
+
+
+QMenu *MainWindow::proc_frequse_menu()
+{
+    QMenu *pFreqUse = new QMenu("常用配置列表");
+    read_FreqUseFile();
+    //更新频繁使用列表
+    updateListWidgetFrequse();
+    ////debugApp() << m_listfrequse.count();
+    foreach (QString item, m_listfrequse) {
+        QAction *pTmpAction = CUIPub::createActionFull(item);
+        pFreqUse->addAction(pTmpAction);
+    }
+
+    if(pFreqUse)
+    {
+        QObject::connect(pFreqUse, SIGNAL(triggered(QAction *)), this, SLOT(proc_action_gen_custom_action(QAction *)));
+    }
+
+    return pFreqUse;
+}
