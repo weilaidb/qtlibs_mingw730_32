@@ -148,6 +148,8 @@ C/API/strerror
 C/API/strindex
 C/API/strrchr
 C/API/strtok
+C/API/syscall
+C/API/syscalls
 C/ARRAY/format
 C/ARRAY/format diag
 C/ARRAYSIZE
