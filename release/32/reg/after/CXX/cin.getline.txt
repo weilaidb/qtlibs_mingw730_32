@@ -1,0 +1,1 @@
+const int SIZE = \1;$NLchar \2[SIZE];$NLmemset(\2,0,sizeof(\2));$NL$NLcout << "Enter a \2: ";$NLcin.getline (\2, SIZE);$NLcout << "You entered " << \2 << endl;
