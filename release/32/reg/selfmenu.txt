@@ -254,6 +254,7 @@ CXX/LOOP/vector
 CXX/More/虚函数
 CXX/More/虚函数 eg
 CXX/externc __cplusplus
+CXX/new class static
 DBMS/MySql/database create
 DBMS/MySql/database drop
 DBMS/MySql/delete
