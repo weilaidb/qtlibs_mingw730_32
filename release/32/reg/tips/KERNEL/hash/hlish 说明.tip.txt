@@ -1,0 +1,44 @@
+Linux内核 hlist_head/hlist_node结构解析
+￼
+jingxiang519 2012-11-10 13:32:44 ￼ 2417 ￼ 收藏 3
+内核中的定义：
+struct hlist_head {
+    struct hlist_node *first;
+};
+
+struct hlist_node {
+    struct hlist_node *next, **pprev;
+};
+这个数据结构与一般的hash-list数据结构定义有以下的区别:
+
+1) 首先,hash的头节点仅存放一个指针,也就是first指针,指向的是list的头结点,没有tail指针也就是指向list尾节点的指针,这样的考虑是为了节省空间——尤其在hash bucket很大的情况下可以节省一半的指针空间.
+
+2) list的节点有两个指针,但是需要注意的是pprev是指针的指针,它指向的是前一个节点的next指针；其中首元素的pprev指向链表头的fist字段，末元素的next为NULL. (见下图).
+￼
+
+现在疑问来了:为什么pprev不是prev也就是一个指针,用于简单的指向list的前一个指针呢?这样即使对于first而言,它可以将prev指针指向list的尾结点.
+
+主要是基于以下几个考虑:
+1) hash-list中的list一般元素不多(如果太多了一般是设计出现了问题),即使遍历也不需要太大的代价,同时需要得到尾结点的需求也不多.
+
+2) 如果对于一般节点而言,prev指向的是前一个指针,而对于first也就是hash的第一个元素而言prev指向的是list的尾结点,那么在删除一个元素的时候还需要判断该节点是不是first节点进行处理.而在hlist提供的删除节点的API中,并没有带上hlist_head这个参数,因此做这个判断存在难度.
+
+3) 以上两点说明了为什么不使用prev,现在来说明为什么需要的是pprev,也就是一个指向指针的指针来保存前一个节点的next指针--因为这样做即使在删除的节点是first节点时也可以通过*pprev = next;直接修改指针的指向.来看删除一个节点和修改list头结点的两个API:
+static  inline void  hlist_add_head( struct  hlist_node * n, struct  hlist_head * h)
+{
+    struct  hlist_node * first =  h -> first;
+    n -> next =  first;
+    if  (first)
+        first -> pprev =  & n -> next;
+    h -> first =  n;
+    n -> pprev =  & h -> first; // 此时n是hash的first指针,因此它的pprev指向的是hash的first指针 的地址
+}
+
+static  inline void  __hlist_del( struct  hlist_node * n)
+{
+    struct  hlist_node * next =  n -> next;
+    struct  hlist_node ** pprev =  n -> pprev;
+    * pprev =  next; //  pprev指向的是前一个节点的next指针,而当该节点是first节点时指向自己,因此两种情况下不论该节点是一般的节点还是头结点都可以通过这个操作删除掉所需删除的节点
+    if  (next)
+        next -> pprev =  pprev;
+}

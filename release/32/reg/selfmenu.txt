@@ -436,6 +436,9 @@ KERNEL/FS/mount-flags
 KERNEL/GCC/__aligned
 KERNEL/LIST_HEAD
 KERNEL/basetype
+KERNEL/hash/hlish add
+KERNEL/hash/hlish del
+KERNEL/hash/hlish 说明
 KERNEL/log_format
 KERNEL/module/makefile
 KERNEL/module/template
