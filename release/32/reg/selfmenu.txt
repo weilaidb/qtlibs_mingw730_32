@@ -143,6 +143,7 @@ C/API/errno
 C/API/execvp
 C/API/fstat
 C/API/getopt
+C/API/memset sizeof
 C/API/nlcount
 C/API/oops
 C/API/pfile
@@ -242,6 +243,8 @@ C/注释comments. insertFileHeader 头文件
 C/注释comments. insertFileHeader 源文件
 C/注释comments. insertFuncHeader 函数名
 CXX/ARRAYSIZE
+CXX/Cout no prar
+CXX/Cout no prara endl
 CXX/Cout_in/cout
 CXX/Cout_in/cout size
 CXX/DECLARE_TO_IMPLEMENT
@@ -255,9 +258,12 @@ CXX/LOOP/list reverse_iterator
 CXX/LOOP/map/C++ map用法
 CXX/LOOP/map/map
 CXX/LOOP/vector
+CXX/MAP/Cmd Handler
 CXX/More/虚函数
 CXX/More/虚函数 eg
+CXX/cin.getline
 CXX/externc __cplusplus
+CXX/new class static
 DBMS/MySql/database create
 DBMS/MySql/database drop
 DBMS/MySql/delete
@@ -434,6 +440,9 @@ KERNEL/FS/mount-flags
 KERNEL/GCC/__aligned
 KERNEL/LIST_HEAD
 KERNEL/basetype
+KERNEL/hash/hlish add
+KERNEL/hash/hlish del
+KERNEL/hash/hlish 说明
 KERNEL/log_format
 KERNEL/module/makefile
 KERNEL/module/template
