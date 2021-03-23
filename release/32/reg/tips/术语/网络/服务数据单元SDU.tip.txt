@@ -1,0 +1,1 @@
+OSI把层与层之间交换的数据的单位称为服务数据单元SDU（Service Data Unit)，它可以与PDU不一样。例如，可以是多个SDU合成为一个PDU，也可以是一个SDu划分为几个PDU。
