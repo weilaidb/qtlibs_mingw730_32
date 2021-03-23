@@ -11,6 +11,10 @@ BASH/printf string 1
 BASH/printf string 2
 BASH/printf string 3
 BASH/usage
+BASH/usage para1
+BASH/usage para2
+BASH/usage para3
+BASH/usage para4
 BASH/休眠
 BASH/函数
 BASH/变量/命令行参数
@@ -684,3 +688,22 @@ path路径/Android手机拷贝路径
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
