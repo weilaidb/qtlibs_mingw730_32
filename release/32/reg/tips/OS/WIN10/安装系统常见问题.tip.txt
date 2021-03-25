@@ -1,0 +1,5 @@
+问题解决：win10应用程序无法正常启动0xc000007b
+https://blog.csdn.net/alazyperson/article/details/108247543
+https://support.microsoft.com/zh-cn/topic/%E6%9C%80%E6%96%B0%E6%94%AF%E6%8C%81%E7%9A%84-visual-c-%E4%B8%8B%E8%BD%BD-2647da03-1eea-4433-9aff-95f26a218cc0
+Update for Visual C++ 2013 Redistributable Package
+X86和X64全下载安装
