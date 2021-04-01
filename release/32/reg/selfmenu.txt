@@ -78,6 +78,7 @@ BAT/网络network/AF/address families linux
 BAT/网络network/IPPROTO/IP protocols
 BAT/网络network/SOCK TYPE/sock type
 BAT/网络network/SOCK TYPE/原始套接字SOCK_RAW
+BAT/网络network/VTP
 BAT/网络network/acl
 BAT/网络network/ethertype
 BAT/网络network/icmp
