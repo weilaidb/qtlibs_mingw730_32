@@ -1,0 +1,10 @@
+/* 函数 、 行 */
+#ifndef ENTERTIPS
+#define ENTERTIPS fprintf(stdout, "%s:%d\n", __FUNCTION__ , __LINE__ );
+#endif
+
+/*文件、 函数 、 行 */
+#ifndef ENTERTIPS
+#define ENTERTIPS fprintf(stdout, "%s:%s:%d\n", __FILE__, __FUNCTION__ , __LINE__ );
+#endif
+
