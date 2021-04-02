@@ -329,6 +329,8 @@ JAVA/JSP/JavaBean/parseInt Long Float Double
 JAVA/JSP/JavaBean/setProperty
 JAVA/JSP/JavaBean/useBean
 JAVA/JSP/JavaBean/介绍
+JAVA/JSP/Print/System.err
+JAVA/JSP/Print/System.in
 JAVA/JSP/Print/System.out.print
 JAVA/JSP/Print/System.out.println
 JAVA/JSP/Servlet/HttpServlet
