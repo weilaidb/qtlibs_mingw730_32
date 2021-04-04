@@ -1,5 +1,1 @@
-	pthread_mutex_t a;
-
-	pthread_mutex_init(&a, NULL);
-
-	pthread_mutex_lock(&a);
+test_mutex
