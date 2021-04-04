@@ -78,6 +78,7 @@ BAT/网络network/AF/address families linux
 BAT/网络network/IPPROTO/IP protocols
 BAT/网络network/SOCK TYPE/sock type
 BAT/网络network/SOCK TYPE/原始套接字SOCK_RAW
+BAT/网络network/VTP
 BAT/网络network/acl
 BAT/网络network/ethertype
 BAT/网络network/icmp
@@ -171,6 +172,7 @@ C/Condition/if else
 C/Condition/if only
 C/DATE_TIME
 C/DEFINE/CHECK_POINTER_RET
+C/DEFINE/ENTERTIPS
 C/DEFINE/ERROR错误定义列表
 C/DEFINE/MAX
 C/DEFINE/MIN
@@ -196,6 +198,7 @@ C/INCLUDE/GENERATE
 C/INCLUDE/常用头文件
 C/LOOP/FOR
 C/LOOP/FOR ARRAYSIZE
+C/LOOP/SWITCH Case 2 ARRAY
 C/LOOP/WHILE
 C/MAIN
 C/MEM/malloc free
@@ -327,6 +330,9 @@ JAVA/JSP/JavaBean/parseInt Long Float Double
 JAVA/JSP/JavaBean/setProperty
 JAVA/JSP/JavaBean/useBean
 JAVA/JSP/JavaBean/介绍
+JAVA/JSP/Print/PrintWriter
+JAVA/JSP/Print/System.err
+JAVA/JSP/Print/System.in
 JAVA/JSP/Print/System.out.print
 JAVA/JSP/Print/System.out.println
 JAVA/JSP/Servlet/HttpServlet
