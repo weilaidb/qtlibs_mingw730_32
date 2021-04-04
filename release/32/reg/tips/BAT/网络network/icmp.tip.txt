@@ -15,7 +15,7 @@ Internet Control Message Protocol
 ICMP头部 + ICMP数据  abcdefghi... 32个字节                        ICMP头部 + ICMP数据  abcdefghi... 32个字节
 类型                                                              类型                                      
 8代表ping请求                                                     0代表ping应答                             
-3代表目标主机不可达
+3代表目标主机不可达(路由器回应的)
 11代表TTL超时
 
 5.ICMP报文结构
