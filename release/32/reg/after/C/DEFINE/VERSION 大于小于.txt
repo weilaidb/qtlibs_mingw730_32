@@ -1,0 +1,1 @@
+#define \1_VERSION_MAJOR   7$NL#define \1_VERSION_MINOR  16$NL#define \1_VERSION_MICRO 100$NL$NL#ifndef FF_API_NEXT$NL#define FF_API_NEXT                         (\1_VERSION_MAJOR < 8)$NL#endif$NL$NL
