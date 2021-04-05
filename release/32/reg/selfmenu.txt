@@ -484,6 +484,8 @@ LINUX/Printk/KERN_WARNING
 LINUX/Printk/说明
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
+LINUX/Ubuntu/必备命令 order
+LINUX/Ubuntu/必备软件 necessary software
 LINUX/Vim/vim实用技巧
 LINUX/命令行/Centos 7 搭建samba
 LINUX/命令行/SELinux配置文件
@@ -701,6 +703,18 @@ Tools/svn/order
 Tools/svn/order 忽略多值
 Tools/查看代码工具/OpenGrok/配置
 Tools/生成文件名 filename
+UNITTEST/GTEST/ASSERT_EQ
+UNITTEST/GTEST/ASSERT_FALSE
+UNITTEST/GTEST/ASSERT_GE
+UNITTEST/GTEST/ASSERT_GT
+UNITTEST/GTEST/ASSERT_LE
+UNITTEST/GTEST/ASSERT_LT
+UNITTEST/GTEST/ASSERT_NE
+UNITTEST/GTEST/ASSERT_TRUE
+UNITTEST/GTEST/ASSERT_xxx
+UNITTEST/GTEST/header
+UNITTEST/GTEST/make
+UNITTEST/GTEST/make compile problem编译问题
 Windows/Fonts
 path路径/Android手机拷贝路径
 术语/Linux/FIB Forward Information Base
