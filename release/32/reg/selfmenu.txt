@@ -1,5 +1,6 @@
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
+BASH/alias/public use
 BASH/cdpath
 BASH/chmod
 BASH/echo
