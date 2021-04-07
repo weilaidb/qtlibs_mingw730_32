@@ -35,3 +35,4 @@ Ctrl+S    -- 编辑配置文件
 Ctrl+T    -- clearTry
 Ctrl+U    -- 更新一次(配置文件)
 Ctrl+W    -- 切换清除左侧内容
+Alt+C     -- 自动转
