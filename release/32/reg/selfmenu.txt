@@ -177,6 +177,7 @@ C/DEFINE/ENTERTIPS
 C/DEFINE/ERROR错误定义列表
 C/DEFINE/MAX
 C/DEFINE/MIN
+C/DEFINE/STATIC
 C/DEFINE/VERSION
 C/DEFINE/VERSION 大于小于
 C/DEFINE/static_inline空间换时间
@@ -411,6 +412,7 @@ JAVA/JSP/动作标记
 JAVA/JSP/左右显示
 JAVA/JSP/常见问题点
 JAVA/JSP/知识点
+JAVA/Org/StringUtils/base
 JAVA/RegExp/Pattern
 JAVA/css/include引用
 JAVA/javascript/include引用
