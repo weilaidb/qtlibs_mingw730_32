@@ -43,3 +43,17 @@ NETSTAT [-a] [-b] [-e] [-f] [-n] [-o] [-p proto] [-r] [-s] [-t] [interval]
                 按 CTRL+C 停止重新显示统计。如果省略，则 netstat
                 将打印当前的配置信息一次。
 
+
+
+中文名词对照：
+英文名词	中文名词
+Proto	协议
+Local Address	本机地址
+Foreign Address	远程地址
+State	状态
+LISTENING	监听中
+ESTABLISHED	已连接
+SYN_SENT	发送了连接建立请求（准备建立连接）
+CLOSE_WAIT	等待本地用户发连接中断请求中（这是准备关闭连接的一个步骤，意味着这个连接正在关闭）
+TIME_WAIT	发了ACK进入等待状态确保远端正常关闭（这是准备关闭连接的一个步骤，意味着这个连接正在关闭）
+LAST_ACK	等待对方回应一个ACK（这是准备关闭连接的一个步骤，意味着这个连接正在关闭）
