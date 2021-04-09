@@ -347,6 +347,7 @@ JAVA/JSP/Servlet/HttpServlet format
 JAVA/JSP/Servlet/HttpServlet format doGet doPost
 JAVA/JSP/Servlet/web.xml
 JAVA/JSP/Tag文件与标记
+JAVA/JSP/Tag标签库
 JAVA/JSP/bgcolor
 JAVA/JSP/bgcolor 护眼色
 JAVA/JSP/br 换行符
@@ -575,6 +576,7 @@ Makefile/条件判断/ifneq
 Makefile/模式变量
 OS/WIN10/安装系统常见问题
 OS/WIN7/安装系统常见问题
+Office/Excel/Macro/SpellNumber
 PACKET Parse/ARP
 PACKET Parse/Ethernet II
 PACKET Parse/HTTP
@@ -588,6 +590,9 @@ PACKET Parse/test
 PACKET Parse/test2
 PACKET Parse/报文处理成一行规则
 PACKET Parse/生成序号
+PHP/install
+PHP/test.php
+PHP/testrail
 PhotoShop/常用快捷键 shortcut
 Pthread/Create
 Pthread/pthread_mutex
@@ -741,4 +746,3 @@ path路径/Android手机拷贝路径
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
-Office/Excel/Macro/SpellNumber
