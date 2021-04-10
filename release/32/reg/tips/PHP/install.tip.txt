@@ -397,3 +397,46 @@ e、配置域名
 
 以上就是win7下PHP7的安装配置详解的详细内容，更多请关注php中文网其它相关文章！
 
+
+
+
+
+
+
+
+
+===================配置的补丁==========
+ httpd-2.4.46-win64-VS16/Apache24/conf/httpd.conf | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/httpd-2.4.46-win64-VS16/Apache24/conf/httpd.conf b/httpd-2.4.46-win64-VS16/Apache24/conf/httpd.conf
+index f60cbec..9fbde6d 100644
+--- a/httpd-2.4.46-win64-VS16/Apache24/conf/httpd.conf
++++ b/httpd-2.4.46-win64-VS16/Apache24/conf/httpd.conf
+@@ -34,7 +34,7 @@
+ # same ServerRoot for multiple httpd daemons, you will need to change at
+ # least PidFile.
+ #
+-Define SRVROOT "c:/Apache24"
++Define SRVROOT "E:\software\php_work\httpd-2.4.46-win64-VS16\Apache24"
+ 
+ ServerRoot "${SRVROOT}"
+ 
+@@ -68,6 +68,7 @@ Listen 80
+ # Statically compiled modules (those listed by `httpd -l') do not need
+ # to be loaded here.
+ #
++LoadModule php7_module "E:\software\php_work\php-7.3.27-Win32-VC15-x64\php7apache2_4.dll"
+ # Example:
+ # LoadModule foo_module modules/mod_foo.so
+ #
+@@ -420,6 +421,7 @@ LogLevel warn
+     #
+     AddType application/x-compress .Z
+     AddType application/x-gzip .gz .tgz
++    AddType application/x-httpd-php .php .html .htm
+ 
+     #
+     # AddHandler allows you to map certain file extensions to "handlers":
+
+
