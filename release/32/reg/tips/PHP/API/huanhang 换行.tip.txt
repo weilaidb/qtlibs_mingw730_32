@@ -1,0 +1,2 @@
+print "<br>";
+echo "<br>";

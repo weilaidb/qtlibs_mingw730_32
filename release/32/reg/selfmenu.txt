@@ -590,7 +590,23 @@ PACKET Parse/test
 PACKET Parse/test2
 PACKET Parse/报文处理成一行规则
 PACKET Parse/生成序号
+PHP/API/EOF
+PHP/API/EOF variable
+PHP/API/array
+PHP/API/bool
+PHP/API/class
+PHP/API/echo
+PHP/API/echo 换行
+PHP/API/header
+PHP/API/huanhang 换行
+PHP/API/null
+PHP/API/var_dump
+PHP/FUNC/echo 和 print 区别
+PHP/FUNC/function para1
+PHP/FUNC/function void
 PHP/install
+PHP/shortcut快捷键 zend studio
+PHP/study教程
 PHP/test.php
 PHP/testrail
 PhotoShop/常用快捷键 shortcut
