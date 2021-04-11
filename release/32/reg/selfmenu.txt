@@ -593,17 +593,42 @@ PACKET Parse/生成序号
 PHP/API/EOF
 PHP/API/EOF variable
 PHP/API/array
+PHP/API/array count
+PHP/API/array for遍历
+PHP/API/array rsort
+PHP/API/array sort
+PHP/API/array 关联数组
+PHP/API/array 关联数组 for遍历
+PHP/API/array 关联数组2
 PHP/API/bool
 PHP/API/class
+PHP/API/combined comparison operator
+PHP/API/combined comparison operator 1
+PHP/API/compare
+PHP/API/compare with type
+PHP/API/condition/if
+PHP/API/condition/if else
+PHP/API/condition/if elseif else
+PHP/API/condition/switch
+PHP/API/define
 PHP/API/echo
 PHP/API/echo 换行
+PHP/API/echo 换行 br
 PHP/API/header
 PHP/API/huanhang 换行
+PHP/API/intdiv整除
 PHP/API/null
+PHP/API/string
+PHP/API/string PHP 5 String 函数
+PHP/API/string join
+PHP/API/string strlen
+PHP/API/string strpos
 PHP/API/var_dump
 PHP/FUNC/echo 和 print 区别
 PHP/FUNC/function para1
 PHP/FUNC/function void
+PHP/httpd
+PHP/httpd.exe -M
 PHP/install
 PHP/shortcut快捷键 zend studio
 PHP/study教程
