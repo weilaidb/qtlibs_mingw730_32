@@ -593,8 +593,12 @@ PACKET Parse/生成序号
 PHP/API/EOF
 PHP/API/EOF variable
 PHP/API/array
+PHP/API/array arsort
+PHP/API/array asort
 PHP/API/array count
 PHP/API/array for遍历
+PHP/API/array krsort
+PHP/API/array ksort
 PHP/API/array rsort
 PHP/API/array sort
 PHP/API/array 关联数组
@@ -623,6 +627,12 @@ PHP/API/string PHP 5 String 函数
 PHP/API/string join
 PHP/API/string strlen
 PHP/API/string strpos
+PHP/API/superglobals 超级全局变量
+PHP/API/superglobals 超级全局变量 GLOBALS
+PHP/API/superglobals 超级全局变量 _GET
+PHP/API/superglobals 超级全局变量 _POST
+PHP/API/superglobals 超级全局变量 _REQUEST
+PHP/API/superglobals 超级全局变量 _SERVER
 PHP/API/var_dump
 PHP/FUNC/echo 和 print 区别
 PHP/FUNC/function para1
