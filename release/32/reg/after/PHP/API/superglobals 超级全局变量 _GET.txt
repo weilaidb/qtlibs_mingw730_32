@@ -1,0 +1,1 @@
+<html>$NL<body>$NL$NL<a href="test_get.php?subject=PHP&web=runoob.com">Test $GET</a>$NL$NL</body>$NL</html>$NL$NL$NL<html>$NL<body>$NL $NL<?php $NLecho "Study " . $_GET['subject'] . " @ " . $_GET['web'];$NL?>$NL $NL</body>$NL</html>

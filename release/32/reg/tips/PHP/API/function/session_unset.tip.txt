@@ -1,0 +1,1 @@
+session_unset() 释放当前在内存中已经创建的所有 $_SESSION 变量，但不删除 session 文件以及不释放对应的 session id。
