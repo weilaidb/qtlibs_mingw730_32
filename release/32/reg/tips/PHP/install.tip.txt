@@ -2,6 +2,10 @@
 https://windows.php.net/download#php-8.0
 https://www.apachelounge.com/download/
 
+http://192.168.0.108/hello/
+http://localhost/
+http://localhost/testrail/index.php
+http://localhost/hello/test.php
 【注意:】
 下载版本必须为 Thread Safe
 

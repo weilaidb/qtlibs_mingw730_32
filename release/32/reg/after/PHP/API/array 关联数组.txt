@@ -1,0 +1,1 @@
+$\1=array(\2);$NLecho "Peter is " . $\1['Peter'] . " years old.";
