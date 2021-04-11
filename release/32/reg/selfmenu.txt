@@ -618,9 +618,95 @@ PHP/API/define
 PHP/API/echo
 PHP/API/echo 换行
 PHP/API/echo 换行 br
+PHP/API/function/Joomla
+PHP/API/function/_FILES
+PHP/API/function/_SESSION
+PHP/API/function/__call
+PHP/API/function/__construct
+PHP/API/function/__destruct
+PHP/API/function/__get
+PHP/API/function/__set
+PHP/API/function/array_keys
+PHP/API/function/array_push
+PHP/API/function/array_reverse
+PHP/API/function/array_slice
+PHP/API/function/array_sum
+PHP/API/function/class_exists
+PHP/API/function/const variable 魔术常量
+PHP/API/function/const variable 魔术常量 __CLASS__
+PHP/API/function/const variable 魔术常量 __DIR__
+PHP/API/function/const variable 魔术常量 __FILE__
+PHP/API/function/const variable 魔术常量 __FUNCTION__
+PHP/API/function/const variable 魔术常量 __LINE__
+PHP/API/function/const variable 魔术常量 __METHOD__
+PHP/API/function/const variable 魔术常量 __NAMESPACE__
+PHP/API/function/const variable 魔术常量 __TRAIT__
+PHP/API/function/curl_init
+PHP/API/function/date
+PHP/API/function/date_default_timezone_set
+PHP/API/function/eregi
+PHP/API/function/filter_has_var
+PHP/API/function/func_get_args
+PHP/API/function/getMessage
+PHP/API/function/get_parent_class
+PHP/API/function/getenv
+PHP/API/function/getlastmod
+PHP/API/function/glob
+PHP/API/function/gzcompress gzuncompress
+PHP/API/function/header
+PHP/API/function/headers_list
+PHP/API/function/heredoc
+PHP/API/function/htmlentities
+PHP/API/function/implode
+PHP/API/function/in_array
+PHP/API/function/include
+PHP/API/function/include_once
+PHP/API/function/is_a
+PHP/API/function/is_bool
+PHP/API/function/is_callable
+PHP/API/function/is_uploaded_file
+PHP/API/function/isset
+PHP/API/function/max_input_time
+PHP/API/function/memory_get_usage
+PHP/API/function/mysql_connect
+PHP/API/function/mysql_fetch_row
+PHP/API/function/namespace
+PHP/API/function/namespace sub
+PHP/API/function/no para
+PHP/API/function/para1
+PHP/API/function/para2
+PHP/API/function/preg_match
+PHP/API/function/preg_replace
+PHP/API/function/prev
+PHP/API/function/rand
+PHP/API/function/require
+PHP/API/function/return val
+PHP/API/function/scandir
+PHP/API/function/self
+PHP/API/function/session
+PHP/API/function/session_destroy
+PHP/API/function/session_unset
+PHP/API/function/set_time_limit
+PHP/API/function/setcookie
+PHP/API/function/strip_tags
+PHP/API/function/strrpos
+PHP/API/function/strtotime
+PHP/API/function/strtoupper
+PHP/API/function/system
+PHP/API/function/test
+PHP/API/function/trim
+PHP/API/function/uniqid
+PHP/API/function/upload_max_filesize
+PHP/API/function/upload_tmp_dir
+PHP/API/function/xml
 PHP/API/header
 PHP/API/huanhang 换行
 PHP/API/intdiv整除
+PHP/API/loop/do while
+PHP/API/loop/for
+PHP/API/loop/foreach
+PHP/API/loop/foreach key
+PHP/API/loop/while
 PHP/API/null
 PHP/API/string
 PHP/API/string PHP 5 String 函数

@@ -1,0 +1,1 @@
+function \1($\2)$NL{$NL    echo $\2 . " Refsnes.<br>";$NL}$NL $NLecho "My name is ";$NL\1("Kai Jim");$NLecho "My sister's name is ";$NL\1("Hege");$NLecho "My brother's name is ";$NL\1("Stale");
