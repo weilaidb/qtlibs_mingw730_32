@@ -6,6 +6,8 @@ netstat -ano
 
 #显示各个进程都开启了哪些端口
 netstat -n -b
+tasklist | findstr 5116
+taskkill /F /PID  5116
 
 #tcp 协议，每3秒显示一次
 netstat -np tcp 3

@@ -1,7 +1,10 @@
 下载路径
 https://windows.php.net/download#php-8.0
 https://www.apachelounge.com/download/
+套件 XAMPP
+https://www.apachefriends.org/zh_cn/index.html
 
+常用链接
 http://192.168.0.108/hello/
 http://localhost/
 http://localhost/testrail/index.php
@@ -10,6 +13,36 @@ http://localhost/hello/test.php
 下载版本必须为 Thread Safe
 
 D:\software\php\httpd-2.4.46-win64-VS16\Apache24\bin
+
+
+
+常见问题:
+1.XAMPP Apache无法启动，端口443被占用
+8:03:18  [Apache] 	Port 443 in use by ""D:\Program Files (x86)\VMware\VMware Workstation\vmware-hostd.exe" -u "C:\ProgramData\VMware\hostd\config.xml"" with PID 6660!
+8:03:18  [Apache] 	Apache WILL NOT start without the configured ports free!
+
+2.XAMPP MySQL无法启动
+与本地使用的mysql服务冲突，先停止
+
+3.XAMPP Tomcat无法启动
+8:23:45  [Tomcat] 	Attempting to start Tomcat app...
+8:23:45  [Tomcat] 	Tomcat Started/Stopped with errors, return code: 1
+8:23:45  [Tomcat] 	Make sure you have Java JDK or JRE installed and the required ports are free
+8:23:45  [Tomcat] 	Check the "/xampp/tomcat/logs" folder for more information
+系统变量中存在已经有的定义，删除，再重启XAMPP
+CATALINA_BASE
+D:\Software\apache-tomcat-9.0.27-windows-x64\apache-tomcat-9.0.27
+CATALINA_HOME
+D:\Software\apache-tomcat-9.0.27-windows-x64\apache-tomcat-9.0.27
+
+
+
+
+
+
+
+
+
 
 
 详述php的下载安装教程
