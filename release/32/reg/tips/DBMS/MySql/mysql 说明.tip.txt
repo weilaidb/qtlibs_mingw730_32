@@ -5,6 +5,15 @@ mysql -u 用户名 -p 密码
 mysql -h localhost -u 用户名 -p 密码
 mysql -h ip -u 用户名 -p 密码
 
+net start mysql
+net stop mysql
+原始创建的服务MySQL57
+"C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld.exe" --defaults-file="C:\ProgramData\MySQL\MySQL Server 5.7\my.ini" MySQL57
+SC DELETE 服务名称 
+SC DELETE MySQL57
+SC QUERY
+
+
 ResultSet 类若干方法
 boolean  next()
 byte getByte(int columnIndex)
@@ -57,19 +66,3 @@ public boolean absolute(int row):将游标移到参数row指定的行号。
 添加记录
 Statement对象调用方法：
 public int executeUpdate(String sqlStatement);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

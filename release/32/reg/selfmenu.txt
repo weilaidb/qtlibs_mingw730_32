@@ -284,6 +284,7 @@ DBMS/MySql/like
 DBMS/MySql/mysql 加载驱动
 DBMS/MySql/mysql 建立连接
 DBMS/MySql/mysql 说明
+DBMS/MySql/mysql 问题列表
 DBMS/MySql/order by
 DBMS/MySql/order by eg
 DBMS/MySql/prepareStatement

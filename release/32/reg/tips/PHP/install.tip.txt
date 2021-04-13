@@ -3,6 +3,9 @@ https://windows.php.net/download#php-8.0
 https://www.apachelounge.com/download/
 套件 XAMPP
 https://www.apachefriends.org/zh_cn/index.html
+软件
+php storm
+
 
 常用链接
 http://192.168.0.108/hello/
