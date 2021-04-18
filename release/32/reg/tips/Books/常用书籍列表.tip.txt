@@ -3,3 +3,5 @@ Linux2.6协议栈源代码分析（linux tcp ip 协议栈分析.pdf）
 AT&T_ASM.pdf
 AT&T_GCC_ASM.pdf
 计算机网络第五版
+《PHP从入门到精通(第3版)》.pdf
+[PHP开发实战宝典].(潘凯华，邹天思).扫描版.pdf
