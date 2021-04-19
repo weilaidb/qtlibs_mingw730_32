@@ -36,3 +36,4 @@ Ctrl+T    -- clearTry
 Ctrl+U    -- 更新一次(配置文件)
 Ctrl+W    -- 切换清除左侧内容
 Alt+C     -- 自动转
+Alt+S     -- 左侧列表(关键字和具体项切换)
