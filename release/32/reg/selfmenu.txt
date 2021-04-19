@@ -457,6 +457,7 @@ KERNEL/2.6.18/函数或结构体/网络内存管理函数
 KERNEL/2.6.18/函数或结构体/网络协议初始化
 KERNEL/FS/mount-flags
 KERNEL/GCC/__aligned
+KERNEL/GCC/__attribute__ noreturn
 KERNEL/LIST_HEAD
 KERNEL/basetype
 KERNEL/hash/hlish add
@@ -490,6 +491,7 @@ LINUX/Printk/KERN_ERR
 LINUX/Printk/KERN_INFO
 LINUX/Printk/KERN_NOTICE
 LINUX/Printk/KERN_WARNING
+LINUX/Printk/many equal signs
 LINUX/Printk/说明
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
