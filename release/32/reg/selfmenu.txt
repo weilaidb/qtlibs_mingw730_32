@@ -248,6 +248,7 @@ C/STRUCT/生成结构体
 C/enum/enum
 C/enum/enum single
 C/enum/enum single withname
+C/enum/enum single withname typedef
 C/单链表 single list
 C/单链表 single list new
 C/基本类型/BASE TYPE
