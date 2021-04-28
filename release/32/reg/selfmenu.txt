@@ -356,6 +356,7 @@ JAVA/JSP/Tag文件与标记
 JAVA/JSP/Tag标签库
 JAVA/JSP/bgcolor
 JAVA/JSP/bgcolor 护眼色
+JAVA/JSP/body nav 顶部菜单
 JAVA/JSP/br 换行符
 JAVA/JSP/foreach list string
 JAVA/JSP/form/basepath
@@ -380,6 +381,9 @@ JAVA/JSP/form/table
 JAVA/JSP/form/taglib
 JAVA/JSP/form/text
 JAVA/JSP/form/textarea
+JAVA/JSP/head meta
+JAVA/JSP/head meta http-equiv
+JAVA/JSP/head title
 JAVA/JSP/href
 JAVA/JSP/ifnull emptystring
 JAVA/JSP/import
@@ -481,11 +485,14 @@ KERNEL/宏/__setup
 KERNEL/宏/_initcall
 KERNEL/宏/大小端
 KERNEL/时间相关/raid6_jiffies
+KERNEL/网址/常用的http
 KERNEL/调度/最大CPU
 KERNEL/调度/最大优先级
 KERNEL/调度/调度策略
 KERNEL/调度/进程标志
 KERNEL/进制相关/hex_to_bin
+LINUX/CentOS/必备命令 order
+LINUX/CentOS/必备软件 necessary software
 LINUX/Code/ERROR
 LINUX/Makefile
 LINUX/Printk/KERN_ALERT
@@ -502,8 +509,6 @@ LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
 LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备软件 necessary software
-LINUX/CentOS/必备命令 order
-LINUX/CentOS/必备软件 necessary software
 LINUX/Vim/vim实用技巧
 LINUX/命令行/Centos 7 搭建samba
 LINUX/命令行/SELinux配置文件

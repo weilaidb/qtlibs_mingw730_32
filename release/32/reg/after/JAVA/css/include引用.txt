@@ -1,1 +1,1 @@
-<link href="\1" rel="stylesheet"></head>
+<link rel="stylesheet" href="\1" >
