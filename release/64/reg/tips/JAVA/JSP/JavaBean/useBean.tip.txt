@@ -1,0 +1,20 @@
+使用bean
+.在JSP页面中，必须有相应的page指令。如
+<%@ page import="bean.*" %>
+.useBean加载bean,动作标记的格式:
+<jsp:useBean id="名字" class="创建的bean类" scope="bean的有效期限"/>
+.bean的有效期限， scope取值如下:
+1)scope取值page
+该bean的有效期限是当前页面，当JSP引擎执行完这个页面时，JSP引擎取消分配给该用户的bean。
+2)scope取值request
+3)scope取值session
+该bean的有效期限是用户的会话期间，如果用户在某个Web服务目录多个页面相互连接，每个页面都含有一个useBean标记，而且各个页面useBean标记中id的值相同，scope的值都是session，那么，该用户在这些页面得到的bean是相同的一个（占有相同的内存空间）。如果用户在某个页面更改了bean的属性，其他页面的这个bean的属性也将发生变化）
+3)scope取值application
+Web服务目录下所有的JSP页面分配一个共享的bean。不同用户的也是相同的一个。
+
+.getProperty 动作标记
+    <jsp:useBean id="apple" class="bean.Circle2" scope="page"/>
+    <br>圆的半径是:<jsp:getProperty name="apple" property="radius"/>
+    <br>圆的面积是:<jsp:getProperty name="apple" property="circleArea"/>
+    <br>圆的周长是:<jsp:getProperty name="apple" property="circleLength"/>
+

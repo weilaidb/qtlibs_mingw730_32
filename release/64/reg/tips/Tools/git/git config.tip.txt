@@ -1,0 +1,6 @@
+【git配置】
+git config --global alias.lg "log --graph"
+
+
+【运行】
+git lg

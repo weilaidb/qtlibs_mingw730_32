@@ -1,0 +1,29 @@
+如何设置svn：忽略多个值？
+
+回答 (2)关注 (0)查看 (287)
+假设我想为目录dir1设置svn：ignore属性，其中包含多个值file1，file2和file3。如何在不使用文本编辑器（设置属性值）的情况下通过命令行执行此操作？
+
+写回答关注邀请回答提问于 2018-12-14
+2 个回答
+热门排序
+用户回答回答于 2018-12-14
+使用：
+
+cat > ignorelist << END
+file1
+file2
+file3
+END
+
+svn propset svn:ignore -F ignorelist dir1
+或者如果没有外部文件，假设您使用的是Linux或系统/dev/fd：
+
+svn propset svn:ignore -F /dev/fd/0 dir1 << END
+file1
+file2
+file3
+END
+赞0收藏0评论0分享
+用户回答回答于 2018-12-14
+一行解决方案：
+svn propset svn:ignore "file1"$'\n'"file2"$'\n'"file3" dir1

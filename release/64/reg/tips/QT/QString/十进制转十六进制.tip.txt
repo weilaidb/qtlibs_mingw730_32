@@ -1,0 +1,4 @@
+//十进制转十六进制
+bool ok;
+ulong dec = dealText.toULong(&ok, 10);
+dealText = QString::number(dec,16).right(4);//裁剪字符串前面多余的f

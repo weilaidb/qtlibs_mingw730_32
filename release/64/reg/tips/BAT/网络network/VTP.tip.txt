@@ -1,0 +1,9 @@
+VTP(Vlan Trunk Protocol)
+1.VTP作用:通过一台交换机上配置可以更新所有交换机上VLAN的添加、删除、重命名工作！
+2.VTP工作条件：所有交换机必须在同一个VTP域，交换机之间必须配置为TRUNK链路
+3.VTP更新是通过发送VTP通告来实现的
+4.VTP修订号
+
+sw1
+int f0/1
+sc ac vlan 10

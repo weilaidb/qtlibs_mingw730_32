@@ -1,0 +1,5 @@
+应用层        HTTP  SMTP  DNS  RTP H.323 SIP
+运输层        TCP  UDP   SCTP
+网际层             IP
+网络接口层    网络接口1 网络接口2 网络接口3
+    图 沙漏计时器形状的TCP/IP协议族示意

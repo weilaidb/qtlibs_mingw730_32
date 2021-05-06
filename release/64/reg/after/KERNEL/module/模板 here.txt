@@ -1,0 +1,1 @@
+#include <linux/module.h>$NL#include <linux/init.h>$NL$NLstatic int \1_init(void)$NL{$NL    printk(KERN_ALERT "\1, init\n");$NL    return 0;$NL}$NL$NLstatic void \1_exit(void)$NL{$NL    printk(KERN_ALERT "\1, exit\n");$NL}$NLmodule_init(\1_init);$NLmodule_exit(\1_exit);$NLMODULE_LICENSE("Dual BSD/GPL");

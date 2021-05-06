@@ -1,0 +1,47 @@
+MySQL服务无法启动—系统错误1067
+
+王萌萌萌 2018-01-18 22:11:13   44554   收藏 17
+分类专栏： ♫ IT之路 ------【学习方法】
+版权
+安装MySQL后要启动服务，结果出现了如下错误：
+
+
+
+通过搜索找到了如下几种解决方案：
+
+一、使用如下命令
+
+ mysqladmin -u root -p shutdown
+
+ 再net start mysql就没有这个错误提示了~
+
+ （小编尝试失败。。。）
+
+二、进入MySql的安装目录，找到my.ini，里面有一句：
+
+ default-storage-engine=INNODB
+
+ 改成MYISAM就可以了。
+
+  马上再去开启MySql服务就可以顺利开启了~
+
+三、如果电脑安装过wampserver,pc_webserver等集成环境，此些软件会把my.ini, php.ini 写入C:WINDOWS目录下，并设为只读
+
+ 解决方案：把windows目录下，my.ini文件删除，重装mysql，服务启动成功~
+
+四、mysql自带的有my-default.ini文件，不要删掉，按照下图，去掉#注释的配置：
+
+
+
+cmd下运行：
+ mysqld.exe --install
+ net start mysql
+
+服务启动成功~
+
+
+
+小编是用了第四种方案解决问题的，MySQL服务成功启动，大家有更多更好的方法欢迎补充~~~
+————————————————
+版权声明：本文为CSDN博主「王萌萌萌」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/xiao714041/article/details/79101263

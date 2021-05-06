@@ -1,0 +1,1 @@
+namespace \1;$NL $NLecho '命名空间为："', __NAMESPACE__, '"'; // 输出 "\1"

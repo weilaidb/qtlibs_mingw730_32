@@ -1,0 +1,1 @@
+<p>\2:<input type="text" name="\1"></p>

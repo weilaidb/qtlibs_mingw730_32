@@ -1,0 +1,1 @@
+QRandomGenerator::global()->bounded(15, 21)

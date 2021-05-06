@@ -1,0 +1,10 @@
+gcc
+g++
+git
+make
+cmake
+make-guile
+samba
+net-tools
+ssh
+selinux-utils

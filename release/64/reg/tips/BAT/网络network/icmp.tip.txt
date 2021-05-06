@@ -1,0 +1,45 @@
+1.ICMP协议概述
+Internet Control Message Protocol
+作用:测试网络连通性，侦测网络状态、追踪网络等。
+
+2.ping命令
+
+
+3.wireshark抓包:
+Frame 138: 74 bytes on wire (592 bits), 74 bytes captured (592 bits) on interface 0
+Ethernet II, Src: 54:75:95:17:b5:26 (54:75:95:17:b5:26), Dst: 8c:ec:4b:9b:b7:64 (8c:ec:4b:9b:b7:64)
+Internet Protocol Version 4, Src: 192.168.0.104, Dst: 192.168.0.106
+Internet Control Message Protocol
+
+4.ICMP报文（A端）                                                   ICMP报文（B端）
+ICMP头部 + ICMP数据  abcdefghi... 32个字节                        ICMP头部 + ICMP数据  abcdefghi... 32个字节
+类型                                                              类型                                      
+8代表ping请求                                                     0代表ping应答                             
+3代表目标主机不可达(路由器回应的)
+11代表TTL超时
+
+5.ICMP报文结构
+帧头      IP包头          ICMP报文           帧尾
+目mac等   源IP 目标IP     ICMP头部ICMP数据   FCS
+
+5.icmp探测包发出后有以下情况。
+常见情况:                                 可能原因
+a.正常                                    OK
+b.request time-out                        目标主机不存在
+c.目标主机不可达/无法访问目标主机         路由不完整；防火墙过滤掉了
+  （Destination host unreachable）
+  类型:3
+
+
+
+
+
+
+ICMP在IP系统间传递差错和管理报文，见RFC 792。
+传输协议号 1
+报文分两类:差错和查询。
+
+
+
+
+

@@ -1,0 +1,1 @@
+StringBuffer str = new StringBuffer();$NLtry{$NL    FileReader \1 = new FileReader(\2);$NL    BufferedReader \3 = new BufferedReader(\1);$NL    String temp;$NL    while ((temp = \3.readLine()) != null) {$NL        str.append(temp);$NL    }$NL    \3.close();$NL    \1.close();$NL} catch (Exception e) {$NL     e.printStackTrace();$NL}$NL$NL

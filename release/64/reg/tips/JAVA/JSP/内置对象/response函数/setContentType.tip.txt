@@ -1,0 +1,19 @@
+<font size="1">
+    <p>我正在学习response对象的
+    <br>setContentType方法
+    <p>将当前页面保存为word文档吗?
+    <form action="" method="get" name="form">
+    <input type="submit" value="yes" name="submit">
+</form>
+
+    <%
+        String str = request.getParameter("submit");
+        if(str == null)
+        {
+            str = "";
+        }
+        if(str.equals("yes"))
+            response.setContentType("application/msword;charset=GB2312");
+    %>
+
+</font>

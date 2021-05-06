@@ -1,0 +1,38 @@
+Bash 休眠
+在 Bash 中 sleep 命令用于在指定的时间段内插入延迟或暂停执行（即休眠）。 当您处于特定目的需要延迟或暂停执行任何命令时，您就可以使用 sleep 命令了。
+sleep 命令
+语法：
+sleep number[suffix]
+注：
+numeber 是时间值，可以使用正整数或小数。
+suffix 是可选后缀（时间单位）：
+s -秒
+m -分
+h -时
+d -天
+如果没有后缀单位，默认秒为单位。
+如果您传递了多个时间参数，总的睡眠时间将等于所有参数的和。
+示例： 睡眠1天2小时3分30秒，如下：
+sleep 1d 2h 3m 30s
+Bash 脚本演示说明
+在此，将演示默认单位为秒的情况下，使用sleep命令。
+#!/bin/bash
+# start time
+date +"%H:%M:%S"
+echo "Wait for 5 seconds"
+sleep 5
+# end time
+date +"%H:%M:%S"
+echo "Task Completed"
+将得到以下结果：
+12:01:43
+Wait for 5 seconds
+12:01:48
+Task Completed
+注：
+执行流程
+以 Hour：Minutes：Seconds 的格式打印输出休眠开始时间。
+打印输出提示：Wait for 5 seconds 。
+执行 sleep 命令，休眠5秒钟。
+以 Hour：Minutes：Seconds 的格式打印输出休眠结束时间。
+打印输出提示：Task Completed 。

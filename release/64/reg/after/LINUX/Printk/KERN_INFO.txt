@@ -1,0 +1,1 @@
+printk(KERN_INFO "\1:%p\n", \1);

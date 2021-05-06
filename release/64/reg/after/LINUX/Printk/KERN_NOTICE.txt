@@ -1,0 +1,1 @@
+printk(KERN_NOTICE "\1:%p\n", \1);

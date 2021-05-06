@@ -1,0 +1,1 @@
+QDir::toNativeSeparators(\1);$NLreturn QDir::toNativeSeparators(\1);

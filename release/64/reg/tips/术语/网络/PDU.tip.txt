@@ -1,0 +1,1 @@
+OSI参考模型把对等层次之间传递的数据单位称为该层的协议数据单元PDU(Protocol Data Unit)。

@@ -1,0 +1,1 @@
+namespace \1\Sub\Level;  //声明分层次的单个命名空间$NL$NLconst CONNECT_OK = 1;$NLclass Connection { /* ... */ }$NLfunction Connect() { /* ... */  }$NL
