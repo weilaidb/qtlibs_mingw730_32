@@ -1,1 +1,0 @@
-./eg.sh RootPath P2 P3

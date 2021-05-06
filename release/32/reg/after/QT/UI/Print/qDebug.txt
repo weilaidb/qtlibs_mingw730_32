@@ -1,1 +1,0 @@
-qDebug() << "\1:" << \1;$NLqInfo() << "\1:" << \1;$NLqWarning() << "\1:" << \1;$NLqCritical() << "\1:" << \1;$NLqFatal() << "\1:" << \1;$NL$NL

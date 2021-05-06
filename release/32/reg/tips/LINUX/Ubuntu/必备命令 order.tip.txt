@@ -1,4 +1,0 @@
-sudo passwd root
-smbpasswd -a futuredb
-ipstables -F
-setenforce 0

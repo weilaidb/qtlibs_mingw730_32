@@ -1,1 +1,0 @@
-pActionOpenCfgFile;Ctrl+O

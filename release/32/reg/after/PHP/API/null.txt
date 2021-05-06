@@ -1,1 +1,0 @@
-<?php$NL$\1="Hello world!";$NL$\1=null;$NLvar_dump($\1);$NL?>

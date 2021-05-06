@@ -1,1 +1,0 @@
-在 PHP 中，使用是通过预定义数组 $_SESSION 的存储和读取 session。

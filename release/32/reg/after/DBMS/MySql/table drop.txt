@@ -1,1 +1,0 @@
-drop table \1;$NLdrop table if exists \1;

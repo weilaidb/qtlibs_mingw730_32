@@ -1,1 +1,0 @@
--include dirmak/\1.mak

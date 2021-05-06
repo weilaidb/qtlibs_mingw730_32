@@ -1,1 +1,0 @@
-<%$NL    List<String> \1 = CFilePub.getCOntentFromFile(dir, "selfmenu.txt");$NL    for (String item:$NL         results) {$NL%>$NL    <%=item%><br>$NL<%$NL    }$NL%>

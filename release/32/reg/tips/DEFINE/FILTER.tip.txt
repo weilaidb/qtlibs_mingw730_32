@@ -1,1 +1,0 @@
-fdafd #define ABC ("123")

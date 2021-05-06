@@ -1,1 +1,0 @@
-#if defined(\1)$NL$NL#endif

@@ -1,1 +1,0 @@
-<servlet>$NL    <servlet-name>\1</servlet-name>$NL    <servlet-class>\2</servlet-class>$NL</servlet>$NL<servlet-mapping>$NL    <servlet-name>\1</servlet-name>$NL    <url-pattern>\3</url-pattern>$NL</servlet-mapping>

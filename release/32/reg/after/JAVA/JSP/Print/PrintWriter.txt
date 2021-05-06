@@ -1,1 +1,0 @@
-PrintWriter \1 = new PrintWriter(System.out);$NLString len;$NL$NL\1.println(len);$NL$NL\1.close();

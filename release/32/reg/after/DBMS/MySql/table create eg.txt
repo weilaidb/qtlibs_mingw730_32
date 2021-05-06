@@ -1,1 +1,0 @@
-CREATE TABLE `\1` ($NL  `id` int(200) unsigned NOT NULL AUTO_INCREMENT,$NL  `name` varchar(200) NOT NULL COMMENT 'keyword',$NL  `content` longtext,$NL  PRIMARY KEY (`id`),$NL  UNIQUE KEY `name_UNIQUE` (`name`)$NL) ENGINE=InnoDB AUTO_INCREMENT=1074 DEFAULT CHARSET=utf8mb4

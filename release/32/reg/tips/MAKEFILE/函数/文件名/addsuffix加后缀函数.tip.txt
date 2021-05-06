@@ -1,5 +1,0 @@
-$(addsuffix <suffix>;,<names...>;) 
-名称：加后缀函数——addsuffix。 
-功能：把后缀<suffix>;加到<names>;中的每个单词后面。 
-返回：返回加过后缀的文件名序列。 
-示例：$(addsuffix .c,foo bar)返回值是“foo.c bar.c”。 

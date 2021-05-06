@@ -1,1 +1,0 @@
-//init $NLpthread_mutex_t \1 = PTHREAD_MUTEX_INITIALIZER;$NL$NL//or init by this $NL//thread_mutex_t \1;$NL//pthread_mutex_init(&\1, NULL);$NL$NLpthread_mutex_lock(&\1);  /*lock*/$NL//TODO$NL$NLpthread_mutex_unlock(&\1); /*unlock*/$NL

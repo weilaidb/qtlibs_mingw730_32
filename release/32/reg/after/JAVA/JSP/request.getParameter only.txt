@@ -1,1 +1,0 @@
-String \1 = request.getParameter("\2");$NL$NL$NLString \1 = CStringPub.requesParaIfNullSetEmpty(request, "\2");

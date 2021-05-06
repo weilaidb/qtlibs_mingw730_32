@@ -1,1 +1,0 @@
-List<String> \1  = new ArrayList<String>();

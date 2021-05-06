@@ -1,1 +1,0 @@
-class \1 {$NL    function _print() {$NL        echo '类名为：'  . __CLASS__ . "<br>";$NL        echo  '函数名为：' . __FUNCTION__ . "<br>";$NL    }$NL}$NL$t = new \1();$NL$t->_print();

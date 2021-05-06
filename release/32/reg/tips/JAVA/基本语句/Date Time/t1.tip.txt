@@ -1,4 +1,0 @@
-Date dNow  = new Date();
-SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-String time = ft.format(dNow);
-System.out.println("time: " + time);

@@ -1,1 +1,0 @@
-\1=`date +%m-%d-%Y`$NLecho "Date in format Month-Date-Year"$NLecho $\1

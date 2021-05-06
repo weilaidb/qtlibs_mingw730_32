@@ -1,1 +1,0 @@
-svn propset svn:ignore "\1"$'\n'"\2"$'\n'"\3" dir1

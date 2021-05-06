@@ -1,1 +1,0 @@
-String \1 = request.getParameter("\2");$NLif (\1 == null) {$NL    \1="";$NL}$NLbyte bb[] = \1.getBytes("GBK");$NL\1 = new String(bb);

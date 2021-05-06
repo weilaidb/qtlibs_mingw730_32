@@ -1,1 +1,0 @@
-rpm -e \1$NL如果想要强制卸载某软件包，可以使用如下命令：$NLrpm -e \1.rpm --nodeps

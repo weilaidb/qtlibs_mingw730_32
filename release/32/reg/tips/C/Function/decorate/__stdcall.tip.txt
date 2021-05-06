@@ -1,3 +1,0 @@
-__stdcall
-被这个关键字修饰的函数，其参数都是从右向左通过堆栈传递的(__fastcall 的前面部分由ecx,edx传)， 函数调用在返回前要由被调用者清理堆栈。
-这个关键字主要见于Microsoft Visual C、C++。GNU的C、C++是另外一种修饰方式：__attribute__((stdcall))

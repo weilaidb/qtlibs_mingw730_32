@@ -1,1 +1,0 @@
-public static void main(String[] args) {$NL$TB$TBSystem.out.println("\1");$NL$TB$TB$NL}

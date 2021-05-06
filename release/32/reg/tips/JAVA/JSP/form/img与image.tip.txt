@@ -1,6 +1,0 @@
-<img src="图像文件的URL">描述文字</img>
-<image src="图像文件的URL">描述文字</image>
-标记中使用width和height属性指定被显示的图像的宽和高，如果省略width和height属性，标记将按图像的原始宽度和高度来显示图像。
-
-
-<img src="picture/<%=s1%>" width="200" height="160">图像</img>

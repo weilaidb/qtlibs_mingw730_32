@@ -1,1 +1,0 @@
-QTextStream(stdout) << "\1\n";

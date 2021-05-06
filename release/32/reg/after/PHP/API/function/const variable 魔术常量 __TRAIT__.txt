@@ -1,1 +1,0 @@
-class \1 {$NL    public function sayHello() {$NL        echo 'Hello ';$NL    }$NL}$NL $NLtrait \2 {$NL    public function sayHello() {$NL        parent::sayHello();$NL        echo 'World!';$NL    }$NL}$NL $NLclass \3 extends \1 {$NL    use \2;$NL}$NL $NL$o = new \3();$NL$o->sayHello();
