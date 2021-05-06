@@ -1,0 +1,29 @@
+linux/include/linux/net.h
+
+48  /**
+49   * enum sock_type - Socket types
+50   * @SOCK_STREAM: stream (connection) socket
+51   * @SOCK_DGRAM: datagram (conn.less) socket
+52   * @SOCK_RAW: raw socket
+53   * @SOCK_RDM: reliably-delivered message
+54   * @SOCK_SEQPACKET: sequential packet socket
+55   * @SOCK_DCCP: Datagram Congestion Control Protocol socket
+56   * @SOCK_PACKET: linux specific way of getting packets at the dev level.
+57   *		  For writing rarp and other similar things on the user level.
+58   *
+59   * When adding some new socket type please
+60   * grep ARCH_HAS_SOCKET_TYPE include/asm-* /socket.h, at least MIPS
+61   * overrides this enum for binary compat reasons.
+62   */
+63  enum sock_type {
+64  	SOCK_STREAM	= 1,
+65  	SOCK_DGRAM	= 2,
+66  	SOCK_RAW	= 3,
+67  	SOCK_RDM	= 4,
+68  	SOCK_SEQPACKET	= 5,
+69  	SOCK_DCCP	= 6,
+70  	SOCK_PACKET	= 10,
+71  };
+72  
+73  #define SOCK_MAX (SOCK_PACKET + 1)
+

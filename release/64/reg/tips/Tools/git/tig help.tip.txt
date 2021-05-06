@@ -1,0 +1,51 @@
+颠覆 Git 命令使用体验的神器 -- tig
+
+ubuntu: sudo apt-get install tig
+macOS: brew install tig
+
+
+help 
+在 Git 项目中敲 tig, 进入 tig 界面后再敲 h (代表help) 即可进入帮助界面
+
+       在 Git 项目中敲 tig, 进入 tig 界面后再敲 h (代表help) 即可进入帮助界面, 该界面列出了所有常用命令项目分支下直接敲 tig, 进入到了 log 界面, 使用 j/k 或 上/下 键可以选择指定提交, 回车后, 界面的一半会展示此次commit详情, 此时, 上/下 键可以选择 log 中的 commit, 详情界面会跟着变化, 而 j/k 键会在 commit 详情内移动焦点, 选中 commit 中列出的文件, 回车会跳转到该文件的详情, 而使用 @ 可以按照代码块的粒度来浏览 commit 中的内容, 通过这些操作, 我们可以很容易的快速浏览log 中多个commit 中的内容, 而这一点通过 Git 命令或 GUI 都是很难快速方便的完成的.
+
+快速查看 log 详情及 help
+      在使用 Git 命令的过程中, 最高频的命令应该是 git status, 主要用来查看 staged changes 和 unstaged changes, 通过 tig, 可以很方便的像刚才查看 commit 那样查看 staged changes 和 unstaged changes, 敲 tig 进入 log 界面后, 排在最上面的便是 staged changes 和 unstaged changes, 至此, staged changes 和 unstaged changes 就像一个 commit 一样被方便地展示出来了, 敲回车, 详情界面展示出来后敲 u 会使整个 changes 由staged changes 变为 unstaged changes, 或是由unstaged changes 变为 staged changes, 如果想要 changes 中的某一个文件改变状态, 则在详情界面选中该文件, 回车, 再敲 u ,即可使该文件由 staged 变为 unstaged, 或是由 unstaged 变为 staged, 如果你想重置某个文件的修改, 选中该文件敲 ! 即可, 再也不用使用 git reset HEAD这个命令了.
+
+log 界面最上方可以查看未提交修改
+
+      如果我还想看 untracked files 怎么办呢? tig 提供了一种更纯粹的查看 git status 的界面, 进入 tig 后直接敲 s 即可, 选中 untracked file 或 unstaged file, 敲 u, 即可变为 staged file, 选中 staged file 敲 u 变为 unstaged file, 如果你想重置某个文件未保存的修改, 在该文件下敲 ! 即可, 如果你准备好提交了, 按下 shift + c 即可打开默认命令行编辑器来编辑 commit message, 如果在 tig 主界面按下shift + c, 将会使用 git cherry-pick 命令.
+
+tig 的 status 界面
+       tig 也可以当做命令行版的 Finder 来使用, 在 log 主界面敲 t (代表 tree) 即可进入此次 commit 中所有文件列表, 在文件夹下回车可以进入文件夹, 在文件下回车可以在界面的一半展示该文件的全貌(而不是此次 commit 的修改).
+
+tree 界面
+       如果选中文件, 按 b 即可进入该文件的 blame 界面, 在 blame 中选中任意一行回车, 即可在界面的一半展示此次 commit 的所有内容, 依然可以用 j/k 控制详情内容的单行移动, 回车跳转到某文件, @按照代码块粒度滚动, 这种操作比使用 git blame 方便了许多.
+
+blame 界面下快速查看 commit 全貌
+       如何查看 diff 中某句修改时整个文件的面貌呢? 实际上在 diff 界面也可以直接敲 b 进入 blame 界面即可查看截止此次提交时该文件的全貌, 如果明确知道想要看哪个文件的 blame 全貌, 也可以 直接使用 tig blame filename.
+
+      如何查看一个文件的全部提交记录? 以及快速查看某次提交的全部内容? 有了 tig, 可以轻松做到这一点, 直接 tig filename, 进入到该文件的 tig 主界面, 即可快速查看指定文件的 log 和提交内容, 你还可以选择只查看某个 commit 以及之前的提交, 只需要使用 tig commit-id filename 即可.
+
+       如何查找 commit message 中带有指定文字的 commit 呢? 如果终端本身支持搜索功能, 使用终端自带的 cmd + f 即可搜索 tig 主界面中的任何文本, 那如何通过 commit-id 查找呢? tig 主界面中默认没有展示 commit-id, 使用 shift + x 即可展示 commit-id.
+
+       tig 也自带搜索功能, 敲 / 即可进入, 输入字符后回车, 将高亮展示所有匹配项, 敲 n 将聚焦到离当前焦点最近的下方的匹配项, 大写 N 则是上方的匹配项, 敲回车将展示详情.
+
+tig 的原生搜索功能
+        在提交 commit 中常常会碰到按代码块的粒度来提交的需求, 使用原生的 git add -i 略显繁琐, 在 tig 中, 这个操作变得无比简单, 只需要在 staged changes 或 unstaged changes 使用 @ 选中代码块, 敲 u 即可改变状态, 如果你只想改变一行代码的状态, 使用 j/k 选中要改变的单行代码, 用数字键 1 代替 u 即可实现这个原本用 Git 命令行很难实现的功能.
+
+       进入 tig 主界面敲 r 即可看到项目分支列表, 在分支下敲回车即可进入 log 界面, 使用这个功能可以快速在不同分支之间查阅代码, 免去了频繁切换分支的麻烦, 需要切换分支时, 选中分支按住 shift + c 即可.
+
+快速在不同分支中查看具体 commit
+       至此, 我分享了一些日常使用频率很高, 但使用 Git 命令来完成却很繁琐的 tig 使用攻略, 文章最后, 我想分享一个学习 Git 命令的捷径, 我在学习 Git 的过程中, 自己觉得还是走了一点弯路, 如果你知道 oh-my-zsh 的 Git aliases, 你就知道我在说什么了, 这份 aliases 整理了所有常用和有用的 Git 命令, 初学者通过它能避免冗长的 Git 命令打击热情, 也可以避免在不实用的 Git 命令上多花时间, 有经验的开发者可以通过它来查漏补缺, 看看哪些看似无用的 Git 命令加参数后就变得无比实用. 如果在一个团队中推广这份 aliases , 可以避免你在队友的电脑上习惯性敲自己编的 alias 无效的麻烦, 如果你使用 Dash, 可以直接搜索 Oh-My-Zsh Git 添加这份 aliases 文档.
+
+作者：Valence
+链接：https://www.jianshu.com/p/e4ca3030a9d5
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+
+
+

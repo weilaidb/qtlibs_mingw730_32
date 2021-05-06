@@ -1,0 +1,41 @@
+Java getBytes() 方法
+￼Java String类
+
+getBytes() 方法有两种形式：
+getBytes(String charsetName): 使用指定的字符集将字符串编码为 byte 序列，并将结果存储到一个新的 byte 数组中。
+getBytes(): 使用平台的默认字符集将字符串编码为 byte 序列，并将结果存储到一个新的 byte 数组中。
+语法
+public byte[] getBytes(String charsetName) throws UnsupportedEncodingException
+
+或
+
+public byte[] getBytes()
+参数
+charsetName -- 支持的字符集名称。
+返回值
+返回 byte 数组。
+实例
+import java.io.*;
+ 
+public class Test {
+    public static void main(String args[]) {
+        String Str1 = new String("runoob");
+ 
+        try{
+            byte[] Str2 = Str1.getBytes();
+            System.out.println("返回值：" + Str2 );
+            
+            Str2 = Str1.getBytes( "UTF-8" );
+            System.out.println("返回值：" + Str2 );
+            
+            Str2 = Str1.getBytes( "ISO-8859-1" );
+            System.out.println("返回值：" + Str2 );
+        } catch ( UnsupportedEncodingException e){
+            System.out.println("不支持的字符集");
+        }
+    }
+}
+以上程序执行结果为：
+返回值：[B@7852e922
+返回值：[B@4e25154f
+返回值：[B@70dea4e

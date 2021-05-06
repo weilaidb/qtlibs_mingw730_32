@@ -1,0 +1,1 @@
+<textarea name="\1" rows="\2" cols="\3"></textarea>$NL$NL$NL<textarea name="\1" rows="\2" cols="\3" WRAP="\4"></textarea>

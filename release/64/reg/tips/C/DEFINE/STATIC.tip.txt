@@ -1,0 +1,9 @@
+#ifndef STATIC
+#define STATIC static
+#endif
+
+
+#ifndef LOCAL
+#define LOCAL static
+#endif
+

@@ -1,0 +1,12 @@
+    //模态对话框，动态创建，用过后删除
+    Ui::CDialogAskText *uiDialog;
+    QDialog *pDialog;
+
+    //模态对话框，动态创建，用过后删除
+    pDialog =  new QDialog(this);
+    uiDialog = new Ui::CDialogAskText();
+    uiDialog->setupUi(pDialog);
+    connect(uiDialog->pushButton_clear, SIGNAL(clicked()),this, SLOT(clearDialogText()));
+    connect(uiDialog->pushButton_paste, SIGNAL(clicked()),this, SLOT(pasteDialogText()));
+    Qt::WindowFlags flags=pDialog->windowFlags();
+    pDialog->setWindowFlags(flags | Qt::MSWindowsFixedSizeDialogHint);

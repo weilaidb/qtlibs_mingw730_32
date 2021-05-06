@@ -1,0 +1,1 @@
+echo "Enter the \1:"$NLread \1$NL

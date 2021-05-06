@@ -1,0 +1,68 @@
+<table>
+	<tr width="该行的宽度">
+		<th width="单元格的宽度">单元格的数据</th>
+		...
+		<td width="单元格的宽度">单元格的数据</td>
+	</tr>	
+	...
+</table>
+
+<tr>......</tr> 定义表格的一个行
+<th>或<td>定义一行中的表格单元，<th>定义的单元加重显示,<td>称作普通单元，不加重显示。
+<table border="1">中增加border指明该表格是否带有边框。
+
+
+
+<font size="3">
+    <form action="answer.jsp" method="post" name="form">
+        <table border="1">
+            <tr>
+                <th>"贝利"是哪个国家的人</th>
+                <th>曾获得过世界杯冠军的球队</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" name="R" value="巴西">巴西
+                    <input type="radio" name="R" value="德国">德国
+                    <input type="radio" name="R" value="美国">美国
+                    <input type="radio" name="R" value="法国" checked="ok">法国
+                </td>
+                <td>
+                    <input type="checkbox" name="item" value="法国国家队">法国国家队
+                    <input type="checkbox" name="item" value="中国国家队">中国国家队
+                    <input type="checkbox" name="item" value="巴西国家队">巴西国家队
+                    <input type="checkbox" name="item" value="美国国家队">美国国家队
+                    <input type="hidden" value="喜欢世界杯!" name="secret">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="提交" name="submit"></td>
+                <td><input type="reset" value="重置"></td>
+            </tr>
+        </table>
+    </form>
+</font>
+
+
+	
+out.print("<table border = 1>");
+out.print("<tr>");
+    out.print("<th>" + title + "</th>");
+    out.print("<th>" + item + "</th>");
+out.print("<tr>");
+for(int k = 0; k < listName.size(); k++){
+    out.print("<tr>");
+    double score = (Double)listScore.get(k);
+    String name = (String)listName.get(k);
+    if(score< 60){
+        out.print("<td bgcolor=yellow>" + name  + "</td>");
+        out.print("<td bgcolor=yellow>" + score + "</td>");
+    }
+    else
+    {
+        out.print("<td>" + name + "</td>");
+        out.print("<td>" + score + "</td>");
+    }
+    out.print("<tr>");
+}
+out.print("</table>");

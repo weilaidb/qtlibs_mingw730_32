@@ -1,0 +1,85 @@
+原始套接字SOCK_RAW
+原始套接字SOCK_RAW
+
+实际上，我们常用的网络编程都是在应用层的报文的收发操作，也就是大多数程序员接触到的流式套接字(SOCK_STREAM)和数据包式套接字(SOCK_DGRAM)。而这些数据包都是由系统提供的协议栈实现，用户只需要填充应用层报文即可，由系统完成底层报文头的填充并发送。然而在某些情况下需要执行更底层的操作，比如修改报文头、避开系统协议栈等。这个时候就需要使用其他的方式来实现。
+
+ 
+
+一 原始套接字
+原始套接字(SOCK_RAW)是一种不同于SOCK_STREAM、SOCK_DGRAM的套接字，它实现于系统核心。然而，原始套接字能做什么呢？首先来说，普通的套接字无法处理ICMP、IGMP等网络报文，而SOCK_RAW可以；其次，SOCK_RAW也可以处理特殊的IPv4报文；此外，利用原始套接字，可以通过IP_HDRINCL套接字选项由用户构造IP头。总体来说，SOCK_RAW可以处理普通的网络报文之外，还可以处理一些特殊协议报文以及操作IP层及其以上的数据。
+
+既然SOCK_RAW有以上特性，所以在某些处理流程上它区别于普通套接字。
+
+·  若设置IP_HDRINCL选项，SOCK_RAW可以操作IP头数据（也就是用户需用填充IP头及其以上的payload）；否则SOCK_RAW无法操作IP头数据
+
+·  端口对于SOCK_RAW而言没有任何意义
+
+·  如果使用bind函数绑定本地IP，那么如果IP_HDRINCL未设置，则用此IP填充源IP地址；若不调用bind则将源IP地址设置为外出接口的主IP地址
+
+·  如果使用connect函数设置目标IP，则可以使用send或者write函数发送报文，而不需要使用sendto函数
+
+·  内核处理流程：
+
+·   接收到的TCP、UDP分组不会传递给任何SOCK_RAW
+
+·  ICMP、IGMP报文分组传递给SOCK_RAW
+
+·  内核不识别的IP报文传递给SOCK_RAW
+
+·  SOCK_RAW是否接收报文：
+
+·      Protocol指定类型需要匹配，否则不传递给该SOCK_RAW
+
+·       如果使用bind函数绑定了源IP，则报文目的IP必须和绑定的IP匹配，否则不传递给该SOCK_RAW
+
+·       如果使用connect函数绑定了目的IP，则报文源IP必须和指定的IP匹配，否则不传递给该SOCK_RAW 
+
+ 
+
+综上所述，原始套接字处理的只是IP层及其以上的数据，比如实现SYN FLOOD攻击、处理PING报文等。当需要操作更底层的数据的时候，就需要采用其他的方式。
+
+二 链路层处理报文
+如果需要从链路层处理报文，那么就需要采用更加底层的套接字。还是先看下套接字函数的原型吧：
+
+#include <sys/socket.h>
+
+int socket(int domain, int type, int protocol);
+
+这个函数中，domain表示协议簇，type表示套接字类型，而protocol表示的是处理的协议类型。在Linux下提供了多种底层套接字。下面分别进行简单介绍。
+
+1 PF_INET协议簇
+通过PF_INET可以构造原始套接字，如下所示：
+
+int fd = socket (PF_INET, SOCK_RAW, IPPROTO_TCP);
+
+正如前面所讲的，它工作在IP层及其以上各层协议上（当然是在使用IP_HDRINCL选项之后才能操作IP层数据啦），但是这种套接字无法接收从本地发送出去的报文。而使用SOCK_PACKET类型的套接字，则可以操作链路层数据了：
+
+int fd = socket (PF_INET, SOCK_PACKET, IPPROTO_TCP);
+
+不过据说这种方式存在一定的缺陷，而且也不能保证后续版本的系统上一定支持这种方式，因此不推荐使用
+
+2 PF_PACKET协议簇
+PF_PACKET协议簇是用来取代SOCK_PACKET的一种编程接口。作为一种协议簇，它可以对应两种不同的套接字类型：SOCK_RAW和SOCK_DGRAM。当使用SOCK_RAW时，用户操作链路层数据，但是如果使用后者，则由系统处理链路层协议头。这种套接字支持四种协议（ETH_P_IP、ETH_P_ARP、ETH_P_RARP、ETH_P_ALL）（未确认）
+
+int fd = socket (PF_PACKET, SOCK_RAW, IPPROTO_TCP);
+
+int fd = socket (PF_PACKET, SOCK_DGRAM, IPPROTO_TCP);
+
+3 NETLINK协议簇
+这种方式是用户模式和kernel的IP网络配置之间的推荐接口
+
+ 
+
+ 
+
+综上所述，真正能够实现操作链路层数据的只有三种方式：
+
+int fd = socket (PF_INET, SOCK_PACKET, IPPROTO_TCP);
+
+int fd = socket (PF_PACKET, SOCK_RAW, IPPROTO_TCP);
+
+int fd = socket (PF_PACKET, SOCK_DGRAM, IPPROTO_TCP);
+
+ 
+
+分类: HTTP-TCP-Socket IO NIO

@@ -1,0 +1,23 @@
+ppp chap 0xc223
+   0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+0  address(0xff)  |control(0x03)        | protocol(lcp,0xc223)
+1code(challenge,1)| identifier(1)       | length(21)
+2  data size(16)  | message(
+3  0x234ab3....)
+
+ppp chap 0xc223
+   0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+0  address(0xff)  |control(0x03)        | protocol(lcp,0xc223)
+1 code(response,2)| identifier(1)       | length(32)
+2  data size(32)  | value(which is encrypted...)
+3  (name:test...)
+
+
+ppp chap 0xc223
+   0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+0  address(0xff)  |control(0x03)        | protocol(lcp,0xc223)
+1  code(success,3)| identifier(1)       | length(16)
+2  (message:welcome to ...)
+
+
+

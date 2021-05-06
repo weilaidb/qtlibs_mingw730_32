@@ -1,0 +1,1 @@
+static unsigned char \1[4 * PAGE_SIZE] __aligned(PAGE_SIZE);

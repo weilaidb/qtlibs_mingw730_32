@@ -1,0 +1,6 @@
+debugApp() << __FUNCTION__ << ":" << __LINE__ ;
+
+#define ENTERTIPS debugApp() << __FUNCTION__ << ":" << __LINE__ ;
+
+
+#define ENTERTIPS qDebug() << __FUNCTION__ << ":" << __LINE__ ;

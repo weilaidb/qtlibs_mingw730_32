@@ -1,0 +1,1 @@
+<%@ page import="\2" %>$NL<jsp:useBean id="\1" class="\2" scope="\3"/>$NL<br>\4<jsp:getProperty name="\1" property="\5"/>$NL$NL$NL

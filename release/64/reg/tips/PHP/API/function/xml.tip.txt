@@ -1,0 +1,5 @@
+要从存储在字符串中的XML文档创建 SimpleXML 对象，请将该字符串传递给 simplexml_load_string()，它返回一个 SimpleXML 对象。
+
+使用PHP解析XMl文档？
+simplexml_load_string()
+loadxml()

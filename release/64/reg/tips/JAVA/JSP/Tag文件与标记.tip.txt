@@ -1,0 +1,125 @@
+----JSP引用
+<%@ page import="java.util.*" %>
+<%@ taglib prefix="first" tagdir="/WEB-INF/tags" %>
+
+
+----Tag文件中引用的内容
+<%@ tag pageEncoding="utf-8" %>
+<%@ tag import="java.util.*" %>
+<%@ taglib prefix="getNumber" tagdir="/WEB-INF/
+<%@ attribute name="number" required="true" %>
+<%@ variable name-given="listNumber" variable-class="java.util.LinkedList" scope="AT_END" %>
+
+
+Tag文件具有两点好处:
+1)在设计Web应用时，可以通过编写Tab文件实现代码复用
+2)可将JSP页面中关于数据处理的代码放在一个Tag文件中，让JSP页面只负责显示数据，即通过使用Tag文件将数据的处理和显示相分离。
+
+Tag文件结构
+.以tag的文本文件
+存储目录
+.ch3\WEB-INF\tags
+.Tag文件必须使用ANSI编码保存
+Tag标记
+.标记格式：
+<Tag文件名字/>
+或
+<Tag文件名字>
+    标记体
+</Tag文件名字>
+Tag标记的使用 -- JSP页面使用Tab标记调用Tag文件前，要用tablib指令标记引用该Web服务目录下的标记库
+.tablib指令格式:
+<%@tablib tagdir="自定义标记库的位置" prefix="前缀">
+<%@tablib tagdir="/WEB-INF/tags" prefix="beijing">
+<%@tablib tagdir="/WEB-INF/tags/geng" prefix="dalian">
+.引用文件
+<beijing:AddSum/>
+<dalian:EvenSum/>
+
+
+
+jsp 使用tag 中文乱码 解决
+在tag文件开头加上一句
+
+<%@ tag pageEncoding="utf-8" %>
+
+<%@ tag pageEncoding="utf-8" %>
+由于我的是utf-8所以是utf-8，各位观摩一下自己的jsp文件是不是utf-8，有可能是gbk
+
+
+
+tag doBody
+..
+<%@taglib prefix="look" tagdir="/WEB-INF/tags" %>
+
+<look:Show>
+    北京奥运圆满成功！
+</look:Show>
+
+
+<%@ tag pageEncoding="utf-8" %>
+<body bgcolor="yellow">
+<p>
+    <%
+        int size = 1;
+        for(int i = 1; i <=30; i++)
+        {
+            size = size + 1;
+
+        }
+    %>
+    <font size="<%=size%>">
+        <jsp:doBody/>
+    </font>
+</p>
+</body>
+
+
+
+Tag常用指令
+.tag、variable、include、attribute、tablib
+.tag类似于pgae指令，可指定某些属性的值，示例:
+    <%@tag 属性1="属性值" 属性n="属性值" %>
+    属性有 body-content、language、import、pageEncoding
+.variable指令格式:
+<%@variable name-given="对象名字" variable-class="对象的类型" scope="有效范围" %>
+ scope指定为AT_BEGIN NESTED AT_END
+ 示例
+ <%@ variable name-given="time" variable-class="java.util.Date" scope="AT_END" %>
+.对象的返回 将对象名字和对象的引用存储到jspContext中 jspContext 调用  setAttribute("对象的名字",对象的引用 )；
+jspContext.setAttribute("time", new Date());
+
+==GiveDate.tag
+<%@ tag pageEncoding="utf-8" %>
+<%@ tag import="java.util.*" %>
+<%@ variable name-given="time" variable-class="java.util.Date" scope="AT_END" %>
+<% jspContext.setAttribute("time", new Date());
+%>
+
+--引用处
+<showTime:GiveDate/> <%--Tag标记 --%>
+<h3>当前时间:</h3>
+<%=time%>
+
+--一个Tag文件中通过使用 attribute 指令:
+<%@ attribute name="对象名字" required="true|false" type="对象的类型" %>
+使得JSP页面调用Tag文件时，可以向该Tag文件中的对象传递一个引用，方式如下:
+<前缀:Tag文件名字 对象名字="对象的引用" />
+或
+<前缀:Tag文件名字 对象名字="对象的引用" >
+    标记体
+</前缀:Tag文件名字 >
+
+
+---Tag文件把一个对象返回给调用它的JSP页面，步骤如下:
+1)Tag文件使用variable指令:
+<%@ variable name-given="对象名字" variable-class="对象的类型" scope="有效范围" %>
+给出返回的对象的名字、类型和有效范围。
+2)将返回的对象的名字和引用存储在内置对象jspContext中:
+jspContext.setAttribute("对象名字", 对象的引用);
+
+
+
+
+
+

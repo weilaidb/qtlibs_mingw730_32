@@ -1,0 +1,11 @@
+def exec_command(cmd):
+  """Execute |cmd| or return None on failure."""
+  trace.print(':', ' '.join(cmd))
+  try:
+    if platform.system() == 'Windows':
+      ret = subprocess.call(cmd)
+      sys.exit(ret)
+    else:
+      os.execvp(cmd[0], cmd)
+  except Exception:
+    pass

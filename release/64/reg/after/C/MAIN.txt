@@ -1,0 +1,1 @@
+int main(int argc, char **argv)$NL{$NL$TBprintf("hello world\n");$NL$TBreturn 0;$NL}

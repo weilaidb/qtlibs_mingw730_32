@@ -1,0 +1,1 @@
+<?php$NLfunction \1()$NL{$NL$NL    echo PHP_EOL;    // 换行符$NL}$NL $NL\1();$NL?>

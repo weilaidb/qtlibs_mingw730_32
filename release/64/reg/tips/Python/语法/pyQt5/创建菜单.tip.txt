@@ -1,0 +1,22 @@
+    ##右键菜单
+    self.textEdit.setContextMenuPolicy(Qt.CustomContextMenu)  ######允许右键产生子菜单
+    self.textEdit.customContextMenuRequested.connect(self.generateMenu_left)  ####右键菜单
+    self.rightPopMenu = QtWidgets.QMenu()
+    self.rightPopMenu.setObjectName("rightPopMenu")
+
+def generateMenu_left(self, pos):
+    print("left menu")
+    menulist = (readFileUtf8(self.fileCumstomMenu))
+    # showlist(menulist)
+
+    try:
+        self.rightPopMenu.clear()
+        self.rightPopMenu.addAction('item1')
+        self.rightPopMenu.addAction('item2')
+        self.rightPopMenu.addSeparator()
+        self.rightPopMenu.addAction('item3')
+        self.rightPopMenu.triggered.connect(self._triggered)
+        self.rightPopMenu.exec(self.cursor().pos())
+    except Exception as e:
+        print("exception:%s" %e)
+        return e

@@ -1,0 +1,9 @@
+1.9.2 字符串处理函数 
+$(subst <from>;,<to>;,<text>;) 
+名称：字符串替换函数——subst。 
+功能：把字串<text>;中的<from>;字符串替换成<to>;。
+返回：函数返回被替换过后的字符串。 
+示例： 
+$(subst ee,EE,feet on the street)， 
+把“feet on the street”中的“ee”替换成“EE”，返回结果是“fEEt on the 
+strEEt”。 

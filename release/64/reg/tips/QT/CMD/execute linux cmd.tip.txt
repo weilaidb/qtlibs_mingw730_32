@@ -1,0 +1,17 @@
+//执行shell指令或者shell脚本的方法
+QString Common::executeLinuxCmd(QString strCmd)
+{
+    QProcess p;
+    p.start("bash", QStringList() <<"-c" << strCmd);
+    p.waitForFinished();
+    QString strResult = p.readAllStandardOutput();
+    return strResult;
+}
+ 
+//实例
+QString strResult1 = executeLinuxCmd("sudo sh /home/test.sh");
+ 
+QString strResult2 = executeLinuxCmd("cat /etc/hostname");
+ 
+ 
+大家根据自己的业务需求去处理strResult1和strResult2，相信我的代码很清晰了吧！！！

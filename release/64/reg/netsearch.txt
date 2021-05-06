@@ -1,0 +1,5 @@
+必应;https://cn.bing.com/search?q=
+百度;https://www.baidu.com/s?wd=
+360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q=
+词霸;http://www.iciba.com/
+有道;http://dict.youdao.com/w/eng/
