@@ -9,6 +9,7 @@
         function deleteTable()
         {
             document.form1.action="deleteTable.jsp";
+            document.form.target = "_blank";
             document.form1.submit();
         }
     </Script>
