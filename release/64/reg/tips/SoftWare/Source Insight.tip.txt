@@ -13,7 +13,8 @@ printvar()           Ctrl+6    打印变量
 addmultiline()       Ctrl+7    插入多行空行
 addxinghaocomment()  Ctrl+8    插入多行*号注释
 hightlight           F8
-
+上移一行           Ctrl+Up
+下移一行           Ctrl+Down
 
 
 护眼色:
@@ -50,7 +51,3 @@ cmd /c type foo.txt
 If the Run string contains more than one command, separated by semi-colons, you don't need to run cmd.exe because Source Insight creates a batch file from the run string commands and runs cmd.exe auto­matically in that case. For example,
 cat readme.txt;dir
 This works fine because it is already running in a batch file inside a shell.
-
-
-
-
