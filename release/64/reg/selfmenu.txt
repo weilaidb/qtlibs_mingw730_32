@@ -154,6 +154,7 @@ C/API/nlcount
 C/API/oops
 C/API/pfile
 C/API/snprintf
+C/API/sscanf
 C/API/strcmp
 C/API/strerror
 C/API/strindex
