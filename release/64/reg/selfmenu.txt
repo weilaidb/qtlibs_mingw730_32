@@ -472,6 +472,47 @@ KERNEL/GCC/__aligned
 KERNEL/GCC/__attribute__ noreturn
 KERNEL/LIST_HEAD
 KERNEL/basetype
+KERNEL/driver/API/EXPORT_SYMBOL
+KERNEL/driver/API/MODULE_ALIAS
+KERNEL/driver/API/MODULE_AUTHOR
+KERNEL/driver/API/MODULE_DESCRIPTION
+KERNEL/driver/API/MODULE_LICENSE
+KERNEL/driver/API/__FUNCTION__
+KERNEL/driver/API/__builtin_return_address
+KERNEL/driver/API/__module_address
+KERNEL/driver/API/__module_text_address
+KERNEL/driver/API/__print_symbol
+KERNEL/driver/API/__symbol_get
+KERNEL/driver/API/__symbol_put
+KERNEL/driver/API/__task_pid_nr_ns
+KERNEL/driver/API/__wake_up
+KERNEL/driver/API/__wake_up_sync
+KERNEL/driver/API/__wake_up_sync_key
+KERNEL/driver/API/add_wait_queue
+KERNEL/driver/API/down
+KERNEL/driver/API/find_get_pid
+KERNEL/driver/API/find_module
+KERNEL/driver/API/get_task_mm
+KERNEL/driver/API/init_waitqueue_entry
+KERNEL/driver/API/init_waitqueue_head
+KERNEL/driver/API/kthread_create_on_node
+KERNEL/driver/API/list_entry
+KERNEL/driver/API/list_for_each
+KERNEL/driver/API/module_exit
+KERNEL/driver/API/module_init
+KERNEL/driver/API/module_is_live
+KERNEL/driver/API/module_refcount
+KERNEL/driver/API/ns_of_pid
+KERNEL/driver/API/pid_task
+KERNEL/driver/API/preempt_disable
+KERNEL/driver/API/preempt_enable
+KERNEL/driver/API/schedule_timeout_uninterruptible
+KERNEL/driver/API/sprint_symbol
+KERNEL/driver/API/task_active_pid_ns
+KERNEL/driver/API/task_tgid_nr_ns
+KERNEL/driver/API/up
+KERNEL/driver/API/wake_up_process
+KERNEL/driver/kallsyms 查看内核的符号表
 KERNEL/hash/hlish add
 KERNEL/hash/hlish del
 KERNEL/hash/hlish 说明
@@ -834,6 +875,8 @@ QT/UI/常用头文件 public header
 QT/UI/打印入参列表 showArgs
 QT/UI/问题项
 SoftWare/Source Insight
+SoftWare/Source Insight diy_utils.em
+SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
 TEST/RegExptest
 Tools/Emacs快捷键
