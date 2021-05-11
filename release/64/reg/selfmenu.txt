@@ -149,7 +149,9 @@ C/API/errno
 C/API/execvp
 C/API/fstat
 C/API/getopt
+C/API/memset pointer
 C/API/memset sizeof
+C/API/memset struct
 C/API/nlcount
 C/API/oops
 C/API/pfile
