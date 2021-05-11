@@ -885,6 +885,7 @@ Tools/UML/常用软件
 Tools/UML/教程
 Tools/VSCode快捷键
 Tools/dec to hex 十进制转十六进制
+Tools/git/git clone -i 指定文件
 Tools/git/git config
 Tools/git/git fetch
 Tools/git/git log -n
