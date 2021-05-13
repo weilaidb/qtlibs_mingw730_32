@@ -241,6 +241,7 @@ C/PRINT/string
 C/PRINT/uintxx
 C/PRINT/unsigned_long_int
 C/PRINT/unsigned_long_long_int
+C/PRINT/fmt/format va_start va_arg va_end
 C/STRING/ASCII码对照表
 C/STRING/ascii转字符串
 C/STRING/hex2string 十六进制转字符串
