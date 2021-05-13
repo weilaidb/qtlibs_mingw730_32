@@ -1,0 +1,259 @@
+https://www.cnblogs.com/gogly/articles/2416833.html
+
+va_start()，va_end()函数应用
+原理解释：
+
+VA_LIST 是在C语言中解决变参问题的一组宏，在<stdarg.h>头文件下。
+
+VA_LIST的用法：      
+      （1）首先在函数里定义一具VA_LIST型的变量，这个变量是指向参数的指针
+      （2）然后用VA_START宏初始化变量刚定义的VA_LIST变量，这个宏的第二个参数是第一个可变参数的前一个参数，是一个固定的参数。
+      （3）然后用VA_ARG返回可变的参数，VA_ARG的第二个参数是你要返回的参数的类型。
+      （4）最后用VA_END宏结束可变参数的获取。然后你就可以在函数里使用第二个参数了。如果函数有多个可变参数的，依次调用VA_ARG获取各个参数。
+
+VA_LIST在编译器中的处理：
+
+
+ (1)在运行VA_START(ap,v)以后，ap指向第一个可变参数在堆栈的地址。
+（2）VA_ARG()取得类型t的可变参数值，在这步操作中首先apt = sizeof(t类型)，让ap指向下一个参数的地址。然后返回ap-sizeof(t类型)的t类型*指针，这正是  第一个可变参数在堆栈里的地址。然后用*取得这个地址的内容。
+（3）VA_END(),X86平台定义为ap = ((char*)0)，使ap不再指向堆栈，而是跟NULL一样，有些直接定义为((void*)0)，这样编译器不会为VA_END产生代码，例如gcc在Linux的X86平台就是这样定义的。
+
+要注意的是：由于参数的地址用于VA_START宏，所以参数不能声明为寄存器变量，或作为函数或数组类型。
+
+使用VA_LIST应该注意的问题：
+   （1）因为va_start, va_arg, va_end等定义成宏,所以它显得很愚蠢,可变参数的类型和个数完全在该函数中由程序代码控制,它并不能智能地识别不同参数的个数和类型. 也就是说,你想实现智能识别可变参数的话是要通过在自己的程序里作判断来实现的.
+   （2）另外有一个问题,因为编译器对可变参数的函数的原型检查不够严格,对编程查错不利.不利于我们写出高质量的代码。
+ 
+
+小结：可变参数的函数原理其实很简单，而VA系列是以宏定义来定义的，实现跟堆栈相关。我们写一个可变函数的C函数时，有利也有弊,所以在不必要的场合，我们无需用到可变参数，如果在C++里，我们应该利用C++多态性来实现可变参数的功能，尽量避免用C语言的方式来实现。
+
+va_list ap; //声明一个变量来转换参数列表   
+va_start(ap,fmt);          //初始化变量   
+va_end(ap);     //结束变量列表,和va_start成对使用   
+可以根据va_arg(ap,type)取出参数  
+
+已经经过调试成功的输出程序
+
+#include<stdio.h>
+#include <stdarg.h>
+
+#define bufsize 80
+char buffer[bufsize];
+
+int vspf(char *fmt, ...)
+{
+     va_list argptr;
+     int cnt;
+    va_start(argptr, fmt);
+
+     cnt = vsnprintf(buffer,bufsize ,fmt, argptr);
+
+     va_end(argptr);
+
+    return(cnt);
+}
+
+int main(void)
+{
+     int inumber = 30;
+
+     float fnumber = 90.0;
+
+     char string[4] = "abc";
+
+    vspf("%d %f %s", inumber, fnumber, string);
+
+    printf("%s\n", buffer);
+
+    return 0;
+}
+
+运行结果为：
+
+30 90.000000 abc
+
+ 
+
+vsnprintf:int vsnprintf(char *str, size_t size, const char *format, va_list ap);
+      write output to character sting str
+
+      return value:the number of characters
+       printed (not including the trailing '\0' used to end output to strings). The functions snprintf() and vsnprintf() do not write more than size bytes (including the trailing '\0'). If the output was truncated due to this limit then the return value is the number of characters (not including the trailing '\0') which would have been written to the final string if enough space had been available. Thus, a return value of size or more means that the output was truncated. If an output error is encountered, a negative
+value is returned.
+                   if (return_value > -1)   
+                       size = n+1;
+                    else          
+                       size *= 2;
+The glibc implementation of the functions snprintf() and vsnprintf() conforms to the C99 standard, i.e., behaves as described above, since   glibc version 2.1. Until glibc 2.0.6 they would return -1 when the out put was truncated.
+C语言用va_start等宏来处理这些可变参数。这些宏看起来很复杂，其实原理挺简单，就是根据参
+
+数入栈的特点从最靠近第一个可变参数的固定参数开始，依次获取每个可变参数的地址。下面我们来分析这些宏。　在stdarg.h头文件中，针对不同平台有不同的宏定义，我们选取X86平台下的宏定义：
+
+typedef char * va_list;
+
+#define _INTSIZEOF(n)   ( (sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1) )
+
+#define va_start(ap,v) ( ap = (va_list)&v + _INTSIZEOF(v) )
+
+#define va_arg(ap,t)    ( *(t *)((ap += _INTSIZEOF(t)) - _INTSIZEOF(t)) )
+
+#define va_end(ap)      ( ap = (va_list)0 )
+
+　　_INTSIZEOF(n)宏是为了考虑那些内存地址需要对齐的系统，从宏的名字来应该是跟sizeof(int)对齐。一般的sizeof(int)=4，也就是参数在内存中的地址都为4的倍数。比如，如果sizeof(n)在1－4之间，那么_INTSIZEOF(n)＝4；如果sizeof(n)在5－8之间，那么_INTSIZEOF(n)=8。
+
+　　为了能从固定参数依次得到每个可变参数，va_start,va_arg充分利用下面两点：
+
+　　1． C语言在函数调用时，先将最后一个参数压入栈
+
+　　2． X86平台下的内存分配顺序是从高地址内存到低地址内存
+
+　　高位地址
+
+　　第N个可变参数
+
+　　。。。
+
+　　第二个可变参数
+
+　　第一个可变参数      ? ap
+
+　　固定参数           ? v
+
+　　低位地址
+
+　　由上图可见，v是固定参数在内存中的地址，在调用va_start后，ap指向第一个可变参数。这个宏的作用就是在v的内存地址上增加v所占的内存大小，这样就得到了第一个可变参数的地址。
+
+　　接下来，可以这样设想，如果我能确定这个可变参数的类型，那么我就知道了它占用了多少内存，依葫芦画瓢，我就能得到下一个可变参数的地址。
+
+　　让我再来看看va_arg，它先ap指向下一个可变参数，然后减去当前可变参数的大小即得到当前可变参数的内存地址，再做个类型转换，返回它的值。
+
+　　要确定每个可变参数的类型，有两种做法，要么都是默认的类型，要么就在固定参数中包含足够的信息让程序可以确定每个可变参数的类型。比如，printf，程序通过分析format字符串就可以确定每个可变参数大类型。
+
+　　最后一个宏就简单了，va_end使得ap不再指向有效的内存地址。
+
+　　其实在varargs.h头文件中定义了UNIX System V实行的va系列宏，而上面在stdarg.h头文件中定义的是ANSI C形式的宏，这两种宏是不兼容的，一般说来，我们应该使用ANSI C形式的va宏。
+
+ 
+
+定义_INTSIZEOF(n)主要是为了某些需要内存的对齐的系统.C语言的函数是从右向左压入堆栈的,函数的参数在堆栈中的分布位置.我
+　　们看到va_list被定义成char*,有一些平台或操作系统定义为void*.再看va_start的定义,定义为&v+_INTSIZEOF(v),而&v是固定参数在堆栈的
+　　地址,所以我们运行va_start(ap, v)以后,ap指向第一个可变参数在堆栈的地址:
+　　高地址|-----------------------------|
+　　|函数返回地址 |
+　　|-----------------------------|
+　　|....... |
+　　|-----------------------------|
+　　|第n个参数(第一个可变参数) |
+　　|-----------------------------|<--va_start后ap指向
+　　|第n-1个参数(最后一个固定参数)|
+　　低地址|-----------------------------|<-- &v
+　　然后,我们用va_arg()取得类型t的可变参数值,以上例为int型为例,我们看一下va_arg取int型的返回值:
+　　j= ( *(int*)((ap += _INTSIZEOF(int))-_INTSIZEOF(int)) ); 首先ap+=sizeof(int),已经指向下一个参数的地址了.然后返回
+　　ap-sizeof(int)的int*指针,这正是第一个可变参数在堆栈里的地址
+　　然后用*取得这个地址的内容(参数值)赋给j.
+　　高地址|-----------------------------|
+　　|函数返回地址 |
+　　|-----------------------------|
+　　|....... |
+　　|-----------------------------|<--va_arg后ap指向
+　　|第n个参数(第一个可变参数) |
+　　|-----------------------------|<--va_start后ap指向
+　　|第n-1个参数(最后一个固定参数)|
+　　低地址|-----------------------------|<-- &v
+　　最后要说的是va_end宏的意思,x86平台定义为ap=(char*)0;使ap不再指向堆栈,而是跟NULL一样.有些直接定义为((void*)0),这样编译器不
+　　会为va_end产生代码,例如gcc在linux的x86平台就是这样定义的.在这里大家要注意一个问题:由于参数的地址用于va_start宏,所以参数不能声明为寄存器变量或作为函数或数组类型.关于va_start, va_arg, va_end的描述就是这些了,我们要注意的是不同的操作系统和硬件平台的定义有些不同,但原理却是相似的.
+System V Unix把va_start定义为只有一个参数的宏:
+　　va_start(va_list arg_ptr);
+　　而ANSI C则定义为:
+　　va_start(va_list arg_ptr, prev_param);
+　　如果我们要用system V的定义,应该用vararg.h头文件中所定义的
+　　宏,ANSI C的宏跟system V的宏是不兼容的,我们一般都用ANSI C,所以
+　　用ANSI C的定义就够了,也便于程序的移植.
+　　可变参数的函数原理其实很简单,而va系列是以宏定义来定义的,实现跟堆栈相关.我们写一个可变函数的C函数时,有利也有弊,所以在不必要的场合,我们无需用到可变参数.如果在C++里,我们应该利用C++的多态性来实现可变参数的功能,尽量避免用C语言的方式来实现
+
+
+
+va_start()va_end()函数应用：
+man:
+       #include <stdarg.h>
+
+       void va_start(va_list ap, last);
+       type va_arg(va_list ap, type);
+       void va_end(va_list ap);
+       void va_copy(va_list dest, va_list src);
+1:当无法列出传递函数的所有实参的类型和数目时,可用省略号指定参数表
+void foo(...);
+void foo(parm_list,...);
+
+2:函数参数的传递原理
+函数参数是以数据结构:栈的形式存取,从右至左入栈.
+eg:
+#include   
+void fun(int a, ...)
+{
+int *temp = &a;
+temp++;
+for (int i = 0; i < a; ++i)
+{
+cout << *temp << endl;
+temp++;
+}
+}
+int main()
+{
+int a = 1;
+int b = 2;
+int c = 3;
+int d = 4;
+fun(4, a, b, c, d);
+system("pause");
+return 0;
+}
+Output::
+1
+2
+3
+4
+
+3:获取省略号指定的参数
+在函数体中声明一个va_list，然后用va_start函数来获取参数列表中的参数，使用完毕后调用va_end()结束。
+
+4.va_start使argp指向第一个可选参数。va_arg返回参数列表中的当前参数并使argp指向参数列表中的下一个参数。va_end把argp指针清为NULL。函数体内可以多次遍历这些参数，但是都必须以va_start开始，并以va_end结尾。
+
+实例：
+编写vstart.c,如下：
+
+//vstart.c
+#include <stdio.h>
+#include <strings.h>
+#include <stdarg.h>
+int demo(char *fmt, ...);
+int main() 
+{ 
+   demo("DEMO", "This", "is", "a", "demo!", ""); 
+   return 0;
+} 
+int demo( char *fmt, ... ) 
+{ 
+   va_list argp; 
+   int argno = 0;  
+   char *para; 
+   va_start(argp, fmt); 
+   while (1) 
+   { 
+      para = va_arg(argp, char *); 
+      if (strcmp( para, "") == 0) 
+      break; 
+      printf("Parameter #%d is: %s/n", argno, para); 
+      argno++; 
+   } 
+   va_end( argp ); 
+   return 0; 
+} 
+　　运行结果如下：
+
+Parameter #0 is: This
+Parameter #1 is: is
+Parameter #2 is: a
+Parameter #3 is: demo!
+
