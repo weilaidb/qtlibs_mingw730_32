@@ -1,0 +1,1 @@
+List<String> \1  = new ArrayList<String>();$NLString[]转List：List<String> \1 = Arrays.asList(arr);$NLList转String[]：String[] arr = \1.toArray(new String[list.size()]);
