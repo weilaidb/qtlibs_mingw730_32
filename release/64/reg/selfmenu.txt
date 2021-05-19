@@ -438,6 +438,7 @@ JAVA/css/include引用
 JAVA/javascript/include引用
 JAVA/javascript/src引用
 JAVA/javascript/timeout返回原页面
+JAVA/javascript/自动关闭网页 close self
 JAVA/print/println
 JAVA/print/println 片段
 JAVA/基本语句/CCodecPub
