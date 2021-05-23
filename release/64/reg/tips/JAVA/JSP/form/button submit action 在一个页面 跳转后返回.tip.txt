@@ -1,0 +1,42 @@
+<input type="button" value="转换" onclick="convertInfo()" style="margin-right: 10px;width: 60px"/>
+    <input type="button" value="刷新" onclick="RefreshSelf()" style="margin-right: 10px;width: 60px" id="btn_refresh"/>
+    <input type="button" value="保存" onclick="saveFileExt()" style="margin-right: 10px;width: 60px"/>
+    <input type="button" value="修改" onclick="modifyFiles()" style="margin-right: 10px;width: 60px"/>
+
+
+
+<Script Language="JavaScript">
+    function convertInfo()
+    {
+        document.form1.action="convertinfo.jsp";
+        document.form1.target = "";
+        document.form1.submit();
+    }
+    function saveFileExt()
+    {
+        document.form1.action="savefile2.jsp";
+        document.form1.target = "";
+        document.form1.submit();
+    }
+    function RefreshSelf()
+    {
+        document.form1.action="refresh.jsp";
+        document.form1.target = "";
+        document.form1.submit();
+    }
+    function modifyFiles()
+    {
+        document.form1.action="modifyfilecontent.jsp";
+        document.form1.target = "_blank";
+        document.form1.submit();
+    }
+</Script>
+
+
+跳转后再返回到本页
+
+<%
+    request.setAttribute("filetip","");
+%>
+
+<jsp:forward page="showfilecontent.jsp"></jsp:forward>
