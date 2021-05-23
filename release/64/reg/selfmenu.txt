@@ -208,7 +208,7 @@ C/GETSET/GETTER_AND_SETTER unsigned int
 C/GETSET/SETTER
 C/INCLUDE/FILTER
 C/INCLUDE/GENERATE
-C/INCLUDE/常用头文件
+C/INCLUDE/常用头文件 header
 C/LOOP/FOR
 C/LOOP/FOR ARRAYSIZE
 C/LOOP/SWITCH Case 2 ARRAY
@@ -272,7 +272,7 @@ CXX/DECLARE_TO_IMPLEMENT CLASS
 CXX/DECLARE_TO_IMPLEMENT static
 CXX/INCLUDE/FILTER
 CXX/INCLUDE/GENERATE
-CXX/INCLUDE/常用头文件
+CXX/INCLUDE/常用头文件 header
 CXX/LOOP/list iterator
 CXX/LOOP/list reverse_iterator
 CXX/LOOP/map/C++ map用法
@@ -876,7 +876,7 @@ QT/UI/newUi
 QT/UI/prj/qDebug no output
 QT/UI/problems/汇总
 QT/UI/progressBar
-QT/UI/常用头文件 public header
+QT/UI/常用头文件 header
 QT/UI/打印入参列表 showArgs
 QT/UI/问题项
 SoftWare/Source Insight
@@ -951,3 +951,4 @@ path路径/Android手机拷贝路径
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
+
