@@ -236,13 +236,13 @@ C/PRINT/SWITCH
 C/PRINT/address
 C/PRINT/double
 C/PRINT/float
+C/PRINT/fmt/format va_start va_arg va_end
 C/PRINT/int
 C/PRINT/long_int
 C/PRINT/string
 C/PRINT/uintxx
 C/PRINT/unsigned_long_int
 C/PRINT/unsigned_long_long_int
-C/PRINT/fmt/format va_start va_arg va_end
 C/STRING/ASCII码对照表
 C/STRING/ascii转字符串
 C/STRING/hex2string 十六进制转字符串
@@ -453,12 +453,9 @@ JAVA/基本语句/CStringPub
 JAVA/基本语句/Date Time/t1
 JAVA/基本语句/JAVA读写文件 read write
 JAVA/基本语句/List String
-<<<<<<< HEAD
-=======
 JAVA/基本语句/List String Sort
 JAVA/基本语句/List String Sort Uniq
 JAVA/基本语句/List String []互转
->>>>>>> 4dadcdb... release\64\reg\after\JAVA\基本语句\List String Sort Uniq.txt
 JAVA/基本语句/main
 JAVA/基本语句/路径分隔符
 KERNEL/2.6.18/函数或结构体/alloc_skb
