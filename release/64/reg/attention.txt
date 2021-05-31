@@ -7,6 +7,7 @@
 *.打开文件列表		--  normalfiles.txt
 *.常用配置列表		--  frequse.txt
 *.非全部处理限制值	--  contentmax.txt
+*.过滤符号          -- 【】 []
 *.特殊字符		--  $NL:换行
 *.特殊字符		--  $TB:Tab
 *.特殊字符		--  $SP:空格
