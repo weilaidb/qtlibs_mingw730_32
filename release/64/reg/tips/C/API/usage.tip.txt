@@ -1,0 +1,1 @@
+dump (up to maxpkts) AVPackets as they are demuxed by libavformat.\n

@@ -1,0 +1,1 @@
+4;USAGE: trasher <filename> <count> <maxburst>\n

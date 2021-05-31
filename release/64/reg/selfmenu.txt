@@ -145,9 +145,13 @@ BAT/网络network/知识点/常用端口号大全 port
 Books/常用书籍列表
 Books/常用网址
 Books/读后感/Linux Tcp IP协议栈 Linux2.6协议栈源代码分析
+C/API/argc num
+C/API/argc usage
 C/API/atoi
+C/API/endian
 C/API/errno
 C/API/execvp
+C/API/fopen
 C/API/fstat
 C/API/getopt
 C/API/memset pointer
@@ -157,6 +161,7 @@ C/API/nlcount
 C/API/oops
 C/API/pfile
 C/API/snprintf
+C/API/srandom
 C/API/sscanf
 C/API/strcmp
 C/API/strerror
@@ -165,6 +170,7 @@ C/API/strrchr
 C/API/strtok
 C/API/syscall
 C/API/syscalls
+C/API/usage
 C/ARRAY/format
 C/ARRAY/format diag
 C/ARRAYSIZE
