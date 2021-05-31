@@ -898,6 +898,7 @@ SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
 TEST/RegExptest
+Tools/Eclipse快捷键
 Tools/Emacs快捷键
 Tools/UML/StartUML
 Tools/UML/常用软件
