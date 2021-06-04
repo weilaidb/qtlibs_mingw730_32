@@ -1,0 +1,1 @@
+FILE *f;$NLint count, maxburst, length;$NL$NLf= fopen(\1, "\2");$NLif (!f){$NL    perror(\1);$NL    return 2;$NL}$NL$NL#file length$NLfseek(f, 0, SEEK_END);$NLlength= ftell(f);$NLfseek(f, 0, SEEK_SET);$NL

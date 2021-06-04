@@ -1,1 +1,1 @@
-\1
+const char *\1;//input$NLstruct hostent *\2 = NULL;$NL$NL/* 通过域名获取IP地址 */$NL\2 = gethostbyname(\1);$NLif (!\2) {$NL    //TODO$NL    return EAI_FAIL;$NL}$NL$NL

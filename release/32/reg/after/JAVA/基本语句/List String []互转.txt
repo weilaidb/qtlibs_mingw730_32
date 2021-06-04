@@ -1,0 +1,1 @@
+List<String> \1  = new ArrayList<String>();$NL#Arrays.asList()是个坑,不支持add()、remove()、clear()等方法$NLString[]转List：List<String> \1 = Arrays.asList(arr);$NLList转String[]：String[] arr = \1.toArray(new String[list.size()]);$NLString[]转List替代办法:$NLList<String> \1 = new ArrayList<>(Arrays.asList(arr));$NL

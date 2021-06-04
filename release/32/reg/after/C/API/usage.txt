@@ -1,0 +1,1 @@
+static int usage(int ret)$NL{$NL    fprintf(stderr, "\1");$NL    return ret;$NL}

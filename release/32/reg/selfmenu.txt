@@ -67,6 +67,7 @@ BASH/读取用户输入/单个或多个PROMPT
 BASH/读取用户输入/单个或多个PROMPT-SLIENT
 BASH/重定向
 BAT/COPY
+BAT/CURRENT PATH文件当前路径
 BAT/DATE TIME
 BAT/DNS flushdns
 BAT/IPCONFIG
@@ -144,16 +145,24 @@ BAT/网络network/知识点/常用端口号大全 port
 Books/常用书籍列表
 Books/常用网址
 Books/读后感/Linux Tcp IP协议栈 Linux2.6协议栈源代码分析
+C/API/argc num
+C/API/argc usage
 C/API/atoi
+C/API/endian
 C/API/errno
 C/API/execvp
+C/API/fopen
 C/API/fstat
 C/API/getopt
+C/API/memset pointer
 C/API/memset sizeof
+C/API/memset struct
 C/API/nlcount
 C/API/oops
 C/API/pfile
 C/API/snprintf
+C/API/srandom
+C/API/sscanf
 C/API/strcmp
 C/API/strerror
 C/API/strindex
@@ -161,6 +170,7 @@ C/API/strrchr
 C/API/strtok
 C/API/syscall
 C/API/syscalls
+C/API/usage
 C/ARRAY/format
 C/ARRAY/format diag
 C/ARRAYSIZE
@@ -204,7 +214,7 @@ C/GETSET/GETTER_AND_SETTER unsigned int
 C/GETSET/SETTER
 C/INCLUDE/FILTER
 C/INCLUDE/GENERATE
-C/INCLUDE/常用头文件
+C/INCLUDE/常用头文件 header
 C/LOOP/FOR
 C/LOOP/FOR ARRAYSIZE
 C/LOOP/SWITCH Case 2 ARRAY
@@ -232,6 +242,7 @@ C/PRINT/SWITCH
 C/PRINT/address
 C/PRINT/double
 C/PRINT/float
+C/PRINT/fmt/format va_start va_arg va_end
 C/PRINT/int
 C/PRINT/long_int
 C/PRINT/string
@@ -267,7 +278,7 @@ CXX/DECLARE_TO_IMPLEMENT CLASS
 CXX/DECLARE_TO_IMPLEMENT static
 CXX/INCLUDE/FILTER
 CXX/INCLUDE/GENERATE
-CXX/INCLUDE/常用头文件
+CXX/INCLUDE/常用头文件 header
 CXX/LOOP/list iterator
 CXX/LOOP/list reverse_iterator
 CXX/LOOP/map/C++ map用法
@@ -338,6 +349,8 @@ JAVA/JSP/File文件/File delete
 JAVA/JSP/File文件/File file
 JAVA/JSP/File文件/File mkdir
 JAVA/JSP/File文件/File 文件上传
+JAVA/JSP/JS/clear by id
+JAVA/JSP/JS/style eg1
 JAVA/JSP/JavaBean/getProperty
 JAVA/JSP/JavaBean/parseInt Long Float Double
 JAVA/JSP/JavaBean/setProperty
@@ -358,9 +371,12 @@ JAVA/JSP/bgcolor
 JAVA/JSP/bgcolor 护眼色
 JAVA/JSP/body nav 顶部菜单
 JAVA/JSP/br 换行符
+JAVA/JSP/css/color
+JAVA/JSP/css/什么是 CSS
 JAVA/JSP/foreach list string
 JAVA/JSP/form/basepath
 JAVA/JSP/form/button submit action
+JAVA/JSP/form/button submit action 在一个页面 跳转后返回
 JAVA/JSP/form/checkbox
 JAVA/JSP/form/eg
 JAVA/JSP/form/eg2
@@ -381,6 +397,7 @@ JAVA/JSP/form/table
 JAVA/JSP/form/taglib
 JAVA/JSP/form/text
 JAVA/JSP/form/textarea
+JAVA/JSP/form/textarea 浮动显示 保存刷新
 JAVA/JSP/head meta
 JAVA/JSP/head meta http-equiv
 JAVA/JSP/head title
@@ -432,6 +449,7 @@ JAVA/css/include引用
 JAVA/javascript/include引用
 JAVA/javascript/src引用
 JAVA/javascript/timeout返回原页面
+JAVA/javascript/自动关闭网页 close self
 JAVA/print/println
 JAVA/print/println 片段
 JAVA/基本语句/CCodecPub
@@ -441,10 +459,14 @@ JAVA/基本语句/CStringPub
 JAVA/基本语句/Date Time/t1
 JAVA/基本语句/JAVA读写文件 read write
 JAVA/基本语句/List String
+JAVA/基本语句/List String Sort
+JAVA/基本语句/List String Sort Uniq
+JAVA/基本语句/List String []互转
 JAVA/基本语句/main
 JAVA/基本语句/路径分隔符
 KERNEL/2.6.18/函数或结构体/alloc_skb
 KERNEL/2.6.18/函数或结构体/asm/AT&T ASM
+KERNEL/2.6.18/函数或结构体/asm/AT&T 常用指令说明
 KERNEL/2.6.18/函数或结构体/asm/AT&T_GCC_ASM
 KERNEL/2.6.18/函数或结构体/asm/AT&T汇编语言语法
 KERNEL/2.6.18/函数或结构体/asm/EAX、ECX、EDX、EBX寄存器的作用
@@ -469,6 +491,47 @@ KERNEL/GCC/__aligned
 KERNEL/GCC/__attribute__ noreturn
 KERNEL/LIST_HEAD
 KERNEL/basetype
+KERNEL/driver/API/EXPORT_SYMBOL
+KERNEL/driver/API/MODULE_ALIAS
+KERNEL/driver/API/MODULE_AUTHOR
+KERNEL/driver/API/MODULE_DESCRIPTION
+KERNEL/driver/API/MODULE_LICENSE
+KERNEL/driver/API/__FUNCTION__
+KERNEL/driver/API/__builtin_return_address
+KERNEL/driver/API/__module_address
+KERNEL/driver/API/__module_text_address
+KERNEL/driver/API/__print_symbol
+KERNEL/driver/API/__symbol_get
+KERNEL/driver/API/__symbol_put
+KERNEL/driver/API/__task_pid_nr_ns
+KERNEL/driver/API/__wake_up
+KERNEL/driver/API/__wake_up_sync
+KERNEL/driver/API/__wake_up_sync_key
+KERNEL/driver/API/add_wait_queue
+KERNEL/driver/API/down
+KERNEL/driver/API/find_get_pid
+KERNEL/driver/API/find_module
+KERNEL/driver/API/get_task_mm
+KERNEL/driver/API/init_waitqueue_entry
+KERNEL/driver/API/init_waitqueue_head
+KERNEL/driver/API/kthread_create_on_node
+KERNEL/driver/API/list_entry
+KERNEL/driver/API/list_for_each
+KERNEL/driver/API/module_exit
+KERNEL/driver/API/module_init
+KERNEL/driver/API/module_is_live
+KERNEL/driver/API/module_refcount
+KERNEL/driver/API/ns_of_pid
+KERNEL/driver/API/pid_task
+KERNEL/driver/API/preempt_disable
+KERNEL/driver/API/preempt_enable
+KERNEL/driver/API/schedule_timeout_uninterruptible
+KERNEL/driver/API/sprint_symbol
+KERNEL/driver/API/task_active_pid_ns
+KERNEL/driver/API/task_tgid_nr_ns
+KERNEL/driver/API/up
+KERNEL/driver/API/wake_up_process
+KERNEL/driver/kallsyms 查看内核的符号表
 KERNEL/hash/hlish add
 KERNEL/hash/hlish del
 KERNEL/hash/hlish 说明
@@ -827,18 +890,23 @@ QT/UI/newUi
 QT/UI/prj/qDebug no output
 QT/UI/problems/汇总
 QT/UI/progressBar
-QT/UI/常用头文件 public header
+QT/UI/常用头文件 header
 QT/UI/打印入参列表 showArgs
 QT/UI/问题项
 SoftWare/Source Insight
+SoftWare/Source Insight diy_utils.em
+SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
 TEST/RegExptest
+TEST/RegExptest1
+Tools/Eclipse快捷键
 Tools/Emacs快捷键
 Tools/UML/StartUML
 Tools/UML/常用软件
 Tools/UML/教程
 Tools/VSCode快捷键
 Tools/dec to hex 十进制转十六进制
+Tools/git/git clone -i 指定文件
 Tools/git/git config
 Tools/git/git fetch
 Tools/git/git log -n
@@ -882,6 +950,7 @@ UNITTEST/GTEST/make compile problem编译问题
 Windows/Fonts
 path路径/Android手机拷贝路径
 术语/Linux/FIB Forward Information Base
+术语/内核Kernel/常见名词
 术语/异或
 术语/网络/PDU
 术语/网络/TCP_IP协议族

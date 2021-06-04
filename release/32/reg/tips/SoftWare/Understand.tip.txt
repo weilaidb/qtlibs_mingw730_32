@@ -5,3 +5,56 @@ Enter License Code -> Options -> Use Legacy Licensing -> Add Eval or SDL (RegCod
 ok do it!!!!
 
 8B66005877F0
+
+
+【understand的安装破解】
+1、下载，百度搜下载一大把，后面有网盘链接。这里注意工具全名叫：Scientific Toolworks Understand，所以自己下的时候长点心眼。
+2、安装完成之后，就可以直接进行注册了。
+3、选择 Use Legacy Licensing -> Add Eval or SDL (RegCode) 。
+4、运行注册机，点击Generate生成注册码。
+5、复制注册码到understand，输入任意e-mail地址，点击激活。
+6、破解完成。
+
+如果是已经进入试用版本了，打开License选项，选择Enter License Code ，选择 option，再回到第三步即可开始。
+
+链接：https://pan.baidu.com/s/1GEwNo5uPzg5CveAZUBNdJQ
+提取码：vsux
+
+88880BBB7C13
+6DE4E0D09778
+CCE844D13379
+F48464B3131B
+BCF922CC5564
+06378108F6A0
+
+
+
+
+【简单使用】
+功能一、整个project的查看整理：treemap
+打开方式：Metrics -> treemap，用afl进行测试，点击generate treemap
+
+功能二、单个文件的查看整理
+打开方式：在treemap中选中文件，右键如图选择：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=== Set Up JetBrains Upsource 2020.1
+
+Upsource 2020.1 Free 10 Users Pack
+
+65d563a9257f545f5d29494e4686d4e477a1eb9662f48c25d2ef3b0467b6f7cb76b53af9c865c5c17c454725ba71ef5e41c2158d0b2a94f65335862b9b80952459f88858c8175eb4d0d15317a2dd8cd522f968e2f0d01b52e478eb0bfffd7ada696c612faa114d0da1f0058f9e697eb304b1f51bb9ecaf0bdbd01da77d76de5e
+
