@@ -1,4 +1,8 @@
 <body bgcolor="#c6ecd3">
+#浅绿
+style="background-color:honeydew;color:black;"
+#绿色
+style="background-color:#cce8cf;color:black;"
 
 色调：85；饱和度：123；亮度：205，
 R:     199;          G:    237;       B:204;

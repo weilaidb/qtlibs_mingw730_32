@@ -1,3 +1,22 @@
+LACP 
+链路汇聚控制协议
+Link Aggregation Control Protocol
+中文名 链路汇聚控制协议 
+外文名 Link Aggregation Control Protocol 
+本    质 实现链路动态汇聚的协议 
+简    称 LACP 
+工作模式 passive，active 
+使用场合 带宽比较紧张的情况
+
+
+基于IEEE802.3ad标准的LACP（链路汇聚控制协议）是一种实现链路动态汇聚的协议。LACP协议通过LACPDU（链路汇聚控制协议数据单元）与对端交互信息。启用某端口的LACP协议后，该端口将通过发送LACPDU向对端通告自己的系统优先级、系统MAC地址、端口优先级、端口号和操作Key。对端接收到这些信息后，将这些信息与其它端口所保存的信息比较以选择能够汇聚的端口，从而双方可以对端口加入或退出某个动态汇聚组达成一致。 
+
+概述编辑
+LACP（Link Aggregation Control Protocol，链路聚合控制协议）是一种基于IEEE802.3ad标准的协议。LACP协议通过LACPDU（Link Aggregation Control Protocol Data Unit，链路聚合控制协议数据单元）与对端交互信息。
+处于动态聚合组中的接口会自动使用LACP协议，该接口将通过发送LACPDU向对端通告自己的系统LACP协议优先级、系统MAC、端口的LACP协议优先级、端口号和操作Key。对端接收到LACPDU后，将其中的信息与其他接口所收到的信息进行比较，以选择能够处于selected状态的接口，从而双方可以对接口处于selected状态达成一致。
+链路聚合往往用在两个重要节点或繁忙节点之间，既能增加互联带宽，又提供了连接的可靠性。 [2] 
+
+
 802.3_2005_new_Version
 
 43. Link Aggregation
