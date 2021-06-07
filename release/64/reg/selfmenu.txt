@@ -157,6 +157,9 @@ C/API/getopt
 C/API/memset pointer
 C/API/memset sizeof
 C/API/memset struct
+C/API/memset_s pointer
+C/API/memset_s sizeof
+C/API/memset_s struct
 C/API/nlcount
 C/API/oops
 C/API/pfile
