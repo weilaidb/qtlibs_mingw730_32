@@ -295,6 +295,7 @@ CXX/More/虚函数 eg2
 CXX/cin.getline
 CXX/externc __cplusplus
 CXX/new class static
+CXX/编译链接 预处理等
 DBMS/MySql/database create
 DBMS/MySql/database drop
 DBMS/MySql/delete
@@ -491,6 +492,7 @@ KERNEL/2.6.18/函数或结构体/网络内存管理函数
 KERNEL/2.6.18/函数或结构体/网络协议初始化
 KERNEL/FS/mount-flags
 KERNEL/GCC/__aligned
+KERNEL/GCC/__attribute__
 KERNEL/GCC/__attribute__ noreturn
 KERNEL/LIST_HEAD
 KERNEL/basetype
@@ -821,6 +823,7 @@ Python/API/exec_command
 Python/PYTHONPATH
 Python/Print
 Python/from_xxx_import_all
+Python/gc
 Python/header
 Python/header import
 Python/idea快捷键
@@ -905,6 +908,7 @@ TEST/RegExptest
 TEST/RegExptest1
 Tools/Eclipse快捷键
 Tools/Emacs快捷键
+Tools/Tomcat/conf tomcat-users.xml
 Tools/UML/StartUML
 Tools/UML/常用软件
 Tools/UML/教程
@@ -948,6 +952,10 @@ UNITTEST/GTEST/ASSERT_LT
 UNITTEST/GTEST/ASSERT_NE
 UNITTEST/GTEST/ASSERT_TRUE
 UNITTEST/GTEST/ASSERT_xxx
+UNITTEST/GTEST/TEST
+UNITTEST/GTEST/TEST_F
+UNITTEST/GTEST/TEST_P
+UNITTEST/GTEST/gtest说明
 UNITTEST/GTEST/header
 UNITTEST/GTEST/make
 UNITTEST/GTEST/make compile problem编译问题
