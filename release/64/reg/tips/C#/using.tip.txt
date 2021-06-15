@@ -1,0 +1,14 @@
+System
+System.Collections.Generic
+System.IO
+System.Linq
+System.Runtime.InteropServices.WindowsRuntime
+Windows.Foundation
+Windows.Foundation.Collections
+Windows.UI.Xaml
+Windows.UI.Xaml.Controls
+Windows.UI.Xaml.Controls.Primitives
+Windows.UI.Xaml.Data
+Windows.UI.Xaml.Input
+Windows.UI.Xaml.Media
+Windows.UI.Xaml.Navigation

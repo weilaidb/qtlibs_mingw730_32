@@ -145,6 +145,8 @@ BAT/网络network/知识点/常用端口号大全 port
 Books/常用书籍列表
 Books/常用网址
 Books/读后感/Linux Tcp IP协议栈 Linux2.6协议栈源代码分析
+C#/HelloWorldApplication
+C#/using
 C/API/argc num
 C/API/argc usage
 C/API/atoi
@@ -579,6 +581,7 @@ LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备软件 necessary software
 LINUX/Vim/vim实用技巧
 LINUX/命令行/Centos 7 搭建samba
+LINUX/命令行/Centos 7 搭建samba
 LINUX/命令行/SELinux配置文件
 LINUX/命令行/fgrep
 LINUX/命令行/iptables clean -F
@@ -586,6 +589,10 @@ LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
 LINUX/命令行/realpath
 LINUX/命令行/setenforce
+LINUX/命令行/shutdown
+LINUX/命令行/屏蔽主机的ping命令
+LINUX/命令行/Linux 系统目录结构
+LINUX/命令行/Linux 忘记密码解决方法
 LINUX/命令行/software/RPM的强制安装和强制卸载
 LINUX/命令行/software/RedHat7配置yum源
 LINUX/命令行/software/install
@@ -599,6 +606,7 @@ LINUX/命令行/software/rpm命令查询软件包
 LINUX/命令行/software/samba smb.conf
 LINUX/命令行/software/yum
 LINUX/命令行/strace ifconfig
+LINUX/命令行/快捷键 shortcut
 LINUX/命令行/磁盘disk/e2label set labelname
 LINUX/命令行/磁盘disk/etc fstab自动挂载
 LINUX/命令行/磁盘disk/fdisk -l
