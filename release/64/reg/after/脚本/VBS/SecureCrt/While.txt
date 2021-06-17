@@ -1,0 +1,1 @@
+#$language = "VBScript"$NL#$interface = "1.0"$NL$NLcrt.Screen.Synchronous = True$NL$NL' This automatically generated script may need to be$NL' edited in order to work correctly.$NL$NLSub Main$NL    While 1$NL        crt.Screen.Send "date" & chr(13)$NL        crt.Screen.WaitForString ":~$"$NL        crt.Sleep(300)$NL    WEnd$NLEnd Sub$NL

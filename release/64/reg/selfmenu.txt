@@ -581,7 +581,8 @@ LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备软件 necessary software
 LINUX/Vim/vim实用技巧
 LINUX/命令行/Centos 7 搭建samba
-LINUX/命令行/Centos 7 搭建samba
+LINUX/命令行/Linux 忘记密码解决方法
+LINUX/命令行/Linux 系统目录结构
 LINUX/命令行/SELinux配置文件
 LINUX/命令行/fgrep
 LINUX/命令行/iptables clean -F
@@ -590,9 +591,6 @@ LINUX/命令行/iptables list -L
 LINUX/命令行/realpath
 LINUX/命令行/setenforce
 LINUX/命令行/shutdown
-LINUX/命令行/屏蔽主机的ping命令
-LINUX/命令行/Linux 系统目录结构
-LINUX/命令行/Linux 忘记密码解决方法
 LINUX/命令行/software/RPM的强制安装和强制卸载
 LINUX/命令行/software/RedHat7配置yum源
 LINUX/命令行/software/install
@@ -606,6 +604,7 @@ LINUX/命令行/software/rpm命令查询软件包
 LINUX/命令行/software/samba smb.conf
 LINUX/命令行/software/yum
 LINUX/命令行/strace ifconfig
+LINUX/命令行/屏蔽主机的ping命令
 LINUX/命令行/快捷键 shortcut
 LINUX/命令行/磁盘disk/e2label set labelname
 LINUX/命令行/磁盘disk/etc fstab自动挂载
@@ -988,3 +987,12 @@ path路径/Android手机拷贝路径
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
+脚本/VBS/SecureCrt/Date
+脚本/VBS/SecureCrt/Send
+脚本/VBS/SecureCrt/Sleep
+脚本/VBS/SecureCrt/WaitForString
+脚本/VBS/SecureCrt/WaitForString #
+脚本/VBS/SecureCrt/WaitForString $
+脚本/VBS/SecureCrt/WaitForStrings
+脚本/VBS/SecureCrt/WaitForStrings SwitchKey
+脚本/VBS/SecureCrt/While
