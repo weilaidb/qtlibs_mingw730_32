@@ -1,0 +1,13 @@
+String类常用方法
+int Length():返回字符的长度:return value.Length
+char charAt(int index):返回某索引处的字return vaLue[index]
+booLean isEmpty():判断是否是空字符牢:return value. Length == 0`
+String toLowercase():使用默认语言环境,将 String中的所有字符转换为小写
+String toUppercase():使用默认语言环境,将 String中的所有字符转换为大写
+String trim():返回字符的副本,忽略前导空白和尾部空白
+boolean equals(Object obj):比较字符的内容是否相同
+booLean equalsIgnoreCase(String anotherString):与equls方法类似,忽略大小写
+String concat(string str):将指定字符牢连接到此字符的结尾。等价于用"+"
+int compare To(String anotherstring):比较两个字符的大小
+String substring(int beginIndex):返回一个新的字符,它是此字符的从 beginIndex开始截取到最后一个子字符串.
+String substring(int beginIndex, int endindex):返回一个新字符串,它是此字符从beginIndex开始截取到endIndex(不包含)的一个子字符串.

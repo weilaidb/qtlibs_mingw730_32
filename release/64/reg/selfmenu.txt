@@ -178,6 +178,7 @@ C/API/syscalls
 C/API/usage
 C/ARRAY/format
 C/ARRAY/format diag
+C/ARRAY/开关数组 switch all
 C/ARRAYSIZE
 C/ARRAY_SIZE
 C/Check/Len Zero 1
@@ -468,6 +469,7 @@ JAVA/基本语句/List String
 JAVA/基本语句/List String Sort
 JAVA/基本语句/List String Sort Uniq
 JAVA/基本语句/List String []互转
+JAVA/基本语句/String类常用方法
 JAVA/基本语句/main
 JAVA/基本语句/路径分隔符
 KERNEL/2.6.18/函数或结构体/alloc_skb
