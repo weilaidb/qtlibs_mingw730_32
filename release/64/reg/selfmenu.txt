@@ -600,6 +600,9 @@ LINUX/命令行/iptables list -L
 LINUX/命令行/realpath
 LINUX/命令行/setenforce
 LINUX/命令行/shutdown
+LINUX/命令行/屏蔽主机的ping命令
+LINUX/命令行/Linux 系统目录结构
+LINUX/命令行/Linux 忘记密码解决方法
 LINUX/命令行/software/RPM的强制安装和强制卸载
 LINUX/命令行/software/RedHat7配置yum源
 LINUX/命令行/software/install
@@ -613,7 +616,6 @@ LINUX/命令行/software/rpm命令查询软件包
 LINUX/命令行/software/samba smb.conf
 LINUX/命令行/software/yum
 LINUX/命令行/strace ifconfig
-LINUX/命令行/屏蔽主机的ping命令
 LINUX/命令行/快捷键 shortcut
 LINUX/命令行/磁盘disk/e2label set labelname
 LINUX/命令行/磁盘disk/etc fstab自动挂载
