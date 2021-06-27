@@ -245,18 +245,21 @@ C/NETWORK/inet_network
 C/NETWORK/inet_ntoa
 C/NETWORK/linux网络编程常用转换函数api
 C/NETWORK/set/getsockopt
-C/PRINT/DEFINE
-C/PRINT/SWITCH
-C/PRINT/address
-C/PRINT/double
-C/PRINT/float
-C/PRINT/fmt/format va_start va_arg va_end
-C/PRINT/int
-C/PRINT/long_int
-C/PRINT/string
-C/PRINT/uintxx
-C/PRINT/unsigned_long_int
-C/PRINT/unsigned_long_long_int
+C/PRINTF/DEFINE
+C/PRINTF/SWITCH
+C/PRINTF/address
+C/PRINTF/double
+C/PRINTF/float
+C/PRINTF/fmt/format va_start va_arg va_end
+C/PRINTF/int
+C/PRINTF/long_int
+C/PRINTF/string
+C/PRINTF/uintxx
+C/PRINTF/unsigned_long_int
+C/PRINTF/unsigned_long_long_int
+C/DEFINE/NUM MAX MIN数值最大最小定义
+C/LOOP/FOR WORD
+CXX/GetStrOfData
 C/STRING/ASCII码对照表
 C/STRING/ascii转字符串
 C/STRING/hex2string 十六进制转字符串
