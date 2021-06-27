@@ -1,36 +1,28 @@
-头文件：
+linux下：
+函数声明：char *inet_ntoa(struct in_addr in);
+将一个32位网络字节序的二进制IP地址转换成相应的点分十进制的IP地址（返回点分十进制的字符串在静态内存中的指针）。
+所在头文件：<arpa/inet.h>
+
+#include <stdio.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-完整描述：
-int inet_aton(const char *string, struct in_addr*addr);
-参数描述：
-1 输入参数string包含ASCII表示的IP地址。
-2 输出参数addr是将要用新的IP地址更新的结构。
-返回值：
-如果这个函数成功，函数的返回值非零，如果输入地址不正确则会返回零。使用这个函数并没有错误码存放在errno中，所以它的值会被忽略。
-
-
-#define _BSD_SOURCE
-#include <arpa/inet.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-int
-main(int argc, char *argv[])
+#include <string.h>
+int main(int argc, char *argv[])
 {
-   struct in_addr addr;
-
-   if (argc != 2) {
-	   fprintf(stderr, "%s <dotted-address>\n", argv[0]);
-	   exit(EXIT_FAILURE);
-   }
-
-   if (inet_aton(argv[1], &addr) == 0) {
-	   fprintf(stderr, "Invalid address\n");
-	   exit(EXIT_FAILURE);
-   }
-
-   printf("%s\n", inet_ntoa(addr));
-   exit(EXIT_SUCCESS);
+struct in_addr addr1,addr2;
+ulong l1,l2;
+l1= inet_addr("192.168.0.74");
+l2 = inet_addr("211.100.21.179");
+memcpy(&addr1, &l1, 4);
+memcpy(&addr2, &l2, 4);
+printf("%s : %s\n", inet_ntoa(addr1), inet_ntoa(addr2)); //注意这一句的运行结果
+printf("%s\n", inet_ntoa(addr1));
+printf("%s\n", inet_ntoa(addr2));
+return 0;
 }
+
+chmod +x  inet_ntoa && ./inet_ntoa
+192.168.0.74 : 192.168.0.74
+192.168.0.74
+211.100.21.179
