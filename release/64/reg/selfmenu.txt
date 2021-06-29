@@ -259,6 +259,7 @@ C/PRINTF/string
 C/PRINTF/uintxx
 C/PRINTF/unsigned_long_int
 C/PRINTF/unsigned_long_long_int
+C/PRINTF/string c_str
 C/STRING/ASCII码对照表
 C/STRING/EXITLABEL
 C/STRING/ascii转字符串
@@ -1012,3 +1013,6 @@ path路径/Android手机拷贝路径
 脚本/VBS/SecureCrt/While
 脚本/VBS/SecureCrt/git process
 脚本/VBS/SecureCrt/git push cur branch
+GDB/C linux gdb
+GDB/gdb 如何调试release版本
+GDB/Linux下可执行程序调试信息的分离及release程序的调试
