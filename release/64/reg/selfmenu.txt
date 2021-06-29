@@ -1016,5 +1016,5 @@ path路径/Android手机拷贝路径
 GDB/C linux gdb
 GDB/gdb 如何调试release版本
 GDB/Linux下可执行程序调试信息的分离及release程序的调试
-aaaaaa
-aaaaaaaaaaaa
+LINUX命令/objcopy
+LINUX命令/readelf

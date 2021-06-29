@@ -1,9 +1,14 @@
+进入layou asm模式(《Debugging with gdb》的解释为：Display the assembly window only.)：
+
+
 另：提供一种简单的方法来调试Release文件，这种方法的缺点在于你必须有ELF文件的源代码。
 1、objcopy --only-keep-debug projectD projectsymbol.dbg #生成符号表；
 2、gdb -q --symbol=projectsymbol.dbg -exec=projectR #加载符号表；
 3、跟平常调试带debug段的elf一样了。
 
 
+
+gdb -q --symbol=main.debbg -exec=main
 
 
 linux gdb 导出到文件怎么打开,GDB基本命令从打开文件到调试结束的教程
