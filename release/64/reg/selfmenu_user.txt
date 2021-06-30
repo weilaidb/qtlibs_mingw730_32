@@ -1,3 +1,0 @@
-GDB/C linux gdb strip shell
-aaaaaa
-aaaaaaaaaaaa
