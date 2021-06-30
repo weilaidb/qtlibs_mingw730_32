@@ -1,3 +1,0 @@
-js/clipboard.js
-js/jquery-1.12.3.min.js
-js/bootstrap.min.js

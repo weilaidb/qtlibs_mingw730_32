@@ -461,10 +461,6 @@ JAVA/JSP/示例 eg
 JAVA/Org/StringUtils/base
 JAVA/RegExp/Pattern
 JAVA/css/include引用
-JAVA/javascript/include引用
-JAVA/javascript/src引用
-JAVA/javascript/timeout返回原页面
-JAVA/javascript/自动关闭网页 close self
 JAVA/print/println
 JAVA/print/println 片段
 JAVA/基本语句/CCodecPub
@@ -480,6 +476,11 @@ JAVA/基本语句/List String []互转
 JAVA/基本语句/String类常用方法
 JAVA/基本语句/main
 JAVA/基本语句/路径分隔符
+JavaScript/include引用
+JavaScript/src引用
+JavaScript/timeout返回原页面
+JavaScript/简介
+JavaScript/自动关闭网页 close self
 KERNEL/2.6.18/函数或结构体/alloc_skb
 KERNEL/2.6.18/函数或结构体/asm/AT&T ASM
 KERNEL/2.6.18/函数或结构体/asm/AT&T 常用指令说明
