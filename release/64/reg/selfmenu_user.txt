@@ -1,3 +1,1 @@
-GDB/C linux gdb strip shell
-aaaaaa
-aaaaaaaaaaaa
+LINUX命令/GDB/C linux gdb symbol 生成符号表

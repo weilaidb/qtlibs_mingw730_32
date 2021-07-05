@@ -1,0 +1,23 @@
+JavaScript 实现
+虽然 JavaScript和 ECMAScript 基本上是同义词，但 JavaScript远远不限于 ECMA-262 所定义的那样。
+没错，完整的 JavaScript 实现包含以下几个部分（见图 1-1）：
+ 
+核心（ECMAScript）  
+文档对象模型（DOM）  
+浏览器对象模型（BOM）
+
+
+1.2.2 DOM 
+文档对象模型（DOM，Document Object Model）是一个应用编程接口（API），用于在 HTML 中使
+用扩展的 XML。DOM 将整个页面抽象为一组分层节点。HTML 或 XML 页面的每个组成部分都是一种
+节点，包含不同的数据。比如下面的 HTML 页面：
+<html> 
+ <head> 
+ <title>Sample Page</title> 
+ </head> 
+ <body> 
+ <p> Hello World!</p> 
+ </body> 
+</html> 
+这些代码通过 DOM 可以表示为一组分层节点，如图 1-2 所示。
+
