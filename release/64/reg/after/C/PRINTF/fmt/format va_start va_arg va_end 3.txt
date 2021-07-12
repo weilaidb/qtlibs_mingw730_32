@@ -1,0 +1,1 @@
+va_list \1;$NLint cnt;$NL$NLva_start(\1, fmt);$NLcnt = vsnprintf(\2, uacLen, fmt, \1);$NLva_end(\1);$NLif(cnt < 0)$NL{$NL    return -1;$NL}
