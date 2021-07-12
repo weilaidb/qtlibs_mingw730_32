@@ -1,0 +1,632 @@
+/***************************************************************************
+** 版权所有:  WeiLai Copyright (c) 2020-2030  ******************************
+** 文件名称:  dlog.h
+** 当前版本:  v1.0
+** 作    者:
+** 完成日期: 2021-06-24_232007
+** 修改记录:
+** 修改记录:
+** 修改日期:
+** 版本号  :
+** 修改人  :
+** 修改内容:
+***************************************************************************/
+#ifndef DLOG_H
+#define DLOG_H
+
+/*****************************头文件****************************************/
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdarg.h>
+#include <pthread.h>
+
+using namespace std;
+
+/* 存储内容最大值 */
+#define DLOG_MODNAME_MAX       (64)  /* MOD字符最大数量 */
+#define DLOG_KEY_MAX           (64)  /* KEY字符最大数量 */
+#define DLOG_CHAR_CONTENT_MAX  (256) /* 保存字符最大数量 */
+#define DLOG_UCHAR_CONTENT_MAX (256) /* 保存BYTE流最大数量 */
+#define DLOG_SETS_MAX          (512) /* 至多比较条数 */
+
+
+/**
+  模块名称及索引
+*/
+enum{
+    DLOG_MOD_TEST1,
+    DLOG_MOD_TEST2,
+    DLOG_MOD_MSGID,
+
+    DLOG_MOD_MAX, /* MOD模块最大数量 */
+};
+
+#define DLOGMODNAME(A) #A
+
+#ifndef DLOGPRINTF
+#define DLOGPRINTF(fmt,...) \
+do{ \
+    if(1)\
+    {\
+        printf("[%-40s:%-3d]" fmt , __FUNCTION__ , __LINE__  ,##__VA_ARGS__);\
+    }\
+}while(0)
+#endif
+
+
+
+/*****************************宏定义****************************************/
+#ifndef ARRAYSIZE
+#define ARRAYSIZE(A) ((unsigned int)(sizeof(A)/sizeof(A[0])))
+#endif
+
+#ifndef MAX
+#define MAX(a,b) ((a)>(b)?(a):(b))
+#endif
+
+#ifndef MIN
+#define MIN(a,b) ((a)<(b)?(a):(b))
+#endif
+
+/*****************************结构体或类型定义*******************************/
+typedef struct T_DLogNode {
+    char m_Key[DLOG_KEY_MAX];//key
+    char m_Buf[DLOG_CHAR_CONTENT_MAX];//content
+    unsigned char m_uacStream[DLOG_UCHAR_CONTENT_MAX];//stream data
+    unsigned char m_SW;//switch 1:forced log, 0:auto judge
+    unsigned char m_Used;//is used, 1:used,0:no use
+    unsigned char m_Pad;//
+    unsigned short m_SameCnt;//same cnt record
+    unsigned short m_wLen;//buffer length
+}T_DLogNode, *P_DLogNode;
+
+
+typedef struct T_DLogMod{
+    unsigned char m_ucIndex;  /* 模块索引 */
+    unsigned char m_ucUsed;   /* 是否被使用 */
+    T_DLogNode m_Sets[DLOG_SETS_MAX]; /* 支持数量 */
+    char m_ModName[DLOG_MODNAME_MAX]; /* 模块名 */
+    pthread_mutex_t m_Mutex; /* 锁 */
+}T_DLogMod, *P_DLogMod ;
+
+
+/*****************************全局变量****************************************/
+
+
+/*****************************本地变量****************************************/
+
+
+/*****************************函数或类声明****************************************/
+
+
+/*****************************函数或类实现****************************************/
+
+
+
+
+
+
+
+
+/*****************************by extern "C"****************************************/
+/*****************************头文件****************************************/
+
+
+/*****************************宏定义****************************************/
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/*****************************结构体或类型定义*******************************/
+
+
+/*****************************全局变量****************************************/
+
+
+/*****************************本地变量****************************************/
+
+
+/*****************************函数或类声明****************************************/
+void dLogInit();
+P_DLogMod dLogInitByMod(const char *pModeName,unsigned char ucIndex);
+P_DLogMod findDLogModByIndex(unsigned char ucIndex);
+int dLog(unsigned char ucModIndex, const char *pTips, const unsigned char *pMsg, unsigned short wLen, const char *fmt, ...);
+int dLogFormatKey(char *acBuf, unsigned char uacLen, const char *fmt, ...);
+unsigned char isSameBuf(const char *pBufOrg, char *pBufNew, unsigned short wCmpLen
+                        , P_DLogNode pNode, const unsigned char *pMsg, unsigned short wLen);
+P_DLogNode findNodeByKey(unsigned char ucModIndex, const char *pKey, unsigned short wLen);
+int diagDLogSetSw(unsigned char ucModIndex, const char *pKey, unsigned char ucSw);
+int diagDLogShow(unsigned char ucModIndex, unsigned char ucFlag);
+/*****************************函数或类实现****************************************/
+
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+
+
+#endif /* DLOG_H */
+
+
+/***************************************************************************
+** 版权所有:  WeiLai Copyright (c) 2020-2030  ******************************
+** 文件名称:  dlog.cpp
+** 当前版本:  v1.0
+** 作    者:
+** 完成日期: 2021-06-24_232105
+** 修改记录:
+** 修改记录:
+** 修改日期:
+** 版本号  :
+** 修改人  :
+** 修改内容:
+***************************************************************************/
+
+
+/*****************************头文件****************************************/
+#include "dlog.h"
+#include "pubsw.h"
+
+/*****************************宏定义****************************************/
+
+/*****************************结构体或类型定义*******************************/
+
+
+/*****************************全局变量****************************************/
+
+
+/*****************************本地变量****************************************/
+
+
+/*****************************函数或类声明****************************************/
+
+
+/*****************************函数或类实现****************************************/
+
+
+
+
+
+
+
+
+/*****************************by extern "C"****************************************/
+/*****************************头文件****************************************/
+
+
+/*****************************宏定义****************************************/
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/*****************************结构体或类型定义*******************************/
+
+
+/*****************************全局变量****************************************/
+T_DLogMod g_tDLogMod[DLOG_MOD_MAX] = {0};
+
+/*****************************本地变量****************************************/
+
+
+/*****************************函数或类声明****************************************/
+
+
+/*****************************函数或类实现****************************************/
+void dLogInit()
+{
+    memset(&g_tDLogMod, 0, sizeof(g_tDLogMod));
+    dLogInitByMod(DLOGMODNAME(DLOG_MOD_TEST1), DLOG_MOD_TEST1);
+    dLogInitByMod(DLOGMODNAME(DLOG_MOD_TEST2), DLOG_MOD_TEST2);
+    dLogInitByMod(DLOGMODNAME(DLOG_MOD_MSGID), DLOG_MOD_MSGID);
+}
+
+//初始化模块
+P_DLogMod dLogInitByMod(const char *pModeName,unsigned char ucIndex)
+{
+    if(NULL == pModeName)
+    {
+        DLOGPRINTF("null pointer\n");
+        return NULL;
+    }
+
+    P_DLogMod pMod = NULL;
+    unsigned int dwLp = 0;
+    for(dwLp = 0;dwLp < DLOG_MOD_MAX;dwLp++)
+    {
+        pMod = &g_tDLogMod[dwLp];
+        if(0 == pMod->m_ucUsed)
+        {
+            break;
+        }
+
+        if(isSameBuf(pModeName, pMod->m_ModName, DLOG_MODNAME_MAX, NULL, NULL, 0) > 0)
+        {
+            return pMod;
+        }
+    }
+
+    if(dwLp >= DLOG_MOD_MAX)
+    {
+        DLOGPRINTF("module out of range\n");
+        return NULL;
+    }
+
+    memset(pMod, 0, sizeof(*pMod));
+    memcpy(pMod->m_ModName, pModeName, MIN(strlen(pModeName), DLOG_MODNAME_MAX));
+//    pMod->m_Mutex = PTHREAD_MUTEX_INITIALIZER;
+    pMod->m_ucUsed = 1;
+    pMod->m_ucIndex = ucIndex;
+
+    return pMod;
+}
+
+
+//根据索引查找模块
+P_DLogMod findDLogModByIndex(unsigned char ucIndex)
+{
+    P_DLogMod pMod = NULL;
+    if(ucIndex >= DLOG_MOD_MAX)
+    {
+        DLOGPRINTF("module num out of range! index:%u(max:%d)\n", ucIndex, DLOG_MOD_MAX);
+        return NULL;
+    }
+
+    unsigned int dwLp = 0;
+    for(dwLp = 0;dwLp < DLOG_MOD_MAX;dwLp++)
+    {
+        pMod = &g_tDLogMod[dwLp];
+        if(ucIndex == pMod->m_ucIndex)
+        {
+            return pMod;
+        }
+    }
+
+    DLOGPRINTF("module cannot find, please check or init!! index:%u(max:%d)\n", ucIndex, DLOG_MOD_MAX);
+    return NULL;
+}
+
+int dLog(unsigned char ucModIndex, const char *pTips, const unsigned char *pMsg, unsigned short wLen, const char *fmt, ...)
+{
+    unsigned int dwVal = 0;
+    P_DLogNode pNode = findNodeByKey(ucModIndex, pTips, DLOG_KEY_MAX);
+    if(NULL == pNode)
+    {
+        DLOGPRINTF("dLog Key out of range!! modIndex:%u\n", ucModIndex);
+        if(ucModIndex < 30)
+        {
+            dwVal = pubGetDrvSw(INDEX_DRVSW_DLOG_OVER_RANGE);
+            dwVal |= (1U << ucModIndex);
+            pubSetDrvSw(INDEX_DRVSW_DLOG_OVER_RANGE, dwVal);
+        }
+        return 0;
+    }
+
+    char buffer[DLOG_CHAR_CONTENT_MAX] = {0};
+    va_list argptr;
+    int cnt;
+
+    va_start(argptr, fmt);
+    cnt = vsnprintf(buffer, sizeof(buffer), fmt, argptr);
+    va_end(argptr);
+    if(cnt < 0)
+    {
+        return 0;
+    }
+
+    if(pNode->m_SW > 0)
+    {
+        DLOGPRINTF("[%s]m_SW:%u, forced logged\n", pNode->m_Key, pNode->m_SW);
+        return 0;
+    }
+
+    if(true == isSameBuf(pNode->m_Buf, buffer, DLOG_CHAR_CONTENT_MAX, pNode, pMsg, wLen))
+    {
+        pNode->m_SameCnt++;
+        pNode->m_wLen = wLen;
+        DLOGPRINTF("[%s]buffer same cnt:%u\n", pNode->m_Key, pNode->m_SameCnt);
+        return 0x01;
+    }
+
+    DLOGPRINTF("[%s]buffer differ old:%s,new:%s\n", pNode->m_Key, pNode->m_Buf, buffer);
+    memcpy(pNode->m_Buf, buffer, DLOG_CHAR_CONTENT_MAX);
+    if((NULL != pMsg) && (0 != wLen))
+    {
+        memcpy(pNode->m_uacStream, pMsg, MIN(DLOG_UCHAR_CONTENT_MAX, wLen));
+        pNode->m_wLen = wLen;
+    }
+
+    return 0x0;
+}
+
+int dLogFormatKey(char *acBuf, unsigned char uacLen, const char *fmt, ...)
+{
+    if(NULL == acBuf)
+    {
+        DLOGPRINTF("null pointer\n");
+        return -1;
+    }
+
+    memset(acBuf,0,uacLen);
+    va_list argptr;
+    int cnt;
+
+    va_start(argptr, fmt);
+    cnt = vsnprintf(acBuf, uacLen, fmt, argptr);
+    va_end(argptr);
+    if(cnt < 0)
+    {
+        return -1;
+    }
+
+    return 0x0;
+}
+
+unsigned char isSameBuf(const char *pBufOrg, char *pBufNew, unsigned short wCmpLen
+                        , P_DLogNode pNode, const unsigned char *pMsg, unsigned short wLen)
+{
+    unsigned char bRet = false;
+    if((NULL == pBufOrg) || (NULL == pBufNew) || (NULL == pNode))
+    {
+        DLOGPRINTF("null pointer\n");
+        return false;
+    }
+
+    if((NULL != pMsg) && (0 != wLen))
+    {
+        bRet = (0 == memcmp(pBufOrg, pBufNew, wCmpLen))
+                && (0 == memcmp(pNode->m_uacStream, pMsg, MIN(DLOG_UCHAR_CONTENT_MAX, wLen)))
+                && (pNode->m_wLen == wLen);
+        return bRet;
+    }
+    else
+    {
+        bRet = (0 == memcmp(pBufOrg, pBufNew, wCmpLen));
+    }
+
+    return bRet;
+}
+
+P_DLogNode findNodeByKey(unsigned char ucModIndex, const char *pKey, unsigned short wLen)
+{
+    P_DLogMod pMod = NULL;
+    pMod = findDLogModByIndex(ucModIndex);
+    if(NULL == pMod)
+    {
+        DLOGPRINTF("null pointer\n");
+        return 0;
+    }
+
+    unsigned int dwLp = 0;
+    for(dwLp = 0;dwLp < DLOG_SETS_MAX;dwLp++)
+    {
+        P_DLogNode pNode = &pMod->m_Sets[dwLp];
+        if(0 == pNode->m_Used)
+        {
+            memcpy(pNode->m_Key, pKey, wLen);
+            pNode->m_Used = 1;
+            return pNode;
+        }
+
+        if(0 == memcmp(pKey, pNode->m_Key, ARRAYSIZE(pNode->m_Key)))
+        {
+            return pNode;
+        }
+    }
+
+    return NULL;
+}
+
+int diagDLogSetSw(unsigned char ucModIndex, const char *pKey, unsigned char ucSw)
+{
+    P_DLogMod pMod = NULL;
+    pMod = findDLogModByIndex(ucModIndex);
+    if(NULL == pMod)
+    {
+        DLOGPRINTF("null pointer\n");
+        return 0;
+    }
+
+    unsigned int dwLp = 0;
+    char buf[DLOG_KEY_MAX] = {0};
+    memcpy(buf, pKey, MIN(strlen(pKey), DLOG_KEY_MAX));
+
+    for(dwLp = 0;dwLp < DLOG_SETS_MAX;dwLp++)
+    {
+        P_DLogNode pNode = &pMod->m_Sets[dwLp];
+        if(0 == pNode->m_Used)
+        {
+            break;
+        }
+
+        if(0 == memcmp(buf, pNode->m_Key, DLOG_KEY_MAX))
+        {
+            pNode->m_SW = ucSw;
+            break;
+        }
+    }
+
+    return 0;
+}
+
+
+int diagDLogShow(unsigned char ucModIndex, unsigned char ucFlag)
+{
+    P_DLogMod pMod = NULL;
+    pMod = findDLogModByIndex(ucModIndex);
+    if(NULL == pMod)
+    {
+        DLOGPRINTF("null pointer\n");
+        return -1;
+    }
+
+    unsigned int dwLp = 0;
+    unsigned int dwLp2 = 0;
+
+    printf("Module:%s[Idx:%u], out of range Flag:%u[1>>Idx is 1, out of range]\n", pMod->m_ModName, pMod->m_ucIndex, pubGetDrvSw(INDEX_DRVSW_DLOG_OVER_RANGE));
+    printf("%-4s%-61s%-8s%-3s\n", "No", "Key", "SameCnt", "Sw");
+    for(dwLp = 0;dwLp < DLOG_SETS_MAX;dwLp++)
+    {
+        P_DLogNode pNode = &pMod->m_Sets[dwLp];
+        if(0 == pNode->m_Used)
+        {
+            break;
+        }
+
+        printf("%-4u%-61s%-8u%-3u\n", dwLp+1, pNode->m_Key, pNode->m_SameCnt, pNode->m_SW);
+        //print buf
+        if(ucFlag & 0x1)
+        {
+            printf("  buf|-- %s\n",pNode->m_Buf);
+        }
+
+        if(ucFlag & 0x2)
+        {
+            if(pNode->m_wLen >= DLOG_UCHAR_CONTENT_MAX)
+            {
+                printf("  buf[%u out of range:%d]\n",pNode->m_wLen, DLOG_UCHAR_CONTENT_MAX);
+            }
+            else
+            {
+                printf("  buf[%u]\n", pNode->m_wLen);
+            }
+        }
+        //print unsigned buf
+        if((ucFlag & 0x4) && (pNode->m_wLen > 0))
+        {
+            if(pNode->m_wLen >= DLOG_UCHAR_CONTENT_MAX)
+            {
+                printf("  ubuf[%u out of range:%d]\n",pNode->m_wLen, DLOG_UCHAR_CONTENT_MAX);
+            }
+            else
+            {
+                printf("  ubuf[%u]\n", pNode->m_wLen);
+            }
+
+            for(dwLp2 = 0;dwLp2 < pNode->m_wLen; dwLp2++)
+            {
+                printf("%02x\n", pNode->m_uacStream[dwLp2]);
+            }
+            printf("\n");
+            printf("\n");
+        }
+    }
+
+    return 0;
+}
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+
+
+
+
+
+
+
+#ifndef PUBSW_H
+#define PUBSW_H
+
+enum{
+    INDEX_DRVSW_DLOG_OVER_RANGE,
+    INDEX_MAX,
+};
+
+
+//
+typedef struct T_DrvSw
+{
+    unsigned int m_Data[INDEX_MAX];
+}T_DrvSw, *P_DrvSw;
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+unsigned int pubGetDrvSw (unsigned int dwIndex);
+unsigned int pubSetDrvSw (unsigned int dwIndex, unsigned int _val);
+int pubShowDrvSw();
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+
+#endif // PUBSW_H
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include "pubsw.h"
+
+
+
+//declare variables
+T_DrvSw g_DrvSw = {0};
+
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+unsigned int pubGetDrvSw (unsigned int dwIndex)
+{
+    if(dwIndex > INDEX_MAX - 1)
+    {
+        return 0;
+    }
+
+    return g_DrvSw.m_Data[dwIndex] ;
+}
+
+unsigned int pubSetDrvSw (unsigned int dwIndex, unsigned int _val)
+{
+    if(dwIndex > INDEX_MAX - 1)
+    {
+        return 0;
+    }
+
+    g_DrvSw.m_Data[dwIndex]  = _val;
+    return g_DrvSw.m_Data[dwIndex] ;
+}
+
+int pubShowDrvSw()
+{
+#ifndef ARRAYSIZE
+#define ARRAYSIZE(A) ((unsigned int)(sizeof(A)/sizeof(A[0])))
+#endif
+
+
+    unsigned int  dwLp =  0;
+    for(dwLp = 0;dwLp < ARRAYSIZE(g_DrvSw.m_Data);dwLp++)
+    {
+        printf("No:%-3u -- %-3u\n", dwLp+1, g_DrvSw.m_Data[dwLp]);
+
+    }
+
+    return 0;
+}
+
+
+#ifdef __cplusplus
+}
+#endif
