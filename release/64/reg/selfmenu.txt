@@ -247,7 +247,13 @@ C/NETWORK/inet_netof
 C/NETWORK/inet_network
 C/NETWORK/inet_ntoa
 C/NETWORK/linux网络编程常用转换函数api
+C/NETWORK/set/fcntl
+C/NETWORK/set/getpeername
+C/NETWORK/set/getsockname
 C/NETWORK/set/getsockopt
+C/NETWORK/set/ioctl
+C/NETWORK/set/ioctl fcntl
+C/NETWORK/set/setsockopt
 C/PRINTF/DEFINE
 C/PRINTF/SWITCH
 C/PRINTF/address

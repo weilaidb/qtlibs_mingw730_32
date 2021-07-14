@@ -1,0 +1,4 @@
+getsockname系统调试的原型是:
+int getsockname(int fd, caddr_t asa, int *alen);
+
+getsockname得到绑定在插口fd上的本地地址，并将它存入asa指向的缓存中。当在一个隐式的绑定中内核选择了一个地址，或在一个显式的bind调用中进程指定了一个通配符地址时，该函数就很有用。
