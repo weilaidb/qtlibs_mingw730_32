@@ -251,6 +251,9 @@ C/NETWORK/set/getsockopt
 C/PRINTF/DEFINE
 C/PRINTF/SWITCH
 C/PRINTF/address
+C/PRINTF/color 1
+C/PRINTF/color 2 windows
+C/PRINTF/color简介
 C/PRINTF/double
 C/PRINTF/float
 C/PRINTF/fmt/format va_start va_arg va_end
