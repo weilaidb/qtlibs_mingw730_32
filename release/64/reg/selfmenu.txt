@@ -235,6 +235,7 @@ C/MEM/malloc free
 C/MEM/malloc free char
 C/MEM/malloc free unsigned char
 C/MEM/strdup free
+C/NETWORK/ARP/introduction
 C/NETWORK/getaddrinfo
 C/NETWORK/gethostbyaddr
 C/NETWORK/gethostbyname
