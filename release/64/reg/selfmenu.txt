@@ -168,6 +168,7 @@ C/API/nlcount
 C/API/oops
 C/API/pfile
 C/API/snprintf
+C/API/snprintf 2
 C/API/srandom
 C/API/sscanf
 C/API/strcmp
@@ -286,6 +287,7 @@ C/enum/enum
 C/enum/enum single
 C/enum/enum single withname
 C/enum/enum single withname typedef
+C/new/return int
 C/单链表 single list
 C/单链表 single list new
 C/基本类型/BASE TYPE
