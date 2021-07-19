@@ -1,0 +1,1 @@
+#ifndef $UP(\1)$NL#define $UP(\1) \1$NL#endif$NL
