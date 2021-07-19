@@ -1,0 +1,1 @@
+LITE_OS_SEC_TEXT_INIT;text.init

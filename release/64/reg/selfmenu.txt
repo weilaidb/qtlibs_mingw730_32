@@ -198,13 +198,20 @@ C/DATE_TIME
 C/DEFINE/CHECK_POINTER_RET
 C/DEFINE/ENTERTIPS
 C/DEFINE/ERROR错误定义列表
+C/DEFINE/FALSE
 C/DEFINE/MAX
 C/DEFINE/MIN
+C/DEFINE/NO
+C/DEFINE/NULL
 C/DEFINE/NUM MAX MIN数值最大最小定义
 C/DEFINE/STATIC
+C/DEFINE/TRUE
 C/DEFINE/VERSION
 C/DEFINE/VERSION 大于小于
+C/DEFINE/YES
+C/DEFINE/asm
 C/DEFINE/static_inline空间换时间
+C/DEFINE/typeof
 C/DEFINE/一个参数
 C/DEFINE/一个参数 注释
 C/DEFINE/变量的位定义 与或
@@ -288,12 +295,14 @@ C/enum/enum single
 C/enum/enum single withname
 C/enum/enum single withname typedef
 C/new/DEFINE/ifndef
+C/new/__attribute__/TEXT
+C/new/__attribute__/always_inline
 C/new/return int
 C/new/return unsigned int
 C/new/return void
 C/单链表 single list
 C/单链表 single list new
-C/基本类型/BASE TYPE
+C/基本类型/BASE TYPE typedef
 C/基本类型/basetype no change
 C/注释comments. insertFileHeader 头文件
 C/注释comments. insertFileHeader 源文件
