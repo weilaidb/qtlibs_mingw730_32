@@ -296,6 +296,8 @@ C/enum/enum single withname
 C/enum/enum single withname typedef
 C/new/DEFINE/ifndef
 C/new/__attribute__/TEXT
+C/new/__attribute__/__align__
+C/new/__attribute__/__sect__
 C/new/__attribute__/always_inline
 C/new/return int
 C/new/return unsigned int
@@ -1047,4 +1049,3 @@ path路径/Android手机拷贝路径
 脚本/VBS/SecureCrt/While
 脚本/VBS/SecureCrt/git process
 脚本/VBS/SecureCrt/git push cur branch
-
