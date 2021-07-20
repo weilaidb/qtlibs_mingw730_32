@@ -87,6 +87,12 @@ BAT/网络network/VTP
 BAT/网络network/acl
 BAT/网络network/ethertype
 BAT/网络network/icmp
+BAT/网络network/ipv4 add 添加ip
+BAT/网络network/ipv4 add 添加ip 2
+BAT/网络network/ipv4 del 删除ip
+BAT/网络network/ipv4 modify 修改ip
+BAT/网络network/ipv4 设置dns 自动
+BAT/网络network/ipv4 设置dns 静态
 BAT/网络network/lacp
 BAT/网络network/nat
 BAT/网络network/ping大包
