@@ -1,0 +1,1 @@
+//IP、子网掩码、网关$NLnetsh interface ip set address name ="\1" source= static \2 \3 \4$NL
