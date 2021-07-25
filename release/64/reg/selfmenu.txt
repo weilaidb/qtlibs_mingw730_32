@@ -1033,6 +1033,11 @@ path路径/Android手机拷贝路径
 术语/内核Kernel/常见名词
 术语/异或
 术语/网络/PDU
+术语/网络/PHY/MDI
+术语/网络/PHY/MII
+术语/网络/PHY/PHY芯片 RTL8211E
+术语/网络/PHY/RGMII
+术语/网络/PHY/RMII
 术语/网络/TCP_IP协议族
 术语/网络/信道(channel)
 术语/网络/协议
