@@ -380,8 +380,8 @@ DEFINE/GENERATESTRINGSAME
 DEFINE/UNUSED
 FPGA/介绍
 FPGA/开发板/ALINX/AX7020
-FPGA/示例/Led
 FPGA/术语 shuyu
+FPGA/示例/Led
 JAVA/Cloud/ECS
 JAVA/JSP/File文件/File
 JAVA/JSP/File文件/File BufferedInputStream
@@ -501,6 +501,7 @@ JAVA/RegExp/Pattern
 JAVA/css/include引用
 JAVA/print/println
 JAVA/print/println 片段
+JAVA/基本语句/Atom 原子类
 JAVA/基本语句/CCodecPub
 JAVA/基本语句/CFilePub
 JAVA/基本语句/CSqlitePub
