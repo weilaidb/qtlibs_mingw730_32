@@ -164,6 +164,9 @@ C/API/execvp
 C/API/fopen
 C/API/fstat
 C/API/getopt
+C/API/gettimeofday
+C/API/localtime 非线程安全
+C/API/localtime_r 线程安全
 C/API/memset pointer
 C/API/memset sizeof
 C/API/memset struct
