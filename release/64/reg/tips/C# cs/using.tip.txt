@@ -3,6 +3,9 @@ System.Collections.Generic
 System.IO
 System.Linq
 System.Runtime.InteropServices.WindowsRuntime
+System.Threading.Tasks
+System.Windows.Forms
+
 Windows.Foundation
 Windows.Foundation.Collections
 Windows.UI.Xaml
