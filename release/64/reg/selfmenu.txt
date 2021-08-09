@@ -158,6 +158,8 @@ C# cs/WriteLine para1
 C# cs/problem/System.Data.SqlClient.SqlException
 C# cs/using
 C# cs/基础内容
+C# cs/CMDOperator
+C# cs/DllImport
 C/API/argc num
 C/API/argc usage
 C/API/atoi
