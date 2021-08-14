@@ -293,7 +293,7 @@ C/PRINTF/int
 C/PRINTF/long_int
 C/PRINTF/string
 C/PRINTF/string c_str
-C/PRINTF/uintxx
+C/PRINTF/unsigned int
 C/PRINTF/unsigned_long_int
 C/PRINTF/unsigned_long_long_int
 C/STRING/ASCII码对照表
@@ -349,7 +349,7 @@ CXX/More/虚函数 eg
 CXX/More/虚函数 eg2
 CXX/cin.getline
 CXX/externc __cplusplus
-CXX/new class static
+CXX/new class static instsance实例
 CXX/编译链接 预处理等
 DBMS/MySql/database create
 DBMS/MySql/database drop
@@ -1073,4 +1073,3 @@ path路径/Android手机拷贝路径
 脚本/VBS/SecureCrt/While
 脚本/VBS/SecureCrt/git process
 脚本/VBS/SecureCrt/git push cur branch
-
