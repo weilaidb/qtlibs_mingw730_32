@@ -1,0 +1,1 @@
+unsigned short \1()$NL{$NL$NL    return 0;$NL}
