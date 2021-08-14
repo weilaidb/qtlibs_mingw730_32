@@ -174,8 +174,8 @@ C/API/gettimeofday 说明
 C/API/localtime 非线程安全
 C/API/localtime_r 线程安全
 C/API/memset pointer
-C/API/memset sizeof
-C/API/memset struct
+C/API/memset sizeof array
+C/API/memset sizeof struct
 C/API/memset_s pointer
 C/API/memset_s sizeof
 C/API/memset_s struct
@@ -305,6 +305,8 @@ C/STRING/mlogxByKey record log msg
 C/STRING/字符串转ascii
 C/STRNCPY_2_SNPRINTF
 C/STRUCT/生成结构体
+C/STRUCT/pragma pack 1字节对齐
+C/new/return unsigned short
 C/enum/enum
 C/enum/enum single
 C/enum/enum single withname
