@@ -304,9 +304,8 @@ C/STRING/last string zero memset
 C/STRING/mlogxByKey record log msg
 C/STRING/字符串转ascii
 C/STRNCPY_2_SNPRINTF
-C/STRUCT/生成结构体
 C/STRUCT/pragma pack 1字节对齐
-C/new/return unsigned short
+C/STRUCT/生成结构体
 C/enum/enum
 C/enum/enum single
 C/enum/enum single withname
@@ -318,6 +317,7 @@ C/new/__attribute__/__sect__
 C/new/__attribute__/always_inline
 C/new/return int
 C/new/return unsigned int
+C/new/return unsigned short
 C/new/return void
 C/单链表 single list
 C/单链表 single list new
@@ -1060,6 +1060,7 @@ path路径/Android手机拷贝路径
 术语/网络/模拟信号
 术语/网络/物理层 规程 procedure
 正则表达式/去除开头的数字
+正则表达式/去除空行
 正则表达式/所有转一行_替换为NL
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
