@@ -194,6 +194,7 @@ C/API/strtok
 C/API/syscall
 C/API/syscalls
 C/API/usage
+C/API/usage void
 C/ARRAY/format
 C/ARRAY/format diag
 C/ARRAY/开关数组 switch all
