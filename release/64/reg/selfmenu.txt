@@ -194,6 +194,7 @@ C/API/strtok
 C/API/syscall
 C/API/syscalls
 C/API/usage
+C/API/usage void
 C/ARRAY/format
 C/ARRAY/format diag
 C/ARRAY/开关数组 switch all
@@ -1061,6 +1062,7 @@ path路径/Android手机拷贝路径
 术语/网络/模拟信号
 术语/网络/物理层 规程 procedure
 正则表达式/去除开头的数字
+正则表达式/去除空行
 正则表达式/所有转一行_替换为NL
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
