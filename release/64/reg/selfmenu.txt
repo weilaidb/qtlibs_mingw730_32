@@ -1040,6 +1040,7 @@ UNITTEST/GTEST/header
 UNITTEST/GTEST/make
 UNITTEST/GTEST/make compile problem编译问题
 Windows/Fonts
+YAML/yml入门教程
 path路径/Android手机拷贝路径
 术语/Linux/FIB Forward Information Base
 术语/内核Kernel/常见名词
