@@ -197,6 +197,56 @@ POS:product of sum 和之积表达式，或-非表达式
 寄存器：边沿敏感型的触发器
 
 
+HDL:Hardware Description Language 硬件描述语言
+VHDL:Very-High-Speed Intergrated Circuit Hardware Description Language 超高速集成电路硬件描述语言
+
+Verilog HDL:简称Verilog
+OVI:Open Verilog International 组织
+VCS:Verilog Compiled Simulator 仿真器
+SystemVerilog
+
+软件设计是串行的
+FPGA设计是并行的
+
+HDL编译原理
+1)将HDL语言转化为FPGA内部基本资源模块为基础的门级网表。
+  把门级网表理解为一个用基本门电路搭建的数字电路图
+2)将门级网表的各个资源映射到FPGA芯片内部的具体位置，并确定好连线开关等一些资源的配置状态，进而再生成用于配置FPGA的流文件
+
+
+assign a1 = b1 & b2;
+assign a2 <= c1 | c2;
+assign a3 <= a1 ^ a2;
+
+
+FPGA程序执行方式:并行、连续、无限。
+并行：HDL代码都是并发执行的
+连续:HDL执行是无时间间隔的，即无时无刻都在执行
+无限:HDL代码周期是和系统运行时间一致的
+
+
+
+逻辑资源块
+CLB:Configurable Logic Block 
+ALM:Adapive Logic Module
+
+LUT:LUT Look Up Table  查找表
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
