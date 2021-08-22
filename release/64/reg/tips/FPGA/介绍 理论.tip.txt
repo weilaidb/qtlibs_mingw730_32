@@ -232,6 +232,43 @@ ALM:Adapive Logic Module
 
 LUT:LUT Look Up Table  查找表
 
+时钟网络资源
+全局时钟网络资源
+区域时钟网络资源
+IO时钟网络资源
+
+PLL:Phase Locked Loop 锁相环
+LF:Low Frequencey 低通滤波器
+VCO: 压控振荡器
+PD: 鉴相器(鉴频器)
+
+DCM:Digital Clock Manager 数字时钟管理员
+DLL:delay-locked loop 延迟锁定环
+BLOCK RAM: 硬件存储核
+
+时序约束
+时序分析
+
+IOB：Input Output Block IO块
+IOE: Input Output Element
+PAD:FPGA芯片的金属管脚
+
+SERDES:串并转换器
+ISERDES：用于输入的
+OSERDESL用于输出的
+
+VCCIO:此管脚用于为用户IO资源供电的管脚
+JTAG:Joint Test Action Group 联合测试行为组织
+两大功能 电路的边界扫描测试和可编程芯片的在线系统编程
+
+IP核:Intellectual property core 知识产权核
+
+
+
+
+
+
+
 
 
 
