@@ -315,10 +315,83 @@ FPGA设计的功能与仿真
 映射后仿真：仿真对象是门级网表经过转换后对应到FPGA上的具体逻辑资源聚类，此时可得到电路中的门延迟信息文件供仿真时使用
 布局布线后仿真：时序仿真
 
+FPGA设计的时序分析
+时序分析STA：Static Timing Analysis,  静态时序分析，
 
+时序仿真=功能仿真+逻辑等价性检查+时序分析
 
+编译器：将HDL代码和约束文件转为FPGA芯片上的实际数字电路
+五个方面:综合、翻译融合、映射、布局布线和配置文件生成。
+综合的输入:HDL代码、综合设置、器件型号等。
+综合设置：编译器综合FPGA设计时的指导信息，通常采用默认的综合设置来进行综合，有时需要人工去修改综合设置。
+人工干预综合的方法：
+1）修改编译策略：可选的编译策略包括:speed、aread、power optimization、minimum runtime、balance等
+2）修改一般综合选项
+keep hierarchy:保留层级选项
+read core:读核选项
+synthesis constraints file:综合约束文件选项
+3）修改HDL综合选项
+4）修改特殊综合选项
 
+综合的输出
+综合的输出：RTL门级网表和综合报告。
+RTL:Register Transfer Level ，寄存器传输级网表
+FPGA基本开发流程中FPGA顶层模块的门级仿真环节用到的那个门级网表，是FPGA设计对应的与、或、非等门电路单元的表达。
 
+综合报告
+综合报告包含了综合过程中输出的一些关键信息，最主要的是错误信息、警告信息和资源占用量信息。
+
+编译流程之翻译融合
+翻译融合：将输入的门级网表和约束信息转换为后续作业工具所能识别的逻辑连接。给出FPGA设计的顶层门级网表。
+翻译融合的输入：RTL门级网表、翻译融合设置、器件型号等。
+翻译融合的设置：
+Macro Search Path:参考路径设置选项
+Allow Unmatched LOC Constants:允许不匹配的引脚约束选项。
+
+翻译融合的输出
+翻译融合的输出：顶层可识别门级网表、翻译融合报告等
+
+编译流程之映射
+映射的输入：顶层可识别门级网表、映射设置、器件型号、位置约束、时序约束、管脚约束等
+映射设置
+Ignore User Timing Constrains:忽略用户时序约束选项。
+Trim Unconnected Signals:删除无连接信号选项
+Generate Detailed Map Report:产生详细映射报告选项
+Pack I/O Registers/Latchs into IOB:使用接口资源中的寄存器选项。
+
+映射的输出：顶层资源位置门级网表、门延时文件和映射报告。
+
+编译流程之布局布线 ：将FPGA设计完全转换为FPGA芯片上具体数字电路实现。
+布局布线的输入：顶层资源位置门级网表、布局布线设置、器件型号、管脚约束、时序约束等。
+
+布局布线设置：
+Place And Route Mode:布局布线模式选项。有三种：
+Route Only (默认):表示认为映射环节所做的布局已经可以接受了，只进行布线工作 
+Reentry Route：可重入布线模式，在自动布线开始后可以打断布线器的工作，进行若干手动布线操作，然后再对剩下的部分重新进行自动布线
+Multi Pass Place And Route ：多次布局布线尝试模式，如果在当前的布局和设置下无法布出满足时序等指标的连线，则可以尝试重新调整布局后再次布线，其中尝试次数可由别的选项设置。
+Place And Route Effort Level:布局布线努力程度。有Standard、Medium、High。
+Ignore User Timing Constraints:忽略用户时序约束选项。
+Use Bonded I/Os:使用闲置I/O资源选项。该选项指定是否可以使用闲置的I/O资源来完成某些布局或布线工作，默认不可以。
+Generate Asynchronous Delay Report:产生异步延时报告选项。默认不产生
+Generate Clock Region Report:产生时钟域报告选项。该选项表示是否在布局布线报告中添加时钟域的分析信息，默认不产生。
+Generate Post-Place And Route Static Timing Report:产生布局布线后时序分析报告选项。默认产生。
+Generate Post-Place And Route Simulation Model:产生布局布线后仿真模型选项。默认不产生
+Number of Place And Route Iterations:布局布线器尝试次数选项。
+Number of Results To Save:保存结果的次数选项。
+Power Reduction:功耗优化选项。
+
+布局布线的输出
+布局布线的输出：最终资源位置门级网表、布线信息、延迟文件和布局布线报告。
+
+编译流程之配置生成：转化为FPGA芯片的配置文件
+配置生成的输入：最终资源位置门级网表、布线信息、配置生成设置、器件型号等。
+配置生成的输出：配置文件和配置生成报告。
+
+配置文件
+JTAG接口 后缀名 *.sof
+外部配置芯片 后缀名 *.pof
+Flash配置 后缀名*.bit
+PROM配置   *.mcs
 
 
 
