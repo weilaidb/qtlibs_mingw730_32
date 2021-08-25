@@ -463,15 +463,230 @@ end <arch_name>;
 A部分位于 architecture的is和begin之间，是 architecture的说明部分，主要负责一些声明和定义工作；
 B部分位于 architecture的begin和end<arch_name>之间。是 architecture的语句部分，主要负责具体的功能实现，并且位于其中的语句都是并发执行的，即与语句的书写顺序无关。
 	
+1）声明与定义部分
+声明有两个内容：
+a)元件声明，即 component 语法
+元件就是在work库中，每一个VHDL文件所描述的接口和功能的总和就是一个元件。
+b)所需要使用的中间信号量的声明，好像C语言中定义的局部变更
+
+定义，指数据类型的定义，即用户自定义数据类型的创建，以适应不同的数据类型需求。也可以定义一些函数或者过程，即function或procedure。
+2）语句部分
+architecture语句部分有三种实现形式：元件例化语句、进程语句和独立语句。
+元件例化语句 instance语句。
+entity + architecture = 元件
+component 通过指定<component_name>为某个<entity_name>声明这个元件
+instance也通过指定的<component_name>来具体使用特定的元件。
+
+进程语句  process语句。
+并行的东西被抽象出串行的描述。
+architecture中的若干个process都是并行的，但是每个process中的语句都是串行执行的。
+每个process由其对应的<sensitive_signals_list>中的任何一个信号触发，触发后，process中的语句将会从begin开始，执行到end process，然后等待下一次触发，这就是process的串行执行过程。
+
+如何判断process的输入信号呢？三个条件：
+条件一：出现在赋值等号右边的信号；
+条件二：出现在条件判断中的信号；
+条件三：没有出现在赋值等号左边的信号；
 
 
+VHDL注释
+--<Comment here>
+
+VHDL的signal、variable与constant
+
+signal 信号 特定的物理意义，对应电路中特定的物理连线或存储单元。
+是VHDL语法中最重要、最常用的一种可赋值对象。
+signal的声明语法如下：
+signal <signal_name>:<type>:=<value>;--有初值
+或
+signal <signal_name>:<type>;--无初值
+如果有多个同样类型的信号需要声明，用:
+signal <signal_name_list>:<type>;--多个信号名之间用逗号隔开
+其实 entity中port语法结构中的in、out、buffer或者inout类型的端口，都是signal类型的，并且同类型的端口也支持逗号分隔单行书写。
+
+variable 变量  暂存某些值的载体。
+variable声明语法如下:
+variable <name>:<type>:=<value>;--有初值
+或
+variable <name>:<type>;--无初值
+
+variable <variable_name_list>:<type>;--多个变量名之间用逗号隔开
+
+constant 常量 特定的物理意义，通常对应数字电路中的电源或者地。
+constant 能出现在所有signal和variable出现的场合中，声明语法如下:
+constant <name>:<type>:=<value>;
+常量不能单独赋值，仅仅在声明的同时被初始化赋值。
 
 
+VHDL数据类型
+
+常用数据类型
+逻辑数据类型
+1std_logic:VHDL中的标准逻辑类型，
+Type STD_LOGIC is ('U', -- Uninialized;未初始化状态
+                   'X', -- Forcing unknown;亚稳不定态
+                   '0', -- Forcing 0;低电平状态
+                   '1', -- Forcing 1;高电平状态
+                   'Z', -- High Impedance;高阻态
+                   'W', -- Weak Unknown;弱浮接不定态
+                   'L', -- Weak 0;弱低电平态
+                   'H', -- Weak 1;弱高电平态
+                   '-', -- Don't care;不关心态);
+
+std_logic_vector : 标准逻辑数组类型，也叫逻辑向量类型，定义如下：
+type std_logic_vector IS ARRAY (NATURAL RANGE<>) OF std_logic;
+signal a,b,c:std_logic_vector(2 downto 0);
+c <= a and b;
+或者
+signal a,b,c:std_logic_vector(0 to 2);
+c <= a and b;
+最好用第一种
+
+逻辑向量的常数要用双引号引起来，并且逻辑向量的位宽必须是大于1的。
+signal a:std_logic_vector(3 downto 0);
+a<=B"1100";
+a<="1100";
+a<='1' &O"4";
+a<=X"C";
+
+boolean 
+type BOOLEAN is (FALSE,TRUE);
+bit 
+type BIT is("0","1");
+bit_vector 
+type BIT_VECTOR is array(NATURAL range<>) of BIT;
+数值数据类型
+integer
+type integer is range -2147483648 to 2147483647;
+real
+type real is range -1.7E38 to 1.7E38;
+signed & unsigned
+type unsigned is array(natural range<>) of std_logic;
+type signal is array(natural range<>) of std_logic;
+枚举数据类型enum
+type <enum_type_name> is(<element1>,<other elements>);
+示例：
+type myStateType is (idle, work);
+signal stateBuf:myStateType;
+myStateType<=work;--在适当的地方 
+数组数据类型array
+type <array_type_name> is array(<index_range>) of <element_type>;
+示例：定义一个共有8个元素的数组，且元素类型是32位逻辑向量的，写法如下:
+type arrayOfVector32 is array(7 downto 0) of std_logic_vector(31 downto 0);
+signal myArray:arrayOfVector32;
+
+记录数据类型record
+定义如下:
+type<record_name> is record
+    <element_name>:<element_type>;
+    <other_elements>
+end record;
+类似于C语言的结构体struct,即将若干个元素封装成一个整体进行管理。
+示例:
+type byteWord is record
+    byte:std_logic_vector(7 downto 0);
+    word:std_logic_vector(15 downto 0);
+end record;
+signal tmp:byteWord;
+
+tmp.byte <= X"F0";
+tmp.word <='1' & O"77007";
+
+子类型 subtype,对已存在的基本数据类型作一些范围限制，形成一种数据类型。语法如下：
+subtype <subtype_name> is <type> <range_definition>;
+subtype in9And99 is integer range 9 to 99;
+
+数据类型转换函数
+函数             意思
+conv_std_logic_vector(x,y)   integer,unsigned, signed转换为std_logic_vector
+conv_integer(x)              std_logic_vector、unsigned、signed转换为integer
+to_std_logic_vectoro(x)      bit_vector转换为std_logic_vector
+to_bit_vector(x)             std_logic_vector转换为bit_vector
+to_std_logic(x)              bit 转换为std_logic
+to_bit(x)                    std_logic转换为bit 
+上述系统函数中，x参数为待转换的变量或常数，y为转换成新类型后的位宽。
+
+数据对象的属性
+数值类属性，包括: left,right,low,high,length等
+left:数组的左边界
+right:数组的右边界
+low:数组的下边界
+high:数组的上边界
+length:数组的长度 
+
+signal属性
+'event属性是一个针对信号量的属性，附着在信号量上。有事件发生时，值就改变，利用此属性可判断时钟信号的变量情况。
+
+如何初始化 
+初始化一般是在定义时，配合":="赋值符号进行的，例如:
+signal a:std_logic:='1';
+variable b:integer:=512;
+port(...
+    c:in std_logic_vector(3 downto 0):="1010";
+    ...);
+对于数组类型的信号，参考：
+type rt is array(1 downto 0) of std_logic_vector(7 downto 0);
+signal r0:rt:=(X"11",X"88");
+
+VHDL的操作符号
+3种赋值符号
+<= := =>
+<=为signal专用，对signal的赋值能且只能使用<=
+是一种有延迟的同仁，即赋值操作不是立即生效的。编译器会根据代码所描述的功能以及在程序中所处的位置，来决定产生这种延迟的硬件逻辑结构是组合逻辑还是时序逻辑。
+
+:= 为variable专用，对variable的赋值能且只能使用:=
+是一种无延迟的赋值，即赋值操作立即生效。
+还可以初始化赋值
+
+=> 映射赋值符号 是一种连线符号，因为它只是为赋值符号的左右两边建立起一种连接关系而已。
+
+信号量的映射赋值稍有不同，例如：
+signal a,b:std_logic_vector(3 downto 0);
+a <=(0=>'1',2=>'1',others=>'0;); --a="0101"
+b <=(others=>'1');--b="1111";
+
+位置赋值
+
+VHDL按位运算符
+not 取反运算符，单目运算符，即作用于一个操作数
+and 与运算符，双目运算符，即必须有两个操作数
+nand 与非运算符，在and的基础上再做一次not操作
+or  或运算符，双目运算符，必须有两个操作数
+nor 或非运算符，在or的基础上再做一次not操作
+xor 异或运算符 ，双目运算符，必须有两个操作数。
+xnor 同或运算符，双目运算符，即必须有两个操作数
+
+VHDL算数运算符
++
+-
+*
+/
+
+mod and rem 
+mod是取模运算
+rem是求余运算
+
+** 乘方运算
+
+VHDL关系运算符
+用来做一些条件判断使用，通用语法为:
+<expression_left> <relation_operator> <expression_right>
+如下几种:
+=   两边表达式相等
+/=  两边表达式不相等
+<   
+<=
+>
+>=
 
 
+VHDL逻辑运算符
+not 
+and 
+or 
 
-
-
+VHDL连接运算符
+不完成任何运算，只是可以将若干个标准逻辑类型或者逻辑向量首尾相接，描述成一个新的逻辑向量。语法如下:
+<signal 1> & <signal 2> &<other signal list>
 
 
 
