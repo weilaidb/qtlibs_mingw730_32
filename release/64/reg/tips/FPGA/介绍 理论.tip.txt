@@ -394,8 +394,31 @@ Flash配置 后缀名*.bit
 PROM配置   *.mcs
 
 
+程序设计
+VHDL基本程序框架主要分为三部分:library、entity、architecture。
+library <library_name>;
+use <library_name>.<packege_name>.<function_name>;
+use <library_name>.<packege_name>.all;
+库分两类:设计库和资源库。
+完整的标准资源库的引用描述如下:
+library STD;
+use STD.textio.all;
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.std_logic_textio.all;
+use IEEE.std_logic_arith.all;
+use IEEE.numeric_bit.all;
+use IEEE.numeric_std.all;
+use IEEE.std_logic_signed.all;
+use IEEE.std_logic_unsigned.all;
+use IEEE.math_real.all;
+use IEEE.math_complex.all;
 
-
+常用的就是IEEE标准库中的两三个程序包，通常VHDL代码的最开头都是这样的：
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 
 
