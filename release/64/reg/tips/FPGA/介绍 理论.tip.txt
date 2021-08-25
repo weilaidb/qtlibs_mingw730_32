@@ -420,8 +420,49 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
+有一个隐含的std.standard程序包声明，定义典型的基本的数据结构，如bit、bit_vector、integer、boolean等。
+std.textio主要定义用户的输入、输出。
+IEEE.std_logic_1164:定义了一些增强型的数据结构，如std_logic,std_logic_vector;
+IEEE.std_logic_textio:针对1164程序包定义了用户的输入、输出
+IEEE.std_logic_arith:数的计算操作，基于有符号数、无符号数以及逻辑矢量等
+IEEE.numeric_bit:数的计算操作，基于bit数组类型的有符号和无符号数
+IEEE.numeric_std:数的计算操作，基于std_logic数组类型的有符号和无符号数
+IEEE.std_logic_signed:基于std_logic_vector的有符号数计算操作
+IEEE.std_logic_unsigned:基于std_logic_vector的无符号数计算操作
+IEEE.math_real:基于real类型的数的计算操作
+IEEE.math_complex:基于复数类型的数的计算操作
+IEEE.std_logic_misc:为1164程序包定义了补充的类型、子类型、常数、函数等
 
+entity 实体
+主要描述对象的外貌，对象的输入和输出的端口信息
+器件的具体功能则由architecture描述。
+entity和arcgitecture就好比电路板上芯片一样，entity负责描述芯片的管脚信息，architecture负责实现芯片具体的功能。
+类似于C语言中的函数接口和内容。
+端口有4种：输入端口、输出端口、缓冲端口以及双向端口。定义
+<port_name>:in<type>;
+<port_name>:out<type>;
+<port_name>:buffer<type>;
+<port_name>:inout<type>;
+当有多个端口具有同样的方向和类型时，写成：
+<port_name_list>:<mode> <type>
+buffer端口属于输出端口的一种，可以被赋值，可以被引用。
+out端口，只能被赋值。
 
+generic语法结构:专门用来定义一些参数信息，方便代码的复用，提高可用性。
+
+architecture
+构造体
+负责entity的具体实现，必须依附于entity存在。
+第一步表明身份，代码第一行。
+architecture <arch_name> of <entity_name> is 
+	<part A>
+begin
+	<part B>
+end <arch_name>;
+结构上,architecture代码分两部分：part A和 part B。
+A部分位于 architecture的is和begin之间，是 architecture的说明部分，主要负责一些声明和定义工作；
+B部分位于 architecture的begin和end<arch_name>之间。是 architecture的语句部分，主要负责具体的功能实现，并且位于其中的语句都是并发执行的，即与语句的书写顺序无关。
+	
 
 
 
