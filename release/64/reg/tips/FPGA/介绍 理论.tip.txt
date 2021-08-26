@@ -689,6 +689,32 @@ VHDL连接运算符
 <signal 1> & <signal 2> &<other signal list>
 
 
+VHDL移位运算符
+三类：
+循环移位运算符，包括rol、ror
+rol:循环左移
+ror:循环右移
+算数移位运算符，包括sla、sra
+sla:算数左移
+sra:算数右移
+逻辑移位运算符，包括sll,srl
+sll:逻辑左移
+srl:逻辑右移 
+
+
+VHDL操作符优先级与小括号
+优先级从低到高
+AND、OR、NAND、NOR、XOR、XNOR
+=、/=、<、>、<=、>=
+rol、ror、sla、sra、sll、srl
++、-、&
++(正号)、-(负号)
+*、/、MOD、REM
+* *、NOT
+
+
+
+
 
 
 
