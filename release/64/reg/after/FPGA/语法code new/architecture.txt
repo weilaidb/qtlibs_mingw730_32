@@ -1,0 +1,1 @@
+architecture <\1> of <\2> is$NL    <part A>$NLbegin$NL    <part B>$NLend <\1>;

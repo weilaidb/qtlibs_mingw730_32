@@ -1,1 +1,9 @@
 C/STRUCT/pragma pack 字节对齐 push pop
+FPGA/语法code new/architecture
+FPGA/语法code new/constant
+FPGA/语法code new/eg示例/cellAnd.vhd
+FPGA/语法code new/process
+FPGA/语法code new/process2
+FPGA/语法code new/signal
+FPGA/语法code new/signal list
+FPGA/语法code new/variable

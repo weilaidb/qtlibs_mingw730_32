@@ -1,1 +1,1 @@
-\1
+--------------->$NLDate dNow  = new Date();$NLSimpleDateFormat ft = new SimpleDateFormat("\1");$NLString time = ft.format(dNow);$NLSystem.out.println("time: " + time);$NL$NL
