@@ -395,6 +395,7 @@ FPGA/介绍 理论
 FPGA/开发板/ALINX/AX7020
 FPGA/术语 shuyu
 FPGA/示例/Led
+FPGA/语法code new/eg示例/cellNand.vhd
 FPGA/语法code new/library
 FPGA/语法code new/library header pub
 FPGA/语法code new/reg

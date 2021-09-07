@@ -1,0 +1,1 @@
+process(b,c)$NLbegin$NL    a <=b and c;$NLend process;

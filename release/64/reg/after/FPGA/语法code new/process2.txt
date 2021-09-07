@@ -1,0 +1,1 @@
+process(a,b,c,flag)$NLbegin$NL    if(flag="00")then$NL        h <=a;$NL    elsif(flag="11")then$NL        h<=b;$NL    else$NL        h<=c;$NL    endif;$NLend process;

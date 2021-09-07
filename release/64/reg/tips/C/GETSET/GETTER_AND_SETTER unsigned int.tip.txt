@@ -1,1 +1,1 @@
-unsigned int g_dwTest = 0;
+unsigned int g_dwTest = 0
