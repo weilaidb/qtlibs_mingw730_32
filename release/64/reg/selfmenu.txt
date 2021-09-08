@@ -399,6 +399,21 @@ FPGA/语法code new/eg示例/cellNand.vhd
 FPGA/语法code new/library
 FPGA/语法code new/library header pub
 FPGA/语法code new/reg
+C/STRUCT/pragma pack 字节对齐 push pop
+FPGA/语法code new/architecture
+FPGA/语法code new/constant
+FPGA/语法code new/data type convert
+FPGA/语法code new/eg示例/cellAnd.vhd
+FPGA/语法code new/process
+FPGA/语法code new/process2
+FPGA/语法code new/record
+FPGA/语法code new/signal
+FPGA/语法code new/signal list
+FPGA/语法code new/subtype
+FPGA/语法code new/subtype2
+FPGA/语法code new/variable
+
+
 JAVA/Cloud/ECS
 JAVA/JSP/File文件/File
 JAVA/JSP/File文件/File BufferedInputStream
@@ -1083,3 +1098,4 @@ path路径/Android手机拷贝路径
 脚本/VBS/SecureCrt/While
 脚本/VBS/SecureCrt/git process
 脚本/VBS/SecureCrt/git push cur branch
+
