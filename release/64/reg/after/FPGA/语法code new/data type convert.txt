@@ -1,0 +1,1 @@
+--integer、unsigned、signed转换为std_logic_vector$NLconv_std_logic_vector(\1,\2)$NL$NL--std_logic_vector、unsigned、signed 转换为integer$NLconv_integer(\1)$NL$NL--bit_vector转换为std_logic_vector$NLto_std_logic_vector(\1)$NL$NL--std_logic_vector转换为bit_vector$NLto_bit_vector(\1)$NL$NL--bit转换为std_logic$NLto_std_logic(\1)$NL$NL--std_logic转换bit$NLto_bit(\1)$NL$NL
