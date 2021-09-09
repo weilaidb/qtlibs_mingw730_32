@@ -225,7 +225,9 @@ C/DEFINE/TRUE
 C/DEFINE/VERSION
 C/DEFINE/VERSION 大于小于
 C/DEFINE/YES
+C/DEFINE/align
 C/DEFINE/asm
+C/DEFINE/bit bic bis
 C/DEFINE/static_inline空间换时间
 C/DEFINE/typeof
 C/DEFINE/一个参数
@@ -306,6 +308,7 @@ C/STRING/mlogxByKey record log msg
 C/STRING/字符串转ascii
 C/STRNCPY_2_SNPRINTF
 C/STRUCT/pragma pack 1字节对齐
+C/STRUCT/pragma pack 字节对齐 push pop
 C/STRUCT/生成结构体
 C/enum/enum
 C/enum/enum single
@@ -395,25 +398,22 @@ FPGA/介绍 理论
 FPGA/开发板/ALINX/AX7020
 FPGA/术语 shuyu
 FPGA/示例/Led
-FPGA/语法code new/eg示例/cellNand.vhd
-FPGA/语法code new/library
-FPGA/语法code new/library header pub
-FPGA/语法code new/reg
-C/STRUCT/pragma pack 字节对齐 push pop
 FPGA/语法code new/architecture
 FPGA/语法code new/constant
 FPGA/语法code new/data type convert
 FPGA/语法code new/eg示例/cellAnd.vhd
+FPGA/语法code new/eg示例/cellNand.vhd
+FPGA/语法code new/library
+FPGA/语法code new/library header pub
 FPGA/语法code new/process
 FPGA/语法code new/process2
 FPGA/语法code new/record
+FPGA/语法code new/reg
 FPGA/语法code new/signal
 FPGA/语法code new/signal list
 FPGA/语法code new/subtype
 FPGA/语法code new/subtype2
 FPGA/语法code new/variable
-
-
 JAVA/Cloud/ECS
 JAVA/JSP/File文件/File
 JAVA/JSP/File文件/File BufferedInputStream
@@ -1098,4 +1098,3 @@ path路径/Android手机拷贝路径
 脚本/VBS/SecureCrt/While
 脚本/VBS/SecureCrt/git process
 脚本/VBS/SecureCrt/git push cur branch
-

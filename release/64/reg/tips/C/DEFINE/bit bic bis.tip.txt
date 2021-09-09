@@ -1,0 +1,3 @@
+#define bis(target,mask)  ((target) |=  (mask))
+#define bic(target,mask)  ((target) &= ~(mask))
+#define bit(target,mask)  ((target) &   (mask))
