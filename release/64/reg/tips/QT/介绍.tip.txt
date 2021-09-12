@@ -668,11 +668,232 @@ Qt UI Tools
 
 
 
+第4章　常用界面设计组件
+第2章已经介绍了设计GUI应用程序的基本原理和方法，在掌握了用Qt Creator设计应用程序的基本方法之后，要应用Qt编写各种应用程序，重要的就是熟练掌握Qt类库里各种用于界面设计或其他功能的类的使用。
+Qt类库为应用程序设计提供了大量的类，本章主要介绍设计GUI应用程序常用的各种界面组件的使用，这些是设计GUI应用程序的基础。
+4.1　字符串与输入输出
+4.1.1字符串与数值之间的转换
+界面设计时使用最多的组件恐怕就是QLabel和QLineEdit了，QLabel用于显示字符串，QLineEdit用于显示和输入字符串。这两个类都有如下的两个函数用于读取和设置显示文字。QString  text() const
+void  setText(const QString &)
+这两个函数都涉及到QString类。QString类是Qt程序里经常使用的类，用于处理字符串。QString类可以进行字符串与数字之间的转换，使用QLineEdit就可以实现数字量的输入与输出。
+图4-1是实例samp4_1设计时的窗体，是基于QWidget创建的可视化窗体。界面设计使用了布局管理，窗体上组件的布局是：上方的几个组件是一个GridLayout，下方的9个组件也是一个GridLayout，两个GridLayout和中间一个VerticalSpacer又组成一个VerticalLayout。
+在布局设计时，要巧妙运用VerticalSpacer和HorizontalSpacer，还要会设置组件的MaximumSize和MinimumSize属性，以取得期望的布局效果。例如，在图4-1中，两个GridLayout之间放了一个垂直方向的分隔，当窗体变大时，两个GridLayout的高度并不会发生变化；而如果不放置这个垂直分隔，两个GridLayout的高度都会发生变化，GridLayout内部组件的垂直距离会发生变化。
+图4-1　编辑状态的界面
+1．普通数值与字符串之间的转换
+在UI设计器里，选中图4-1中的“计算”按钮，在右键快捷菜单里单击“Go to slot…”，并在出现的对话框里选择clicked()信号创建槽函数，在自动生成的函数体里编写如下的代码，实现从界面上分别读取数量和单价，相乘计算后将结果再显示到文本框里。void Widget::on_btnCal_clicked()
+{  
+   QString str=ui->editNum->text();//读取"数量"
+   int num=str.toInt();  
+   str=ui->editPrice->text();//读取"单价"
+   float   price=str.toFloat();
+   float   total=num*price;
 
 
 
 
 
+str=str.sprintf("%.2f",total);  
+   ui->editTotal->setText(str); 
+}
+QString类从字符串转换为整数的函数有：int     toInt(bool *ok = Q_NULLPTR, int base = 10)      const
+long    toLong (bool *ok = Q_NULLPTR, int base = 10)    const
+short   toShort (bool *ok = Q_NULLPTR, int base = 10)   const
+uint    toUInt (bool *ok = Q_NULLPTR, int base = 10)    const
+ulong   toULong (bool *ok = Q_NULLPTR, int base = 10)   const
+这些函数如果不设置参数，缺省表示从十进制表示的字符串转换为整数；若指定整数基参数，还可以直接将二进制、十六进制字符串转换为整数。
+QString将字符串转换为浮点数的函数有：double   toDouble(bool *ok = Q_NULLPTR)    const
+float    toFloat (bool *ok = Q_NULLPTR)    const
+在得到单价和数量后做相乘运算，得到计算结果变量total，再将此数值显示在编辑框editTotal中。由于计算结果是浮点数，希望显示两位小数，下面4行语句都可以实现这个功能。str=QString::number(total,'f',2); 
+str=QString::asprintf("%.2f",total); 
+str=str.setNum(total,'f',2); 
+str=str.sprintf("%.2f",total);
+可以使用QString的静态函数number()和asprintf()，也可以使用其公共函数setNum()和sprintf()。QString的sprintf()函数与C语言里的sprintf()函数的格式是一样的，而setNum()和number()函数使用另外一种格式定义，而且setNum和number有多个重载函数定义，可以处理各种类型的整数和浮点数，在处理整数时还可以指定进制，例如将一个整数直接转换为十六进制或二进制字符串。
+2．进制转换
+以下是读取十进制数转换为二进制和十六进制字符串的按钮的槽函数代码：void Widget::on_btnDec_clicked()
+{ //读取十进制数，转换为其他进制
+   QString  str=ui->editDec->text();
+   int  val=str.toInt();//缺省为十进制
+//   str=QString::number(val,16);// 转换为十六进制的字符串
+   str=str.setNum(val,16);//十六进制
+   str=str.toUpper(); 
+   ui->editHex->setText(str);
+
+   str=str.setNum(val,2);  //二进制
+//   str=QString::number(val,2);
+   ui->editBin->setText(str);
+}
+将一个整数转换为不同进制的字符串，可以使用QString的函数setNum()或静态函数number()，它们的函数原型是：Qstring   &setNum (int n, int base = 10)
+QString   number (int n, int base = 10)
+其中n是待转换的整数，base是使用的进制，缺省为十进制，也可以指定为十六进制和二进制。
+下面是读取二进制字符串，然后转换为十进制和十六进制显示的按钮的槽函数代码。
+
+
+
+
+
+
+void Widget::on_btnBin_clicked()
+{ //读取二进制数，转换为其他进制的数
+   QString  str=ui->editBin->text(); //读取二进制字符串
+   bool ok;
+   int val=str.toInt(&ok,2);//以二进制数读入
+   str=QString::number(val,10);//数字显示为十进制字符串
+   ui->editDec->setText(str);
+
+   str=str.setNum(val,16);//显示为十六进制
+   str=str.toUpper(); 
+   ui->editHex->setText(str); 
+}
+4.1.2　QString的常用功能
+QString是Qt编程中常用的类，除了用作数字量的输入输出之外，QString还有很多其他功能，熟悉这些常见的功能，有助于灵活地实现字符串处理功能。
+QString存储字符串采用的是Unicode码，每一个字符是一个16位的QChar，而不是8位的char，所以QString处理中文字符没有问题，而且一个汉字算作是一个字符。
+图4-2是对QString常用函数的测试实例samp4_2的运行界面。下面在说明函数功能时，对于同名不同参数的函数，只说明某种参数下的使用实例。QString还有很多功能函数没有在此介绍，在使用中如果遇到，可查询Qt的帮助文件。
+图4-2　QString函数功能测试实例samp4_2
+append()和prepend()
+append()在字符串的后面添加字符串，prepend()在字符串的前面添加字符串，如：QString str1="卖", str2="拐";
+QString str3=str1;
+str1.append(str2);    //str1="卖拐"
+str3.prepend(str2);   //str3="拐卖"
+toUpper()和toLower()
+toUpper()将字符串内的字母全部转换为大写形式，toLower()将字母全部转换为小写形式，如：QString str1="Hello, World", str2;
+str2=str1.toUpper();   //str2="HELLO,WORLD"
+str2=str1.toLower();   //str2="hello, world"
+
+
+
+
+
+
+
+count()、size()和length()
+count()、size()和length()都返回字符串的字符个数，这3个函数是相同的，但是要注意，字符串中如果有汉字，一个汉字算一个字符。QString str1="NI好"
+N=str1.count()       //N=3
+N=str1.size()        //N=3
+N=str1.length()      //N=3
+trimmed()和simplified()
+trimmed()去掉字符串首尾的空格，simplified()不仅去掉首尾的空格，中间连续的空格也用一个空格替换。QString    str1="   Are    you   OK?   ", str2;
+str2=str1.trimmed();       //str1="Are    you   OK? "
+str2=str1.simplified();    //str1="Are you OK? "
+indexOf ()和lastIndexOf ()
+indexOf()函数的原型为：int indexOf (const QString &str, int from = 0, Qt::CaseSensitivity cs = Qt::CaseSensitive) const
+其功能是在自身字符串内查找参数字符串str出现的位置，参数from是开始查找的位置，Qt::CaseSensitivity cs参数指定是否区分大小写。
+lastIndexOf()函数则是查找某个字符串最后出现的位置。QString str1="G:\Qt5Book\QT5.9Study\qw.cpp";
+N=str1.indexOf("5.9");          // N=13
+N=str1.lastIndexOf("\\");       //N=21
+“\”是转义字符，如果要查找“\”，需要输入“\”。
+isNull()和isEmpty()
+两个函数都判读字符串是否为空，但是稍有差别。如果一个空字符串，只有“\0”，isNull()返回false，而isEmpty()返回true；只有未赋值的字符串，isNull()才返回true。QString str1, str2="";
+N=str1.isNull();   // N=true    未赋值字符串变量
+N=str2.isNull();   // N=false   只有"\0"的字符串，也不是Null
+N=str1.isEmpty();  // N=true    
+N=str2.isEmpty();  // N=true
+QString只要赋值，就在字符串的末尾自动加上“\0”，所以，如果只是要判断字符串内容是否为空，常用isEmpty()。
+contains()
+判断字符串内是否包含某个字符串，可指定是否区分大小写。QString str1="G:\Qt5Book\QT5.9Study\qw.cpp";
+N=str1. contains (".cpp", Qt::CaseInsensitive);    // N=true，不区分大小写
+N=str1. contains (".CPP", Qt::CaseSensitive);      // N=false，区分大小写
+endsWith()和startsWith()
+startsWith ()判断是否以某个字符串开头，endsWith()判断是否以某个字符串结束。QString str1="G:\Qt5Book\QT5.9Study\qw.cpp";
+N=str1. endsWith(".cpp", Qt::CaseInsensitive);     // N=true，不区分大小写
+
+
+
+
+
+
+
+N=str1. endsWith(".CPP", Qt::CaseSensitive);       // N=false，区分大小写
+N=str1. startsWith("g: ");                         // N=true，缺省为不区分大小写
+left()和right()
+left表示从字符串中取左边多少个字符，right表示从字符串中取右边多少个字符。注意，一个汉字被当作一个字符。QString str2, str1="学生姓名，男，1984-3-4，汉族，山东";
+N=str1.indexOf ("，");                             // N=4，第一个"，"出现的位置
+str2=str1.left(N);                                 //str2="学生姓名"
+N=str1.lastIndexOf ("，");                         // N=18，最后一个逗号的位置
+str2=str1.right(str1.size()-N-1); //str2="山东"，提取最后一个逗号之后的字符串
+section()
+section()函数的原型为：QString section (const QString &sep, int start, int end = -1, SectionFlags flags = SectionDefault) const
+其功能是从字符串中提取以sep作为分隔符，从start端到end端的字符串。QString str2, str1="学生姓名，男，1984-3-4，汉族，山东";
+str2=str1. section ("，",0,0);                    // str2="学生姓名"，   第1段的编号为0
+str2=str1. section ("，",1,1);                    // str2="男"
+str2=str1. section ("，",0,1);                    // str2="学生姓名，男"
+str2=str1. section ("，",4,4);                    // str2="山东"
+4.2　SpinBox的使用
+QSpinBox用于整数的显示和输入，一般显示十进制数，也可以显示二进制、十六进制的数，而且可以在显示框中增加前缀或后缀。
+QDoubleSpinBox用于浮点数的显示和输入，可以设置显示小数位数，也可以设置显示的前缀和后缀。
+实例samp4_3演示QSpinBox和QDoubleSpinBox这两个组件的使用，图4-3是程序运行界面。程序功能与实例samp4_1类似，但是使用QSpinBox和QDoubleSpinBox作为数字输入输出组件。
+图4-3　实例samp4_3运行时界面
+QSpinBox和QDoubleSpinBox都是QAbstractSpinBox的子类，具有大多数相同的属性，只是参数类型不同。在UI设计器里进行界面设计时，就可以设置这些属性。QSpinBox和QDoubleSpinBox的主要属性见表4-1。
+表4-1　QSpinBox和QDoubleSpinBox的主要属性
+
+
+
+
+
+
+属性名称
+描述
+prefix
+数字显示的前缀，例如“$”
+suffix
+数字显示的后缀，例如“kg”
+minimum
+数值范围的最小值，如0
+maximum
+数值范围的最大值，如255
+singlestep
+单击右侧上下调整按钮时的单步改变值，如设置为1，或0.1
+value
+当前显示的值
+displayIntegerBase
+QSpinBox特有属性，显示整数使用的进制，例如2就表示二进制
+decimals
+QDoubleSpinBox特有属性，显示数值的小数位数，例如2就显示两位小数提示　
+一个属性在类的接口中一般有一个读取函数和一个设置函数，如QDoubleSpinBox的decimals属性，读取属性值的函数为int decimals()，设置属性值的函数为void setDecimals(int prec)。
+图4-3中各个SpinBox的类型及属性设置一目了然，不再赘述。使用QSpinBox和Qdouble SpinBox进行数值量的输入输出很方便，下面是图4-3中“计算”按钮和“十进制”后面的按钮的槽函数代码。void Widget::on_btnCal_clicked()
+{ //计算
+   int num=ui->spinNum->value();  
+   float price=ui->spinPrice->value();
+   float total=num*price;
+   ui->spinTotal->setValue(total); 
+}
+void Widget::on_btnBin_clicked()
+{ //读取二进制数，以其他进制显示
+   int val=ui->spinBin->value();
+   ui->spinDec->setValue(val);
+   ui->spinHex->setValue(val);
+}
+在使用QSpinBox和QDoubleSpinBox读取和设置数值时，无需做字符串与数值之间的转换，也无需做进制的转换，其显示效果（前缀、后缀、进制和小数位数）在设置好之后就自动按照效果进行显示，这对于数值的输入输出是非常方便的。
+4.3　其他数值输入和显示组件
+4.3.1　实例功能
+除了LineEdit和SpinBox之外，还有其他一些用于数值输入和显示的组件。实例samp4_4演示如何使用这些组件，图4-4是实例samp4_4的设计界面。
+
+
+
+
+
+
+图4-4　实例Samp4_4设计界面
+在这个实例中，用到如下一些组件。
+QSlider：滑动条，通过滑动来设置数值，可用于数值输入。实例中使用4个滑动条输入红、绿、蓝三色和Alpha值，然后合成颜色，作为一个QTextEdit组件的底色。
+QScrollBar：卷滚条，与QSlider功能类似，还可以用于卷滚区域。
+QProgressBar：进度条，一般用于显示任务进度，可用于数值的百分比显示。实例程序中滑动一个Slider，获取其值并更新ScrollBar和ProgressBar。
+QDial：表盘式数值输入组件，通过转动表针获得输入值。
+QLCDNumber：模仿LCD数字的显示组件，可以显示整数或浮点数，显示整数时可以不同进制显示。实例程序中转动表盘，获得的值显示在LCD组件中。单击“LCD显示进制”的RadioButton时，设置LCD的显示进制。
+4.3.2　各组件的主要功能和属性
+1．QSlider
+QSlider、QScrollBar和Qdial 3个组件都从QAbstractSlider继承而来，有一些共有的属性。QSlider是滑动的标尺型组件，滑动标尺上的一个滑块可以改变值。
+基类QAbstractSlider的主要属性包括以下几种。
+minimum、maximum：设置输入范围的最小值和最大值，例如，用红、绿、蓝配色时，每种基色的大小范围是0~255，所以设置minimum为0，maximum为255。
+singleStep：单步长，拖动标尺上的滑块，或按下左/右光标键时的最小变化数值。
+pageStep：在Slider上输入焦点，按PgUp或PgDn键时变化的数值。
+value：组件的当前值，拖动滑块时自动改变此值，并限定在minimum和maximum定义的范围之内。
+sliderPosition：滑块的位置，若tracking属性设置为true，sliderPosition就等于value。
+tracking：sliderPosition是否等同于value，如果tracking=true，改变value时也同时改变sliderPosition。
+orientation：Slider的方向，可以设置为水平或垂直。方向参数是Qt的枚举类型enum Qt::Orientation，取值包括以下两种。 
+Qt::Horizontal 水平方向
+Qt::Vertical 垂直方向
+invertedAppearance：显示方式是否反向，invertedAppearance=false时，水平的Slider由左向右数值增大，否则反过来。
+invertedControls：反向按键控制，若invertedControls=true，则按下PgUp或PgDn按键时调整数值的方向相反。
 
 
 
