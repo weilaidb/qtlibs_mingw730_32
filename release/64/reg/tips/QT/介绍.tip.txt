@@ -1,0 +1,57 @@
+MOC Meta-Object Compiler,MOC 
+Qt的元对象编译器，是一个预处理器，在源程序被编译前先将这些Qt特性的程序转换为标准C++兼容的形式，然后再由标准C++编译器进行编译。这就是为什么在使用信号与槽机制的类里，必须添加 Q_OBJECT 宏的原因，只有添加了这个宏，moc才能对类里的信号与槽的代码进行预处理。
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+
+元对象系统由以下三个基础组成。
+QObject类是所有使用元对象系统的类的基类。
+Q_OBJECT
+Q_OBJECT
+Q_OBJECT
+在一个类的private部分声明Q_OBJECT宏，使得类可以使用元对象的特性，如动态属性、信号与槽。
+MOC（元对象编译器）为每个QObject的子类提供必要的代码来实现元对象系统的特性。
+构建项目时，MOC工具读取C++源文件，当它发现类的定义里有Q_OBJECT宏时，它就会为这个类生成另外一个包含有元对象支持代码的C++源文件，这个生成的源文件连同类的实现文件一起被编译和连接。
+除了信号与槽机制外，元对象还提供如下一些功能。
+
+QObject::metaObject()函数返回类关联的元对象，元对象类QMetaObject包含了访问元对象的一些接口函数，例如QMetaObject::className()函数可在运行时返回类的名称字符串。
+
+QObject *obj = new QPushButton;
+obj->metaObject()->className();    // 返回 "QPushButton"
+QMetaObject::newInstance()函数创建类的一个新的实例。
+QObject::inherits(const char *className)函数判断一个对象实例是否是名称为className的类或QObject的子类的实例。例如：QTimer *timer = new QTimer;        // QTimer 是QObject的子类
+timer->inherits("QTimer");         // 返回 true
+timer->inherits("QObject");        // 返回 true
+timer->inherits("QAbstractButton");//返回 false，不是QAbstractButton的子类
+
+
+qobject_cast()函数进行动态投射
+qobject_cast()函数进行动态投射
+qobject_cast()函数进行动态投射
+对于QObject及其子类，还可以使用qobject_cast()函数进行动态投射（dynamic cast）。例如，假设QMyWidget是QWidget的子类并且在类定义中声明了Q_OBJECT宏。创建实例使用下面的语句：QObject *obj = new QMyWidget;
+变量obj定义为QObject指针，但它实际指向QMyWidget类，所以可以正确投射为QWidget，即：QWidget *widget = qobject_cast<QWidget *>(obj);
+从QObject到QWidget的投射是成功的，因为obj实际是QMyWidget类，是QWidget的子
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
