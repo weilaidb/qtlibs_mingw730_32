@@ -1,0 +1,2 @@
+5．QMultiHash
+QMultiHash是QHash的子类，是用于处理多值映射的便利类，其用法与QMultiMap类似。

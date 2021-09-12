@@ -57,6 +57,715 @@ Qt::QueuedConnection：在事件循环回到接收者线程后执行槽函数，
 Qt::BlockingQueuedConnection：与Qt::QueuedConnection相似，只是信号线程会阻塞直到槽函数执行完毕。当信号与槽函数在同一个线程时绝对不能使用这种方式，否则会造成死锁。
 
 
+propertyOffset
+propertyOffset
+propertyOffset
+这种编写代码的方式一般用于为多个同类型组件的同一信号编写一个槽函数，在槽函数里区分信号来源分别做处理，避免为每个组件分别编写槽函数形成的代码冗余。
+界面上“类的元对象信息”按钮的响应代码如下：void QmyWidget::on_btnClassInfo_clicked()
+{//"类的元对象信息"按钮
+   const QMetaObject *meta=boy->metaObject();
+   ui->textEdit->clear();
+   ui->textEdit->appendPlainText("==元对象信息==\n");
+   ui->textEdit->appendPlainText(
+            QString("类名称：%1\n").arg(meta->className()));
+   ui->textEdit->appendPlainText("property");
+   for (int i=meta->propertyOffset();i<meta->propertyCount();i++)
+   {
+      QMetaProperty prop=meta->property(i);
+      const char* propName=prop.name();
+      QString   propValue=boy->property(propName).toString();
+      ui->textEdit->appendPlainText(
+        QString("属性名称=%1，属性值=%2").arg(propName).arg(propValue));
+   }
+
+   ui->textEdit->appendPlainText("");
+   ui->textEdit->appendPlainText("classInfo");
+   for (int i=meta->classInfoOffset();i<meta->classInfoCount();++i)
+   {
+      QMetaClassInfo classInfo=meta->classInfo(i);
+      ui->textEdit->appendPlainText(QString("Name=%1; Value=%2")
+                  .arg(classInfo.name()).arg(classInfo.value()));
+   }
+}
+代码里通过boy->metaObject()获得对象boy的元对象。元对象类QMetaObject封装了访问类的元对象的各种接口函数，例如，QMetaObject:: className()返回类的名称。
+QMetaObject用于属性操作的函数有以下几种。
+propertyOffset()：返回类的第一个属性的序号，第一个属性的序号不一定是0。
+propertyCount()：返回类的属性个数。
+QMetaProperty property(int index)：返回序号为index的属性对象，返回值是QMetaProperty类型，它封装了对属性的更多特征查询功能，以及属性值的读写功能。
+QMetaClassInfo类封装了类的classInfo的访问接口函数，只有name()和value()两个接口函数。
+
+
+3.2　Qt全局定义
+<QtGlobal>头文件包含了Qt类库的一些全局定义，包括基本数据类型、函数和宏，一般的Qt类的头文件都会包含该文件，所以不用显式包含这个头文件也可以使用其中的定义。
+3.2.1　数据类型定义
+为了确保在各个平台上各数据类型都有统一确定的长度，Qt为各种常见数据类型定义了类型符号，如qint8就是signed char的类型定义，即：typedef  signed char   qint8;
+<QtGlobal>中定义的数据类型见表3-1。
+表3-1　Qt中的数据类型定义
+Qt数据类型    等效定义        字节数
+qint8         signed char       1
+qint16        signed short      2
+qint32		signed int		4
+qint64		long long int		8
+qlonglong	long long int		8
+quint8		unsigned char		1
+quint16		unsigned short		2
+quint32		unsigned int		4
+quint64		unsigned long long int		8
+qulonglong  unsigned long long int		8
+uchar		unsigned char		1
+ushort		unsigned short		2
+uint		unsigned int		4
+ulong		unsigned long		8
+qreal		double		8
+qfloat16                2
+其中qreal缺省是8字节double类型浮点数，如果Qt使用-qreal float选项进行配置，就是4字节float类型的浮点数。
+qfloat16是Qt 5.9.0中新增的一个类，用于表示16位的浮点数，要使用qfloat16，需要包含头文件<QFloat16>。
+
+
+3.2.2　函数
+< QtGlobal >头文件包含一些常用函数的定义，这些函数多以模板类型作为参数，返回相应的模板类型，模板类型可以用任何其他类型替换。若是以double或float类型数作为参数的，一般有两个参数版本的同名函数，如qFuzzyIsNull(double d) 和qFuzzyIsNull(float f)。
+表3-2是<QtGlobal>中常用的全局函数定义，列出了函数的输入和输出参数（若存在double和float两种参数版本，只列出double类型参数的版本）。
+表3-2　< QtGlobal >中常用的全局函数定义
+函数
+功能
+T qAbs(const T &value)
+返回变量value的绝对值
+const T &qBound(const T &min, const T &value, const T &max)
+返回value限定在min至max范围之内的值
+bool qFuzzyCompare(double p1, double p2)
+若p1和p2近似相等，返回true
+bool qFuzzyIsNull(double d)
+如果参数d约等于0，返回true
+double qInf()
+返回无穷大的数
+bool qIsFinite(double d)
+若d是一个有限的数，返回true
+bool qIsInf(double d)
+若d是一个无限大的数，返回true
+bool qIsNaN(double d)
+若d不是一个数，返回true
+const T &qMax(const T &value1, const T &value2)
+返回value1和value2中较大的值
+const T &qMin(const T &value1, const T &value2)
+返回value1和value2中较小的值
+qint64 qRound64(double value)
+将value近似为最接近的qint64整数
+int qRound(double value)
+将value近似为最接近的int整数
+int qrand()
+标准C++中rand()函数的线程安全型版本，返回0至RAND_MAX之间的伪随机数
+void qsrand(uint seed)
+标准C++中srand()函数的线程安全型版本，使用种子seed对伪随机数序列初始化
+还有一些基础的数学运算函数在<QtMath>头文件中定义，比如三角运算函数、弧度与角度之间的转换函数等。
+3.2.3　宏定义
+<QtGlobal>头文件中定义了很多宏，以下一些是比较常用的。
+QT_VERSION
+这个宏展开为数值形式0xMMNNPP (MM = major, NN = minor, PP = patch)表示Qt编译器版本，例如Qt编译器版本为Qt 5.9.1，则QT_VERSION为0x050901。这个宏常用于条件编译设
+
+
+
+置，根据Qt版本不同，编译不同的代码段。#if QT_VERSION >= 0x040100
+   QIcon icon = style()->standardIcon(QStyle::SP_TrashIcon);
+#else
+   QPixmap pixmap = style()->standardPixmap(QStyle::SP_TrashIcon);
+   QIcon icon(pixmap);
+#endif
+QT_VERSION_CHECK
+这个宏展开为Qt版本号的一个整数表示，例如：#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#include <QtWidgets>
+#else
+#include <QtGui>
+#endif
+QT_VERSION_STR
+这个宏展开为Qt版本号的字符串，如“5.9.0”。
+Q_BYTE_ORDER、Q_BIG_ENDIAN和Q_LITTLE_ENDIAN
+Q_BYTE_ORDER表示系统内存中数据的字节序，Q_BIG_ENDIAN表示大端字节序，Q_LITTLE_ENDIAN表示小端字节序。在需要判断系统字节序时会用到，例如：#if Q_BYTE_ORDER == Q_LITTLE_ENDIAN
+...
+#endif
+Q_DECL_IMPORT和Q_DECL_EXPORT
+在使用或设计共享库时，用于导入或导出库的内容，12.4节有其使用实例。
+Q_DECL_OVERRIDE
+在类定义中，用于重载一个虚函数，例如在某个类中重载虚函数paintEvent()，可以定义如下：void  paintEvent(QPaintEvent*) Q_DECL_OVERRIDE;
+使用Q_DECL_OVERRIDE宏后，如果重载的虚函数没有进行任何重载操作，编译器将会报错。
+Q_DECL_FINAL
+这个宏将一个虚函数定义为最终级别，不能再被重载，或定义一个类不能再被继承，示例如下：class QRect Q_DECL_FINAL { // QRect不能再被继承
+     // ...
+  };
+Q_UNUSED(name)
+这个宏用于在函数中定义不在函数体里使用的参数，示例如下：void MainWindow::on_imageSaved(int id, const QString &fileName)
+{
+   Q_UNUSED(id);
+   LabInfo->setText("图片保存为： "+fileName);
+}
+
+
+
+
+
+
+在这个函数里，id参数没有使用。如果不用Q_UNUSED(id)定义，编译器会出现参数未使用的警告。
+foreach(variable, container)
+foreach用于容器类的遍历，例如：foreach (const QString &codecName, recorder->supportedAudioCodecs())
+   ui->comboCodec->addItem(codecName);
+forever
+forever用于构造一个无限循环，例如：forever {
+     ...
+  }
+qDebug(const char *message, ...)
+在debugger窗体显示信息，如果编译器设置了Qt_NO_DEBUG_OUTPUT，则不作任何输出，例如：qDebug("Items in list: %d", myList.size());
+类似的宏还有qWarning、qCritical、qFatal、qInfo等，也是用于在debugger窗体显示信息。
+
+
+
+
+
+
+3.3　容器类
+3.3.1　容器类概述
+Qt提供了多个基于模板的容器类，这些容器类可以用于存储指定类型的数据项，例如常用的字符串列表类QStringList就是从容器类 QList<QString>继承的，实现对字符串列表的添加、存储、删除等操作。
+Qt的容器类比标准模板库（STL）中的容器类更轻巧、安全和易于使用。这些容器类是隐式共享和可重入的，而且它们进行了速度和存储优化，因此可以减少可执行文件的大小。此外，它们还是线程安全的，也就是说它们作为只读容器时可被多个线程访问。
+容器类是基于模板的类，如常用的容器类QList<T>，T是一个具体的类型，可以是int、float等简单类型，也可以是Qstring、QDate等类，但不能是QObject或任何其子类。T必须是一个可赋值的类型，即T必须提供一个缺省的构造函数，一个可复制构造函数和一个赋值运算符。
+例如用QList<T>定义一个字符串列表的容器，其定义方法是：QList<QString>  aList;
+这样定义了一个QList容器类的变量aList，它的数据项是QString，所以aList可以用于处理字符串列表，例如：aList.append("Monday");
+aList.append("Tuesday");
+aList.append("Wednesday");
+QString  str=aList[0];
+Qt的容器类分为顺序容器（sequential containers）和关联容器（associative containers）。
+
+
+
+
+
+容器迭代类用于遍历容器里的数据项，有Java类型的迭代类和STL类型的迭代类。Java类型的迭代类易于使用，提供高级功能，而STL类型的迭代类效率更高一些。
+Qt还提供了foreach宏用于遍历容器内的所有数据项。
+3.3.2　顺序容器类
+Qt的顺序容器类有QList、QLinkedList、QVector、QStack和QQueue。
+1．QList
+QList是最常用的容器类，虽然它是以数组列表（array-list）的形式实现的，但是在其前或后添加数据非常快，QList以下标索引的方式对数据项进行访问。
+QList用于添加、插入、替换、移动、删除数据项的函数有：insert()、replace()、removeAt()、move()、swap()、append()、prepend()、removeFirst()和removeLast()等。
+QList提供下标索引方式访问数据项，如同数组一样，也提供at()函数，例如：QList<QString> list;
+list << "one" << "two" << "three";
+QString str1=list[1];   //str1=="two"
+QString str0=list.at(0);   //str0=="one"
+QList的isEmpty()函数在数据项为空时返回true，size()函数返回数据项的个数。
+QList是Qt中最常用的容器类，很多函数的参数传递都是采用QList容器类，例如QAudioDeviceInfo的静态函数availableDevices()的函数原型是：QList<QAudioDeviceInfo> QAudioDeviceInfo::availableDevices(QAudio::Mode mode)
+其返回数据就是QAudioDeviceInfo类型的QList列表。
+2．QLinkedList
+QLinkedList<T>是链式列表（linked-list），数据项不是用连续的内存存储的，它基于迭代器访问数据项，并且插入和删除数据项的操作时间相同。
+除了不提供基于下标索引的数据项访问外，QLinkedList的其他接口函数与QList基本相同。
+3．QVector
+QVector<T>提供动态数组的功能，以下标索引访问数据。
+QVector的函数接口与QList几乎完全相同，QVector<T>的性能比QList<T>更高，因为QVector<T>的数据项是连续存储的。
+4．QStack
+QStack<T>是提供类似于堆栈的后入先出（LIFO）操作的容器类，push()和pop()是主要的接口函数。例如：QStack<int> stack;
+stack.push(10);
+stack.push(20);
+stack.push(30);
+while (!stack.isEmpty())
+   cout << stack.pop() << endl;
+程序会依次输出30，20，10。
+5．QQueue
+QQueue<T>是提供类似于队列先入先出（FIFO）操作的容器类。enqueue()和dequeue()
+
+
+
+
+
+是主要操作函数。例如：QQueue<int> queue;
+queue.enqueue(10);
+queue.enqueue(20);
+queue.enqueue(30);
+while (!queue.isEmpty())
+   cout << queue.dequeue() << endl;
+程序会依次输出10，20，30。
+3.3.3　关联容器类
+Qt还提供关联容器类QMap、QMultiMap、QHash、QMultiHash和QSet。
+QMultiMap和QMultiHash支持一个键关联多个值，QHash和QMultiHash类使用散列（Hash）函数进行查找，查找速度更快。
+1．QSet
+QSet是基于散列表的集合模板类，它存储数据的顺序是不定的，查找值的速度非常快。QSet<T> 内部就是用QHash实现的。
+定义QSet<T>容器和输入数据的实例代码如下：QSet<QString> set;
+set << "dog" << "cat" << "tiger";
+测试一个值是否包含于这个集合，用contains()函数，示例如下：if (!set.contains("cat"))
+     ...
+2．QMap
+QMap<Key, T>提供一个字典（关联数组），一个键映射到一个值。QMap存储数据是按照键的顺序，如果不在乎存储顺序，使用QHash会更快。
+定义QMap<QString, int>类型变量和赋值的示例代码如下：QMap<QString, int> map;
+map["one"] = 1;
+map["two"] = 2;
+map["three "] = 3;
+也可以使用insert()函数赋值，或remove()移除一个键值对，示例如下：map.insert("four", 4);
+map.remove("two");
+要查找一个值，使用运算符“[ ]”或value()函数，示例如下：int num1 = map["one"];
+int num2 = map.value("two");
+如果在映射表中没有找到指定的键，会返回一个缺省构造值（default-constructed values），例如，如果值的类型是字符串，会返回一个空的字符串。
+在使用value()函数查找键值时，还可以指定一个缺省的返回值，示例如下：timeout = map.value("TIMEOUT",30);
+
+
+
+
+
+这表示如果在map里找到键“TIMEOUT”，就返回关联的值，否则返回值为30。
+3．QMultiMap
+QMultiMap是QMap的子类，是用于处理多值映射的便利类。
+多值映射就是一个键可以对应多个值。QMap正常情况下不允许多值映射，除非使用QMap::insertMulti()添加键值对。
+QMultiMap是QMap的子类，所以QMap的大多数函数在QMultiMap都是可用的，但是有几个特殊的，QMultiMap::insert()等效于QMap::insertMulti()，QMultiMap::replace()等效于QMap::insert()。
+QMultiMap使用示例如下：QMultiMap<QString, int> map1, map2, map3;
+map1.insert("plenty", 100);
+map1.insert("plenty", 2000);   // map1.size() == 2
+map2.insert("plenty", 5000);   // map2.size() == 1
+map3 = map1 + map2;            // map3.size() == 3
+QMultiMap不提供“[ ]”操作符，使用value()函数访问最新插入的键的单个值。如果要获取一个键对应的所有值，使用values()函数，返回值是QList<T>类型。QList<int> values = map.values("plenty");
+for (int i = 0; i < values.size(); ++i)
+   cout << values.at(i) << endl;
+4．QHash
+QHash是基于散列表来实现字典功能的模板类，QHash<Key, T>存储的键值对具有非常快的查找速度。
+QHash与QMap的功能和用法相似，区别在于以下几点：
+QHash比QMap的查找速度快；
+在QMap上遍历时，数据项是按照键排序的，而QHash的数据项是任意顺序的；
+QMap的键必须提供“<”运算符，QHash的键必须提供“==”运算符和一个名称为qHash()的全局散列函数。
+5．QMultiHash
+QMultiHash是QHash的子类，是用于处理多值映射的便利类，其用法与QMultiMap类似。
+3.4　容器类的迭代
+迭代器（iterator）为访问容器类里的数据项提供了统一的方法，Qt有两种迭代器类：Java类型的迭代器和STL类型的迭代器。
+Java类型的迭代器更易于使用，且提供一些高级功能，而STL类型的迭代器效率更高。
+Qt还提供一个关键字foreach（实际是< QtGlobal >里定义的一个宏）用于方便地访问容器里所有数据项。
+3.4.1　Java类型迭代器
+1．Java类型迭代器总表
+对于每个容器类，有两个Java类型迭代器：一个用于只读操作，一个用于读写操作，各个Java类型的容器类见表3-3。
+
+
+
+
+
+表3-3　Java类型的迭代器类
+容器类                                  只读迭代器                 读写迭代器
+QList<T>,   QQueue<T>                   QListIterator<T>            QMutableListIterator<T>		
+QLinkedList<T>  		                QLinkedListIterator<T>		QMutableLinkedListIterator<T>
+QVector<T>, QStack<T>		            QVectorIterator<T>		    QMutableVectorIterator<T>
+QSet<T>		                            QSetIterator<T>		        QMutableSetIterator<T>
+QMap<Key, T>, QMultiMap<Key, T>		    QMapIterator<Key, T>		QMutableMapIterator<Key, T>
+QHash<Key, T>, QMultiHash<Key, T>		QHashIterator<Key, T>		QMutableHashIterator<Key, T>
+QMap和QHash等关联容器类的迭代器用法相同，QList和QLinkedList、QSet等容器类的用法相同，所以下面只以QMap和QList为例介绍迭代器的用法。
+2．顺序容器类的迭代器的使用
+Java类型迭代器的指针不是指向一个数据项，而是在数据项之间，迭代器指针位置示意图如图3-2所示。
+图3-2　Java类型迭代器位置示意图
+下面是遍历访问一个QList<QString>容器的所有数据项的典型代码。QList<QString> list;
+list << "A" << "B" << "C" << "D";
+QListIterator<QString> i(list);
+while (i.hasNext())
+   qDebug() << i.next();
+QList< QString>容器对象list作为参数传递给QListIterator< QString >迭代器i的构造函数，i用于对list作只读遍历。起始时刻，迭代器指针在容器第一个数据项的前面（图3-2中数据项“A”的前面），调用hasNext()判断在迭代器指针后面是否还有数据项，如果有，就调用next()跳过一个数据项，并且next()函数返回跳过去的那个数据项。
+也可以反向遍历，示例代码如下：QListIterator<QString> i(list);
+i.toBack();
+while (i.hasPrevious())
+   qDebug() << i.previous();
+QListIterator用于移动指针和读取数据的函数见表3-4。
+表3-4　QListIterator常用函数
+
+
+
+
+函数名
+功能
+void　toFront()		迭代器移动到列表的最前面（第一个数据项之前）
+void　toBack()		迭代器移动到列表的最后面（最后一个数据项之后）
+bool　hasNext()		如果迭代器不是位于列表最后位置，返回true
+const T & next()		返回下一个数据项，并且迭代器后移一个位置
+const T & peekNext()		返回下一个数据项，但是不移动迭代器位置
+bool　hasPrevious()		如果迭代器不是位于列表的最前面，返回true
+const T & previous()		返回前一个数据项，并且迭代器前移一个位置
+const T & peekPrevious()		返回前一个数据项，但是不移动迭代器指针
+QListIterator是只读访问容器内数据项的迭代器，若要在遍历过程中对容器的数据进行修改，需要使用QMutableListIterator。例如下面的示例代码为删除容器中数据为奇数的项。QList<int> list;
+list <<1 <<2<<3<<4<<5;
+QMutableListIterator<int> i(list);
+while (i.hasNext()) {
+   if (i.next() % 2 != 0)
+      i.remove();
+}
+remove()函数移除next()函数刚刚跳过的一个数据项，不会使迭代器失效。
+setValue()函数可以修改刚刚跳过去的数据项的值。
+3．关联容器类的迭代器的使用
+对于关联容器类QMap<Key T>，使用QMapIterator和QMutableMapIterator迭代器类，它们具有表3-4所示的所有函数，主要是增加了key()和value()函数用于获取刚刚跳过的数据项的键和值。
+例如，下面的代码将删除键（城市名称）里以“City”结尾的数据项。QMap<QString, QString> map;
+map.insert("Paris", "France");
+map.insert("New York", "USA");
+map.insert("Mexico City", "USA");
+map.insert("Moscow", "Russia");
+...
+QMutableMapIterator<QString, QString> i(map);
+while (i.hasNext()) {
+   if (i.next().key().endsWith("City"))
+      i.remove();
+}
+如果是在多值容器里遍历，可以用findNext()或findPrevious()查找下一个或上一个值，如下面的代码将删除上一示例代码中map里值为“USA”的所有数据项。QMutableMapIterator<QString, QString> i(map);
+while (i.findNext("USA"))
+   i.remove();
+
+
+
+
+
+
+
+3.4.2　STL类型迭代器
+1．STL类型迭代器总表
+STL迭代器与Qt和STL的原生算法兼容，并且进行了速度优化。具体类型见表3-5。
+对于每一个容器类，都有两个STL类型迭代器：一个用于只读访问，一个用于读写访问。无需修改数据时一定使用只读迭代器，因为它们速度更快。
+表3-5　STL类型的迭代器类
+容器类		只读迭代器		读写迭代器
+QList<T>, QQueue<T>		QList<T>::const_iterator		QList<T>::iterator
+QLinkedList<T>		QLinkedList<T>::const_iterator		QLinkedList<T>::iterator
+QVector<T>, QStack<T>		QVector<T>::const_iterator		QVector<T>::iterator
+QSet<T>		QSet<T>::const_iterator		QSet<T>::iterator
+QMap<Key, T>QMultiMap<Key, T>		QMap<Key, T>::const_iterator		QMap<Key, T>::iterator
+QHash<Key, T>QMultiHash<Key, T>		QHash<Key, T>::const_iterator		QHash<Key, T>::iterator
+注意　
+在定义只读迭代器和读写迭代器时的区别，它们使用了不同的关键字，const_iterator定义只读迭代器，iterator定义读写迭代器。此外，还可以使用const_reverse_iterator和reverse_iterator定义相应的反向迭代器。
+STL类型的迭代器是数组的指针，所以“++”运算符使迭代器指向下一个数据项，“*”运算符返回数据项内容。与Java类型的迭代器不同，STL迭代器直接指向数据项，STL迭代器指向位置示意图如图3-3所示。
+图3-3　STL类型迭代器位置示意图
+begin()函数使迭代器指向容器的第一个数据项，end()函数使迭代器指向一个虚拟的表示结尾的数据项，end()表示的数据项是无效的，一般用作循环结束条件。
+下面仍然以QList和QMap为例说明STL迭代器的用法，其他容器类迭代器的用法类似。
+2．顺序容器类的迭代器的用法
+下面的示例代码将QList<QString> list里的数据项逐项输出。QList<QString> list;
+list << "A" << "B" << "C" << "D";
+QList<QString>::const_iterator i;
+for (i = list.constBegin(); i != list.constEnd(); ++i)
+   qDebug() << *i;
+
+
+
+
+
+
+constBegin()和constEnd()是用于只读迭代器的，表示起始和结束位置。
+若使用反向读写迭代器，并将上面示例代码中list的数据项都改为小写，代码如下：QList<QString>::reverse_iterator i;
+for (i = list.rbegin(); i != list.rend(); ++i)
+   *i = i->toLower();
+}
+3．关联容器类的迭代器的用法
+对于关联容器类QMap和QHash，迭代器的“*”操作符返回数据项的值。如果想返回键，使用key()函数。对应的，用value()函数返回一个项的值。
+例如，下面的代码将QMap<int, int> map中所有项的键和值输出。QMap<int, int> map;
+...
+QMap<int, int>::const_iterator i;
+for (i = map.constBegin(); i != map.constEnd(); ++i)
+   qDebug() << i.key() << ':' << i.value();
+Qt API包含很多返回值为QList或QStringList的函数，要遍历这些返回的容器，必须先复制。由于Qt使用了隐式共享，这样的复制并无多大开销。例如下面的代码是正确的。const QList<int> sizes = splitter->sizes();
+QList<int>::const_iterator i;
+for (i = sizes.begin(); i != sizes.end(); ++i)
+   ...提示　
+隐式共享（Implicit Sharing）是对象的管理方法。一个对象被隐式共享，只是传递该对象的一个指针给使用者，而不实际复制对象数据，只有在使用者修改数据时，才实质复制共享对象给使用者。如在上面的代码中，splitter->sizes()返回的是一个QList<int>列表对象sizes，但是实际上代码并不将splitter->sizes()表示的列表内容完全复制给变量sizes，只是传递给它一个指针。只有当sizes发生数据修改时，才会将共享对象的数据复制给sizes，这样避免了不必要的复制，减少了资源占用。
+而下面的代码是错误的。QList<int>::const_iterator i;
+for (i = splitter->sizes().begin(); i != splitter->sizes().end(); ++i)
+   ...
+对于STL类型的迭代器，隐式共享还涉及另外一个问题，即当有一个迭代器在操作一个容器变量时，不要去复制这个容器变量。
+3.4.3　foreach关键字
+如果只是想遍历容器中所有的项，可以使用foreach关键字。foreach是<QtGlobal>头文件中定义的一个宏。使用foreach的句法是：foreach (variable, container) 
+使用foreach的代码比使用迭代器更简洁。例如，使用foreach遍历一个QLinkedList<QString>的示例代码如下：
+
+
+
+
+
+
+
+QLinkedList<QString> list;
+...
+QString str;
+foreach (str, list)
+   qDebug() << str;
+用于迭代的变量也可以在foreach语句里定义，foreach语句也可以使用花括号，可以使用break退出迭代，示例代码如下：QLinkedList<QString> list;
+...
+foreach (const QString &str, list) {
+   if (str.isEmpty())
+      break;
+   qDebug() << str;
+}
+对于QMap和QHash，foreach会自动访问“键——值”对里的值，所以无需调用values()。如果需要访问键则可以调用keys()，示例代码如下：QMap<QString, int> map;
+...
+foreach (const QString &str, map.keys())
+   qDebug() << str << ':' << map.value(str);
+对于多值映射，可以使用两重foreach语句，示例代码如下：QMultiMap<QString, int> map;
+...
+foreach (const QString &str, map.uniqueKeys()) {
+   foreach (int i, map.values(str))
+      qDebug() << str << ':' << i;
+}注意　
+foreach关键字遍历一个容器变量是创建了容器的一个副本，所以不能修改原来容器变量的数据项。
+3.5　Qt类库的模块
+Qt类库里大量的类根据功能分为各种模块，这些模块又分为几大类。
+Qt基本模块（Qt Essentials）：提供了Qt在所有平台上的基本功能。
+Qt附加模块（Qt Add-Ons）：实现一些特定功能的提供附加价值的模块。
+增值模块（Value-Add Modules）：单独发布的提供额外价值的模块或工具。
+技术预览模块（Technology Preview Modules）：一些处于开发阶段，但是可以作为技术预览使用的模块。
+Qt工具（Qt Tools）：帮助应用程序开发的一些工具。
+Qt官网的“All Modules”页面可以查看所有这些模块的信息。
+3.5.1　Qt基本模块
+Qt基本模块是Qt在所有平台上的基本功能，它们在所有的开发平台和目标平台上都可用，在Qt 5所有版本上是源代码和二进制兼容的。这些具体的基本模块见表3-6。
+表3-6　Qt基本模块
+
+
+
+
+
+
+
+
+
+
+
+
+3.5　Qt类库的模块
+Qt类库里大量的类根据功能分为各种模块，这些模块又分为几大类。
+Qt基本模块（Qt Essentials）：提供了Qt在所有平台上的基本功能。
+Qt附加模块（Qt Add-Ons）：实现一些特定功能的提供附加价值的模块。
+增值模块（Value-Add Modules）：单独发布的提供额外价值的模块或工具。
+技术预览模块（Technology Preview Modules）：一些处于开发阶段，但是可以作为技术预览使用的模块。
+Qt工具（Qt Tools）：帮助应用程序开发的一些工具。
+Qt官网的“All Modules”页面可以查看所有这些模块的信息。
+3.5.1　Qt基本模块
+Qt基本模块是Qt在所有平台上的基本功能，它们在所有的开发平台和目标平台上都可用，在Qt 5所有版本上是源代码和二进制兼容的。这些具体的基本模块见表3-6。
+表3-6　Qt基本模块
+
+
+
+
+模块
+描述
+Qt Core
+其他模块都用到的核心非图形类
+Qt GUI
+设计GUI界面的基础类，包括OpenGL
+Qt Multimedia
+音频、视频、摄像头和广播功能的类
+Qt Multimedia Widgets
+实现多媒体功能的界面组件类
+Qt Network
+使网络编程更简单和轻便的类
+Qt QML
+用于QML和JavaScript语言的类
+Qt Quick
+用于构建具有定制用户界面的动态应用程序的声明框架
+Qt Quick Controls
+创建桌面样式用户界面，基于Qt Quick的用户界面控件
+Qt Quick Dialogs
+用于Qt Quick的系统对话框类型
+Qt Quick Layouts
+用于Qt Quick 2界面元素的布局项
+Qt SQL
+使用SQL用于数据库操作的类
+Qt Test
+用于应用程序和库进行单元测试的类
+Qt Widgets
+用于构建GUI界面的C++图形组件类
+Qt Core模块是Qt类库的核心，所有其他模块都依赖于此模块，如果使用qmake构建项目，则Qt Core模块是自动被加入项目的。
+Qt GUI模块提供了用于开发GUI应用程序的必要的类，使用qmake构建应用程序时，Qt GUI模块是自动被加入项目的。如果项目中不使用GUI功能，则需要在项目配置文件中加入如下的一行：QT -= gui
+其他的模块一般不会被自动加入到项目，如果需要在项目中使用某个模块，则可以在项目配置中添加此模块。例如，如果需要在项目中使用Qt Multimedia和Qt Multimedia Widgets模块，需要在项目配置文件中加入如下的语句：QT += multimedia multimediawidgets
+需要在项目中使用Qt SQL模块，就在项目配置文件中加入如下的语句：QT += sql
+3.5.2　Qt附加模块
+Qt附加模块可以实现一些特定目的。这些模块可能只在某些开发平台上有，或只能用于某些操作系统，或只是为了向后兼容。用户安装时可以选择性地安装这些附加模块。
+表3-7是附加模块列表（未列出一些过时的模块，以及专门用于QML或Qt Quick的模块）。
+表3-7　Qt附加模块
+
+
+
+
+
+模块
+描述
+Active Qt
+用于开发使用ActiveX和COM的Windows应用程序
+Qt 3D
+支持2D和3D渲染，提供用于开发近实时仿真系统的功能
+Qt Android Extras
+提供Android平台相关的API
+Qt Bluetooth
+提供访问蓝牙硬件的功能
+Qt Concurrent
+提供一些类，无需使用底层的线程控制就可以编写多线程程序
+Qt D-Bus
+使进程间通过D-Bus协议通信的一些类
+Qt Gamepad
+使Qt应用程序支持游戏手柄硬件的使用
+Qt Image Formats
+支持附加图片格式的插件，包括TIFF、MNG、TGA、WBMP
+Qt Mac Extras
+提供macOS平台相关的API
+Qt NFC
+提供访问NFC（近场通信）硬件的功能
+Qt Positioning
+提供一些类，用于通过GPS卫星、WiFi等定位
+Qt Print Support
+提供一些用于打印控制的类
+Qt Purchasing
+提供一些类，在Qt应用程序内实现应用内购买的功能
+Qt Sensors
+提供访问传感器硬件的功能，以识别运动和手势
+Qt Serial Bus
+访问串行工业总线的功能，目前只支持CAN和Modbus协议
+Qt SVG
+提供显示SVG图片文件的类
+Qt WebChannel
+用于实现服务器端（QML或C++应用程序）与客户端（HTML/ JavaScript或QML应用程序）之间的P2P通信
+Qt WebEngine
+提供类和函数，实现在应用程序中嵌入网页内容
+Qt WebSockets
+提供兼容于RFC 6455的WebSocket通信，WebSocket是实现客户端程序与远端主机进行双向通信的基于Web的协议
+Qt Windows Extras
+提供Windows平台相关的API
+Qt XML
+该模块不再维护了，应使用Qt Core中的QXmlStreamReader 和 QXmlStreamWriter
+Qt XML Patterns
+提供对XPath、XQuery、XSLT 和 XML 等的支持
+Qt Charts①
+用于数据显示的二维图表组件
+Qt Data Visualization①
+用于3D数据可视化显示的界面组件
+Qt Virtual Keyboard①
+实现不同输入法的虚拟键盘框架
+下面的附加模块只在商业许可，或GPLv3许可的版本里才有。
+3.5.3　增值模块
+
+
+
+
+
+除了随Qt5发布的上述这些模块，还有一些模块（见表3-8）是单独发布的，这些模块只在商业版许可的Qt里才有。
+表3-8　Qt的增值模块
+特性
+描述
+Qt for Device Creation
+高效、易用、全集成的嵌入式设备应用程序开发工具，包括很多其他增值特性
+Qt Quick Compiler
+编译.qml源文件生成二进制应用程序的编译器，提高载入时间和代码的安全性
+3.5.4　技术预览模块
+技术预览模块就是一些还处于开发和测试阶段的模块，一般技术预览模块经过几个版本的发布后会变成正式的模块。表3-9是Qt 5.9中的技术预览模块。
+表3-9　技术预览模块
+模块
+描述
+Qt Network Authorization
+基于OAuth协议，为应用程序提供网络账号验证的功能
+Qt Speech
+提供文字转语音（text-to-speech）功能支持
+Qt Remote Objects
+进程间或设备间通信，共享QObject的API
+3.5.5　Qt工具
+Qt工具（见表3-10）在所有支持的平台上都可以使用，用于帮助应用程序的开发和设计。
+表3-10　Qt工具
+工具
+描述
+Qt Designer
+用于扩展Qt Designer的类
+Qt Help
+在应用程序中集成在线文档的类，实现类似于Qt Assistant的功能
+Qt UI Tools
+操作Qt Designer生成的窗体的类
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
