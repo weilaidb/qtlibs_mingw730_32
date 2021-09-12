@@ -976,6 +976,7 @@ QT/UI/QListWidget/QListWidget右键实现重命名功能
 QT/UI/QListWidget/newUi
 QT/UI/QObject_connect/QAction
 QT/UI/QObject_connect/QPushButton
+QT/UI/QPlaette/set
 QT/UI/QSplitter/分割比例设定
 QT/UI/QT 窗口关闭自动销毁
 QT/UI/QTextEdit/clearTextEdit

@@ -1,0 +1,1 @@
+QPalette \1 = \2->palette();$NL$NL\2->setPalette(\1);
