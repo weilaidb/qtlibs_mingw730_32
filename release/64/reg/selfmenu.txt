@@ -225,6 +225,7 @@ C/DEFINE/TRUE
 C/DEFINE/VERSION
 C/DEFINE/VERSION 大于小于
 C/DEFINE/YES
+C/DEFINE/abs
 C/DEFINE/align
 C/DEFINE/asm
 C/DEFINE/bit bic bis
@@ -304,6 +305,7 @@ C/STRING/EXITLABEL
 C/STRING/ascii转字符串
 C/STRING/hex2string 十六进制转字符串
 C/STRING/last string zero memset
+C/STRING/longtostring
 C/STRING/mlogxByKey record log msg
 C/STRING/字符串转ascii
 C/STRNCPY_2_SNPRINTF
@@ -343,6 +345,7 @@ CXX/GetStrOfData
 CXX/INCLUDE/FILTER
 CXX/INCLUDE/GENERATE
 CXX/INCLUDE/常用头文件 header
+CXX/LOOP/list DBList
 CXX/LOOP/list iterator
 CXX/LOOP/list reverse_iterator
 CXX/LOOP/map/C++ map用法
@@ -945,6 +948,7 @@ QT/CHECK/UNUSED
 QT/CMD/execute bat
 QT/CMD/execute linux cmd
 QT/Express/声明类declare class QT_BEGIN_NAMESPACE
+QT/File/Open
 QT/LOOP/QStringList iterator
 QT/LOOP/QStringList reverse_iterator
 QT/PRINT/ENTERTIPS
@@ -956,6 +960,7 @@ QT/QString/string_to_ascii
 QT/QString/十六进制转十进制
 QT/QString/十进制转十六进制
 QT/RegExp/Test
+QT/ShortCut快捷键
 QT/UI/Action
 QT/UI/Action setShortcut
 QT/UI/ClipBoard/getClipBoardText
@@ -972,6 +977,7 @@ QT/UI/Menu sub子菜单
 QT/UI/Print/qDebug
 QT/UI/Print/qDebug only show string
 QT/UI/Print/stdout
+QT/UI/QFont/set
 QT/UI/QListWidget/QListWidget右键实现重命名功能
 QT/UI/QListWidget/newUi
 QT/UI/QObject_connect/QAction
@@ -979,6 +985,9 @@ QT/UI/QObject_connect/QPushButton
 QT/UI/QPlaette/set
 QT/UI/QSplitter/分割比例设定
 QT/UI/QT 窗口关闭自动销毁
+QT/UI/QTextCharFormat/set Font
+QT/UI/QTextCharFormat/set FontSize
+QT/UI/QTextCharFormat/set font italic underline
 QT/UI/QTextEdit/clearTextEdit
 QT/UI/QTextEdit/findText
 QT/UI/QTextEdit/getSelectLine
@@ -1099,3 +1108,4 @@ path路径/Android手机拷贝路径
 脚本/VBS/SecureCrt/While
 脚本/VBS/SecureCrt/git process
 脚本/VBS/SecureCrt/git push cur branch
+
