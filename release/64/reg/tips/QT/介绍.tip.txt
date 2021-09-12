@@ -36,8 +36,25 @@ qobject_cast()函数进行动态投射
 
 
 
-
-
+connect()
+connect()
+connect()
+．connect()函数的不同参数形式
+QObject::connect()函数有多重参数形式，一种参数形式的函数原型是：QMetaObject::Connection QObject::connect(const QObject *sender, const char *signal, const QObject *receiver, const char *method, Qt::ConnectionType type = Qt::AutoConnection)
+使用这种参数形式的connect()进行信号与槽函数的连接时，一般句法如下：connect(sender, SIGNAL(signal()), receiver, SLOT(slot()));
+这里使用了宏SIGNAL()和SLOT()指定信号和槽函数，而且如果信号和槽函数带有参数，还需注明参数类型，如：connect(spinNum, SIGNAL(valueChanged (int)), this, SLOT(updateStatus(int));
+另外一种参数形式的connect()函数的原型是：QMetaObject::Connection QObject::connect(const QObject *sender, const QMetaMethod &signal, const QObject *receiver, const QMetaMethod &method, Qt::ConnectionType type = Qt::AutoConnection)
+对于具有默认参数的信号与槽（即信号名称是唯一的，没有参数不同而同名的两个信号），可以使用这种函数指针形式进行关联，如：connect(lineEdit, &QLineEdit::textChanged, this, &widget::on_textChanged);
+QLineEdit只有一个信号textChanged(QString), 在自定义窗体类widget里定义一个槽函数on_textChanged(QString)，就可以用上面的语句将此信号与槽关联起来，无需出现函数参数。这在信号的参数比较多时更简便一些。
+而对于具有不同参数的同名信号就不能采用函数指针的方式进行信号与槽的关联，例如QSpinBox有两个valueChanged()信号，分别是：void QSpinBox::valueChanged(int i)
+void QSpinBox::valueChanged(const QString &text)
+即使在自定义窗体widget里定义了一个槽函数，如：void onValueChanged(int i);
+在使用下面的语句进行关联时，编译会出错。connect(spinNum, &QSpinBox::valueChanged , this, &widget::onValueChanged);
+不管是哪种参数形式的connect()函数，最后都有一个参数Qt::ConnectionType type，缺省值为Qt::AutoConnection。枚举类型Qt::ConnectionType表示了信号与槽之间的关联方式，有以下几种取值。
+Qt::AutoConnection（缺省值）：如果信号的接收者与发射者在同一个线程，就使用Qt::Direct Connection方式；否则使用Qt::QueuedConnection方式，在信号发射时自动确定关联方式。
+Qt::DirectConnection：信号被发射时槽函数立即执行，槽函数与信号在同一个线程。
+Qt::QueuedConnection：在事件循环回到接收者线程后执行槽函数，槽函数与信号在不同的线程。
+Qt::BlockingQueuedConnection：与Qt::QueuedConnection相似，只是信号线程会阻塞直到槽函数执行完毕。当信号与槽函数在同一个线程时绝对不能使用这种方式，否则会造成死锁。
 
 
 

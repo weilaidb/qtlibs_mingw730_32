@@ -1,0 +1,13 @@
+4．类的附加信息
+属性系统还有一个宏Q_CLASSINFO()，可以为类的元对象定义“名称——值”信息，如：class QMyClass : public QObject
+  {
+     Q_OBJECT
+     Q_CLASSINFO("author", "Wang")
+     Q_CLASSINFO("company", "UPC")
+     Q_CLASSINFO("version ", "3.0.1")
+  public:
+     ...
+  };
+用Q_CLASSINFO()宏定义附加类信息后，可以通过元对象的一些函数获取类的附加信息，如classInfo(int )获取某个附加信息，函数原型定义如下：QMetaClassInfo QMetaObject::classInfo(int index) const
+返回值是QMetaClassInfo类型，有name()和value()两个函数，可获得类附加信息的名称和值。
+

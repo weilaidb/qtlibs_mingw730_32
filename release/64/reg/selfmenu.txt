@@ -951,6 +951,11 @@ QT/Express/声明类declare class QT_BEGIN_NAMESPACE
 QT/File/Open
 QT/LOOP/QStringList iterator
 QT/LOOP/QStringList reverse_iterator
+QT/Object/Q_CLASSINFO
+QT/Object/Q_PROPERTY
+QT/Object/sender
+QT/Object/signals
+QT/Object/setProperty
 QT/PRINT/ENTERTIPS
 QT/PRINT/debugApp
 QT/QDir/toNativeSeparators
