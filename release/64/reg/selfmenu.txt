@@ -989,7 +989,14 @@ QT/QString/toInt
 QT/QString/toLower
 QT/QString/十六进制转十进制
 QT/QString/十进制转十六进制
+QT/QTimer/start
 QT/QVector/append
+QT/Qthread/signals
+QT/Qthread/thread sync QMutex
+QT/Qthread/thread sync QMutexLocker
+QT/Qthread/thread sync 线程同步
+QT/Qthread/QDiceThread
+
 QT/RegExp/Test
 QT/ShortCut快捷键
 QT/UI/Action

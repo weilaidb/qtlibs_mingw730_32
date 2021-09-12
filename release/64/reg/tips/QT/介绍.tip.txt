@@ -973,6 +973,481 @@ invertedControls：反向按键控制，若invertedControls=true，则按下PgUp
 
 
 
+第13章　多线程
+一个应用程序一般只有一个线程，一个线程内的操作是顺序执行的，如果有某个比较消耗时间的计算或操作，比如网络通信中的文件传输，在一个线程内操作时，用户界面就可能会冻结而不能及时响应。这种情况下，可以创建一个单独的线程来执行比较消耗时间的操作，并与主线程之间处理好同步与数据交互，这就是多线程应用程序。
+Qt为多线程操作提供了完整的支持。QThread是线程类，是实现多线程操作的核心类，一般从QThread继承定义自己的线程类。线程之间的同步是其交互的主要问题，Qt提供了QMutex、QMutexLocker、QReadWriteLock、QwaitCondition、QSemaphore等多种类用于实现线程之间的同步。Qt还有Qt Concurrent模块，提供一些高级的API实现多线程编程而无需使用QMutex、QwaitCondition和QSemaphore等基础操作。使用Qt Concurrent实现的多线程程序可以自动根据处理器内核个数调整线程个数。
+本章主要介绍用QThread实现多线程编程的方法，以及用QMutex、QWaitCondition、QSemaphore等实现线程同步的方法。
+13.1　QThread创建多线程程序
+13.1.1　QThread类功能简介
+QThread类提供不依赖于平台的管理线程的方法。一个QThread类的对象管理一个线程，一般从QThread继承一个自定义类，并重定义虚函数run()，在run()函数里实现线程需要完成的任务。
+将应用程序的线程称为主线程，额外创建的线程称为工作线程。一般在主线程里创建工作线程，并调用start()开始执行工作线程的任务。start()会在内部调用run()函数，进入工作线程的事件循环，在run()函数里调用exit()或quit()可以结束线程的事件循环，或在主线程里调用terminate()强制结束线程。
+QThread类的主要接口函数、信号和槽函数见表13-1。
+表13-1　Qthread类的主要接口
+类型		函数		功能
+公共函数		bool isFinished()		线程是否结束    
+                bool isRunning()		线程是否正在运行		
+Priority　      priority()              返回线程的优先级
+公共函数        void setPriority (Priority priority)       设置线程的优先级
+                 void exit(int returnCode = 0)       退出线程的事件循环，退出码为returnCode，0表示成功退出；否则表示有错误
+               bool wait(unsigned long time )    阻止线程执行，直到线程结束（从run()函数返回），或等待时间超过time毫秒
+
+公共槽函数     void　quit()              退出线程的事件循环，并返回代码0，等效于exit(0)
+               void start(Priority priority ) 内部调用run()开始执行线程，操作系统根据priority参数进行调度
+               void terminate()               终止线程的运行，但不是立即结束线程，而是等待操作系统结束线程。使用terminate()之后应使用wait()
+信号            void finished()               在线程就要结束时发射此信号
+               void started()                 在线程开始执行、run()函数被调用之前发射此信号
+静态公共成员   int idealThreadCount()         返回系统上能运行的线程的理想个数
+               void msleep(unsigned long msecs)  强制当前线程休眠msecs毫秒
+               void sleep(unsigned long secs)    强制当前线程休眠secs秒
+               void usleep(unsigned long usecs)   强制当前线程休眠usecs微秒
+保护函数       virtual void run()                 start()调用run()函数开始线程任务的执行，所以在run()函数里实现线程的任务功能
+               int exec()                        由run()函数调用，进入线程的事件循环，等待exit()退出
+QThread是QObject的子类，所以可以使用信号与槽机制。QThread自身定义了started()和finished()两个信号，started()信号在线程开始执行之前发射，也就是在run()函数被调用之前，finished()信号在线程就要结束时发射。
+13.1.2　掷骰子的线程QDiceThread
+作为实例，定义一个掷骰子的线程类QDiceThread，类的声明部分如下：#include   <Qthread>
+class QDiceThread : public Qthread
+{
+   Q_OBJECT
+private:
+   int    m_seq=0;          //掷骰子次数序号
+   int    m_diceValue;      //骰子点数
+   bool   m_Paused=true;    //暂停
+   bool   m_stop=false;     //停止
+protected:
+   void   run() Q_DECL_OVERRIDE;  //线程任务
+public:
+   QDiceThread();
+   void   diceBegin();      //掷一次骰子
+   void   dicePause();      //暂停
+   void   stopThread();     //结束线程
+signals:
+   void   newValue(int seq,int diceValue); //产生新点数的信号
+};
+重载虚函数run()，在此函数里完成线程的主要任务。
+自定义diceBegin()、dicePause()、stopThread() 3个公共函数用于线程控制，这3个函数由
+
+
+
+
+
+
+
+主线程调用。
+定义了一个信号newValue(int seq,int diceValue) 用于在掷一次骰子得到新的点数之后发射此信号，由主线程的槽函数响应以获取值。
+QDiceThread类的实现代码如下：#include   " qdicethread.h"
+#include   <QTime>
+QDiceThread::QDiceThread()
+{//构造函数
+}
+void QDiceThread::diceBegin()
+{ //开始掷骰子
+   m_Paused=false;
+}
+void QDiceThread::dicePause()
+{//暂停掷骰子
+   m_Paused=true;
+}
+void QDiceThread::stopThread()
+{//停止线程
+   m_stop=true;
+}
+void QDiceThread::run()
+{//线程任务
+   m_stop=false;//启动线程时令m_stop=false
+   m_seq=0; //掷骰子次数
+   qsrand(QTime::currentTime().msec());//随机数初始化，qsrand是线程安全的
+   while(!m_stop)//循环主体
+   {
+      if (!m_Paused)
+      {
+         m_diceValue=qrand(); //获取随机数
+         m_diceValue=(m_diceValue % 6)+1;
+         m_seq++;
+         emit newValue(m_seq,m_diceValue);  //发射信号
+      }
+      msleep(500); //线程休眠500ms
+   }
+   quit();//相当于exit(0),退出线程的事件循环
+}
+其中，run()是线程任务的实现部分，线程开始就执行run()函数。run()函数一般是事件循环过程，根据各种条件或事件处理各种任务。当run()函数退出时，线程的事件循环就结束了。
+在run()函数里，初始化变量m_stop和m_seq，用qsrand()函数对随机数种子初始化。run()函数的主循环体是一个while循环，在主线程调用stopThread()函数使m_stop为true，才会退出while循环，调用quit()之后结束线程。
+在while循环体内，又根据m_Paused判断当前是否需要掷骰子，如果需要掷骰子，则用随机函数生成一次骰子的点数m_diceValue，然后发射信号newValue()，将m_seq和m_diceValue作为信号参数传递出去。主线程可以设计槽函数与此信号关联，获取这两个值并进行显示。
+13.1.3　掷骰子的多线程应用程序
+使用QDiceThread类，设计一个应用程序samp13_1，程序运行界面如图13-1所示。
+
+
+
+
+
+
+图13-1　掷骰子多线程应用程序samp13_1运行界面
+窗体上方的几个按钮用于控制线程的启动与停止，控制开始与暂停掷骰子。中间的文本框显示次数和点数，右边根据点数显示资源文件里面的一个图片，图片存储在项目的资源文件里。下方的一个标签根据QDiceThread的started()和finished()两个信号显示线程的状态。
+窗口类是从QDialog继承的类Dialog，其类定义如下（省略了按钮槽函数的定义）：class Dialog : public QDialog
+{
+   Q_OBJECT
+private:
+   QDiceThread   threadA;
+protected:
+   void   closeEvent(QCloseEvent *event);
+public:
+   explicit Dialog(QWidget *parent = 0);
+   ~Dialog();
+private slots:
+//自定义槽函数
+   void   onthreadA_started();
+   void   onthreadA_finished();
+   void   onthreadA_newValue(int seq, int diceValue);
+private:
+   Ui::Dialog *ui;
+};
+这里定义了一个QDiceThread类型的变量threadA，重定义了closeEvent()事件，自定义了3个槽函数。
+Dialog类的构造函数代码如下：Dialog::Dialog(QWidget *parent) : QDialog(parent),  ui(new Ui::Dialog)
+{//构造函数
+   ui->setupUi(this);
+   connect(&threadA,SIGNAL(started()),this,SLOT(onthreadA_started()));
+   connect(&threadA,SIGNAL(finished()),this,SLOT(onthreadA_finished()));
+   connect(&threadA,SIGNAL(newValue(int,int)),
+             this,SLOT(onthreadA_newValue(int,int)));
+}
+构造函数主要是将threadA的3个信号与Dialog自定义的3个槽函数相关联，这3个槽函数的代码如下：void Dialog::onthreadA_started()
+{//线程的started()信号的响应槽函数
+   ui->LabA->setText("Thread状态：thread started");
+}
+void Dialog::onthreadA_finished()
+{//线程的 finished()信号的响应槽函数
+   ui->LabA->setText("Thread状态：thread finished");
+}
+
+
+
+
+
+
+void Dialog::onthreadA_newValue(int seq,int diceValue)
+{//QDiceThread的newValue()信号的响应槽函数，显示骰子次数和点数
+   QString  str=QString::asprintf("第 %d 次掷骰子，点数为：%d",seq,diceValue);
+   ui->plainTextEdit->appendPlainText(str);
+   QPixmap pic; //图片显示
+   QString filename=QString::asprintf(":/dice/images/d%d.jpg",diceValue);
+   pic.load(filename);
+   ui->LabPic->setPixmap(pic);
+}
+started()信号发射时，表示线程开始执行，在标签里显示状态文字。
+finished()信号发射时，表示线程结束执行，在标签里显示状态文字。
+newValue()是QDiceThread定义的信号，在掷一次骰子获得新的点数后发射，将掷骰子的次数和点数传递过来。槽函数onthreadA_newValue()获取这两个值并显示在文本框里，再根据点数从资源文件里获取相应的图片并显示。
+窗口上5个按钮的代码如下：void Dialog::on_btnStartThread_clicked()
+{//启动线程 按钮
+   threadA.start();
+   ui->btnStartThread->setEnabled(false);
+   ui->btnStopThread->setEnabled(true);
+   ui->btnDiceBegin->setEnabled(true);
+   ui->btnDiceEnd->setEnabled(false);
+}
+void Dialog::on_btnStopThread_clicked()
+{//结束线程 按钮
+   threadA.stopThread();//结束线程的run()函数执行
+   threadA.wait();
+   ui->btnStartThread->setEnabled(true);
+   ui->btnStopThread->setEnabled(false);
+   ui->btnDiceBegin->setEnabled(false);
+   ui->btnDiceEnd->setEnabled(false);
+}
+void Dialog::on_btnDiceBegin_clicked()
+{//开始 掷骰子按钮
+   threadA.diceBegin();
+   ui->btnDiceBegin->setEnabled(false);
+   ui->btnDiceEnd->setEnabled(true);
+}
+void Dialog::on_btnDiceEnd_clicked()
+{//暂停 掷骰子按钮
+   threadA.dicePause();
+   ui->btnDiceBegin->setEnabled(true);
+   ui->btnDiceEnd->setEnabled(false);
+}
+void Dialog::on_btnClear_clicked()
+{ //清空文本 按钮
+   ui->plainTextEdit->clear();
+}
+“启动线程”按钮调用线程的start()函数，start()函数会内部调用run()函数开始线程任务的执行。run()函数将内部变量m_Paused初始化为true，所以，启动线程后并不会立即开始掷骰子。
+“开始”按钮调用diceBegin()函数，使threadA线程内部变量m_Paused变为false，那么run()函数里就开始每隔500毫秒产生一次骰子点数，并发射信号newValue()。
+“暂停”按钮调用dicePause()函数，使threadA线程内部变量m_Paused变为true，run()函数里不再掷骰子，但是run()函数并没有结束，也就是线程并没有结束。
+
+
+
+
+“结束线程”按钮调用stopThread()函数，使threadA线程内部的m_stop变为true，run()函数体的while循环结束，执行quit()后线程结束。所以，线程结束就是run()函数执行退出。
+重载closeEvent()事件，在窗口关闭时确保线程被停止，代码如下：void Dialog::closeEvent(QCloseEvent *event)
+{ //窗口关闭事件，必须结束线程
+   if (threadA.isRunning())
+   {
+      threadA.stopThread();
+      threadA.wait();
+   }
+   event->accept();
+}
+13.2　线程同步
+13.2.1　线程同步的概念
+在多线程应用程序中，由于多个线程的存在，线程之间可能需要访问同一个变量，或一个线程需要等待另外一个线程完成某个操作后才产生相应的动作。例如，在上一节的实例samp13_1中，工作线程产生随机的骰子点数，主线程读取骰子点数并显示，主线程需要等待工作线程产生一个新的骰子点数后再读取数据。实例samp13_1中使用了信号与槽的机制，在产生新的骰子数之后通过信号通知主线程读取新的数据。
+如果不使用信号与槽机制，QDiceThread的run()函数变为如下的代码：void QDiceThread::run()
+{
+   m_stop=false;//启动线程时令m_stop=false
+   m_seq=0;
+   qsrand(QTime::currentTime().msec());//随机数初始化，qsrand是线程安全的
+   while(!m_stop)//循环主体
+   {
+      if (!m_paused)
+      {
+         m_diceValue=qrand(); //获取随机数
+         m_diceValue=(m_diceValue % 6)+1;
+         m_seq++;
+      }
+      msleep(500); //线程休眠
+   }
+}
+那么，QDiceThread需要定义公共函数，返回m_diceValue的值，如：int QDiceThread::diceValue () { return = m_diceValue;}
+以便在主线程中调用此函数读取骰子的点数。
+由于没有信号与槽的关联（信号与槽的关系类似于硬件的中断与中断处理函数），主线程只能采用不断查询的方式主动查询是否有新数据，并读取它。但是在主线程调用diceValue()读取骰子点数时，工作线程可能正在执行run()函数里修改m_diceValue值的语句，即：m_diceValue=qrand(); //获取随机数
+m_diceValue=(m_diceValue % 6)+1;
+m_seq++;
+而且这几条语句计算量大，需要执行较长时间。执行这两条语句时不希望被主线程调用的diceValue()函数中断，如果中断，则主线程得到的可能是错误的值。
+
+
+
+
+
+
+
+这种情况下，这样的代码段是希望被保护起来的，在执行过程中不能被其他线程打断，以保证计算结果的完整性，这就是线程同步的概念。
+在Qt中，有多个类可以实现线程同步的功能，包括QMutex、QMutexLocker、QReadWriteLock、QReadLocker、QWriteLocker、QWaitCondition和QSemaphore。下面将分别介绍这些类的用法。
+13.2.2　基于互斥量的线程同步
+QMutex和QMutexLocker是基于互斥量的线程同步类，QMutex定义的实例是一个互斥量，QMutex主要提供3个函数。
+lock()：锁定互斥量，如果另外一个线程锁定了这个互斥量，它将阻塞执行直到其他线程解锁这个互斥量。
+unlock()：解锁一个互斥量，需要与lock()配对使用。
+tryLock()：试图锁定一个互斥量，如果成功锁定就返回true；如果其他线程已经锁定了这个互斥量，就返回false，但不阻塞程序执行。
+使用互斥量，对QDiceThread类重新定义，不采用信号与槽机制，而是提供一个函数用于主线程读取数据。更改后的QDiceThread类定义如下：class QDiceThread : public Qthread
+{
+   Q_OBJECT
+private:
+   QMutex  mutex; //互斥量
+   int    m_seq=0;//序号
+   int    m_diceValue;
+   bool   m_paused=true;
+   bool   m_stop=false; //停止线程
+protected:
+   void   run() Q_DECL_OVERRIDE;
+public:
+   QDiceThread();
+   void   diceBegin();//掷一次骰子
+   void   diceEnd();
+   void   stopThread();
+   bool   readValue(int *seq, int *diceValue); //用于主线程读取数据的函数
+};
+QDiceThread类里用QMutex类定义了一个互斥量变量mutex。
+定义了函数readValue()，用于外部线程读取掷骰子的次数和点数，传递参数采用指针变量，以便一次读取两个数据。
+下面是QDiceThread类中关键的run()和readValue()函数的实现代码。void QDiceThread::run()
+{
+   m_stop=false;
+   m_seq=0;
+   qsrand(QTime::currentTime().msec());//随机数初始化
+   while(!m_stop)//循环主体
+   {
+      if (!m_paused)
+      {
+         mutex.lock();
+         m_diceValue=qrand(); //获取随机数
+         m_diceValue=(m_diceValue % 6)+1;
+         m_seq++;
+         mutex.unlock();
+
+
+
+
+
+
+
+    }
+      msleep(500); //线程休眠
+   }
+}
+bool QDiceThread::readValue(int *seq, int *diceValue)
+{
+   if (mutex.tryLock())
+   {
+      *seq=m_seq;
+      *diceValue=m_diceValue;
+      mutex.unlock();
+      return true;
+   }
+   else
+      return false;
+}
+在run()函数中，对重新计算骰子点数和掷骰子次数的3行代码用互斥量mutex的lock()和unlock()进行了保护，这部分代码的执行就不会被其他线程中断。注意，lock()与unlock()必须配对使用。
+在readValue()函数中，用互斥量mutex的tryLock()和unlock()进行了保护。如果tryLock()成功锁定互斥量，读取数值的两行代码执行时不会被中断，执行完后解锁；如果tryLock()锁定失败，函数就立即返回，而不会等待。
+原理上，对于两个或多个线程可能会同时读或写的变量应该使用互斥量进行保护，例如QDiceThread中的变量m_stop和m_paused，在run()函数中读取这两个变量，要在diceBegin()、diceEnd()和stopThread()函数里修改这些值，但是这3个函数都只有一条赋值语句，可以认为是原子操作，所以，可以不用锁定保护。
+定义的互斥量mutex相当于一个标牌，可以这样来理解互斥量：列车上的卫生间一次只能进一个人，当一个人尝试进入卫生间就是lock()，如果有人占用，他就只能等待；等里面的人出来，腾出了卫生间是unlock()，这个等待的人才可以进入并且锁住卫生间的门，就是lock()，使用完卫生间之后他再出来时就是unlock()。
+QMutex需要配对使用lock()和unlock()来实现代码段的保护，在一些逻辑复杂的代码段或可能发生异常的代码中，配对就可能出错。
+QMutexLocker是另外一个简化了互斥量处理的类。QMutexLocker的构造函数接受一个互斥量作为参数并将其锁定，QMutexLocker的析构函数则将此互斥量解锁，所以在QMutexLocker实例变量的生存期内的代码段得到保护，自动进行互斥量的锁定和解锁。例如，QDiceThread的run()函数的代码可以改写如下：void QDiceThread::run()
+{
+   m_stop=false;
+   m_seq=0;
+   qsrand(QTime::currentTime().msec());//随机数初始化
+   while(!m_stop)//循环主体
+   {
+      if (!m_paused)
+      {
+         QMutexLocker  Locker(&mutex);
+         m_diceValue=qrand(); //获取随机数
+         m_diceValue=(m_diceValue % 6)+1;
+         m_seq++;
+      }
+      msleep(500); //线程休眠
+   }
+}
+
+
+
+
+
+
+
+这样定义的QDiceThread类，在主程序中只能调用其readValue()函数来不断读取数值。实例samp13_2采用QMutex进行线程同步，实例samp13_3采用QMutex和QMutexLocker进行线程同步，其界面与samp13_1完全相同，只是增加了定时器，用于定时主动去读取掷骰子线程的数值。
+实例程序samp13_2的Dialog类的主要定义如下（省略了一些系统生成的声明）：class Dialog : public QDialog
+{
+private:
+   int  mSeq, mDiceValue;
+   QDiceThread   threadA;
+   QTimer  mTimer;//定时器
+public:
+   explicit Dialog(QWidget *parent = 0);
+private slots:
+   void   onthreadA_started();
+   void   onthreadA_finished();
+   void   onTimeOut(); //定期器处理槽函数
+};
+主要是增加了一个定时器mTimer和其时间溢出响应槽函数onTimeOut()，在Dialog的构造函数中将mTimer的timeout信号与此槽函数关联。connect(&mTimer,SIGNAL(timeout()),this,SLOT(onTimeOut()));
+onTimeOut()函数的主要功能是调用threadA的readValue()函数读取数值。定时器的定时周期设置为100ms，小于threadA产生一次新数据的周期（500ms），所以可能读出旧的数据，通过存储的掷骰子的次数与读取的掷骰子次数是否不同，判断是否为新数据。onTimeOut()函数的代码如下：void Dialog::onTimeOut()
+{ //定时器溢出处理槽函数
+  int  tmpSeq=0,tmpValue=0;
+  bool  valid=threadA.readValue(&tmpSeq,&tmpValue); //读取数值
+  if (valid && (tmpSeq!=mSeq)) //有效，并且是新数据
+  {
+    mSeq=tmpSeq;
+    mDiceValue=tmpValue;
+    QString  str=QString::asprintf("第 %d 次掷骰子，点数为：%d", mSeq,mDiceValue);
+   ui->plainTextEdit->appendPlainText(str);
+   QPixmap pic;
+   QString filename=QString::asprintf(":/dice/images/d%d.jpg",mDiceValue);
+   pic.load(filename);
+   ui->LabPic->setPixmap(pic);
+  }
+}
+窗口上几个按钮的代码如下（省略了按钮使能控制的代码）：void Dialog::on_btnStartThread_clicked()
+{//启动线程
+   mSeq=0;
+   threadA.start();
+}
+void Dialog::on_btnStopThread_clicked()
+{//结束线程
+   threadA.stopThread();//结束线程的run()函数执行
+   threadA.wait();
+}
+void Dialog::on_btnDiceBegin_clicked()
+{//开始掷骰子
+   threadA.diceBegin();
+   mTimer.start(100); //定时器100ms读取一次数据
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
