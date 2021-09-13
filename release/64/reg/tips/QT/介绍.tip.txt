@@ -1460,6 +1460,42 @@ QReadLocker Locker(&Lock);
 
 
 
+在多线程的程序中，多个线程之间的同步实际上就是它们之间的协调问题。例如上一小节讲到的3个线程的例子中，假设threadDAQ写满一个缓冲区之后，threadShow和threadSaveFile才能对缓冲区进行读操作。前面采用的互斥量和基于QReadWriteLock的方法都是对资源的锁定和解锁，避免同时访问资源时发生冲突。在一个线程解锁资源后，不能及时通知其他线程。
+QWaitCondition提供了另外一种改进的线程同步方法，QWaitCondition与QMutex结合，可以使一个线程在满足一定条件时通知其他多个线程，使它们及时作出响应，这样比只使用互斥量效率要高一些。例如，threadDAQ在写满一个缓冲区之后，及时通知threadShow和threadSaveFile，使它们可以及时读取缓冲区数据。
+QWaitCondition提供如下一些函数：
+wait(QMutex *lockedMutex)，解锁互斥量lockedMutex，并阻塞等待唤醒条件，被唤醒后锁定lockedMutex并退出函数；
+wakeAll()，唤醒所有处于等待状态的线程，线程唤醒的顺序不确定，由操作系统的调度策略决定；
+wakeOne()，唤醒一个处于等待状态的线程，唤醒哪个线程不确定，由操作系统的调度策略决定。
+QWaitCondition一般用于“生产者/消费者”（producer/consumer）模型中。“生产备”产生数据，“消费者”使用数据，前述的数据采集、显示与存储的三线程例子就适用这种模型。
+创建实例程序samp13_4，将掷骰子的程序修改为producer/consumer模型，一个线程类QThreadProducer专门负责掷骰子产生点数；一个线程类QThreadConsumer专门及时读取数据，并送给主线程进行显示。这两个类定义在一个文件qmythread.h里，定义代码如下：class QThreadProducer : public Qthread
+{   Q_OBJECT
+private:
+   bool   m_stop=false; //停止线程
+protected:
+   void   run() Q_DECL_OVERRIDE;
+public:
+   QThreadProducer();
+   void   stopThread();
+};
+
+class QThreadConsumer : public Qthread
+{   Q_OBJECT
+private:
+   bool   m_stop=false; //停止线程
+protected:
+   void   run() Q_DECL_OVERRIDE;
+public:
+   QThreadConsumer();
+   void   stopThread();
+signals:
+   void   newValue(int seq,int diceValue);
+};
+QThreadProducer用于掷骰子，但是去掉了开始和暂停的功能，线程一启动就连续地掷骰子。QThreadConsumer用于读取掷骰子的次数和点数，并用发射信号方式把数据传递出去。这两个类的实现代码在一个文件qmythread.cpp里，下面是这两个类的实现代码的主要部分：QMutex  mutex;
+QWaitCondition  newdataAvailable;
+int    seq=0;//序号
+int    diceValue;
+void QthreadProducer::run()
+{
 
 
 
