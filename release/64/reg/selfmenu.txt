@@ -960,6 +960,7 @@ QT/Object/signals
 QT/PRINT/ENTERTIPS
 QT/PRINT/debugApp
 QT/QDir/toNativeSeparators
+QT/QEvent/closeEvent
 QT/QHash/insert
 QT/QLinkedList/append
 QT/QLinkedList/foreach
@@ -993,6 +994,7 @@ QT/QTimer/start
 QT/QVector/append
 QT/Qthread/QDiceThread
 QT/Qthread/signals
+QT/Qthread/signals connect
 QT/Qthread/thread sync QMutex
 QT/Qthread/thread sync QMutexLocker
 QT/Qthread/thread sync QReadWriteLock
