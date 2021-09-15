@@ -1001,6 +1001,8 @@ QT/Qthread/thread sync QMutex
 QT/Qthread/thread sync QMutexLocker
 QT/Qthread/thread sync QReadWriteLock
 QT/Qthread/thread sync QReadWriteLock2
+QT/Qthread/thread sync QSemaphore 信号量
+QT/Qthread/thread sync QWaitCondition
 QT/Qthread/thread sync 线程同步
 QT/RegExp/Test
 QT/ShortCut快捷键

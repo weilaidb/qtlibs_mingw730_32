@@ -1501,6 +1501,81 @@ void QthreadProducer::run()
 
 
 
+  m_stop=false;
+   seq=0;
+   qsrand(QTime::currentTime().msec());//随机数初始化
+   while(!m_stop)//循环主体
+   {
+      mutex.lock();
+      diceValue=qrand(); //获取随机数
+      diceValue=(diceValue % 6)+1;
+      seq++;
+      mutex.unlock();
+      newdataAvailable.wakeAll(); //唤醒所有线程，有新数据了
+      msleep(500); //线程休眠
+   }
+}
+
+void QthreadConsumer::run()
+{
+   m_stop=false;
+   while(!m_stop)//循环主体
+   {
+      mutex.lock();
+      newdataAvailable.wait(&mutex);//先解锁mutex，使其他线程可以使用mutex
+      emit  newValue(seq,diceValue);
+      mutex.unlock();
+   }
+}
+掷骰子的次数和点数的变量定义为共享变量，这样两个线程都可以访问。定义了互斥量mutex，定义了QWaitCondition实例newdataAvailable，表示有新数据可用了。
+QThreadProducer::run()函数负责每隔500毫秒掷骰子产生一次数据，新数据产生后通过等待条件唤醒所有等待的线程，即：newdataAvailable.wakeAll();
+QThreadConsumer::run()函数中的while循环，首先需要将互斥量锁定，再执行下面的一条语句：newdataAvailable.wait(&mutex);
+这条语句以mutex作为输入参数，内部会首先解锁mutex，使其他线程可以使用mutex，newdataAvailable进入等待状态。当QThreadProducer产生新数据使用newdataAvailable.wakeAll()唤醒所有线程后，newdataAvailable.wait(&mutex)会再次锁定mutex，然后退出阻塞状态，以执行后面的语句。
+所以，使用QWaitCondition可以使QThreadConsumer线程的执行过程进入等待状态。在QThreadProducer线程满足条件后，唤醒QThreadConsumer线程及时退出等待状态，继续执行后面的程序。
+使用QThreadProducer和QThreadConsumer实现掷骰子的实例程序samp13_4运行时界面如图13-2所示，与实例samp13_1的运行界面类似，只是取消了开始和暂停掷骰子的按钮，下方的状态标签显示了两个线程的状态
+
+
+
+
+
+
+
+图13-2　使用QWaitCondition的线程同步实例程序samp13_4运行界面
+窗口的Dialog类的定义如下（省略了按钮槽函数等一些不重要的部分）：class Dialog : public QDialog
+{   Q_OBJECT
+private:
+   QthreadProducer   threadProducer;
+   QthreadConsumer   threadConsumer;
+protected:
+   void   closeEvent(QCloseEvent *event);
+public:
+   explicit Dialog(QWidget *parent = 0);
+private slots:
+   void   onthreadA_started();
+   void   onthreadA_finished();
+   void   onthreadB_started();
+   void   onthreadB_finished();
+   void   onthreadB_newValue(int seq, int diceValue);
+};
+这里主要是定义了两个线程的实例，并定义了几个自定义槽函数。采用信号与槽的方式与threadConsumer建立通信并获取数据。Dialog的构造函数主要完成信号与槽函数的关联，5个自定义槽函数的代码与实例samp13_1的相同或相似，这几个函数的代码不再详细列出。
+“启动线程”按钮的代码如下：void Dialog::on_btnStartThread_clicked()
+{//启动线程
+   threadConsumer.start();
+   threadProducer.start();
+   ui->btnStartThread->setEnabled(false);
+   ui->btnStopThread->setEnabled(true);
+}
+两个线程启动的先后顺序不应调换，应先启动threadConsumer，使其先进入wait状态，后启动threadProducer，这样在threadProducer里wakeAll()时threadConsumer就可以及时响应，否则会丢失第一次掷骰子的数据。
+“结束线程”按钮的代码如下：void Dialog::on_btnStopThread_clicked()
+{//结束线程
+   threadProducer.stopThread();//结束线程的run()函数执行
+   threadProducer.wait();
+   threadConsumer.terminate(); //可能处于等待状态，用terminate强制结束
+   threadConsumer.wait();
+   ui->btnStartThread->setEnabled(true);
+   ui->btnStopThread->setEnabled(false);
+}
+结束线程时，若按照上面的顺序先结束threadProducer线程，则必须使用terminate()来强
 
 
 
@@ -1510,6 +1585,189 @@ void QthreadProducer::run()
 
 
 
+制结束threadConsumer线程，因为threadConsumer可能还处于条件等待的阻塞状态中，将无法正常结束线程。
+13.2.5　基于信号量的线程同步
+1．信号量的原理
+信号量（Semaphore）是另一种限制对共享资源进行访问的线程同步机制，它与互斥量（Mutex）相似，但是有区别。一个互斥量只能被锁定一次，而信号量可以多次使用。信号量通常用来保护一定数量的相同的资源，如数据采集时的双缓冲区。
+QSemaphore是实现信号量功能的类，它提供以下几个基本的函数：
+acquire(int n)尝试获得n个资源。如果没有这么多资源，线程将阻塞直到有n个资源可用；
+release(int n)释放n个资源，如果信号量的资源已全部可用之后再release()，就可以创建更多的资源，增加可用资源的个数；
+int available()返回当前信号量可用的资源个数，这个数永远不可能为负数，如果为0，就说明当前没有资源可用；
+bool tryAcquire(int n = 1)，尝试获取n个资源，不成功时不阻塞线程。
+定义QSemaphore的实例时，可以传递一个数值作为初始可用的资源个数。
+下面的一段示意代码，说明QSemaphore的几个函数的作用。QSemaphore  WC(5);  // WC.available() == 5，初始资源个数为5个
+WC.acquire(4);      // WC.available() == 1，用了4个资源，还剩余1个可用
+WC.release(2);      // WC.available() == 3，释放了2个资源，剩余3个可用
+WC.acquire(3);      // WC.available() == 0，又用了3个资源，剩余0个可用
+WC.tryAcquire(1);   //因为WC.available() == 0, 返回 false，
+WC.acquire();      //因为WC.available() == 0, 没有资源可用，阻塞
+为了理解信号量及上面这段代码的意义，可以假想变量WC是一个公共卫生间，初始化时定义WC有5个位置可用。
+WC.acquire(4)，成功进去4个人，占用了4个位置，还剩余1个位置；
+WC.release (2)，出来了2个人，剩余3个位置可用；
+WC.acquire(3)，又进去3个人，剩余0个位置可用；
+WC.tryAcquire(1)，有一个人尝试进去，但是因为没有位置了，他不等待，走了，tryAcquire()函数返回false；
+WC.acquire()，有一个人必须进去，但是因为没有位置了，他就一直在外面等着，直到有其他人出来，空余出位置来。
+互斥量相当于列车上的卫生间，一次只允许一个人进出，信号量则是多人公共卫生间，允许多人进出。n个资源就是信号量需要保护的共享资源，至于资源如何分配，就是内部处理的问题了。
+2．双缓冲区数据采集和读取线程类设计
+信号量通常用来保护一定数量的相同的资源，如数据采集时的双缓冲区，适用于Producer/Consumer模型。
+在实例samp13_5中，创建类似于Producer/Consumer模型的两个线程类QThreadDAQ和QThreadShow。qmythread.h文件中这两个类的定义如下：class QThreadDAQ : public Qthread
+{   Q_OBJECT
+private:
+   bool   m_stop=false; //停止线程
+protected:
+   void   run() Q_DECL_OVERRIDE;
+public:
+   QThreadDAQ();
+
+
+
+
+
+
+void   stopThread();
+};
+
+class QThreadShow : public Qthread
+{   Q_OBJECT
+private:
+   bool   m_stop=false; //停止线程
+protected:
+   void   run() Q_DECL_OVERRIDE;
+public:
+   QThreadShow();
+   void   stopThread();
+signals:
+   void   newValue(int *data,int count, int seq);
+};
+QThreadDAQ是数据采集线程，例如在使用数据采集卡进行连续数据采集时，需要一个单独的线程将采集卡采集的数据读取到缓冲区内。
+QThreadShow是数据读取线程，用于读取已存满数据的缓冲区中的数据并传递给主线程显示，采用信号与槽机制与主线程交互。
+QThreadDAQ/QThreadShow类的定义与使用QWaitCondition的实例samp13_4中的QThreadProducer/QThreadConsumer类的定义类似，只是QThreadShow的信号newValue()采用了指针作为传递参数，用于一次传递出一个缓冲区的数据。
+qmythread.cpp文件中QThreadDAQ和QThreadShow的主要功能代码如下：#include   "qmythread.h"
+#include   <QSemaphore>
+const int BufferSize = 8;
+int buffer1[BufferSize];
+int buffer2[BufferSize];
+　
+int curBuf=1; //当前正在写入的Buffer
+int bufNo=0; //采集的缓冲区序号
+quint8   counter=0;//数据生成器
+　
+QSemaphore emptyBufs(2);//信号量，空的缓冲区个数，初始资源个数为2
+QSemaphore fullBufs; //满的缓冲区个数，初始资源为0
+　
+void QThreadDAQ::run()
+{
+   m_stop=false;//启动线程时令m_stop=false
+   bufNo=0;//缓冲区序号
+   curBuf=1; //当前写入使用的缓冲区
+   counter=0;//数据生成器
+   int n=emptyBufs.available();
+   if (n<2)  //保证线程启动时emptyBufs.available==2
+     emptyBufs.release(2-n);
+   while(!m_stop)//循环主体
+   {
+      emptyBufs.acquire();//获取一个空的缓冲区
+      for(int i=0;i<BufferSize;i++) //产生一个缓冲区的数据
+      {
+         if (curBuf==1)
+            buffer1[i]=counter; //向缓冲区写入数据
+         else
+            buffer2[i]=counter;
+         counter++; //模拟数据采集卡产生数据
+         msleep(50); //每50ms产生一个数
+      }
+      bufNo++;//缓冲区序号
+      if (curBuf==1) // 切换当前写入缓冲区
+
+
+
+
+
+curBuf=2;
+      else
+        curBuf=1;
+      fullBufs.release(); //有了一个满的缓冲区,available==1
+   }
+}
+　
+void QThreadShow::run()
+{
+   m_stop=false;
+   int n=fullBufs.available();
+   if (n>0)
+     fullBufs.acquire(n); //将fullBufs可用资源个数初始化为0
+   while(!m_stop)//循环主体
+   {
+      fullBufs.acquire(); //等待有缓冲区满,当fullBufs.available==0阻塞
+      int bufferData[BufferSize];
+      int seq=bufNo;
+　
+      if(curBuf==1) //当前在写入的缓冲区是1，那么满的缓冲区是2
+         for (int i=0;i<BufferSize;i++)
+            bufferData[i]=buffer2[i]; //快速拷贝缓冲区数据
+      else
+         for (int i=0;i<BufferSize;i++)
+            bufferData[i]=buffer1[i];
+　
+      emptyBufs.release();//释放一个空缓冲区
+      emit   newValue(bufferData,BufferSize,seq);//给主线程传递数据
+   }
+}
+在共享变量区定义了两个缓冲区buffer1和buffer2，都是长度为BufferSize的数组。
+变量curBuf记录当前写入操作的缓冲区编号，其值只能是1或2，表示buffer1或buffer2，bufNo是累积的缓冲区个数编号，counter是模拟采集数据的变量。
+信号量emptyBufs初始资源个数为2，表示有2个空的缓冲区可用。
+信号量fullBufs初始化资源个数为0，表示写满数据的缓冲区个数为零。
+QThreadDAQ::run()采用双缓冲方式进行模拟数据采集，线程启动时初始化共享变量，特别的是使emptyBufs的可用资源个数初始化为2。
+在while循环体里，第一行语句emptyBufs.acquire()使信号量emptyBufs获取一个资源，即获取一个空的缓冲区。用于数据缓存的有两个缓冲区，只要有一个空的缓冲区，就可以向这个缓冲区写入数据。
+while循环体里的for循环每隔50毫秒使counter值加1，然后写入当前正在写入的缓冲区，当前写入哪个缓冲区由curBuf决定。counter是模拟采集的数据，连续增加可以判断采集的数据是否连续。
+完成for循环后正好写满一个缓冲区，这时改变curBuf的值，切换用于写入的缓冲区。
+写满一个缓冲区之后，使用fullBufs.release()为信号量fullBufs释放一个资源，这时fullBufs. available==1，表示有一个缓冲区被写满了。这样，QThreadShow线程里使用fullBufs.acquire()就可以获得一个资源，可以读取已写满的缓冲区里的数据。
+QThreadShow::run()用于监测是否有已经写满数据的缓冲区，只要有缓冲区写满了数据，就立刻读取出数据，然后释放这个缓冲区给QThreadDAQ线程用于写入。
+QThreadShow::run()函数的初始化部分使fullBufs. available==0，即线程刚启动时是没有资
+
+
+
+
+
+
+
+
+源的。
+在while循环体里第一行语句就是通过fullBufs.acquire()以阻塞方式获取一个资源，只有当QThreadDAQ线程里写满一个缓冲区，执行一次fullBufs.release()后，fullBufs.acquire()才获得资源并执行后面的代码。后面的代码就立即用临时变量将缓冲区里的数据读取出来，再调用emptyBufs.release()给信号量emptyBufs释放一个资源，然后发射信号newValue，由主线程读取数据并显示。
+所以，这里使用了双缓冲区、两个信号量实现采集和读取两个线程的协调操作。采集线程里使用emptyBufs.acquire()获取可以写入的缓冲区。
+实际使用数据采集卡进行连续数据采集时，采集线程是不能停顿下来的，也就是说万一读取线程执行较慢，采集线程是不会等待的。所以实际情况下，读取线程的操作应该比采集线程快。
+3．QThreadDAQ和QThreadShow的使用
+设计窗口基于QDialog应用程序samp13_5，对话框的类定义如下（省略了一些不重要的或与前面实例重复的部分内容）：class Dialog : public QDialog
+{
+   Q_OBJECT
+private:
+   QThreadDAQ   threadProducer;
+   QThreadShow   threadConsumer;
+private slots:
+   void   onthreadB_newValue(int *data, int count, int bufNo);
+};
+Dialog类定义了两个线程的实例，threadProducer和threadConsumer。
+自定义了一个槽函数onthreadB_newValue()，用于与threadConsumer的信号关联，在Dialog的构造函数里进行了关联。connect(&threadConsumer,SIGNAL(newValue(int*,int,int)),
+      this,SLOT(onthreadB_newValue(int*,int,int)));
+槽函数onthreadB_newValue()的功能就是读取一个缓冲区里的数据并显示，其实现代码如下：void Dialog::onthreadB_newValue(int *data, int count, int bufNo)
+{ //读取threadConsumer 传递的缓冲区的数据
+   QString  str=QString::asprintf("第 %d 个缓冲区：",bufNo);
+   for (int i=0;i<count;i++)
+   {
+      str=str+QString::asprintf("%d, ",*data);
+      data++;
+   }
+   str=str+'\n';
+   ui->plainTextEdit->appendPlainText(str);
+}
+传递的指针型参数int *data 是一个数组指针，count是缓冲区长度。
+“启动线程”和“结束线程”两个按钮的代码如下（省略了按键使能控制的代码）：void Dialog::on_btnStartThread_clicked()
+{//启动线程
+   threadConsumer.start();
+   threadProducer.start();
+}
+void Dialog::on_btnStopThread_clicked()
+{//结束线程
 
 
 
@@ -1519,36 +1777,17 @@ void QthreadProducer::run()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+threadConsumer.terminate(); 
+   threadConsumer.wait();
+   threadProducer.terminate();
+   threadProducer.wait();
+}
+启动线程时，先启动threadConsumer，再启动threadProducer，否则可能丢失第1个缓冲区的数据。
+结束线程时，都采用terminate()函数强制结束线程，因为两个线程之间有互锁的关系，若不使用terminate()强制结束会出现线程无法结束的问题。
+程序运行时的界面如图13-3所示。
+图13-3　实例samp13_5运行界面
+从图13-3可以看出，没有出现丢失缓冲区或数据点的情况，两个线程之间协调的很好，将QThreadDAQ::run()函数中模拟采样率的延时时间调整为2毫秒也没问题（正常设置为50毫秒）。
+在实际的数据采集中，要保证不丢失缓冲区或数据点，数据读取线程的速度必须快过数据写入缓冲区的线程的速度。
 
 
 
