@@ -990,6 +990,8 @@ QT/QString/toInt
 QT/QString/toLower
 QT/QString/十六进制转十进制
 QT/QString/十进制转十六进制
+QT/QTime/currentTime
+QT/QTime/currentTime second
 QT/QTimer/start
 QT/QVector/append
 QT/Qthread/QDiceThread
