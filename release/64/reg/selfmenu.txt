@@ -975,6 +975,10 @@ QT/QMap/insert
 QT/QMultiHash/insert
 QT/QMultiMap/foreach
 QT/QMultiMap/insert
+QT/QNetWork/QHostInfo
+QT/QNetWork/QHostInfo eg
+QT/QNetWork/QNetworkInterface
+QT/QNetWork/protocolName
 QT/QQueue/enqueue dequeue
 QT/QSet/set
 QT/QSpinBox/value

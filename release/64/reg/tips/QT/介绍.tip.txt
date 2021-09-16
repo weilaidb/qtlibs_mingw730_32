@@ -1802,7 +1802,39 @@ threadConsumer.terminate();
 
 
 
-
+第14章　网络编程
+Qt网络模块提供了用于编写TCP/IP客户端和服务器端程序的各种类，如用于TCP通信的QTcpSocket和QTcpServer，用于UDP通信的QUdpSocket，还有用于实现HTTP、FTP等普通网络协议的高级类如QNetworkRequest，QNetworkReply和QNetworkAccessManager。Qt网络模块还提供用于网络代理、网络承载管理的类，提供基于安全套接字层（Secure Sockets Layer，SSL）协议的安全网络通信的类。
+本章主要介绍基本的TCP和UDP网络通信类的使用，基于HTTP的网络下载管理的实现。要在程序中使用Qt网络模块，需要在项目配置文件中增加一条配置语句：Qt  += network
+14.1　主机信息查询
+14.1.1　QHostInfo和QNetworkInterface类
+查询一个主机的MAC地址或IP地址是网络应用程序中经常用到的功能，Qt提供了QHostInfo和QNetworkInterface类可以用于此类信息的查询。
+QHostInfo的静态函数localHostName()可获取本机的主机名，静态函数fromName()可以通过主机名获取IP地址，静态函数ookupHost()可以通过一个主机名，以异步方式查找这个主机的IP地址。表14-1是QHostInfo类主要的功能函数（省略了函数中的const关键字）。
+表14-1　QHostInfo类的主要函数
+类别
+函数原型
+作用
+公共函数
+QList<QHostAddress>　addresses()
+返回与hostName()主机关联的IP地址列表
+HostInfoError　error()
+如果主机查找失败，返回失败类型
+QString　errorString()
+如果主机查找失败，返回错误描述字符串
+QString　hostName()
+返回通过IP查找的主机的名称
+int　lookupId()
+返回本次查找的ID
+静态函数
+void　abortHostLookup(int id)
+中断主机查找
+QHostInfo　fromName(QString &name)
+返回指定的主机名的IP地址
+QString　localDomainName()
+返回本机DNS域名
+QString　localHostName()
+返回本机主机名
+int　lookupHost(QString &name, QObject receiver, char member)
+以异步方式根据主机名查找主机的IP地址，并返回一个表示本次查找的ID，可用于abortHostLookup()
 
 
 
