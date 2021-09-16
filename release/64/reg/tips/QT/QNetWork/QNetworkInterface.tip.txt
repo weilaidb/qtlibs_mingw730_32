@@ -1,0 +1,1 @@
+addList;ui->plainTextEdit;ui->chkOnlyIPv4
