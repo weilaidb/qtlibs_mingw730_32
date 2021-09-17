@@ -1,0 +1,9 @@
+hbufCur = GetCurrentBuf()
+lnCur = GetBufLnCur(hbufCur)
+//GetBufSelText获取的选中的第一行数据，并非全部。
+selecttext = GetBufSelText (hbufCur)
+sellen = strlen(selecttext)
+
+
+
+

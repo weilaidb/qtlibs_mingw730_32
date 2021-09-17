@@ -605,19 +605,22 @@ macro duplicateline()
 	// get current cursor postion
     IchFirst = GetWndSelIchFirst (hwnd)
     IchLast = GetWndSelIchLim (hwnd)
-    //msg ("@IchFirst@ IchFirst.")
-    //msg ("@IchLast@ IchLast .")
+//    msg ("@IchFirst@ IchFirst.")
+//    msg ("@IchLast@ IchLast .")
 
 
-	if(sellen > 0
-)
+	if(sellen > 0 || LnLast > LnFirst)
 	{
+//	    msg ("@LnFirst@ LnFirst.")
+//	    msg ("@LnLast@ LnLast .")
+	
+//		InsBufLine(hbufCur,LnLast + isym + 1, selecttext)
 		loops = LnLast - LnFirst
 		while (isym <= loops)
 		{
 //				AppendBufLine(hbufOutput, GetBufSymName(hbuf, isym))
-		InsBufLine(hbufCur,LnLast + isym + 1, GetBufLine(hbufCur,LnFirst + isym))
-		isym = isym + 1
+			InsBufLine(hbufCur,LnLast + isym + 1, GetBufLine(hbufCur,LnFirst + isym))
+			isym = isym + 1
 		}
 	}
 	else
