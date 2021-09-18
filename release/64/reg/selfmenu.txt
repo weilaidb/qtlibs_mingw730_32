@@ -1128,6 +1128,45 @@ UNITTEST/GTEST/make compile problem编译问题
 Windows/Fonts
 YAML/yml入门教程
 path路径/Android手机拷贝路径
+宏Macro/Source insight/AppendBufLine
+宏Macro/Source insight/Ask 输入内容
+宏Macro/Source insight/CharFromAscii
+宏Macro/Source insight/CloseBuf
+宏Macro/Source insight/DelBufLine
+宏Macro/Source insight/GetBufLine
+宏Macro/Source insight/GetBufLineCount
+宏Macro/Source insight/GetBufLineLength
+宏Macro/Source insight/GetBufLnCur
+宏Macro/Source insight/GetBufSelText
+宏Macro/Source insight/GetBufSymCount
+宏Macro/Source insight/GetCurrentBuf
+宏Macro/Source insight/GetCurrentWnd
+宏Macro/Source insight/GetSymbolLocation
+宏Macro/Source insight/GetWndBuf
+宏Macro/Source insight/GetWndSel
+宏Macro/Source insight/GetWndSelIchFirst
+宏Macro/Source insight/GetWndSelIchLim
+宏Macro/Source insight/GetWndSelLnFirst
+宏Macro/Source insight/GetWndSelLnFirst 取首行行号
+宏Macro/Source insight/GetWndSelLnLast
+宏Macro/Source insight/GetWordLeftOfIch
+宏Macro/Source insight/InsBufLine
+宏Macro/Source insight/JumpToSymbolDef 跳转到符号
+宏Macro/Source insight/ListAllSiblings
+宏Macro/Source insight/LoadSearchPattern
+宏Macro/Source insight/NewBuf
+宏Macro/Source insight/OpenBuf
+宏Macro/Source insight/PutBufLine
+宏Macro/Source insight/SaveBuf
+宏Macro/Source insight/Search_Forward
+宏Macro/Source insight/SetBufIns
+宏Macro/Source insight/SetCurrentBuf
+宏Macro/Source insight/SetWndSel
+宏Macro/Source insight/StrMid
+宏Macro/Source insight/cat
+宏Macro/Source insight/msg 打印内容
+宏Macro/Source insight/strmid
+宏Macro/Source insight/toupper
 术语/Linux/FIB Forward Information Base
 术语/内核Kernel/常见名词
 术语/异或

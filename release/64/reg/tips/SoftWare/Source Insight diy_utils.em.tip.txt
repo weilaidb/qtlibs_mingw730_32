@@ -26,6 +26,10 @@ source insight 宏定义文件v2.5
 source insight 宏定义文件v2.6
 添加选择行打印printf变量
 
+source insight 宏定义文件v2.7
+修复复制当前行异常(第一行为空)不生效问题
+删除duplicateselect、duplicateselect2
+
 
 
 常用规则           快捷键定义
@@ -405,175 +409,6 @@ macro ListAllSiblings(symbol)
 
 }
 
-
-
-//拷贝一份内容到当前选中内容后面
-macro duplicateselect()
-{
-    hwnd = GetCurrentWnd();
-    hbuf = GetCurrentBuf();
-
-    if (hbuf == 0)
-        stop;   // empty buffer
-
-    // get current cursor postion
-    ipos = GetWndSelIchFirst(hwnd);
-
-    // get current line number
-    ln = GetBufLnCur(hbuf);
-	lnfirst = GetWndSelLnFirst(hwnd)
-	lnlast  = GetWndSelLnLast(hwnd)
-
-    if ((GetBufSelText(hbuf) != "") && (lnfirst != lnlast)) {
-
-		chfirst = GetWndSelIchFirst(hwnd)
-		chlast  = GetWndSelIchLim(hwnd)
-//		msg("chfirst:@chfirst@")
-//		msg("chlast :@chlast@")
-		curlntext = GetBufLine(hbuf,lnfirst)
-		lastlntext = GetBufLine(hbuf, lnlast)
-		/*
-		** 替换思路:
-		** 选中之前的是header(未选中的)
-		** 第一行选中的是selcheader
-		** 后面选中的是middle
-		** 最后一行未选中的是tail
-		** 最后一行选中的是seltail
-		**/
-		header = ""
-		selheader = ""
-		middle = ""
-		tail = ""
-		seltail = ""
-
-		if(0 != chfirst)
-			header = strmid(curlntext, 0, chfirst)
-		if(chfirst != GetBufLineLength(hbuf,lnfirst))
-			selheader = strmid(curlntext, chfirst, GetBufLineLength(hbuf,lnfirst))
-
-		if(0 != chlast && chlast != 4096)
-			seltail = strmid(lastlntext, 0, chlast)
-
-		lastlnpos = GetBufLineLength(hbuf,lnlast)
-//		msg("chlast   :@chlast@")
-//		msg("lastlnpos:@lastlnpos@")
-		if(chlast != GetBufLineLength(hbuf,lnlast) && chlast != 4096)
-			tail = strmid(lastlntext, chlast, lastlnpos)
-
-//		msg(header)
-//		msg(selheader)
-//		msg(tail)
-		showtext = ""
-
-		lnstart = lnfirst
-		lntmp = lnlast
-		while(lntmp <= (lnlast + lnlast - lnfirst)
-		{
-			if(lntmp == lnlast)
-			{
-				showtext = GetBufLine(hbuf, lnstart)
-				DelBufLine(hbuf, lntmp)
-				InsBufLine(hbuf,lntmp, cat(seltail,selheader))
-			}
-			else if(lntmp == lnlast + lnlast - lnfirst)
-			{
-				showtext = GetBufLine(hbuf, lnstart)
-				DelBufLine(hbuf, lntmp)
-				InsBufLine(hbuf,lntmp, cat(seltail,tail))
-			}
-			else
-			{
-				showtext = GetBufLine(hbuf, lnstart)
-				InsBufLine(hbuf,lntmp, showtext)
-			}
-			lntmp = lntmp + 1
-			lnstart = lnstart + 1
-		}
-        stop;
-    }
-
-
-    if ((GetBufSelText(hbuf) != "") && (lnfirst == lnlast)) {
-		chfirst = GetWndSelIchFirst(hwnd)
-		chlast  = GetWndSelIchLim(hwnd)
-		curlntext = GetBufLine(hbuf,lnfirst)
-		header = ""
-		middle = ""
-		tail = ""
-
-		if(0 != chfirst)
-			header = strmid(curlntext, 0, chfirst)
-
-		if(chfirst != chlast)
-			middle = strmid(curlntext, chfirst, chlast )
-		if(chlast != GetBufLineLength(hbuf,lnfirst))
-			tail = strmid(curlntext, chlast, GetBufLineLength(hbuf,lnfirst))
-		showtext = cat(header, middle);
-		showtext = cat (showtext, middle)
-		showtext = cat (showtext, tail)
-		DelBufLine(hbuf, ln)
-		InsBufLine(hbuf,ln, showtext)
-        stop;
-    }
-    InsBufLine(hbuf,ln + 1, GetBufLine(hbuf,ln))
-	stop;
-}
-
-//拷贝一份内容到当前选中内容后面
-macro duplicateselect2()
-{
-	hbufCur = GetCurrentBuf()
-	lnCur = GetBufLnCur(hbufCur)
-	selecttext = GetBufSelText (hbufCur)
-	sellen = strlen(selecttext)
-	if (sellen != 0)
-	{
-//		msg(selecttext)
-	}
-
-    hwnd = GetCurrentWnd()
-    selection = GetWndSel(hwnd)
-    LnFirst =GetWndSelLnFirst(hwnd)      //取首行行号
-    LnLast =GetWndSelLnLast(hwnd)      //取末行行号
-    hbuf = GetCurrentBuf()
-	isym = 0;
-	sellen = strlen(selection)
-
-
-	// get current cursor postion
-    IchFirst = GetWndSelIchFirst (hwnd)
-//    GetBufLine(hbufCur, IchLast)
-    IchLast = 0;
-    if(LnFirst != LnLast)
-    	IchLast = GetWndSelIchLim (hwnd)
-    else
-    	IchLast = GetWndSelIchLim (hwnd)
-
-	if (LnLast != LnFirst || IchFirst != IchLast)
-	{
-//		msg(selection)
-	    msg ("IchFirst:@IchFirst@ .")
-    	msg ("IchLast :@IchLast@ .")
-	}
-
-
-	if(sellen > 0
-)
-	{
-		loops = LnLast - LnFirst
-		while (isym <= loops)
-		{
-//				AppendBufLine(hbufOutput, GetBufSymName(hbuf, isym))
-		InsBufLine(hbufCur,LnLast + isym + 1, GetBufLine(hbufCur,LnFirst + isym))
-		isym = isym + 1
-		}
-	}
-	else
-	{
-		InsBufLine(hbufCur,lnCur + 1, GetBufLine(hbufCur,lnCur))
-	}
-}
-
 //插入当前选择的内容，在上一行。
 macro getselecttext()
 {
@@ -605,19 +440,22 @@ macro duplicateline()
 	// get current cursor postion
     IchFirst = GetWndSelIchFirst (hwnd)
     IchLast = GetWndSelIchLim (hwnd)
-    //msg ("@IchFirst@ IchFirst.")
-    //msg ("@IchLast@ IchLast .")
+//    msg ("@IchFirst@ IchFirst.")
+//    msg ("@IchLast@ IchLast .")
 
 
-	if(sellen > 0
-)
+	if(sellen > 0 || LnLast > LnFirst)
 	{
+//	    msg ("@LnFirst@ LnFirst.")
+//	    msg ("@LnLast@ LnLast .")
+	
+//		InsBufLine(hbufCur,LnLast + isym + 1, selecttext)
 		loops = LnLast - LnFirst
 		while (isym <= loops)
 		{
 //				AppendBufLine(hbufOutput, GetBufSymName(hbuf, isym))
-		InsBufLine(hbufCur,LnLast + isym + 1, GetBufLine(hbufCur,LnFirst + isym))
-		isym = isym + 1
+			InsBufLine(hbufCur,LnLast + isym + 1, GetBufLine(hbufCur,LnFirst + isym))
+			isym = isym + 1
 		}
 	}
 	else
