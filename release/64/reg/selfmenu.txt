@@ -196,6 +196,7 @@ C/API/syscalls
 C/API/usage
 C/API/usage void
 C/ARRAY/format
+C/ARRAY/format basetype
 C/ARRAY/format diag
 C/ARRAY/开关数组 switch all
 C/ARRAYSIZE
@@ -962,6 +963,7 @@ QT/PRINT/debugApp
 QT/QDir/toNativeSeparators
 QT/QEvent/closeEvent
 QT/QHash/insert
+QT/QKey/installEventFilter
 QT/QLinkedList/append
 QT/QLinkedList/foreach
 QT/QLinkedList/foreach 2

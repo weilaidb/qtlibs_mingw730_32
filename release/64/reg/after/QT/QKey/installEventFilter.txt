@@ -1,0 +1,1 @@
+\1->installEventFilter(this);$NL$NL    bool eventFilter(QObject *target, QEvent *event);$NL$NL
