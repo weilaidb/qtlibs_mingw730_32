@@ -38,12 +38,26 @@ Options->Document Options->Auto Indent->Indent Open Brace/Indent Close Brace
 参考:
 https://www.sourceinsight.com/doc/v4/userguide/Manual/Command_Reference/Custom_Commands1.htm
 Tools->Custom Commands->Add
+
 Notepad++ -- "C:\Program Files (x86)\Notepad++\notepad++.exe" %f
 ,选择Keys->Assign New Key...->按F12
+
 在ultriEdit中编辑
 "C:/Program Files/UltraEdit-32/uedit32" %f
+
 在vim中编辑并定位到当前行
 "C:/Program Files/Vim/vim63/gvim.exe" --remote-silent +%l %f 
+
+AStyle 格式化代码
+https://sourceforge.net/projects/astyle/files/latest/download
+"D:\Software\AStyle_3.1_windows\AStyle\bin\AStyle.exe " --style=allman --style=ansi --style=bsd --style=break -A1 -s4 -S -N -L -m0 -M40 --convert-tabs --suffix=.pre --indent-switches --pad-return-type -xq --keep-one-line-statements --indent-preproc-block
+"D:\Software\AStyle_3.1_windows\AStyle\bin\AStyle.exe " --style=allman --style=ansi 
+ 
+[ng] "D:\Software\AStyle_3.1_windows\AStyle\bin\AStyle.exe " --style=allman --style=ansi -k1 -W1 -t -xG -S -L -M120 -P -y -xb -j -xq  -xS %f
+"D:\Software\AStyle_3.1_windows\AStyle\bin\AStyle.exe " --style=allman --style=ansi  %f
+
+,选择Keys->Assign New Key...->按Ctrl+i
+
 Running the Command Shell
 If you want to run a shell command, such as "type", or "dir", or you want to run a batch file, then you have to run cmd.exe first. For example,
 cmd /c mybat.bat  or
