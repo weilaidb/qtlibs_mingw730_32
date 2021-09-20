@@ -1,1 +1,57 @@
-\1->installEventFilter(this);$NL$NL    bool eventFilter(QObject *target, QEvent *event);$NL$NL
+\1->installEventFilter(this);
+
+
+bool eventFilter(QObject *target, QEvent *event);
+void InstallEventFilterSets(void);
+
+
+void MainWindow::InstallEventFilterSets(void)
+{
+
+}
+
+bool MainWindow::eventFilter_\1(QObject *target, QEvent *event)
+{
+//    qDebug("eventFilter_\1");
+
+    if (target == ui->textEdit)
+    {
+        //双击出现listView界面
+        if (event->type() == QEvent::MouseButtonDblClick) {
+            return true;
+        }
+        //单击隐藏listView界面
+        if (event->type() == QEvent::MouseButtonPress) {
+            return true;
+        }
+        //按键处理
+        if(event->type() == QEvent::KeyPress)
+        {
+            QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+            int key = keyEvent->key();
+            if (Qt::Key_Down == key) {
+                qDebug()<<"Key_Down !!";
+            } else if (Qt::Key_Up == key) {
+                qDebug()<<"Key_Up !!";
+            } else if (Qt::Key_Escape == key) {
+                qDebug()<<"Key_Escape !!";
+
+            } else if (Qt::Key_Enter == key || Qt::Key_Return == key) {
+                qDebug()<<"Key_Enter   Key_Return!!";
+            }
+            else {
+                qDebug()<<"else Key !!";
+            }
+        }
+    }
+    return QObject::eventFilter(target, event);
+}
+
+
+bool autoCCode::eventFilter(QObject *target, QEvent *event)
+{
+    qDebug() << "eventFilter";
+
+    eventFilter_\1(target, event);
+    return Qtargetect::eventFilter(target, event);
+}
