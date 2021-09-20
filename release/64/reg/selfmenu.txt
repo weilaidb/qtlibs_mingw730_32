@@ -964,6 +964,7 @@ QT/QDir/toNativeSeparators
 QT/QEvent/closeEvent
 QT/QHash/insert
 QT/QKey/installEventFilter
+QT/QKey/installEventFilter bind
 QT/QLinkedList/append
 QT/QLinkedList/foreach
 QT/QLinkedList/foreach 2
