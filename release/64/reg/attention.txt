@@ -32,6 +32,7 @@ Ctrl+E    -- 报文转一行
 Ctrl+F    -- 查找
 Ctrl+M    -- 新建标准节点
 Ctrl+N    -- 新建用户节点
+Ctrl+J    -- 复制一行
 Ctrl+O    -- 打开配置文件
 Ctrl+R    -- Try Again
 Ctrl+S    -- 编辑配置文件
