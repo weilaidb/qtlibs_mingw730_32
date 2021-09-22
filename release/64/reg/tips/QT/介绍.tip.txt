@@ -2668,81 +2668,797 @@ finished()信号在下载结束后发射，槽函数on_finished()的功能是关
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+第15章　多媒体
+多媒体功能指的主要是计算机的音频和视频的输入、输出、显示和播放等功能，Qt的多媒体模块为音频和视频播放、录音、摄像头拍照和录像等提供支持，甚至还提供数字收音机的支持。本章将介绍Qt多媒体模块的功能和使用。
+15.1　Qt多媒体模块功能概述
+Qt多媒体模块提供了很多类，可以实现如下的一些功能：
+访问原始音频设备进行输入或输出；
+低延迟播放音效文件，如WAV文件；
+使用播放列表播放压缩的音频和视频文件，如mp3、wmv等；
+录制声音并且压制文件；
+使用摄像头进行预览、拍照和视频录制；
+音频文件解码到内存进行处理；
+录制音频或视频时，访问其视频帧或音频缓冲区；
+数字广播调谐和收听。
+要在C++项目中使用Qt多媒体模块，需要在项目配置文件中添加如下一行语句：Qt += multimedia
+如果在项目中使用视频播放功能，还需要加入下面的一行，以使用QVideoWidget或QGraphicsVideoItem进行视频播放。Qt += multimediawidgets
+Qt多媒体模块包括多个类，表15-1是一些典型的多媒体应用所需要用到的主要的类。
+表15-1　各类多媒体功能用到的类
+应用功能
+用到的类
+播放压缩音频（MP3、AAC等）
+QMediaPlayer，QMediaPlaylist
+播放音效文件（WAV文件）
+QSoundEffect，QSound
+播放低延迟的音频
+QAudioOutput
+访问原始音频输入数据
+QAudioInput
+录制编码的音频数据
+QAudioRecorder
+发现音频设备
+QAudioDeviceInfo
+视频播放
+QMediaPlayer，QVideoWidget，QGraphicsVideoItem
+视频处理
+QMediaPlayer，QVideoFrame，QAbstractVideoSurface
+摄像头取景框
+QCamera，QVideoWidget，QGraphicsVideoItem
+取景框预览处理
+QCamera，QAbstractVideoSurface，QVideoFrame
+摄像头拍照
+QCamera，QCameraImageCapture
+
+
+
+
+
+
+
+摄像头录像
+QCamera，QMediaRecorder
+收听数字广播
+QRadioTuner，QRadioData
+利用Qt多媒体模块提供的各种类，可以实现一般的音频、视频的输入和输出。这在一些实际应用中是需要的，如语音识别需要录制音频并对音频数据进行处理，车牌自动识别需要先拍照然后进行图像处理。
+本章将介绍音频的播放和录制、视频播放、摄像头拍照与录像等功能的实现。数字广播需要具有数字调频功能的硬件设备，一般用户没有这样的硬件设备，本书就不予介绍了。
+15.2　音频播放
+15.2.1　使用QMediaPlayer播放音乐文件
+1．音频播放器实例程序
+QMediaPlayer可以播放经过压缩的音频或视频文件，如mp3、mp4、wmv等文件，QMediaPlayer可以播放单个文件，也可以和QMediaPlaylist类结合，对一个播放列表进行播放。所以使用QMediaPlayer和QMediaPlaylist可以轻松地设计一个自己的音乐或视频播放器。
+QMediaPlayer的主要公共函数和槽函数见表15-2（省略了函数中的const关键字和缺省参数）。
+表15-2　QMediaPlayer的主要函数
+函数原型
+功能描述
+qint64　duration()
+当前文件播放时间总长，单位ms
+void　setPosition(qint64 position)
+设置当前文件播放位置，单位ms
+void　setMuted(bool muted)
+设置是否静音
+bool　isMuted()
+返回是否静音的状态，true表示静音
+void　setPlaylist(QMediaPlaylist *playlist)
+设置播放列表
+QMediaPlaylist*　playlist()
+返回设置的播放列表
+State　state()
+返回播放器当前的状态
+void　setVolume(int volume)
+设置播放音量，0至100之间
+void　setPlaybackRate(qreal rate)
+设置播放速度，缺省为1，表示正常速度
+void　setMedia(QMediaContent &media)
+设置播放媒体文件
+QMediaContent　currentMedia()
+返回当前播放的媒体文件
+void　play()
+开始播放
+
+
+
+
+
+
+void　pause()
+暂停播放
+void　stop()
+停止播放
+使用QMediaPlayer播放媒体文件时，有几个有用的信号可以反映播放状态或文件信息。
+stateChanged(QMediaPlayer::State state)信号在调用play()、pause()和stop()函数时发射，反映播放器当前的状态。枚举类型QMediaPlayer::State有3种取值，表示播放器的状态：
+QMediaPlayer::StoppedState，停止状态；
+QMediaPlayer::PlayingState，正在播放；
+QMediaPlayer::PausedState，暂停播放状态。
+durationChanged(qint64 duration)信号在文件的时间长度变化时发射，一般在切换播放文件时发射。
+positionChanged(qint64 position)当前文件播放位置变化时发射，可以反映文件播放进度。
+QMediaPlayer可以通过setMedia()函数设置播放单个文件，也可以通过setPlaylist()函数设置一个QMediaPlaylist类实例表示的播放列表，对列表文件进行播放，并且自动播放下一个文件，或循环播放等。QMediaPlayer播放的文件可以是本地文件，也可以是网络上的文件。
+QMediaPlaylist记录播放媒体文件信息，可以添加、移除文件，也可以设置循环播放形式，在列表文件中自动切换文件。在当前播放文件切换时会发射currentIndexChanged()信号和currentMediaChange()信号。
+使用QMediaPlayer和QMediaPlaylist的这些功能，可以实现一个完整功能的音乐播放器。图15-1是使用QMediaPlayer和QMediaPlaylist实现的一个音乐播放器实例程序samp15_1，它实现了一个音乐播放器的基本功能。
+图15-1　使用QMediaPlayer和QmediaPlaylist实现的音乐播放器
+2．界面设计与主窗口类的定义
+实例samp15_1是一个界面基于QMainWindow的应用程序，主窗口上删除了菜单栏、工具栏和状态栏，界面采用UI设计器设计，中间是一个QListWidget组件显示播放列表的文件名。其他的界面组件和布局设计不再赘述。
+下面是主窗口类的定义（省略了UI设计器自动生成的界面组件的槽函数）：class MainWindow : public QMainWindow
+{
+   Q_OBJECT
+private:
+
+
+
+
+
+
+
+
+QMediaPlayer   *player;//播放器
+   QMediaPlaylist  *playlist;//播放列表
+   QString  durationTime;//总长度
+   QString  positionTime;//当前播放到的位置
+public:
+   explicit MainWindow(QWidget *parent = 0);
+private slots:
+//自定义槽函数
+   void onStateChanged(QMediaPlayer::State state);
+   void onPlaylistChanged(int position);
+   void onDurationChanged(qint64 duration);
+   void onPositionChanged(qint64 position);
+private:
+   Ui::MainWindow *ui;
+};
+主要是定义了4个私有变量，4个自定义槽函数。
+onStateChanged()在播放器播放状态变化时发射，以更新界面上的“播放”“暂停”“停止”按钮的使能状态。
+onPlaylistChanged()在播放列表的当前文件变化时发射，用以更新界面上显示当前媒体文件名。
+onDurationChanged()在文件时长变化时发射，用于更新界面上文件时间长度的显示。
+onPositionChanged()在当前文件播放位置变化时发射，用于更新界面上的播放进度显示。
+下面是MainWindow构造函数的代码，主要功能是创建player和playlist，然后进行信号与自定义槽函数的关联。MainWindow::MainWindow(QWidget *parent) :   QMainWindow(parent),
+   ui(new Ui::MainWindow)
+{
+   ui->setupUi(this);
+   player = new QMediaPlayer(this);//播放器
+   playlist = new QMediaPlaylist(this);//播放列表
+   playlist->setPlaybackMode(QMediaPlaylist::Loop); //循环模式
+   player->setPlaylist(playlist);
+
+   connect(player,SIGNAL(stateChanged(QMediaPlayer::State)),
+         this, SLOT(onStateChanged(QMediaPlayer::State)));
+   connect(player,SIGNAL(positionChanged(qint64)),
+         this, SLOT(onPositionChanged(qint64)));
+   connect(player,SIGNAL(durationChanged(qint64)),
+         this, SLOT(onDurationChanged(qint64)));
+   connect(playlist,SIGNAL(currentIndexChanged(int)),
+         this, SLOT(onPlaylistChanged(int)));
+}
+下面是4个自定义槽函数的代码：void MainWindow::onStateChanged(QMediaPlayer::State state)
+{//播放器状态变化，更新按钮状态
+   ui->btnPlay->setEnabled(!(state==QMediaPlayer::PlayingState));
+   ui->btnPause->setEnabled(state==QMediaPlayer::PlayingState);
+   ui->btnStop->setEnabled(state==QMediaPlayer::PlayingState);
+}
+void MainWindow::onPlaylistChanged(int position)
+{//播放列表变化,更新当前播放文件名显示
+   ui->listWidget->setCurrentRow(position);
+   QListWidgetItem  *item=ui->listWidget->currentItem();
+   if (item)
+      ui->LabCurMedia->setText(item->text());
+}
+void MainWindow::onDurationChanged(qint64 duration)
+{//文件时长变化，更新进度显示
+
+
+
+
+
+ui->sliderPosition->setMaximum(duration);
+    int   secs=duration/1000;//秒
+    int   mins=secs/60; //分钟
+    secs=secs % 60;//余数秒
+    durationTime=QString::asprintf("%d:%d",mins,secs);
+    ui->LabRatio->setText(positionTime+"/"+durationTime);
+}
+void MainWindow::onPositionChanged(qint64 position)
+{//当前文件播放位置变化，更新进度显示
+   if (ui->sliderPosition->isSliderDown())//正处于手动调整状态，不处理
+      return;
+   ui->sliderPosition->setSliderPosition(position);
+   int   secs=position/1000;//秒
+   int   mins=secs/60; //分钟
+   secs=secs % 60;//余数秒
+   positionTime=QString::asprintf("%d:%d",mins,secs);
+   ui->LabRatio->setText(positionTime+"/"+durationTime);
+}
+3．播放列表控制
+窗口中间以一个QListWidget组件显示播放的文件列表，界面上显示的文件列表与playlist存储的文件列表保持同步。
+窗口上方的“添加”“移除”“清空”3个按钮的代码如下：void MainWindow::on_btnAdd_clicked()
+{//添加文件
+    QString curPath=QDir::homePath();//获取用户目录
+    QString dlgTitle="选择音频文件"; 
+    QString filter="音频文件(*.mp3 *.wav *.wma);;mp3文件(*.mp3);;wav文件(*.wav);;wma文件(*.wma);;所有文件(*.*)"; 
+    QStringList fileList=QFileDialog::getOpenFileNames(this, dlgTitle, curPath, filter);
+    if (fileList.count()<1)
+       return;
+    for (int i=0; i<fileList.count();i++)
+    {
+      QString aFile=fileList.at(i);
+      playlist->addMedia(QUrl::fromLocalFile(aFile));//添加文件
+      QFileInfo   fileInfo(aFile);
+      ui->listWidget->addItem(fileInfo.fileName());//添加到界面文件列表
+    }
+    if (player->state()!=QMediaPlayer::PlayingState)
+       playlist->setCurrentIndex(0);
+    player->play();
+}
+void MainWindow::on_btnRemove_clicked()
+{//移除一个文件
+   int pos=ui->listWidget->currentRow();
+   QListWidgetItem *item=ui->listWidget->takeItem(pos);
+   delete item;//从listWidget里删除
+   playlist->removeMedia(pos); //从播放列表里删除
+}
+void MainWindow::on_btnClear_clicked()
+{//清空列表
+   playlist->clear();
+   ui->listWidget->clear();
+   player->stop();
+}
+用到的QMediaPlaylist的主要函数有：
+addMedia()函数添加一个文件；
+removeMedia()移除一个文件；
+setCurrentIndex()设置当前播放文件序号；
+
+
+
+
+
+
+clear()清空播放列表。
+在播放列表中前移和后移使用previous()和next()函数，移动时播放列表会发射currentIndex Changed()信号，从而自动更新界面上listWidget里的当前条目。
+在界面上的listWidget里双击一个条目时，切换到播放这个文件，其实现代码为：void MainWindow::on_listWidget_doubleClicked(const QModelIndex &index)
+{//双击时切换播放文件
+   int rowNo=index.row();
+   playlist->setCurrentIndex(rowNo);
+   player->play();
+}
+4．播放控制
+播放、暂停或停止播放器，只需调用QMediaPlayer相应函数即可，界面上3个按钮的代码如下：void MainWindow::on_btnPlay_clicked()
+{//播放
+   if (playlist->currentIndex()<0)
+      playlist->setCurrentIndex(0);
+   player->play();
+}
+void MainWindow::on_btnPause_clicked()
+{//暂停播放
+   player->pause();
+}
+void MainWindow::on_btnStop_clicked()
+{//停止播放
+   player->stop();
+}
+播放状态变化时会发射stateChanged()信号，在关联的自定义槽函数onStateChanged()里更新3个按钮的使能状态。
+音量控制由一个“静音”按钮和音量滑动条控制，相关代码如下：void MainWindow::on_btnSound_clicked()
+{//静音控制
+   bool mute=player->isMuted();
+   player->setMuted(!mute);
+   if (mute)
+      ui->btnSound->setIcon(QIcon(":/images/images/volumn.bmp"));
+   else
+      ui->btnSound->setIcon(QIcon(":/images/images/mute.bmp"));
+}
+void MainWindow::on_sliderVolumn_valueChanged(int value)
+{//调整音量
+   player->setVolume(value);
+}
+文件播放进度条在onDurationChanged()和onPositionChanged()两个自定义槽函数里会更新，显示当前文件播放进度。当拖动滑动条的滑块可以设置文件播放位置，代码如下：void MainWindow::on_sliderPosition_valueChanged(int value)
+{//文件进度调控
+   player->setPosition(value);
+}
+15.2.2　使用QSoundEffect和QSound播放音效文件
+
+
+
+
+
+QSoundEffect用于播放低延迟的音效文件，如无压缩的WAV文件，用于实现一些音效效果，如按键音、提示音等。使用QSoundEffect播放音效文件的示例代码如下：QSoundEffect effect;
+effect.setSource(QUrl::fromLocalFile("engine.wav"));
+effect.setLoopCount(3);
+effect.setVolume(1);
+effect.play();
+QSoundEffect不仅可以播放本地文件，还可以播放网络文件。
+还有一个类QSound只能播放本地WAV文件，而且是异步方式播放。可以直接使用QSound的静态函数播放WAV文件，如：QSound::play("mysounds/bells.wav");
+15.3　音频输入
+音频输入可以使用QAudioRecorder或QAudioInput两个类实现。QAudioRecorder是高层次的实现，输入的音频数据直接保存为文件，也可以通过QAudioProbe访问原始的音频数据。QAudioInput是低层次的实现，直接控制音频输入设备的参数，并将音频录制数据写入一个流设备。
+15.3.1　使用QAudioRecorder录制音频
+1．使用QAudioRecorder录制音频
+QAudioRecorder是用于录制音频的类，它从QMediaRecorder类继承而来，只需要较少的代码，就可以实现音频录制并存储到文件。图15-2是使用QAudioRecorder录制音频文件的实例程序samp15_3运行时界面。
+图15-2　实例samp15_3运行时界面
+QAudioRecorder需要使用一个QAudioEncoderSettings类型的变量进行输入音频设置，主要是编码格式、采样率、通道数、音频质量等高级设置，图15-2窗口左侧是音频输入设置。
+设置一个输出保存文件后就可以使用QAudioRecorder录制文件，录制的数据会自动保存到文件里。音频输入设备会根据音频设置自动确定底层的采样参数，使用QAudioProbe类可以获取音频输入缓冲区的参数和原始数据。图15-2窗口右侧显示了音频输入缓冲区的数据参数，包括缓冲区字节数、帧数、采样数、采样字长、采样率等，通过这些参数就可以从缓冲区读取出原始的音频数据。
+2．QAudioRecorder录音功能的实现
+
+
+
+
+
+
+
+samp15_3的主窗口从QMainWindow继承，界面采用UI设计器设计，界面组件和布局的设计不再详述。主窗口类MainWindow的定义如下（省略了UI生成的界面组件的槽函数定义）：class MainWindow : public QMainWindow
+{
+   Q_OBJECT
+private:
+   QAudioRecorder *recorder;//音频录音
+   QAudioProbe *probe; //探测器
+public:
+   explicit MainWindow(QWidget *parent = 0);
+private slots:
+//自定义槽函数
+   void onStateChanged(QMediaRecorder::State state);
+   void onDurationChanged(qint64 duration);
+   void processBuffer(const QAudioBuffer& buffer);
+private:
+   Ui::MainWindow *ui;
+};
+QAudioRecorder类型变量recorder用于录音，QAudioProbe类型变量probe用于探测缓冲区数据。
+还定义了3个槽函数，用于与recorder和probe的信号进行关联。在窗口的构造函数里创建变量和进行信号与槽的关联。下面是窗口构造函数的代码：MainWindow::MainWindow(QWidget *parent) :   QMainWindow(parent),
+   ui(new Ui::MainWindow)
+{  ui->setupUi(this);
+   recorder = new QAudioRecorder(this);
+   connect(recorder,SIGNAL(stateChanged(QMediaRecorder::State)),
+          this,SLOT(onStateChanged(QMediaRecorder::State)));
+   connect(recorder, SIGNAL(durationChanged(qint64)), this,
+          SLOT(onDurationChanged(qint64)));
+
+   probe = new QAudioProbe;//探测器
+   connect(probe, SIGNAL(audioBufferProbed(QAudioBuffer)),
+          this, SLOT(processBuffer(QAudioBuffer)));
+   probe->setSource(recorder);
+
+   if (recorder->defaultAudioInput().isEmpty())
+      return;  //无音频输入设备
+   foreach (const QString &device, recorder->audioInputs())
+      ui->comboDevices->addItem(device); //音频输入设备列表
+   foreach (const QString &codecName, recorder->supportedAudioCodecs())
+      ui->comboCodec->addItem(codecName); //支持的音频编码
+   foreach (int sampleRate, recorder->supportedAudioSampleRates())
+      ui->comboSampleRate->addItem(QString::number(sampleRate)); //采样率
+   //channels
+   ui->comboChannels->addItem("1");
+   ui->comboChannels->addItem("2");
+   ui->comboChannels->addItem("4");
+   //quality
+   ui->sliderQuality->setRange(0, int(QMultimedia::VeryHighQuality));
+   ui->sliderQuality->setValue(int(QMultimedia::NormalQuality));
+   //bitrates:
+   ui->comboBitrate->addItem("32000");
+   ui->comboBitrate->addItem("64000");
+   ui->comboBitrate->addItem("96000");
+   ui->comboBitrate->addItem("128000");
+}
+槽函数onStateChanged()与recorder的stateChanged()信号关联，在recorder的状态变化
+
+
+
+
+时控制界面上“录音”“暂停”“停止”等按钮的使能状态。
+槽函数onDurationChanged()与recorder的durationChanged()信号关联，该信号在录制持续时间变化时发射，以更新界面上的时间显示。下面是这两个槽函数的代码：void MainWindow::onStateChanged(QMediaRecorder::State state)
+{ //录音状态变化
+   ui->actRecord->setEnabled(state!=QMediaRecorder::RecordingState);
+   ui->actPause->setEnabled(state==QMediaRecorder::RecordingState);
+   ui->actStop->setEnabled(state==QMediaRecorder::RecordingState);
+   ui->btnGetFile->setEnabled(state==QMediaRecorder::StoppedState);
+   ui->editOutputFile->setEnabled(state==QMediaRecorder::StoppedState);
+}
+void MainWindow::onDurationChanged(qint64 duration)
+{//录音持续时间变化
+   ui->LabPassTime->setText(QString("已录制 %1 秒").arg(duration / 1000));
+}
+探测器probe通过setSource()指定探测对象，这里probe的探测对象是recorder。probe->setSource(recorder);
+QAudioProbe也可以在音频播放时进行缓冲区探测，也就是可以指定一个QMediaPlayer对象作为探测对象。
+槽函数processBuffer()与probe的信号audioBufferProbed()关联，这个信号会传递一个QAudioBuffer类型的变量，这个变量里存储了缓冲区的信息和音频原始数据。
+构造函数的后部分对界面上录音设置的组件的内容进行初始化，用到QAudioRecorder类的如下一些函数：
+defaultAudioInput()函数获取缺省的音频输入设备名称；
+audioInputs()函数获取音频输入设备列表；
+supportedAudioCodecs()函数获取支持的音频编码列表；
+supportedAudioSampleRates()获取支持的音频采样率列表。
+选择一个录音输出文件后，就可以通过界面上“录音”“暂停”“停止”三个按钮进行录音控制，三个按钮代码如下：void MainWindow::on_actRecord_triggered()
+{ //开始录音
+   if (recorder->state() == QMediaRecorder::StoppedState) //已停止，重新设置
+   {
+     QString selectedFile=ui->editOutputFile->text().trimmed();
+     if (selectedFile.isEmpty())
+     {
+       QMessageBox::critical(this,"错误","请先设置录音输出文件");
+       return;
+     }
+     if (QFile::exists(selectedFile))
+      if (!QFile::remove(selectedFile))
+      {
+       QMessageBox::critical(this,"错误","所设置录音输出文件无法删除");
+       return;
+      }
+     recorder->setOutputLocation(QUrl::fromLocalFile(selectedFile));
+     recorder->setAudioInput(ui->comboDevices->currentText()); //输入设备
+     QAudioEncoderSettings settings; //音频编码设置
+     settings.setCodec(ui->comboCodec->currentText());//编码
+     settings.setSampleRate(ui->comboSampleRate->currentText().toInt());
+     settings.setBitRate(ui->comboBitrate->currentText().toInt());//比特率
+     settings.setChannelCount(ui->comboChannels->currentText().toInt());
+
+
+
+
+settings.setQuality(QMultimedia::EncodingQuality( 
+              ui->sliderQuality->value()));
+     if (ui->radioQuality->isChecked())//编码模式为固定品质
+       settings.setEncodingMode(QMultimedia::ConstantQualityEncoding);
+     else
+       settings.setEncodingMode(QMultimedia::ConstantBitRateEncoding);
+     recorder->setAudioSettings(settings); //音频设置
+   }
+   recorder->record();
+}
+void MainWindow::on_actPause_triggered()
+{ //暂停
+   recorder->pause();
+}
+void MainWindow::on_actStop_triggered()
+{//停止
+   recorder->stop();
+}
+开始、暂停和停止录音只需调用QAudioRecorder的record()、pause()和stop()函数，这会导致QAudioRecorder的state()发生变化，并发射stateChanged()信号，在关联的槽函数onStateChanged()里更新界面按钮的使能状态。
+在“录音”按钮的代码里，如果是从停止状态单击“录音”，将会根据界面的输入用setOutput Location()设置保存文件；并用setAudioInput()设置音频输入设备；然后用一个QaudioEncoder Settings类型变量settings获取录音设置，设置的内容包括：
+setCodec()设置音频编码，如“audio/pcm”是未经编码的音频格式；
+setSampleRate()设置采样率，如8000Hz是最低的采样率，44100Hz是一般CD、MP3的采样率，96000Hz是高清晰音轨使用的采样率；
+setChannelCount()设置通道数，常见的有单声道、立体声（双声道）和四声环绕（四声道）；
+setBitRate()设置比特率，若用QAudioEncoderSettings::setEncodingMode()设置，编码模式为QMultimedia::ConstantBitRateEncoding，则音频输入设备采用固定的比特率采样，比特率越高，音质越好，一般较高音质如128 kbps；
+setQuality()设置录音质量，传递的参数是表示录音质量的枚举类型QMultimedia::Encoding Quality，有“VeryLowQuality”到“VeryHighQuality”五个等级。若编码模式设置为固定质量，则音频输入设备会根据质量要求自动设置底层的采样率、字长等参数。
+在配置好settings的内容后，为录音器设置音频参数，即：recorder->setAudioSettings(settings);
+3．QAudioProbe 获取音频输入缓冲区数据参数
+单击“录音”按钮后，就可以根据设置进行录音，录音的数据会自动保存到指定的存储文件里。
+由于使用了一个QAudioProbe类型变量probe进行录音数据的探测，在录音过程中，probe会在录音的缓冲区更新数据后发射audioBufferProbed()信号。与audioBufferProbed()信号关联的自定义槽函数processBuffer()对缓冲区的数据信息进行查询和显示，代码如下：void MainWindow::processBuffer(const QAudioBuffer &buffer)
+{ //处理探测到的缓冲区
+   ui->spin_byteCount->setValue(buffer.byteCount());//缓冲区字节数
+   ui->spin_duration->setValue(buffer.duration()/1000);//缓冲区时长
+   ui->spin_frameCount->setValue(buffer.frameCount());//缓冲区帧数
+   ui->spin_sampleCount->setValue(buffer.sampleCount());//缓冲区采样数
+   QAudioFormat audioFormat=buffer.format();//缓冲区格式
+
+
+
+
+ui->spin_channelCount->setValue(audioFormat.channelCount()); //通道数
+   ui->spin_sampleSize->setValue(audioFormat.sampleSize());//采样大小
+   ui->spin_sampleRate->setValue(audioFormat.sampleRate());//采样率
+   ui->spin_bytesPerFrame->setValue(audioFormat.bytesPerFrame());
+   if (audioFormat.byteOrder()==QAudioFormat::LittleEndian)
+      ui->edit_byteOrder->setText("LittleEndian");//字节序
+   else
+      ui->edit_byteOrder->setText("BigEndian");
+   ui->edit_codec->setText(audioFormat.codec());//编码格式
+
+   if (audioFormat.sampleType()==QAudioFormat::SignedInt)//采样点类型
+      ui->edit_sampleType->setText("SignedInt");
+   else if(audioFormat.sampleType()==QAudioFormat::UnSignedInt)
+      ui->edit_sampleType->setText("UnSignedInt");
+   else if(audioFormat.sampleType()==QAudioFormat::Float)
+      ui->edit_sampleType->setText("Float");
+   else
+      ui->edit_sampleType->setText("Unknown");
+}
+信号audioBufferProbed()传递一个QAudioBuffer类型的参数buffer，该参数存储了缓冲区的音频采样参数和音频原始数据。通过QAudioBuffer::format()函数可以获得音频格式参数。QAudioFormat audioFormat=buffer.format();
+buffer.format()返回一个QAudioFormat类型的变量，存储了音频的格式参数信息。如果要使用音频的原始数据，需要对这些参数有所了解，结合图15-2显示的内容对QAudioFormat的一些函数表示的参数作解释。
+channelCount()返回音频数据的实际通道数，与前面的音频设置的通道数一致。
+sampleSize()返回采样点位数，是指一个采样数据点的量化位数，一般有8位、16位和32位。位数越多，声音的分辨率越高，保真度也越高，一般16位即可达到CD的音频质量。
+sampleRate()返回实际的采样频率，一般等于或大于音频输入设置的采样率，也会根据设置的质量要求自动设置实际的采样率。
+sampleType()返回采样点格式，是指一个采样点得用什么类型的数据来表示，有无符号整型（UnSignedInt）、有符号整型（SignedInt）和浮点数（Float）。
+byteOrder()返回字节序，分为大端字节序和小端字节序。
+codec()返回实际的编码方式。
+bytesPerFrame()返回每帧字节数，不同音频编码格式的帧的定义不一样，PCM（Pulse Code Modulation，脉冲编码调制）编码的一帧就是各个通道的一次采样数据。
+QAudioBuffer还有其他一些函数来说明缓冲区数据的信息，结合图15-2对这些参数进行解释如下。
+frameCount()返回帧数，对于PCM格式编码的音频数据，一帧就是一次采样点，这个函数返回了缓冲区中数据点的帧数，如320帧。
+sampleCount()返回采样数，采样数=帧数*通道数，因为是2个通道，所以采样数为640。
+byteCount()返回缓冲区字节数，字节数=采样数*采样字节数，因为采样点位数位8位，即1个字节，所以缓冲区字节数为640。
+duration()返回缓冲区时长，时长由帧数和采样频率决定，图中的缓冲区时长为40 ms。因为帧数为320，采样频率为8000 Hz，所以时长为：
+QAudioBuffer::data()函数返回缓冲区存储的音频的原始数据，获取这些原始数据，就可以对数据进行分析或处理，如进行语音识别必须先获得这些音频原始数据。
+使用QAudioRecorder进行音频输入时，由于设置的采集参数不同，如要求音频质量不
+
+
+
+同时，底层的音频采样参数会自动调整。与图15-2中的设置相似，只是将音频编码质量设置为最高质量，录音时缓冲区的信息就发生较大的变化，如图15-3所示。图中可以看到缓冲区的采样字长变为了16位，采样率变为了96000 Hz，每帧字节数变为了4字节。
+所以在采用QAudioBuffer::data()读取原始数据时，需要根据QAudioBuffer::format()返回的格式参数以及缓冲区帧数、采样数等参数才能正确读取原始数据，这实现起来比较复杂，本例就不演示原始数据的读取了。
+图15-3　固定品质为最高品质时录音的缓冲区参数
+15.3.2　使用QAudioInput获取音频输入
+1．QAudioInput获取音频输入功能概述
+QAudioInput类提供了接收音频设备输入数据的接口，创建QAudioInput对象实例时，需要用两个参数，一个是QAudioDeviceInfo类表示的音频设备，一个是QAudioFormat表示的音频输入格式。QAudioInput::start()函数开始音频数据输入时，需要指定一个流设备接收输入的音频数据，如可以指定一个QFile表示的文件。
+QAudioInput与QaudioRecorder的不同之处如下。
+QAudioInput创建时指定的QaudioFormat将直接作用于音频输入设备，也就是音频输入的数据将直接按照设置的参数进行采样，而QAudioRecorder不能直接控制采样字长、采样点类型等底层参数。
+QAudioInput::start(QIODevice *device)指定一个QIODevice设备作为数据输出对象，可以是文件，也可以是其他从QIODevice继承的类。如从QIODevice继承一个类，对输入的缓冲区数据进行处理，而不是保存到文件。而QAudioRecorder只能指定文件作为保存对象。所以，QAudioInput可以实现更加底层的音频输入控制。
+图15-4是使用QAudioInput实现的一个音频数据输入并实时显示原始信号波形的实例程序samp15_4的运行界面。
+图15-4左侧显示的是用QAudioDeviceInfo类获取的音频设备，以及设备支持的各种参数，单击“测试音频设置”可以判断音频设备是否支持所设置的采集配置。为了更方便读取原始数据，在开始采集时采用固定的设置，即8000Hz、1通道、8位、无符号整数。
+窗口右侧是一个QChart组件，采用QLineSeries作为显示序列。开始采集后，从缓冲区读取的数据将实时显示在图表上。
+
+
+
+
+
+
+图15-4　使用QAudioInput获取音频输入并显示原始数据波形
+2．主窗口定义与初始化
+samp15_4的主窗口是基于QMainWindow的类MainWindow，窗口界面设计由UI设计器实现。主窗口类MainWindow的定义如下：class MainWindow : public QMainWindow
+{
+   Q_OBJECT
+private:
+   const qint64  displayPointsCount=4000;
+   QLineSeries  *lineSeries;//曲线序列
+   QList<QAudioDeviceInfo> deviceList;  //音频输入设备列表
+   QAudioDeviceInfo   curDevice;//当前输入设备
+   QmyDisplayDevice   *displayDevice; //用于显示的IODevice
+   QAudioInput       *audioInput;//音频输入设备
+   QString  SampleTypeString(QAudioFormat::SampleType sampleType);
+   QString  ByteOrderString(QAudioFormat::Endian endian);
+public:
+   explicit  MainWindow(QWidget *parent = 0);
+   ~MainWindow();
+private slots:
+//自定义槽函数
+   void   on_IODevice_UpdateBlockSize(qint64 blockSize);
+private:
+   Ui::MainWindow *ui;
+};
+这里定义了较多的私有变量，其中QmyDisplayDevice是一个自定义的从QIODevice继承的类，用于读取音频输入缓冲区的数据，并在图表上显示。其具体实现在后面介绍。
+MainWindow的构造函数代码如下：MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
+   ui(new Ui::MainWindow)
+{
+   ui->setupUi(this);
+   setCentralWidget(ui->splitter);
+//创建显示图表
+   QChart *chart = new QChart;
+   chart->setTitle("音频输入原始信号");
+   ui->chartView->setChart(chart);
+   lineSeries= new QLineSeries(); //序列
+   chart->addSeries(lineSeries);
+
+   QValueAxis *axisX = new QValueAxis;  //坐标轴
+   axisX->setRange(0, displayPointsCount); //chart显示4000个采样点数据
+   axisX->setLabelFormat("%g");
+   axisX->setTitleText("Samples");
+   QValueAxis *axisY = new QValueAxis;  //坐标轴
+
+
+
+
+axisY->setRange(0, 256); // UnSingedInt采样，数据范围0-255
+   axisY->setTitleText("Audio level");
+
+   chart->setAxisX(axisX, lineSeries);
+   chart->setAxisY(axisY, lineSeries);
+   chart->legend()->hide();
+
+   ui->comboDevices->clear();
+   deviceList=QAudioDeviceInfo::availableDevices(QAudio::AudioInput); 
+   for(int i=0;i<deviceList.count();i++)
+   {
+      QAudioDeviceInfo device=deviceList.at(i);
+      ui->comboDevices->addItem(device.deviceName());
+    }
+
+   if (deviceList.size()>0)
+   {
+     ui->comboDevices->setCurrentIndex(0); 
+     curDevice =deviceList.at(0);//
+   }
+   else
+   {
+      ui->actStart->setEnabled(false);
+      ui->actDeviceTest->setEnabled(false);
+      ui->groupBoxDevice->setTitle("支持的音频输入设置(无设备)");
+   }
+}
+构造函数创建了用于图表显示的QChart对象chart，创建了QLineSeries类型的序列lineSeries，创建了X和Y坐标轴；其X轴的范围等于0到显示的数据点的总数4000，Y轴的范围是0至256，采用8位无符号整数，采样数据范围是0至255。
+QAudioDeviceInfo::availableDevices(QAudio::AudioInput)可以获取音频输入设备列表，设备名称被添加到窗口上的comboDevices下拉列表框里。
+3．音频输入设备支持的格式
+在主窗口的构造函数中，向comboDevices下拉列表框中添加了系统所有的音频输入设备。在下拉列表框里选择一个设备时，发射currentIndexChanged(int index)信号，在其槽函数里获取设备支持的各种音频输入参数，包括支持的音频编码、采样率、通道数、采样点类型和采样点大小等，以此更新窗口上的组件显示。void MainWindow::on_comboDevices_currentIndexChanged(int index)
+{//选择音频输入设备
+  curDevice =deviceList.at(index);//当前音频设备
+  ui->comboCodec->clear(); //支持的音频编码
+  QStringList codecs = curDevice.supportedCodecs();
+  for (int i = 0; i < codecs.size(); ++i)
+   ui->comboCodec->addItem(codecs.at(i));
+
+  ui->comboSampleRate->clear(); //支持的采样率
+  QList<int> sampleRate = curDevice.supportedSampleRates();
+  for (int i = 0; i < sampleRate.size(); ++i)
+   ui->comboSampleRate->addItem(QString("%1").arg(sampleRate.at(i)));
+
+  ui->comboChannels->clear();//支持的通道数
+  QList<int> Channels = curDevice.supportedChannelCounts();
+  for (int i = 0; i < Channels.size(); ++i)
+   ui->comboChannels->addItem(QString("%1").arg(Channels.at(i)));
+
+  ui->comboSampleTypes->clear(); //支持的采样点类型
+  QList<QAudioFormat::SampleType> sampleTypes = curDevice.supportedSampleTypes();
+  for (int i = 0; i < sampleTypes.size(); ++i)
+   ui->comboSampleTypes->addItem(SampleTypeString(sampleTypes.at(i)), QVariant(sampleTypes.at(i)));
+
+
+
+
+ui->comboSampleSizes->clear();//采样点大小
+  QList<int> sampleSizes = curDevice.supportedSampleSizes();
+  for (int i = 0; i < sampleSizes.size(); ++i)
+   ui->comboSampleSizes->addItem(QString("%1").arg(sampleSizes.at(i)));
+
+  ui->comboByteOrder->clear();//字节序
+  QList<QAudioFormat::Endian> endians = curDevice.supportedByteOrders();
+  for (int i = 0; i < endians.size(); ++i)
+   ui->comboByteOrder->addItem(ByteOrderString(endians.at(i)));
+}
+
+QString MainWindow::SampleTypeString(QAudioFormat::SampleType sampleType)
+{//将QAudioFormat::SampleType类型转换为字符串
+   QString result("Unknown");
+   switch (sampleType) {
+   case QAudioFormat::SignedInt:
+      result = "SignedInt";      break;
+   case QAudioFormat::UnSignedInt:
+      result = "UnSignedInt";     break;
+   case QAudioFormat::Float:
+      result = "Float";         break;
+   case QAudioFormat::Unknown:
+      result = "Unknown";
+   }
+   return result;
+}
+
+QString MainWindow::ByteOrderString(QAudioFormat::Endian endian)
+{ //将QAudioFormat::Endian  转换为字符串
+  if (endian==QAudioFormat::LittleEndian)
+   return "LittleEndian";
+  else if (endian==QAudioFormat::BigEndian)
+   return "BigEndian";
+  else
+   return "Unknown";
+}
+创建一个QAudioInput对象时需要传递一个QAudioFormat类型作为参数，用于指定音频输入配置，而音频设备是否支持这些配置需要进行测试。窗口上的“测试音频设置”按钮可以进行测试，代码如下：void MainWindow::on_actDeviceTest_triggered()
+{//测试音频输入设备是否支持选择的设置
+  QAudioFormat settings;
+  settings.setCodec(ui->comboCodec->currentText());
+  settings.setSampleRate(ui->comboSampleRate->currentText().toInt());
+  settings.setChannelCount(ui->comboChannels->currentText().toInt());
+  settings.setSampleType(QAudioFormat::SampleType(
+        ui->comboSampleTypes->currentData().toInt()));
+  settings.setSampleSize(ui->comboSampleSizes->currentText().toInt());
+  if (ui->comboByteOrder->currentText()=="LittleEndian")
+   settings.setByteOrder(QAudioFormat::LittleEndian);
+  else
+   settings.setByteOrder(QAudioFormat::BigEndian);
+
+  if (curDevice.isFormatSupported(settings))
+   QMessageBox::information(this,"音频测试","测试成功，输入设备支持此设置");
+  else
+   QMessageBox::critical(this,"音频测试","测试失败，输入设备不支持此设置");
+}
+QAudioFormat类对象settings从界面上各个组件获取设置，包括编码格式、采样率、通道数等，然后用QAudioDeviceInfo::isFormatSupported()函数测试是否支持此设置；如果不支持，
+
+
+
+
+
+还可以使用QAudioDeviceInfo的nearestFormat()函数获取最接近的配置。
+4．开始音频输入
+单击窗口工具栏上“开始”按钮，即可开始音频数据输入，其代码如下：void MainWindow::on_actStart_triggered()
+{//开始音频输入
+   QAudioFormat defaultAudioFormat; //缺省格式
+   defaultAudioFormat.setSampleRate(8000);
+   defaultAudioFormat.setChannelCount(1);
+   defaultAudioFormat.setSampleSize(8);
+   defaultAudioFormat.setCodec("audio/pcm");
+   defaultAudioFormat.setByteOrder(QAudioFormat::LittleEndian);
+   defaultAudioFormat.setSampleType(QAudioFormat::UnSignedInt);
+   if (!curDevice.isFormatSupported(defaultAudioFormat))
+   {
+      QMessageBox::critical(this,"测试","测试失败，输入设备不支持此设置");
+      return;
+   }
+
+   audioInput = new QAudioInput(curDevice,defaultAudioFormat, this);
+   audioInput->setBufferSize(displayPointsCount);
+// 接收音频输入数据的流设备
+   displayDevice = new QmyDisplayDevice(lineSeries, displayPointsCount,this);
+   connect(displayDevice,SIGNAL(updateBlockSize(qint64)),
+          this,SLOT(on_IODevice_UpdateBlockSize(qint64)));
+   displayDevice->open(QIODevice::WriteOnly); 
+
+   audioInput->start(displayDevice); 
+   ui->actStart->setEnabled(false);
+   ui->actStop->setEnabled(true);
+}
+为了便于解析音频输入的原始数据，音频输入的配置采用固定的简单方式，而不是根据界面上的设置进行配置。音频输入配置固定为8000 Hz采样率、1个通道、8位无符号整数、audio/pcm编码和小端字节序。
+创建QAudioInput类对象audioInput时，传递defaultAudioFormat和curDevice作为参数，并设置缓冲区大小为displayPointsCount（等于4000）。audioInput = new QAudioInput(curDevice,defaultAudioFormat, this);
+audioInput->setBufferSize(displayPointsCount);
+使用setBufferSize设置的缓冲区，需要在调用start()之前设置才有效。缓冲区的大小大于每次更新输入的原始数据块的大小，在图15-4中可见缓冲区大小为4000，而每次更新的原始数据的数据字节数为800。
+随后程序创建一个QmyDisplayDevice类型的IO设备displayDevice，这个类实现了流设备的writeData()函数，用于读取音频输入的数据并在曲线上显示。其构造函数接收lineSeries和displayPointsCount作为参数。再将displayDevice的信号updateBlockSize()与一个自定义槽函数关联，然后将displayDevice以只写方式打开。
+最后调用QAudioInput::start()函数开始音频输入，以displayDevice作为IO流设备。audioInput->start(displayDevice);
+自定义槽函数on_IODevice_UpdateBlockSize()用于显示缓冲区大小和数据块大小，代码如下：void MainWindow::on_IODevice_UpdateBlockSize(qint64 blockSize)
+{//显示缓冲区大小和数据块大小
+   ui->LabBufferSize->setText(QString::asprintf(
+
+
+
+
+
+
+"QAudioInput::bufferSize()=%d",audioInput->bufferSize()));
+   ui->LabBlockSize->setText(
+             QString("IODevice数据块字节数=%1").arg(blockSize));
+}
+5．流设备QmyDisplayDevice的功能实现
+使用QAudioInput获取音频输入数据时，需要使用一个QIODevice类型的设备作为流输出设备，一般采用QFile可以将数据记录到文件。本例中使用一个自定义的类QmyDisplayDevice，用于获取音频输入数据并在曲线上实时显示。
+QmyDisplayDevice类的定义如下：#include  <QtCharts>
+#include  <QIODevice>
+class QmyDisplayDevice : public QIODevice
+{
+   Q_OBJECT
+public:
+   explicit QmyDisplayDevice(QXYSeries * series, qint64 pointsCount,QObject *parent = 0);
+protected:
+   qint64 readData(char * data, qint64 maxSize);
+   qint64 writeData(const char * data, qint64 maxSize);
+private:
+   QXYSeries *m_series;
+   qint64  range=4000;
+signals:
+   void  updateBlockSize(qint64 blockSize);
+};
+因为QmyDisplayDevice类从QIODevice继承，所以具有流数据读写功能。重新实现的readData()和writeData()是实现流数据读写功能的。
+定义了m_series和range两个私有变量。m_series是用于图表曲线显示的QXYSeries序列，range缺省值为4000，是序列最多显示的数据点数。构造函数里接收series和pointsCount对上述两个变量进行初始化。
+QmyDisplayDevice类的实现代码如下：QmyDisplayDevice::QmyDisplayDevice(QXYSeries * series, qint64 pointsCount, QObject *parent) :   QIODevice(parent)
+{// 构造函数
+   m_series= series;
+   range=pointsCount;
+}
+
+qint64 QmyDisplayDevice::readData(char * data, qint64 maxSize)
+{// 流的读操作,不处理
+   Q_UNUSED(data)
+   Q_UNUSED(maxSize)
+   return -1;
+}
+qint64 QmyDisplayDevice::writeData(const char * data, qint64 maxSize)
+{ //读取数据块内的数据，更新到序列
+   QVector<QPointF> oldPoints = m_series->pointsVector();
+   QVector<QPointF> points; //临时
+   if (oldPoints.count() < range)
+   { //m_series序列的数据未满4000点，
+      points = m_series->pointsVector();
+   }
+   else
+   {//将原来maxSize至4000的数据点前移
+      for (int i = maxSize; i < oldPoints.count(); i++)
+
+
+
+
+points.append(QPointF(i - maxSize, oldPoints.at(i).y()));
+   }
+
+   qint64 size = points.count();
+   for (int k = 0; k < maxSize; k++) //数据块内的数据填充序列的尾部
+      points.append(QPointF(k + size, (quint8)data[k]));
+
+   m_series->replace(points); 
+   emit updateBlockSize(maxSize);
+   return maxSize;
+}
+QmyDisplayDevice无需实现流的读操作，所以readData()函数不做什么处理，重点是流的写操作writeData()函数的实现。
+writeData()传递进来的参数data是数据块的指针，maxSize是数据块的字节数，这是需要读取出来的音频输入数据。
+由于音频输入配置为1通道8位无符号的整数采样，所以一个数据点就是一个字节的数据。
+显示序列m_series存储的显示数据点个数限定为4000个点，大于maxSize（此例中为800），所以对于序列的数据点的更新采用FIFO（先入先出）的方式。
+更新临时数据点向量points，采用序列的replace()函数替换序列原有的数据点向量，是最快的方式。
+writeData()函数最后发射信号updateBlockSize(maxSize)，用于主窗口的关联槽函数on_IODevice_UpdateBlockSize()则显示数据块的大小。
+15.4　视频播放
+使用QMediaPlayer可以进行视频文件解码，视频播放必须将视频帧在某个界面组件上显示，有QVideoWidget和QGraphicsVideoItem两种视频显示组件，也可以从这两个类继承，自定义视频显示组件。
+QMediaPlayer也可以结合QMediaPlaylist实现视频文件列表播放。
+15.4.1　在QVideoWidget上播放视频
+1．视频播放器实例程序
+QVideoWidget是用于显示视频的界面组件，要在项目中使用QVideoWidget，需要在项目配置文件中添加下面一行语句：****Qt += multimediawidgets
+使用QMediaPlayer和QVideoWidget实现的一个视频播放器实例程序samp15_5运行时界面如图15-5所示。该程序没有使用QMediaPlaylist，只播放单个文件。
 
 
 
