@@ -1844,6 +1844,1144 @@ int　lookupHost(QString &name, QObject receiver, char member)
 
 
 
+14.2　TCP通信
+14.2.1　TCP通信概述
+TCP(Transmission Control Protocol)是一种被大多数Internet网络协议（如HTTP 和FTP）用于数据传输的低级网络协议，它是可靠的、面向流、面向连接的传输协议，特别适合用于连续数据传输。
+TCP通信必须先建立TCP连接，通信端分为客户端和服务器端（如图14-2所示）。Qt提供QTcpSocket类和QTcpServer类用于建立TCP通信应用程序。服务器端程序必须使用QTcpServer用于端口监听，建立服务器；QTcpSocket用于建立连接后使用套接字（Socket）进行通信。
+图14-2　客户端与服务器端TCP通信示意图
+QTcpServer是从QObject继承的类，它主要用于服务器端建立网络监听，创建网络Socket连接。QTcpServer类的主要接口函数见表14-4（省略了函数中的const关键字，省略了缺省参数）。
+表14-4　QTcpServer类的主要接口函数
+类型
+函数
+功能
+公共函数
+void　close()
+关闭服务器，停止网络监听
+bool　listen()
+在给定IP地址和端口上开始监听，若成功就返回true
+bool　isListening()
+返回true表示服务器处于监听状态
+QTcpSocket * nextPendingConnection()
+返回下一个等待接入的连接
+QHostAddress　serverAddress()
+如果服务器处于监听状态，返回服务器地址
+quint16　serverPort()
+如果服务器处于监听状态，返回服务器监听端口
+bool　waitForNewConnection()
+以阻塞方式等待新的连接
+信号
+void acceptError( QAbstractSocket::SocketError socketError )
+当接受一个新的连接发生错误时发射此信号，参数socketError描述了错误信息
+void　newConnection()
+当有新的连接时发射此信号
+
+
+
+
+
+
+
+保护函数
+void　incomingConnection(qintptr socketDescriptor)
+当有一个新的连接可用时，QTcpServer内部调用此函数，创建一个QTcpSocket对象，添加到内部可用新连接列表，然后发射newConnection()信号。用户若从QTcpServer继承定义类，可以重定义此函数，但必须调用addPendingConnection()
+void　addPendingConnection(QTcpSocket *socket)
+由incomingConnection()调用，将创建的QTcpSocket添加到内部新可用连接列表
+服务器端程序首先需要用QTcpServer::listen()开始服务器端监听，可以指定监听的IP地址和端口，一般一个服务程序只监听某个端口的网络连接。
+当有新的客户端接入时，QTcpServer内部的incomingConnection()函数会创建一个与客户端连接的QTcpSocket对象，然后发射信号newConnection()。在newConnection()信号的槽函数中，可以用nextPendingConnection()接受客户端的连接，然后使用QTcpSocket与客户端通信。
+所以在客户端与服务器建立TCP连接后，具体的数据通信是通过QTcpSocket完成的。QTcpSocket类提供了TCP协议的接口，可以用QTcpSocket类实现标准的网络通信协议如POP3、SMTP和NNTP，也可以设计自定义协议。
+QTcpSocket是从QIODevice间接继承的类，所以具有流读写的功能。QTcpSocket和下一节要讲到的QUdpSocket的类继承关系如图14-3所示。
+图14-3　QTcpSocket和QUdpSocket的类继承关系
+QTcpSocket类除了构造函数和析构函数，其他函数都是从QAbstractSocket继承或重定义的。QAbstractSocket用于TCP通信的主要接口函数见表14-5（省略了函数中的const关键字，省略了缺省参数）。
+表14-5　QAbstractSocket类的主要接口函数
+类型
+函数
+功能
+公共函数
+void　connectToHost(QHostAddress &address, quint16 port,)
+以异步方式连接到指定IP地址和端口的TCP服务器，连接成功后会发射connected()信号
+void　disconnectFromHost()
+断开socket，关闭成功后发射disconnected()信号
+bool　waitForConnected()
+等待直到建立socket连接
+bool　waitForDisconnected()
+等待直到断开socket连接
+QHostAddress　localAddress()
+返回本socket的地址
+
+
+
+
+
+
+quint16　localPort()
+返回本socket的端口
+QHostAddress　peerAddress()
+在已连接状态下，返回对方socket的地址
+QString　peerName()
+返回connectToHost()连接到的对方的主机名
+quint16　peerPort()
+在已连接状态下，返回对方socket的端口
+qint64　readBufferSize()
+返回内部读取缓冲区的大小，该大小决定了read()和readAll()函数能读出的数据的大小
+void　setReadBufferSize(qint64 size)
+设置内部读取缓冲区大小
+qint64　bytesAvailable()
+返回需要读取的缓冲区的数据的字节数
+bool　canReadLine()
+如果有行数据要从socket缓冲区读取，就返回true
+SocketState　state()
+返回socket当前的状态
+信号
+void　connected()
+connectToHost()成功连接到服务器后发射此信号
+void　disconnected()
+当socket断开连接后发射此信号
+void　error(QAbstractSocket::SocketError socketError)
+当socket发生错误时发射此信号
+void　hostFound()
+调用connectToHost()找到主机后发射此信号
+void　stateChanged(QAbstractSocket::SocketState socketState)
+当socket的状态变化时发射此信号，参数socketState表示了socket当前的状态
+void　readyRead()
+当缓冲区有新数据需要读取时发射此信号，在此信号的槽函数里读取缓冲区的数据
+TCP客户端使用QTcpSocket与TCP服务器建立连接并通信。
+客户端的QTcpSocket实例首先通过connectToHost()尝试连接到服务器，需要指定服务器的IP地址和端口。connectToHost()是异步方式连接服务器，不会阻塞程序运行，连接后发射connected()信号。
+如果需要使用阻塞方式连接服务器，则使用waitForConnected()函数阻塞程序运行，直到连接成功或失败。例如：socket->connectToHost("192.168.1.100", 1340);
+  if (socket->waitForConnected(1000))
+     qDebug("Connected!");
+与服务器端建立socket连接后，就可以向缓冲区写数据或从接收缓冲区读取数据，实现数据的通信。当缓冲区有新数据进入时，会发射readyRead()信号，一般在此信号的槽函数里读取缓冲区数据。
+QTcpSocket是从QIODevice间接继承的，所以可以使用流数据读写功能。一个QTcpSocket实例既可以接收数据也可以发送数据，且接收与发射是异步工作的，有各自的缓冲区。
+作为演示TCP通信的实例，创建了一个TCPClient程序和一个TCPServer程序，两个程序运行时界面如图14-4和图14-5所示。
+
+
+
+
+图14-4　TCPServer程序
+图14-5　TCPClient程序
+TCPServer程序具有如下的功能：
+根据指定IP地址（本机地址）和端口打开网络监听，有客户端连接时创建socket连接；
+采用基于行的数据通信协议，可以接收客户端发来的消息，也可以向客户端发送消息；
+在状态栏显示服务器监听状态和socket的状态。
+TCPClient程序程序具有如下的功能：
+通过IP地址和端口号连接到服务器；
+采用基于行的数据通信协议，与服务器端收发消息；
+处理QTcpSocket的StateChange()信号，在状态栏显示socket的状态。
+14.2.2　TCP服务器端程序设计
+1．主窗口定义与构造函数
+TCPServer是一个窗口基于QMainWindow的应用程序，界面由UI设计器设计，MainWindow类的定义如下（忽略了UI设计器自动生成的actions和按钮的槽函数）：class MainWindow : public QMainWindow
+{
+   Q_OBJECT
+private:
+   QLabel  *LabListen;//状态栏标签
+   QLabel  *LabSocketState;//状态栏标签
+   QTcpServer *tcpServer; //TCP服务器
+   QTcpSocket *tcpSocket;//TCP通信的Socket
+   QString getLocalIP();//获取本机IP地址
+protected:
+   void   closeEvent(QCloseEvent *event);
+public:
+   explicit MainWindow(QWidget *parent = 0);
+
+
+
+
+
+~MainWindow();
+private slots:
+//自定义槽函数
+   void   onNewConnection();//QTcpServer的newConnection()信号
+   void   onSocketStateChange(QAbstractSocket::SocketState socketState);
+   void   onClientConnected(); //Client Socket connected
+   void   onClientDisconnected();//Client Socket disconnected
+   void   onSocketReadyRead();//读取socket传入的数据
+private:
+   Ui::MainWindow *ui;
+};
+MainWindow中定义了私有变量tcpServer用于建立TCP服务器，定义了tcpSocket用于与客户端进行socket连接和通信。
+定义了几个槽函数，用于与QTcpServer和QTcpSocket的相关信号连接，实现相应的处理。MainWindow构造函数代码如下：MainWindow::MainWindow(QWidget *parent) :   QMainWindow(parent),
+   ui(new Ui::MainWindow)
+{
+   ui->setupUi(this);
+   LabListen=new QLabel("监听状态:");
+   LabListen->setMinimumWidth(150);
+   ui->statusBar->addWidget(LabListen);
+
+   LabSocketState=new QLabel("Socket状态：");
+   LabSocketState->setMinimumWidth(200);
+   ui->statusBar->addWidget(LabSocketState);
+
+   QString localIP=getLocalIP();//本机IP
+   this->setWindowTitle(this->windowTitle()+"----本机IP："+localIP);
+   ui->comboIP->addItem(localIP);
+   tcpServer=new QTcpServer(this);
+  connect(tcpServer,SIGNAL(newConnection()),this,SLOT(onNewConnection()));
+}
+
+QString MainWindow::getLocalIP()
+{//获取本机IPv4地址
+   QString  hostName=QHostInfo::localHostName();//本地主机名
+   QHostInfo   hostInfo=QHostInfo::fromName(hostName);
+   QString   localIP="";
+   QList<QHostAddress> addList=hostInfo.addresses();
+
+   if (!addList.isEmpty())
+   for (int i=0;i<addList.count();i++)
+   {
+      QHostAddress aHost=addList.at(i);
+      if (QAbstractSocket::IPv4Protocol==aHost.protocol())
+      {  localIP=aHost.toString();  break; }
+   }
+   return localIP;
+}
+MainWindow的构造函数创建状态栏上的标签用于信息显示，调用自定义函数getLocalIP()获取本机IP地址，并显示到标题栏上。创建QTcpServer实例tcpServer，并将其newConnection()信号与onNewConnection()槽函数关联。
+2．网络监听与socket连接的建立
+作为TCP服务器，QTcpServer类需要调用listen()在本机某个IP地址和端口上开始TCP监听，以等待TCP客户端的接入。单击主窗口上“开始监听”按钮可以开始网络监听，其代码如下：void MainWindow::on_actStart_triggered()
+
+
+
+
+
+
+{//开始监听
+   QString    IP=ui->comboIP->currentText();//IP地址
+   quint16    port=ui->spinPort->value();//端口
+   QHostAddress   addr(IP);
+   tcpServer->listen(addr,port);//开始监听
+   ui->plainTextEdit->appendPlainText("**开始监听...");
+   ui->plainTextEdit->appendPlainText("**服务器地址："
+                   +tcpServer->serverAddress().toString());
+   ui->plainTextEdit->appendPlainText("**服务器端口："
+                   +QString::number(tcpServer->serverPort()));
+   ui->actStart->setEnabled(false);
+   ui->actStop->setEnabled(true);
+   LabListen->setText("监听状态：正在监听");
+}
+程序读取窗口上设置的监听地址和监听端口，然后调用QTcpServer的listen()函数开始监听。TCP服务器在本机上监听，所以IP地址可以是表示本机的“127.0.0.1”，或是本机的实际IP，亦或是常量QHostAddress::LocalHost，即在本机上监听某个端口也可以写成：tcpServer->listen(QHostAddress::LocalHost,port);
+tcpServer开始监听后，TCPClient就可以通过IP地址和端口连接到此服务器。当有客户端接入时，tcpServer会发射newConnection()信号，此信号关联的槽函数onNewConnection()的代码如下：void MainWindow::onNewConnection()
+{
+   tcpSocket = tcpServer->nextPendingConnection(); //获取socket
+   //connect(tcpSocket, SIGNAL(connected()), this, SLOT(onClientConnected()));
+   onClientConnected();
+   connect(tcpSocket, SIGNAL(disconnected()),
+              this, SLOT(onClientDisconnected()));
+   connect(tcpSocket,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+         this,SLOT(onSocketStateChange(QAbstractSocket::SocketState)));
+   onSocketStateChange(tcpSocket->state());
+   connect(tcpSocket,SIGNAL(readyRead()), this,SLOT(onSocketReadyRead()));
+}
+程序首先通过nextPendingConnection()函数获取与接入连接进行通信的QTcpSocket对象实例tcpSocket，然后将tcpSocket的几个信号与相应的槽函数连接起来。QTcpSocket的这几个信号的作用是：
+connected()信号，客户端socket连接建立时发射此信号；
+disconnected()信号，客户端socket连接断开时发射此信号；
+stateChanged()，本程序的socket状态变化时发射此信号；
+readyRead()，本程序的socket的读取缓冲区有新数据时发射此信号。
+涉及状态变化的几个信号的槽函数代码如下：void MainWindow::onClientConnected()
+{//客户端接入时
+   ui->plainTextEdit->appendPlainText("**client socket connected");
+   ui->plainTextEdit->appendPlainText("**peer address:"+
+                       tcpSocket->peerAddress().toString());
+   ui->plainTextEdit->appendPlainText("**peer port:"+
+                       QString::number(tcpSocket->peerPort()));
+}
+void MainWindow::onClientDisconnected()
+{//客户端断开连接时
+   ui->plainTextEdit->appendPlainText("**client socket disconnected");
+   tcpSocket->deleteLater();
+}
+
+
+
+
+
+
+
+void MainWindow::onSocketStateChange(QAbstractSocket::SocketState socketState)
+{//socket状态变化时
+   switch(socketState)
+   {
+   case QAbstractSocket::UnconnectedState:
+      LabSocketState->setText("scoket状态：UnconnectedState");    break;
+   case QAbstractSocket::HostLookupState:
+      LabSocketState->setText("scoket状态：HostLookupState");    break;
+   case QAbstractSocket::ConnectingState:
+      LabSocketState->setText("scoket状态：ConnectingState");    break;
+   case QAbstractSocket::ConnectedState:
+      LabSocketState->setText("scoket状态：ConnectedState");     break;
+   case QAbstractSocket::BoundState:
+      LabSocketState->setText("scoket状态：BoundState");        break;
+   case QAbstractSocket::ClosingState:
+      LabSocketState->setText("scoket状态：ClosingState");      break;
+   case QAbstractSocket::ListeningState:
+      LabSocketState->setText("scoket状态：ListeningState");
+   }
+}
+TCP服务器停止监听，只需调用QTcpServer的close()函数即可。窗口上的“停止监听”响应代码如下：void MainWindow::on_actStop_triggered()
+{//停止监听
+   if (tcpServer->isListening()) //tcpServer正在监听
+   {
+      tcpServer->close();//停止监听
+      ui->actStart->setEnabled(true);
+      ui->actStop->setEnabled(false);
+      LabListen->setText("监听状态：已停止监听");
+   }
+}
+3．与TCPClient的数据通信
+TCP服务器端和客户端之间通过QTcpSocket通信时，需要规定两者之间的通信协议，即传输的数据内容如何解析。QTcpSocket间接继承于QIODevice，所以支持流读写功能。
+Socket之间的数据通信协议一般有两种方式，基于行的或基于数据块的。基于行的数据通信协议一般用于纯文本数据的通信，每一行数据以一个换行符结束。canReadLine()函数判断是否有新的一行数据需要读取，再用readLine()函数读取一行数据，例如：while(tcpClient-><em>canReadLine</em>())
+   ui->plainTextEdit->appendPlainText("[in] "+tcpClient->readLine());基于块的数据通信协议用于一般的二进制数据的传输，需要自定义具体的格式。
+实例程序TCPServer和TCPClient只是进行字符串的信息传输，类似于一个简单的聊天程序，程序采用基于行的数据通信协议。
+单击窗口上的“发送消息”，将文本框里的字符串发送给客户端，其实现代码如下：void MainWindow::on_btnSend_clicked()
+{//发送一行字符串，以换行符结束
+   QString  msg=ui->editMsg->text();
+   ui->plainTextEdit->appendPlainText("[out] "+msg);
+   ui->editMsg->clear();
+   ui->editMsg->setFocus();
+
+
+
+
+
+
+QByteArray  str=msg.toUtf8();
+   str.append('\n');//添加一个换行符
+   tcpSocket->write(str);
+}
+从上面的代码中可以看到，读取文本框中的字符串到msg后，先将其转换为QByteArray类型字节数组str，然后在str最后面添加一个换行符，用QIODevice的write()函数写入缓冲区，这样就向客户端发送一行文字。
+QTcpSocket接收到数据后，会发射readyRead()信号，在onNewConnection()槽函数中已经建立了这个信号与槽函数onSocketReadyRead()的连接。
+槽函数onSocketReadyRead()实现缓冲区数据的读取，其代码如下：void MainWindow::onSocketReadyRead()
+{//读取缓冲区行文本
+   while(tcpSocket->canReadLine())
+     ui->plainTextEdit->appendPlainText("[in] "+tcpSocket->readLine());
+}
+这样，TCPServer就可以与TCPClient之间进行双向通信了，且这个连接将一直存在，直到某一方的QTcpSocket对象调用disconnectFromHost()函数断开socket连接。
+14.2.3　TCP客户端程序设计
+1．主窗口定义与构造函数
+客户端程序TCPClient只需要使用一个QTcpSocket对象，就可以和服务器端程序TCPServer进行通信。
+TCPClient也是一个窗口基于QMainWindow的应用程序，其主窗口的定义如下：class MainWindow : public QMainWindow
+{
+   Q_OBJECT
+private:
+   QTcpSocket  *tcpClient;  //socket
+   QLabel  *LabSocketState;  //状态栏显示标签
+   QString getLocalIP();//获取本机IP地址
+protected:
+   void   closeEvent(QCloseEvent *event);
+public:
+   explicit MainWindow(QWidget *parent = 0);
+   ~MainWindow();
+private slots:
+//自定义槽函数   
+   void   onConnected();
+   void   onDisconnected();
+   void   onSocketStateChange(QAbstractSocket::SocketState socketState);
+   void   onSocketReadyRead();//读取socket传入的数据
+private:
+   Ui::MainWindow *ui;
+};
+这里只定义了一个用于socket连接和通信的QTcpSocket变量tcpClient，自定义了几个槽函数，用于与tcpClient的相关信号关联。
+下面是MainWindow的构造函数，主要功能是创建tcpClient，并建立信号与槽函数的关联。MainWindow::MainWindow(QWidget *parent) :   QMainWindow(parent),
+   ui(new Ui::MainWindow)
+{
+
+
+
+
+   ui->setupUi(this);
+   tcpClient=new QTcpSocket(this); //创建socket变量
+   LabSocketState=new QLabel("Socket状态：");//状态栏标签
+   LabSocketState->setMinimumWidth(250);
+   ui->statusBar->addWidget(LabSocketState);
+   QString localIP=getLocalIP();//本机IP
+   this->setWindowTitle(this->windowTitle()+"----本机IP："+localIP);
+   ui->comboServer->addItem(localIP);
+
+   connect(tcpClient,SIGNAL(connected()),this,SLOT(onConnected()));
+   connect(tcpClient,SIGNAL(disconnected()),this,SLOT(onDisconnected()));
+   connect(tcpClient,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+          this,SLOT(onSocketStateChange(QAbstractSocket::SocketState)));
+   connect(tcpClient,SIGNAL(readyRead()),
+          this,SLOT(onSocketReadyRead()));
+}
+2．与服务器端建立socket连接
+在窗口上设置服务器IP地址和端口后，调用QTcpSocket的函数connectToHost()连接到服务器，也可以使用disconnectFromHost()函数断开与服务器的连接。
+下面是两个按钮的响应代码，以及两个相关槽函数的代码：void MainWindow::on_actConnect_triggered()
+{//“连接到服务器”按钮
+   QString    addr=ui->comboServer->currentText();
+   quint16    port=ui->spinPort->value();
+   tcpClient->connectToHost(addr,port);
+}
+void MainWindow::on_actDisconnect_triggered()
+{//“断开连接”按钮
+   if (tcpClient->state()==QAbstractSocket::ConnectedState)
+      tcpClient->disconnectFromHost();
+}
+void MainWindow::onConnected()
+{ //connected()信号槽函数
+   ui->plainTextEdit->appendPlainText("**已连接到服务器");
+   ui->plainTextEdit->appendPlainText("**peer address:"+
+                         tcpClient->peerAddress().toString());
+   ui->plainTextEdit->appendPlainText("**peer port:"+
+                         QString::number(tcpClient->peerPort()));
+   ui->actConnect->setEnabled(false);
+   ui->actDisconnect->setEnabled(true);
+}
+void MainWindow::onDisconnected()
+{//disConnected()信号槽函数
+   ui->plainTextEdit->appendPlainText("**已断开与服务器的连接");
+   ui->actConnect->setEnabled(true);
+   ui->actDisconnect->setEnabled(false);
+}
+槽函数onSocketStateChange()的功能和代码与TCPServer中的完全一样，这里不再赘述。
+3．与TCPServer的数据收发
+TCPClient与TCPServer之间采用基于行的数据通信协议。单击“发送消息”按钮将发送一行字符串。在readyRead()信号的槽函数里读取行字符串，其相关代码如下：void MainWindow::on_btnSend_clicked()
+{//发送数据
+   QString  msg=ui->editMsg->text();
+   ui->plainTextEdit->appendPlainText("[out] "+msg);
+   ui->editMsg->clear();
+   ui->editMsg->setFocus();
+
+
+
+
+
+QByteArray  str=msg.toUtf8();
+   str.append('\n');
+   tcpClient->write(str);
+}
+void MainWindow::onSocketReadyRead()
+{//readyRead()信号槽函数
+   while(tcpClient->canReadLine())
+      ui->plainTextEdit->appendPlainText("[in] "+tcpClient->readLine());
+}
+实例TCPServer和TCPClient只是简单演示了TCP通信的基本原理，TCPServer只允许一个TCPClient客户端接入。而一般的TCP服务器程序允许多个客户端接入，为了使每个socket连接独立通信互不影响，一般采用多线程，即为一个socket连接创建一个线程。
+实例TCPServer和TCPClient之间的数据通信采用基于行的通信协议，只能传输字符串数据。QTcpSocket间接继承于QIODevice，可以使用数据流的方式传输二进制数据流，例如传输图片、任意格式文件等，但是这涉及到服务器端和客户端之间通信协议的定义，本书不具体介绍了。
+14.3　QUdpSocket实现UDP通信
+14.3.1　UDP通信概述
+UDP (User Datagram Protocol，用户数据报协议)是轻量的、不可靠的、面向数据报（datagram）、无连接的协议，它可以用于对可靠性要求不高的场合。与TCP通信不同，两个程序之间进行UDP通信无需预先建立持久的socket连接，UDP每次发送数据报都需要指定目标地址和端口（如图14-6所示）。
+QUdpSocket类用于实现UDP通信，它从QAbstractSocket类继承，因而与QTcpSocket共享大部分的接口函数。主要区别是QUdpSocket以数据报传输数据，而不是以连续的数据流。发送数据报使用函数QUdpSocket::writeDatagram()，数据报的长度一般少于512字节，每个数据报包含发送者和接收者的IP地址和端口等信息。
+要进行UDP数据接收，要用QUdpSocket::bind()函数先绑定一个端口，用于接收传入的数据报。当有数据报传入时会发射readyRead()信号，使用readDatagram()函数来读取接收到的数据报。
+UDP消息传送有单播、广播、组播三种模式，其示意图如图14-7所示。
+图14-6　UDP收发器之间通信示意图
+图14-7　UDP客户端之间通信的三种模式
+单播（unicast）模式：一个UDP客户端发出的数据报只发送到另一个指定地址和端口的UDP客户端，是一对一的数据传输。
+广播（broadcast）模式：一个UDP客户端发出的数据报，在同一网络范围内其他所有的UDP客户端都可以收到。QUdpSocket支持IPv4广播。广播经常用于实现网络发现的协议。要获取广播数据只需在数据报中指定接收端地址为QHostAddress::Broadcast，一般的广播地址是255.255.255.255。
+
+
+
+
+组播（multicast）模式：也称为多播。UDP客户端加入到另一个组播IP地址指定的多播组，成员向组播地址发送的数据报组内成员都可以接收到，类似于QQ群的功能。QUdpSocket::joinMulticastGroup()函数实现加入多播组的功能，加入多播组后，UDP数据
+的收发与正常的UDP数据收发方法一样。
+使用广播和多播模式，UDP可以实现一些比较灵活的通信功能，而TCP通信只有单播模式，没有广播和多播模式。所以，UDP通信虽然不能保证数据传输的准确性，但是具有灵活性，一般的即时通信软件都是基于UDP通信的。
+QUdpSocket类从QAbstractSocket继承而来，但是又定义了较多新的功能函数用于实现UDP特有的一些功能，如数据报读写和多播通信功能。QUdpSocket没有定义新的信号。QUdpSocket的主要功能函数见表14-6（包括从QAbstractSocket继承的函数，省略了函数中的const关键字，省略了缺省参数）。
+表14-6　QUdpSocket类的主要接口函数
+函数
+功能
+bool　bind(quint16 port = 0)
+为UDP通信绑定一个端口
+qint64　writeDatagram(QByteArray &datagram, QHostAddress &host, quint16 port)
+向目标地址和端口的UDP客户端发送数据报，返回成功发送的字节数
+bool　hasPendingDatagrams()
+当至少有一个数据报需要读取时，返回true
+qint64　pendingDatagramSize()
+返回第一个待读取的数据报的大小
+qint64　readDatagram(char *data, qint64 maxSize)
+读取一个数据报，返回成功读取的数据报的字节数
+bool　joinMulticastGroup(QHostAddress &groupAddress)
+加入一个多播组
+bool　leaveMulticastGroup(QHostAddress &groupAddress)
+离开一个多播组
+在单播、广播和多播模式下，UDP程序都是对等的，不像TCP通信那样分为客户端和服务器端。多播和广播的实现方式基本相同，只是数据报的目标IP地址设置不同，多播模式需要加入多播组，实现方式有较大差异。
+为分别演示这三种UDP通信模式，本节设计了两个实例。Samp14_3实例演示UDP单播和广播通信，Samp14_4实例演示UDP组播通信。
+14.3.2　UDP单播和广播
+1．UDP通信实例程序功能
+实例程序samp14_3实现UDP单播和广播，其主窗口是继承自QMainWindow的类，界面用UI设计器设计。程序可以进行UDP数据报的发送和接收，samp14_3的两个运行实例之间可以进行UDP通信，这两个实例可以运行在同一台计算机上，也可以运行在不同的计算机上。图14-8和图14-9是samp14_3两个实例在一台计算机上运行时通信的界面。
+在同一台计算机上运行时，两个运行实例需要绑定不同的端口，例如实例A绑定端口1200，实例B绑定端口3355。实例A向实例B发送数据报时，需要指定实例B所在主机的IP地址、绑定端口作为目标地址和目标端口，这样实例B才能接收到数据报。
+如果两个实例在不同计算机上运行，则可以使用相同的端口，因为IP地址不同了，不会导致绑
+
+
+
+定时发生冲突。一般的UDP通信程序都是在不同的计算机上运行的，约定一个固定的端口作为通信端口。
+2．主窗口类定义和构造函数
+主窗口是基于QMainWindow的类MainWindow，界面采用UI设计器设计。MainWindow类的定义如下（省略了UI设计器为actions和按钮生成的槽函数声明）：
+图14-8　samp14_3运行实例A（绑定端口1200）
+图14-9　samp14_3运行实例B（绑定端口3355）class MainWindow : public QMainWindow
+{
+   Q_OBJECT
+private:
+   QLabel  *LabSocketState; //socket状态显示标签
+   QUdpSocket  *udpSocket;
+   QString getLocalIP();//获取本机IP地址
+public:
+   explicit MainWindow(QWidget *parent = 0);
+   ~MainWindow();
+private slots:
+//自定义槽函数
+   void   onSocketStateChange(QAbstractSocket::SocketState socketState);
+   void   onSocketReadyRead();//读取socket传入的数据
+private:
+   Ui::MainWindow *ui;
+};
+
+
+
+
+QUdpSocket类型的私有变量udpSocket是用于UDP通信的socket。
+定义了两个自定义槽函数，onSocketStateChange()与udpSocket的stateChange()信号关联，用于显示udpSocket当前的状态；onSocketReadyRead()信号与udpSocket的readyRead()信号关联，用于读取缓冲区的数据报。
+MainWindow的构造函数主要完成udpSocket的创建、信号与槽函数的关联，代码如下：MainWindow::MainWindow(QWidget *parent) :   QMainWindow(parent),
+   ui(new Ui::MainWindow)
+{
+   ui->setupUi(this);
+   LabSocketState=new QLabel("Socket状态：");
+   LabSocketState->setMinimumWidth(200);
+   ui->statusBar->addWidget(LabSocketState);
+   QString localIP=getLocalIP();//本机IP
+   this->setWindowTitle(this->windowTitle()+"----本机IP："+localIP);
+   ui->comboTargetIP->addItem(localIP);
+
+   udpSocket=new QUdpSocket(this);
+   connect(udpSocket,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+         this,SLOT(onSocketStateChange(QAbstractSocket::SocketState)));
+   onSocketStateChange(udpSocket->state());
+   connect(udpSocket,SIGNAL(readyRead()),this,SLOT(onSocketReadyRead()));
+}
+槽函数onSocketStateChange()的功能与14.2节TCP通信程序里的完全一样，不再显示其具体代码。
+3．UDP通信的实现
+要实现UDP数据的接收，必须先用QUdpSocket::bind()函数绑定一个端口，用于监听传入的数据报，解除绑定则使用abort()函数。程序主窗口上的“绑定端口”和“解除绑定”按钮的响应代码如下：void MainWindow::on_actStart_triggered()
+{//绑定端口
+   quint16  port=ui->spinBindPort->value(); //本机UDP端口
+   if (udpSocket->bind(port))//绑定端口成功
+   {
+      ui->plainTextEdit->appendPlainText("**已成功绑定");
+      ui->plainTextEdit->appendPlainText("**绑定端口："
+            +QString::number(udpSocket->localPort()));
+      ui->actStart->setEnabled(false);
+      ui->actStop->setEnabled(true);
+   }
+   else
+      ui->plainTextEdit->appendPlainText("**绑定失败");
+}
+
+void MainWindow::on_actStop_triggered()
+{//解除绑定
+   udpSocket->abort(); //解除绑定
+   ui->actStart->setEnabled(true);
+   ui->actStop->setEnabled(false);
+   ui->plainTextEdit->appendPlainText("**已解除绑定");
+}
+绑定端口后，socket的状态变为已绑定状态“BoundState”，解除绑定后状态变为未连接状态“UnconnectedState”。
+发送点对点消息和广播消息都使用QUdpSocket:: writeDatagram()函数，窗口上“发送消息”和“广播消息”两个按钮的代码如下：
+
+
+
+
+
+void MainWindow::on_btnSend_clicked()
+{//发送消息 按钮
+   QString    targetIP=ui->comboTargetIP->currentText(); //目标IP
+   QHostAddress   targetAddr(targetIP);
+   quint16    targetPort=ui->spinTargetPort->value();//目标port
+   QString  msg=ui->editMsg->text();//发送的消息内容
+   QByteArray  str=msg.toUtf8();
+   udpSocket->writeDatagram(str,targetAddr,targetPort); //发出数据报
+   ui->plainTextEdit->appendPlainText("[out] "+msg);
+   ui->editMsg->clear();
+   ui->editMsg->setFocus();
+}
+
+void MainWindow::on_btnBroadcast_clicked()
+{ //广播消息 按钮
+   quint16   targetPort=ui->spinTargetPort->value(); //目标端口
+   QString  msg=ui->editMsg->text();
+   QByteArray  str=msg.toUtf8();
+   udpSocket->writeDatagram(str,QHostAddress::Broadcast,targetPort);
+   ui->plainTextEdit->appendPlainText("[broadcast] "+msg);
+   ui->editMsg->clear();
+   ui->editMsg->setFocus();
+}
+使用writeDatagram()函数向一个目标用户发送消息时，需要指定目标地址和端口。
+在广播消息时，只需将目标地址更换为一个特殊地址，即广播地址QHostAddress::Broadcast，一般是255.255.255.255。
+QUdpSocket发送的数据报是QByteArray类型的字节数组，数据报的长度一般不超过512字节。数据报的内容可以是文本字符串，也可以自定义格式的二进制数据，文本字符串无需以换行符结束。
+QUdpSocket接收到数据报后发射readyRead()信号，在关联的槽函数onSocketReadyRead()里读取缓冲区的数据报，代码如下：void MainWindow::onSocketReadyRead()
+{//读取收到的数据报
+   while(udpSocket->hasPendingDatagrams())
+   {
+      QByteArray   datagram;
+      datagram.resize(udpSocket->pendingDatagramSize());
+      QHostAddress   peerAddr;
+      quint16 peerPort;
+      udpSocket->readDatagram(datagram.data(), datagram.size(), &peerAddr,&peerPort);
+      QString str=datagram.data();
+      QString peer="[From "+peerAddr.toString() +":" +QString::number(peerPort)+"] ";
+      ui->plainTextEdit->appendPlainText(peer+str);
+   }
+}
+hasPendingDatagrams()表示是否有待读取的传入数据报。
+pendingDatagramSize()返回待读取数据报的字节数。
+readDatagram()函数用于读取数据报的内容，其函数原型为：qint64 QUdpSocket::readDatagram(char *data, qint64 maxSize, QHostAddress *address = Q_NULLPTR, quint16 *port = Q_NULLPTR)
+输入参数data和maxSize是必须的，表示最多读取maxSize字节的数据到变量data里。address和port变量是可选的，用于获取数据报来源的地址和端口。上面的代码中使用了完整的
+
+
+
+
+参数形式，从而可以获得数据报来源的地址peerAddr和端口peerPort。如果无需获取来源地址和端口，可以采用简略形式，即：udpSocket->readDatagram(datagram.data(),datagram.size());
+读取的数据报内容是QByteArray字节数组，因为本程序只是传输字符串，所以简单地将其转换为字符串即可。如果传输的是自定义格式的字符串或二进制数据，需要对接收到的数据进行解析。
+14.3.3　UDP组播
+1．UDP组播的特性
+图14-7的示意图简单表示了组播的原理。UDP组播是主机之间“一对一组”的通信模式，当多个客户端加入由一个组播地址定义的多播组之后，客户端向组播地址和端口发送的UDP数据报，组内成员都可以接收到，其功能类似于QQ群。
+组播报文的目的地址使用D类IP地址，D类地址不能出现在IP报文的源IP地址字段。用同一个IP多播地址接收多播数据报的所有主机构成了一个组，称为多播组（或组播组）。所有的信息接收者都加入到一个组内，并且一旦加入之后，流向组地址的数据报立即开始向接收者传输，组中的所有成员都能接收到数据报。组中的成员是动态的，主机可以在任何时间加入和离开组。
+所以，采用UDP组播必须使用一个组播地址。组播地址是D类IP地址，有特定的地址段。多播组可以是永久的也可以是临时的。多播组地址中，有一部分由官方分配，称为永久多播组。永久多播组保持不变的是它的IP地址，组中的成员构成可以发生变化。永久多播组中成员的数量可以是任意的，甚至可以为零。那些没有保留下来的供永久多播组使用的IP组播地址，可以被临时多播组利用。关于组播IP地址，有如下的一些约定：
+224.0.0.0～224.0.0.255为预留的组播地址（永久组地址），地址224.0.0.0保留不做分配，其他地址供路由协议使用；
+224.0.1.0～224.0.1.255是公用组播地址，可以用于Internet；
+224.0.2.0～238.255.255.255为用户可用的组播地址（临时组地址），全网范围内有效；
+239.0.0.0～239.255.255.255为本地管理组播地址，仅在特定的本地范围内有效。
+所以，若是在家庭或办公室局域网内测试UDP组播功能，可以使用的组播地址范围是239.0.0.0～239.255.255.255。
+QUdpSocket支持UDP组播，joinMulticastGroup()函数使主机加入一个多播组，leaveMulticast Group()函数使主机离开一个多播组，UDP组播的特点是使用组播地址，其他的端口绑定、数据报收发等功能的实现与单播UDP完全相同。
+2．UDP组播实例程序的功能
+设计一个UDP组播实例程序Samp14_4，在两台计算机上分别运行，进行组播通信。图14-10是运行于主机192.168.1.104上的程序，图14-11是运行于主机192.168.1.106上的程序。两个主机上的程序都加入地址为239.255.43.21的多播组，绑定端口35320进行通信。
+从图14-10和图14-11可以看到，两个Samp14_4程序都可以发送和接收组播数据报，且在自己主机上发出的数据报，自己也可以接收到。
+
+
+图14-10　主机A上运行的Samp14_4程序（主机地址192.168.1.104）
+图14-11　主机B上运行的Samp14_4程序（主机地址192.168.1.106）
+3．组播功能的程序实现
+程序的主窗口是基于QMainWindow的类MainWindow，界面由UI设计器设计，其类定义如下（忽略UI设计器生成的槽函数）：class MainWindow : public QMainWindow
+{
+   Q_OBJECT
+private:
+   QLabel  *LabSocketState;
+   QUdpSocket  *udpSocket;
+   QHostAddress   groupAddress; //组播地址
+   QString getLocalIP(); //获取本机IP地址
+public:
+   explicit MainWindow(QWidget *parent = 0);
+   ~MainWindow();
+private slots:
+//自定义槽函数
+   void   onSocketStateChange(QAbstractSocket::SocketState socketState);
+   void   onSocketReadyRead();//读取socket传入的数据
+private:
+   Ui::MainWindow *ui;
+};
+其中定义了一个QHostAddress类型变量groupAddress，用于记录组播地址。下面是MainWindow的构造函数的代码：MainWindow::MainWindow(QWidget *parent) :   QMainWindow(parent),
+   ui(new Ui::MainWindow)
+{
+   ui->setupUi(this);
+   LabSocketState=new QLabel("Socket状态：");
+   LabSocketState->setMinimumWidth(200);
+   ui->statusBar->addWidget(LabSocketState);
+   QString localIP=getLocalIP();//本地主机名
+
+
+
+
+
+this->setWindowTitle(this->windowTitle()+"----本机IP："+localIP);
+   udpSocket=new QUdpSocket(this);
+   udpSocket->setSocketOption(QAbstractSocket::MulticastTtlOption,1);
+
+   connect(udpSocket,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+         this,SLOT(onSocketStateChange(QAbstractSocket::SocketState)));
+   onSocketStateChange(udpSocket->state());
+   connect(udpSocket,SIGNAL(readyRead()), this,SLOT(onSocketReadyRead()));
+}
+其中使用了QUdpSocket::setSocketOption()函数，对socket进行参数设置。udpSocket->setSocketOption(QAbstractSocket::MulticastTtlOption,1);
+将socket的QAbstractSocket::MulticastTtlOption值设置为1。MulticastTtlOption是UDP组播的数据报的生存期，数据报每跨1个路由会减1。缺省值为1，表示多播数据报只能在同一路由下的局域网内传播。
+要进行UDP组播通信，UDP客户端必须先加入UDP多播组，也可以随时退出多播组。主窗口上的“加入组播”和“退出组播”按钮的代码如下：void MainWindow::on_actStart_triggered()
+{//加入组播
+   QString   IP=ui->comboIP->currentText();
+   groupAddress=QHostAddress(IP);//多播组地址
+   quint16   groupPort=ui->spinPort->value();//端口
+   if (udpSocket->bind(QHostAddress::AnyIPv4, groupPort, QUdpSocket::ShareAddress))
+   {
+     udpSocket->joinMulticastGroup(groupAddress); //加入多播组
+     ui->plainTextEdit->appendPlainText("**加入组播成功");
+     ui->plainTextEdit->appendPlainText("**组播地址IP："+IP);
+     ui->plainTextEdit->appendPlainText("**绑定端口："+ QString::number(groupPort));
+     ui->actStart->setEnabled(false);
+     ui->actStop->setEnabled(true);
+     ui->comboIP->setEnabled(false);
+   }
+   else
+     ui->plainTextEdit->appendPlainText("**绑定端口失败");
+}
+void MainWindow::on_actStop_triggered()
+{//退出组播
+   udpSocket->leaveMulticastGroup(groupAddress);//退出组播
+   udpSocket->abort(); //解除绑定
+   ui->actStart->setEnabled(true);
+   ui->actStop->setEnabled(false);
+   ui->comboIP->setEnabled(true);
+   ui->plainTextEdit->appendPlainText("**已退出组播,解除端口绑定");
+}
+加入组播之前，必须先绑定端口，绑定端口的语句是：udpSocket->bind(QHostAddress::AnyIPv4, groupPort, QUdpSocket::ShareAddress)
+这里指定地址为QHostAddress::AnyIPv4，端口为多播组统一的一个端口。
+使用QUdpSocket:: joinMulticastGroup()函数加入多播组，即：udpSocket->joinMulticastGroup(groupAddress);
+多播组地址groupAddress由界面上的组合框里输入。注意，局域网内的组播地址的范围是239.0.0.0～239.255.255.255，绝对不能使用本机地址作为组播地址。
+退出多播组，使用QUdpSocket::leaveMulticastGroup()函数，即：
+
+
+
+
+udpSocket->leaveMulticastGroup(groupAddress);
+加入多播组后，发送组播数据报也是使用writeDatagram()函数，只是目标地址使用的是组播地址，在readyRead()信号的槽函数里用readDatagram()读取数据报。下面是发送和读取数据报的代码：void MainWindow::on_btnMulticast_clicked()
+{//发送组播消息
+   quint16   groupPort=ui->spinPort->value();
+   QString   msg=ui->editMsg->text();
+   QByteArray  datagram=msg.toUtf8();
+   udpSocket->writeDatagram(datagram,groupAddress,groupPort);
+   ui->plainTextEdit->appendPlainText("[multicst] "+msg);
+   ui->editMsg->clear();
+   ui->editMsg->setFocus();
+}
+void MainWindow::onSocketReadyRead()
+{//读取数据报
+   while(udpSocket->hasPendingDatagrams())
+   {
+      QByteArray   datagram;
+      datagram.resize(udpSocket->pendingDatagramSize());
+      QHostAddress   peerAddr;
+      quint16 peerPort;
+      udpSocket->readDatagram(datagram.data(), datagram.size(), &peerAddr, &peerPort);
+      QString str=datagram.data();
+      QString peer="[From "+peerAddr.toString()+":" +QString::number(peerPort)+"] ";
+      ui->plainTextEdit->appendPlainText(peer+str);
+   }
+}
+14.4　基于HTTP协议的网络应用程序
+14.4.1　实现高层网络操作的类
+Qt网络模块提供一些类实现OSI 7层网络模型中高层的网络协议，如HTTP、FTP、SNMP等，这些类主要是QNetworkRequest、QNetworkReply和QNetworkAccessManager。
+QNetworkRequest类通过一个URL地址发起网络协议请求，也保存网络请求的信息，目前支持HTTP、FTP和局部文件URLs的下载或上传。
+QNetworkAccessManager类用于协调网络操作。在QNetworkRequest发起一个网络请求后，QNetworkAccessManager类负责发送网络请求，创建网络响应。
+QNetworkReply类表示网络请求的响应。由QNetworkAccessManager在发送一个网络请求后创建一个网络响应。QNetworkReply提供的信号finished()、readyRead()和downloadProgress()可以监测网络响应的执行情况，执行相应操作。
+QNetworkReply是QIODevice的子类，所以QNetworkReply支持流读写功能，也支持异步或同步工作模式。
+14.4.2　基于HTTP协议的网络文件下载
+基于上述三个类，设计一个基于HTTP协议的网络文件下载程序，实例程序名称samp14_5，图14-12是程序运行下载文件时的界面。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
