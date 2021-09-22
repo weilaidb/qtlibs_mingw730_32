@@ -997,6 +997,7 @@ QT/QString/toInt
 QT/QString/toLower
 QT/QString/十六进制转十进制
 QT/QString/十进制转十六进制
+QT/QTextCodec/GBK UTF-8
 QT/QTime/currentTime
 QT/QTime/currentTime second
 QT/QTimer/start
@@ -1067,14 +1068,13 @@ QT/UI/打印入参列表 showArgs
 QT/UI/问题项
 QT/介绍
 QT/依赖库
-Tools/Astyle格式化代码
-
 SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
 TEST/RegExptest
 TEST/RegExptest1
+Tools/Astyle格式化代码
 Tools/Eclipse快捷键
 Tools/Emacs快捷键
 Tools/Tomcat/conf tomcat-users.xml
