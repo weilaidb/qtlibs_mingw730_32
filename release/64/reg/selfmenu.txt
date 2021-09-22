@@ -1066,6 +1066,9 @@ QT/UI/常用头文件 header
 QT/UI/打印入参列表 showArgs
 QT/UI/问题项
 QT/介绍
+QT/依赖库
+Tools/Astyle格式化代码
+
 SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
