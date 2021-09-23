@@ -1,0 +1,1 @@
+win32 {$NL#顾名思义，这里就是设置WIndows下的连接库，以及Visual C++2010编译器的的设置选项$NLQT       += \1$NL}$NL
