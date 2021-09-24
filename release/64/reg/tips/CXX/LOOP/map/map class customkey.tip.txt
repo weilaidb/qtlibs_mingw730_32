@@ -1,0 +1,2 @@
+[迭代器(自定义Key);变量名;类名]
+std::map<CMapCustomKeyPub , int> MAP_CUSTOM_INT; mapGroup;CMapCustomKeyPub
