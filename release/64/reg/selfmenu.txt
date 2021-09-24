@@ -352,6 +352,7 @@ CXX/LOOP/list reverse_iterator
 CXX/LOOP/map/C++ map用法
 CXX/LOOP/map/map
 CXX/LOOP/map/map class
+CXX/LOOP/map/map class customkey
 CXX/LOOP/vector
 CXX/LOOP/vector for
 CXX/MAP/Cmd Handler
