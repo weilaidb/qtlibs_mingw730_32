@@ -6,3 +6,8 @@
 /release/64/app.log
 /release/64/reg/frequse.txt
 /release/64/reg/recentopen.txt
+/release/64/64.7z
+grunt
+node_modules
+/release/64/package-lock.json
+/release/64/package.json

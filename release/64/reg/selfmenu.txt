@@ -421,6 +421,9 @@ FPGA/语法code new/subtype
 FPGA/语法code new/subtype2
 FPGA/语法code new/variable
 JAVA/Cloud/ECS
+JAVA/JSP/BootStrap/btn样式
+JAVA/JSP/BootStrap/href
+JAVA/JSP/BootStrap/include引入框架
 JAVA/JSP/File文件/File
 JAVA/JSP/File文件/File BufferedInputStream
 JAVA/JSP/File文件/File BufferedOutputStream
@@ -923,6 +926,11 @@ Pthread/Create
 Pthread/pthread_mutex
 Pthread/pthread_once
 Python/API/exec_command
+Python/Lambda/test
+Python/Map/para1 square
+Python/Map/para2 multiplier_func
+Python/Map/test
+
 Python/PYTHONPATH
 Python/Print
 Python/from_xxx_import_all
