@@ -927,10 +927,10 @@ Pthread/pthread_mutex
 Pthread/pthread_once
 Python/API/exec_command
 Python/Lambda/test
-Python/Map/para1 square
+Python/Map/para1 test
 Python/Map/para2 multiplier_func
+Python/Map/para2 square
 Python/Map/test
-
 Python/PYTHONPATH
 Python/Print
 Python/from_xxx_import_all
