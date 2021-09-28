@@ -1,1 +1,1 @@
-#include <QTime>$NL$NLQString strTime;$NL$NLQTime *\1 = new QTime();$NLstrTime = \1->currentTime().toString("\2");$NLdelete \1;$NL
+=======================$NL#include <QTime>$NL$NLQString strTime;$NL$NLstrTime = QTime::currentTime().toString("\1");$NL
