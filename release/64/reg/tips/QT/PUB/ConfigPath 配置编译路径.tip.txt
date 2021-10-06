@@ -1,0 +1,7 @@
+E:\Qt\Qt5.14.2\Tools\mingw730_32\bin\g++.exe
+E:\Qt\Qt5.14.2\Tools\mingw730_64\bin\g++.exe
+
+E:\Qt\Qt5.14.2\Tools\mingw730_32\bin\gcc.exe
+E:\Qt\Qt5.14.2\Tools\mingw730_64\bin\gcc.exe
+
+
