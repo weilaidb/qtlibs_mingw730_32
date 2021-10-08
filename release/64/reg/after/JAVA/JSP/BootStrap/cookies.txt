@@ -1,0 +1,1 @@
+String \2=null;$NLCookie[] \1=request.getCookies();$NLfor(int i=0;i<\1.length;i++) {$NL     if(\1[i].getName().equals("\3")) {$NL          \2=\1[i].getValue();$NL          break;$NL     }$NL}$NL
