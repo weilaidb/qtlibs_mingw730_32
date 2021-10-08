@@ -422,8 +422,9 @@ FPGA/语法code new/subtype2
 FPGA/语法code new/variable
 JAVA/Cloud/ECS
 JAVA/JSP/BootStrap/Button
-JAVA/JSP/BootStrap/Navagitor
-JAVA/JSP/BootStrap/Navagitor Page
+JAVA/JSP/BootStrap/Navigator
+JAVA/JSP/BootStrap/Navigator  Page
+JAVA/JSP/Foundation/Navigator
 JAVA/JSP/BootStrap/Table
 JAVA/JSP/BootStrap/btn样式
 JAVA/JSP/BootStrap/cookies
