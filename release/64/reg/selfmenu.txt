@@ -422,10 +422,20 @@ FPGA/语法code new/subtype2
 FPGA/语法code new/variable
 JAVA/Cloud/ECS
 JAVA/JSP/BootStrap/CBaseInfo
+JAVA/JAVA_HOME JRE_HOME
+JAVA/JSP/BootStrap/Button
+JAVA/JSP/BootStrap/Navigator
+JAVA/JSP/BootStrap/Navigator Page
+JAVA/JSP/BootStrap/Table
 JAVA/JSP/BootStrap/btn样式
+JAVA/JSP/BootStrap/cookies
 JAVA/JSP/BootStrap/href
+JAVA/JSP/BootStrap/href2
 JAVA/JSP/BootStrap/include引入框架
 JAVA/JSP/BootStrap/include引入框架2
+JAVA/JSP/BootStrap/include引入框架 http
+JAVA/JSP/BootStrap/session getAttribute setAttribute
+JAVA/JSP/BootStrap/span
 JAVA/JSP/File文件/File
 JAVA/JSP/File文件/File BufferedInputStream
 JAVA/JSP/File文件/File BufferedOutputStream
@@ -445,6 +455,7 @@ JAVA/JSP/File文件/File delete
 JAVA/JSP/File文件/File file
 JAVA/JSP/File文件/File mkdir
 JAVA/JSP/File文件/File 文件上传
+JAVA/JSP/Foundation/Navigator
 JAVA/JSP/JS/clear by id
 JAVA/JSP/JS/style eg1
 JAVA/JSP/JavaBean/getProperty
@@ -468,9 +479,11 @@ JAVA/JSP/bgcolor 护眼色
 JAVA/JSP/body nav 顶部菜单
 JAVA/JSP/br 换行符
 JAVA/JSP/css/color
+JAVA/JSP/css/include href
 JAVA/JSP/css/什么是 CSS
 JAVA/JSP/foreach list string
 JAVA/JSP/form/basepath
+JAVA/JSP/form/basepath 2
 JAVA/JSP/form/button submit action
 JAVA/JSP/form/button submit action 在一个页面 跳转后返回
 JAVA/JSP/form/checkbox
@@ -507,6 +520,7 @@ JAVA/JSP/mysql/executeUpdate delete eg
 JAVA/JSP/mysql/insertRow eg
 JAVA/JSP/mysql/prepareStatement insert eg
 JAVA/JSP/mysql/prepareStatement select eg
+JAVA/JSP/navbar navagitor
 JAVA/JSP/new jsp
 JAVA/JSP/p 段落
 JAVA/JSP/page
@@ -543,6 +557,7 @@ JAVA/JSP/知识点
 JAVA/JSP/示例 eg
 JAVA/Org/StringUtils/base
 JAVA/RegExp/Pattern
+JAVA/class/static
 JAVA/css/include引用
 JAVA/print/println
 JAVA/print/println 片段
@@ -591,6 +606,7 @@ KERNEL/FS/mount-flags
 KERNEL/GCC/__aligned
 KERNEL/GCC/__attribute__
 KERNEL/GCC/__attribute__ noreturn
+KERNEL/GCC/参数列表
 KERNEL/LIST_HEAD
 KERNEL/basetype
 KERNEL/driver/API/EXPORT_SYMBOL
@@ -978,6 +994,7 @@ QT/PUB/CONFIG
 QT/PUB/CONFIG macx
 QT/PUB/CONFIG unix
 QT/PUB/CONFIG win32
+QT/PUB/ConfigPath 配置编译路径
 QT/PUB/INCLUDEPATH
 QT/QDir/toNativeSeparators
 QT/QEvent/closeEvent

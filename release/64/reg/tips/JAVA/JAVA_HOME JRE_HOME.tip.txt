@@ -1,0 +1,9 @@
+JAVA_HOME 
+D:\Program Files\Java\jdk1.8.0_291
+
+
+JRE_HOME 
+D:\Program Files\Java\jre1.8.0_291
+
+set JAVA_HOME=D:\Program Files\Java\jdk1.8.0_291
+set JRE_HOME=D:\Program Files\Java\jre1.8.0_291
