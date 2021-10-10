@@ -421,6 +421,7 @@ FPGA/语法code new/subtype
 FPGA/语法code new/subtype2
 FPGA/语法code new/variable
 JAVA/Cloud/ECS
+JAVA/JSP/BootStrap/CBaseInfo
 JAVA/JAVA_HOME JRE_HOME
 JAVA/JSP/BootStrap/Button
 JAVA/JSP/BootStrap/Navigator
@@ -431,6 +432,7 @@ JAVA/JSP/BootStrap/cookies
 JAVA/JSP/BootStrap/href
 JAVA/JSP/BootStrap/href2
 JAVA/JSP/BootStrap/include引入框架
+JAVA/JSP/BootStrap/include引入框架2
 JAVA/JSP/BootStrap/include引入框架 http
 JAVA/JSP/BootStrap/session getAttribute setAttribute
 JAVA/JSP/BootStrap/span
@@ -509,8 +511,10 @@ JAVA/JSP/head meta
 JAVA/JSP/head meta http-equiv
 JAVA/JSP/head title
 JAVA/JSP/href
+JAVA/JSP/href 2
 JAVA/JSP/ifnull emptystring
 JAVA/JSP/import
+JAVA/JSP/import jsp
 JAVA/JSP/include
 JAVA/JSP/mysql/executeUpdate delete eg
 JAVA/JSP/mysql/insertRow eg
