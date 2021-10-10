@@ -21,3 +21,4 @@ D:\Software\apache-tomcat-9.0.27-windows-x64\apache-tomcat-9.0.27\webapps
 
 G:\svnlocal\小学生\二年级\
 【在线新华字典】http://xh.5156edu.com/index.php
+【下载视频】C:\Users\dell\dwhelper
