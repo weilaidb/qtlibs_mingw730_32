@@ -1,3 +1,4 @@
 从中间某处排序字符串;Algorithm 算法/从中间某处排序字符串
 public use;BASH/alias/public use
 start;QT/QTimer/start
+QT UI设置;QT/UI/Settings eg
