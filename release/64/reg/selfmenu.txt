@@ -420,6 +420,7 @@ FPGA/语法code new/signal list
 FPGA/语法code new/subtype
 FPGA/语法code new/subtype2
 FPGA/语法code new/variable
+JAVA/Base/forloop
 JAVA/Cloud/ECS
 JAVA/JAVA_HOME JRE_HOME
 JAVA/JSP/BootStrap/Button
@@ -1107,6 +1108,7 @@ QT/UI/打印入参列表 showArgs
 QT/UI/问题项
 QT/介绍
 QT/依赖库
+Setting/网页显示常用Tab切换
 SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
