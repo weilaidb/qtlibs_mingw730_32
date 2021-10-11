@@ -8,3 +8,7 @@ samba
 net-tools
 ssh
 selinux-utils
+
+systemtap
+linux-headers-generic gcc make
+linux-image-debug-generic

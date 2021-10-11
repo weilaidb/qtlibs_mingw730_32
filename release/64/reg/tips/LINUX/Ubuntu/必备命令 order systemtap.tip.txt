@@ -1,0 +1,3 @@
+[Ubuntu]
+Where to get debug symbols for kernel X?
+http://ddebs.ubuntu.com/pool/main/l/linux/
