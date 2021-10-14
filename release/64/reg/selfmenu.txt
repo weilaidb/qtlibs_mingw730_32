@@ -947,6 +947,7 @@ PHP/study教程
 PHP/test.php
 PHP/testrail
 PhotoShop/常用快捷键 shortcut
+PhotoShop/常用快捷键 shortcut 2
 Pthread/Create
 Pthread/pthread_mutex
 Pthread/pthread_once
