@@ -1,0 +1,203 @@
+一个项目结构，其中有一个包含必要依赖的Maven或者Gradle构建文件，最起码要有Spring MVC和Servlet API这些依赖。
+· 一个web.xml文件（或者一个WebApplicationInitializer实现），其中声明了Spring的DispatcherServlet。
+· 一个启用了Spring MVC的Spring配置。
+· 一个控制器类，以“Hello World”响应HTTP请求。
+· 一个用于部署应用程序的Web应用服务器，比如Tomcat。
+
+
+
+代码清单1-1　一个完整的基于Groovy的Spring应用程序
+@RestController
+class HelloController {
+　@RequestMapping（"/"）
+　def hello（） {
+　　return "Hello World"
+　}
+}
+
+
+新建工程 new -- project --  Spring Initializr，参考
+https://www.cnblogs.com/swzx-1213/p/12345330.html
+
+
+
+安装Spring Boot CLI最直接的方法大约是下载、解压，随后将它的bin目录添加到系统路径里。你可以从以下两个地址下载分发包：
+· http://repo.spring.io/release/org/springframework/boot/spring-boot-cli/1.3.0.RELEASE/spring-boot-cli-1.3.0.RELEASE-bin.zip
+· http://repo.spring.io/release/org/springframework/boot/spring-boot-cli/1.3.0.RELEASE/spring-boot-cli-1.3.0.RELEASE-bin.tar.gz
+
+
+你可以先浅尝辄止，看看你所安装的CLI版本号：
+$ spring ——version
+如果一切正常，你会看到安装好的Spring Boot CLI的版本号。
+
+
+2．使用Software Development Kit Manager进行安装
+软件开发工具管理包（Software Development Kit Manager，SDKMAN，曾用简称GVM）也能用来安装和管理多版本Spring Boot CLI。使用前，你需要先从http://sdkman.io获取并安装SDKMAN。最简单的安装方式是使用命令行：
+
+
+
+
+尽管如此，与大部分Java项目的开发相比，Spring Boot CLI的流程还是不太符合常规。通常情况下，Java项目用Gradle或Maven这样的工具构建出WAR文件，再把这些文件部署到应用服务器里。即便CLI模型让你感到不太舒服，你仍然可以在传统方式下充分利用大部分Spring Boot特性。Spring Initializr可以成为你万里长征的第一步。
+
+
+Spring Initializr有几种用法。
+· 通过Web界面使用。
+· 通过Spring Tool Suite使用。
+· 通过IntelliJ IDEA使用。
+· 使用Spring Boot CLI使用。
+
+
+
+如你所见，项目里基本没有代码，除了几个空目录外，还包含了如下几样东西。
+· build.gradle：Gradle构建说明文件。如果选择Maven项目，这就会换成pom.xml。
+· Application.java：一个带有main（）方法的类，用于引导启动应用程序。
+
+ApplicationTests.java：一个空的JUnit测试类，它加载了一个使用Spring Boot自动配置功能的Spring应用程序上下文。
+· application.properties：一个空的properties文件，你可以根据需要添加配置属性。
+
+
+2．在Spring Tool Suite里创建Spring Boot项目
+
+https://blog.csdn.net/LanSeTianKong12/article/details/86301905
+
+
+
+4．在Spring Boot CLI里使用Initializr
+如前文所述，如果你想仅仅写代码就完成Spring应用程序的开发，那么Spring Boot CLI是个不错的选择。然而，Spring Boot CLI的功能还不限于此，它有一些命令可以帮你使用Initializr，通过它上手开发更传统的Java项目。
+Spring Boot CLI包含了一个init命令，可以作为Initializr的客户端界面。init命令最简单的用法就是创建Spring Boot项目的基线：
+$ spring init
+在和Initializr的Web应用程序通信后，init命令会下载一个demo.zip文件。解压后你会看到一个典型的项目结构，包含一个Maven的pom.xml构建描述文件。Maven的构建说明只包含最基本的内容，即只有Spring Boot基线和测试起步依赖。你可能会想要更多的东西。
+假设你想要构建一个Web应用程序，其中使用JPA实现数据持久化，使用Spring Security进行安全加固，可以用——dependencies或-d来指定那些初始依赖：
+$ spring init -dweb，jpa，security
+这条命令会下载一个demo.zip文件，包含与之前一样的项目结构，但在pom.xml里增加了Spring Boot的Web、jpa和security起步依赖。请注意，在-d和依赖之间不能加空格，否则就变成了下载一个ZIP文件，文件名是web，jpa，security。
+现在，假设你想用Gradle来构建项目。没问题，用——build参数将Gradle指定为构建类型：
+$ spring init -dweb，jpa，security ——build gradle
+默认情况下，无论是Maven还是Gradle的构建说明都会产生一个可执行JAR文件。但如果你
+
+想要一个WAR文件，那么可以通过——packaging或者-p参数进行说明：
+$ spring init -dweb，jpa，security ——build gradle -p war
+到目前为止，init命令只用来下载ZIP文件。如果你想让CLI帮你解压那个ZIP文件，可以指定一个用于解压的目录：
+$ spring init -dweb，jpa，security ——build gradle -p war myapp
+此处的最后一个参数说明你希望把项目解压到myapp目录里去。
+此外，如果你希望CLI把生成的项目解压到当前目录，可以使用——extract或者-x参数：
+$ spring init -dweb，jpa，security ——build gradle -p jar -x
+init命令还有不少其他参数，包括基于Groovy构建项目的参数、指定用Java版本编译的参数，还有选择构建依赖的Spring Boot版本的参数。可以通过help命令了解所有参数的情况：
+$ spring help init
+你也可以查看那些参数都有哪些可选项，为init命令带上——list或-l参数就可以了：
+$ spring init -l
+你一定注意到了，尽管spring init -l列出了一些Initializr支持的参数，但并非所有参数都能直接为Spring Boot CLI的init命令所支持。举例来说，用CLI初始化项目时，你不能指定根包的名字，它默认为demo。spring help init会告诉你CLI的init命令都支持哪些参数。
+无论你是用Initializr的Web界面，在Spring Tool Suite里创建项目，还是用Spring Boot CLI来初始化项目，Spring Boot Initializr创建出来的项目都有相似的项目布局，和你之前开发过的Java项目没什么不同。
+
+
+
+2.1.1　查看初始化的Spring Boot新项目
+图2-2中值得注意的第一件事是，整个项目结构遵循传统Maven或Gradle项目的布局，即主要应用程序代码位于src/main/java目录里，资源都在src/main/resources目录里，测试代码则在src/test/java目录里。此刻还没有测试资源，但如果有的话，要放在src/test/resources里。
+再进一步，你会看到项目里还有不少文件。
+· build.gradle：Gradle构建说明文件。
+· ReadingListApplication.java：应用程序的启动引导类（bootstrap class），也是主要的Spring配置类。
+· application.properties：用于配置应用程序和Spring Boot的属性。
+· ReadingListApplicationTests.java：一个基本的集成测试类。
+因为构建说明文件里有很多Spring Boot的优点尚未揭秘，所以我打算把最好的留到最后，先让我们来看看ReadingListApplication.java。
+
+
+
+@SpringBootApplication开启了Spring的组件扫描和Spring Boot的自动配置功能。实际上，@SpringBootApplication将三个有用的注解组合在了一起。
+· Spring的@Configuration：标明该类使用Spring基于Java的配置。虽然本书不会写太多配置，但我们会更倾向于使用基于Java而不是XML的配置。
+· Spring的@ComponentScan：启用组件扫描，这样你写的Web控制器类和其他组件才能被自动发现并注册为Spring应用程序上下文里的Bean。本章稍后会写一个简单的Spring MVC控制器，使用@Controller进行注解，这样组件扫描才能找到它。
+· Spring Boot的@EnableAutoConfiguration：这个不起眼的小注解也可以称为@Abracadabra，就是这一行配置开启了Spring Boot自动配置的魔力，让你不用再写成篇的配置了。
+
+
+
+==>Spring Boot如何运行
+设置Main class: 
+com.example.demo.DemoApplication
+==>
+让我们退一步再想想，我们要做什么。我们要构建一个拥有如下功能的应用程序。
+· 这是一个Web应用程序。
+· 它用了Thymeleaf。
+· 它通过Spring Data JPA在关系型数据库里持久化数据。
+如果我们只在构建文件里指定这些功能，让构建过程自己搞明白我们要什么东西，岂不是更简单？这正是Spring Boot起步依赖的功能。
+
+==>@Entity  @Id @GeneratedValue
+如你所见，Book类就是简单的Java对象，其中有些描述书的属性，还有必要的访问方法。@Entity注解表明它是一个JPA实体，id属性加了@Id和@GeneratedValue注解，说明这个字段是实体的唯一标识，并且这个字段的值是自动生成的。
+
+==>@Controller @RequestMapping 
+ReadingListController使用了@Controller注解，这样组件扫描会自动将其注册为Spring应用程序上下文里的一个Bean。它还用了@RequestMapping注解，将其中所有的处理器方法都映射到了“/”这个URL路径上。
+该控制器有两个方法。
+· readersBooks（）：处理/{reader}上的HTTP GET请求，根据路径里指定的读者，从（通过控制器的构造器注入的）仓库获取Book列表。随后将这个列表塞入模型，用的键是books，最后返回readingList作为呈现模型的视图逻辑名称。
+· addToReadingList（）：处理/{reader}上的HTTP POST请求，将请求正文里的数据绑定到一个Book对象上。该方法把Book对象的reader属性设置为读者的姓名，随后通过仓库的save（）方法保存修改后的Book对象，最后重定向到/{reader}（控制器中的另一个方法会处理该请求）。
+readersBooks（）方法最后返回readingList作为逻辑视图名，为此必须创建该视图。因为在项目开始之初我就决定要用Thymeleaf来定义应用程序的视图，所以接下来就在src/main/ resources/templates里创建一个名为readingList.html的文件，内容如代码清单2-7所示。
+
+
+==>定制demo代码
+https://start.spring.io/
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+==>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
