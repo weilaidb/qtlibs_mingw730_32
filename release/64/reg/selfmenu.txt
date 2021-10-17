@@ -209,6 +209,7 @@ C/Check/Pointer NULL 2
 C/Check/Pointer NULL 3
 C/Code/DLog
 C/Condition/Switch break
+C/Condition/Switch case break
 C/Condition/if else
 C/Condition/if only
 C/DATE_TIME
@@ -561,6 +562,11 @@ JAVA/JSP/知识点
 JAVA/JSP/示例 eg
 JAVA/Org/StringUtils/base
 JAVA/RegExp/Pattern
+JAVA/SpringBoot/application.properties 修改端口
+JAVA/SpringBoot/application.yml 修改端口
+JAVA/SpringBoot/http
+JAVA/SpringBoot/run jar
+JAVA/SpringBoot/简介
 JAVA/class/static
 JAVA/css/include引用
 JAVA/print/println
@@ -704,6 +710,7 @@ LINUX/命令行/fgrep
 LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
+LINUX/命令行/nano
 LINUX/命令行/realpath
 LINUX/命令行/setenforce
 LINUX/命令行/shutdown
