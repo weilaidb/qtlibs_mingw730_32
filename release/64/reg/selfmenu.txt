@@ -1219,6 +1219,9 @@ path路径/Android手机拷贝路径
 宏Macro/Source insight/StrMid
 宏Macro/Source insight/cat
 宏Macro/Source insight/msg 打印内容
+宏Macro/Source insight/msg 打印内容2
+宏Macro/Source insight/new buffer
+宏Macro/Source insight/new macro
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
 术语/Linux/FIB Forward Information Base
