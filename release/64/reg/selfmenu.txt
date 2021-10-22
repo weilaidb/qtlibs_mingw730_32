@@ -1156,7 +1156,7 @@ Tools/git/gitclone下载失败方法
 Tools/git/order
 Tools/git/tig blame filename
 Tools/git/tig help
-Tools/git/常用git库
+Tools/git/常用git库 git address
 Tools/hex to dec 十六进制转十进制
 Tools/package 0xdot 添加0x和逗号
 Tools/package 0xdot 自带0x 添加逗号
