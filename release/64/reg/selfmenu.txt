@@ -251,6 +251,7 @@ C/GETSET/GETTER_AND_SETTER
 C/GETSET/GETTER_AND_SETTER GLOBAL ARRAY
 C/GETSET/GETTER_AND_SETTER unsigned int
 C/GETSET/SETTER
+C/GetStrOfData
 C/INCLUDE/FILTER
 C/INCLUDE/GENERATE
 C/INCLUDE/常用头文件 header
@@ -1261,6 +1262,5 @@ path路径/Android手机拷贝路径
 脚本/VBS/SecureCrt/While
 脚本/VBS/SecureCrt/git process
 脚本/VBS/SecureCrt/git push cur branch
+脚本/VBS/SecureCrt/每行保存日志
 设计/软件设计/语言设计的美妙
-C/GetStrOfData
-
