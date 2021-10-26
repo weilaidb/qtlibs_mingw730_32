@@ -1052,6 +1052,7 @@ QT/QTime/currentTime
 QT/QTime/currentTime second
 QT/QTimer/start
 QT/QVector/append
+QT/Qt Creator 添加自定义注释
 QT/Qthread/QDiceThread
 QT/Qthread/signals
 QT/Qthread/signals connect
