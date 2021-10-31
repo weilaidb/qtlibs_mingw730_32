@@ -12,3 +12,4 @@ selinux-utils
 systemtap
 linux-headers-generic gcc make
 linux-image-debug-generic
+openjdk-11-jdk
