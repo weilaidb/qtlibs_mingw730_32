@@ -16,9 +16,26 @@ OPENGROK_CONFIG=$WORK_PATH/opengrok/configuration.xml
 CTAGS_PATH=/usr/local/bin/ctags 
 
 
+#configuration.xml位置 
+/root/work/opengrok/configuration.xml
+
+#删除java 11
+yum remove java-11-openjdk
+
+#安装java 1.8
+yum install java-1.8.0-openjdk
+
+#查看java版本
+java -version
+
+
+
+
 #执行命令
+rm -rf $OPENGROK_CONFIG
+rm -rf $OPENGROK_DATA/*
+
 mkdir -p $OPENGROK_DATA
-mkdir -p $OPENGROK_CONFIG
 java -Xmx2048m -jar $OPENGROK_JAR -W $OPENGROK_CONFIG -c $CTAGS_PATH -P -S -v -s $OPENGROK_PROJECT -d $OPENGROK_DATA
 
 #java -jar $OPENGROK_JAR -W $OPENGROK_CONFIG -c $CTAGS_PATH -P -S -v -s $OPENGROK_PROJECT -d $OPENGROK_DATA
