@@ -12,6 +12,7 @@ https://gitee.com/openharmony/kernel_liteos_a.git
 https://gitee.com/openharmony/ace_lite_jsfwk.git
 https://gitee.com/openharmony/communication_services_softbus_lite.git
 https://gitee.com/openharmony/distributedschedule_services_samgr_lite.git
+https://github.com/universal-ctags/ctags.git
 #仿真
 https://github.com/qemu/qemu.git
 #busybox
