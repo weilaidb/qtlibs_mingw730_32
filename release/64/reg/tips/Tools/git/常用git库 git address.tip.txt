@@ -18,10 +18,16 @@ https://github.com/qemu/qemu.git
 wget https://busybox.net/downloads/busybox-1.31.0.tar.bz2
 #这里选择清华源，国内速度会快很多
 wget https://mirrors.tuna.tsinghua.edu.cn/kernel/v4.x/linux-4.5.tar.gz
+https://github.com/universal-ctags/ctags.git
 
 镜像:
 https://gitee.com/mirrors/linux.git
 https://gitee.com/caicry/FFmpeg.Mirrors
+
+本地库:
+#Web部署
+git@gitee.com:weilaidb/web_notebook_online.git
+
 
 
 下载超过1G的库提示失败,
@@ -62,9 +68,3 @@ $ git fetch --unshallow # 拉取完整当前分支
 $ git remote set-branches origin '*' # 追踪所有远程分支
 $ git fetch -v # 拉取所有远程分支
 至此，终于成功地clone了一个完整的仓库。
-
-
-
-
-
-
