@@ -1,3 +1,80 @@
+================================opengrok-1.7.21
+================================opengrok-1.7.21
+================================opengrok-1.7.21
+TOMCAT_PATH=/root/soft/web_notebook_online/apache-tomcat-9.0.54
+TOMCAT_BIN_PATH=$TOMCAT_PATH/bin/
+SOFT_PATH=/root/soft
+WORK_PATH=/root/work
+OPENGROK_PATH=/root/soft/opengrok-1.7.21
+OPENGROK_JAR=$OPENGROK_PATH/lib/opengrok.jar
+OPENGROK_DATA=$WORK_PATH/opengrok/data/
+OPENGROK_PROJECT=$WORK_PATH/git
+OPENGROK_CONFIG=$WORK_PATH/opengrok/configuration.xml
+#CTAGS_PATH=/usr/bin/ctags
+CTAGS_PATH=/usr/local/bin/ctags 
+
+
+#执行命令
+mkdir -p $OPENGROK_DATA
+mkdir -p $OPENGROK_CONFIG
+java -Xmx2048m -jar $OPENGROK_JAR -W $OPENGROK_CONFIG -c $CTAGS_PATH -P -S -v -s $OPENGROK_PROJECT -d $OPENGROK_DATA
+
+#java -jar $OPENGROK_JAR -W $OPENGROK_CONFIG -c $CTAGS_PATH -P -S -v -s $OPENGROK_PROJECT -d $OPENGROK_DATA
+#java -Xmx524m -jar $OPENGROK_JAR -W $OPENGROK_CONFIG -c $CTAGS_PATH -P -S -v -s $OPENGROK_PROJECT -d $OPENGROK_DATA
+
+
+#stop ,then start tomcat 
+cd $TOMCAT_BIN_PATH && sh shutdown.sh 
+cd $TOMCAT_BIN_PATH && sh startup.sh 
+
+#configuration.xml为自动生成的文件，不必须自动创建。
+#configuration.xml为自动生成的文件，不必须自动创建。
+#configuration.xml为自动生成的文件，不必须自动创建。
+
+
+
+
+
+================================opengrok-1.2.22
+================================opengrok-1.2.22
+================================opengrok-1.2.22
+
+TOMCAT_PATH=/root/soft/web_notebook_online/apache-tomcat-9.0.54
+TOMCAT_BIN_PATH=$TOMCAT_PATH/bin/
+SOFT_PATH=/root/soft
+WORK_PATH=/root/work
+OPENGROK_PATH=/root/soft/opengrok-1.2.22
+OPENGROK_JAR=$OPENGROK_PATH/lib/opengrok.jar
+OPENGROK_DATA=$WORK_PATH/opengrok/data/
+OPENGROK_PROJECT=$WORK_PATH/git
+OPENGROK_CONFIG=$WORK_PATH/opengrok/configuration.xml
+#CTAGS_PATH=/usr/bin/ctags
+CTAGS_PATH=/usr/local/bin/ctags 
+
+
+#执行命令
+mkdir -p $OPENGROK_DATA
+mkdir -p $OPENGROK_CONFIG
+java -Xmx2048m -jar $OPENGROK_JAR -W $OPENGROK_CONFIG -c $CTAGS_PATH -P -S -v -s $OPENGROK_PROJECT -d $OPENGROK_DATA
+
+#java -jar $OPENGROK_JAR -W $OPENGROK_CONFIG -c $CTAGS_PATH -P -S -v -s $OPENGROK_PROJECT -d $OPENGROK_DATA
+#java -Xmx524m -jar $OPENGROK_JAR -W $OPENGROK_CONFIG -c $CTAGS_PATH -P -S -v -s $OPENGROK_PROJECT -d $OPENGROK_DATA
+
+
+#stop ,then start tomcat 
+cd $TOMCAT_BIN_PATH && sh shutdown.sh 
+cd $TOMCAT_BIN_PATH && sh startup.sh 
+
+#configuration.xml为自动生成的文件，不必须自动创建。
+#configuration.xml为自动生成的文件，不必须自动创建。
+#configuration.xml为自动生成的文件，不必须自动创建。
+
+
+
+
+
+
+
 必须是universal tags
 tomcat8以上版本
 java1.8以上
