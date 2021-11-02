@@ -1166,6 +1166,7 @@ Tools/svn/order
 Tools/svn/order 忽略多值
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
+Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.7.21
 Tools/生成文件名 filename
 UNITTEST/GTEST/ASSERT_EQ
