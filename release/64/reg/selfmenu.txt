@@ -718,6 +718,7 @@ LINUX/命令行/shutdown
 LINUX/命令行/software/RPM的强制安装和强制卸载
 LINUX/命令行/software/RedHat7配置yum源
 LINUX/命令行/software/install
+LINUX/命令行/software/install 必备软件
 LINUX/命令行/software/rpm
 LINUX/命令行/software/rpm -qa 查询所有安装包
 LINUX/命令行/software/rpm help
@@ -728,6 +729,7 @@ LINUX/命令行/software/rpm命令查询软件包
 LINUX/命令行/software/samba smb.conf
 LINUX/命令行/software/yum
 LINUX/命令行/software/yum install
+LINUX/命令行/software/yum systemctl status start stop
 LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
 LINUX/命令行/屏蔽主机的ping命令
@@ -1165,6 +1167,7 @@ Tools/package 0xdot 添加0x和逗号
 Tools/package 0xdot 自带0x 添加逗号
 Tools/svn/order
 Tools/svn/order 忽略多值
+Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12
