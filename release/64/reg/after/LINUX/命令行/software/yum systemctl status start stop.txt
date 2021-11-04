@@ -1,0 +1,1 @@
+systemctl status \1$NLsystemctl start \1$NLsystemctl stop \1$NL$NL
