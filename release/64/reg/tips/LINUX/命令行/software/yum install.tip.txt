@@ -3,3 +3,9 @@ tomcat8
 
 java-1.8.0-openjdk
 java-11-openjdk
+
+flex
+bison
+
+openssl-devel
+elfutils-devel
