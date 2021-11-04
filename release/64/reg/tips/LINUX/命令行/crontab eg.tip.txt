@@ -1,0 +1,1 @@
+/root/soft/web_notebook_online/script/updategit.atwork.sh ~/work/git/
