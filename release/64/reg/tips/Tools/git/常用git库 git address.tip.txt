@@ -29,7 +29,7 @@ https://gitee.com/caicry/FFmpeg.Mirrors
 本地库:
 #Web部署
 git@gitee.com:weilaidb/web_notebook_online.git
-
+git@github.com:weilaidb/qtlibs_mingw730_32.git
 
 
 下载超过1G的库提示失败,
