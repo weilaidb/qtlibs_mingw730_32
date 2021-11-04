@@ -1,0 +1,1 @@
+[-n不解析主机和端口名，打开影响抓包性能]$NL$NL【指定客户端访问ssh的数据包】$NLtcpdump -ni \1 src \2 and dst port 22$NL$NL【指定客户端访问端口\4的数据包】$NLtcpdump -ni \1 src \2 and dst port \4$NL
