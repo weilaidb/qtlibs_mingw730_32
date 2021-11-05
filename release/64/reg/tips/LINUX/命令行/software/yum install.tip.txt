@@ -9,3 +9,5 @@ bison
 
 openssl-devel
 elfutils-devel
+
+lbzip2
