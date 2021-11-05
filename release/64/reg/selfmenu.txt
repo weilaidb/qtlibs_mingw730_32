@@ -6,12 +6,15 @@ BASH/cdpath
 BASH/chmod
 BASH/echo
 BASH/eg
+BASH/exitcode
 BASH/gitinfo
 BASH/hello
 BASH/printf
 BASH/printf string 1
 BASH/printf string 2
 BASH/printf string 3
+BASH/test -f
+BASH/trap
 BASH/usage
 BASH/usage para1
 BASH/usage para2
