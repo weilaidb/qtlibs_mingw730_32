@@ -28,6 +28,10 @@ https://github.com/oracle/opengrok.git
 https://gitee.com/mirrors/linux.git
 https://gitee.com/caicry/FFmpeg.Mirrors
 
+C++库
+https://boostorg.jfrog.io/ui/native/main/release/1.77.0/source/boost_1_77_0.tar.bz2
+
+
 本地库:
 #Web部署
 git@gitee.com:weilaidb/web_notebook_online.git

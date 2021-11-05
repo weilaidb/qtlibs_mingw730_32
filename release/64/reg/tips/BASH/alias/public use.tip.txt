@@ -14,6 +14,7 @@ alias gitreset="git reset "
 alias gitlog="git log "
 alias gitlognomergespatch="git log --no-merges -p"
 alias gitadd="git add -A "
+alias gitaddchangeauto="git add .&& gitci -m 'add changes for `gitst . | grep modified | awk '{print $2}'`'"
 alias gitpushcurbranch="CURBR=`git branch| awk '{print $2}'` && git push origin $CURBR"
 #for  PATH and other define
 export PATH=$PATH:~/bin

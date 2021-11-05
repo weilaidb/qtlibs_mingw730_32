@@ -9,6 +9,8 @@ alias findlist='find | grep -v .git > findlist'
 alias sourcerootbash='source ~/.bashrc'
 alias findimage='find | grep Image'
 alias yuminstally='yum install -y '
+alias yumlist='yum list '
+alias yumlistgrep='yum list | grep '
 alias eg=''
 
 

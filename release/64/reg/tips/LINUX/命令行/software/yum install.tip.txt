@@ -11,3 +11,9 @@ openssl-devel
 elfutils-devel
 
 lbzip2
+mysql
+docker
+qemu-kvm
+sqlite
+zeromq
+tinyxml
