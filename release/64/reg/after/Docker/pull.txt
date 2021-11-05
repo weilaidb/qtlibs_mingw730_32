@@ -1,0 +1,1 @@
+[获取一个新的镜像]$NLdocker pull \1

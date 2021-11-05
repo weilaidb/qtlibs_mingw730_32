@@ -1,0 +1,2 @@
+下面的命令可以清理掉所有处于终止状态的容器。
+$ docker container prune

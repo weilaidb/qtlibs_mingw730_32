@@ -1,0 +1,1 @@
+docker run \1 /bin/echo "Hello world"$NL
