@@ -8,13 +8,9 @@ alias makelinuxX86="make clean && make defconfig && make && make modules"
 alias findlist='find | grep -v .git > findlist'
 alias sourcerootbash='source ~/.bashrc'
 alias findimage='find | grep Image'
+alias yuminstally='yum install -y '
 alias eg=''
 
 
 #默认加载配置
 source ~/soft/web_notebook_online/env.web.sh
-
-
-
-
-
