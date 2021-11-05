@@ -1,0 +1,1 @@
+[将快照文件 \1 导入到镜像 \2]$NLcat \1 | docker import - test/\2
