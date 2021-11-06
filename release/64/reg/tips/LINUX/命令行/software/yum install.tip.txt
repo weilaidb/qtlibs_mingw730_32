@@ -17,3 +17,4 @@ qemu-kvm
 sqlite
 zeromq
 tinyxml
+p7zip
