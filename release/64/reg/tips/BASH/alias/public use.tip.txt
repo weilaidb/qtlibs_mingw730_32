@@ -1,4 +1,4 @@
-alias killyum='sudo rm -f /var/run/yum.pid'
+alias killyum="sudo rm -f /var/run/yum.pid"
 alias grepnri="grep -nri "
 alias explorer="nautilus --new-window "
 alias gitst="git status -u "
@@ -27,6 +27,14 @@ alias gitaddchangeauto="git add .&& gitci -m 'add changes for `gitst . | grep mo
 alias gitpushcurbranch="CURBR=`git branch| awk '{print $2}'` && git push origin $CURBR"
 #for  PATH and other define
 export PATH=$PATH:~/bin
-export PS1="[\u@\h] \w\n$"
-alias killyum='sudo rm -f /var/run/yum.pid'
+export PS1="[\u@\h] \w\n$ "
+alias killyum="sudo rm -f /var/run/yum.pid"
 alias explorer="nautilus --new-window "
+
+alias makelinuxX86="make clean && make defconfig && make && make modules"
+alias findlist="find | grep -v .git > findlist"
+alias findimage="find | grep Image"
+alias yuminstally="yum install -y "
+alias yumlist="yum list "
+alias yumlistgrep="yum list | grep "
+alias sourcerootbash="source ~/.bashrc"

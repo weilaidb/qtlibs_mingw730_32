@@ -4,15 +4,9 @@ alias cdsoftwebapache='cd ~/soft/web_notebook_online/apache-tomcat-9.0.54'
 alias cdwork='cd ~/work'
 alias cdworkgit='cd ~/work/git'
 alias cdworkgitlinux='cd ~/work/git/linux'
-alias makelinuxX86="make clean && make defconfig && make && make modules"
-alias findlist='find | grep -v .git > findlist'
-alias sourcerootbash='source ~/.bashrc'
-alias findimage='find | grep Image'
-alias yuminstally='yum install -y '
-alias yumlist='yum list '
-alias yumlistgrep='yum list | grep '
+
 alias eg=''
 
 
 #默认加载配置
-source ~/soft/web_notebook_online/env.web.sh
+#source ~/soft/web_notebook_online/env.web.sh
