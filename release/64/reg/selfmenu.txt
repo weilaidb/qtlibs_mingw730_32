@@ -411,6 +411,7 @@ DEFINE/GENERATESTRINGSAME
 DEFINE/UNUSED
 Docker/Bash
 Docker/Hello World
+Docker/JFrog
 Docker/attach
 Docker/container prune
 Docker/exec
@@ -433,6 +434,7 @@ Docker/start
 Docker/stop
 Docker/top
 Docker/xxx(exec) --help
+Docker/自定义docker镜像
 Docker/镜像路径
 FPGA/介绍
 FPGA/介绍 理论
@@ -670,6 +672,8 @@ KERNEL/driver/API/__wake_up
 KERNEL/driver/API/__wake_up_sync
 KERNEL/driver/API/__wake_up_sync_key
 KERNEL/driver/API/add_wait_queue
+KERNEL/driver/API/copy_from_user
+KERNEL/driver/API/copy_to_user
 KERNEL/driver/API/down
 KERNEL/driver/API/find_get_pid
 KERNEL/driver/API/find_module
@@ -716,6 +720,8 @@ KERNEL/调度/最大优先级
 KERNEL/调度/调度策略
 KERNEL/调度/进程标志
 KERNEL/进制相关/hex_to_bin
+KERNEL/进程/asmlinkage
+KERNEL/进程/进程标志 TASK STATUS
 LINUX/CentOS/必备命令 order
 LINUX/CentOS/必备软件 necessary software
 LINUX/Code/ERROR
