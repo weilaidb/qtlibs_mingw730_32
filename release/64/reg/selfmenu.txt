@@ -722,6 +722,7 @@ KERNEL/调度/进程标志
 KERNEL/进制相关/hex_to_bin
 KERNEL/进程/asmlinkage
 KERNEL/进程/进程标志 TASK STATUS
+LINUX/7z
 LINUX/CentOS/必备命令 order
 LINUX/CentOS/必备软件 necessary software
 LINUX/Code/ERROR
