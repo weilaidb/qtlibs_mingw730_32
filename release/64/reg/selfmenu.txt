@@ -348,6 +348,7 @@ CXX/ARRAYSIZE
 CXX/Cout no prar
 CXX/Cout no prara endl
 CXX/Cout_in/cout
+CXX/Cout_in/cout precision 小数点
 CXX/Cout_in/cout size
 CXX/DECLARE_TO_IMPLEMENT
 CXX/DECLARE_TO_IMPLEMENT CLASS
