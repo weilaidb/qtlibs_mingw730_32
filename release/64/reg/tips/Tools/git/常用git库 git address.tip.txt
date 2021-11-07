@@ -35,6 +35,8 @@ C++库
 https://boostorg.jfrog.io/ui/native/main/release/1.77.0/source/boost_1_77_0.tar.bz2
 QEMU
 wget https://download.qemu.org/qemu-2.11.1.tar.xz
+GCC
+wget http://ftp.gnu.org/gnu/gcc/gcc-6.1.0/gcc-6.1.0.tar.gz
 
 本地库:
 #Web部署
@@ -42,6 +44,11 @@ git@gitee.com:weilaidb/web_notebook_online.git
 git@github.com:weilaidb/qtlibs_mingw730_32.git
 git@github.com:weilaidb/linux_driver.git
 git@gitee.com:weilaidb/hello-java-ee3_-ext.git
+https://github.com/weilaidb/qtlibs_mingw730_32.git
+https://gitee.com/weilaidb/qtlibs_mingw730_32.git
+https://gitee.com/weilaidb/web_notebook_online.git
+
+
 
 下载超过1G的库提示失败,
 [weilai@bogon git]$ git clone https://gitee.com/mirrors/linux.git
