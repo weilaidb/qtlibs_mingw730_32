@@ -23,7 +23,7 @@ alias gitlognomergespatchsince2month="git log --no-merges -p --since=2.month"
 alias gitlognomergespatchsince1year="git log --no-merges -p --since=1.year"
 alias gitlognomergespatchsince2year="git log --no-merges -p --since=2.year"
 alias gitadd="git add -A "
-alias gitaddchangeauto="git add .&& gitci -m 'add changes for `gitst . | grep modified | awk '{print $2}'`'"
+alias gitaddchangeauto="sourcerootbash&&git add .&& gitci -m 'add changes for `gitst . | grep modified | awk '{print $2}'`'"
 alias gitpushcurbranch="CURBR=`git branch| awk '{print $2}'` && git push origin $CURBR"
 #for  PATH and other define
 export PATH=$PATH:~/bin
