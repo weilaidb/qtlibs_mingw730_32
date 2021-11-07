@@ -743,6 +743,7 @@ LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备命令 order systemtap
 LINUX/Ubuntu/必备软件 necessary software
 LINUX/Vim/vim实用技巧
+LINUX/qemu
 LINUX/命令行/Centos 7 搭建samba
 LINUX/命令行/Linux 忘记密码解决方法
 LINUX/命令行/Linux 系统目录结构
