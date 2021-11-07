@@ -19,3 +19,6 @@ zeromq
 tinyxml
 p7zip
 dos2unix
+bzip2
+glib2 glib2-devel
+pixman-devel

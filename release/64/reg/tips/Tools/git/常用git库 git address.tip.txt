@@ -23,6 +23,7 @@ wget https://busybox.net/downloads/busybox-1.31.0.tar.bz2
 wget https://mirrors.tuna.tsinghua.edu.cn/kernel/v4.x/linux-4.5.tar.gz
 https://github.com/universal-ctags/ctags.git
 https://github.com/oracle/opengrok.git
+https://gitlab.denx.de/u-boot/u-boot.git
 
 镜像:
 https://gitee.com/mirrors/linux.git
