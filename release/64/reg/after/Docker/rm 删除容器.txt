@@ -1,1 +1,1 @@
-docker rm -f \1
+podman rmi \1$NL#docker rm -f \1
