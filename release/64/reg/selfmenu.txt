@@ -758,6 +758,7 @@ LINUX/命令行/fgrep
 LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
+LINUX/命令行/ln help
 LINUX/命令行/nano
 LINUX/命令行/realpath
 LINUX/命令行/setenforce
