@@ -1,10 +1,13 @@
 alias cdsoft='cd ~/soft'
 alias cdsoftweb='cd ~/soft/web_notebook_online'
 alias cdsoftwebapache='cd ~/soft/web_notebook_online/apache-tomcat-9.0.54'
+alias cdsoftwebapachebin='cd ~/soft/web_notebook_online/apache-tomcat-9.0.54/bin'
 alias cdwork='cd ~/work'
 alias cdworkgit='cd ~/work/git'
 alias cdworkgitlinux='cd ~/work/git/linux'
 alias cdworkgitqtlibs='cd ~/work/git/qtlibs_mingw730_32'
+alias tomcatstart='cdsoftwebapachebin && sh startup.sh'
+alias tomcatstop='cdsoftwebapachebin && sh shutdown.sh'
 
 alias eg=''
 
