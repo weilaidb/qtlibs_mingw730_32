@@ -17,6 +17,8 @@ alias gitresetheadn="git reset HEAD~"
 alias gitlog="git log "
 #merges的显示补丁diff
 alias gitlogpatchall="git log -p -m "
+alias gitlogpatchallsinceoneday="git log -p -m --since=1.day"
+alias gitlogpatchallsinceoneweek="git log -p -m --since=1.week"
 alias gitlogpatchallgraph="git log -p -m --graph --all "
 #只显示修改的文件，不显示commit id和commit message?
 alias gitlognameonly="git log --name-only --format='' "
