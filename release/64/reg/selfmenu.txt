@@ -1202,6 +1202,7 @@ Tools/git/git log after until
 Tools/git/git log author
 Tools/git/git log committer
 Tools/git/git log graph
+Tools/git/git log help
 Tools/git/git log pretty
 Tools/git/git log pretty=format help
 Tools/git/git log pretty酷
