@@ -1,3 +1,4 @@
+alias sr="sourcerootbash"
 alias sourcerootbash="source ~/.bashrc"
 alias killyum="sudo rm -f /var/run/yum.pid"
 alias grepnri="grep -nri "
@@ -58,3 +59,7 @@ alias yuminstally="yum install -y "
 alias yumremove="yum remove "
 alias yumlist="yum list "
 alias yumlistgrep="yum list | grep "
+
+
+alias lslt="ls -lt"
+alias lslh="ls -lh"
