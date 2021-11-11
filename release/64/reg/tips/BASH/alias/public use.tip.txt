@@ -78,3 +78,8 @@ alias dockerpull="docker pull "
 alias dockerstop="docker stop "
 alias dockerstart="docker start "
 alias dockertop="docker top "
+
+
+
+#python
+alias jupyternotebookroot="jupyter notebook --allow-root "

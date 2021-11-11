@@ -1,3 +1,7 @@
+jupyternotebookroot;jupyter notebook --allow-root
+
+
+
 dockerimages;docker images
 dockerps;docker ps
 dockerrun;docker run -i -t 

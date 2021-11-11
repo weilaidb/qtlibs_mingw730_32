@@ -1033,6 +1033,8 @@ Python/idea配置说明
 Python/main
 Python/pyQt5_import
 Python/soft/pip install -Ur requirements.txt
+Python/soft/pip install 安装
+Python/soft/pip jupyter notebook
 Python/soft/python -m pip install --upgrade pip
 Python/引用其它目录
 Python/时间/引用头
