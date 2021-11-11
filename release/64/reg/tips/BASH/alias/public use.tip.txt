@@ -64,3 +64,17 @@ alias yumlistgrep="yum list | grep "
 alias lslt="ls -lt"
 alias lslh="ls -lh"
 alias cd..="cd .."
+
+
+#docker
+alias dockerimages="docker images "
+alias dockerps="docker ps "
+alias dockerrun="docker run -i -t "
+alias dockerexec="docker exec -it "
+alias dockerattach="docker attach "
+alias dockerinfo="docker info "
+alias dockerlogs="docker logs "
+alias dockerpull="docker pull "
+alias dockerstop="docker stop "
+alias dockerstart="docker start "
+alias dockertop="docker top "

@@ -1,3 +1,27 @@
+dockerimages;docker images
+dockerps;docker ps
+dockerrun;docker run -i -t 
+dockerexec;docker exec -it 
+dockerattach;docker attach 
+dockerinfo;docker info
+dockerlogs;docker logs
+dockerpull;docker pull
+dockerstop;docker stop
+dockerstart;docker start
+dockertop;docker top
+
+
+
+
+
+
+
+
+
+
+
+
+
 cd..;cd ..
 lslh;ls -lh
 
