@@ -433,6 +433,7 @@ Docker/ps -l
 Docker/pull
 Docker/restart
 Docker/rm 删除容器
+Docker/run
 Docker/run -itd --name
 Docker/start
 Docker/stop

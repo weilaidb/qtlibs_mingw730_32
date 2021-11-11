@@ -1,3 +1,4 @@
+cd..;cd ..
 lslh;ls -lh
 
 lslt;ls -lt
