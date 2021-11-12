@@ -1019,6 +1019,7 @@ Pthread/pthread_mutex
 Pthread/pthread_once
 Python/API/exec_command
 Python/Lambda/test
+Python/List/for
 Python/Map/para1 test
 Python/Map/para2 multiplier_func
 Python/Map/para2 square
@@ -1037,6 +1038,7 @@ Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
 Python/soft/pip jupyter notebook
 Python/soft/python -m pip install --upgrade pip
+Python/test/ssh
 Python/引用其它目录
 Python/时间/引用头
 Python/示例/字符串转 md5
