@@ -1017,6 +1017,7 @@ PhotoShop/常用快捷键 shortcut 2
 Pthread/Create
 Pthread/pthread_mutex
 Pthread/pthread_once
+Python/API/datetime
 Python/API/exec_command
 Python/Lambda/test
 Python/List/for
@@ -1034,6 +1035,13 @@ Python/idea快捷键
 Python/idea配置说明
 Python/main
 Python/pyQt5_import
+Python/qt/print
+Python/qt/pyQt5 button btn
+Python/qt/pyQt5 checkbox
+Python/qt/pyQt5 import
+Python/qt/pyQt5 main
+Python/qt/pyQt5 main2
+Python/qt/pyQt5 textedit
 Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
 Python/soft/pip jupyter notebook

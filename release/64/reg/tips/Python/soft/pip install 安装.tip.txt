@@ -1,3 +1,4 @@
 jupyter
 paramiko
 PyQt5
+PyQt5-tools
