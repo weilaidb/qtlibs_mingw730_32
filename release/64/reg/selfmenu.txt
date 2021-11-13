@@ -1019,6 +1019,11 @@ Pthread/pthread_mutex
 Pthread/pthread_once
 Python/API/datetime
 Python/API/exec_command
+Python/API/file read write
+Python/API/thread
+Python/API/thread2
+Python/API/thread3
+Python/API/thread4
 Python/Lambda/test
 Python/List/for
 Python/Map/para1 test
@@ -1033,14 +1038,18 @@ Python/header
 Python/header import
 Python/idea快捷键
 Python/idea配置说明
+Python/list/列表大小 len
 Python/main
 Python/pyQt5_import
 Python/qt/print
 Python/qt/pyQt5 button btn
 Python/qt/pyQt5 checkbox
+Python/qt/pyQt5 file
 Python/qt/pyQt5 import
 Python/qt/pyQt5 main
 Python/qt/pyQt5 main2
+Python/qt/pyQt5 signal slot
+Python/qt/pyQt5 signal slot custom自定义信号
 Python/qt/pyQt5 textedit
 Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
