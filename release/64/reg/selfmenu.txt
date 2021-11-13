@@ -1058,6 +1058,7 @@ Python/soft/pip qt5目录及相关
 Python/soft/python -m pip install --upgrade pip
 Python/test/ssh
 Python/引用其它目录
+Python/打包/pyinstaller
 Python/时间/引用头
 Python/示例/字符串转 md5
 Python/示例/网络/2/客户端
