@@ -47,7 +47,7 @@ git@gitee.com:weilaidb/hello-java-ee3_-ext.git
 https://github.com/weilaidb/qtlibs_mingw730_32.git
 https://gitee.com/weilaidb/qtlibs_mingw730_32.git
 https://gitee.com/weilaidb/web_notebook_online.git
-
+git@gitee.com:weilaidb/python_example.git
 
 
 下载超过1G的库提示失败,
