@@ -1042,6 +1042,7 @@ Python/list/列表大小 len
 Python/main
 Python/pyQt5_import
 Python/qt/print
+Python/qt/pyQt5 app ico程序图标
 Python/qt/pyQt5 button btn
 Python/qt/pyQt5 checkbox
 Python/qt/pyQt5 file

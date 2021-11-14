@@ -1,0 +1,16 @@
+只需要一行代码： 
+
+main_window.setWindowIcon(QIcon("path/to/your/ico.ico"))
+并不需要网上说的将ico文件添加到qrc文件再使用pyrcc5转_rc.py。
+
+
+
+ def setLogo(self):
+    try:
+        if ~(os.path.exists("C:\\Logo.ico")):
+            url = "https://gitee.com/xdd1997/Download-or-Picture/raw/master/Logo.ico"
+            filepath = "C:\\Logo.ico"
+            urllib.request.urlretrieve(url, filepath)
+        self.setWindowIcon(QIcon('C:\\Logo.ico'))
+    except:
+        print("设置图标失败")
