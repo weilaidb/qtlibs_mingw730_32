@@ -1,3 +1,6 @@
+gitsubmoduleupdateremote;git submodule update --remote 
+gitsubmoduleupdate;git submodule update
+gitsubmoduleadd;git submodule add https://github.com/test/subb.git modules/subb
 gitclonerecursive;git clone --recursive
 gitclone;git clone
 
