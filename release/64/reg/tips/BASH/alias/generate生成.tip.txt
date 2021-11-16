@@ -1,3 +1,6 @@
+gitclonerecursive;git clone --recursive
+gitclone;git clone
+
 jupyternotebookroot;jupyter notebook --allow-root
 jupyternotebookrootnohup;nohup jupyter notebook --allow-root > jupyter.log 2>&1 &
 

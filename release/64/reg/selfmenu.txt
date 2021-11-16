@@ -1036,6 +1036,7 @@ Python/from_xxx_import_all
 Python/gc
 Python/header
 Python/header import
+Python/header import as
 Python/idea快捷键
 Python/idea配置说明
 Python/list/列表大小 len
