@@ -1032,6 +1032,8 @@ Python/Map/para2 square
 Python/Map/test
 Python/PYTHONPATH
 Python/Print
+Python/Print 2 to 3
+Python/Print 注释
 Python/from_xxx_import_all
 Python/gc
 Python/header
