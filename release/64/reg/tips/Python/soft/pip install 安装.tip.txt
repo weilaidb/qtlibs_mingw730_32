@@ -4,4 +4,6 @@ PyQt5
 PyQt5-tools
 pyinstaller
 
+[web框架]
 django
+Flask

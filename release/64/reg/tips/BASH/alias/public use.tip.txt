@@ -90,3 +90,4 @@ alias dockertop="docker top "
 #python
 alias jupyternotebookroot="jupyter notebook --allow-root "
 alias jupyternotebookrootnohup="nohup jupyter notebook --allow-root > jupyter.log 2>&1 & "
+alias flaskrun0="flask run --host=0.0.0.0 "

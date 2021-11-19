@@ -1,3 +1,5 @@
+flaskrun0;flask run --host=0.0.0.0
+
 gitsubmoduleupdateremote;git submodule update --remote 
 gitsubmoduleupdate;git submodule update
 gitsubmoduleadd;git submodule add https://github.com/test/subb.git modules/subb
