@@ -69,6 +69,8 @@ alias yumlistgrep="yum list | grep "
 
 alias lslt="ls -lt"
 alias lslh="ls -lh"
+alias llt="ls -lt"
+alias llh="ls -lh"
 alias cd..="cd .."
 
 
@@ -84,10 +86,12 @@ alias dockerpull="docker pull "
 alias dockerstop="docker stop "
 alias dockerstart="docker start "
 alias dockertop="docker top "
-
+alias dockerversin="docker --version "
 
 
 #python
 alias jupyternotebookroot="jupyter notebook --allow-root "
 alias jupyternotebookrootnohup="nohup jupyter notebook --allow-root > jupyter.log 2>&1 & "
 alias flaskrun0="flask run --host=0.0.0.0 "
+alias pipinstall3="pip3 install "
+alias pipinstall="pip install "
