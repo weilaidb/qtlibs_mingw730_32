@@ -1,1 +1,2 @@
-<input type="hidden" value="喜欢世界杯!" name="secret">
+secret;喜欢世界杯!
+selectitem;<%=selectitem%>
