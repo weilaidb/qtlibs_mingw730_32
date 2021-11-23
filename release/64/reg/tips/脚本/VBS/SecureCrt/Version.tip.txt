@@ -1,0 +1,7 @@
+# $language = "VBScript"
+# $interface = "1.0"
+
+Sub Main
+  ' Display SecureCRT's version
+  MsgBox "SecureCRT version is: " & crt.Version
+End Sub
