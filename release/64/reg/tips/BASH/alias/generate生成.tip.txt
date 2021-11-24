@@ -1,5 +1,5 @@
 gitpullprogress;git pull --progress -v --no-rebase "origin"
-
+gitclean;git clean -df
 
 
 pipinstall3;pip3 install 
