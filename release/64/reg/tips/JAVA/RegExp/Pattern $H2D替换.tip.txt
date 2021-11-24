@@ -1,0 +1,68 @@
+//处理扩展特别字符串，比如$H2D 等
+    public static String procSpecialSignExtReplace(String str)
+    {
+        System.out.println("===>procSpecialSignExtReplace");
+//        System.out.println("str: " + str);
+
+        List<String> sepList = CStringPub.string2ListEnter(str);
+        List<String> resultList = CStringPub.emptyStringList();
+
+        List<String> formatTables  = new ArrayList<String>();
+        //$H2D
+        formatTables.add("\\$H2D\\(([^)]*)\\)");
+        for (String item :
+                formatTables) {
+            String pattern = item;
+            int reFlags = 0;
+            reFlags |= Pattern.DOTALL;
+            
+//            System.out.println("pattern: " + pattern);
+//            System.out.println("pattern.length():" + pattern.length());
+
+            String newLine = "";
+            //字符串形成的列表循环
+            for (String line :
+                    sepList) {
+                try{
+                    newLine = line;
+                    Pattern r = Pattern.compile(pattern, reFlags);
+                    // 现在创建 matcher 对象
+                    Matcher m = r.matcher(line);
+                    boolean findFlag = false;
+                    //m.find()或m.matches()只能调用一次，再次调用就可能为false了。
+                    while (m.find()) {
+                        findFlag = true;
+                        System.out.println("seq:" + m.group());
+                        for (int i = 0; i < m.groupCount(); i++) {
+                            System.out.println("Found value[" + i + "]: " + m.group(i));
+                            String OrgH2DText = m.group(i);
+                            String H2DText = OrgH2DText.replace("$H2D", "")
+                                    .replace("(","")
+                                    .replace(")","");
+                            Integer DecNum = Integer.parseInt(H2DText,16);
+                            String DecNumText = Integer.toString(DecNum);
+                            newLine = newLine.replace(OrgH2DText, DecNumText);
+                        }
+
+                    }
+
+                    if(findFlag == false)
+                    {
+                        resultList.add(line);
+                    }
+                    else
+                    {
+                        resultList.add(newLine);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+
+        }
+
+        return CStringPub.list2StringEnter(resultList);
+    }
