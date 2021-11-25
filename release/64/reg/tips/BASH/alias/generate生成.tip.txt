@@ -1,3 +1,4 @@
+gitremotev;git remote -v
 gitpullprogress;git pull --progress -v --no-rebase "origin"
 gitclean;git clean -df
 

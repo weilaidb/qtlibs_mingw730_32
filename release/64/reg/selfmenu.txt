@@ -336,6 +336,7 @@ C/new/__attribute__/TEXT
 C/new/__attribute__/__align__
 C/new/__attribute__/__sect__
 C/new/__attribute__/always_inline
+C/new/dynamiclib/open libso
 C/new/return int
 C/new/return unsigned int
 C/new/return unsigned short
@@ -660,6 +661,7 @@ KERNEL/GCC/__aligned
 KERNEL/GCC/__attribute__
 KERNEL/GCC/__attribute__ noreturn
 KERNEL/GCC/参数列表
+KERNEL/GCC/参数列表 -Wl,-Bsymbolic
 KERNEL/LIST_HEAD
 KERNEL/basetype
 KERNEL/driver/API/EXPORT_SYMBOL
