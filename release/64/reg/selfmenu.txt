@@ -185,6 +185,7 @@ C/API/gettimeofday
 C/API/gettimeofday 说明
 C/API/localtime 非线程安全
 C/API/localtime_r 线程安全
+C/API/memalign
 C/API/memset pointer
 C/API/memset sizeof array
 C/API/memset sizeof struct
@@ -194,6 +195,7 @@ C/API/memset_s struct
 C/API/nlcount
 C/API/oops
 C/API/pfile
+C/API/posix_memalign
 C/API/snprintf
 C/API/snprintf 2
 C/API/srandom
