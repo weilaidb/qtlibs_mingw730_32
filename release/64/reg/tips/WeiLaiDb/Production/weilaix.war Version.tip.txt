@@ -1,5 +1,13 @@
-JAVA WAR下载地址
+1.JAVA WAR下载地址
 https://codeload.github.com/weilaidb/jsp/zip/war.weilaix
 
-网页“复制”功能时，存在以下文件时，存储到standmenu,不存在存储到usermenu。
+2.网页“复制”功能时，存在以下文件时，存储到standmenu,不存在存储到usermenu。
 reg\setting\standmenuflag.txt
+
+
+3.报文通用处理规则项
+PACKET Parse/General Rules
+示例eg:左侧为类型，右侧为占用的字节数
+WORD16;2
+WORD32;4
+BYTE;1

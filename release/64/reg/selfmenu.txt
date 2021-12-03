@@ -868,6 +868,7 @@ OS/WIN7/安装系统常见问题
 Office/Excel/Macro/SpellNumber
 PACKET Parse/ARP
 PACKET Parse/Ethernet II
+PACKET Parse/General Rules
 PACKET Parse/HTTP
 PACKET Parse/ICMP
 PACKET Parse/ICMP destination unreachable
