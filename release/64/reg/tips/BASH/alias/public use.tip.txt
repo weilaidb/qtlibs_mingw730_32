@@ -98,3 +98,5 @@ alias jupyternotebookrootnohup="nohup jupyter notebook --allow-root > jupyter.lo
 alias flaskrun0="flask run --host=0.0.0.0 "
 alias pipinstall3="pip3 install "
 alias pipinstall="pip install "
+alias pipuninstall="pip uninstall "
+alias websshstart="python3 manage.py runserver 0.0.0.0:8000 "

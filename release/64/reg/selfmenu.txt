@@ -1067,8 +1067,10 @@ Python/qt/pyQt5 signal slot custom自定义信号
 Python/qt/pyQt5 textedit
 Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
+Python/soft/pip install 安装 with http
 Python/soft/pip jupyter notebook
 Python/soft/pip qt5目录及相关
+Python/soft/pip uninstall 卸载
 Python/soft/python -m pip install --upgrade pip
 Python/test/ssh
 Python/引用其它目录

@@ -1,3 +1,5 @@
+websshstart;python3 manage.py runserver 0.0.0.0:8000
+
 gitremotev;git remote -v
 gitpullprogress;git pull --progress -v --no-rebase "origin"
 gitclean;git clean -df
