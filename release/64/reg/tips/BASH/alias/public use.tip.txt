@@ -27,7 +27,7 @@ alias gitresethead2="git reset HEAD~2"
 alias gitresetheadn="git reset HEAD~"
 alias gitlog="git log "
 #merges的显示补丁diff
-alias gitlogpatchall="git log -p -m "f
+alias gitlogpatchall="git log -p -m "
 alias gitlogpatchallsinceoneday="git log -p -m --since=1.day"
 alias gitlogpatchallsinceoneweek="git log -p -m --since=1.week"
 alias gitlogpatchallgraph="git log -p -m --graph --all "

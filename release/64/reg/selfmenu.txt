@@ -450,6 +450,7 @@ FPGA/介绍 理论
 FPGA/开发板/ALINX/AX7020
 FPGA/术语 shuyu
 FPGA/示例/Led
+FPGA/视频及资料网址
 FPGA/语法code new/architecture
 FPGA/语法code new/constant
 FPGA/语法code new/data type convert
@@ -1075,10 +1076,12 @@ Python/soft/python -m pip install --upgrade pip
 Python/test/ssh
 Python/引用其它目录
 Python/打包/pyinstaller
+Python/打包/pyinstaller script
 Python/时间/引用头
 Python/示例/字符串转 md5
 Python/示例/网络/2/客户端
 Python/示例/网络/2/服务端
+Python/示例/网络/webssh
 Python/示例/网络/客户端
 Python/示例/网络/服务端
 Python/语法/pyQt5/创建Action
@@ -1331,6 +1334,8 @@ path路径/Android手机拷贝路径
 宏Macro/Source insight/new macro
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
+术语/C/宏和内联函数的区别
+术语/C/宏和内联函数的区别2
 术语/Linux/FIB Forward Information Base
 术语/内核Kernel/常见名词
 术语/异或

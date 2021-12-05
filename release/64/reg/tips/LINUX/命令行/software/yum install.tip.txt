@@ -26,3 +26,5 @@ ninja-build
 libxml2-devel xmlsec1-devel xmlsec1-openssl-devel libtool-ltdl-devel
 
 lrzsz
+telnet
+telnet-server
