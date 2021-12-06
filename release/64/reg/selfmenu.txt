@@ -445,6 +445,14 @@ Docker/top
 Docker/xxx(exec) --help
 Docker/自定义docker镜像
 Docker/镜像路径
+FPGA/new/delay 延时
+FPGA/new/eg
+FPGA/new/initial
+FPGA/new/input
+FPGA/new/module endmodule
+FPGA/new/output
+FPGA/new/reg
+FPGA/new/timescale
 FPGA/介绍
 FPGA/介绍 理论
 FPGA/开发板/ALINX/AX7020
