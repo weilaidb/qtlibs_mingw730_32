@@ -1,0 +1,8 @@
+查看进程的调度算法和优先级
+$ chrt -p 3
+pid 3's current scheduling policy: SCHED_OTHER
+pid 3's current scheduling priority: 0
+
+$ chrt -p 13
+pid 13's current scheduling policy: SCHED_FIFO
+pid 13's current scheduling priority: 99

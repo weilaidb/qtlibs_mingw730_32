@@ -1,0 +1,31 @@
+chrt --fifo 20 md5sum /dev/zero &
+
+
+消耗的CPU较多
+
+top - 22:14:04 up  1:17,  4 users,  load average: 6.13, 3.07, 1.80
+Tasks: 146 total,   4 running, 140 sleeping,   0 stopped,   2 zombie
+%Cpu(s): 93.8 us,  3.5 sy,  0.0 ni,  2.3 id,  0.0 wa,  0.3 hi,  0.0 si,  0.0 st
+MiB Mem :   3582.5 total,    108.1 free,   1373.9 used,   2100.5 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   1925.8 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                       
+   1065 jenkins   20   0 3634396 648672  25940 S   0.0  17.7   0:28.35 java                                          
+   1654 root      20   0 3541632 490392  19280 S   0.0  13.4   0:15.92 java                                          
+    555 polkitd   20   0 1528484  24972  16696 S   0.0   0.7   0:00.04 polkitd                                       
+    543 nscd      20   0 1064316   3816   3292 S   0.0   0.1   0:00.09 nscd                                          
+   1042 root      20   0  806128  12184   8200 S   0.0   0.3   0:02.36 aliyun-service                                
+    738 root      20   0  479544  29408  14108 S   0.0   0.8   0:00.41 tuned                                         
+    732 root      20   0  471596  18548  16144 S   0.0   0.5   0:00.09 NetworkManager                                
+   1731 root      20   0  327508  67244  17248 S   0.0   1.8   0:00.67 jupyter-noteboo                               
+   2132 root      20   0  305960  18808  15380 S   0.0   0.5   0:00.05 smbd                                          
+   1241 root      20   0  304504  27964  24564 S   0.0   0.8   0:00.05 smbd                                          
+   1329 root      20   0  304488  11252   7852 S   0.0   0.3   0:00.00 lpqd                                          
+   1326 root      20   0  297000   6208   3052 S   0.0   0.2   0:00.00 cleanupd                                      
+   1325 root      20   0  296992  10752   7596 S   0.0   0.3   0:00.00 smbd-notifyd                                  
+   1035 root      20   0  284748  17424  14832 S   0.0   0.5   0:00.07 nmbd                                          
+    752 root      20   0  268304   2804   2120 S   0.0   0.1   0:00.00 gssproxy                                      
+   1039 root      20   0  230404  23624   9856 S   0.0   0.6   0:00.28 rsyslogd                                      
+  48890 root      20   0  227016   4588   3936 R   0.0   0.1   0:01.64 top                                           
+  49500 root     -21   0  223960   1676   1384 R  95.3   0.0   3:52.94 md5sum                                        
+  49602 root      20   0  223960   1648   1356 R  99.3   0.0   0:55.03 md5sum

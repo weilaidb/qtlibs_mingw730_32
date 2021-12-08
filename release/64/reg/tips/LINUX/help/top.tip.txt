@@ -1,0 +1,10 @@
+top
+按1，显示多CPU
+
+
+top - 22:23:18 up  1:26,  4 users,  load average: 4.21, 7.68, 4.71
+Tasks: 144 total,   1 running, 141 sleeping,   0 stopped,   2 zombie
+%Cpu0  :  0.3 us,  0.3 sy,  0.0 ni, 98.7 id,  0.0 wa,  0.3 hi,  0.3 si,  0.0 st
+%Cpu1  :  0.0 us,  0.3 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   3582.5 total,    104.1 free,   1374.4 used,   2104.0 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   1925.4 avail Mem

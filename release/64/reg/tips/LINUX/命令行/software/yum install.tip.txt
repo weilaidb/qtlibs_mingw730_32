@@ -33,3 +33,9 @@ telnet-server
 libcgroup
 libcgroup-tools
 libcgroup-pam
+
+systemtap
+systemtap-runtime
+kernel-devel
+kernel-debug
+gcc

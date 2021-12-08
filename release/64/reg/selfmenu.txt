@@ -768,8 +768,16 @@ LINUX/Ubuntu/必备软件 necessary software
 LINUX/Vim/vim实用技巧
 LINUX/help/HZ
 LINUX/help/cgroup cgconfig
+LINUX/help/chrt
 LINUX/help/ps
+LINUX/help/systemtap
+LINUX/help/top
 LINUX/help/vmstat
+LINUX/man/chrt
+LINUX/man/chrt --fifo
+LINUX/man/chrt -m
+LINUX/man/chrt -p
+LINUX/man/systemtap
 LINUX/man/vmstat
 LINUX/qemu
 LINUX/qemu 虚拟机的使用
@@ -811,6 +819,7 @@ LINUX/命令行/software/yum install
 LINUX/命令行/software/yum systemctl status start stop
 LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
+LINUX/命令行/version
 LINUX/命令行/vmstat
 LINUX/命令行/vmstat help
 LINUX/命令行/wget
