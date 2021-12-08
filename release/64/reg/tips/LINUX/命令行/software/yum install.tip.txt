@@ -28,3 +28,8 @@ libxml2-devel xmlsec1-devel xmlsec1-openssl-devel libtool-ltdl-devel
 lrzsz
 telnet
 telnet-server
+
+[setting limits for courol groups]
+libcgroup
+libcgroup-tools
+libcgroup-pam

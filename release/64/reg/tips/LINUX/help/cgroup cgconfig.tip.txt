@@ -1,0 +1,5 @@
+service cgconfig status
+service cgconfig restart
+
+#配置文件
+cat /etc/cgconfig.conf

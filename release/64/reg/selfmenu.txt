@@ -766,6 +766,11 @@ LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备命令 order systemtap
 LINUX/Ubuntu/必备软件 necessary software
 LINUX/Vim/vim实用技巧
+LINUX/help/HZ
+LINUX/help/cgroup cgconfig
+LINUX/help/ps
+LINUX/help/vmstat
+LINUX/man/vmstat
 LINUX/qemu
 LINUX/qemu 虚拟机的使用
 LINUX/uboot
@@ -780,6 +785,10 @@ LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
 LINUX/命令行/ln help
+LINUX/命令行/lscpu
+LINUX/命令行/mpstat help
+LINUX/命令行/mpstat 查看CPU 实时系统监控工具
+LINUX/命令行/mpstat 查看CPU 实时系统监控工具 2
 LINUX/命令行/nano
 LINUX/命令行/nohup
 LINUX/命令行/realpath
@@ -802,6 +811,8 @@ LINUX/命令行/software/yum install
 LINUX/命令行/software/yum systemctl status start stop
 LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
+LINUX/命令行/vmstat
+LINUX/命令行/vmstat help
 LINUX/命令行/wget
 LINUX/命令行/屏蔽主机的ping命令
 LINUX/命令行/快捷键 shortcut

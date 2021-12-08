@@ -68,6 +68,8 @@ alias yuminstally="yum install -y "
 alias yumremove="yum remove "
 alias yumlist="yum list "
 alias yumlistgrep="yum list | grep "
+alias yumlistinstalled="yum list installed "
+alias yumlistinstalledgrep="yum list installed | grep "
 
 
 alias lslt="ls -lt"
