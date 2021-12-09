@@ -788,7 +788,9 @@ LINUX/命令行/Linux 系统目录结构
 LINUX/命令行/SELinux配置文件
 LINUX/命令行/crontab
 LINUX/命令行/crontab eg
+LINUX/命令行/eg
 LINUX/命令行/fgrep
+LINUX/命令行/getconf
 LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
@@ -817,6 +819,7 @@ LINUX/命令行/software/samba smb.conf
 LINUX/命令行/software/yum
 LINUX/命令行/software/yum install
 LINUX/命令行/software/yum systemctl status start stop
+LINUX/命令行/strace and ltrace
 LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
 LINUX/命令行/version
