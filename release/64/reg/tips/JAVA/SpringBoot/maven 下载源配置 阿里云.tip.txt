@@ -1,0 +1,35 @@
+D:\Program Files\JetBrains\IntelliJ IDEA 2019.3\plugins\maven\lib\maven3\conf\settings.xml
+
+D:\Program Files\JetBrains\IntelliJ IDEA 2019.3\plugins\maven\lib\maven2\conf\settings.xml
+
+
+
+
+==修改此配置文件，将镜像内容写成如下的
+https://developer.aliyun.com/mirror/maven
+https://developer.aliyun.com/mvn/guide
+
+！！！gradle也是类似的配置
+
+
+<mirrors> 
+       <!-- mirror  -->
+      <!-- | Specifies a repository mirror site to use instead of a given repository. The repository that  -->
+      <!-- | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used  -->
+      <!-- | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.  -->
+      <!-- |  -->
+     <!-- <mirror>  -->
+       <!-- <id>mirrorId</id>  -->
+       <!-- <mirrorOf>repositoryId</mirrorOf>  -->
+       <!-- <name>Human Readable Name for this Mirror.</name>  -->
+       <!-- <url>http://my.repository.com/repo/path</url>  -->
+     <!-- </mirror>  -->
+    
+    <mirror>
+        <id>aliyunmaven</id>
+        <mirrorOf>*</mirrorOf>
+        <name>阿里云公共仓库</name>
+        <url>https://maven.aliyun.com/repository/public</url>
+    </mirror>
+
+   </mirrors>

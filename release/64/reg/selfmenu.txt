@@ -620,8 +620,12 @@ JAVA/RegExp/Pattern $H2D替换
 JAVA/SpringBoot/application.properties 修改端口
 JAVA/SpringBoot/application.yml 修改端口
 JAVA/SpringBoot/http
+JAVA/SpringBoot/localhost
+JAVA/SpringBoot/maven 下载源配置 阿里云
 JAVA/SpringBoot/run jar
+JAVA/SpringBoot/术语
 JAVA/SpringBoot/简介
+JAVA/SpringBoot/简介2
 JAVA/class/static
 JAVA/css/include引用
 JAVA/print/println
