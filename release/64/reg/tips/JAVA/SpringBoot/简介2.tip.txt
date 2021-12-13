@@ -1,3 +1,11 @@
+本节示例工程源代码位于
+https://github.com/KotlinSpringBoot/demo0_hello_world
+
+git Clone:
+https://github.com/KotlinSpringBoot/demo0_hello_world.git
+
+
+
 目录文件简单说明如下：
 ·build.gradle——Gradle工程项目配置文件。
 ·src/main/java——项目Java源代码目录。

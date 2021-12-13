@@ -49,7 +49,7 @@ https://github.com/leffss/django-webssh
 
 SprintBoot:
 https://github.com/Easy-SpringBoot
-
+https://github.com/KotlinSpringBoot/demo0_hello_world
 
 本地库:
 #Web部署
@@ -64,6 +64,8 @@ git@gitee.com:weilaidb/python_example.git
 git@gitee.com:weilaidb/cpp_eg.git
 git@github.com:weilaidb/django-webssh.git
 git@gitee.com:weilaidb/web-telnet.git
+git@github.com:weilaidb/demo0_hello_world.git
+
 
 下载超过1G的库提示失败,
 [weilai@bogon git]$ git clone https://gitee.com/mirrors/linux.git
