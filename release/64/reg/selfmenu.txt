@@ -655,6 +655,8 @@ JAVA/基本语句/List String Sort Uniq
 JAVA/基本语句/List String []互转
 JAVA/基本语句/String类常用方法
 JAVA/基本语句/main
+JAVA/基本语句/反射
+JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
 JavaScript/include引用
 JavaScript/src引用
