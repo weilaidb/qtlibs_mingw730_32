@@ -4,6 +4,20 @@
 @ComponentScan
 @Autowired
 @Configuration
+
+@ConditionalOnClass({ freemarker.template.Configuration.class,
+　　　　FreeMarkerConfigurationFactory.class })
+@EnableConfigurationProperties(FreeMarkerProperties.class)
+@Import({ FreeMarkerServletWebConfiguration.class,
+　　　　FreeMarkerReactiveWebConfiguration.class, FreeMarkerNonWebConfigura
+　　　　　　tion.class })
+@ConfigurationProperties(prefix = "spring.freemarker")
+@Configuration
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+@ConditionalOnClass({ Servlet.class, FreeMarkerConfigurer.class })
+@AutoConfigureAfter(WebMvcAutoConfiguration.class)
+
+
 @Conditional
 @ConditionalOnBean
 @ConditionalOnClass
@@ -11,12 +25,17 @@
 @ConditionalOnMissingBean
 @ConditionalOnMissingClass
 @ConditionalOnNotWebApplication
+@EnableAutoConfiguration
+@Profile
 @RequestMapping("/hello")
 @ResponseBody
+
 @Override
 
 @ComponentScan(basePackages = { "com.easy.Spring Boot"})
 @EnableWebMvc // 启用 WebMVC 配置
+
+
 
 
 
@@ -41,3 +60,25 @@
  --当类路径上不存在某个class的时候，才会实例化一个Bean
 @ConditionalOnNotWebApplication
  --当不是一个Web应用时
+
+
+3.3.1 @EnableAutoConfiguration注解
+Spring Boot中通过@EnableAutoConfiguration启用Spring应用程序上下文的自动配置，这个注解会导入一个EnableAutoConfigurationImportSelector的类，而AutoConfigurationImportSelector这个类会去读取一个spring.factories下key为EnableAutoConfiguration对应的类全限定名的值。其中的关键代码如下：
+protected List<String> getCandidateConfigurations(AnnotationMetadata metadata,
+　　　　AnnotationAttributes attributes) {
+　　List<String> configurations = SpringFactoriesLoader.loadFactoryNames(
+　　　　　　getSpringFactoriesLoaderFactoryClass(), getBeanClassLoader());
+　　Assert.notEmpty(configurations,
+　　　　　　"No auto configuration classes found in META-INF/spring.factories.
+　　　　　　　　If you "
+　　　　　　　　　　+ "are using a custom packaging, make sure that file
+　　　　　　　　　　　　is correct.");
+　　return configurations;
+}
+这个spring.factories里面配置的那些类，主要作用是告诉Spring Boot这个stareter所需要加载的那些*AutoConfiguration类，也就是你真正的要自动注册的那些Bean或功能。然后，再实现一个spring.factories指定的类，标上@Configuration注解，一个starter就定义完了。通过org.springframework.boot.autoconfigure.AutoConfigurationImportSelector里面的getCandidateConfigurations方法，获取到候选类的名字列表List<String>。
+其中，loadFactoryNames的第1个参数是getSpringFactoriesLoaderFactoryClass（）方法直接返回的是EnableAutoConfiguration.class，代码如下：
+
+
+
+
+@EnableConfigurationProperties，表示启动对FreeMarkerProperties.class的内嵌配置支持，自动将FreeMarkerProperties注册为一个Bean。这个FreeMarkerProperties类里面就是关于FreeMarker属性的配置：

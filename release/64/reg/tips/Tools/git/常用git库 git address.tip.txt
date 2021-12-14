@@ -51,6 +51,8 @@ SprintBoot:
 https://github.com/Easy-SpringBoot
 https://github.com/KotlinSpringBoot/demo0_hello_world
 https://github.com/KotlinSpringBoot/spring_mybatis_demo
+https://github.com/KotlinSpringBoot/demo_conditional_bean
+https://github.com/mybatis/spring-boot-starter
 
 本地库:
 #Web部署
