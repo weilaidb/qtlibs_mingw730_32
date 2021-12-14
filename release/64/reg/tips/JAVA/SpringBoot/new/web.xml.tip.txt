@@ -1,0 +1,18 @@
+web.xml的加载顺序是：
+<context-param>→<listener>→<filter>→<servlet>
+
+web.xml文件是用来初始化整个项目的配置信息的。比如Welcome界面、Servlet、Servlet-mapping、filter、listener、启动加载级别等。web.xml又叫部署描述符文件，是在Servlet规范中定义的，是web应用的配置文件。部署描述符文件就像所有XML文件一样，必须以一个XML头开始。这个头声明可以使用的XML版本并给出文件的字符编码。DOCYTPE声明必须立即出现在此头之后。这个声明告诉服务器适用的servlet规范的版本（如2.2或2.3）并指定管理此文件其余部分内容的语法的DTD（Document Type Definition，文档类型定义）。所有部署描述符文件的顶层（根）元素为web-app。请注意，XML元素是大小写敏感的。因此，web-App和WEB-APP都是不合法的，web-app必须用小写。
+
+web.xml的加载顺序是：
+<context-param>→<listener>→<filter>→<servlet>
+
+
+其中，如果web.xml中出现了相同的元素，则按照在配置文件中出现的先后顺序来加载。另外，当我们使用Spring的@Service、@Controller等注解的时候，需要告诉Spring去哪里扫描并注册这些Bean，这个配置在spring.xml中，例如：
+<!—— 扫描service、dao组件 ——><context:component-scan base-package="com.easy.
+　　Spring Boot"/>
+我们在上一章中已经知道了：
+<context:component-scan base-package="com.easy.Spring Boot"/>
+这个配置等价于下面这段使用注解配置的代码：
+@ComponentScan(basePackage="com.easy.Spring Boot")
+在Spring Boot中就是大量使用基于注解的配置，从而去除XML配置。
+传统的Java Web项目的开发过程中，通常还需要单独去配置Tomcat服务器，然后在IDE中配置集成。这个过程也比较费时。

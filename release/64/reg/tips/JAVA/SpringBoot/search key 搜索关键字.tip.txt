@@ -1,0 +1,43 @@
+@Bean
+@Service
+@Controller
+@ComponentScan
+@Autowired
+@Configuration
+@Conditional
+@ConditionalOnBean
+@ConditionalOnClass
+@ConditionalOnExpression
+@ConditionalOnMissingBean
+@ConditionalOnMissingClass
+@ConditionalOnNotWebApplication
+@RequestMapping("/hello")
+@ResponseBody
+@Override
+
+@ComponentScan(basePackages = { "com.easy.Spring Boot"})
+@EnableWebMvc // 启用 WebMVC 配置
+
+
+
+==============
+·组件扫描（Component Scan）：Spring去自动发现应用上下文中创建的Bean。
+·自动装配（Autowired）：Spring自动创建Bean之间的依赖。
+·通过JavaConfig方式实现Java代码配置Bean。
+
+条件注解@Conditional
+假如你想一个或多个Bean只有在应用的路径下包含特定的库时才创建，那么使用这节我们所要介绍的@Conditional注解定义条件化的Bean就再适合不过了。
+
+条件注解
+@ConditionalOnBean
+ --仅在当前上下文中存在某个对象时，才会实例化一个Bean
+@ConditionalOnClass
+ --当class位于类路径上，才会实例化一个Bean
+@ConditionalOnExpression
+ --当表达式为true的时候，才会实例化一个Bean
+@ConditionalOnMissingBean
+ --仅在当前上下文中不存在某个对象时，才会实例化一个Bean
+@ConditionalOnMissingClass
+ --当类路径上不存在某个class的时候，才会实例化一个Bean
+@ConditionalOnNotWebApplication
+ --当不是一个Web应用时

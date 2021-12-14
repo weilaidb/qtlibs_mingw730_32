@@ -50,6 +50,7 @@ https://github.com/leffss/django-webssh
 SprintBoot:
 https://github.com/Easy-SpringBoot
 https://github.com/KotlinSpringBoot/demo0_hello_world
+https://github.com/KotlinSpringBoot/spring_mybatis_demo
 
 本地库:
 #Web部署
