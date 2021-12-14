@@ -1,0 +1,33 @@
+Java EE分层架构
+
+
+视图渲染
+↑
+视图(View)层（视图层）
+↑
+提供MVC中的Model数据，处理请求响应结果
+控制(Controller)层（控制器）
+↑
+提供业务逻辑实现 
+逻辑逻辑（Service)层（业务逻辑）
+↑
+提供数据访问服务
+数据访问对象(Dao)层(Repository)
+↑
+封装JDBC的ORM
+模型(Model)层(Domain Object)
+↑
+提供持久化服务
+数据库持久化层
+
+
+
+
+
+
+我们从下往上依次讲解Java EE分层架构。
+·模型（Model）层也叫领域对象（Domain Object）层。领域驱动建模也是专门的一个方向。很多时候，业务领域模型清晰地建立了，后面的业务逻辑实现起来就会水到渠成。这一层主要由一系列的POJO（Plain Old Java Object）组成。
+·数据访问对象（Data Access Object，Dao）层主要提供对应Model层中的领域对象映射到数据库表的CRUD操作。在经典Java EE应用中，Dao层叫Eao层。这里的E是Entity。作用是一样的，Eao层完成对实体Entity的CRUD操作。
+·业务逻辑（Service）层主要是综合使用Model对象和Dao提供的CRUD接口，同时结合具体的业务流程来实现具体的业务逻辑。
+·控制器（Controller）层提供一系列控制器，用以拦截并调用Service层的接口处理用户请求。最后，把处理结果传送到视图View层。
+·视图（View）层主要是由一系列视图模板页面组成。例如，传统的JSP页面使用Velocity视图模板引擎的vm页面，使用Freemarker的ftl页面等。在该层完成用户的交互（例如，表单输入、按钮点击等操作），以及向用户展现输出结果的界面。

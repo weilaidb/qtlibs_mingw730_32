@@ -7,6 +7,11 @@ JMS:Java Messaging Service
 CLI:Command Line Interface
 COC:Convention Over Configuration,约定优于配置
 ORM:对象关系映射
+POJO（Plain Old Java Objects，普通的Java对象）
+DO(Domain Object)领域对象
+Dao:(Data Access Object,Dao)数据访问对象
+Eao:(Entry Access Object,Eao)实体访问对象
+CRUD:CRUD是指在做计算处理时的增加(Create)、读取查询(Retrieve)、更新(Update)和删除(Delete)几个单词的首字母简写。主要被用在描述软件系统中DataBase或者持久层的基本操作功能。
 
 
 通过RMI，J2EE将EJB组件创建为远程对象。RMI将各种任务与功能的类放到不同的服务器上，然后通过各个服务器间建立的调用规则实现分布式的运算。通过RMI的通信（底层仍然是Socket),连接不同功能模块的服务器，以实现一个完整的功能。
