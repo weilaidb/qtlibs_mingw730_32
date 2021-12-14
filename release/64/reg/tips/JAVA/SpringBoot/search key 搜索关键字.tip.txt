@@ -3,8 +3,11 @@
 @Controller
 @ComponentScan
 @Autowired
+@Inject
 @Configuration
-
+@Entity
+@Id
+@GeneratedValue(strategy=GenerationType.AUTO)
 @ConditionalOnClass({ freemarker.template.Configuration.class,
 　　　　FreeMarkerConfigurationFactory.class })
 @EnableConfigurationProperties(FreeMarkerProperties.class)
@@ -31,12 +34,43 @@
 @ResponseBody
 
 @Override
+@Deprecated
+@SuppressWarnings
+@SafeVarargs
+@Functionlnterface 
+
+#元Annotation（修饰注解的注解）
+@Retention（英文：保留）
+@Target ( 目标)
+@Documented
+@Inherited
+@Repeatable
+@interface
 
 @ComponentScan(basePackages = { "com.easy.Spring Boot"})
 @EnableWebMvc // 启用 WebMVC 配置
 
+@PropertySource
+@PropertySources
+@Import
+@ImportResource
 
 
+
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
+public @interface SpringBootApplication{
+    ……
+}
+
+@EnableScheduling是通过@Import将Spring调度框架相关的bean定义都加载到IoC容器。
+@EnableMBeanExport是通过@Import将JMX相关的bean定义加载到IoC容器。
 
 
 ==============
@@ -82,3 +116,171 @@ protected List<String> getCandidateConfigurations(AnnotationMetadata metadata,
 
 
 @EnableConfigurationProperties，表示启动对FreeMarkerProperties.class的内嵌配置支持，自动将FreeMarkerProperties注册为一个Bean。这个FreeMarkerProperties类里面就是关于FreeMarker属性的配置：
+
+
+
+
+=================================
+2.基本Annotation
+Java提供了5个基本的Annotation的用法，在使用Annotation时要在其前面增加@符号。
+
+@Override ：限定重写父类方法，它可以强制一个子类必须覆盖父类的方法。写在子类的方法上，在编译期，编译器检查这个方法，检查父类必须包含该方法，否则编译出错。该注解只能修饰方法，在编译期被读取。
+
+@Deprecated：用于表示某个程序元素（类、方法等）已过时。编译时读取，编译器编译到过时元素会给出警告。
+
+@SuppressWarnings：抑制编译警告，被该注解修饰的程序元素（以及该程序元素中的所有子元素）取消显示指定的编译警告。
+比如：如果程序使用没有泛型限制的集合会引起编译器警告，为了避免这种警告课可以使用该注解。
+
+unchecked异常：运行时异常。是RuntimeException的子类，不需要在代码中显式地捕获unchecked异常做处理。Java异常
+@SuppressWarnings(value="unchecked")
+public class SuppressWarningTest{
+   public static void main(String[] args)
+   {
+       List<String> myList = new ArrayList();
+   }
+}
+@SuppressWarnings("deprecation")   //取消过时警告
+    public HibernateTemplate getHt() {
+        return ht;
+    }
+@SafeVarargs (java7新增）：去除“堆污染”警告
+堆污染：把一个不带泛型的对象赋给一个带泛型的变量时就会发生堆污染。
+例如：下面代码引起堆污染，会给出警告
+List l2 = new ArrayList<Number>();
+List<String> ls = l2;    
+三种方式去掉上面方法产生的警告
+1.使用注解@SafeVarargs修饰引发该警告的方法或构造器。
+2.使用@SuppressWarnings("unchecked") 修饰。
+3.使用编译器参数命令：-Xlint:varargs
+
+@Functionlnterface （java8新增）：修饰函数式接口
+使用该注解修饰的接口必须是函数式接口，不然编译会出错。那么什么是函数式接口？答：如果接口中只有一个抽象方法（可以包含多个default方法或static方法），就是函数式接口。
+如：
+@Functionlnterface
+public interface FunInterface{
+  static void foo(){
+   System.out.println("foo类方法");
+  }
+  default void bar(){
+   System.out.println("bar默认方法");
+  }
+  void test();//只定义一个抽象方法，默认public
+}
+
+----------------------------》》》》
+3.JDK的元Annotation（修饰注解的注解）
+元注解(Meta Annotation)：和元数据一样，修饰注解的注解。
+java提供了6个元注解（Meta Annotation)，在java.lang.annotation中。其中5个用于修饰其他的Annonation定义。而@Repeatable专门用于定义Java8新增的重复注解。所以要定义注解必须使用到5个元注解来定义。
+@Retention（英文：保留）
+用于指定被修饰的Annotation可以保留多长时间，只能修饰Annotation定义。@Retention包含一个RetentionPolicy类型的value成员变量，使用@Retention必须为该value成员变量指定值。value成员变量的值有3个选择：
+RetentionPolicy.CLASS:编译器将把Annotation记录在class文件中。当运行java程序时，JVM不可获取Annotation信息。（默认值）
+RetentionPolicy.RUNTIME:编译器将把Annotation记录在class文件中。当运行java程序时，JVM也可获取Annotation信息，程序可以通过反射获取该Annotation信息
+RetentionPolicy.SOURCE:Annotation只保留在源代码中（.java文件中），编译器直接丢弃这种Annotation。
+案例：
+//定义下面的Testable Annotation保留到运行时，也可以使用value=RetentionPolicy.RUNTIME
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Testable{}
+@Target ( 目标)
+用于指定被修饰的Annotation能用于修饰哪些程序单元，只能修饰Annotation定义。它包含一个名为value的成员变量，取值如下：
+
+@Target(ElementType.ANNOTATION_TYPE)：指定该该策略的Annotation只能修饰Annotation.
+@Target(ElementType.TYPE) //接口、类、枚举、注解
+@Target(ElementType.FIELD) //成员变量（字段、枚举的常量）
+@Target(ElementType.METHOD) //方法
+@Target(ElementType.PARAMETER) //方法参数
+@Target(ElementType.CONSTRUCTOR) //构造函数
+@Target(ElementType.LOCAL_VARIABLE)//局部变量
+@Target(ElementType.PACKAGE) ///修饰包定义
+@Target(ElementType.TYPE_PARAMETER) //java8新增，后面Type Annotation有介绍
+@Target(ElementType.TYPE_USE) ///java8新增，后面Type Annotation有介绍
+@Target(ElementType.FIELD)
+public @interface ActionListenerFor{}
+@Documented
+用于指定被修饰的Annotation将被javadoc工具提取成文档。即说明该注解将被包含在javadoc中。
+@Inherited
+用于指定被修饰的Annotation具有继承性。即子类可以继承父类中的该注解。---》注解@WW被元注解@Inherited修饰，把@WW添加在类Base上，则Base的所有子类也将默认使用@WW注解。
+5.自定义注解
+使用@interface关键字
+注解放在修饰元素的上面
+5.1一个简单的注解
+//定义一个简单的注解Test
+public @interface Test{}
+默认情况下，Annotation可以修饰任何程序元素:类、接口、方法等。
+
+@Test
+public class MyClass{
+
+}
+5.2带成员变量的注解
+以无形参的方法形式来声明Annotation的成员变量，方法名和返回值定义了成员变量名称和类型。使用default关键字设置初始值。没设置初始值的变量则使用时必须提供，有初始值的变量可以设置也可以不设置。
+//定义带成员变量注解MyTag
+@Rentention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface MyTag{
+  //定义两个成员变量，以方法的形式定义
+  String name();
+  int age() default 32;
+}
+
+//使用
+public class Test{
+  @MyTag(name="liang")
+  public void info(){}
+}
+5.3结论
+没带成员变量的Annotation被称为标记，这种注解仅利用自身的存在与否来提供信息，如@Override等。
+包含成员变量的Annotation称为元数据Annotation,因为他们提供更多元数据。
+
+作者：zlcook
+链接：https://www.jianshu.com/p/28edf5352b63
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+
+---------------------------->
+.3.1 那些高曝光率的Annotation
+至于@Configuration，我想前面已经提及过了，这里不再赘述，下面我们看几个其他比较常见的Annotation，便于为后面更好地理解SpringBoot框架的奥秘做准备。
+1．@ComponentScan
+@ComponentScan对应XML配置形式中的<context：component-scan>元素，用于配合一些元信息Java Annotation，比如@Component和@Repository等，将标注了这些元信息Annotation的bean定义类批量采集到Spring的IoC容器中。
+我们可以通过basePackages等属性来细粒度地定制@ComponentScan自动扫描的范围，如果不指定，则默认Spring框架实现会从声明@ComponentScan所在类的package进行扫描。
+@ComponentScan是SpringBoot框架魔法得以实现的一个关键组件，大家可以重点关注，我们后面还会遇到它。
+2．@PropertySource与@PropertySources
+@PropertySource用于从某些地方加载*.properties文件内容，并将其中的属性加载到IoC容器中，便于填充一些bean定义属性的占位符（placeholder），当然，这需要PropertySourcesPlaceholderConfigurer的配合。
+如果我们使用Java 8或者更高版本开发（本书写作期间Java 9还没发布），那么，我们可以并行声明多个@PropertySource：
+@Configuration
+@PropertySource("classpath：1.properties")
+@PropertySource("classpath：2.properties")
+@PropertySource("……")
+
+
+
+
+
+public class XConfiguration{
+    ……
+}
+如果我们使用低于Java 8版本的Java开发Spring应用，又想声明多个@PropertySource，则需要借助@PropertySources的帮助了：
+@PropertySources({
+        @PropertySource("classpath：1.properties"),
+        @PropertySource("classpath：2.properties"),
+        ……
+})
+public class XConfiguration{
+    ……
+}
+3．@Import与@ImportResource
+在XML形式的配置中，我们通过<import resource="XXX.xml"/>的形式将多个分开的容器配置合到一个配置中，在JavaConfig形式的配置中，我们则使用@Import这个Annotation完成同样目的：
+@Configuration
+@Import(MockConfiguration.class)
+public class XConfiguration {
+    ……
+}
+@Import只负责引入JavaConfig形式定义的IoC容器配置，如果有一些遗留的配置或者遗留系统需要以XML形式来配置（比如dubbo框架），我们依然可以通过@ImportResource将它们一起合并到当前JavaConfig配置的容器中：
+@Configuration
+@Import(MockConfiguration.class)
+@ImportResource("……")
+public class XConfiguration {
+    ……
+}

@@ -1,6 +1,7 @@
 EJB:Enterprise Java Bean
 RMI:Remote Method Invocation,远程方法调用
 DI:Dependency Injection,DI，依赖注入
+DL:Dependency Loopup
 AOP:面向切面编程
 IoC:Inversion of Control，控制反转
 JMS:Java Messaging Service
@@ -12,6 +13,10 @@ DO(Domain Object)领域对象
 Dao:(Data Access Object,Dao)数据访问对象
 Eao:(Entry Access Object,Eao)实体访问对象
 CRUD:CRUD是指在做计算处理时的增加(Create)、读取查询(Retrieve)、更新(Update)和删除(Delete)几个单词的首字母简写。主要被用在描述软件系统中DataBase或者持久层的基本操作功能。
+DSL（Domain Specified Language）领域专用语言
+Annotation:注解
+MetaData:元数据：描述数据的数据
+APT(Annotation processing tool)是一种处理注释的工具,它对源代码文件进行检测找出其中的Annotation，使用Annotation进行额外的处理。
 
 
 通过RMI，J2EE将EJB组件创建为远程对象。RMI将各种任务与功能的类放到不同的服务器上，然后通过各个服务器间建立的调用规则实现分布式的运算。通过RMI的通信（底层仍然是Socket),连接不同功能模块的服务器，以实现一个完整的功能。
