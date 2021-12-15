@@ -1,0 +1,1 @@
+public interface \1{$NL$TBvoid started();$NL$NL}

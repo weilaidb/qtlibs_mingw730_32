@@ -1,3 +1,10 @@
+PCI:Peripheral Component Interconnect（外设部件互连标准）
+USB是Universal Serial BUS（通用串行总线）
+PCMCIA（Personal Computer Memory Card International Association，PC机内存卡国际联合会）
+PCMCIA是另一种常用的可热插拔的总线。
+
+
+
 堆栈指针:esp(exteneded stack pointer)
 内核:kernel
 内存管理:mm
@@ -27,14 +34,3 @@ user_stack[1k]:
 中断返回:IRET
   -- interrupt return
 内核系统调用:软件中断
-
-
-
-
-
-
-
-
-
-
-

@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 BASH/alias/generate生成
@@ -644,6 +645,8 @@ JAVA/SpringBoot/简介
 JAVA/SpringBoot/简介2
 JAVA/class/static
 JAVA/css/include引用
+JAVA/new/implements interface
+JAVA/new/interface
 JAVA/print/println
 JAVA/print/println 片段
 JAVA/基本语句/Atom 原子类
@@ -791,6 +794,8 @@ LINUX/Vim/vim实用技巧
 LINUX/help/HZ
 LINUX/help/cgroup cgconfig
 LINUX/help/chrt
+LINUX/help/free
+LINUX/help/lspci
 LINUX/help/ps
 LINUX/help/systemtap
 LINUX/help/top

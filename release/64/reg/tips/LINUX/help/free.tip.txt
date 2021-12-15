@@ -1,0 +1,277 @@
+$ free
+              total        used        free      shared  buff/cache   available
+Mem:        3668468     1503732      120944        2008     2043792     1875220
+Swap:             0           0           0
+
+
+
+
+linux下free命令磁盘缓存buffers/Cache的理解
+
+yichen_china
+2018.12.14 12:30:22
+字数 1,291
+阅读 3,525
+细心的朋友会注意到,当你在linux下频繁存取文件后,物理内存会很快被用光,当程序结束后,内存不会被正常释放,而是一直作为caching.这个问题,貌似有不少人在问,不过都没有看到有什么很好解决的办法.那么我来谈谈这个问题.
+
+先来说说free命令
+[root@server ~]# free -m
+                    total       used       free     shared    buffers     cached
+Mem:           249        163         86          0         10             94
+-/+ buffers/cache:         58        191
+Swap:          511          0          511
+其中:
+
+total 内存总数
+used 已经使用的内存数
+free 空闲的内存数
+shared 多个进程共享的内存总额
+buffers Buffer Cache和cached Page Cache 磁盘缓存的大小
+-buffers/cache 的内存数:used - buffers - cached
++buffers/cache 的内存数:free + buffers + cached
+可用的memory=free memory+buffers+cached
+有了这个基础后,可以得知,我现在used为163MB,free为86,buffer和cached分别为10,94
+
+那么我们来看看,如果我执行复制文件,内存会发生什么变化.
+
+[root@server ~]# cp -r /etc ~/test/
+[root@server ~]# free -m
+                    total       used       free     shared    buffers     cached
+Mem:           249        244          4          0          8             174
+-/+ buffers/cache:         62        187
+Swap:          511          0          511
+在我命令执行结束后,used为244MB,free为4MB,buffers为8MB,cached为174MB,天呐都被cached吃掉了.别紧张,这是为了提高文件读取效率的做法.
+
+为了提高磁盘存取效率, Linux做了一些精心的设计, 除了对dentry进行缓存(用于VFS,加速文件路径名到inode的转换), 还采取了两种主要Cache方式：Buffer Cache和Page Cache。前者针对磁盘块的读写，后者针对文件inode的读写。这些Cache有效缩短了 I/O系统调用(比如read,write,getdents)的时间。"
+
+那么有人说过段时间,linux会自动释放掉所用的内存,我们使用free再来试试,看看是否有释放>?
+
+[root@server test]# free -m
+                    total       used       free     shared    buffers     cached
+Mem:           249        244          5          0          8            174
+-/+ buffers/cache:         61        188
+Swap:          511          0          511
+MS没有任何变化,那么我能否手动释放掉这些内存呢???回答是可以的!
+
+/proc是一个虚拟文件系统,我们可以通过对它的读写操作做为与kernel实体间进行通信的一种手段.也就是说可以通过修改/proc中的文件,来对当前kernel的行为做出调整.那么我们可以通过调整/proc/sys/vm/drop_caches来释放内存.操作如下:
+
+[root@server test]# cat /proc/sys/vm/drop_caches
+0
+首先,/proc/sys/vm/drop_caches的值,默认为0
+
+[root@server test]# sync
+手动执行sync命令(描述:sync 命令运行 sync 子例程。如果必须停止系统，则运行 sync 命令以确保文件系统的完整性。sync 命令将所有未写的系统缓冲区写到磁盘中，包含已修改的 i-node、已延迟的块 I/O 和读写映射文件)
+
+[root@server test]# echo 3 > /proc/sys/vm/drop_caches
+[root@server test]# cat /proc/sys/vm/drop_caches
+3
+
+将/proc/sys/vm/drop_caches值设为3
+
+[root@server test]# free -m
+                   total       used       free     shared    buffers     cached
+Mem:           249         66        182          0          0           11
+-/+ buffers/cache:         55        194
+Swap:          511          0          511
+再来运行free命令,发现现在的used为66MB,free为182MB,buffers为0MB,cached为11MB.那么有效的释放了buffer和cache.
+
+有关/proc/sys/vm/drop_caches的用法在下面进行了说明
+
+/proc/sys/vm/drop_caches (since Linux 2.6.16)
+              Writing  to  this  file  causes the kernel to drop clean caches,
+              dentries and inodes from memory, causing that memory  to  become
+              free.
+
+              To  free  pagecache,  use  echo 1 > /proc/sys/vm/drop_caches; to
+              free dentries and inodes, use echo 2 > /proc/sys/vm/drop_caches;
+              to   free   pagecache,   dentries  and  inodes,  use  echo  3  >
+              /proc/sys/vm/drop_caches.
+
+              Because this is a non-destructive operation  and  dirty  objects
+              are not freeable, the user should run sync(8) first.
+=========================================================================
+
+buffer 与cache 的区别
+对于共享内存（Shared memory），主要用于在UNIX 环境下不同进程之间共享数据，是进程间通信的一种方法，一般的应用程序不会申请使用共享内存，笔者也没有去验证共享内存对上面等式的影响。如果你有兴趣，请参考：What is Shared Memory?
+
+Cache：高速缓存，是位于CPU与主内存间的一种容量较小但速度很高的存储器。由于CPU的速度远高于主内存，CPU直接从内存中存取数据要等待一定时间周期，Cache中保存着CPU刚用过或循环使用的一部分数据，当CPU再次使用该部分数据时可从Cache中直接调用,这样就减少了CPU的等待时间,提高了系统的效率。Cache又分为一级Cache(L1 Cache)和二级Cache(L2 Cache)，L1 Cache集成在CPU内部，L2 Cache早期一般是焊在主板上,现在也都集成在CPU内部，常见的容量有256KB或512KB L2 Cache。
+
+　　Buffer：缓冲区，一个用于存储速度不同步的设备或优先级不同的设备之间传输数据的区域。通过缓冲区，可以使进程之间的相互等待变少，从而使从速度慢的设备读入数据时，速度快的设备的操作进程不发生间断。
+　　Free中的buffer和cache：（它们都是占用内存）：
+　　buffer : 作为buffer cache的内存，是块设备的读写缓冲区
+　　cache: 作为page cache的内存, 文件系统的cache
+　　如果 cache 的值很大，说明cache住的文件数很多。如果频繁访问到的文件都能被cache住，那么磁盘的读IO bi会非常小。
+===========================================
+
+# sync
+# echo 1 > /proc/sys/vm/drop_caches
+   echo 2 > /proc/sys/vm/drop_caches
+   echo 3 > /proc/sys/vm/drop_caches
+cache释放：
+
+To free pagecache:
+echo 1 > /proc/sys/vm/drop_caches
+To free dentries and inodes:
+echo 2 > /proc/sys/vm/drop_caches
+To free pagecache, dentries and inodes:
+echo 3 > /proc/sys/vm/drop_caches
+说明，释放前最好sync一下，防止丢数据。
+
+因为LINUX的内核机制，一般情况下不需要特意去释放已经使用的cache。这些cache起来的内容可以增加文件以及的读写速度。
+
+top 查看cpu运行状态
+这个命令很常用，在第三行有显示CPU当前的使用情况。
+
+[root@li676-235 ~]# top -bn 1 -i -c
+top命令可以看到总体的系统运行状态和cpu的使用率 。
+
+参数	简介
+%us	表示用户空间程序的cpu使用率（没有通过nice调度）
+%sy	表示系统空间的cpu使用率，主要是内核程序。
+%ni	表示用户空间且通过nice调度过的程序的cpu使用率。
+%id	空闲cpu
+%wa	cpu运行时在等待io的时间
+%hi	cpu处理硬中断的数量
+%si	cpu处理软中断的数量
+%st	被虚拟机偷走的cpu
+top //每隔5秒显式所有进程的资源占用情况
+top -d 2 //每隔2秒显式所有进程的资源占用情况
+top -c //每隔5秒显式进程的资源占用情况，并显示进程的命令行参数(默认只有进程名)
+top -p 12345 -p 6789//每隔5秒显示pid是12345和pid是6789的两个进程的资源占用情况
+top -d 2 -c -p 123456 //每隔2秒显示pid是12345的进程的资源使用情况，并显式该进程启动的命令行参数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+命　　令： free
+
+功能说明：显示内存状态。
+
+语　　法： free [-bkmotV][-s <间隔秒数>]
+
+补充说明：free指令会显示内存的使用情况，包括实体内存，虚拟的交换文件内存，共享内存区段，以及系统核心使用的缓冲区等。
+
+参　　数：
+　-b 　以Byte为单位显示内存使用情况。 
+　-k 　以KB为单位显示内存使用情况。 
+　-m 　以MB为单位显示内存使用情况。 
+　-o 　不显示缓冲区调节列。 
+　-s<间隔秒数> 　持续观察内存使用状况。 
+　-t 　显示内存总和列。 
+　-V 　显示版本信息。
+
+如果内存不足，可以增加swap交换分区. 具体方法请稳步:
+
+http://www.linuxso.com/a/linuxxitongguanli/1353.html
+
+使用示例
+
+ 
+
+[root@linuxso.com ~]#free
+             total       used       free     shared    buffers     cached
+Mem:        515308     377176     138132          0      58024     255072
+-/+ buffers/cache:      64080     451228
+Swap:      1048568          0    1048568
+[root@linuxso.com ~]#free -m
+             total       used       free     shared    buffers     cached
+Mem:           503        368        134          0         56        249
+-/+ buffers/cache:         62        440
+Swap:         1023          0       1023
+ 
+Mem：表示物理内存统计
+-/+ buffers/cached：表示物理内存的缓存统计
+Swap：表示硬盘上交换分区的使用情况，这里我们不去关心。
+系统的总物理内存：255268Kb（256M），但系统当前真正可用的内存b并不是第一行free 标记的 16936Kb，它仅代表未被分配的内存。
+
+第1行  Mem：
+total：表示物理内存总量。
+used：表示总计分配给缓存（包含buffers 与cache ）使用的数量，但其中可能部分缓存并未实际使用。
+free：未被分配的内存。
+shared：共享内存，一般系统不会用到，这里也不讨论。
+buffers：系统分配但未被使用的buffers 数量。
+cached：系统分配但未被使用的cache 数量。
+buffer 与cache 的区别见后面。
+
+total = used + free   
+
+第2行   -/+ buffers/cached：
+used：也就是第一行中的used - buffers-cached  也是实际使用的内存总量。
+free：未被使用的buffers 与cache 和未被分配的内存之和，这就是系统当前实际可用内存。
+
+free 2= buffers1 + cached1 + free1   //free2为第二行、buffers1等为第一行
+buffer 与cache 的区别：
+A buffer is something that has yet to be "written" to disk.
+A cache is something that has been "read" from the disk and stored for later use
+
+第3行：
+第三行所指的是从应用程序角度来看，
+对于应用程序来说，buffers/cached 是等于可用的，
+因为buffer/cached是为了提高文件读取的性能，
+当应用程序需在用到内存的时候，buffer/cached会很快地被回收。
+所以从应用程序的角度来说，可用内存=系统free memory+buffers+cached.
+
+第二行(mem)的used/free与第三行(-/+ buffers/cache) used/free的区别。
+这两个的区别在于使用的角度来看，
+第一行是从OS的角度来看，因为对于OS，buffers/cached 都是属于被使用，所以他的可用内存是16936KB,已用内存是238332KB,其中包括，内核（OS）使用+Application(X,oracle,etc)使用的+buffers+cached.
+第三行所指的是从应用程序角度来看，对于应用程序来说，buffers/cached 是等于可用的，因为buffer/cached是为了提高文件读取的性能，当应用程序需在用到内存的时候，buffer/cached会很快地被回收。
+所以从应用程序的角度来说，可用内存=系统free memory+buffers+cached.
+
+接下来解释什么时候内存会被交换，以及按什么方交换。
+当可用内存少于额定值的时候，就会开会进行交换.如何看额定值（RHEL4.0）：
+#cat /proc/meminfo
+交换将通过三个途径来减少系统中使用的物理页面的个数：　
+1.减少缓冲与页面cache的大小，
+2.将系统V类型的内存页面交换出去，　
+3.换出或者丢弃页面。(Application 占用的内存页，也就是物理内存不足）。
+事实上，少量地使用swap是不是影响到系统性能的。
+
+下面是buffers与cached的区别。
+buffers是指用来给块设备做的缓冲大小，他只记录文件系统的metadata以及 tracking in-flight pages.cached是用来给文件做缓冲。那就是说：buffers是用来存储，目录里面有什么内容，权限等等。
+而cached直接用来记忆我们打开的文件，如果你想知道他是不是真的生效，你可以试一下，先后执行两次命令#man X ,你就可以明显的感觉到第二次的开打的速度快很多。
+实验：在一台没有什么应用的机器上做会看得比较明显。记得实验只能做一次，如果想多做请换一个文件名。
+#free
+#man X
+#free
+#man X
+#free
+你可以先后比较一下free后显示buffers的大小。
+另一个实验：
+#free#
+ls /dev
+#free
+你比较一下两个的大小，当然这个buffers随时都在增加，但你有ls过的话，增加的速度会变得快，这个就是buffers/chached的区别。
+因为Linux将你暂时不使用的内存作为文件和数据缓存，以提高系统性能，
+当你需要这些内存时，系统会自动释放
+（不像windows那样，即使你有很多空闲内存,他也要访问一下磁盘中的pagefiles）  
+使用free命令将used的值减去buffer和cache的值就是你当前真实内存使用
+
+--------------
+
+对操作系统来讲是Mem的参数.buffers/cached 都是属于被使用,
+所以它认为free只有16936.
+对应用程序来讲是(-/+ buffers/cach).buffers/cached 是等同可用的，
+因为buffer/cached是为了提高
+程序执行的性能，当程序使用内存时，buffer/cached会很快地被使用。
+所以,以应用来看看,以(-/+ buffers/cache)的free和used为主.所以我们看这个就好了.
+
+另外告诉大家一些常识.Linux为了提高磁盘和内存存取效率, Linux做了很多精心的设计, 除了对dentry进行缓存(用于VFS,加速文件路径名到inode的转换),
+还采取了两种主要Cache方式：Buffer Cache和Page Cache。
+
+前者针对磁盘块的读写，后者针对文件inode的读写。这些Cache能有效缩短了 I/O系统调用(比如read,write,getdents)的时间。
+
+记住内存是拿来用的,不是拿来看的.不象windows,无论你的真实物理内存有多少,他都要拿硬盘交换
+
+文件来读.这也就是windows为什么常常提示虚拟空间不足的原因.你们想想,多无聊,在内存还有大部分的时候,拿出一部分硬盘空间来充当内存.硬盘怎么会快过内存.所以我们看linux,只要不用swap的交换空间,就不用担心自己的内存太少.
+如果常常swap用很多,可能你就要考虑加物理内存了.这也是linux看内存是否够用的标准哦.
