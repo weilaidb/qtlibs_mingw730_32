@@ -1,3 +1,9 @@
+@SpringBootApplication
+@ServletComponentScan
+@WebServlet(name = "demoservlet", urlPatterns = "/demoservlet")
+
+
+
 @Bean
 @Service
 @Controller
