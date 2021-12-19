@@ -1,0 +1,45 @@
+常用的视力技术有
+
+jsp
+velocity
+FreeMarker
+Thymealeaf
+
+SpringBoot技术推荐使用Thymealeaf,最不推荐jsp
+
+
+
+
+
+3.SpingBoot技术整合FreeMarker
+
+Apache FreeMarker
+在html静态网页中嵌入自己大量的特有的标签！！
+
+
+---
+xxx.ftl
+
+位置存放在哪里？？
+
+src/main/resources/templates/
+    userlist.ftl
+
+
+
+Thymealeaf文件
+
+xx.html
+
+替换内容
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+放置位置
+src/main/resources/templates
+
+
+
+
+4.SpringBoot 整合ssm
+SpringBoot+SpringMVC+MyBatis =>ssm
