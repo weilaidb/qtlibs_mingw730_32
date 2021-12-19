@@ -29,6 +29,14 @@ src/main/resources/templates
 
 
 
+#yml配置文件
+#thymeleaf 设置面板后缀
+spring:
+  thymeleaf:
+    suffix: .html
+
+
+
 #循环 语法
     <tr th:each="user:${userlist}">
         <th th:text="${user.id}"></th>

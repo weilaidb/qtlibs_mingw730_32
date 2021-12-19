@@ -381,6 +381,7 @@ CXX/cin.getline
 CXX/externc __cplusplus
 CXX/new class static instsance实例
 CXX/编译链接 预处理等
+DBMS/MySql/cmd 登陆
 DBMS/MySql/database create
 DBMS/MySql/database drop
 DBMS/MySql/delete
@@ -641,6 +642,7 @@ JAVA/SpringBoot/new/Controller/userlist
 JAVA/SpringBoot/new/GetMapping
 JAVA/SpringBoot/new/Servlet
 JAVA/SpringBoot/new/SpringBootApplication
+JAVA/SpringBoot/new/Thymealeaf/mapper/UserMapper.xml
 JAVA/SpringBoot/new/Thymealeaf/userlist
 JAVA/SpringBoot/new/pom.xml app description
 JAVA/SpringBoot/new/pom.xml dependencies
@@ -651,10 +653,12 @@ JAVA/SpringBoot/new/spring.xml
 JAVA/SpringBoot/new/web.xml
 JAVA/SpringBoot/new/web.xml 2
 JAVA/SpringBoot/new/程序结构
+JAVA/SpringBoot/problem/Field userMapper in com.weilaidb.ssm.service.UserServiceImpl required a bean of type
 JAVA/SpringBoot/run jar
 JAVA/SpringBoot/search key 搜索关键字
 JAVA/SpringBoot/代码分析
 JAVA/SpringBoot/工程Project/导入 dependency dependencies
+JAVA/SpringBoot/工程Project/导入 dependency dependencies2
 JAVA/SpringBoot/术语
 JAVA/SpringBoot/简介
 JAVA/SpringBoot/简介2
