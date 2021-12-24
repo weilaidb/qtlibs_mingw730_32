@@ -1,3 +1,15 @@
+javassm;cd ~/soft/web_notebook_online/jar && java -jar ssm-0.0.1-SNAPSHOT.jar --server.port=9090
+javajar;java -jar 
+javajarport;java -jar --server.port=9090 
+
+journalctlxe;journalctl -xe
+useraddhome;useradd -d /home 
+rpmi;rpm -i 
+rpme;rpm -e
+rpmenodeps;rpm -e --nodeps
+rpmq;rpm -q
+rpmqa;rpm -qa
+rpmqagrep;rpm -qa | grep
 yumlistinstalled;yum list installed
 yumlistinstalledgrep;yum list installed | grep 
 

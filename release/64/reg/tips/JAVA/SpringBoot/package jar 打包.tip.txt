@@ -1,0 +1,22 @@
+1.来到项目的pom.xml文件中，修改packaging为jar
+
+<packaging>jar</packaging>
+
+2.在项目右侧选择maven，然后找到package点击进行打包。
+
+
+
+3.成功打包后，在项目中的target目录中会出现打包好的jar包。
+
+
+
+4.在本地运行jar包，将jar包从项目中复制出来，可放在电脑的任意位置，如何觉得jar包名字太长可以给jar包重名。我这里是直接放在了c盘目录下，并重命名为shop。
+
+5.运行jar包下，输入java -jar xxx.jar，然后回车确认。
+
+
+
+6.jar包成功运行后就可以在浏览器上访问了。
+————————————————
+版权声明：本文为CSDN博主「sliver1836」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/sliver1836/article/details/105777509

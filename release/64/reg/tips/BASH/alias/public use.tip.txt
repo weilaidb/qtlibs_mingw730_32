@@ -71,12 +71,30 @@ alias yumlistgrep="yum list | grep "
 alias yumlistinstalled="yum list installed "
 alias yumlistinstalledgrep="yum list installed | grep "
 
+alias rpmi="rpm -i "
+alias rpme="rpm -e "
+alias rpmenodeps="rpm -e --nodeps "
+alias rpmq="rpm -q "
+alias rpmqa="rpm -qa "
+alias rpmqagrep="rpm -qa | grep "
+
 
 alias lslt="ls -lt"
 alias lslh="ls -lh"
 alias llt="ls -lt"
 alias llh="ls -lh"
 alias cd..="cd .."
+
+
+alias useraddhome="useradd -d /home "
+alias journalctlxe="journalctl -xe "
+
+
+#java
+alias javassm="cd ~/soft/web_notebook_online/jar && java -jar ssm-0.0.1-SNAPSHOT.jar --server.port=9090 "
+alias javajar="java -jar "
+alias javajarport="java -jar --server.port=9090 "
+
 
 
 #docker

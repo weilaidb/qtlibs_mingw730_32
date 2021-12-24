@@ -2,3 +2,17 @@ mvn clean compile
 
 mvn 命令查看器依赖树。
 mvn dependency:tree
+
+
+
+
+jeecfg无法运行
+Add Configuration-->添加maven,配置
+命令行:
+tomcat7:run
+
+
+#启动端口配置
+    <webserver.port>8081</webserver.port>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
