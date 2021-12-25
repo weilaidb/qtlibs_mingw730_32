@@ -92,8 +92,11 @@ alias journalctlxe="journalctl -xe "
 
 #java
 alias javassm="cd ~/soft/web_notebook_online/jar && java -jar ssm-0.0.1-SNAPSHOT.jar --server.port=9090 "
+alias javassmlastest="cd ~/soft/web_notebook_online/jar && java -jar  `ls -lat *.jar | awk '{print $9}' | head -n 1` --server.port=9090 "
 alias javajar="java -jar "
-alias javajarport="java -jar --server.port=9090 "
+alias javajarport="java --server.port=9090 -jar "
+
+
 
 
 
