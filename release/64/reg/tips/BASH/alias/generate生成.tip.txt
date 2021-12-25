@@ -1,3 +1,4 @@
+aliasgrep;alias | grep 
 javassm;cd ~/soft/web_notebook_online/jar && java -jar ssm-0.0.1-SNAPSHOT.jar --server.port=9090
 javajar;java -jar 
 javajarport;java --server.port=9090 -jar 

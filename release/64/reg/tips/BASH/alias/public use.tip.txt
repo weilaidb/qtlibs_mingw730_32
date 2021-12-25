@@ -88,6 +88,7 @@ alias cd..="cd .."
 
 alias useraddhome="useradd -d /home "
 alias journalctlxe="journalctl -xe "
+alias aliasgrep="alias | grep "
 
 
 #java
