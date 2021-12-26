@@ -1,0 +1,1 @@
+解决方案二（推荐）：$NL使用 inline$NL$NL<title>[[${msg}]] - 服务器错误。</title>$NL$NL//[[]]写法会html转义$NL$NL[[${\1}]]!$NL$NL//[()]写法不会html转义，需要提前将\n转换为<br/>$NL[(${\1})]!

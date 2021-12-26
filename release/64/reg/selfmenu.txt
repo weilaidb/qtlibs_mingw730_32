@@ -644,6 +644,8 @@ JAVA/SpringBoot/new/GetMapping
 JAVA/SpringBoot/new/Servlet
 JAVA/SpringBoot/new/SpringBootApplication
 JAVA/SpringBoot/new/Thymealeaf/mapper/UserMapper.xml
+JAVA/SpringBoot/new/Thymealeaf/text
+JAVA/SpringBoot/new/Thymealeaf/text 一行
 JAVA/SpringBoot/new/Thymealeaf/userlist
 JAVA/SpringBoot/new/pom.xml app description
 JAVA/SpringBoot/new/pom.xml dependencies
@@ -895,6 +897,7 @@ LINUX/命令行/磁盘disk/查看dev设备的uuid和labelname
 LINUX/命令行/系统终端命令提示符设置 PS1
 LINUX/命令行/输出/dmesg
 LINUX/并发与竞争/自旋锁和信号量
+LINUX/知识点/Linux偷偷“吃”了我的内存？
 LINUX命令/GDB/C linux gdb
 LINUX命令/GDB/C linux gdb strip shell
 LINUX命令/GDB/C linux gdb symbol 加载运行
@@ -1456,6 +1459,7 @@ path路径/Android手机拷贝路径
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
 测试用例/TestCase/1
+纪录片/视频及资料网址
 脚本/VBS/SecureCrt/Date
 脚本/VBS/SecureCrt/Send
 脚本/VBS/SecureCrt/Sleep
