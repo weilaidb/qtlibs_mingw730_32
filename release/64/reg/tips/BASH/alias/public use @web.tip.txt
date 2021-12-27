@@ -1,20 +1,23 @@
 alias cdsoft='cd ~/soft'
 alias cdsoftweb='cd ~/soft/web_notebook_online'
 alias cdsoftwebapache='cd ~/soft/web_notebook_online/apache-tomcat-9.0.54'
+alias cdsoftwebapachebin='cd ~/soft/web_notebook_online/apache-tomcat-9.0.54/bin'
 alias cdwork='cd ~/work'
 alias cdworkgit='cd ~/work/git'
 alias cdworkgitlinux='cd ~/work/git/linux'
-alias makelinuxX86="make clean && make defconfig && make && make modules"
-alias findlist='find | grep -v .git > findlist'
-alias sourcerootbash='source ~/.bashrc'
-alias findimage='find | grep Image'
+alias cdworkgitqtlibs='cd ~/work/git/qtlibs_mingw730_32'
+alias tomcatstart='cdsoftwebapachebin && sh startup.sh'
+alias tomcatstop='cdsoftwebapachebin && sh shutdown.sh'
+alias cdworkjupyter='cd ~/work/jupyter'
+
 alias eg=''
 
 
 #默认加载配置
-source ~/soft/web_notebook_online/env.web.sh
+#source ~/soft/web_notebook_online/env.web.sh
 
-
-
-
-
+#直接加载配置文件，先用dos2unix预处理
+#dos2unix ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt
+#source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt
+#dos2unix ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt
+#source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt

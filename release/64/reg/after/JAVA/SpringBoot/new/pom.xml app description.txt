@@ -1,0 +1,1 @@
+<groupId>\1</groupId>$NL<artifactId>\2</artifactId>$NL<version>\3</version>$NL<name>\4</name>$NL<description>\5</description>

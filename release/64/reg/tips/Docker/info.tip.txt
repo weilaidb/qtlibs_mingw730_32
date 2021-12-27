@@ -1,0 +1,81 @@
+[root@weilaidb docker_eg]# docker info
+Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+host:
+  arch: amd64
+  buildahVersion: 1.19.8
+  cgroupManager: systemd
+  cgroupVersion: v1
+  conmon:
+    package: conmon-2.0.26-3.1.al8.x86_64
+    path: /usr/bin/conmon
+    version: 'conmon version 2.0.26, commit: 59a36dca501b14434828bfaf761725a4f776822f'
+  cpus: 2
+  distribution:
+    distribution: '"alinux"'
+    version: "3"
+  eventLogger: file
+  hostname: weilaidb
+  idMappings:
+    gidmap: null
+    uidmap: null
+  kernel: 5.10.60-9.al8.x86_64
+  linkmode: dynamic
+  memFree: 240848896
+  memTotal: 3756498944
+  ociRuntime:
+    name: runc
+    package: runc-1.0.0-73.rc93.1.al8.x86_64
+    path: /usr/bin/runc
+    version: |-
+      runc version spec: 1.0.2-dev
+      go: go1.15.7
+      libseccomp: 2.5.1
+  os: linux
+  remoteSocket:
+    path: /run/podman/podman.sock
+  security:
+    apparmorEnabled: false
+    capabilities: CAP_NET_RAW,CAP_CHOWN,CAP_DAC_OVERRIDE,CAP_FOWNER,CAP_FSETID,CAP_KILL,CAP_NET_BIND_SERVICE,CAP_SETFCAP,CAP_SETGID,CAP_SETPCAP,CAP_SETUID,CAP_SYS_CHROOT
+    rootless: false
+    seccompEnabled: true
+    selinuxEnabled: false
+  slirp4netns:
+    executable: ""
+    package: ""
+    version: ""
+  swapFree: 0
+  swapTotal: 0
+  uptime: 47h 52m 32.64s (Approximately 1.96 days)
+registries:
+  search:
+  - registry.access.redhat.com
+  - registry.redhat.io
+  - docker.io
+store:
+  configFile: /etc/containers/storage.conf
+  containerStore:
+    number: 13
+    paused: 0
+    running: 0
+    stopped: 13
+  graphDriverName: overlay
+  graphOptions:
+    overlay.mountopt: nodev,metacopy=on
+  graphRoot: /var/lib/containers/storage
+  graphStatus:
+    Backing Filesystem: extfs
+    Native Overlay Diff: "false"
+    Supports d_type: "true"
+    Using metacopy: "true"
+  imageStore:
+    number: 3
+  runRoot: /run/containers/storage
+  volumePath: /var/lib/containers/storage/volumes
+version:
+  APIVersion: 3.0.0
+  Built: 1623832832
+  BuiltTime: Wed Jun 16 16:40:32 2021
+  GitCommit: ""
+  GoVersion: go1.15.7
+  OsArch: linux/amd64
+  Version: 3.0.2-dev

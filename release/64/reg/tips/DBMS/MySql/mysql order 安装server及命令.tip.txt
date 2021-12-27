@@ -1,0 +1,2 @@
+查看server是否安装
+rpm -qa| grep mysql-server

@@ -1,0 +1,24 @@
+C:\Users\dell\AppData\Local\Programs\Python\Python38\Lib\site-packages\PyQt5
+D:\Software\eric6-18.08\eric
+
+https://sourceforge.net/projects/eric-ide/files/eric6/stable/21.11/eric6-21.11.zip/download
+
+https://sourceforge.net/projects/eric-ide/files/latest/download
+
+##ok
+https://nchc.dl.sourceforge.net/project/eric-ide/eric6/stable/21.11/eric6-21.11.zip
+
+#安装eric
+cd H:\software\eric6-21.11\
+python install.py
+
+#打开eric,配置qt
+C:\Users\dell\AppData\Local\Programs\Python\Python38\Scripts\eric6.cmd
+
+https://blog.csdn.net/xiaocy66/article/details/83412273
+
+
+C:\Users\dell\AppData\Local\Programs\Python\Python38\Lib\site-packages\PyQt5\Qt5\translations
+C:\Users\dell\AppData\Local\Programs\Python\Python38\Scripts
+
+C:\Users\dell\AppData\Local\Programs\Python\Python38\Lib\site-packages\qt5_tools

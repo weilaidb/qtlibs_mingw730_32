@@ -1,21 +1,126 @@
-alias killyum='sudo rm -f /var/run/yum.pid'
+alias sr="sourcerootbash"
+alias sourcerootbash="source ~/.bashrc"
+alias killyum="sudo rm -f /var/run/yum.pid"
 alias grepnri="grep -nri "
 alias explorer="nautilus --new-window "
 alias gitst="git status -u "
 alias gitci="git commit "
 alias gitck="git checkout "
 alias gitpl="git pull "
+alias gitclean="git clean -df "
+alias gitpullprogress="git pull --progress -v --no-rebase "origin" "
+alias gitclone="git clone "
+alias gitclonerecursive="git clone --recursive "
+alias gitsubmoduleadd="git submodule add "
+alias gitsubmoduleupdate="git submodule update "
+alias gitsubmoduleupdateremote="git submodule update --remote "
+alias gitremotev="git remote -v "
+
 alias gitdiff="git diff "
 alias gitdiffcached="git diff --cached"
 alias gitciamend="git commit --amend"
 alias gitremote="git remote -v"
 alias gitbr="git branch -a"
 alias gitreset="git reset "
+alias gitresethead1="git reset HEAD~1"
+alias gitresethead2="git reset HEAD~2"
+alias gitresetheadn="git reset HEAD~"
 alias gitlog="git log "
+#merges的显示补丁diff
+alias gitlogpatchall="git log -p -m "
+alias gitlogpatchallsinceoneday="git log -p -m --since=1.day"
+alias gitlogpatchallsinceoneweek="git log -p -m --since=1.week"
+alias gitlogpatchallgraph="git log -p -m --graph --all "
+#只显示修改的文件，不显示commit id和commit message?
+alias gitlognameonly="git log --name-only --format='' "
+alias gitlogstring="git log -S '"
+alias gitloggrep="git log --grep='"
+alias gitlogcommitter="git log --committer'"
+alias gitlogauthor="git log --author='"
+alias gitlogstat="git log --stat "
+alias gitloggraphall="git log --graph --all "
+alias gitloggraphoneline="git log --graph --oneline "
+alias gitlogmergespatch="git log --merges -p"
 alias gitlognomergespatch="git log --no-merges -p"
+alias gitlognomergespatchsince1day="git log --no-merges -p --since=1.day"
+alias gitlognomergespatchsince2day="git log --no-merges -p --since=2.day"
+alias gitlognomergespatchsince1week="git log --no-merges -p --since=1.week"
+alias gitlognomergespatchsince2week="git log --no-merges -p --since=2.week"
+alias gitlognomergespatchsince1month="git log --no-merges -p --since=1.month"
+alias gitlognomergespatchsince2month="git log --no-merges -p --since=2.month"
+alias gitlognomergespatchsince1year="git log --no-merges -p --since=1.year"
+alias gitlognomergespatchsince2year="git log --no-merges -p --since=2.year"
 alias gitadd="git add -A "
+alias gitaddchangeauto1="sourcerootbash && git add . && gitci -m 'add changes for `gitst . | grep 'modified\|deleted\|new' | awk -F':' '{print $2}'`'"
+alias gitaddchangeauto2="git add . && gitci -m "add changes for `gitst . | grep 'modified\|deleted' | awk '{print $2}'`""
+alias gitaddchangeauto="sourcerootbash && gitaddchangeauto1"
 alias gitpushcurbranch="CURBR=`git branch| awk '{print $2}'` && git push origin $CURBR"
 #for  PATH and other define
 export PATH=$PATH:~/bin
-alias killyum='sudo rm -f /var/run/yum.pid'
+export PS1="[\u@\h] \w\n$ "
+alias killyum="sudo rm -f /var/run/yum.pid"
 alias explorer="nautilus --new-window "
+
+alias makelinuxX86="make clean && make defconfig && make && make modules"
+alias findlist="find | grep -v .git > findlist"
+alias findimage="find | grep Image"
+alias yuminstally="yum install -y "
+alias yumremove="yum remove "
+alias yumlist="yum list "
+alias yumlistgrep="yum list | grep "
+alias yumlistinstalled="yum list installed "
+alias yumlistinstalledgrep="yum list installed | grep "
+
+alias rpmi="rpm -i "
+alias rpme="rpm -e "
+alias rpmenodeps="rpm -e --nodeps "
+alias rpmq="rpm -q "
+alias rpmqa="rpm -qa "
+alias rpmqagrep="rpm -qa | grep "
+
+
+alias lslt="ls -lt"
+alias lslh="ls -lh"
+alias llt="ls -lt"
+alias llh="ls -lh"
+alias cd..="cd .."
+
+
+alias useraddhome="useradd -d /home "
+alias journalctlxe="journalctl -xe "
+alias aliasgrep="alias | grep "
+
+
+#java
+alias javassm="cd ~/soft/web_notebook_online/jar && java -jar ssm-0.0.1-SNAPSHOT.jar --server.port=9090 "
+alias javassmlastest="cd ~/soft/web_notebook_online/jar && nohup java -jar  `ls -lat *.jar | awk '{print $9}' | head -n 1` --server.port=9090 &"
+alias javajar="java -jar "
+alias javajarport="java --server.port=9090 -jar "
+
+
+
+
+
+#docker
+alias dockerimages="docker images "
+alias dockerps="docker ps "
+alias dockerrun="docker run -i -t "
+alias dockerexec="docker exec -it "
+alias dockerattach="docker attach "
+alias dockerinfo="docker info "
+alias dockerlogs="docker logs "
+alias dockerpull="docker pull "
+alias dockerstop="docker stop "
+alias dockerstart="docker start "
+alias dockertop="docker top "
+alias dockerversin="docker --version "
+
+
+#python
+alias jupyternotebookroot="jupyter notebook --allow-root "
+alias jupyternotebookrootnohup="nohup jupyter notebook --allow-root > jupyter.log 2>&1 & "
+alias flaskrun0="flask run --host=0.0.0.0 "
+alias pipinstall3="pip3 install "
+alias pipinstall="pip install "
+alias pipuninstall="pip uninstall "
+alias websshstart="python3 manage.py runserver 0.0.0.0:8000 "

@@ -1,17 +1,22 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
+BASH/alias/generate生成
 BASH/alias/public use
 BASH/alias/public use @web
 BASH/cdpath
 BASH/chmod
 BASH/echo
 BASH/eg
+BASH/exitcode
 BASH/gitinfo
 BASH/hello
 BASH/printf
 BASH/printf string 1
 BASH/printf string 2
 BASH/printf string 3
+BASH/test -f
+BASH/trap
 BASH/usage
 BASH/usage para1
 BASH/usage para2
@@ -154,6 +159,8 @@ BAT/网络network/知识点/基于MPLS的VPN
 BAT/网络network/知识点/复习
 BAT/网络network/知识点/常用端口号大全 port
 Books/常用书籍列表
+Books/常用书籍列表 学校
+Books/常用书籍列表 已经购买
 Books/常用网址
 Books/读后感/Linux Tcp IP协议栈 Linux2.6协议栈源代码分析
 C# cs/CMDOperator
@@ -178,6 +185,7 @@ C/API/gettimeofday
 C/API/gettimeofday 说明
 C/API/localtime 非线程安全
 C/API/localtime_r 线程安全
+C/API/memalign
 C/API/memset pointer
 C/API/memset sizeof array
 C/API/memset sizeof struct
@@ -187,6 +195,7 @@ C/API/memset_s struct
 C/API/nlcount
 C/API/oops
 C/API/pfile
+C/API/posix_memalign
 C/API/snprintf
 C/API/snprintf 2
 C/API/srandom
@@ -329,6 +338,7 @@ C/new/__attribute__/TEXT
 C/new/__attribute__/__align__
 C/new/__attribute__/__sect__
 C/new/__attribute__/always_inline
+C/new/dynamiclib/open libso
 C/new/return int
 C/new/return unsigned int
 C/new/return unsigned short
@@ -345,6 +355,7 @@ CXX/ARRAYSIZE
 CXX/Cout no prar
 CXX/Cout no prara endl
 CXX/Cout_in/cout
+CXX/Cout_in/cout precision 小数点
 CXX/Cout_in/cout size
 CXX/DECLARE_TO_IMPLEMENT
 CXX/DECLARE_TO_IMPLEMENT CLASS
@@ -370,11 +381,13 @@ CXX/cin.getline
 CXX/externc __cplusplus
 CXX/new class static instsance实例
 CXX/编译链接 预处理等
+DBMS/MySql/cmd 登陆
 DBMS/MySql/database create
 DBMS/MySql/database drop
 DBMS/MySql/delete
 DBMS/MySql/getColumns 表字段
 DBMS/MySql/like
+DBMS/MySql/mysql order 安装server及命令
 DBMS/MySql/mysql 加载驱动
 DBMS/MySql/mysql 建立连接
 DBMS/MySql/mysql 说明
@@ -386,6 +399,7 @@ DBMS/MySql/setAutoCommit 事务
 DBMS/MySql/source sql script
 DBMS/MySql/table create eg
 DBMS/MySql/table create eg2
+DBMS/MySql/table create ssm
 DBMS/MySql/table drop
 DBMS/MySql/table insert
 DBMS/MySql/table select
@@ -406,11 +420,52 @@ DEFINE/FILTER
 DEFINE/GENERATE
 DEFINE/GENERATESTRINGSAME
 DEFINE/UNUSED
+Docker/Bash
+Docker/Hello World
+Docker/JFrog
+Docker/JFrog weilai.war下载
+Docker/attach
+Docker/container prune
+Docker/exec
+Docker/export 导出容器
+Docker/help
+Docker/images
+Docker/import 导入容器快照
+Docker/info
+Docker/inspect
+Docker/jenkins
+Docker/jenkins 安装
+Docker/jenkins 环境
+Docker/logs
+Docker/logs -f
+Docker/ps
+Docker/ps -a
+Docker/ps -l
+Docker/pull
+Docker/restart
+Docker/rm 删除容器
+Docker/run
+Docker/run -itd --name
+Docker/start
+Docker/stop
+Docker/top
+Docker/xxx(exec) --help
+Docker/自定义docker镜像
+Docker/镜像路径
+FPGA/new/delay 延时
+FPGA/new/eg
+FPGA/new/initial
+FPGA/new/input
+FPGA/new/module endmodule
+FPGA/new/output
+FPGA/new/reg
+FPGA/new/timescale
 FPGA/介绍
 FPGA/介绍 理论
 FPGA/开发板/ALINX/AX7020
 FPGA/术语 shuyu
 FPGA/示例/Led
+FPGA/视频及资料网址
 FPGA/语法code new/architecture
 FPGA/语法code new/constant
 FPGA/语法code new/data type convert
@@ -540,6 +595,7 @@ JAVA/JSP/request.getParameter only
 JAVA/JSP/request.referer
 JAVA/JSP/string/String
 JAVA/JSP/synchronized
+JAVA/JSP/title eg
 JAVA/JSP/代码段/decode getBytes
 JAVA/JSP/代码段/getBytes print all
 JAVA/JSP/代码段/getBytes 方法
@@ -568,13 +624,62 @@ JAVA/JSP/知识点
 JAVA/JSP/示例 eg
 JAVA/Org/StringUtils/base
 JAVA/RegExp/Pattern
+JAVA/RegExp/Pattern $H2D替换
+JAVA/SpringBoot/Annotation
+JAVA/SpringBoot/Annotation JDK的元Annotation（修饰注解的注解）
+JAVA/SpringBoot/Java EE分层架构
+JAVA/SpringBoot/JetBrains 激活码
+JAVA/SpringBoot/MyBatis
+JAVA/SpringBoot/SpringBoot应用启动步骤简要示意图
 JAVA/SpringBoot/application.properties 修改端口
 JAVA/SpringBoot/application.yml 修改端口
+JAVA/SpringBoot/application.yml 相关说明
+JAVA/SpringBoot/freemarker 问题说明
+JAVA/SpringBoot/gradle 下载源配置 阿里云
 JAVA/SpringBoot/http
+JAVA/SpringBoot/javac
+JAVA/SpringBoot/localhost
+JAVA/SpringBoot/maven 下载源配置 阿里云
+JAVA/SpringBoot/maven命令
+JAVA/SpringBoot/new/Controller/fileupload
+JAVA/SpringBoot/new/Controller/fileupload 映射名的相对路径
+JAVA/SpringBoot/new/Controller/helloworld
+JAVA/SpringBoot/new/Controller/userlist
+JAVA/SpringBoot/new/GetMapping
+JAVA/SpringBoot/new/Servlet
+JAVA/SpringBoot/new/SpringBootApplication
+JAVA/SpringBoot/new/Thymealeaf/mapper/UserMapper.xml
+JAVA/SpringBoot/new/Thymealeaf/text
+JAVA/SpringBoot/new/Thymealeaf/text 一行
+JAVA/SpringBoot/new/Thymealeaf/userlist
+JAVA/SpringBoot/new/pom.xml app description
+JAVA/SpringBoot/new/pom.xml dependencies
+JAVA/SpringBoot/new/pom.xml dependencies 下载网址
+JAVA/SpringBoot/new/pom.xml java version
+JAVA/SpringBoot/new/pom.xml parent
+JAVA/SpringBoot/new/spring-mvc.xml
+JAVA/SpringBoot/new/spring.xml
+JAVA/SpringBoot/new/web.xml
+JAVA/SpringBoot/new/web.xml 2
+JAVA/SpringBoot/new/程序结构
+JAVA/SpringBoot/package jar 打包
+JAVA/SpringBoot/problem/Field userMapper in com.weilaidb.ssm.service.UserServiceImpl required a bean of type
 JAVA/SpringBoot/run jar
+JAVA/SpringBoot/run jar port
+JAVA/SpringBoot/search key 搜索关键字
+JAVA/SpringBoot/代码分析
+JAVA/SpringBoot/工程Project/导入 dependency dependencies
+JAVA/SpringBoot/工程Project/导入 dependency dependencies2
+JAVA/SpringBoot/术语
 JAVA/SpringBoot/简介
+JAVA/SpringBoot/简介2
+JAVA/SpringBoot/视图技术
+JAVA/SpringBoot/视图技术 FreeMarker
+JAVA/SpringBoot/视图技术 Thymealeaf
 JAVA/class/static
 JAVA/css/include引用
+JAVA/new/implements interface
+JAVA/new/interface
 JAVA/print/println
 JAVA/print/println 片段
 JAVA/基本语句/Atom 原子类
@@ -590,6 +695,8 @@ JAVA/基本语句/List String Sort Uniq
 JAVA/基本语句/List String []互转
 JAVA/基本语句/String类常用方法
 JAVA/基本语句/main
+JAVA/基本语句/反射
+JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
 JavaScript/include引用
 JavaScript/src引用
@@ -623,6 +730,7 @@ KERNEL/GCC/__aligned
 KERNEL/GCC/__attribute__
 KERNEL/GCC/__attribute__ noreturn
 KERNEL/GCC/参数列表
+KERNEL/GCC/参数列表 -Wl,-Bsymbolic
 KERNEL/LIST_HEAD
 KERNEL/basetype
 KERNEL/driver/API/EXPORT_SYMBOL
@@ -642,6 +750,8 @@ KERNEL/driver/API/__wake_up
 KERNEL/driver/API/__wake_up_sync
 KERNEL/driver/API/__wake_up_sync_key
 KERNEL/driver/API/add_wait_queue
+KERNEL/driver/API/copy_from_user
+KERNEL/driver/API/copy_to_user
 KERNEL/driver/API/down
 KERNEL/driver/API/find_get_pid
 KERNEL/driver/API/find_module
@@ -660,6 +770,8 @@ KERNEL/driver/API/pid_task
 KERNEL/driver/API/preempt_disable
 KERNEL/driver/API/preempt_enable
 KERNEL/driver/API/schedule_timeout_uninterruptible
+KERNEL/driver/API/spin_lock_irq & spin_unlock_irq
+KERNEL/driver/API/spin_lock_irqsave & spin_unlock_irqrestore
 KERNEL/driver/API/sprint_symbol
 KERNEL/driver/API/task_active_pid_ns
 KERNEL/driver/API/task_tgid_nr_ns
@@ -688,6 +800,9 @@ KERNEL/调度/最大优先级
 KERNEL/调度/调度策略
 KERNEL/调度/进程标志
 KERNEL/进制相关/hex_to_bin
+KERNEL/进程/asmlinkage
+KERNEL/进程/进程标志 TASK STATUS
+LINUX/7z
 LINUX/CentOS/必备命令 order
 LINUX/CentOS/必备软件 necessary software
 LINUX/Code/ERROR
@@ -702,30 +817,59 @@ LINUX/Printk/KERN_NOTICE
 LINUX/Printk/KERN_WARNING
 LINUX/Printk/many equal signs
 LINUX/Printk/说明
+LINUX/Ubuntu/apt install
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
 LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备命令 order systemtap
 LINUX/Ubuntu/必备软件 necessary software
 LINUX/Vim/vim实用技巧
+LINUX/help/HZ
+LINUX/help/cgroup cgconfig
+LINUX/help/chrt
+LINUX/help/free
+LINUX/help/lspci
+LINUX/help/ps
+LINUX/help/systemtap
+LINUX/help/top
+LINUX/help/vmstat
+LINUX/man/chrt
+LINUX/man/chrt --fifo
+LINUX/man/chrt -m
+LINUX/man/chrt -p
+LINUX/man/systemtap
+LINUX/man/vmstat
+LINUX/qemu
+LINUX/qemu 虚拟机的使用
+LINUX/uboot
 LINUX/命令行/Centos 7 搭建samba
 LINUX/命令行/Linux 忘记密码解决方法
 LINUX/命令行/Linux 系统目录结构
 LINUX/命令行/SELinux配置文件
 LINUX/命令行/crontab
 LINUX/命令行/crontab eg
+LINUX/命令行/eg
 LINUX/命令行/fgrep
+LINUX/命令行/getconf
 LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
+LINUX/命令行/ln help
+LINUX/命令行/lscpu
+LINUX/命令行/mpstat help
+LINUX/命令行/mpstat 查看CPU 实时系统监控工具
+LINUX/命令行/mpstat 查看CPU 实时系统监控工具 2
 LINUX/命令行/nano
+LINUX/命令行/nohup
 LINUX/命令行/realpath
 LINUX/命令行/setenforce
 LINUX/命令行/shutdown
+LINUX/命令行/software/CentOS安装mysql
 LINUX/命令行/software/RPM的强制安装和强制卸载
 LINUX/命令行/software/RedHat7配置yum源
 LINUX/命令行/software/install
 LINUX/命令行/software/install 必备软件
+LINUX/命令行/software/mysql etc my.cnf
 LINUX/命令行/software/rpm
 LINUX/命令行/software/rpm -qa 查询所有安装包
 LINUX/命令行/software/rpm help
@@ -735,10 +879,20 @@ LINUX/命令行/software/rpm包安装、卸载和升级
 LINUX/命令行/software/rpm命令查询软件包
 LINUX/命令行/software/samba smb.conf
 LINUX/命令行/software/yum
+LINUX/命令行/software/yum CentOS安装mysql
 LINUX/命令行/software/yum install
+LINUX/命令行/software/yum linux CentOS安装mysql 2
+LINUX/命令行/software/yum linux 阿里云mysql install
+LINUX/命令行/software/yum repo
 LINUX/命令行/software/yum systemctl status start stop
+LINUX/命令行/software/如何在阿里云服务器安装Mysql数据库
+LINUX/命令行/strace and ltrace
 LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
+LINUX/命令行/version
+LINUX/命令行/vmstat
+LINUX/命令行/vmstat help
+LINUX/命令行/wget
 LINUX/命令行/屏蔽主机的ping命令
 LINUX/命令行/快捷键 shortcut
 LINUX/命令行/磁盘disk/e2label set labelname
@@ -748,6 +902,7 @@ LINUX/命令行/磁盘disk/查看dev设备的uuid和labelname
 LINUX/命令行/系统终端命令提示符设置 PS1
 LINUX/命令行/输出/dmesg
 LINUX/并发与竞争/自旋锁和信号量
+LINUX/知识点/Linux偷偷“吃”了我的内存？
 LINUX命令/GDB/C linux gdb
 LINUX命令/GDB/C linux gdb strip shell
 LINUX命令/GDB/C linux gdb symbol 加载运行
@@ -813,6 +968,7 @@ OS/WIN7/安装系统常见问题
 Office/Excel/Macro/SpellNumber
 PACKET Parse/ARP
 PACKET Parse/Ethernet II
+PACKET Parse/General Rules
 PACKET Parse/HTTP
 PACKET Parse/ICMP
 PACKET Parse/ICMP destination unreachable
@@ -970,29 +1126,61 @@ PhotoShop/常用快捷键 shortcut 2
 Pthread/Create
 Pthread/pthread_mutex
 Pthread/pthread_once
+Python/API/datetime
 Python/API/exec_command
+Python/API/file read write
+Python/API/thread
+Python/API/thread2
+Python/API/thread3
+Python/API/thread4
 Python/Lambda/test
+Python/List/for
 Python/Map/para1 test
 Python/Map/para2 multiplier_func
 Python/Map/para2 square
 Python/Map/test
 Python/PYTHONPATH
 Python/Print
+Python/Print 2 to 3
+Python/Print 注释
+Python/WEB/简介
 Python/from_xxx_import_all
 Python/gc
 Python/header
 Python/header import
+Python/header import as
 Python/idea快捷键
 Python/idea配置说明
+Python/list/列表大小 len
 Python/main
 Python/pyQt5_import
+Python/qt/print
+Python/qt/pyQt5 app ico程序图标
+Python/qt/pyQt5 button btn
+Python/qt/pyQt5 checkbox
+Python/qt/pyQt5 file
+Python/qt/pyQt5 import
+Python/qt/pyQt5 main
+Python/qt/pyQt5 main2
+Python/qt/pyQt5 signal slot
+Python/qt/pyQt5 signal slot custom自定义信号
+Python/qt/pyQt5 textedit
 Python/soft/pip install -Ur requirements.txt
+Python/soft/pip install 安装
+Python/soft/pip install 安装 with http
+Python/soft/pip jupyter notebook
+Python/soft/pip qt5目录及相关
+Python/soft/pip uninstall 卸载
 Python/soft/python -m pip install --upgrade pip
+Python/test/ssh
 Python/引用其它目录
+Python/打包/pyinstaller
+Python/打包/pyinstaller script
 Python/时间/引用头
 Python/示例/字符串转 md5
 Python/示例/网络/2/客户端
 Python/示例/网络/2/服务端
+Python/示例/网络/webssh
 Python/示例/网络/客户端
 Python/示例/网络/服务端
 Python/语法/pyQt5/创建Action
@@ -1148,6 +1336,7 @@ Tools/VS Visual Studio快捷键
 Tools/VSCode快捷键
 Tools/dec to hex 十进制转十六进制
 Tools/git/git clone -i 指定文件
+Tools/git/git compare beyondcompare base local remote
 Tools/git/git config
 Tools/git/git config email username
 Tools/git/git fetch
@@ -1158,13 +1347,16 @@ Tools/git/git log after until
 Tools/git/git log author
 Tools/git/git log committer
 Tools/git/git log graph
+Tools/git/git log help
 Tools/git/git log pretty
 Tools/git/git log pretty=format help
 Tools/git/git log pretty酷
 Tools/git/git log since before
+Tools/git/git log since relative
 Tools/git/git log 回退到某一天的提交
 Tools/git/git reset hard
 Tools/git/git reset soft
+Tools/git/git reset toDays 回退到某一天
 Tools/git/gitclone下载失败方法
 Tools/git/order
 Tools/git/tig blame filename
@@ -1197,9 +1389,11 @@ UNITTEST/GTEST/gtest说明
 UNITTEST/GTEST/header
 UNITTEST/GTEST/make
 UNITTEST/GTEST/make compile problem编译问题
+WeiLaiDb/Production/weilaix.war Version
 Windows/Fonts
 YAML/yml入门教程
 path路径/Android手机拷贝路径
+字符/方向
 宏Macro/Source insight/AppendBufLine
 宏Macro/Source insight/Ask 输入内容
 宏Macro/Source insight/CharFromAscii
@@ -1242,6 +1436,8 @@ path路径/Android手机拷贝路径
 宏Macro/Source insight/new macro
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
+术语/C/宏和内联函数的区别
+术语/C/宏和内联函数的区别2
 术语/Linux/FIB Forward Information Base
 术语/内核Kernel/常见名词
 术语/异或
@@ -1268,9 +1464,11 @@ path路径/Android手机拷贝路径
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
 测试用例/TestCase/1
+纪录片/视频及资料网址
 脚本/VBS/SecureCrt/Date
 脚本/VBS/SecureCrt/Send
 脚本/VBS/SecureCrt/Sleep
+脚本/VBS/SecureCrt/Version
 脚本/VBS/SecureCrt/WaitForString
 脚本/VBS/SecureCrt/WaitForString #
 脚本/VBS/SecureCrt/WaitForString $
@@ -1281,3 +1479,4 @@ path路径/Android手机拷贝路径
 脚本/VBS/SecureCrt/git push cur branch
 脚本/VBS/SecureCrt/每行保存日志
 设计/软件设计/语言设计的美妙
+Tools/git/git log since relative

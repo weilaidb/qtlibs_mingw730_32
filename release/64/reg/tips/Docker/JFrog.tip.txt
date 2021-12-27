@@ -1,0 +1,2 @@
+docker run --name jfrog-oss -d -v data_artifactory:/var/opt/jfrog/artifactory -p 8081:8081 -p 8082:8082 -p 8046:8046 -p 8049:8049 -p 8070:8070 docker.bintray.io/jfrog/artifactory-oss
+

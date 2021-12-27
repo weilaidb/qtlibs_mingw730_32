@@ -1,0 +1,67 @@
+aliasgrep;alias | grep 
+javassm;cd ~/soft/web_notebook_online/jar && java -jar ssm-0.0.1-SNAPSHOT.jar --server.port=9090
+javajar;java -jar 
+javajarport;java --server.port=9090 -jar 
+javassmlastest;cd ~/soft/web_notebook_online/jar && nohup java -jar  `ls -lat *.jar | awk '{print $9}' | head -n 1` --server.port=9090 &
+
+journalctlxe;journalctl -xe
+useraddhome;useradd -d /home 
+rpmi;rpm -i 
+rpme;rpm -e
+rpmenodeps;rpm -e --nodeps
+rpmq;rpm -q
+rpmqa;rpm -qa
+rpmqagrep;rpm -qa | grep
+yumlistinstalled;yum list installed
+yumlistinstalledgrep;yum list installed | grep 
+
+websshstart;python3 manage.py runserver 0.0.0.0:8000
+
+gitremotev;git remote -v
+gitpullprogress;git pull --progress -v --no-rebase "origin"
+gitclean;git clean -df
+
+
+pipinstall3;pip3 install 
+pipinstall;pip install 
+flaskrun0;flask run --host=0.0.0.0
+
+gitsubmoduleupdateremote;git submodule update --remote 
+gitsubmoduleupdate;git submodule update
+gitsubmoduleadd;git submodule add https://github.com/test/subb.git modules/subb
+gitclonerecursive;git clone --recursive
+gitclone;git clone
+
+jupyternotebookroot;jupyter notebook --allow-root
+jupyternotebookrootnohup;nohup jupyter notebook --allow-root > jupyter.log 2>&1 &
+
+
+dockerimages;docker images
+dockerps;docker ps
+dockerrun;docker run -i -t 
+dockerexec;docker exec -it 
+dockerattach;docker attach 
+dockerinfo;docker info
+dockerlogs;docker logs
+dockerpull;docker pull
+dockerstop;docker stop
+dockerstart;docker start
+dockertop;docker top
+dockerversin;docker --version
+
+
+
+
+
+
+
+
+
+
+
+
+
+cd..;cd ..
+lslh;ls -lh
+
+lslt;ls -lt

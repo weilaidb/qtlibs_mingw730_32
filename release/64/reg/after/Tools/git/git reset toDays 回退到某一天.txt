@@ -1,0 +1,1 @@
+[回退到\1之前的那次提交。注:23:59表示当前天的，00:00表示昨天的]$NLcommitID=`git log --before "\1" -1 --pretty=format:"%H"` && echo commitid $commitID && git reset --hard $commitID

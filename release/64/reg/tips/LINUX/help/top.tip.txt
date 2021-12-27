@@ -1,0 +1,59 @@
+top
+按1，显示多CPU
+按？，打印help
+按u，输入要查看用户名，比如root
+
+top - 22:23:18 up  1:26,  4 users,  load average: 4.21, 7.68, 4.71
+Tasks: 144 total,   1 running, 141 sleeping,   0 stopped,   2 zombie
+%Cpu0  :  0.3 us,  0.3 sy,  0.0 ni, 98.7 id,  0.0 wa,  0.3 hi,  0.3 si,  0.0 st
+%Cpu1  :  0.0 us,  0.3 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   3582.5 total,    104.1 free,   1374.4 used,   2104.0 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   1925.4 avail Mem
+
+
+
+Help for Interactive Commands - procps-ng 3.3.15
+Window 1:Def: Cumulative mode Off.  System: Delay 3.0 secs; Secure mode Off.
+
+  Z,B,E,e   Global: 'Z' colors; 'B' bold; 'E'/'e' summary/task memory scale
+  l,t,m     Toggle Summary: 'l' load avg; 't' task/cpu stats; 'm' memory info
+  0,1,2,3,I Toggle: '0' zeros; '1/2/3' cpus or numa node views; 'I' Irix mode
+  f,F,X     Fields: 'f'/'F' add/remove/order/sort; 'X' increase fixed-width
+
+  L,&,<,> . Locate: 'L'/'&' find/again; Move sort column: '<'/'>' left/right
+  R,H,V,J . Toggle: 'R' Sort; 'H' Threads; 'V' Forest view; 'J' Num justify
+  c,i,S,j . Toggle: 'c' Cmd name/line; 'i' Idle; 'S' Time; 'j' Str justify
+  x,y     . Toggle highlights: 'x' sort field; 'y' running tasks
+  z,b     . Toggle: 'z' color/mono; 'b' bold/reverse (only if 'x' or 'y')
+  u,U,o,O . Filter by: 'u'/'U' effective/any user; 'o'/'O' other criteria
+  n,#,^O  . Set: 'n'/'#' max tasks displayed; Show: Ctrl+'O' other filter(s)
+  C,...   . Toggle scroll coordinates msg for: up,down,left,right,home,end
+
+  k,r       Manipulate tasks: 'k' kill; 'r' renice
+  d or s    Set update interval
+  W,Y       Write configuration file 'W'; Inspect other output 'Y'
+  q         Quit
+          ( commands shown with '.' require a visible task display window ) 
+Press 'h' or '?' for help with Windows,
+Type 'q' or <Esc> to continue 
+
+
+
+
+16.6　系统监视和进程控制工具——top和free
+在Linux和UNIX操作系统中，一个使用最频繁的系统监督工具可能是top，该命令的使用非常简单，只要在操作系统提示符下输入top即可，如可以使用例16-37的top命令列出系统状态，系统默认每5秒钟刷新一下屏幕上的显示结果。
+【例16-37】
+虽然top命令的使用极为简单，但是要真正理解top命令所显示的结果却并不容易。接下来将详细地解释例16-37显示结果中一些常用状态信息的具体含义。
+第1行从top -之后到方框之前的内容表示，这个系统是早上04:26:47开机的，已经开启了35分钟，目前系统上有3个用户。
+第1行方框中的内容表示系统的平均负载，load average显示的是在过去10分钟系统的平均负载，其中的3个数字分别代表现在、5分钟前和10分钟前系统的平均负载。我们这个系统目前的系统平均负载是0.22，5分钟前的系统平均负载是0.16，而10分钟前的系统平均负载是0.10。看了这些系统平均负载数字，读者自然会问这些数字代表什么意思？如果你读过其他Linux书籍，可能会感到有些失望，因为多数都没给出具体的解释。这可能是因为计算load average的数学公式还是比较复杂的，很难用三言两语解释清楚。
+这里将给出load average实用的解释。系统平均负载（load average）即任务队列的平均长度，按照某些文档，这3个数分别是目前、5分钟和10分钟时间内平均有多少个进程由于CPU来不及处理而进入等待状态。在传统UNIX的管理员手册中，认为在1以下表示系统大部分时间是空闲，1～2之间表示系统正好以它的能力运行，而2～3表示系统轻度负载，10以上表示系统已经严重过载。不过，显然对于不同的系统，过载的标准是不同的。目前一些专家认为load average不应该大于系统的处理器数目乘以2。
+按照以上标准，系统的CPU是相当空闲的。在实际的生产系统上，系统过载不一定是系统本身的问题，很可能是系统上运行了某个或某些糟糕的应用程序，因此就需要操作系统管理员进一步调查以查明问题的真相，这样才能真正地解决问题。
+显示结果的第4行显示的是与内存有关的信息，它们表示系统总的内存（total）为807032KB，所使用的内存（used）为290772KB，空闲的内存（free）为516260KB。
+
+
+
+显示结果的第5行显示的是与交换区（交换区就是所谓的虚拟内存，即当内存不够时可以当作内存使用的硬盘区域，这部分内容以后将详细介绍）有关的信息，它们表示系统总的交换区（total）大小为2GB，所使用的交换区（used）为0，空闲的交换区（free）也为2GB。
+许多人并未意识到其实top是一个交互类型的工具，在top命令中，输入？就可以看到一个选项列表。其中一个比较有用的选项是u，这个选项可以让top命令只显示输出一个用户的相关信息。如果你现在还在top命令的窗口中，按？键就会出现如下的显示输出（为了节省篇幅，这里对输出结果进行了裁剪）。
+按任意键就又会来到top命令的窗口，在Swap之下的第6行会出现“Which user (blank for all):”的系统提示信息，此时就可以输入你感兴趣的用户了，如输入dog，其显示结果如下：
+当按Enter键之后，top命令就会只显示dog这一个用户的相关信息，其显示结果如下：
+从这个例子可能也看不出什么有用的信息来，但是如果管理的是一个生产系统，如管理的Linux系统上运行着Oracle数据库管理系统，这时可能就很有用了。此时在用户名处输入oracle，top命令就将列出所有由oracle启动的进程的相关信息，你就可以帮助Oracle数据库管理员（DBA）进行Oracle数据库的排错或优化了。

@@ -1,0 +1,4 @@
+【weilai.war】
+版本：001
+
+http://101.201.79.164:8082/ui/api/v1/download?repoKey=weilaidb&path=001%252Fweilaix.war&isNativeBrowsing=false&isFreeTier=false

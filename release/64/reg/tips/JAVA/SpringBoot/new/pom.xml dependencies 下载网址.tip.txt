@@ -1,0 +1,52 @@
+#仓库
+https://mvnrepository.com/
+https://maven.jeecg.org/nexus/content/repositories/jeecg/
+http://maven.jeecg.org/nexus/content/repositories/snapshots
+
+#阿里云
+https://maven.aliyun.com/repository/public
+
+https://developer.aliyun.com/mvn/guide
+https://developer.aliyun.com/mvn/search
+
+
+<mirror>
+    <id>aliyunmaven</id>
+    <mirrorOf>*</mirrorOf>
+    <name>阿里云公共仓库</name>
+    <url>https://maven.aliyun.com/repository/public</url>
+</mirror>
+
+
+
+<!-- 设定主仓库，按设定顺序进行查找 -->
+<repositories>
+
+    <repository>
+        <id>jeecg</id>
+        <name>jeecg Repository</name>
+        <url>http://maven.jeecg.org/nexus/content/repositories/jeecg</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+    <repository>
+        <id>jeecg-snapshots</id>
+        <name>jeecg-snapshots Repository</name>
+        <url>http://maven.jeecg.org/nexus/content/repositories/snapshots</url>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+
+
+
+#库名
+
+
+
+#启动端口配置
+    <webserver.port>8081</webserver.port>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>

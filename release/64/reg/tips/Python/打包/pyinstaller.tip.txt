@@ -1,0 +1,31 @@
+pyinstaller -F -p C:\Users\dell\AppData\Local\Programs\Python\Python38\Lib\site-packages;C:\Users\dell\AppData\Local\Programs\Python\Python38\Lib\site-packages\matplotlib;C:\Users\dell\AppData\Local\Programs\Python\Python38\Lib\site-packages\matplotlib\backends --hidden-import matplotlib.backends.backend_tkagg
+
+
+#打包（NG)
+cd /d H:\code\python_example\testsets
+pyinstaller -F -w main.py
+
+
+H:\code\python_example\testsets>pyinstaller -F -w main.py
+66 INFO: PyInstaller: 4.7
+67 INFO: Python: 3.8.2
+68 INFO: Platform: Windows-10-10.0.17134-SP0
+68 INFO: wrote H:\code\python_example\testsets\main.spec
+76 INFO: UPX is not available.
+77 INFO: Extending PYTHONPATH with paths
+['H:\\code\\python_example\\testsets']
+344 INFO: checking Analysis
+365 INFO: checking PYZ
+377 INFO: checking PKG
+382 INFO: Bootloader c:\users\dell\appdata\local\programs\python\python38\lib\site-packages\PyInstaller\bootloader\Windows-64bit\runw.exe
+382 INFO: checking EXE
+
+#打出的包提示打不到模块错误
+
+
+pyinstaller -F -w H:\code\python_example\testsets\main.py
+
+
+#成功了
+cd /d H:\code\test-sets
+pyinstaller -F -w main.py

@@ -1,0 +1,1 @@
+#将按钮的点击信号与相关的槽函数进行绑定，点击即触发$NL$TBself.\1.clicked.connect(self.\1_clicked)$NL$NLdef \1_clicked(self):$NL$TB#以文本的形式输出到多行文本框$NL$TBself.textEdit.setPlainText('Hello PyQt5!\n单击按钮')
