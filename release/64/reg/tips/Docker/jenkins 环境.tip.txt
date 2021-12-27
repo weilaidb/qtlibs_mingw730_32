@@ -1,0 +1,230 @@
+Skip to content
+[Jenkins]Jenkins
+search
+2
+1
+admin
+log out
+Dashboard
+
+New Item
+
+People
+
+Build History
+
+Manage Jenkins
+
+My Views
+
+Lockable Resources
+
+打开 Blue Ocean
+
+New View
+Build Queue
+No builds in the queue.
+Build Executor Status
+ master
+1	Idle		
+2	Idle		
+ weilaidb  (Disconnected by admin offline)
+System Properties
+Name  ↓
+Value   
+awt.toolkit	sun.awt.X11.XToolkit
+executable-war	/usr/lib/jenkins/jenkins.war
+file.encoding	UTF-8
+file.encoding.pkg	sun.io
+file.separator	/
+java.awt.graphicsenv	sun.awt.X11GraphicsEnvironment
+java.awt.headless	true
+java.awt.printerjob	sun.print.PSPrinterJob
+java.class.path	/usr/lib/jenkins/jenkins.war
+java.class.version	52.0
+java.endorsed.dirs	/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre/lib/endorsed
+java.ext.dirs	/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre/lib/ext:/usr/java/packages/lib/ext
+java.home	/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre
+java.io.tmpdir	/tmp
+java.library.path	/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+java.runtime.name	OpenJDK Runtime Environment
+java.runtime.version	1.8.0_302-b08
+java.specification.name	Java Platform API Specification
+java.specification.vendor	Oracle Corporation
+java.specification.version	1.8
+java.vendor	Red Hat, Inc.
+java.vendor.url	https://www.redhat.com/
+java.vendor.url.bug	https://bugzilla.redhat.com/enter_bug.cgi?product=Red%20Hat%20Enterprise%20Linux%208&component=java-1.8.0-openjdk
+java.version	1.8.0_302
+java.vm.info	mixed mode
+java.vm.name	OpenJDK 64-Bit Server VM
+java.vm.specification.name	Java Virtual Machine Specification
+java.vm.specification.vendor	Oracle Corporation
+java.vm.specification.version	1.8
+java.vm.vendor	Red Hat, Inc.
+java.vm.version	25.302-b08
+JENKINS_HOME	/var/lib/jenkins
+jetty.git.hash	526006ecfa3af7f1a27ef3a288e2bef7ea9dd7e8
+jna.loaded	true
+jna.platform.library.path	/usr/lib64:/lib64:/usr/lib:/lib:/usr/lib64/iscsi:/usr/lib64//bind9-export
+jnidispatch.path	/var/lib/jenkins/.cache/JNA/temp/jna3586422976945439816.tmp
+line.separator	
+mail.smtp.sendpartial	true
+mail.smtps.sendpartial	true
+os.arch	amd64
+os.name	Linux
+os.version	5.10.60-9.al8.x86_64
+path.separator	:
+sun.arch.data.model	64
+sun.boot.class.path	/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre/lib/resources.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre/lib/rt.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre/lib/jsse.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre/lib/jce.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre/lib/charsets.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre/lib/jfr.jar:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre/classes
+sun.boot.library.path	/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.302.b08-0.1.al8.x86_64/jre/lib/amd64
+sun.cpu.endian	little
+sun.cpu.isalist	
+sun.font.fontmanager	sun.awt.X11FontManager
+sun.io.unicode.encoding	UnicodeLittle
+sun.java.command	/usr/lib/jenkins/jenkins.war --logfile=/var/log/jenkins/jenkins.log --webroot=/var/cache/jenkins/war --httpPort=8080 --debug=5 --handlerCountMax=100 --handlerCountMaxIdle=20
+sun.java.launcher	SUN_STANDARD
+sun.jnu.encoding	UTF-8
+sun.management.compiler	HotSpot 64-Bit Tiered Compilers
+sun.os.patch.level	unknown
+svnkit.http.methods	Digest,Basic,NTLM,Negotiate
+svnkit.ssh2.persistent	false
+user.country	US
+user.dir	/
+user.home	/var/lib/jenkins
+user.language	en
+user.name	jenkins
+user.timezone	Asia/Shanghai
+Environment Variables
+Name  ↓
+Value   
+_	/sbin/daemonize
+HOME	/var/lib/jenkins
+IFS	
+INVOCATION_ID	52877fecc8714adf8ed6c5142d8746a8
+JOURNAL_STREAM	8:6197837
+LANG	en_US.UTF-8
+LOGNAME	jenkins
+PATH	/sbin:/usr/sbin:/bin:/usr/bin
+PWD	/
+SHLVL	1
+USER	jenkins
+Plugins
+Name  ↓
+Version   
+Enabled   
+ace-editor	1.1	true
+ant	1.12	true
+antisamy-markup-formatter	2.5	true
+apache-httpcomponents-client-4-api	4.5.13-1.0	true
+authentication-tokens	1.4	true
+blueocean-commons	1.25.2	true
+blueocean-core-js	1.25.2	true
+blueocean-github-pipeline	1.25.2	true
+blueocean-jwt	1.25.2	true
+blueocean-pipeline-api-impl	1.25.2	true
+blueocean-pipeline-scm-api	1.25.2	true
+blueocean-rest	1.25.2	true
+blueocean-rest-impl	1.25.2	true
+blueocean-web	1.25.2	true
+bootstrap4-api	4.6.0-3	true
+bootstrap5-api	5.1.3-3	true
+bouncycastle-api	2.25	true
+branch-api	2.7.0	true
+build-timeout	1.20	true
+caffeine-api	2.9.2-29.v717aac953ff3	true
+checks-api	1.7.2	true
+cloudbees-folder	6.16	true
+command-launcher	1.6	true
+conditional-buildstep	1.4.1	true
+credentials	2.6.1	true
+credentials-binding	1.27	true
+display-url-api	2.3.5	true
+docker-commons	1.17	true
+durable-task	493.v195aefbb0ff2	true
+echarts-api	5.2.2-1	true
+email-ext	2.85	true
+favorite	2.3.3	true
+font-awesome-api	5.15.4-3	true
+git	4.10.0	true
+git-client	3.10.0	true
+git-server	1.10	true
+github	1.34.1	true
+github-api	1.133	true
+github-branch-source	2.11.3	true
+gradle	1.37.1	true
+handlebars	3.0.8	true
+htmlpublisher	1.28	true
+jackson2-api	2.13.0-230.v59243c64b0a5	true
+javadoc	1.6	true
+jdk-tool	1.5	true
+jenkins-design-language	1.25.2	true
+jjwt-api	0.11.2-9.c8b45b8bb173	true
+jquery3-api	3.6.0-2	true
+jsch	0.1.55.2	true
+junit	1.53	true
+ldap	2.7	true
+lockable-resources	2.12	true
+mailer	1.34	true
+mapdb-api	1.0.9.0	true
+matrix-auth	2.6.8	true
+matrix-project	1.19	true
+maven-plugin	3.15.1	true
+momentjs	1.1.1	true
+okhttp-api	4.9.2-20211102	true
+pam-auth	1.6.1	true
+parameterized-trigger	2.42	true
+pipeline-build-step	2.15	true
+pipeline-github-lib	1.0	true
+pipeline-graph-analysis	1.12	true
+pipeline-input-step	2.12	true
+pipeline-milestone-step	1.3.2	true
+pipeline-model-api	1.9.3	true
+pipeline-model-definition	1.9.3	true
+pipeline-model-extensions	1.9.3	true
+pipeline-rest-api	2.19	true
+pipeline-stage-step	2.5	true
+pipeline-stage-tags-metadata	1.9.3	true
+pipeline-stage-view	2.19	true
+plain-credentials	1.7	true
+plugin-util-api	2.5.1	true
+popper-api	1.16.1-2	true
+popper2-api	2.10.2-1	true
+publish-over	0.22	true
+publish-over-ssh	1.22	true
+pubsub-light	1.16	true
+resource-disposer	0.16	true
+run-condition	1.5	true
+scm-api	2.6.5	true
+script-security	1.78	true
+snakeyaml-api	1.29.1	true
+ssh-credentials	1.19	true
+ssh-slaves	1.33.0	true
+sshd	3.1.0	true
+structs	1.24	true
+subversion	2.15.1	true
+timestamper	1.14	true
+token-macro	267.vcdaea6462991	true
+trilead-api	1.0.13	true
+variant	1.4	true
+windows-slaves	1.8	true
+workflow-aggregator	2.6	true
+workflow-api	2.47	true
+workflow-basic-steps	2.24	true
+workflow-cps	2633.v6baeedc13805	true
+workflow-cps-global-lib	548.v9085a486966a	true
+workflow-durable-task-step	1101.vf832bc1ac745	true
+workflow-job	2.42	true
+workflow-multibranch	2.26	true
+workflow-scm-step	2.13	true
+workflow-step-api	2.24	true
+workflow-support	3.8	true
+ws-cleanup	0.39	true
+Memory Usage
+Timespan: Short Medium Long
+[Memory usage graph]
+Thread Dumps
+Visit this page for master and agent thread dumps.
+
+REST API
+Jenkins 2.303.3
