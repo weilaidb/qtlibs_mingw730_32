@@ -383,6 +383,7 @@ DBMS/MySql/database drop
 DBMS/MySql/delete
 DBMS/MySql/getColumns 表字段
 DBMS/MySql/like
+DBMS/MySql/mysql order 安装server及命令
 DBMS/MySql/mysql 加载驱动
 DBMS/MySql/mysql 建立连接
 DBMS/MySql/mysql 说明
@@ -417,6 +418,7 @@ DEFINE/UNUSED
 Docker/Bash
 Docker/Hello World
 Docker/JFrog
+Docker/JFrog weilai.war下载
 Docker/attach
 Docker/container prune
 Docker/exec
@@ -426,6 +428,9 @@ Docker/images
 Docker/import 导入容器快照
 Docker/info
 Docker/inspect
+Docker/jenkins
+Docker/jenkins 安装
+Docker/jenkins 环境
 Docker/logs
 Docker/logs -f
 Docker/ps
