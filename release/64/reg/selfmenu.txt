@@ -378,6 +378,7 @@ CXX/More/虚函数
 CXX/More/虚函数 eg
 CXX/More/虚函数 eg2
 CXX/cin.getline
+CXX/class/多态 继承
 CXX/externc __cplusplus
 CXX/new class static instsance实例
 CXX/编译链接 预处理等
