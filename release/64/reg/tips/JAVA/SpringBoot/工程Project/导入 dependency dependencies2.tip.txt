@@ -1,0 +1,4 @@
+[groupID;artifactID;version]
+org.mybatis.spring.boot;mybatis-spring-boot-starter;2.1.4
+mysql;mysql-connector-java;5.1.25
+com.alibaba;druid;1.0.9

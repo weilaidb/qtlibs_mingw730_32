@@ -1,0 +1,46 @@
+Thymealeaf
+
+jar包
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+
+
+JS库
+Vue.js
+
+
+
+
+Thymealeaf文件
+
+xx.html
+
+替换内容
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+放置位置
+src/main/resources/templates
+
+
+
+#yml配置文件
+#thymeleaf 设置面板后缀
+spring:
+  thymeleaf:
+    suffix: .html
+
+
+
+#循环 语法
+    <tr th:each="user:${userlist}">
+        <th th:text="${user.id}"></th>
+        <th th:text="${user.name}"></th>
+        <th th:text="${user.age}"></th>
+        <th th:text="${user.address}"></th>
+    </tr>

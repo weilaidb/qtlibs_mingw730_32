@@ -1,0 +1,1 @@
+com.easy.springboot;demo0_hello_world;0.0.1-SNAPSHOT;demo0_hello_world;Demo project for Spring Boot

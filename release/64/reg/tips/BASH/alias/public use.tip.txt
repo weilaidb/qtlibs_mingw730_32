@@ -14,6 +14,7 @@ alias gitclonerecursive="git clone --recursive "
 alias gitsubmoduleadd="git submodule add "
 alias gitsubmoduleupdate="git submodule update "
 alias gitsubmoduleupdateremote="git submodule update --remote "
+alias gitremotev="git remote -v "
 
 alias gitdiff="git diff "
 alias gitdiffcached="git diff --cached"
@@ -26,7 +27,7 @@ alias gitresethead2="git reset HEAD~2"
 alias gitresetheadn="git reset HEAD~"
 alias gitlog="git log "
 #merges的显示补丁diff
-alias gitlogpatchall="git log -p -m "f
+alias gitlogpatchall="git log -p -m "
 alias gitlogpatchallsinceoneday="git log -p -m --since=1.day"
 alias gitlogpatchallsinceoneweek="git log -p -m --since=1.week"
 alias gitlogpatchallgraph="git log -p -m --graph --all "
@@ -67,6 +68,15 @@ alias yuminstally="yum install -y "
 alias yumremove="yum remove "
 alias yumlist="yum list "
 alias yumlistgrep="yum list | grep "
+alias yumlistinstalled="yum list installed "
+alias yumlistinstalledgrep="yum list installed | grep "
+
+alias rpmi="rpm -i "
+alias rpme="rpm -e "
+alias rpmenodeps="rpm -e --nodeps "
+alias rpmq="rpm -q "
+alias rpmqa="rpm -qa "
+alias rpmqagrep="rpm -qa | grep "
 
 
 alias lslt="ls -lt"
@@ -74,6 +84,21 @@ alias lslh="ls -lh"
 alias llt="ls -lt"
 alias llh="ls -lh"
 alias cd..="cd .."
+
+
+alias useraddhome="useradd -d /home "
+alias journalctlxe="journalctl -xe "
+alias aliasgrep="alias | grep "
+
+
+#java
+alias javassm="cd ~/soft/web_notebook_online/jar && java -jar ssm-0.0.1-SNAPSHOT.jar --server.port=9090 "
+alias javassmlastest="cd ~/soft/web_notebook_online/jar && nohup java -jar  `ls -lat *.jar | awk '{print $9}' | head -n 1` --server.port=9090 &"
+alias javajar="java -jar "
+alias javajarport="java --server.port=9090 -jar "
+
+
+
 
 
 #docker
@@ -97,3 +122,5 @@ alias jupyternotebookrootnohup="nohup jupyter notebook --allow-root > jupyter.lo
 alias flaskrun0="flask run --host=0.0.0.0 "
 alias pipinstall3="pip3 install "
 alias pipinstall="pip install "
+alias pipuninstall="pip uninstall "
+alias websshstart="python3 manage.py runserver 0.0.0.0:8000 "

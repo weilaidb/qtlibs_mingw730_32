@@ -24,3 +24,18 @@ glib2 glib2-devel
 pixman-devel
 ninja-build
 libxml2-devel xmlsec1-devel xmlsec1-openssl-devel libtool-ltdl-devel
+
+lrzsz
+telnet
+telnet-server
+
+[setting limits for courol groups]
+libcgroup
+libcgroup-tools
+libcgroup-pam
+
+systemtap
+systemtap-runtime
+kernel-devel
+kernel-debug
+gcc

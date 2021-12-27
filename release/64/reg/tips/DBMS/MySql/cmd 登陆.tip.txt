@@ -1,0 +1,1 @@
+D:\xampp8\mysql\bin\mysql.exe;root;

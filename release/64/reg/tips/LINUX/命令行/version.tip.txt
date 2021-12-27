@@ -1,0 +1,3 @@
+cat /etc/redhat-release 
+uname -a
+hostname

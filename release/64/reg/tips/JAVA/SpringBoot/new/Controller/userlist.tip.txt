@@ -1,0 +1,2 @@
+[类名;映射名;函数名]
+UserListController;userlist;userlist

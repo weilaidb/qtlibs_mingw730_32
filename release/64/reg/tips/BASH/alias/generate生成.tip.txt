@@ -1,3 +1,23 @@
+aliasgrep;alias | grep 
+javassm;cd ~/soft/web_notebook_online/jar && java -jar ssm-0.0.1-SNAPSHOT.jar --server.port=9090
+javajar;java -jar 
+javajarport;java --server.port=9090 -jar 
+javassmlastest;cd ~/soft/web_notebook_online/jar && nohup java -jar  `ls -lat *.jar | awk '{print $9}' | head -n 1` --server.port=9090 &
+
+journalctlxe;journalctl -xe
+useraddhome;useradd -d /home 
+rpmi;rpm -i 
+rpme;rpm -e
+rpmenodeps;rpm -e --nodeps
+rpmq;rpm -q
+rpmqa;rpm -qa
+rpmqagrep;rpm -qa | grep
+yumlistinstalled;yum list installed
+yumlistinstalledgrep;yum list installed | grep 
+
+websshstart;python3 manage.py runserver 0.0.0.0:8000
+
+gitremotev;git remote -v
 gitpullprogress;git pull --progress -v --no-rebase "origin"
 gitclean;git clean -df
 

@@ -1,0 +1,1 @@
+在src/main/resources创建 $NLapplication.yml$NL内容如下$NLserver:$NL  port: \1

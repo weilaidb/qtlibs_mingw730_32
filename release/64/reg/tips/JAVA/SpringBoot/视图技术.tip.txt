@@ -1,0 +1,115 @@
+常用的视力技术有
+
+jsp
+velocity
+FreeMarker
+Thymealeaf
+
+SpringBoot技术推荐使用Thymealeaf,最不推荐jsp
+
+
+
+
+
+3.SpingBoot技术整合FreeMarker
+
+Apache FreeMarker
+在html静态网页中嵌入自己大量的特有的标签！！
+
+
+---
+xxx.ftl
+
+位置存放在哪里？？
+
+src/main/resources/templates/
+    userlist.ftl
+
+
+
+Thymealeaf文件
+
+xx.html
+
+替换内容
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+放置位置
+src/main/resources/templates
+
+
+
+
+4.SpringBoot 整合ssm
+SpringBoot+SpringMVC+MyBatis =>ssm
+
+
+层级：
+web层
+Spring MVC
+Thymeleaf
+
+service
+接口+实现 
+
+dao层
+MyBatis
+
+
+Sql
+
+
+
+
+=============>>>>复习
+1.1为什么学习SpringBoot
+简化传统的开发！！
+
+1.2 Spring入门程序
+基于SpringBoot整合mvc的程序！
+
+1.3 Spring的入门程序探究
+1）maven的依赖
+2）启动类
+
+1.4 SpringBoot标准程序的结构
+static
+templates
+
+1.5 SpringBoot整合web层技术
+
+-静态资源访问
+-servlet
+-文件上传
+
+1.6 SpringBoot整合web层的视图技术
+Freemarker
+Thyemleaf
+
+1.7 SpringBoot +mybatis + Springmvc 整合
+1）查询功能
+2）添加功能
+3）删除
+4）修改
+
+
+
+
+
+th:text -- >仅仅是做字符串数据的显示
+th:field -->既可以显示字符串数据也可以做数据的绑定
+
+
+
+修改时，根据id去修改
+需要添加隐藏域id
+
+删除时，根据id去删除
+调用三层
+
+1.在userlist界面添加一个删除按钮并且绑定id
+2.用户点击后发送请求给controller，然后再去请求三层数据库操作
+
+重定向
+"redirect:/userlist";

@@ -1,0 +1,3 @@
+[LANG=C 时间24小时制，第1个参数表示间隔，第二个参数为次数，-P表示监测的CPU号]
+LANG=C mpstat 1 10 -P 0
+LANG=C mpstat 1 10 -P ALL

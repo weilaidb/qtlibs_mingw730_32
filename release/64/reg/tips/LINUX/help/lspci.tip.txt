@@ -1,0 +1,22 @@
+lspci
+ls -l /proc/bus/pci
+
+
+
+$ lspci
+00:00.0 Host bridge: Intel Corporation 440FX - 82441FX PMC [Natoma] (rev 02)
+00:01.0 ISA bridge: Intel Corporation 82371SB PIIX3 ISA [Natoma/Triton II]
+00:01.1 IDE interface: Intel Corporation 82371SB PIIX3 IDE [Natoma/Triton II]
+00:01.2 USB controller: Intel Corporation 82371SB PIIX3 USB [Natoma/Triton II] (rev 01)
+00:01.3 Bridge: Intel Corporation 82371AB/EB/MB PIIX4 ACPI (rev 03)
+00:02.0 VGA compatible controller: Cirrus Logic GD 5446
+00:03.0 Communication controller: Red Hat, Inc. Virtio console
+00:04.0 SCSI storage controller: Red Hat, Inc. Virtio block device
+00:05.0 Ethernet controller: Red Hat, Inc. Virtio network device
+00:06.0 Unclassified device [00ff]: Red Hat, Inc. Virtio memory balloon
+
+
+$ ls -l /proc/bus/pci
+total 0
+dr-xr-xr-x 12 root root 0 Dec 15 08:18 00
+-r--r--r--  1 root root 0 Dec 15 08:18 devices
