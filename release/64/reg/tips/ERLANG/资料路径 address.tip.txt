@@ -1,0 +1,34 @@
+https://pragprog.com/
+http://www.pragprog.com/title/jaerlang2/source_code
+
+
+C:\Users\dell\eclipse\java-2021-12
+安装路径
+E:\Program Files\eclipse\java-2021-12
+E:\Program Files\erl-24.2
+
+
+工作路径:
+C:\Users\dell\eclipse-workspace
+E:\eclipse-workspace
+
+
+
+Erlang IDE
+https://erlide.org/
+https://erlide.org/articles/eclipse/120_Installing-and-updating.html
+
+
+Installing and updating
+Install Erlang R20 or later, if it isn’t already present on your system. On Windows systems, use a path with no spaces in it.
+Install Eclipse. We target version starting with 4.9+.
+If your network uses a proxy to connect to the internet, fill in the appropriate data in Window -> Preferences -> Install/Update -> Proxy settings
+Install Erlide by going to Help -> Software Updates -> Find and Install... -> Search for new features to install.
+In the dialog, choose New remote site and enter Erlide as name and https://download.erlide.org/update as URL.
+Select Erlang IDE and maybe the optional add-ins. Press Next, again Next, accept the license agreement and Finish. You may be asked to agree to install unsigned content, do so.
+Restart. Go to Window -> Preferences -> Erlang -> Installed runtimes and add an entry (or several) for your Erlang installation(s) of choice. The required parameters are the name and the path to the top level directory (i.e. $ERL_TOP). Now restart again.
+Done! You’re ready to start exploring.
+Update sites
+Stable releases: https://download.erlide.org/update
+Beta releases: https://download.erlide.org/update/beta
+Nightly releases (bleeding edge, may not work, use at your own risk): https://download.erlide.org/update/nightly
