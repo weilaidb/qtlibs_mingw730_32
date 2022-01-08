@@ -205,6 +205,7 @@ C/API/strerror
 C/API/strindex
 C/API/strrchr
 C/API/strtok
+C/API/strtok_r
 C/API/syscall
 C/API/syscalls
 C/API/usage
@@ -1270,6 +1271,7 @@ QT/UI/ClipBoard/getClipBoardText
 QT/UI/ClipBoard/setClipBoardText
 QT/UI/Cursor movePosition
 QT/UI/Desktop/Heigth
+QT/UI/Desktop/Path
 QT/UI/Desktop/SetCenter
 QT/UI/Desktop/Width
 QT/UI/Dialog/CDialogNewUt
