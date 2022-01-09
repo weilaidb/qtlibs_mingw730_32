@@ -1,6 +1,8 @@
 
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
+AutoTest/python/telnet
+AutoTest/python/telnet read_until
 BASH/alias/generate生成
 BASH/alias/public use
 BASH/alias/public use @web
@@ -854,6 +856,7 @@ LINUX/man/systemtap
 LINUX/man/vmstat
 LINUX/qemu
 LINUX/qemu 虚拟机的使用
+LINUX/telnetd
 LINUX/uboot
 LINUX/命令行/Centos 7 搭建samba
 LINUX/命令行/Linux 忘记密码解决方法
@@ -1148,6 +1151,7 @@ Python/API/thread3
 Python/API/thread4
 Python/Lambda/test
 Python/List/for
+Python/List/for2
 Python/Map/para1 test
 Python/Map/para2 multiplier_func
 Python/Map/para2 square
@@ -1222,6 +1226,7 @@ QT/PUB/CONFIG unix
 QT/PUB/CONFIG win32
 QT/PUB/ConfigPath 配置编译路径
 QT/PUB/INCLUDEPATH
+QT/QDateTime/format1
 QT/QDir/toNativeSeparators
 QT/QEvent/closeEvent
 QT/QHash/insert
@@ -1287,6 +1292,7 @@ QT/UI/Desktop/Path
 QT/UI/Desktop/SetCenter
 QT/UI/Desktop/Width
 QT/UI/Dialog/CDialogNewUt
+QT/UI/Dialog/SaveAs
 QT/UI/Dialog/close hide show
 QT/UI/Menu
 QT/UI/Menu Custom
@@ -1372,6 +1378,7 @@ Tools/git/git log 回退到某一天的提交
 Tools/git/git reset hard
 Tools/git/git reset soft
 Tools/git/git reset toDays 回退到某一天
+Tools/git/git server
 Tools/git/gitclone下载失败方法
 Tools/git/order
 Tools/git/tig blame filename

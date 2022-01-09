@@ -1,0 +1,147 @@
+Linux下开启和关闭Telnet服务
+
+ShenYounger 2015-10-02 18:41:55  27991  收藏 12
+分类专栏： linux/unix等各种系统知识
+
+linux/unix等各种系统知识
+专栏收录该内容
+6 篇文章0 订阅
+订阅专栏
+
+telnet与ssh相比，安全性能并不高，但是在SSH版本升级或者其他的情况下还是需要开启这一服务。 linux提供服务是由运行在后台的守护程序（daemon）来执行的，telnet服务是由xinetd守护的。
+
+SUSE10下
+
+一、开启telnet服务
+
+（1）使用命令查看已经安装的telnet包。
+
+通常telnet包是系统默认安装的，做为客户端；telnet-server包需要自行安装，做为服务端。
+
+（2）下载或者从安装光盘里复制相同版本的telnet-server-1.2-14.4.i586.rpm包。
+
+安装telnet-server包，命令如下：
+
+rpm –ivhtelnet-server-1.2-14.4.i586.rpm
+
+安装完全后使用命令rpm –qa|greptelnet-server验证包是否安装成功。
+
+（3）查看telnet服务是否开启，命令如下：
+
+（4）开启telnet服务（有两种方式）
+
+a）vi /etc/xinetd.d/telnet，将disable=yes改成disable=no；
+
+ b）chkconfig telnet on；如果需要设置telnet服务为开机自启动，使用命令chkconfig -add telnet或者chkconfig --add telnet
+
+（5）激活telnet服务
+
+使用命令server xinet drestart或者/etc/init.d/xinetd restart使更改生效。
+
+（6）测试telnet服务是否可用
+
+二、关闭telnet服务
+
+（1）关闭telnet服务（有两种方式）
+
+a）vi /etc/xinetd.d/telnet，将disable=no改成disable=yes；
+
+ b）chkconfig telnet off；如果需要设置telnet服务不为开机自启动，使用命令chkconfig -del telnet或者chkconfig --del telnet
+
+（2）使用命令server xinetd restart或者/etc/init.d/xinetd restart使更改生效。
+
+（3）删除telnet-server包，命令如下：
+
+rpm -e telnet-server--nodeps
+
+（4）vi /etc/services，注释23号端口。
+
+ 
+
+ 
+
+ 
+
+RedHat AS下
+
+一、开启telnet服务
+
+（1）使用命令查看已经安装的telnet包。
+
+通常telnet包是系统默认安装的，做为客户端；telnet-server包需要自行安装，做为服务端。
+
+（2）下载或者从安装光盘里复制相同版本的telnet-server-0.17-31.EL4.5.i386.rpm包。
+
+安装telnet-server包，命令如下：
+
+rpm –ivh telnet-server-0.17-31.EL4.5.i386.rpm
+
+安装完全后使用命令rpm –qa|greptelnet-server验证包是否安装成功。
+
+（3）查看telnet服务是否开启，命令如下：
+
+（4）开启telnet服务（有两种方式）
+
+a）vi /etc/xinetd.d/telnet，将disable=yes改成disable=no；
+
+ b）chkconfig telnet on；如果需要设置telnet服务为开机自启动，使用命令chkconfig --add telnet
+
+（5）vi /etc/pam.d/login文件，将第二行“auth required pam_securetty.so”注释掉（在这一行前面加#）
+
+sxit@UNCS-PS-IMS-SV-WEB#vi /etc/pam.d/login
+
+#%PAM-1.0
+
+#auth      required     /lib/security/pam_securetty.so
+
+auth       required     /lib/security/pam_stack.soservice=system-auth
+
+auth       required     /lib/security/pam_nologin.so
+
+account    required    /lib/security/pam_stack.so service=system-auth
+
+password   required    /lib/security/pam_stack.so service=system-auth
+
+session     required     /lib/security/pam_stack.soservice=system-auth
+
+session     optional     /lib/security/pam_console.so
+
+（6）vi /etc/securetty文件，添加登录的tty，如pts/0,pts/1,pts/2.......
+
+sxit@UNCS-PS-IMS-SV-WEB#vi /etc/securetty
+
+pts/0
+
+pts/1
+
+pts/2
+
+vc/1
+
+vc/2
+
+vc/3
+
+vc/4
+
+（7）激活telnet服务
+
+使用命令server xinetdrestart或者/etc/init.d/xinetdrestart使更改生效。
+
+（6）测试telnet服务是否可用
+
+二、关闭telnet服务
+
+（1）关闭telnet服务（有两种方式）
+
+a）vi /etc/xinetd.d/telnet，将disable=no改成disable=yes；
+
+ b）chkconfig telnet off；如果需要设置telnet服务不为开机自启动，使用命令chkconfig --del telnet
+
+（2）使用命令server xinetd restart或者/etc/init.d/xinetd restart使更改生效。
+
+（3）删除telnet-server包，命令如下：
+
+rpm -e telnet-server--nodeps
+
+（4）vi /etc/services，注释23号端口。
