@@ -1,0 +1,1 @@
+public class \1 {$NL$NL$TBpublic static String replace2br(String string)$NL$TB{$NL$TB$TBreturn string.replace("\n","<br/>");$NL$TB}$NL}

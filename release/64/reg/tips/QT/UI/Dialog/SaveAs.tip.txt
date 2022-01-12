@@ -1,3 +1,6 @@
+#include <QFileDialog>
+
+
     QString fileName = QFileDialog::getSaveFileName(this,
                                                     tr("Open Config"),
                                                     "",

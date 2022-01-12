@@ -39,3 +39,10 @@ systemtap-runtime
 kernel-devel
 kernel-debug
 gcc
+
+yasm
+
+gdb
+
+git-daemon
+httpd gitweb
