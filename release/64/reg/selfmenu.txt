@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -1319,6 +1320,7 @@ QT/UI/QTextEdit/findText
 QT/UI/QTextEdit/getSelectLine
 QT/UI/QTextEdit/getSelectLineTextEdit
 QT/UI/QTextEdit/getSelectTextEdit
+QT/UI/QTextEdit/getSelectTextEdit 按段分隔符
 QT/UI/QTextEdit/getTextEdit
 QT/UI/QTextEdit/getTextEditLen
 QT/UI/QTextEdit/hideTextEdit
