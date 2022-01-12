@@ -1,0 +1,23 @@
+【代码程序路径】
+D:\E\QtExamplenew\qtlibs_mingw730_32 - master\release\64\
+D:\E\QtExamplenew\qtlibs_mingw730_32-exe64\
+
+【代码程序开发】
+D:\E\QtExamplenew\codetools\codesets\
+
+【Java 代码程序开发】
+H:\code\hello-java-ee3_-ext\HelloJavaEE3\
+G:\tarbao\jsp_exe\
+D:\xampp8\tomcat\webapps\
+
+
+【Python代码程序开发】
+H:\code\python_example\
+
+
+
+
+
+
+
+
