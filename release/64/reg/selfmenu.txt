@@ -1,4 +1,3 @@
-
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -1418,6 +1417,7 @@ YAML/yml入门教程
 path路径/Android手机拷贝路径
 path路径/常用文件夹
 字符/方向
+学习/小学生/英文电影
 宏Macro/Source insight/AppendBufLine
 宏Macro/Source insight/Ask 输入内容
 宏Macro/Source insight/CharFromAscii
