@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -336,6 +337,7 @@ C/enum/enum
 C/enum/enum single
 C/enum/enum single withname
 C/enum/enum single withname typedef
+C/interface/checkCpu
 C/new/DEFINE/ifndef
 C/new/__attribute__/TEXT
 C/new/__attribute__/__align__
