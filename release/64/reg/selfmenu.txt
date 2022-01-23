@@ -1506,4 +1506,5 @@ path路径/常用文件夹
 脚本/VBS/SecureCrt/git process
 脚本/VBS/SecureCrt/git push cur branch
 脚本/VBS/SecureCrt/每行保存日志
+设计/试题/出题
 设计/软件设计/语言设计的美妙
