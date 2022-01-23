@@ -166,6 +166,7 @@ Books/常用书籍列表 学校
 Books/常用书籍列表 已经购买
 Books/常用网址
 Books/读后感/Linux Tcp IP协议栈 Linux2.6协议栈源代码分析
+Books/读后感/奔跑吧 Linux内核
 C# cs/CMDOperator
 C# cs/DllImport
 C# cs/HelloWorldApplication
@@ -248,6 +249,7 @@ C/DEFINE/YES
 C/DEFINE/abs
 C/DEFINE/align
 C/DEFINE/asm
+C/DEFINE/barrier
 C/DEFINE/bit bic bis
 C/DEFINE/static_inline空间换时间
 C/DEFINE/typeof
@@ -1321,6 +1323,7 @@ QT/UI/QTextEdit/findText
 QT/UI/QTextEdit/getSelectLine
 QT/UI/QTextEdit/getSelectLineTextEdit
 QT/UI/QTextEdit/getSelectTextEdit
+QT/UI/QTextEdit/getSelectTextEdit 按段分隔符
 QT/UI/QTextEdit/getTextEdit
 QT/UI/QTextEdit/getTextEditLen
 QT/UI/QTextEdit/hideTextEdit
@@ -1418,6 +1421,7 @@ YAML/yml入门教程
 path路径/Android手机拷贝路径
 path路径/常用文件夹
 字符/方向
+学习/小学生/英文电影
 宏Macro/Source insight/AppendBufLine
 宏Macro/Source insight/Ask 输入内容
 宏Macro/Source insight/CharFromAscii
@@ -1503,4 +1507,5 @@ path路径/常用文件夹
 脚本/VBS/SecureCrt/git process
 脚本/VBS/SecureCrt/git push cur branch
 脚本/VBS/SecureCrt/每行保存日志
+设计/试题/出题
 设计/软件设计/语言设计的美妙
