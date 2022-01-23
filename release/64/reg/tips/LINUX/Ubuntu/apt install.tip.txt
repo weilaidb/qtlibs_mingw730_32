@@ -3,3 +3,9 @@ gcc-arm-none-eabi
 
 
 dos2unix
+
+
+
+libncurses5-dev libssl-dev build-essential openssl
+
+build-dep linux-image-generic

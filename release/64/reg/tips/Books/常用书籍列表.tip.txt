@@ -21,3 +21,7 @@ http://down.yzppaa.org/list/4_1.html
 
 
 自动化测试实战宝典：Robot Framework + Python从小工到专家
+
+
+软件建模:
+UML软件建模技术

@@ -1,0 +1,1878 @@
+QString CUIPub::getSelectTextEdit(QTextEdit *pEdit)
+{
+    return pEdit->textCursor().selectedText();
+}
+
+
+    QString selectPath = CUIPub::getSelectTextEdit(ui->textEdit);
+    selectPath = selectPath.replace(QChar::ParagraphSeparator,'\n');
+
+
+
+ Javaer101 
+首页 Java Python Mysql Linux Javascript Android PHP Dev
+搜索
+搜索
+qtextedit selectedtext（）返回控制字符
+exo 发表于 Dev
+13
+
+ 
+
+ 
+exo
+我具有仅从qtextedit返回所选文本的功能。我需要获取纯文本，但是此函数返回带有一些控制字符的文本。
+
+例如：function textEdit-> textCursor（）。selectedText（）返回：
+
+
+ 
+"select?  timestamp,?  strftime('%d.%m.%Y', Datetime(timestamp, 'unixepoch', 'localtime')) as date,?  strftime('%H:%M:%S', Datetime(timestamp, 'unixepoch', 'localtime')) as time,?  author,?  from_dispname,?  dialog_partner,?  body_xml?from?  Messages?where?  timestamp >= 1501504199?  -- timestamp >= 1502345001?order by?  timestamp asc"
+函数textEdit-> toPlainText（）返回：
+
+"select\n  timestamp,\n  strftime('%d.%m.%Y', Datetime(timestamp, 'unixepoch', 'localtime')) as date,\n  strftime('%H:%M:%S', Datetime(timestamp, 'unixepoch', 'localtime')) as time,\n  author,\n  from_dispname,\n  dialog_partner,\n  body_xml\nfrom\n  Messages\nwhere\n  timestamp >= 1501504199\n  -- timestamp >= 1502345001\norder by\n  timestamp asc"
+在第一个示例中，？（问号）没有输入，而我无法替换它们。
+
+我究竟做错了什么？
+
+费利克斯
+要将评论包装起来作为答案：
+
+作为QTextCursor::selectedText状态的文档：
+
+注意：如果从编辑器获得的选择跨越换行符，则文本将包含Unicode U + 2029段落分隔符，而不是换行符\ n。使用QString :: replace（）用换行符替换这些字符。
+
+?在调试输出中显示时显示为。可以QString::replace按照文档中的说明使用，也可以QTextCursor::selection代替使用（通过使用selection().toPlainText()从选择中获取文本）
+
+本文收集自互联网，转载请注明来源。
+
+如有侵权，请联系 javaer101@gmail.com 删除。
+
+编辑于 2020-11-10
+qtqtextedit
+0
+分享 
+
+ 
+ 
+ 
+我来说两句
+0 条评论
+登录 后参与评论
+上一篇：如何获得法拉第/扫描以遍历整个DynamoDB表？
+相关文章
+替换Unicode控制字符
+如何从CharSequence中剥离“控制字符”？
+Golang url.Parse总是返回无效的控制字符URL
+PDFBox hasGlyph（）对于不受支持的Unicode控制字符返回true
+将python控制台输出打印到Qtextedit
+QTextEdit textChanged信号异常
+无法输出到QTextEdit
+QTextedit find（）总是返回False（pyside2）
+从控制台实时打印输出到QTextEdit
+删除QTextEdit内部的QTextDocument
+QTextEdit ANSI符号
+QTextEdit可点击的文本
+如何获取QTextEdit的字体
+如何在QTextEdit中显示扩展的ASCII字符
+在QTextEdit中更改文本
+QTextEdit插入文本
+QT QTextEdit setText崩溃
+QTextEdit中的Qt textChange（）
+防止线规处理控制字符
+QTextEdit或QTextBrowser性能问题
+QTextEdit更新单个QTextCharFormat
+QTextEdit不显示键盘上不可用的特殊字符
+QClipboard和selectedText（）在QTextEdit中不相等
+如何对齐qtextedit
+Vimscript 删除控制字符
+在 QTextEdit 中撤消/重做
+如何将字符串作为 QTextEdit 信号的参数传递
+QtWidgets.QTextEdit.textCursor().movePosition(); 如何定义确切的字符数？
+如何將項目符號列表重置為普通文本並返回 QTextEdit
+
+ 
+TOP 榜单
+文章
+1
+如何让所有的资产在AEM集合？
+2
+@Repository没有必要实施JpaRepository什么时候？
+3
+保持与一对多加入订单
+4
+Java交换字符而不是元音
+5
+停用词移除难题
+6
+我们如何使用休眠更新实体的所有引用？
+7
+“ pip install --user ...”的目的是什么？
+8
+如何Activity.class（本）传递给方法？（机器人）
+9
+尝试使用网纹给人一种模块找不到错误运行Python，但它被安装
+10
+Eclipse是展示“Tomcat的端口无效”。为什么？
+11
+如何将lambda表达式重构为方法引用？
+12
+如何获得与Vuex和爱可信POST请求的最新ID
+13
+獲取單元格的值並將其存儲在變量中，用於 Python 中列和行的給定值
+14
+執行按鈕和回調時 Flutter RenderFlex 和 setState 問題
+15
+Github的Jekyll网站中的Access-Control-Allow-Origin HTTP标头
+16
+如何在cypress中實現ant下拉選擇
+17
+防止日期選擇器隨頁面滾動
+18
+泛型列表上的模式匹配
+19
+如何使用包含某些文件的ant构建文件来创建EAR文件？
+20
+Bootstrap Popover不适用于下载的js和CSS
+21
+自動將字符串轉換為數組中的變量
+热门标签
+归档
+2022-01-11
+ 
+2022-01-10
+ 
+2022-01-09
+ 
+2022-01-08
+ 
+2022-01-07
+ 
+2022-01-06
+ 
+2022-01-05
+ 
+2022-01-04
+ 
+2022-01-03
+Javaer101  版权所有 zh ja en ko ru pt es fr de 苏ICP备100000号
+
+
+21:20:27: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+size recent open: 31
+proc_listWidget_searchresult_ItemClicked
+ucType: 1
+"path路径/常用文件夹"
+"path路径/Android手机拷贝路径"
+"path路径/常用文件夹"
+"path路径/Android手机拷贝路径"
+ucType: 2
+size recent open: 31
+proc_listWidget_searchresult_ItemClicked
+save config : "path路径/常用文件夹"
+in  1
+come here
+"seq:1"
+in  1
+come here
+"seq:1"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+QString::arg: Argument missing: 文件不存在:, H:\code\hello-java-ee3_-ext\HelloJavaEE3\?G:\tarbao\jsp_exe\?D:\xampp8\tomcat\webapps\?
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+QString::arg: Argument missing: 文件不存在:, H:\code\hello-java-ee3_-ext\HelloJavaEE3\?G:\tarbao\jsp_exe\?D:\xampp8\tomcat\webapps\?
+21:21:13: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:23:10: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+21:23:30: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:25:24: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+21:25:35: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:27:13: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+21:28:24: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:28:35: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+listPath.size(): 1
+21:29:01: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:29:12: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\?G:\\tarbao\\jsp_exe\\?D:\\xampp8\\tomcat\\webapps\\??"
+listPath.size(): 1
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\?G:\\tarbao\\jsp_exe\\?D:\\xampp8\\tomcat\\webapps\\?"
+listPath.size(): 1
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "a?b?c?d?e"
+listPath.size(): 1
+21:34:36: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:34:47: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "D:\\E\\QtExamplenew\\codetools\\codesets\\"
+listPath.size(): 1
+open path: "D:\\E\\QtExamplenew\\codetools\\codesets\\"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\"
+listPath.size(): 1
+open path: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "G:\\tarbao\\jsp_exe\\"
+listPath.size(): 1
+open path: "G:\\tarbao\\jsp_exe\\"
+21:36:31: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:36:39: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\"
+listPath.size(): 1
+open path: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\"
+21:37:31: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:37:40: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+mode: ""
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\"
+listPath.size(): 1
+open path: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\"
+21:44:33: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:44:44: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\"
+listPath.size(): 1
+open path: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\"
+21:45:02: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:45:13: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\?G:\\tarbao\\jsp_exe\\?D:\\xampp8\\tomcat\\webapps\\?"
+listPath.size(): 1
+21:45:46: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:45:57: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\?G:\\tarbao\\jsp_exe\\?D:\\xampp8\\tomcat\\webapps\\??"
+listPath.size(): 1
+21:46:11: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:59:42: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+21:59:45: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+21:59:58: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No: 0 ,  H 
+
+No: 1 ,  : 
+
+No: 2 ,  \ 
+
+No: 3 ,  c 
+
+No: 4 ,  o 
+
+No: 5 ,  d 
+
+No: 6 ,  e 
+
+No: 7 ,  \ 
+
+No: 8 ,  h 
+
+No: 9 ,  e 
+
+No: 10 ,  l 
+
+No: 11 ,  l 
+
+No: 12 ,  o 
+
+No: 13 ,  - 
+
+No: 14 ,  j 
+
+No: 15 ,  a 
+
+No: 16 ,  v 
+
+No: 17 ,  a 
+
+No: 18 ,  - 
+
+No: 19 ,  e 
+
+No: 20 ,  e 
+
+No: 21 ,  3 
+
+No: 22 ,  _ 
+
+No: 23 ,  - 
+
+No: 24 ,  e 
+
+No: 25 ,  x 
+
+No: 26 ,  t 
+
+No: 27 ,  \ 
+
+No: 28 ,  H 
+
+No: 29 ,  e 
+
+No: 30 ,  l 
+
+No: 31 ,  l 
+
+No: 32 ,  o 
+
+No: 33 ,  J 
+
+No: 34 ,  a 
+
+No: 35 ,  v 
+
+No: 36 ,  a 
+
+No: 37 ,  E 
+
+No: 38 ,  E 
+
+No: 39 ,  3 
+
+No: 40 ,  \ 
+
+No: 41 ,  a 
+
+No: 42 ,  ? 
+
+No: 43 ,  ? 
+
+No: 44 ,  G 
+
+No: 45 ,  : 
+
+No: 46 ,  \ 
+
+No: 47 ,  t 
+
+No: 48 ,  a 
+
+No: 49 ,  r 
+
+No: 50 ,  b 
+
+No: 51 ,  a 
+
+No: 52 ,  o 
+
+No: 53 ,  \ 
+
+No: 54 ,  j 
+
+No: 55 ,  s 
+
+No: 56 ,  p 
+
+No: 57 ,  _ 
+
+No: 58 ,  e 
+
+No: 59 ,  x 
+
+No: 60 ,  e 
+
+No: 61 ,  \ 
+
+No: 62 ,  a 
+
+No: 63 ,  ? 
+
+No: 64 ,  ? 
+
+No: 65 ,  D 
+
+No: 66 ,  : 
+
+No: 67 ,  \ 
+
+No: 68 ,  x 
+
+No: 69 ,  a 
+
+No: 70 ,  m 
+
+No: 71 ,  p 
+
+No: 72 ,  p 
+
+No: 73 ,  8 
+
+No: 74 ,  \ 
+
+No: 75 ,  t 
+
+No: 76 ,  o 
+
+No: 77 ,  m 
+
+No: 78 ,  c 
+
+No: 79 ,  a 
+
+No: 80 ,  t 
+
+No: 81 ,  \ 
+
+No: 82 ,  w 
+
+No: 83 ,  e 
+
+No: 84 ,  b 
+
+No: 85 ,  a 
+
+No: 86 ,  p 
+
+No: 87 ,  p 
+
+No: 88 ,  s 
+
+No: 89 ,  \ 
+
+No: 90 ,  a 
+
+No: 91 ,  ? 
+
+No: 92 ,  ? 
+
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\?G:\\tarbao\\jsp_exe\\?D:\\xampp8\\tomcat\\webapps\\?"
+listPath.size(): 1
+22:00:34: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:00:40: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No: 0 ,  a
+No: 1 ,  a
+No: 2 ,  ?
+No: 3 ,  ?
+No: 4 ,  b
+No: 5 ,  a
+No: 6 ,  ?
+No: 7 ,  ?
+No: 8 ,  c
+No: 9 ,  a
+No: 10 ,  ?
+No: 11 ,  ?
+No: 12 ,  e
+No: 13 ,  f
+No: 14 ,  e
+No: 15 ,  f
+No: 16 ,  a
+No: 17 ,  ?
+No: 18 ,  ?
+No: 19 ,  h
+No: 20 ,  a
+No: 21 ,  ?
+No: 22 ,  ?
+No: 23 ,  a
+No: 24 ,  ?
+No: 25 ,  ?
+selectPath: "a?b?c?efef?h??"
+listPath.size(): 1
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No: 0 ,  a
+No: 1 ,  a
+No: 2 ,  ?
+No: 3 ,  ?
+No: 4 ,  b
+No: 5 ,  a
+No: 6 ,  ?
+No: 7 ,  ?
+No: 8 ,  c
+No: 9 ,  a
+No: 10 ,  ?
+No: 11 ,  ?
+No: 12 ,  e
+No: 13 ,  f
+No: 14 ,  e
+No: 15 ,  f
+No: 16 ,  a
+No: 17 ,  ?
+No: 18 ,  ?
+No: 19 ,  h
+No: 20 ,  e
+No: 21 ,  e
+No: 22 ,  a
+No: 23 ,  ?
+No: 24 ,  ?
+selectPath: "a?b?c?efef?hee?"
+listPath.size(): 1
+22:03:11: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:03:24: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No: 0 ,  G
+No: 1 ,  :
+No: 2 ,  \
+No: 3 ,  t
+No: 4 ,  a
+No: 5 ,  r
+No: 6 ,  b
+No: 7 ,  a
+No: 8 ,  o
+No: 9 ,  \
+No: 10 ,  j
+No: 11 ,  s
+No: 12 ,  p
+No: 13 ,  _
+No: 14 ,  e
+No: 15 ,  x
+No: 16 ,  e
+No: 17 ,  \
+No: 18 ,  a
+No: 19 ,  ?
+No: 20 ,  ?
+No: 21 ,  D
+No: 22 ,  :
+No: 23 ,  \
+No: 24 ,  x
+No: 25 ,  a
+No: 26 ,  m
+No: 27 ,  p
+No: 28 ,  p
+No: 29 ,  8
+No: 30 ,  \
+No: 31 ,  t
+No: 32 ,  o
+No: 33 ,  m
+No: 34 ,  c
+No: 35 ,  a
+No: 36 ,  t
+No: 37 ,  \
+No: 38 ,  w
+No: 39 ,  e
+No: 40 ,  b
+No: 41 ,  a
+No: 42 ,  p
+No: 43 ,  p
+No: 44 ,  s
+No: 45 ,  \
+No: 46 ,  a
+No: 47 ,  ?
+No: 48 ,  ?
+No: 49 ,  a
+No: 50 ,  ?
+No: 51 ,  ?
+selectPath: "G:\\tarbao\\jsp_exe\\?D:\\xampp8\\tomcat\\webapps\\??"
+listPath.size(): 1
+22:04:29: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:04:43: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+22:04:46: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:04:50: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No: 0 ,  H
+No: 1 ,  :
+No: 2 ,  \
+No: 3 ,  c
+No: 4 ,  o
+No: 5 ,  d
+No: 6 ,  e
+No: 7 ,  \
+No: 8 ,  h
+No: 9 ,  e
+No: 10 ,  l
+No: 11 ,  l
+No: 12 ,  o
+No: 13 ,  -
+No: 14 ,  j
+No: 15 ,  a
+No: 16 ,  v
+No: 17 ,  a
+No: 18 ,  -
+No: 19 ,  e
+No: 20 ,  e
+No: 21 ,  3
+No: 22 ,  _
+No: 23 ,  -
+No: 24 ,  e
+No: 25 ,  x
+No: 26 ,  t
+No: 27 ,  \
+No: 28 ,  H
+No: 29 ,  e
+No: 30 ,  l
+No: 31 ,  l
+No: 32 ,  o
+No: 33 ,  J
+No: 34 ,  a
+No: 35 ,  v
+No: 36 ,  a
+No: 37 ,  E
+No: 38 ,  E
+No: 39 ,  3
+No: 40 ,  \
+No: 41 ,  a
+No: 42 ,  ?
+No: 43 ,  ?
+No: 44 ,  G
+No: 45 ,  :
+No: 46 ,  \
+No: 47 ,  t
+No: 48 ,  a
+No: 49 ,  r
+No: 50 ,  b
+No: 51 ,  a
+No: 52 ,  o
+No: 53 ,  \
+No: 54 ,  j
+No: 55 ,  s
+No: 56 ,  p
+No: 57 ,  _
+No: 58 ,  e
+No: 59 ,  x
+No: 60 ,  e
+No: 61 ,  \
+No: 62 ,  a
+No: 63 ,  ?
+No: 64 ,  ?
+No: 65 ,  D
+No: 66 ,  :
+No: 67 ,  \
+No: 68 ,  x
+No: 69 ,  a
+No: 70 ,  m
+No: 71 ,  p
+No: 72 ,  p
+No: 73 ,  8
+No: 74 ,  \
+No: 75 ,  t
+No: 76 ,  o
+No: 77 ,  m
+No: 78 ,  c
+No: 79 ,  a
+No: 80 ,  t
+No: 81 ,  \
+No: 82 ,  w
+No: 83 ,  e
+No: 84 ,  b
+No: 85 ,  a
+No: 86 ,  p
+No: 87 ,  p
+No: 88 ,  s
+No: 89 ,  \
+No: 90 ,  a
+No: 91 ,  ?
+No: 92 ,  ?
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\?G:\\tarbao\\jsp_exe\\?D:\\xampp8\\tomcat\\webapps\\?"
+listPath.size(): 1
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No: 0 ,  a
+No: 1 ,  a
+No: 2 ,  ?
+No: 3 ,  ?
+No: 4 ,  b
+No: 5 ,  a
+No: 6 ,  ?
+No: 7 ,  ?
+No: 8 ,  c
+No: 9 ,  a
+No: 10 ,  ?
+No: 11 ,  ?
+No: 12 ,  d
+No: 13 ,  a
+No: 14 ,  ?
+No: 15 ,  ?
+No: 16 ,  e
+No: 17 ,  a
+No: 18 ,  ?
+No: 19 ,  ?
+No: 20 ,  a
+No: 21 ,  ?
+No: 22 ,  ?
+selectPath: "a?b?c?d?e??"
+listPath.size(): 1
+22:10:38: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:10:50: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No: 0 ,  H
+No: 1 ,  :
+No: 2 ,  \
+No: 3 ,  c
+No: 4 ,  o
+No: 5 ,  d
+No: 6 ,  e
+No: 7 ,  \
+No: 8 ,  h
+No: 9 ,  e
+No: 10 ,  l
+No: 11 ,  l
+No: 12 ,  o
+No: 13 ,  -
+No: 14 ,  j
+No: 15 ,  a
+No: 16 ,  v
+No: 17 ,  a
+No: 18 ,  -
+No: 19 ,  e
+No: 20 ,  e
+No: 21 ,  3
+No: 22 ,  _
+No: 23 ,  -
+No: 24 ,  e
+No: 25 ,  x
+No: 26 ,  t
+No: 27 ,  \
+No: 28 ,  H
+No: 29 ,  e
+No: 30 ,  l
+No: 31 ,  l
+No: 32 ,  o
+No: 33 ,  J
+No: 34 ,  a
+No: 35 ,  v
+No: 36 ,  a
+No: 37 ,  E
+No: 38 ,  E
+No: 39 ,  3
+No: 40 ,  \
+No: 41 ,  a
+No: 42 ,  ?
+No: 43 ,  ?
+No: 44 ,  G
+No: 45 ,  :
+No: 46 ,  \
+No: 47 ,  t
+No: 48 ,  a
+No: 49 ,  r
+No: 50 ,  b
+No: 51 ,  a
+No: 52 ,  o
+No: 53 ,  \
+No: 54 ,  j
+No: 55 ,  s
+No: 56 ,  p
+No: 57 ,  _
+No: 58 ,  e
+No: 59 ,  x
+No: 60 ,  e
+No: 61 ,  \
+No: 62 ,  a
+No: 63 ,  ?
+No: 64 ,  ?
+No: 65 ,  D
+No: 66 ,  :
+No: 67 ,  \
+No: 68 ,  x
+No: 69 ,  a
+No: 70 ,  m
+No: 71 ,  p
+No: 72 ,  p
+No: 73 ,  8
+No: 74 ,  \
+No: 75 ,  t
+No: 76 ,  o
+No: 77 ,  m
+No: 78 ,  c
+No: 79 ,  a
+No: 80 ,  t
+No: 81 ,  \
+No: 82 ,  w
+No: 83 ,  e
+No: 84 ,  b
+No: 85 ,  a
+No: 86 ,  p
+No: 87 ,  p
+No: 88 ,  s
+No: 89 ,  \
+No: 90 ,  a
+No: 91 ,  ?
+No: 92 ,  ?
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\?G:\\tarbao\\jsp_exe\\?D:\\xampp8\\tomcat\\webapps\\?"
+listPath.size(): 1
+22:11:15: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:11:26: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+22:11:32: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:11:43: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No: 0 ,  H
+No: 1 ,  :
+No: 2 ,  \
+No: 3 ,  c
+No: 4 ,  o
+No: 5 ,  d
+No: 6 ,  e
+No: 7 ,  \
+No: 8 ,  h
+No: 9 ,  e
+No: 10 ,  l
+No: 11 ,  l
+No: 12 ,  o
+No: 13 ,  -
+No: 14 ,  j
+No: 15 ,  a
+No: 16 ,  v
+No: 17 ,  a
+No: 18 ,  -
+No: 19 ,  e
+No: 20 ,  e
+No: 21 ,  3
+No: 22 ,  _
+No: 23 ,  -
+No: 24 ,  e
+No: 25 ,  x
+No: 26 ,  t
+No: 27 ,  \
+No: 28 ,  H
+No: 29 ,  e
+No: 30 ,  l
+No: 31 ,  l
+No: 32 ,  o
+No: 33 ,  J
+No: 34 ,  a
+No: 35 ,  v
+No: 36 ,  a
+No: 37 ,  E
+No: 38 ,  E
+No: 39 ,  3
+No: 40 ,  \
+No: 41 ,  ?
+No: 42 ,  G
+No: 43 ,  :
+No: 44 ,  \
+No: 45 ,  t
+No: 46 ,  a
+No: 47 ,  r
+No: 48 ,  b
+No: 49 ,  a
+No: 50 ,  o
+No: 51 ,  \
+No: 52 ,  j
+No: 53 ,  s
+No: 54 ,  p
+No: 55 ,  _
+No: 56 ,  e
+No: 57 ,  x
+No: 58 ,  e
+No: 59 ,  \
+No: 60 ,  ?
+No: 61 ,  D
+No: 62 ,  :
+No: 63 ,  \
+No: 64 ,  x
+No: 65 ,  a
+No: 66 ,  m
+No: 67 ,  p
+No: 68 ,  p
+No: 69 ,  8
+No: 70 ,  \
+No: 71 ,  t
+No: 72 ,  o
+No: 73 ,  m
+No: 74 ,  c
+No: 75 ,  a
+No: 76 ,  t
+No: 77 ,  \
+No: 78 ,  w
+No: 79 ,  e
+No: 80 ,  b
+No: 81 ,  a
+No: 82 ,  p
+No: 83 ,  p
+No: 84 ,  s
+No: 85 ,  \
+No: 86 ,  ?
+selectPath: "H:\\code\\hello-java-ee3_-ext\\HelloJavaEE3\\?G:\\tarbao\\jsp_exe\\?D:\\xampp8\\tomcat\\webapps\\?"
+listPath.size(): 1
+22:15:33: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:23:08: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+proc_listWidget_searchresult_ItemClicked
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No:0, a
+No:0, 
+No:0, €
+No:0, 
+No:0, b
+No:0, 
+No:0, €
+No:0, 
+No:0, c
+No:0, 
+No:0, €
+No:0, 
+No:0, 
+No:0, €
+No:0, 
+No:0, 
+No:0, €
+No:0, 
+No:0, No:0, No:0, 
+No:0, 
+No:0, €
+No:0, No:0, 22:23:28: 程序异常结束。
+22:23:28: The process was ended forcefully.
+22:23:28: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe crashed.
+
+22:26:14: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No:0, a
+No:1, 
+No:2, €
+No:3, 
+No:4, b
+No:5, 
+No:6, €
+No:7, 
+No:8, c
+No:9, 
+No:10, €
+No:11, 
+selectPath: "a?b?c?"
+listPath.size(): 1
+22:28:45: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:30:00: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "a?b?c?"
+listPath.size(): 1
+No:0, a,97
+No:1, -30
+No:2, €,-128
+No:3, -87
+No:4, b,98
+No:5, -30
+No:6, €,-128
+No:7, -87
+No:8, c,99
+No:9, -30
+No:10, €,-128
+No:11, -87
+22:30:30: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:30:36: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No:0, a,97
+No:1, -30
+No:2, €,-128
+No:3, -87
+No:4, b,98
+No:5, -30
+No:6, €,-128
+No:7, -87
+No:8, c,99
+No:9, -30
+No:10, €,-128
+No:11, -87
+selectPath: "a?b?c?"
+listPath.size(): 1
+22:31:24: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:31:30: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No:0, a,0X61
+No:1, 0XFFFFFFE2
+No:2, €,0XFFFFFF80
+No:3, 0XFFFFFFA9
+No:4, b,0X62
+No:5, 0XFFFFFFE2
+No:6, €,0XFFFFFF80
+No:7, 0XFFFFFFA9
+No:8, c,0X63
+No:9, 0XFFFFFFE2
+No:10, €,0XFFFFFF80
+No:11, 0XFFFFFFA9
+selectPath: "a?b?c?"
+listPath.size(): 1
+22:32:42: 程序异常结束。
+22:32:42: The process was ended forcefully.
+22:32:42: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe crashed.
+
+22:32:47: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+selectPath: "a?b?c?"
+listPath.size(): 1
+No:0, a,0x61
+No:1, 0xE2
+No:2, €,0x80
+No:3, 0xA9
+No:4, b,0x62
+No:5, 0xE2
+No:6, €,0x80
+No:7, 0xA9
+No:8, c,0x63
+No:9, 0xE2
+No:10, €,0x80
+No:11, 0xA9
+22:33:15: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:33:21: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+size recent open: 31
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No:0, a,0X61
+No:1, 0XE2
+No:2, €,0X80
+No:3, 0XA9
+No:4, b,0X62
+No:5, 0XE2
+No:6, €,0X80
+No:7, 0XA9
+No:8, c,0X63
+selectPath: "a?b?c"
+listPath.size(): 1
+22:34:56: D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe exited with code 0
+
+22:35:02: Starting D:\E\QtExamplenew\codetools\build-codesets-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\codesets.exe ...
+Warning: QT_DEVICE_PIXEL_RATIO is deprecated. Instead use:
+   QT_AUTO_SCREEN_SCALE_FACTOR to enable platform plugin controlled per-screen factors.
+   QT_SCREEN_SCALE_FACTORS to set per-screen DPI.
+   QT_SCALE_FACTOR to set the application global scale factor.
+QMetaObject::connectSlotsByName: No matching signal for on_action_researchresult_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle(int)
+QMetaObject::connectSlotsByName: No matching signal for on_action_search_triggered_handle_quick(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_pushButton_mainfind_clicked_pub(int)
+QMetaObject::connectSlotsByName: No matching signal for on_spinBoxFontSize_valueChanged(int)
+QMetaObject::connectSlotsByName: No matching signal for on_combFont_currentIndexChanged(QString)
+QMetaObject::connectSlotsByName: No matching signal for on_action_clear_triggered()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Start()
+QMetaObject::connectSlotsByName: No matching signal for on_ThreadM_Stop()
+m_ActualFreqUseCnt: 30
+1 : "必应;https://cn.bing.com/search?q="
+2 : "百度;https://www.baidu.com/s?wd="
+3 : "360搜;https://www.so.com/s?ie=utf-8&fr=none&src=360sou_newhome&q="
+4 : "词霸;http://www.iciba.com/"
+5 : "有道;http://dict.youdao.com/w/eng/"
+No:0  , 0X61, a
+No:1  , 0XE2, 
+No:2  , 0X80, €
+No:3  , 0XA9, 
+No:4  , 0X62, b
+No:5  , 0XE2, 
+No:6  , 0X80, €
+No:7  , 0XA9, 
+No:8  , 0X63, c
+No:9  , 0XE2, 
+No:10 , 0X80, €
+No:11 , 0XA9, 
+selectPath: "a?b?c?"
+listPath.size(): 1
+
+
+
+
+
+
+
+
+
+https://unicode-table.com/cn/2029/
+
+
+主頁 
+Unicode 
+常用标点 
+段分隔符
+ 
+  段分隔符
+U+2029
+复制并粘贴符号
+ 
+ 复制
+技术信息
+Unicode名称	Paragraph Separator
+Unicode编号	
+U+2029
+HTML代码	
+ 
+CSS代码	
+\2029
+Block	常用标点
+Unicode版本:	1.1 (1993)
+符號含義
+段分隔符. 常用标点.
+
+段分隔符 was approved as part of Unicode 1.1 in 1993.
+
+Properties
+Age	1.1
+Block	常用标点
+Bidi Paired Bracket Type	None
+Composition Exclusion	No
+Case Folding	2029
+Simple Case Folding	2029
+编码
+编码	hex	dec (bytes)	dec	binary
+UTF-8	E2 80 A9	226 128 169	14844073	11100010 10000000 10101001
+UTF-16BE	20 29	32 41	8233	00100000 00101001
+UTF-16LE	29 20	41 32	10528	00101001 00100000
+UTF-32BE	00 00 20 29	0 0 32 41	8233	00000000 00000000 00100000 00101001
+UTF-32LE	29 20 00 00	41 32 0 0	689963008	00101001 00100000 00000000 00000000
+
+
+
+enum QChar::SpecialCharacter
+
+Constant
+Value
+Description
+QChar::Null
+0x0000
+A QChar with this value isNull().
+QChar::Tabulation
+0x0009
+Character tabulation.
+QChar::LineFeed
+0x000a
+ 
+QChar::FormFeed
+0x000c
+ 
+QChar::CarriageReturn
+0x000d
+ 
+QChar::Space
+0x0020
+ 
+QChar::Nbsp
+0x00a0
+Non-breaking space.
+QChar::SoftHyphen
+0x00ad
+ 
+QChar::ReplacementCharacter
+0xfffd
+The character shown when a font has no glyph for a certain codepoint. A special question mark character is often used. Codecs use this codepoint when input data cannot be represented in Unicode.
+QChar::ObjectReplacementCharacter
+0xfffc
+Used to represent an object such as an image when such objects cannot be presented.
+QChar::ByteOrderMark
+0xfeff
+ 
+QChar::ByteOrderSwapped
+0xfffe
+ 
+QChar::ParagraphSeparator
+0x2029
+ 
+QChar::LineSeparator
+0x2028
+ 
+QChar::LastValidCodePoint
+0x10ffff

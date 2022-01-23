@@ -36,6 +36,9 @@ https://github.com/googlearchive/pywebsocket
 镜像:
 https://gitee.com/mirrors/linux.git
 https://gitee.com/caicry/FFmpeg.Mirrors
+https://mirrors.tuna.tsinghua.edu.cn/kernel/v5.x/linux-5.10.15.tar.xz
+
+
 
 C++库
 https://boostorg.jfrog.io/ui/native/main/release/1.77.0/source/boost_1_77_0.tar.bz2

@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+/**
+ * @brief checkCpu
+ * @return 1:little endian, 0:big endian
+ */
+int checkCpu(void)
+{
+    union w
+    {
+        int a;
+        char b;
+    }c;
+    c.a = 1;
+
+    return (c.b == 1);
+}
+
+
+int main()
+{
+    printf("Hello World!\n");
+    printf("%d\n", checkCpu());
+    return 0;
+}
