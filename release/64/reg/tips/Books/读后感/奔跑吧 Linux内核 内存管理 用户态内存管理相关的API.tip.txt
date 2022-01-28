@@ -1,0 +1,15 @@
+除了依照本章列出来的思考题来阅读内存管理代码之外，从用户态的API来深入了解Linux内核的内存管理机制也是一个很好的方法，下面列出常见的用户态内存管理相关的API。
+void *malloc（size_t size）;
+void free（void *ptr）;
+void *mmap（void *addr, size_t length, int prot, int flags,
+　　　int fd, off_t offset）;
+int munmap（void *addr, size_t length）;
+int getpagesize（void）;
+int mprotect（const void *addr, size_t len, int prot）;
+int mlock（const void *addr, size_t len）;
+int munlock（const void *addr, size_t len）;
+int madvise（void *addr, size_t length, int advice）;
+void *mremap（void *old_address, size_t old_size,
+　　　size_t new_size, int flags, …… /* void *new_address */）;
+int remap_file_pages（void *addr, size_t size, int prot,
+　　　ssize_t pgoff, int flags）;

@@ -9,6 +9,7 @@ alias cdworkgitqtlibs='cd ~/work/git/qtlibs_mingw730_32'
 alias tomcatstart='cdsoftwebapachebin && sh startup.sh'
 alias tomcatstop='cdsoftwebapachebin && sh shutdown.sh'
 alias cdworkjupyter='cd ~/work/jupyter'
+alias cdtest="cd ~/test "
 
 alias eg=''
 
