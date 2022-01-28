@@ -2,3 +2,8 @@
 public use;BASH/alias/public use
 start;QT/QTimer/start
 QT UI设置;QT/UI/Settings eg
+QT/UI/Action;QT/UI/Action
+QT/UI/Action;QT/UI/Action
+QT/UI/Action;QT/UI/Action
+QT/UI/Action;QT/UI/Action
+QT/UI/Action;QT/UI/Action
