@@ -1293,6 +1293,7 @@ QT/Qthread/thread sync 线程同步
 QT/RegExp/Test
 QT/ShortCut快捷键
 QT/UI/Action
+QT/UI/Action new
 QT/UI/Action setShortcut
 QT/UI/ClipBoard/getClipBoardText
 QT/UI/ClipBoard/setClipBoardText
@@ -1471,6 +1472,12 @@ path路径/常用文件夹
 宏Macro/Source insight/new macro
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
+工作/祝福语句
+工作/祝福语句 乔海军
+工作/祝福语句 吴磊
+工作/祝福语句 巧姐
+工作/祝福语句 康哥
+工作/祝福语句 龙哥
 术语/C/宏和内联函数的区别
 术语/C/宏和内联函数的区别2
 术语/Linux/FIB Forward Information Base
