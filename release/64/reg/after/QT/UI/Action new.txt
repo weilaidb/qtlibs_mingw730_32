@@ -1,0 +1,1 @@
+QAction* \1 = new QAction("\2", this);
