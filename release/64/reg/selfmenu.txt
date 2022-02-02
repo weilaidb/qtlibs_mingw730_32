@@ -392,6 +392,7 @@ CXX/cin.getline
 CXX/class/多态 继承
 CXX/externc __cplusplus
 CXX/new class static instsance实例
+CXX/static_cast char
 CXX/编译链接 预处理等
 DBMS/MySql/cmd 登陆
 DBMS/MySql/database create
