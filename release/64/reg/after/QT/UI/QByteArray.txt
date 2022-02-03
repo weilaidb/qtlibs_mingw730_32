@@ -1,0 +1,1 @@
+QByteArray(\1, \2)

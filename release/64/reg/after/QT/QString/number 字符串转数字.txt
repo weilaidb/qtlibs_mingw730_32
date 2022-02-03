@@ -1,0 +1,1 @@
+int \2=\1.toInt();$NLint \2=\1.toUInt();$NL$NL$NLfloat \2=\1.toFloat();

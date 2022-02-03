@@ -1,0 +1,1 @@
+//Convenience slot that inserts text at the current cursor position.$NL\1->insertPlainText(\2);
