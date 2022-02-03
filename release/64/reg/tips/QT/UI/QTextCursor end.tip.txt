@@ -1,0 +1,2 @@
+ui->textedit
+ui->teOutput

@@ -1267,6 +1267,7 @@ QT/QStack/push
 QT/QString/Upper
 QT/QString/ascii_to_string
 QT/QString/number
+QT/QString/number 字符串转数字
 QT/QString/qSort
 QT/QString/string_to_ascii
 QT/QString/toFloat
@@ -1316,6 +1317,7 @@ QT/UI/Print/qFatal
 QT/UI/Print/qInfo
 QT/UI/Print/qWarning
 QT/UI/Print/stdout
+QT/UI/QByteArray
 QT/UI/QFont/set
 QT/UI/QListWidget/QListWidget右键实现重命名功能
 QT/UI/QListWidget/newUi
@@ -1327,6 +1329,7 @@ QT/UI/QT 窗口关闭自动销毁
 QT/UI/QTextCharFormat/set Font
 QT/UI/QTextCharFormat/set FontSize
 QT/UI/QTextCharFormat/set font italic underline
+QT/UI/QTextCursor end
 QT/UI/QTextEdit/clearTextEdit
 QT/UI/QTextEdit/findText
 QT/UI/QTextEdit/getSelectLine
@@ -1336,16 +1339,19 @@ QT/UI/QTextEdit/getSelectTextEdit 按段分隔符
 QT/UI/QTextEdit/getTextEdit
 QT/UI/QTextEdit/getTextEditLen
 QT/UI/QTextEdit/hideTextEdit
+QT/UI/QTextEdit/insertPlainText
 QT/UI/QTextEdit/setTextEdit
 QT/UI/QTextEdit/showTextEdit
 QT/UI/Randomnumber随机数
 QT/UI/Settings
 QT/UI/Settings eg
+QT/UI/eg
 QT/UI/execCmd
 QT/UI/newUi
 QT/UI/prj/qDebug no output
 QT/UI/problems/汇总
 QT/UI/progressBar
+QT/UI/text string
 QT/UI/常用头文件 header
 QT/UI/打印入参列表 showArgs
 QT/UI/问题项
@@ -1366,6 +1372,7 @@ Tools/Tomcat/conf tomcat-users.xml
 Tools/UML/StartUML
 Tools/UML/常用软件
 Tools/UML/教程
+Tools/UML/文字
 Tools/VS Visual Studio快捷键
 Tools/VSCode快捷键
 Tools/dec to hex 十进制转十六进制
