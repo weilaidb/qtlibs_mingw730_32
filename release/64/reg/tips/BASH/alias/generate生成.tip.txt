@@ -1,3 +1,9 @@
+makedefconfigarchx86;make defconfig ARCH=x86
+makedefconfigarcharm;make defconfig ARCH=arm
+makedefconfig;make defconfig
+makemenuconfig;make menuconfig
+makemenuconfigarcharm;make menuconfig ARCH=arm
+makemenuconfigarchx86;make menuconfig ARCH=x86
 cdtest;cd ~/test
 aliasgrep;alias | grep 
 javassm;cd ~/soft/web_notebook_online/jar && java -jar ssm-0.0.1-SNAPSHOT.jar --server.port=9090

@@ -89,6 +89,13 @@ alias cd..="cd .."
 alias useraddhome="useradd -d /home "
 alias journalctlxe="journalctl -xe "
 alias aliasgrep="alias | grep "
+alias makedefconfigarchx86="make defconfig ARCH=x86 "
+alias makedefconfigarcharm="make defconfig ARCH=arm "
+alias makedefconfig="make defconfig "
+alias makemenuconfig="make menuconfig "
+
+alias makemenuconfigarcharm="make menuconfig ARCH=arm "
+alias makemenuconfigarchx86="make menuconfig ARCH=x86 "
 
 
 #java
