@@ -1483,7 +1483,10 @@ path路径/常用文件夹
 术语/C/宏和内联函数的区别
 术语/C/宏和内联函数的区别2
 术语/Linux/FIB Forward Information Base
+术语/内核Kernel/eg
+术语/内核Kernel/伙伴系统
 术语/内核Kernel/常见名词
+术语/内核Kernel/编译器
 术语/异或
 术语/网络/PDU
 术语/网络/PHY/MDI
