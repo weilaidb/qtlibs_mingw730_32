@@ -1535,11 +1535,22 @@ path路径/常用文件夹
 脚本/VBS/SecureCrt/git process
 脚本/VBS/SecureCrt/git push cur branch
 脚本/VBS/SecureCrt/每行保存日志
+英语/eg
+英语/单词
+设计/术语/Agile
 设计/试题/出题
+设计/软件框架/SCRUM
+设计/软件框架/SCRUM官方权威指南
+设计/软件框架/Sprint
+设计/软件框架/eg
+设计/软件框架/产品backlog
+设计/软件框架/极限编程 Extreme programming，缩写为XP
 设计/软件设计/ATDD
 设计/软件设计/TDD
 设计/软件设计/TDD new/eg
 设计/软件设计/TDD new/suits
 设计/软件设计/TDD new/suits t1
+设计/软件设计/TDD new/suits t2
+设计/软件设计/TDD new/suits telnet
 设计/软件设计/eg
 设计/软件设计/语言设计的美妙
