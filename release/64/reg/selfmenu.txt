@@ -1520,6 +1520,7 @@ path路径/常用文件夹
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
 测试用例/TestCase/1
+电脑/戴尔Inspiron 15 7000 Series - 7537/拆机
 纪录片/视频及资料网址
 脚本/VBS/SecureCrt/Date
 脚本/VBS/SecureCrt/Send
@@ -1535,7 +1536,9 @@ path路径/常用文件夹
 脚本/VBS/SecureCrt/git push cur branch
 脚本/VBS/SecureCrt/每行保存日志
 设计/试题/出题
+设计/软件设计/ATDD
 设计/软件设计/TDD
+设计/软件设计/TDD new/eg
 设计/软件设计/TDD new/suits
 设计/软件设计/TDD new/suits t1
 设计/软件设计/eg
