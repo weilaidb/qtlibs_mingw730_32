@@ -1431,6 +1431,8 @@ UNITTEST/GTEST/gtest说明
 UNITTEST/GTEST/header
 UNITTEST/GTEST/make
 UNITTEST/GTEST/make compile problem编译问题
+VBScript/Excel new
+VBScript/eg
 WeiLaiDb/Production/weilaix.war Version
 Windows/Fonts
 YAML/yml入门教程
@@ -1533,4 +1535,8 @@ path路径/常用文件夹
 脚本/VBS/SecureCrt/git push cur branch
 脚本/VBS/SecureCrt/每行保存日志
 设计/试题/出题
+设计/软件设计/TDD
+设计/软件设计/TDD new/suits
+设计/软件设计/TDD new/suits t1
+设计/软件设计/eg
 设计/软件设计/语言设计的美妙
