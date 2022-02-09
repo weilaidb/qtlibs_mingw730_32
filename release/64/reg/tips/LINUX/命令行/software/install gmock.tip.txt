@@ -12,6 +12,7 @@ make install
 #安装，需要手工拷贝库和头文件
 find | grep libgmock.a
 cp libgmock.a /usr/local/lib
+cp libgtest.a /usr/local/lib
 
 cd ..
 find | grep gmock.h

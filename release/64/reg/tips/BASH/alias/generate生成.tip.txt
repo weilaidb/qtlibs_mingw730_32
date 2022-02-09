@@ -1,3 +1,9 @@
+makegtest;make && ./test
+cmakebuildmy;mkdir mybuild && cd mybuild && cmake .. && make
+cmakebulid;mkdir build && cd build && cmake .. && make
+
+
+
 cdworkcode;cd ~/work/code
 makedefconfigarchx86;make defconfig ARCH=x86
 makedefconfigarcharm;make defconfig ARCH=arm

@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -392,8 +393,14 @@ CXX/class/多态 继承
 CXX/externc __cplusplus
 CXX/new class static instsance实例
 CXX/static_cast char
+CXX/编译 CMake CMakeLists.txt
 CXX/编译 CMake eg
 CXX/编译链接 预处理等
+Code/new/Gmock eg
+Code/new/Gmock main
+Code/new/Gmock test
+Code/new/Gmock/assert/ASSERT_THAT
+Code/new/Gmock/assert/ASSERT_THAT2
 DBMS/MySql/cmd 登陆
 DBMS/MySql/database create
 DBMS/MySql/database drop
@@ -1365,6 +1372,7 @@ SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
 TEST/RegExptest
+TEST/RegExptest rm -f
 TEST/RegExptest1
 Tools/Astyle格式化代码
 Tools/Eclipse快捷键
