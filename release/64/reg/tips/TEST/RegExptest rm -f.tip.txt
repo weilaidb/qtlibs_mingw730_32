@@ -1,0 +1,3 @@
+release/64/reg/after/Code/new/Gmock ASSERT_THAT.txt
+release/64/reg/before/Code/new/Gmock ASSERT_THAT.txt
+release/64/reg/tips/Code/new/Gmock ASSERT_THAT.tip.txt
