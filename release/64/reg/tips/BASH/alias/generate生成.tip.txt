@@ -1,3 +1,4 @@
+cdworkcode;cd ~/work/code
 makedefconfigarchx86;make defconfig ARCH=x86
 makedefconfigarcharm;make defconfig ARCH=arm
 makedefconfig;make defconfig

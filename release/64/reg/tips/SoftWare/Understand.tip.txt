@@ -1,3 +1,6 @@
+https://licensing.scitools.com/download
+
+
 Understand 64下载
 https://scitools.com/download/auto-update/?platform=win64
 
@@ -57,4 +60,3 @@ BCF922CC5564
 Upsource 2020.1 Free 10 Users Pack
 
 65d563a9257f545f5d29494e4686d4e477a1eb9662f48c25d2ef3b0467b6f7cb76b53af9c865c5c17c454725ba71ef5e41c2158d0b2a94f65335862b9b80952459f88858c8175eb4d0d15317a2dd8cd522f968e2f0d01b52e478eb0bfffd7ada696c612faa114d0da1f0058f9e697eb304b1f51bb9ecaf0bdbd01da77d76de5e
-

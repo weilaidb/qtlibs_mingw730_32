@@ -48,3 +48,12 @@ gdb
 
 git-daemon
 httpd gitweb
+
+
+[tdd]
+gmock
+cppunit
+
+[rar]
+epel-release
+unar

@@ -1,4 +1,3 @@
-
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -393,6 +392,7 @@ CXX/class/多态 继承
 CXX/externc __cplusplus
 CXX/new class static instsance实例
 CXX/static_cast char
+CXX/编译 CMake eg
 CXX/编译链接 预处理等
 DBMS/MySql/cmd 登陆
 DBMS/MySql/database create
@@ -892,6 +892,8 @@ LINUX/命令行/software/CentOS安装mysql
 LINUX/命令行/software/RPM的强制安装和强制卸载
 LINUX/命令行/software/RedHat7配置yum源
 LINUX/命令行/software/install
+LINUX/命令行/software/install cppunit cpputest
+LINUX/命令行/software/install gmock
 LINUX/命令行/software/install 必备软件
 LINUX/命令行/software/mysql etc my.cnf
 LINUX/命令行/software/rpm

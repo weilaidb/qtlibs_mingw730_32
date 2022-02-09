@@ -25,3 +25,14 @@ http://down.yzppaa.org/list/4_1.html
 
 软件建模:
 UML软件建模技术
+
+TDD
+C++程序设计实践与技巧：测试驱动开发
+测试驱动的嵌入式C语言开发
+敏捷软件开发：原则、模式与实践
+
+《C++程序设计实践与技巧：测试驱动开发》源代码
+本书包含大量的代码示例。大部分代码与一个特定的文件名联系。你可以在本书的网站上找到所有代码：http://pragprog.com/book/lotdd/modern-c-programming-with-test-driven-development。或者访问我的GitHub主页：http://gitbug.com/jlangr。
+
+http://pragprog.com/titles/lotdd/source_code
+https：//github.com/jlangr
