@@ -1,0 +1,1 @@
+#include "gmock/gmock.h" $NL#include "Soundex.h"$NL$NLusing namespace testing;$NL$NLclass SoundexEncoding: public Test {$NLpublic:$NL   \1;$NL};$NL$NLTEST_F(SoundexEncoding, RetainsSoleLetterOfOneLetterWord) {$NL   ASSERT_THAT(soundex.encode("A"), Eq("A000")); $NL}
