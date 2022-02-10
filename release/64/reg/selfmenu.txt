@@ -360,6 +360,7 @@ C/注释comments. insertFuncHeader 函数名2
 CXX/ARRAYSIZE
 CXX/Cout no prar
 CXX/Cout no prara endl
+CXX/Cout para 1
 CXX/Cout_in/cout
 CXX/Cout_in/cout precision 小数点
 CXX/Cout_in/cout size
@@ -383,6 +384,7 @@ CXX/MAP/Cmd Handler
 CXX/More/虚函数
 CXX/More/虚函数 eg
 CXX/More/虚函数 eg2
+CXX/STL/unordered_map
 CXX/cin.getline
 CXX/class/多态 继承
 CXX/externc __cplusplus

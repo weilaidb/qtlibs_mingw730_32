@@ -1,0 +1,1 @@
+#include <string>$NL#include <unordered_map>$NL$NL$NLconst std::unordered_map<char, std::string> encodings{};
