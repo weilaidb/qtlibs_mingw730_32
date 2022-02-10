@@ -390,11 +390,16 @@ CXX/More/虚函数
 CXX/More/虚函数 eg
 CXX/More/虚函数 eg2
 CXX/STL/unordered_map
+CXX/String/front
+CXX/String/front2
+CXX/String/substr
+CXX/String/toupper
 CXX/cin.getline
 CXX/class/多态 继承
 CXX/externc __cplusplus
 CXX/new class static instsance实例
 CXX/static_cast char
+CXX/static_cast unsigned char
 CXX/编译 CMake CMakeLists.txt
 CXX/编译 CMake eg
 CXX/编译链接 预处理等

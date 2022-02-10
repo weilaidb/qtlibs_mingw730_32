@@ -3,7 +3,7 @@ cmakebuildmy;mkdir mybuild && cd mybuild && cmake .. && make
 cmakebulid;mkdir build && cd build && cmake .. && make
 
 
-
+cdworkcodecode;cd ~/work/code/code
 cdworkcode;cd ~/work/code
 makedefconfigarchx86;make defconfig ARCH=x86
 makedefconfigarcharm;make defconfig ARCH=arm
