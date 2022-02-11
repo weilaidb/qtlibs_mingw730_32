@@ -390,8 +390,11 @@ CXX/More/虚函数
 CXX/More/虚函数 eg
 CXX/More/虚函数 eg2
 CXX/STL/unordered_map
+CXX/String/back
+CXX/String/back2
 CXX/String/front
 CXX/String/front2
+CXX/String/string
 CXX/String/substr
 CXX/String/toupper
 CXX/cin.getline
