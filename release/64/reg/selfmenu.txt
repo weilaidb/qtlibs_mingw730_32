@@ -905,6 +905,7 @@ LINUX/命令行/mpstat 查看CPU 实时系统监控工具 2
 LINUX/命令行/nano
 LINUX/命令行/nohup
 LINUX/命令行/realpath
+LINUX/命令行/sed
 LINUX/命令行/setenforce
 LINUX/命令行/shutdown
 LINUX/命令行/software/CentOS安装mysql
@@ -952,6 +953,10 @@ LINUX命令/GDB/C linux gdb
 LINUX命令/GDB/C linux gdb strip shell
 LINUX命令/GDB/C linux gdb symbol 加载运行
 LINUX命令/GDB/C linux gdb symbol 生成符号表
+LINUX命令/GDB/C linux gdb tui
+LINUX命令/GDB/C linux gdb tui2
+LINUX命令/GDB/Gmock
+LINUX命令/GDB/Gmock b
 LINUX命令/GDB/Linux下可执行程序调试信息的分离及release程序的调试
 LINUX命令/GDB/gdb 如何调试release版本
 LINUX命令/objcopy
