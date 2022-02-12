@@ -74,7 +74,7 @@ dockerversin;docker --version
 
 
 
-
+cd....;cd ../..
 cd..;cd ..
 lslh;ls -lh
 

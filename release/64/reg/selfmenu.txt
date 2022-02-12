@@ -389,6 +389,8 @@ CXX/MAP/Cmd Handler
 CXX/More/虚函数
 CXX/More/虚函数 eg
 CXX/More/虚函数 eg2
+CXX/STL/set
+CXX/STL/set2
 CXX/STL/unordered_map
 CXX/String/back
 CXX/String/back2
@@ -399,8 +401,11 @@ CXX/String/substr
 CXX/String/toupper
 CXX/cin.getline
 CXX/class/多态 继承
+CXX/eg
 CXX/externc __cplusplus
 CXX/new class static instsance实例
+CXX/shared_ptr 智能指针
+CXX/shared_ptr 智能指针2
 CXX/static_cast char
 CXX/static_cast unsigned char
 CXX/编译 CMake CMakeLists.txt
@@ -411,8 +416,14 @@ Code/new/Gmock fixture
 Code/new/Gmock fixture2
 Code/new/Gmock main
 Code/new/Gmock test
+Code/new/Gmock test SetUp
+Code/new/Gmock test TearDown
+Code/new/Gmock/assert/ASSERT_FALSE
 Code/new/Gmock/assert/ASSERT_THAT
 Code/new/Gmock/assert/ASSERT_THAT2
+Code/new/Gmock/assert/ASSERT_TRUE
+Code/new/Gmock/assert/MATCHER_P
+Code/new/Gmock/gtest_filter 过滤器Code/new/Gmock/gtest_filter 过滤器2
 DBMS/MySql/cmd 登陆
 DBMS/MySql/database create
 DBMS/MySql/database drop
@@ -1395,6 +1406,7 @@ Tools/Astyle格式化代码
 Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
 Tools/Emacs快捷键
+Tools/Subline Text快捷键
 Tools/Tomcat/conf tomcat-users.xml
 Tools/UML/StartUML
 Tools/UML/常用软件
@@ -1547,6 +1559,7 @@ path路径/常用文件夹
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
 测试用例/TestCase/1
+电脑/ThinkPad/T14/常见
 电脑/戴尔Inspiron 15 7000 Series - 7537/拆机
 纪录片/视频及资料网址
 脚本/VBS/SecureCrt/Date

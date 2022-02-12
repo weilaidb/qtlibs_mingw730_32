@@ -1,0 +1,2 @@
+ATweet;CanBeCopyConstructed
+ARetweetCollection;IsEmptyWhenItsSizeIsZero

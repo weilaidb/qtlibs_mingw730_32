@@ -84,7 +84,8 @@ alias lslh="ls -lh"
 alias llt="ls -lt"
 alias llh="ls -lh"
 alias cd..="cd .."
-
+alias cd....="cd ../.. "
+alias cd...="cd ../.. "
 
 alias useraddhome="useradd -d /home "
 alias journalctlxe="journalctl -xe "
