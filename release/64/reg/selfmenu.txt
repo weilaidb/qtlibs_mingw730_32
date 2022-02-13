@@ -418,12 +418,20 @@ Code/new/Gmock main
 Code/new/Gmock test
 Code/new/Gmock test SetUp
 Code/new/Gmock test TearDown
+Code/new/Gmock/assert/ASSERT_EQ
 Code/new/Gmock/assert/ASSERT_FALSE
 Code/new/Gmock/assert/ASSERT_THAT
 Code/new/Gmock/assert/ASSERT_THAT2
+Code/new/Gmock/assert/ASSERT_THAT2 DoubleEq
+Code/new/Gmock/assert/ASSERT_THAT2 Eq
 Code/new/Gmock/assert/ASSERT_TRUE
 Code/new/Gmock/assert/MATCHER_P
-Code/new/Gmock/gtest_filter 过滤器Code/new/Gmock/gtest_filter 过滤器2
+Code/new/Gmock/gtest_filter 过滤器
+Code/new/Gmock/gtest_filter 过滤器2
+Code/new/Gmock/matcher/AllOf
+Code/new/Gmock/matcher/EndsWith
+Code/new/Gmock/matcher/Ne
+Code/new/Gmock/matcher/StartsWith
 DBMS/MySql/cmd 登陆
 DBMS/MySql/database create
 DBMS/MySql/database drop
