@@ -1,6 +1,8 @@
 makegtest;make && ./test
 cmakebuildmy;mkdir mybuild && cd mybuild && cmake .. && make
 cmakebulid;mkdir build && cd build && cmake .. && make
+cdfdir;cd `dirname 
+
 
 
 cdworkcodecode;cd ~/work/code/code
@@ -28,6 +30,7 @@ rpmqa;rpm -qa
 rpmqagrep;rpm -qa | grep
 yumlistinstalled;yum list installed
 yumlistinstalledgrep;yum list installed | grep 
+yumcleanpackages;yum clean packages
 
 websshstart;python3 manage.py runserver 0.0.0.0:8000
 

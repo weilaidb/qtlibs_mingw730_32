@@ -70,6 +70,7 @@ alias yumlist="yum list "
 alias yumlistgrep="yum list | grep "
 alias yumlistinstalled="yum list installed "
 alias yumlistinstalledgrep="yum list installed | grep "
+alias yumcleanpackages="yum clean packages "
 
 alias rpmi="rpm -i "
 alias rpme="rpm -e "
@@ -86,6 +87,7 @@ alias llh="ls -lh"
 alias cd..="cd .."
 alias cd....="cd ../.. "
 alias cd...="cd ../.. "
+alias cdfdir='cd `dirname '
 
 alias useraddhome="useradd -d /home "
 alias journalctlxe="journalctl -xe "
