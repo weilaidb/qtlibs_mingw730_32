@@ -1,1 +1,13 @@
 variable
+
+user
+
+passwd
+host
+ctest
+
+ld.login()
+ld.password()
+
+msg
+str

@@ -7,6 +7,8 @@ java-11-openjdk
 flex
 bison
 
+ncurses-devel
+
 openssl-devel
 elfutils-devel
 
@@ -46,3 +48,14 @@ gdb
 
 git-daemon
 httpd gitweb
+
+curl.x86_64 libcurl.x86_64   libcurl-devel.x86_64 
+jsoncpp.x86_64 jsoncpp-devel.x86_64 
+ 
+[tdd]
+gmock
+cppunit
+
+[rar]
+epel-release
+unar

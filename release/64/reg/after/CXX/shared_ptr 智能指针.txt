@@ -1,0 +1,1 @@
+#include <memory>$NL$NLclass ARetweetCollectionWithOneTweet: public Test {$NLpublic:$NL   RetweetCollection collection;$NL   shared_ptr<\1> \2;$NL$NL   void SetUp() override {$NL$TB  \2= shared_ptr<\1>(new \1("msg", "@user"));$NL$TB  collection.add(*\2);$NL   }$NL};

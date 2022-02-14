@@ -1,0 +1,1 @@
+#试替换$NLsed 's/\1/\2/g' \3$NLsed 's/\1/\2/g' \3 | grep$NL#替换掉$NLsed -i 's/\1/\2/g' \3$NLsed 's/\1/\2/g' \3 | grep
