@@ -1,0 +1,1 @@
+ARetweetCollectionWithOneTweet;collection.add(Tweet("msg", "@user"))
