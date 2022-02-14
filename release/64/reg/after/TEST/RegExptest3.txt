@@ -1,0 +1,1 @@
+$RANDOMDATA16(\1)
