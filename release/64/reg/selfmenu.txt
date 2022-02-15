@@ -431,6 +431,7 @@ Code/new/Gmock/assert/ASSERT_THAT2 DoubleEq
 Code/new/Gmock/assert/ASSERT_THAT2 Eq
 Code/new/Gmock/assert/ASSERT_THROW
 Code/new/Gmock/assert/ASSERT_TRUE
+Code/new/Gmock/assert/EXPECT_CALL
 Code/new/Gmock/assert/MATCHER_P
 Code/new/Gmock/gtest_filter 过滤器
 Code/new/Gmock/gtest_filter 过滤器2
@@ -438,6 +439,8 @@ Code/new/Gmock/matcher/AllOf
 Code/new/Gmock/matcher/EndsWith
 Code/new/Gmock/matcher/Ne
 Code/new/Gmock/matcher/StartsWith
+Code/new/Gmock/模拟/MOCK_CONST_METHOD1
+Code/new/Gmock/模拟/MOCK_METHOD0
 DBMS/MySql/cmd 登陆
 DBMS/MySql/database create
 DBMS/MySql/database drop
@@ -985,6 +988,7 @@ LINUX命令/GDB/Gmock
 LINUX命令/GDB/Gmock b
 LINUX命令/GDB/Linux下可执行程序调试信息的分离及release程序的调试
 LINUX命令/GDB/gdb 如何调试release版本
+LINUX命令/Gmock/简介
 LINUX命令/objcopy
 LINUX命令/readelf
 Makefile/PHONY
@@ -1579,6 +1583,7 @@ path路径/常用文件夹
 正则表达式/添加引号
 测试用例/TestCase/1
 用户说明书/代码集autocodesets weilaix.war
+用户说明书/代码集autocodesets weilaix.war Apache版本更新
 电脑/ThinkPad/T14/常见
 电脑/ThinkPad/T14/拆机
 电脑/戴尔Inspiron 15 7000 Series - 7537/拆机
