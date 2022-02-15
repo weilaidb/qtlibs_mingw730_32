@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -1409,6 +1410,7 @@ QT/UI/打印入参列表 showArgs
 QT/UI/问题项
 QT/介绍
 QT/依赖库
+QT/示例/随机数
 Setting/网页显示常用Tab切换
 SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
@@ -1417,10 +1419,6 @@ SoftWare/Understand
 TEST/RegExptest
 TEST/RegExptest rm -f
 TEST/RegExptest1
-TEST/RegExptest2
-TEST/RegExptest3
-TEST/RegExptest4
-TEST/RegExptest5
 Tools/Astyle格式化代码
 Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
@@ -1601,6 +1599,8 @@ path路径/常用文件夹
 英语/单词
 设计/术语/Agile
 设计/试题/出题
+设计/试题/出题2
+设计/试题/出题2 描述
 设计/软件框架/SCRUM
 设计/软件框架/SCRUM官方权威指南
 设计/软件框架/Sprint
