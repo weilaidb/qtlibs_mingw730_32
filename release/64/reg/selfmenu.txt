@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -1044,6 +1045,7 @@ Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量
 OS/WIN10/安装系统常见问题
+OS/WIN10/安装系统常见问题 the error code is 2503, 2502的解决办法
 OS/WIN7/安装系统常见问题
 Office/Excel/Macro/SpellNumber
 PACKET Parse/ARP
@@ -1234,6 +1236,7 @@ Python/header
 Python/header import
 Python/header import as
 Python/idea快捷键
+Python/idea插件
 Python/idea配置说明
 Python/list/列表大小 len
 Python/main
@@ -1586,6 +1589,7 @@ path路径/常用文件夹
 用户说明书/代码集autocodesets weilaix.war Apache版本更新
 电脑/ThinkPad/T14/常见
 电脑/ThinkPad/T14/拆机
+电脑/ThinkPad/T14/拆机 加内存和硬盘安装系统
 电脑/戴尔Inspiron 15 7000 Series - 7537/拆机
 电脑/装机/Ghost 备份还原
 纪录片/视频及资料网址

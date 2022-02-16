@@ -1,0 +1,2 @@
+TortoiseGit-2.13.0.1-64bit.msi
+python-3.10.2-amd64.exe
