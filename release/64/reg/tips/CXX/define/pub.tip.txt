@@ -1,0 +1,23 @@
+#ifndef CDEFINEPUB_H
+#define CDEFINEPUB_H
+
+
+//#define TRACE
+#ifndef TRACE
+ #define tcout 0 && cout//或者NULL && cout
+#else
+ #define tcout cout
+#endif
+
+//永久打印
+#define tcoutever cout
+
+
+
+class cdefinepub
+{
+public:
+    cdefinepub();
+};
+
+#endif // CDEFINEPUB_H

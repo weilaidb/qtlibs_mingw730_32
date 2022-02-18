@@ -8,3 +8,6 @@ str1.substr(2)
 str1.substr(3)
 str1.substr(4)
 str1.substr()
+input
+buf
+strinput.length()

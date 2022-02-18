@@ -365,6 +365,7 @@ CXX/ARRAYSIZE
 CXX/Cout no prar
 CXX/Cout no prara endl
 CXX/Cout para 1
+CXX/Cout para 1 tcout
 CXX/Cout_in/cout
 CXX/Cout_in/cout precision 小数点
 CXX/Cout_in/cout size
@@ -392,10 +393,12 @@ CXX/More/虚函数 eg2
 CXX/STL/unordered_map
 CXX/String/front
 CXX/String/front2
+CXX/String/pub
 CXX/String/substr
 CXX/String/toupper
 CXX/cin.getline
 CXX/class/多态 继承
+CXX/define/pub
 CXX/externc __cplusplus
 CXX/new class static instsance实例
 CXX/static_cast char

@@ -1,4 +1,10 @@
 #include <iostream>
+#include <string>　　　　　//字符串类
+#include <vector>　　　　　//STL 动态数组容器
+
+using namespace std;
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -51,9 +57,7 @@
 #include <stack>　　　　　 //STL 堆栈容器
 #include <stdexcept>　　　 //标准异常类
 #include <streambuf>　　　 //底层输入／输出支持
-#include <string>　　　　　//字符串类
+#include <valarray>        //对包含值的数组的操作
 #include <typeinfo>        //运行期间类型信息
 #include <utility>　　　　 //STL 通用模板类
-#include <valarray>        //对包含值的数组的操作
-#include <vector>　　　　　//STL 动态数组容器
-using namespace std;
+
