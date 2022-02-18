@@ -1,0 +1,1 @@
+StartsWith（"al"），EndsWith（"ha"），Ne（"aloha"）

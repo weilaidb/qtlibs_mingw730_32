@@ -1,0 +1,60 @@
+0x401146 <main(int, char**)>                                            push   %rbp                                                                   |
+|   0x401147 <main(int, char**)+1>                                          mov    %rsp,%rbp                                                              |
+|   0x40114a <main(int, char**)+4>                                          sub    $0x10,%rsp                                                             |
+|   0x40114e <main(int, char**)+8>                                          mov    %edi,-0x4(%rbp)                                                        |
+|   0x401151 <main(int, char**)+11>                                         mov    %rsi,-0x10(%rbp)                                                       |
+|B+>0x401155 <main(int, char**)+15>                                         lea    0xea9(%rip),%rdi        # 0x402005                                     |
+|   0x40115c <main(int, char**)+22>                                         callq  0x401050 <puts@plt>                                                    |
+|   0x401161 <main(int, char**)+27>                                         mov    $0x0,%eax                                                              |
+|   0x401166 <main(int, char**)+32>                                         leaveq                                                                        |
+|   0x401167 <main(int, char**)+33>                                         retq                                                                          |
+|   0x401168 <__static_initialization_and_destruction_0(int, int)>          push   %rbp                                                                   |
+|   0x401169 <__static_initialization_and_destruction_0(int, int)+1>        mov    %rsp,%rbp                                                              |
+|   0x40116c <__static_initialization_and_destruction_0(int, int)+4>        sub    $0x10,%rsp                                                             |
+|   0x401170 <__static_initialization_and_destruction_0(int, int)+8>        mov    %edi,-0x4(%rbp)                                                        |
+|   0x401173 <__static_initialization_and_destruction_0(int, int)+11>       mov    %esi,-0x8(%rbp)                                                        |
+|   0x401176 <__static_initialization_and_destruction_0(int, int)+14>       cmpl   $0x1,-0x4(%rbp)                                                        |
+|   0x40117a <__static_initialization_and_destruction_0(int, int)+18>       jne    0x4011ae <__static_initialization_and_destruction_0(int, int)+70>      |
+|   0x40117c <__static_initialization_and_destruction_0(int, int)+20>       cmpl   $0xffff,-0x8(%rbp)                                                     |
+|   0x401183 <__static_initialization_and_destruction_0(int, int)+27>       jne    0x4011ae <__static_initialization_and_destruction_0(int, int)+70>      |
+|   0x401185 <__static_initialization_and_destruction_0(int, int)+29>       lea    0x2eb5(%rip),%rdi        # 0x404041 <_ZStL8__ioinit>                   |
+|   0x40118c <__static_initialization_and_destruction_0(int, int)+36>       callq  0x401040 <_ZNSt8ios_base4InitC1Ev@plt>                                 |
+|   0x401191 <__static_initialization_and_destruction_0(int, int)+41>       lea    0x2ea0(%rip),%rdx        # 0x404038                                    |
+|   0x401198 <__static_initialization_and_destruction_0(int, int)+48>       lea    0x2ea2(%rip),%rsi        # 0x404041 <_ZStL8__ioinit>                   |
+|   0x40119f <__static_initialization_and_destruction_0(int, int)+55>       mov    0x2e52(%rip),%rax        # 0x403ff8                                    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+multi-thre Thread 0x7ffff7a777 In: main                                                                                                 L12   P
+
+
+
+(gdb)
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+|   0x401146 <main(int, char**)>                                            push   %rbp                                                                   |
+|   0x7ffff7aa4178 <__libc_start_main+184>  mov    %rax,0x68(%rsp)                     ,%rbp                                                              |
+|   0x7ffff7aa417d <__libc_start_main+189>  mov    %fs:0x2f8,%rax                           p                                                             |
+|   0x7ffff7aa4186 <__libc_start_main+198>  mov    %rax,0x70(%rsp)                           %rbp)                                                        |
+|   0x7ffff7aa418b <__libc_start_main+203>  lea    0x20(%rsp),%rax                                )                                                       |
+|B+>0x7ffff7aa4190 <__libc_start_main+208>  mov    %rax,%fs:0x300                                          # 0x402005                                     |
+|   0x7ffff7aa4199 <__libc_start_main+217>  mov    0x19ccf8(%rip),%rax        # 0x7ffff7c40e98                                                            |
+|   0x7ffff7aa41a0 <__libc_start_main+224>  mov    0xc(%rsp),%edi                                                                                         |
+|   0x7ffff7aa41a4 <__libc_start_main+228>  mov    (%rsp),%rsi                                                                                            |
+|   0x7ffff7aa41a8 <__libc_start_main+232>  mov    (%rax),%rdx                                                                                            |
+|   0x7ffff7aa41ab <__libc_start_main+235>  mov    0x10(%rsp),%rax                 %rbp                                                                   |
+|   0x7ffff7aa41b0 <__libc_start_main+240>  callq  *%rax          1>                   ,%rbp                                                              |
+|  >0x7ffff7aa41b2 <__libc_start_main+242>  mov    %eax,%edi                                p                                                             |
+|   0x7ffff7aa41b4 <__libc_start_main+244>  callq  0x7ffff7abc5a0 <exit>                     %rbp)                                                        |
+|   0x7ffff7aa41b9 <__libc_start_main+249>  mov    (%rsp),%rax      >                                                                                     |
+|   0x7ffff7aa41bd <__libc_start_main+253>  lea    0x1675a4(%rip),%rdi        # 0x7ffff7c0b768                                                            |
+|   0x7ffff7aa41c4 <__libc_start_main+260>  mov    (%rax),%rsi                                    tic_initialization_and_destruction_0(int, int)+70>      |
+|   0x7ffff7aa41c7 <__libc_start_main+263>  xor    %eax,%eax                                                                                              |
+|   0x7ffff7aa41c9 <__libc_start_main+265>  callq  *0x260(%rdx)                                      _initialization_and_destruction_0(int, int)+70>      |
+|   0x7ffff7aa41cf <__libc_start_main+271>  jmpq   0x7ffff7aa4125 <__libc_start_main+101>                                                                 |
+|   0x7ffff7aa41d4 <__libc_start_main+276>  mov    0x1a043d(%rip),%rax        # 0x7ffff7c44618 <__libc_pthread_functions+216>                             |
+|   0x7ffff7aa41db <__libc_start_main+283>  ror    $0x11,%rax                                                                                             |
+|   0x7ffff7aa41df <__libc_start_main+287>  xor    %fs:0x30,%rax                                                       <_ZStL8__ioinit>                   |
+|   0x7ffff7aa41e8 <__libc_start_main+296>  callq  *%rax                                                                                                  |
++-- --7ffff7aa41ea <__libc_start_main+298>  mov    0x1a0417(%rip),%rax------  # 0x7ffff7c44608 <__libc_pthread_functions+200>-----------------------------+
+multi-thre Thread 0x7ffff7a777 In: main                                                                                                 L12   PC: 0x401155 
+The program is not being run.      __libc_start_main                                                                              L??   PC: 0x7ffff7aa41b2
+The program is not being run.
+The program is not being run.
