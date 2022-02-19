@@ -11,3 +11,4 @@ str1.substr()
 input
 buf
 strinput.length()
+input

@@ -365,6 +365,7 @@ CXX/ARRAYSIZE
 CXX/Cout no prar
 CXX/Cout no prara endl
 CXX/Cout para 1
+CXX/Cout para 1  tcout
 CXX/Cout_in/cout
 CXX/Cout_in/cout precision 小数点
 CXX/Cout_in/cout size
@@ -1355,6 +1356,7 @@ QT/Qthread/thread sync QWaitCondition
 QT/Qthread/thread sync 线程同步
 QT/RegExp/Test
 QT/ShortCut快捷键
+QT/ShortCut快捷键 Ctrl+Alt+上下无法复制
 QT/UI/Action
 QT/UI/Action new
 QT/UI/Action setShortcut
@@ -1558,6 +1560,8 @@ path路径/常用文件夹
 术语/C/宏和内联函数的区别
 术语/C/宏和内联函数的区别2
 术语/Linux/FIB Forward Information Base
+术语/交换/eg
+术语/交换/中英文对照表
 术语/内核Kernel/eg
 术语/内核Kernel/伙伴系统
 术语/内核Kernel/常见名词

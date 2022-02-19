@@ -80,6 +80,8 @@ git@github.com:weilaidb/django-webssh.git
 git@gitee.com:weilaidb/web-telnet.git
 git@github.com:weilaidb/demo0_hello_world.git
 git@github.com:weilaidb/jsp.git
+git@gitee.com:weilaidb/cxxcodesets.git
+
 
 git clone git://101.201.79.164//myprj 
 
