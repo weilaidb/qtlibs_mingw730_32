@@ -13,6 +13,9 @@ https://gitee.com/openharmony/ace_lite_jsfwk.git
 https://gitee.com/openharmony/communication_services_softbus_lite.git
 https://gitee.com/openharmony/distributedschedule_services_samgr_lite.git
 https://github.com/universal-ctags/ctags.git
+https://github.com/paulsapps/gmock-1.7.0.git
+
+
 #仿真
 https://gitlab.com/qemu-project/qemu.git
 https://www.qemu.org/download/
@@ -81,6 +84,7 @@ git@gitee.com:weilaidb/web-telnet.git
 git@github.com:weilaidb/demo0_hello_world.git
 git@github.com:weilaidb/jsp.git
 git@gitee.com:weilaidb/cxxcodesets.git
+git@github.com:weilaidb/gmock-1.7.0.git
 
 
 git clone git://101.201.79.164//myprj 

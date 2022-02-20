@@ -75,6 +75,7 @@ BASH/读取用户输入/单个或多个PROMPT
 BASH/读取用户输入/单个或多个PROMPT-SLIENT
 BASH/重定向
 BAT/COPY
+BAT/COPY generate.libs.bat
 BAT/CURRENT PATH文件当前路径
 BAT/DATE TIME
 BAT/DNS flushdns
@@ -992,6 +993,7 @@ LINUX命令/GDB/Gmock
 LINUX命令/GDB/Gmock b
 LINUX命令/GDB/Linux下可执行程序调试信息的分离及release程序的调试
 LINUX命令/GDB/gdb 如何调试release版本
+LINUX命令/Gmock/Qt编译
 LINUX命令/Gmock/简介
 LINUX命令/objcopy
 LINUX命令/readelf
@@ -1420,6 +1422,7 @@ QT/UI/打印入参列表 showArgs
 QT/UI/问题项
 QT/介绍
 QT/依赖库
+QT/添加头文件和链接库
 QT/示例/随机数
 Setting/网页显示常用Tab切换
 SoftWare/Source Insight

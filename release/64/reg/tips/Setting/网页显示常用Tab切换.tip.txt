@@ -3,3 +3,4 @@ public use;BASH/alias/public use
 start;QT/QTimer/start
 QT UI设置;QT/UI/Settings eg
 QT/UI/Action;QT/UI/Action
+git address;Tools/git/常用git库 git address
