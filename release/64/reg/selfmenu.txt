@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -74,6 +75,7 @@ BASH/读取用户输入/单个或多个PROMPT
 BASH/读取用户输入/单个或多个PROMPT-SLIENT
 BASH/重定向
 BAT/COPY
+BAT/COPY generate.libs.bat
 BAT/CURRENT PATH文件当前路径
 BAT/DATE TIME
 BAT/DNS flushdns
@@ -364,6 +366,7 @@ CXX/ARRAYSIZE
 CXX/Cout no prar
 CXX/Cout no prara endl
 CXX/Cout para 1
+CXX/Cout para 1  tcout
 CXX/Cout_in/cout
 CXX/Cout_in/cout precision 小数点
 CXX/Cout_in/cout size
@@ -395,11 +398,13 @@ CXX/String/back
 CXX/String/back2
 CXX/String/front
 CXX/String/front2
+CXX/String/pub
 CXX/String/string
 CXX/String/substr
 CXX/String/toupper
 CXX/cin.getline
 CXX/class/多态 继承
+CXX/define/pub
 CXX/eg
 CXX/externc __cplusplus
 CXX/new class static instsance实例
@@ -419,6 +424,9 @@ Code/new/Gmock test
 Code/new/Gmock test SetUp
 Code/new/Gmock test TearDown
 Code/new/Gmock try catch
+Code/new/Gmock/TEST_F
+Code/new/Gmock/TEST_F name1
+Code/new/Gmock/TEST_F name2
 Code/new/Gmock/assert/ASSERT_EQ
 Code/new/Gmock/assert/ASSERT_FALSE
 Code/new/Gmock/assert/ASSERT_STRCASEEQ
@@ -431,6 +439,7 @@ Code/new/Gmock/assert/ASSERT_THAT2 DoubleEq
 Code/new/Gmock/assert/ASSERT_THAT2 Eq
 Code/new/Gmock/assert/ASSERT_THROW
 Code/new/Gmock/assert/ASSERT_TRUE
+Code/new/Gmock/assert/EXPECT_CALL
 Code/new/Gmock/assert/MATCHER_P
 Code/new/Gmock/gtest_filter 过滤器
 Code/new/Gmock/gtest_filter 过滤器2
@@ -438,6 +447,8 @@ Code/new/Gmock/matcher/AllOf
 Code/new/Gmock/matcher/EndsWith
 Code/new/Gmock/matcher/Ne
 Code/new/Gmock/matcher/StartsWith
+Code/new/Gmock/模拟/MOCK_CONST_METHOD1
+Code/new/Gmock/模拟/MOCK_METHOD0
 DBMS/MySql/cmd 登陆
 DBMS/MySql/database create
 DBMS/MySql/database drop
@@ -985,6 +996,8 @@ LINUX命令/GDB/Gmock
 LINUX命令/GDB/Gmock b
 LINUX命令/GDB/Linux下可执行程序调试信息的分离及release程序的调试
 LINUX命令/GDB/gdb 如何调试release版本
+LINUX命令/Gmock/Qt编译
+LINUX命令/Gmock/简介
 LINUX命令/objcopy
 LINUX命令/readelf
 Makefile/PHONY
@@ -1040,6 +1053,7 @@ Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量
 OS/WIN10/安装系统常见问题
+OS/WIN10/安装系统常见问题 the error code is 2503, 2502的解决办法
 OS/WIN7/安装系统常见问题
 Office/Excel/Macro/SpellNumber
 PACKET Parse/ARP
@@ -1230,6 +1244,7 @@ Python/header
 Python/header import
 Python/header import as
 Python/idea快捷键
+Python/idea插件
 Python/idea配置说明
 Python/list/列表大小 len
 Python/main
@@ -1346,6 +1361,7 @@ QT/Qthread/thread sync QWaitCondition
 QT/Qthread/thread sync 线程同步
 QT/RegExp/Test
 QT/ShortCut快捷键
+QT/ShortCut快捷键 Ctrl+Alt+上下无法复制
 QT/UI/Action
 QT/UI/Action new
 QT/UI/Action setShortcut
@@ -1409,6 +1425,10 @@ QT/UI/打印入参列表 showArgs
 QT/UI/问题项
 QT/介绍
 QT/依赖库
+QT/依赖库 Gmock
+QT/添加头文件和链接库
+QT/版本Debug或Release宏 QT_DEBUG 和QT_NO_DEBUG
+QT/示例/随机数
 Setting/网页显示常用Tab切换
 SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
@@ -1417,6 +1437,9 @@ SoftWare/Understand
 TEST/RegExptest
 TEST/RegExptest rm -f
 TEST/RegExptest1
+TEST/RegExptest2
+TEST/RegExptest3
+TEST/RegExptest4
 Tools/Astyle格式化代码
 Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
@@ -1545,6 +1568,8 @@ path路径/常用文件夹
 术语/C/宏和内联函数的区别
 术语/C/宏和内联函数的区别2
 术语/Linux/FIB Forward Information Base
+术语/交换/eg
+术语/交换/中英文对照表
 术语/内核Kernel/eg
 术语/内核Kernel/伙伴系统
 术语/内核Kernel/常见名词
@@ -1575,8 +1600,10 @@ path路径/常用文件夹
 正则表达式/添加引号
 测试用例/TestCase/1
 用户说明书/代码集autocodesets  weilaix.war
+用户说明书/代码集autocodesets weilaix.war Apache版本更新
 电脑/ThinkPad/T14/常见
 电脑/ThinkPad/T14/拆机
+电脑/ThinkPad/T14/拆机 加内存和硬盘安装系统
 电脑/戴尔Inspiron 15 7000 Series - 7537/拆机
 电脑/装机/Ghost 备份还原
 纪录片/视频及资料网址
@@ -1597,6 +1624,8 @@ path路径/常用文件夹
 英语/单词
 设计/术语/Agile
 设计/试题/出题
+设计/试题/出题2
+设计/试题/出题2 描述
 设计/软件框架/SCRUM
 设计/软件框架/SCRUM官方权威指南
 设计/软件框架/Sprint
@@ -1612,6 +1641,3 @@ path路径/常用文件夹
 设计/软件设计/TDD new/suits telnet
 设计/软件设计/eg
 设计/软件设计/语言设计的美妙
-TEST/RegExptest2
-TEST/RegExptest3
-TEST/RegExptest4
