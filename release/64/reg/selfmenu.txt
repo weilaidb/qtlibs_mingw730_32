@@ -378,6 +378,7 @@ CXX/GetStrOfData
 CXX/INCLUDE/FILTER
 CXX/INCLUDE/GENERATE
 CXX/INCLUDE/常用头文件 header
+CXX/INCLUDE/常用头文件 header2
 CXX/LOOP/list DBList
 CXX/LOOP/list iterator
 CXX/LOOP/list reverse_iterator
@@ -414,6 +415,7 @@ CXX/shared_ptr 智能指针2
 CXX/static_cast char
 CXX/static_cast unsigned char
 CXX/template/Point
+CXX/template/模板类编译问题
 CXX/编译 CMake CMakeLists.txt
 CXX/编译 CMake eg
 CXX/编译链接 预处理等
