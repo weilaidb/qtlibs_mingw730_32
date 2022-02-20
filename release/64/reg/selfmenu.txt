@@ -367,6 +367,7 @@ CXX/Cout no prar
 CXX/Cout no prara endl
 CXX/Cout para 1
 CXX/Cout para 1  tcout
+CXX/Cout para 1 setw
 CXX/Cout_in/cout
 CXX/Cout_in/cout precision 小数点
 CXX/Cout_in/cout size
@@ -425,6 +426,7 @@ Code/new/Gmock test SetUp
 Code/new/Gmock test TearDown
 Code/new/Gmock try catch
 Code/new/Gmock/TEST_F
+Code/new/Gmock/TEST_F name Eq
 Code/new/Gmock/TEST_F name1
 Code/new/Gmock/TEST_F name2
 Code/new/Gmock/assert/ASSERT_EQ
