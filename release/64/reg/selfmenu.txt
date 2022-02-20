@@ -424,6 +424,9 @@ Code/new/Gmock test
 Code/new/Gmock test SetUp
 Code/new/Gmock test TearDown
 Code/new/Gmock try catch
+Code/new/Gmock/TEST_F
+Code/new/Gmock/TEST_F name1
+Code/new/Gmock/TEST_F name2
 Code/new/Gmock/assert/ASSERT_EQ
 Code/new/Gmock/assert/ASSERT_FALSE
 Code/new/Gmock/assert/ASSERT_STRCASEEQ

@@ -1,0 +1,1 @@
+TEST_F(\1, \2) {$NL$NL   //ASSERT_THAT(address, IsEmpty());$NL   //ASSERT_TRUE(address == IsEmpty());$NL   //ASSERT_FALSE(address == IsEmpty());$NL}

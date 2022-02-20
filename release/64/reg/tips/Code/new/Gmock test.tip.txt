@@ -1,1 +1,2 @@
 SoundexEncoding;RetainsSoleLetterOfOneLetterWord
+StringPub;TestIt
