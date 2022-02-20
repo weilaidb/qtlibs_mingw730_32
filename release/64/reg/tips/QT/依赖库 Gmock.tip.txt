@@ -1,0 +1,10 @@
+debug {
+INCLUDEPATH += module/gmock_170/build-libmock-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/include/
+
+LIBS += -L$$PWD/module/gmock_170/build-libmock-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/ -lmock
+}
+release {
+INCLUDEPATH += module/gmock_170/build-libmock-Desktop_Qt_5_14_2_MinGW_64_bit-Release/include/
+
+LIBS += -L$$PWD/module/gmock_170/build-libmock-Desktop_Qt_5_14_2_MinGW_64_bit-Release/ -lmock
+}
