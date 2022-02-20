@@ -1,1 +1,1 @@
-TEST_F(\1, \2) {$NL$NL   //ASSERT_THAT(address, Eq());$NL   //ASSERT_TRUE(address == Eq());$NL   //ASSERT_FALSE(address == Eq());$NL}
+TEST_F(\1, \2) {$NL$NL   //ASSERT_THAT(address, Eq());$NL   //ASSERT_TRUE(address == Eq());$NL   //ASSERT_FALSE(address == Eq());$NL   //ASSERT_FALSE(address == Ge());$NL   //ASSERT_FALSE(address == Le());$NL}
