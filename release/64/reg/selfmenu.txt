@@ -413,6 +413,7 @@ CXX/shared_ptr 智能指针
 CXX/shared_ptr 智能指针2
 CXX/static_cast char
 CXX/static_cast unsigned char
+CXX/template/Point
 CXX/编译 CMake CMakeLists.txt
 CXX/编译 CMake eg
 CXX/编译链接 预处理等
