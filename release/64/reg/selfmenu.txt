@@ -1309,6 +1309,7 @@ QT/PUB/CONFIG unix
 QT/PUB/CONFIG win32
 QT/PUB/ConfigPath 配置编译路径
 QT/PUB/INCLUDEPATH
+QT/Project/Define 添加宏定义
 QT/QDateTime/format1
 QT/QDir/toNativeSeparators
 QT/QEvent/closeEvent
