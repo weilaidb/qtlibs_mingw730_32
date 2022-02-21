@@ -414,6 +414,7 @@ CXX/shared_ptr 智能指针
 CXX/shared_ptr 智能指针2
 CXX/static_cast char
 CXX/static_cast unsigned char
+CXX/template/CVectorExtPub
 CXX/template/Point
 CXX/template/模板类编译问题
 CXX/编译 CMake CMakeLists.txt
