@@ -1002,6 +1002,7 @@ LINUX命令/GDB/Gmock
 LINUX命令/GDB/Gmock b
 LINUX命令/GDB/Linux下可执行程序调试信息的分离及release程序的调试
 LINUX命令/GDB/gdb 如何调试release版本
+LINUX命令/Gmock/Linux编译
 LINUX命令/Gmock/Qt编译
 LINUX命令/Gmock/简介
 LINUX命令/objcopy
