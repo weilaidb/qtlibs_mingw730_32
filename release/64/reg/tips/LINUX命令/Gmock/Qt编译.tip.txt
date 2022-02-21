@@ -1,0 +1,1 @@
+https://github.com/paulsapps/gmock-1.7.0.git

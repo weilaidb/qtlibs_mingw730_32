@@ -1,0 +1,2 @@
+使用模拟对象工具
+    模拟对象工具，如Google Mock、CppUMock或者HipppMocks,都能减轻定义模拟对象和设定期望的工作。
