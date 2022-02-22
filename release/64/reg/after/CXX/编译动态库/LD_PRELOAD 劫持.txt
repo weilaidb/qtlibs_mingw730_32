@@ -1,0 +1,1 @@
+LD_PRELOAD=\1 \2$NLLD_PRELOAD=./\1 ./\2
