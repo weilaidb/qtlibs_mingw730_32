@@ -1,6 +1,8 @@
 #include <iostream>
-#include <string>　　　　　//字符串类
-#include <vector>　　　　　//STL 动态数组容器
+#include <string>
+#include <vector>
+#include <iomanip>
+#include <iomanip>
 
 using namespace std;
 
@@ -60,4 +62,3 @@ using namespace std;
 #include <valarray>        //对包含值的数组的操作
 #include <typeinfo>        //运行期间类型信息
 #include <utility>　　　　 //STL 通用模板类
-

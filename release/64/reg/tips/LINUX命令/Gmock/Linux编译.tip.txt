@@ -1,0 +1,49 @@
+编译gmock
+
+帅得不敢出门
+
+于 2015-01-22 16:36:15 发布
+
+1338
+ 收藏
+分类专栏： LINUX
+版权
+
+LINUX
+专栏收录该内容
+88 篇文章0 订阅
+订阅专栏
+编译lib
+tar -xvf gmock-1.5.0.tar.bz2 
+cd gmock-1.5.0/
+chmod +x configure
+./configure
+make
+sudo make install
+
+
+编译自带的测试例子
+cd make
+make
+./gmock_test
+Running main() from gmock_main.cc
+[==========] Running 13 tests from 3 test cases.
+[----------] Global test environment set-up.
+[----------] 6 tests from InitGoogleMockTest
+[ RUN      ] InitGoogleMockTest.ParsesInvalidCommandLine
+[       OK ] InitGoogleMockTest.ParsesInvalidCommandLine (0 ms)
+[ RUN      ] InitGoogleMockTest.ParsesEmptyCommandLine
+[       OK ] InitGoogleMockTest.ParsesEmptyCommandLine (0 ms)
+[ RUN      ] InitGoogleMockTest.ParsesSingleFlag
+[       OK ] InitGoogleMockTest.ParsesSingleFlag (0 ms)
+[ RUN      ] InitGoogleMockTest.ParsesUnrecognizedFlag
+[       OK ] InitGoogleMockTest.ParsesUnrecognizedFlag (0 ms)
+[ RUN      ] InitGoogleMockTest.ParsesGoogleMockFlagAndUnrecognizedFlag
+[       OK ] InitGoogleMockTest.ParsesGoogleMockFlagAndUnrecognizedFlag (0 ms)
+[ RUN      ] InitGoogleMockTest.CallsInitGoogleTest
+[       OK ] InitGoogleMockTest.CallsInitGoogleTest (1 ms)
+[----------] 6 tests from InitGoogleMockTest (1 ms total)
+.......................
+————————————————
+版权声明：本文为CSDN博主「帅得不敢出门」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/zmlovelx/article/details/43021483

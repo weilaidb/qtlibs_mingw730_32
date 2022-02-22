@@ -11,3 +11,9 @@ str1.substr()
 input
 buf
 strinput.length()
+input
+
+
+    vec.size()
+    vec.capacity()
+    vec.max_size()

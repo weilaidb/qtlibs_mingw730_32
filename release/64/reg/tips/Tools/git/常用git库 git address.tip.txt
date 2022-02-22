@@ -13,6 +13,9 @@ https://gitee.com/openharmony/ace_lite_jsfwk.git
 https://gitee.com/openharmony/communication_services_softbus_lite.git
 https://gitee.com/openharmony/distributedschedule_services_samgr_lite.git
 https://github.com/universal-ctags/ctags.git
+https://github.com/paulsapps/gmock-1.7.0.git
+
+
 #仿真
 https://gitlab.com/qemu-project/qemu.git
 https://www.qemu.org/download/
@@ -80,6 +83,11 @@ git@github.com:weilaidb/django-webssh.git
 git@gitee.com:weilaidb/web-telnet.git
 git@github.com:weilaidb/demo0_hello_world.git
 git@github.com:weilaidb/jsp.git
+git@gitee.com:weilaidb/cxxcodesets.git
+git@github.com:weilaidb/gmock-1.7.0.git
+#CXX Gmock库
+git@github.com:weilaidb/codesetsmore.git
+
 
 git clone git://101.201.79.164//myprj 
 
@@ -125,3 +133,11 @@ $ git fetch -v # 拉取所有远程分支
 
 #git Server
 https://bonobogitserver.com/
+
+
+
+#书籍代码
+Gmock
+gmock 示例代码 《C++程序设计实践与技巧:测试驱动开发》
+lotdd-code.zip
+https://pragprog.com/titles/lotdd/modern-c-programming-with-test-driven-development/

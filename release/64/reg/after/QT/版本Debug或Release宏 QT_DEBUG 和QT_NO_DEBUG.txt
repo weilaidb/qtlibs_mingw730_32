@@ -1,0 +1,1 @@
+#ifdef QT_DEBUG$NL// do something$NL#endif$NL$NL$NL#ifndef QT_NO_DEBUG$NL// do something$NL#endif$NL$NL$NL$NLdebug {$NL  DEFINES += MYPREFIX_DEBUG$NL}$NLrelease {$NL  DEFINES += MYPREFIX_RELEASE$NL}
