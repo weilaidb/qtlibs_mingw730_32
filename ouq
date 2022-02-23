@@ -1,44 +1,0 @@
-[1mdiff --git a/release/64/reg/selfmenu.txt b/release/64/reg/selfmenu.txt[m
-[1mindex 1897527d..acab052d 100644[m
-[1m--- a/release/64/reg/selfmenu.txt[m
-[1m+++ b/release/64/reg/selfmenu.txt[m
-[36m@@ -905,6 +905,7 @@[m [mLINUX/命令行/mpstat 查看CPU 实时系统监控工具 2[m
- LINUX/命令行/nano[m
- LINUX/命令行/nohup[m
- LINUX/命令行/realpath[m
-[32m+[m[32mLINUX/命令行/sed[m
- LINUX/命令行/setenforce[m
- LINUX/命令行/shutdown[m
- LINUX/命令行/software/CentOS安装mysql[m
-[36m@@ -952,6 +953,10 @@[m [mLINUX命令/GDB/C linux gdb[m
- LINUX命令/GDB/C linux gdb strip shell[m
- LINUX命令/GDB/C linux gdb symbol 加载运行[m
- LINUX命令/GDB/C linux gdb symbol 生成符号表[m
-[32m+[m[32mLINUX命令/GDB/C linux gdb tui[m
-[32m+[m[32mLINUX命令/GDB/C linux gdb tui2[m
-[32m+[m[32mLINUX命令/GDB/Gmock[m
-[32m+[m[32mLINUX命令/GDB/Gmock b[m
- LINUX命令/GDB/Linux下可执行程序调试信息的分离及release程序的调试[m
- LINUX命令/GDB/gdb 如何调试release版本[m
- LINUX命令/objcopy[m
-[1mdiff --git "a/release/64/reg/tips/LINUX/\345\221\275\344\273\244\350\241\214/software/install gmock.tip.txt" "b/release/64/reg/tips/LINUX/\345\221\275\344\273\244\350\241\214/software/install gmock.tip.txt"[m
-[1mindex 06ce9be3..4e66fbf4 100644[m
-[1m--- "a/release/64/reg/tips/LINUX/\345\221\275\344\273\244\350\241\214/software/install gmock.tip.txt"[m	
-[1m+++ "b/release/64/reg/tips/LINUX/\345\221\275\344\273\244\350\241\214/software/install gmock.tip.txt"[m	
-[36m@@ -11,12 +11,14 @@[m [mmake install[m
- [m
- #安装，需要手工拷贝库和头文件[m
- find | grep libgmock.a[m
-[31m-cp libgmock.a /usr/local/lib[m
-[31m-cp libgtest.a /usr/local/lib[m
-[32m+[m[32mcp -af libgmock.a /usr/local/lib[m[41m[m
-[32m+[m[32mcp -af libgtest.a /usr/local/lib[m[41m[m
- [m
- cd ..[m
- find | grep gmock.h[m
- find include/[m
-[32m+[m[32mrm -rf /usr/local/include/gmock/[m[41m[m
-[32m+[m[32mrm -rf /usr/local/include/gtest/[m[41m[m
- cp -af include/gmock/ /usr/local/include/[m
- cp -af gtest/include/gtest/ /usr/local/include/[m
- [m
