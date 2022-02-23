@@ -84,6 +84,7 @@ BAT/NET USER
 BAT/NETSTAT
 BAT/RMDIR
 BAT/TCP STATUS状态
+BAT/new/zipwar.bat
 BAT/网络network/AF/AF_INET
 BAT/网络network/AF/AF_UNIX
 BAT/网络network/AF/AF_UNIX和AF_INET
