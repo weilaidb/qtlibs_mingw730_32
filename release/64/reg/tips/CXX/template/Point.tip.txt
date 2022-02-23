@@ -1,0 +1,126 @@
+C++类模板（Class Template）
+<上一节下一节>关注我们：微信公众号新浪微博
+C语言中文网推出辅导班啦，包括「C语言辅导班、C++辅导班、算法/数据结构辅导班」，全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践 + 永久学习。QQ在线，随时响应！
+
+C++ 除了支持函数模板，还支持类模板（Class Template）。函数模板中定义的类型参数可以用在函数声明和函数定义中，类模板中定义的类型参数可以用在类声明和类实现中。类模板的目的同样是将数据的类型参数化。
+
+声明类模板的语法为：
+template<typename 类型参数1 , typename 类型参数2 , …> class 类名{
+    //TODO:
+};
+
+类模板和函数模板都是以 template 开头（当然也可以使用 class，目前来讲它们没有任何区别），后跟类型参数；类型参数不能为空，多个类型参数用逗号隔开。
+
+一但声明了类模板，就可以将类型参数用于类的成员函数和成员变量了。换句话说，原来使用 int、float、char 等内置类型的地方，都可以用类型参数来代替。
+
+假如我们现在要定义一个类来表示坐标，要求坐标的数据类型可以是整数、小数和字符串，例如：
+x = 10、y = 10
+x = 12.88、y = 129.65
+x = "东经180度"、y = "北纬210度"
+
+这个时候就可以使用类模板，请看下面的代码：
+template<typename T1, typename T2>  //这里不能有分号
+class Point{
+public:
+    Point(T1 x, T2 y): m_x(x), m_y(y){ }
+public:
+    T1 getX() const;  //获取x坐标
+    void setX(T1 x);  //设置x坐标
+    T2 getY() const;  //获取y坐标
+    void setY(T2 y);  //设置y坐标
+private:
+    T1 m_x;  //x坐标
+    T2 m_y;  //y坐标
+};
+x 坐标和 y 坐标的数据类型不确定，借助类模板可以将数据类型参数化，这样就不必定义多个类了。
+注意：模板头和类头是一个整体，可以换行，但是中间不能有分号。
+上面的代码仅仅是类的声明，我们还需要在类外定义成员函数。在类外定义成员函数时仍然需要带上模板头，格式为：
+template<typename 类型参数1 , typename 类型参数2 , …>
+返回值类型 类名<类型参数1 , 类型参数2, ...>::函数名(形参列表){
+    //TODO:
+}
+
+第一行是模板头，第二行是函数头，它们可以合并到一行，不过为了让代码格式更加清晰，一般是将它们分成两行。
+
+下面就对 Point 类的成员函数进行定义：
+template<typename T1, typename T2>  //模板头
+T1 Point<T1, T2>::getX() const /*函数头*/ {
+    return m_x;
+}
+template<typename T1, typename T2>
+void Point<T1, T2>::setX(T1 x){
+    m_x = x;
+}
+template<typename T1, typename T2>
+T2 Point<T1, T2>::getY() const{
+    return m_y;
+}
+template<typename T1, typename T2>
+void Point<T1, T2>::setY(T2 y){
+    m_y = y;
+}
+请读者仔细观察代码，除了 template 关键字后面要指明类型参数，类名 Point 后面也要带上类型参数，只是不加 typename 关键字了。另外需要注意的是，在类外定义成员函数时，template 后面的类型参数要和类声明时的一致。
+使用类模板创建对象
+上面的两段代码完成了类的定义，接下来就可以使用该类创建对象了。使用类模板创建对象时，需要指明具体的数据类型。请看下面的代码：
+Point<int, int> p1(10, 20);
+Point<int, float> p2(10, 15.5);
+Point<float, char*> p3(12.4, "东经180度");
+与函数模板不同的是，类模板在实例化时必须显式地指明数据类型，编译器不能根据给定的数据推演出数据类型。
+
+除了对象变量，我们也可以使用对象指针的方式来实例化：
+Point<float, float> *p1 = new Point<float, float>(10.6, 109.3);
+Point<char*, char*> *p = new Point<char*, char*>("东经180度", "北纬210度");
+需要注意的是，赋值号两边都要指明具体的数据类型，且要保持一致。下面的写法是错误的：
+//赋值号两边的数据类型不一致
+Point<float, float> *p = new Point<float, int>(10.6, 109);
+//赋值号右边没有指明数据类型
+Point<float, float> *p = new Point(10.6, 109);
+综合示例
+将上面的类定义和类实例化的代码整合起来，构成一个完整的示例，如下所示：
+纯文本复制
+#include <iostream>
+using namespace std;
+template<class T1, class T2>  //这里不能有分号
+class Point{
+public:
+    Point(T1 x, T2 y): m_x(x), m_y(y){ }
+public:
+    T1 getX() const;  //获取x坐标
+    void setX(T1 x);  //设置x坐标
+    T2 getY() const;  //获取y坐标
+    void setY(T2 y);  //设置y坐标
+private:
+    T1 m_x;  //x坐标
+    T2 m_y;  //y坐标
+};
+template<class T1, class T2>  //模板头
+T1 Point<T1, T2>::getX() const /*函数头*/ {
+    return m_x;
+}
+template<class T1, class T2>
+void Point<T1, T2>::setX(T1 x){
+    m_x = x;
+}
+template<class T1, class T2>
+T2 Point<T1, T2>::getY() const{
+    return m_y;
+}
+template<class T1, class T2>
+void Point<T1, T2>::setY(T2 y){
+    m_y = y;
+}
+int main(){
+    Point<int, int> p1(10, 20);
+    cout<<"x="<<p1.getX()<<", y="<<p1.getY()<<endl;
+    Point<int, char*> p2(10, "东经180度");
+    cout<<"x="<<p2.getX()<<", y="<<p2.getY()<<endl;
+    Point<char*, char*> *p3 = new Point<char*, char*>("东经180度", "北纬210度");
+    cout<<"x="<<p3->getX()<<", y="<<p3->getY()<<endl;
+    return 0;
+}
+运行结果：
+x=10, y=20
+x=10, y=东经180度
+x=东经180度, y=北纬210度
+
+在定义类型参数时我们使用了 class，而不是 typename，这样做的目的是让读者对两种写法都熟悉。
