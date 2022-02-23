@@ -83,6 +83,7 @@ BAT/NET USER
 BAT/NETSTAT
 BAT/RMDIR
 BAT/TCP STATUS状态
+BAT/new/zipwar.bat
 BAT/网络network/AF/AF_INET
 BAT/网络network/AF/AF_UNIX
 BAT/网络network/AF/AF_UNIX和AF_INET
@@ -377,6 +378,7 @@ CXX/GetStrOfData
 CXX/INCLUDE/FILTER
 CXX/INCLUDE/GENERATE
 CXX/INCLUDE/常用头文件 header
+CXX/INCLUDE/常用头文件 header2
 CXX/LOOP/list DBList
 CXX/LOOP/list iterator
 CXX/LOOP/list reverse_iterator
@@ -412,8 +414,13 @@ CXX/shared_ptr 智能指针
 CXX/shared_ptr 智能指针2
 CXX/static_cast char
 CXX/static_cast unsigned char
+CXX/template/CVectorExtPub
+CXX/template/Point
+CXX/template/模板类编译问题
 CXX/编译 CMake CMakeLists.txt
 CXX/编译 CMake eg
+CXX/编译动态库/LD_PRELOAD 劫持
+CXX/编译动态库/eg
 CXX/编译链接 预处理等
 Code/new/Gmock eg
 Code/new/Gmock fixture
@@ -997,6 +1004,7 @@ LINUX命令/GDB/Gmock
 LINUX命令/GDB/Gmock b
 LINUX命令/GDB/Linux下可执行程序调试信息的分离及release程序的调试
 LINUX命令/GDB/gdb 如何调试release版本
+LINUX命令/Gmock/Linux编译
 LINUX命令/Gmock/Qt编译
 LINUX命令/Gmock/简介
 LINUX命令/objcopy
@@ -1305,6 +1313,7 @@ QT/PUB/CONFIG unix
 QT/PUB/CONFIG win32
 QT/PUB/ConfigPath 配置编译路径
 QT/PUB/INCLUDEPATH
+QT/Project/Define 添加宏定义
 QT/QDateTime/format1
 QT/QDir/toNativeSeparators
 QT/QEvent/closeEvent

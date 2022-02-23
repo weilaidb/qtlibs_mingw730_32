@@ -87,6 +87,8 @@ git@gitee.com:weilaidb/cxxcodesets.git
 git@github.com:weilaidb/gmock-1.7.0.git
 #CXX Gmock库
 git@github.com:weilaidb/codesetsmore.git
+git@gitee.com:weilaidb/vbscript_eg.git
+
 
 
 git clone git://101.201.79.164//myprj 
