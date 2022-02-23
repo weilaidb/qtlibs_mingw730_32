@@ -1,4 +1,3 @@
-
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -366,8 +365,8 @@ CXX/ARRAYSIZE
 CXX/Cout no prar
 CXX/Cout no prara endl
 CXX/Cout para 1
-CXX/Cout para 1  tcout
 CXX/Cout para 1 setw
+CXX/Cout para 1 tcout
 CXX/Cout_in/cout
 CXX/Cout_in/cout precision 小数点
 CXX/Cout_in/cout size
@@ -1442,6 +1441,7 @@ TEST/RegExptest1
 TEST/RegExptest2
 TEST/RegExptest3
 TEST/RegExptest4
+TEST/RegExptest5
 Tools/Astyle格式化代码
 Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
@@ -1601,7 +1601,7 @@ path路径/常用文件夹
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
 测试用例/TestCase/1
-用户说明书/代码集autocodesets  weilaix.war
+用户说明书/代码集autocodesets weilaix.war
 用户说明书/代码集autocodesets weilaix.war Apache版本更新
 电脑/ThinkPad/T14/常见
 电脑/ThinkPad/T14/拆机
