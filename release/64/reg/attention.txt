@@ -9,6 +9,7 @@
 *.非全部处理限制值	--  contentmax.txt
 *.过滤符号                 -- 【】 []
 *.特殊字符		--  $NL:换行
+*.特殊字符		--  $MODE_NL:单行多执行分隔符
 *.特殊字符		--  $TB:Tab
 *.特殊字符		--  $SP:空格
 *.特殊字符		--  $DATE:日期时间(yyyy-MM-dd hh:mm:ss)
@@ -51,5 +52,18 @@ Alt+M     -- 打开/隐藏多标签功能
 异常问题:
 1.软件死机
 --查看当前项是否配置selfmode_allline_execmulti.txt
+
+
+
+示例:
+1.单行多执行，以$MODE_NL作为分隔符
+regbefore                          regafter
+.*#define\s+([\w\d_]+)(.*)         \1 \2$MODE_NL
+([\w\d_]+)(.*)                     #define \1 \2$MODE_NL
+(.*)\("(.*)                        \1(""\2$MODE_NL  --此为替换("为(""
+(.*)"\)(.*)                        \1"")\2$MODE_NL  --此为替换")为"")
+
+
+
 
 
