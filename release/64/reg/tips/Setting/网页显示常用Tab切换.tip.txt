@@ -4,3 +4,8 @@ start;QT/QTimer/start
 QT UI设置;QT/UI/Settings eg
 QT/UI/Action;QT/UI/Action
 git address;Tools/git/常用git库 git address
+
+
+C/PRINTF/color简介;C/PRINTF/color简介
+C/PRINTF/float;C/PRINTF/float
+C/PRINTF/long_int;C/PRINTF/long_int
