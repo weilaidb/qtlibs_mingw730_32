@@ -1619,6 +1619,7 @@ path路径/常用文件夹
 电脑/ThinkPad/T14/拆机 加内存和硬盘安装系统
 电脑/戴尔Inspiron 15 7000 Series - 7537/拆机
 电脑/装机/Ghost 备份还原
+电脑/装机/Ghost 备份还原(dell inspiron-15-7537)
 纪录片/视频及资料网址
 脚本/VBS/SecureCrt/Date
 脚本/VBS/SecureCrt/Send
