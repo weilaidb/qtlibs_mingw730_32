@@ -64,6 +64,8 @@ regbefore                          regafter
 (.*)"\)(.*)                        \1"")\2$MODE_NL  --此为替换")为"")
 
 
+2.*.单行单执行	       --  selfmode_singleline_execsingle.txt
+$MODE_NL 作为换行符
 
 
 

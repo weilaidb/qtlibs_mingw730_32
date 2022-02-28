@@ -1,4 +1,3 @@
-
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -340,6 +339,7 @@ C/STRNCPY_2_SNPRINTF
 C/STRUCT/pragma pack 1字节对齐
 C/STRUCT/pragma pack 字节对齐 push pop
 C/STRUCT/生成结构体
+C/STRUCT/生成结构体 printf
 C/enum/enum
 C/enum/enum single
 C/enum/enum single withname

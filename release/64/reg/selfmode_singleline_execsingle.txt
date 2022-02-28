@@ -1,4 +1,5 @@
 C/STRUCT/生成结构体
+C/STRUCT/生成结构体 printf
 C/enum/enum single
 C/enum/enum single withname
 C/enum/enum single withname typedef
