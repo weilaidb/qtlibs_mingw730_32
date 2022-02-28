@@ -1,0 +1,18 @@
+驱动下载 官网
+https://www.dell.com/support/home/zh-cn/product-support/product/inspiron-15-7537/drivers
+
+
+戴尔电脑装机可真是费劲了
+安装原版系统微软的，提示硬盘格式为gpt,需要将bios启动格式改为uefi。
+中间改成了legency,再改成uefi,发现提示分区无法安装。
+正常的安装有个恢复和预留分区，在格式化c盘的时候会有个提示。
+注意事项:
+1.安装win10 bios改成uefi
+2.硬盘格式改为gpt
+3.如果不生效，掉电一下机器看下
+4.戴尔的驱动需要官网的，驱动精灵下载的会有问题，死机或者蓝屏
+5.原装的系统，注意备份一份好使的，以解决clean数据丢失的问题
+6.使用diskgenuis转换mbr到gpt时，数据没有丢失，反向转换也没有丢失。
+7.使用cmd diskpart  clean操作会把分区都删掉，慎用！一定要保存数据才行！
+8.diskgenius划分的gpt分区不能安装win10,须用win10自己新建的划分
+9.用微软win10划分的系统分区后，直接安装ghost不行，无法正常启动，应该和前面三个分区有关，所以得继续安装微软win10。
