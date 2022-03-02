@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -415,6 +416,7 @@ CXX/shared_ptr 智能指针
 CXX/shared_ptr 智能指针2
 CXX/static_cast char
 CXX/static_cast unsigned char
+CXX/template/CMapExtPub
 CXX/template/CVectorExtPub
 CXX/template/Point
 CXX/template/模板类编译问题

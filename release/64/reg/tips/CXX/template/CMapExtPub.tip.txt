@@ -1,0 +1,182 @@
+//模板类的实现也必须在头文件中，不然编译不过。
+
+#ifndef CMAPEXTPUB_H
+#define CMAPEXTPUB_H
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include <iomanip>
+#include "cdefinepub.h"
+
+using namespace std;
+
+template <typename TK, typename TV>
+class CMapExtPub
+{
+public:
+    CMapExtPub();
+    void insert(TK key, TV value);
+    WORD32 remove(TK key);
+    void print();
+    void printR();
+    void clear();
+    WORD32 find(TK key,TV &value);
+    WORD32 size();
+private:
+    map<TK , TV> mapEntry;
+    typedef typename map<TK , TV>::iterator MAP_ITER;
+    typedef typename map<TK , TV>::reverse_iterator MAP_ITER_R;
+};
+
+template <typename TK, typename TV>
+CMapExtPub<TK,TV>::CMapExtPub()
+{
+    mapEntry.clear();
+}
+
+template <typename TK, typename TV>
+void CMapExtPub<TK,TV>::insert(TK key, TV value)
+{
+    mapEntry.insert(pair < TK,TV > (key,value));
+}
+
+template <typename TK, typename TV>
+WORD32 CMapExtPub<TK,TV>::remove(TK key)
+{
+    MAP_ITER l_it;
+    l_it = mapEntry.find(key);
+    if(l_it != mapEntry.end())
+    {
+        mapEntry.erase(l_it);
+    }
+
+    return 0;
+}
+
+template <typename TK, typename TV>
+void CMapExtPub<TK,TV>::print()
+{
+    MAP_ITER it,itEnd;
+    it = mapEntry.begin();
+    itEnd = mapEntry.end();
+    while (it != itEnd) {
+        cout<<it->first<<' '<<it->second<<endl;
+        it++;
+    }
+}
+
+template <typename TK, typename TV>
+void CMapExtPub<TK,TV>::printR()
+{
+    MAP_ITER_R iter;
+    for(iter = mapEntry.rbegin(); iter != mapEntry.rend(); iter++)
+        cout<<iter->first<<" "<<iter->second<<endl;
+}
+
+template <typename TK, typename TV>
+void CMapExtPub<TK,TV>::clear()
+{
+    mapEntry.clear();
+}
+
+template <typename TK, typename TV>
+WORD32 CMapExtPub<TK,TV>::find(TK key,TV &value)
+{
+    MAP_ITER l_it;;
+    l_it = mapEntry.find(key);
+    if(l_it != mapEntry.end())
+    {
+        value =  l_it->second;
+    }
+
+    return 0;
+}
+
+template <typename TK, typename TV>
+WORD32 CMapExtPub<TK,TV>::size()
+{
+    return mapEntry.size();
+}
+
+#endif // CMAPEXTPUB_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////测试接口
+
+#include <algorithm>
+#include <string>
+
+#include "gmock/gmock.h"
+#include "cmapextpub.h"
+
+using namespace std;
+using namespace testing;
+
+class AnCMapExtPub: public Test {
+public:
+   CMapExtPub<float,string> actor;
+};
+
+TEST_F(AnCMapExtPub, empty) {
+   ASSERT_THAT(actor.size(), Eq(0));
+}
+
+
+TEST_F(AnCMapExtPub, haveitems) {
+    actor.insert(1,"hello");
+    ASSERT_THAT(actor.size(), Eq(1));
+}
+
+TEST_F(AnCMapExtPub, insertReaptedNoEffect) {
+    actor.insert(1,"hello");
+    actor.insert(1,"hello the world");
+    string retvalue("");
+    ASSERT_THAT(actor.find(1, retvalue), Eq(0));
+    ASSERT_THAT(retvalue, Eq("hello"));
+    ASSERT_THAT(actor.size(), Eq(1));
+}
+
+TEST_F(AnCMapExtPub, deleteitems) {
+    actor.insert(1,"hello");
+    ASSERT_THAT(actor.size(), Eq(1));
+    actor.remove(1);
+    ASSERT_THAT(actor.size(), Eq(0));
+}
+
+TEST_F(AnCMapExtPub, clearitems) {
+    actor.insert(1,"hello");
+    actor.insert(2,"hello2");
+    actor.insert(3,"hello3");
+    ASSERT_THAT(actor.size(), Eq(3));
+    actor.clear();
+    ASSERT_THAT(actor.size(), Eq(0));
+}
+
+TEST_F(AnCMapExtPub, printitems) {
+    actor.insert(1,"hello");
+    actor.insert(2,"hello2");
+    actor.insert(3,"hello3");
+    actor.print();
+    actor.printR();
+    ASSERT_THAT(actor.size(), Eq(3));
+    actor.clear();
+    ASSERT_THAT(actor.size(), Eq(0));
+}
