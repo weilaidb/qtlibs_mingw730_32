@@ -1,12 +1,61 @@
-#why 不好使？
+#Gmock添加源代码
+INCLUDEPATH += "module/gmock_170/src/gmock/gtest/include/"
+INCLUDEPATH += "module/gmock_170/src/gmock/gtest/"
+#INCLUDEPATH += "module/gmock_170/src/../../"
+INCLUDEPATH += "module/gmock_170/src/gmock/include/gmock/"
+INCLUDEPATH += "module/gmock_170/src/gmock/include/"
+INCLUDEPATH += "module/gmock_170/src/gmock/"
 
-debug {
-INCLUDEPATH += module/gmock_170/build-libmock-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/include/
 
-LIBS += -L$$PWD/module/gmock_170/build-libmock-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/ -lmock
+
+创建入口 testmain.cpp
+#include "gmock/gmock.h"
+
+int main(int argc, char** argv) {
+   testing::InitGoogleMock(&argc, argv);
+   return RUN_ALL_TESTS();
 }
-release {
-INCLUDEPATH += module/gmock_170/build-libmock-Desktop_Qt_5_14_2_MinGW_64_bit-Release/include/
 
-LIBS += -L$$PWD/module/gmock_170/build-libmock-Desktop_Qt_5_14_2_MinGW_64_bit-Release/ -lmock
+
+
+#添加宏配置 ，控制与正式的main区别
+#include "gmock/gmock.h"
+
+#ifdef GMOCKTEST
+int main(int argc, char** argv) {
+   testing::InitGoogleMock(&argc, argv);
+   return RUN_ALL_TESTS();
+}
+
+#endif
+
+
+工程中添加定义，通过debug来运行测试，release发布版本。
+
+# here run gmock test or normal main by compile method(debug or release)
+debug{
+DEFINES += GMOCKTEST
+
+SOURCES += \
+    module/gmock_170/src/gmock/gtest/src/gtest-typed-test.cc \
+    module/gmock_170/src/gmock/gtest/src/gtest-test-part.cc \
+    module/gmock_170/src/gmock/gtest/src/gtest-printers.cc \
+    module/gmock_170/src/gmock/gtest/src/gtest-port.cc \
+    module/gmock_170/src/gmock/gtest/src/gtest-filepath.cc \
+    module/gmock_170/src/gmock/gtest/src/gtest-death-test.cc \
+    module/gmock_170/src/gmock/gtest/src/gtest-all.cc \
+    module/gmock_170/src/gmock/gtest/src/gtest.cc \
+    module/gmock_170/src/gmock/src/gmock-spec-builders.cc \
+    module/gmock_170/src/gmock/src/gmock-matchers.cc \
+    module/gmock_170/src/gmock/src/gmock-cardinalities.cc \
+    module/gmock_170/src/gmock/src/gmock-all.cc \
+    module/gmock_170/src/gmock/src/gmock.cc \
+    module/gmock_170/src/gmock/src/gmock-internal-utils.cc
+
+}
+
+release{
+
+#TARGET = XX
+
 }
