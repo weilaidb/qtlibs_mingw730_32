@@ -1,4 +1,3 @@
-
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -105,6 +104,7 @@ BAT/网络network/ipv4 modify 修改ip
 BAT/网络network/ipv4 设置dns 自动
 BAT/网络network/ipv4 设置dns 静态
 BAT/网络network/lacp
+BAT/网络network/lacp 链路聚合Eth-Trunk最佳总结
 BAT/网络network/nat
 BAT/网络network/ping大包
 BAT/网络network/route add
