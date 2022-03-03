@@ -1,2 +1,5 @@
+CMapExtPub
+CMapPub
+
 AddressExtractor
 CStringPub

@@ -1,3 +1,4 @@
+AnChild;Hello
 AnCStringPub;length
 
 AnCStringPub;replaceStringWithSome

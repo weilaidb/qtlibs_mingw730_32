@@ -9,6 +9,7 @@
 *.非全部处理限制值	--  contentmax.txt
 *.过滤符号                 -- 【】 []
 *.特殊字符		--  $NL:换行
+*.特殊字符		--  $MODE_NL:单行多执行分隔符
 *.特殊字符		--  $TB:Tab
 *.特殊字符		--  $SP:空格
 *.特殊字符		--  $DATE:日期时间(yyyy-MM-dd hh:mm:ss)
@@ -28,6 +29,7 @@
 *.特殊字符		--  $RANDOMDATA8(\1):生成1字节并且空格分开的数据
 *.特殊字符		--  $RANDOMDATA16(\1):生成2字节并且空格分开的数据
 *.特殊字符		--  $RANDOMDATA32(\1):生成4字节并且空格分开的数据
+*.特殊字符		--  $AUTOINC(\1)或$AUTOINC(0):自动增加1，置初始化值(与上次操作>5s)
 
 快捷键:
 Ctrl+D    -- 删除/退出配置文件
@@ -46,3 +48,24 @@ Alt+C     -- 自动转
 Alt+S     -- 左侧列表(关键字和具体项切换)
 Alt+E     -- A/B模式 多行多处理 切换
 Alt+M     -- 打开/隐藏多标签功能
+
+异常问题:
+1.软件死机
+--查看当前项是否配置selfmode_allline_execmulti.txt
+
+
+
+示例:
+1.单行多执行，以$MODE_NL作为分隔符
+regbefore                          regafter
+.*#define\s+([\w\d_]+)(.*)         \1 \2$MODE_NL
+([\w\d_]+)(.*)                     #define \1 \2$MODE_NL
+(.*)\("(.*)                        \1(""\2$MODE_NL  --此为替换("为(""
+(.*)"\)(.*)                        \1"")\2$MODE_NL  --此为替换")为"")
+
+
+2.*.单行单执行	       --  selfmode_singleline_execsingle.txt
+$MODE_NL 作为换行符
+
+
+
