@@ -1,3 +1,7 @@
+工程中添加定义，通过debug来运行测试，release发布版本。
+
+# here run gmock test or normal main by compile method(debug or release)
+debug{
 #Gmock添加源代码
 INCLUDEPATH += "module/gmock_170/src/gmock/gtest/include/"
 INCLUDEPATH += "module/gmock_170/src/gmock/gtest/"
@@ -7,33 +11,6 @@ INCLUDEPATH += "module/gmock_170/src/gmock/include/"
 INCLUDEPATH += "module/gmock_170/src/gmock/"
 
 
-
-创建入口 testmain.cpp
-#include "gmock/gmock.h"
-
-int main(int argc, char** argv) {
-   testing::InitGoogleMock(&argc, argv);
-   return RUN_ALL_TESTS();
-}
-
-
-
-#添加宏配置 ，控制与正式的main区别
-#include "gmock/gmock.h"
-
-#ifdef GMOCKTEST
-int main(int argc, char** argv) {
-   testing::InitGoogleMock(&argc, argv);
-   return RUN_ALL_TESTS();
-}
-
-#endif
-
-
-工程中添加定义，通过debug来运行测试，release发布版本。
-
-# here run gmock test or normal main by compile method(debug or release)
-debug{
 DEFINES += GMOCKTEST
 
 SOURCES += \
@@ -59,3 +36,30 @@ release{
 #TARGET = XX
 
 }
+
+
+
+
+
+
+
+创建入口 testmain.cpp
+#include "gmock/gmock.h"
+
+int main(int argc, char** argv) {
+   testing::InitGoogleMock(&argc, argv);
+   return RUN_ALL_TESTS();
+}
+
+
+
+#添加宏配置 ，控制与正式的main区别
+#include "gmock/gmock.h"
+
+#ifdef GMOCKTEST
+int main(int argc, char** argv) {
+   testing::InitGoogleMock(&argc, argv);
+   return RUN_ALL_TESTS();
+}
+
+#endif
