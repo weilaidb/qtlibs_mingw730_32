@@ -1088,6 +1088,8 @@ PACKET Parse/test3
 PACKET Parse/test3 zuoyoufangkuohao
 PACKET Parse/test4
 PACKET Parse/test5
+PACKET Parse/test6
+PACKET Parse/test7
 PACKET Parse/报文处理成一行规则
 PACKET Parse/生成序号
 PHP/API/EOF
