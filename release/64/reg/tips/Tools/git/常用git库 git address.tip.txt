@@ -143,3 +143,8 @@ Gmock
 gmock 示例代码 《C++程序设计实践与技巧:测试驱动开发》
 lotdd-code.zip
 https://pragprog.com/titles/lotdd/modern-c-programming-with-test-driven-development/
+
+
+#操作系统
+https://elementary.io/zh_CN/
+https://cn.ubuntu.com/

@@ -1,3 +1,4 @@
+CSonTest
 CMapExtPub
 CMapPub
 
