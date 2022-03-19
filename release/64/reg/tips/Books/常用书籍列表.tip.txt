@@ -39,3 +39,8 @@ C++程序设计实践与技巧：测试驱动开发
 
 http://pragprog.com/titles/lotdd/source_code
 https：//github.com/jlangr
+
+
+俄罗斯盗版网站
+RuTracker.org
+http://rutracker.org/forum/index.php
