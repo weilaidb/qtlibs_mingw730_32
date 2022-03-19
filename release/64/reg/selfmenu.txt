@@ -1070,6 +1070,10 @@ Makefile/条件判断/ifeq
 Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量
+OS/MACOS/VMware16安装MacOS Big Sur系统
+OS/MACOS/VMware虚拟机安装macos Big Sur 11.0.1 (20B29)镜像CDR/ISO下载
+OS/MACOS/macOS系统下载
+OS/MACOS/macos_10_11 无法进入界面
 OS/WIN10/安装系统常见问题
 OS/WIN10/安装系统常见问题 the error code is 2503, 2502的解决办法
 OS/WIN7/安装系统常见问题
