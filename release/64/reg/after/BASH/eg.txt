@@ -1,1 +1,1 @@
-#!/bin/sh$NL#filename:\1$NL#function:\2$NL#$NL#$NL$NLdos2unix $0
+\1

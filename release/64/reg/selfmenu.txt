@@ -8,11 +8,13 @@ BASH/alias/public use
 BASH/alias/public use @web
 BASH/cdpath
 BASH/chmod
+BASH/dev null(no output 2 1 )
 BASH/echo
 BASH/eg
 BASH/exitcode
 BASH/gitinfo
 BASH/hello
+BASH/new file
 BASH/printf
 BASH/printf string 1
 BASH/printf string 2
