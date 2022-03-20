@@ -1,0 +1,7 @@
+macos_10_11 虚拟机中无法启动到界面，一直卡着
+
+第一步：下载unlocker
+https://github.com/paolo-projects/auto-unlocker/releases
+下载完成后，解压Unlocker.zip文件，并选择以管理员身份运行打开Unlocker.exe文件
+
+===>>下载并运行后，变成可以进入的了。

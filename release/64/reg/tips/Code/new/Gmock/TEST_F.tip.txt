@@ -1,2 +1,6 @@
+CSonTest
+CMapExtPub
+CMapPub
+
 AddressExtractor
 CStringPub

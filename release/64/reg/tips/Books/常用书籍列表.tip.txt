@@ -17,6 +17,9 @@ JavaScript 高级程序设计第 4 版.PDF
 http://down.yzppaa.org/list/4_1.html
 
 
+路由与交换技术 
+http://res.scemi.com/suite/solver/classView.do?feature=courseSite&action=showCourseContent&structureKey=13244824&courseKey=13230242&siteKey=13230268&classKey=13236368&curStructureKey=13230249
+
 
 
 
@@ -36,3 +39,8 @@ C++程序设计实践与技巧：测试驱动开发
 
 http://pragprog.com/titles/lotdd/source_code
 https：//github.com/jlangr
+
+
+俄罗斯盗版网站
+RuTracker.org
+http://rutracker.org/forum/index.php

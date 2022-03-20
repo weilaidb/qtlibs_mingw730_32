@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -7,15 +8,20 @@ BASH/alias/public use
 BASH/alias/public use @web
 BASH/cdpath
 BASH/chmod
+BASH/dev null(no output 2 1 )
 BASH/echo
 BASH/eg
 BASH/exitcode
 BASH/gitinfo
 BASH/hello
+BASH/new file
 BASH/printf
 BASH/printf string 1
 BASH/printf string 2
 BASH/printf string 3
+BASH/scripts/include.sh
+BASH/scripts/public.sh
+BASH/scripts/test.sh
 BASH/test -f
 BASH/trap
 BASH/usage
@@ -104,6 +110,7 @@ BAT/网络network/ipv4 modify 修改ip
 BAT/网络network/ipv4 设置dns 自动
 BAT/网络network/ipv4 设置dns 静态
 BAT/网络network/lacp
+BAT/网络network/lacp 链路聚合Eth-Trunk最佳总结
 BAT/网络network/nat
 BAT/网络network/ping大包
 BAT/网络network/route add
@@ -127,6 +134,7 @@ BAT/网络network/vlan
 BAT/网络network/vlan与Trunk
 BAT/网络network/三层交换机 L3 Switch
 BAT/网络network/什么是LACP
+BAT/网络network/什么是vlan
 BAT/网络network/演示软件 software
 BAT/网络network/知识点/ATM协议
 BAT/网络network/知识点/CE
@@ -417,6 +425,7 @@ CXX/shared_ptr 智能指针
 CXX/shared_ptr 智能指针2
 CXX/static_cast char
 CXX/static_cast unsigned char
+CXX/template/CMapExtPub
 CXX/template/CVectorExtPub
 CXX/template/Point
 CXX/template/模板类编译问题
@@ -431,6 +440,7 @@ Code/new/Gmock fixture2
 Code/new/Gmock google mock分享
 Code/new/Gmock main
 Code/new/Gmock test
+Code/new/Gmock test SetUP TearDown
 Code/new/Gmock test SetUp
 Code/new/Gmock test TearDown
 Code/new/Gmock try catch
@@ -1065,6 +1075,10 @@ Makefile/条件判断/ifeq
 Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量
+OS/MACOS/VMware16安装MacOS Big Sur系统
+OS/MACOS/VMware虚拟机安装macos Big Sur 11.0.1 (20B29)镜像CDR/ISO下载
+OS/MACOS/macOS系统下载
+OS/MACOS/macos_10_11 无法进入界面
 OS/WIN10/安装系统常见问题
 OS/WIN10/安装系统常见问题 the error code is 2503, 2502的解决办法
 OS/WIN7/安装系统常见问题
@@ -1086,6 +1100,8 @@ PACKET Parse/test3
 PACKET Parse/test3 zuoyoufangkuohao
 PACKET Parse/test4
 PACKET Parse/test5
+PACKET Parse/test6
+PACKET Parse/test7
 PACKET Parse/报文处理成一行规则
 PACKET Parse/生成序号
 PHP/API/EOF

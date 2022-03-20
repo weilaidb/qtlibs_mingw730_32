@@ -1,0 +1,1 @@
+#include "gmock/gmock.h"$NL$NLusing namespace ::testing;$NL$NL$NLclass An\1: public Test {$NLpublic:$NL   \1 obj;$NL$NL   void SetUp() {$NL$NL   }$NL$NL   void TearDown() {$NL$NL   }$NL};$NL$NL===================================
