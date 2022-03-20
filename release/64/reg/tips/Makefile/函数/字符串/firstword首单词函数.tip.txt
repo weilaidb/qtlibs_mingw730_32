@@ -1,0 +1,27 @@
+Linux之Makefile（firstword）
+
+程序员登登
+
+于 2014-12-06 19:55:33 发布
+
+5825
+ 收藏 5
+分类专栏： Makefile
+版权
+
+Makefile
+专栏收录该内容
+48 篇文章8 订阅
+订阅专栏
+$(firstword NAMES…) 
+函数名称：取首单词函数—firstword。 
+函数功能：取字串“NAMES…”中的第一个单词。 
+返回值：字串“NAMES…”的第一个单词。 
+函数说明：“NAMES”被认为是使用空格分割的多个单词（名字）的序列。函数忽
+略“NAMES…”中除第一个单词以外的所有的单词。 
+示例： 
+$(firstword foo bar) 
+返回值为“foo”。函数“firstword”实现的功能等效于“$(word 1, NAMES…)”
+————————————————
+版权声明：本文为CSDN博主「程序员登登」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/zhoudengqing/article/details/41778077

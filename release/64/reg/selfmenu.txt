@@ -19,6 +19,7 @@ BASH/printf
 BASH/printf string 1
 BASH/printf string 2
 BASH/printf string 3
+BASH/printf说明
 BASH/scripts/include.sh
 BASH/scripts/public.sh
 BASH/scripts/test.sh
@@ -798,6 +799,8 @@ JAVA/基本语句/main
 JAVA/基本语句/反射
 JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
+JavaScript/func/eg
+JavaScript/func/scrollToTop
 JavaScript/include引用
 JavaScript/src引用
 JavaScript/timeout返回原页面
@@ -1030,6 +1033,7 @@ Makefile/echo
 Makefile/echo @
 Makefile/echo PWD
 Makefile/echo para 1
+Makefile/eg
 Makefile/include
 Makefile/override命令行参数设置
 Makefile/parameter/--no-print-directory
@@ -1049,11 +1053,14 @@ Makefile/函数/forloop
 Makefile/函数/if
 Makefile/函数/origin
 Makefile/函数/shell
+Makefile/函数/字符串/error
 Makefile/函数/字符串/filter-out反过滤函数
 Makefile/函数/字符串/filter过滤函数
 Makefile/函数/字符串/findstring查找字符串函数
 Makefile/函数/字符串/firstword首单词函数
+Makefile/函数/字符串/lastword 最后一个元素
 Makefile/函数/字符串/patsubst模式字符串替换函数
+Makefile/函数/字符串/realpath 返回绝对路径
 Makefile/函数/字符串/sort排序函数
 Makefile/函数/字符串/strip去空格函数
 Makefile/函数/字符串/subst字符串替换函数
@@ -1069,7 +1076,10 @@ Makefile/函数/文件名/join连接函数
 Makefile/函数/文件名/notdir取文件函数
 Makefile/函数/文件名/suffix取后缀函数
 Makefile/变量值的替换
+Makefile/变量和shell变量区别
 Makefile/多行变量
+Makefile/宏macro/public.include
+Makefile/宏macro/介绍
 Makefile/条件判断/ifdef
 Makefile/条件判断/ifeq
 Makefile/条件判断/ifndef
@@ -1081,6 +1091,7 @@ OS/MACOS/macOS系统下载
 OS/MACOS/macos_10_11 无法进入界面
 OS/WIN10/安装系统常见问题
 OS/WIN10/安装系统常见问题 the error code is 2503, 2502的解决办法
+OS/WIN10/打印机 m7605d
 OS/WIN7/安装系统常见问题
 Office/Excel/Macro/SpellNumber
 PACKET Parse/ARP

@@ -90,6 +90,7 @@ git@github.com:weilaidb/codesetsmore.git
 git@gitee.com:weilaidb/vbscript_eg.git
 git@github.com:weilaidb/gmocktest.git
 git@github.com:weilaidb/bash_eg.git
+git@github.com:weilaidb/makefile.git
 
 git clone git://101.201.79.164//myprj 
 
