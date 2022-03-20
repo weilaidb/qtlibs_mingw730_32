@@ -19,6 +19,7 @@ BASH/printf string 2
 BASH/printf string 3
 BASH/scripts/include.sh
 BASH/scripts/public.sh
+BASH/scripts/test.sh
 BASH/test -f
 BASH/trap
 BASH/usage
