@@ -139,3 +139,8 @@ alias websshstart="python3 manage.py runserver 0.0.0.0:8000 "
 
 #go
 alias gorun="go run "
+alias goversion="go version "
+alias gohelp="go help "
+alias goenv="go env "
+alias goenvauto="go env -w GO111MODULE=auto "
+alias gobuild="go build "

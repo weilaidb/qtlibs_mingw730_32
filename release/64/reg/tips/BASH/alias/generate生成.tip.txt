@@ -1,5 +1,9 @@
 gorun;go run
-
+goversion;go version
+gohelp;go help
+goenv;go env
+goenvauto;go env -w GO111MODULE=auto
+gobuild;go build
 
 makegtest;make && ./test
 cmakebuildmy;mkdir mybuild && cd mybuild && cmake .. && make
