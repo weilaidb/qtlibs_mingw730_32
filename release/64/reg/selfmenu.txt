@@ -1562,6 +1562,7 @@ go/1/forloop
 go/1/forloop true
 go/1/forloop2
 go/eg
+go/test/eg
 go/test/hello
 path路径/Android手机拷贝路径
 path路径/常用文件夹

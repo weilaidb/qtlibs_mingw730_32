@@ -135,3 +135,7 @@ alias pipinstall3="pip3 install "
 alias pipinstall="pip install "
 alias pipuninstall="pip uninstall "
 alias websshstart="python3 manage.py runserver 0.0.0.0:8000 "
+
+
+#go
+alias gorun="go run "
