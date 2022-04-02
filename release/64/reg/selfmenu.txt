@@ -1090,6 +1090,7 @@ OS/MACOS/VMware16安装MacOS Big Sur系统
 OS/MACOS/VMware虚拟机安装macos Big Sur 11.0.1 (20B29)镜像CDR/ISO下载
 OS/MACOS/macOS系统下载
 OS/MACOS/macos_10_11 无法进入界面
+OS/MACOS/黑苹果/安装教程
 OS/WIN10/安装系统常见问题
 OS/WIN10/安装系统常见问题 the error code is 2503, 2502的解决办法
 OS/WIN10/打印机 m7605d
@@ -1568,6 +1569,10 @@ go/1/关键字
 go/eg
 go/env
 go/help
+go/install/eg
+go/install/github@latest
+go/install/安装位置
+go/install/添加代理
 go/test/eg
 go/test/hello
 path路径/Android手机拷贝路径
