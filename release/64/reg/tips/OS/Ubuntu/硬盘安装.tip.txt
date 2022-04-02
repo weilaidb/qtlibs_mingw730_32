@@ -1,0 +1,134 @@
+https://blog.csdn.net/qq_21264377/article/details/118697319
+
+准备工作:
+下载工具:
+1.unetbootin-windows-702
+http://unetbootin.github.io/
+2.Ubuntu镜像 
+ubuntu-20.04.4-live-server-amd64
+3.EasyBcd 2.3 太平洋
+
+
+
+
+安装工作:
+====Ubuntu文件准备 
+
+ubuntu的镜像iso文件，
+
+使用解压缩软件打开iso文件，提出vmlinuz，initrd
+
+C盘根目录下建立文件夹：C:\ubuntu\desk
+
+ubuntu-20.04.3-desktop-amd64.iso
+vmlinuz
+initrd
+
+
+
+====启动菜单 
+
+hd0,表示第一块硬盘；
+
+后面的1是第几个分区，从0开始，win10安装会在C盘前面添加一个隐藏分区，所以C盘的序号就是1了。
+
+如下内容添加的启动菜单里：（根据个人放置的位置调整如下路径信息）
+
+title Install Ubuntu20_04
+
+root (hd0,1)
+
+kernel (hd0,1)/ubuntu/desk/vmlinuz boot=casper iso-scan/filename=/ubuntu/desk/ubuntu-20.04.3-desktop-amd64.iso ro quiet splash locale=zh_CN.UTF-8
+
+initrd (hd0,1)/ubuntu/desk/initrd
+
+
+
+
+启动菜单文件：menu.lst在C盘根目录下名为 的隐藏文件夹下。是安装一键GHOST硬盘版建立的。
+
+
+
+====重新启动，选择Ubuntu18_01c 
+
+
+
+进入Ubuntu系统，完整的Linux界面，
+
+若要安装Ubuntu，必须卸载ISO所在的分区。
+
+umount -l /isodevice
+
+
+
+点击安装的图表即可开始安装Ubuntu系统。
+
+
+
+
+
+
+
+==============原文
+Windows下Ubuntu 20.04.2.0 Desktop本地硬盘安装笔记
+
+laoyouzhazi
+
+于 2021-07-13 12:55:02 发布
+
+201
+ 收藏 1
+分类专栏： Linux 文章标签： ubuntu windows install 硬盘安装 双系统
+版权
+
+Linux
+专栏收录该内容
+4 篇文章0 订阅
+订阅专栏
+        Windows7/8/10安装Ubuntu需要注意的细节比较多，关键的只有几点，例如安装介质、操作系统启动方式、语言地区相关。
+
+
+        打开Ubuntu网站首页https://www.ubuntu.com, 国内是https://cn.ubuntu.com。点击下载Download进入下载详细介绍页面。Ubuntu目前包含5个版本，桌面版、服务器版、云版、风味版和IoT版。（Desktop, Server, Cloud, Raspberry PI, IoT）这里介绍的是桌面版--Ubuntu Desktop的安装配置。
+
+
+
+
+
+ 
+
+        点击Ubuntu桌面版链接，查看下载说明，里面包含发布说明、推荐的系统配置硬件要求和安装指南。
+
+
+
+
+
+
+
+
+        推荐的硬件要求里提到需要最少25GB的硬盘容量。所以在安装前，提前使用硬盘分区工具划分出一个该标量容量以上的分区。
+
+        将下载好的Ubuntu ISO镜像文件复制到C:盘根目录，修改名称为ubuntu_desktop.iso。
+
+
+        下载unetbootin。执行unetbootin，选择“ISO镜像”选项，文件路径指向上一步的ISO文件。如果使用U盘安装介质，则选择U盘选项；否则，选择硬盘选项，选取C:盘。完成设置，就可以开始制作启动盘。这里使用本地硬盘分区C:盘作为安装媒介。
+
+ 
+
+
+
+ 
+
+ 
+
+        重启Windows系统。启动菜单上，选择Unetbootin*条目，就可以看到Ubuntu的安装界面了。Try Ubuntu without installing*和Install Ubuntu*都可以执行安装过程。Try Ubuntu*可以在Ubuntu系统界面里体验操作和启动安装程序。
+
+
+        安装开始后，主要配置包含语言、地区、键盘、联网下载更新、分区、用户关联、第三方媒体驱动。语言涉及系统显示的文字和输入法的语言文字符号。如果不熟悉和避免麻烦，直接选择本地化语言。这里选择的是English(US)。这样系统的用户目录显示的路径都是英文字符。安装中文语言后重启系统会提示是切换为中文显示或保留英文显示。如果选择的是English语言且使用中文，使用Ubuntu需要重新安装配置中文语言包和中文输入法。这个稍微麻烦。键盘关联硬件--键盘上的特殊字符和语言相关字符。地区关联操作系统的时区设定和对应时间。
+
+
+        现在来说说分区的事。分区单独分开来讲，是因为这是一系列最关键的问题。系统是否能正常被识别，是否通过双系统的方式使用Ubuntu，是使用和Windows相同的硬盘还是安装在另一个硬盘中，是否手动分区。如果是双系统的模式，则必须小心谨慎地处理一系列问题。操作系统和BIOS的启动菜单比较敏感，容易出错，一旦出现错误，很轻易出现系统崩溃无法启动的严重问题。原操作系统是Windows，在此基础上安装Ubuntu等其他Linux系统，一般是以其系统的启动菜单boot loader为主比较顺利。即是后安装的操作系统的启动菜单覆盖原系统的相对容易处理双系统的启动问题。如果是单硬盘双系统，应该提前划分一个超过25GB容量的空置硬盘分区。双硬盘容量分配余额更轻松。可以在Windows中使用硬盘分区工具diskgenius等提前划分单独的足够容量的闲余分区以备后用。安装过程进入分区阶段，一般是手动分区为佳。如果不熟悉，可以现在虚拟机上先行尝试。分区最简单的方案是3个分区：/、/boot、/home。根分区/至少20GB，/boot可以在300MB～500MB之间。/home是用户的个人目录，可以适当酌情分配硬盘容量。
+
+        最关键的另一个问题，是关于启动菜单boot loader的安装配置。在分区的下方，包含一个boot loader安装位置的选项。安装设定错误将无法启动Ubuntu系统。双硬盘 + Unetbootin702 + Ubuntu20.04.2 + C:盘 + Windows7的安装环境，将boot loader设置在第2块硬盘上，就无法正常启动Ubuntu。所幸的是还能保持Windows的正常启动。Linux格式的文件系统在Windows中常常无法正常直接识别。一般将Linux的启动项加入原Windows的启动序列是一件吃力不讨好的事情，虽然看似完美。使用Ubuntu的boot loader覆盖原Windows设定的BIOS启动菜单是没办法的办法。启动菜单是涉及BIOS层面的，接触的是硬件底层的问题，能有更简洁直接的方法就是用后者。
+————————————————
+版权声明：本文为CSDN博主「laoyouzhazi」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_21264377/article/details/118697319
