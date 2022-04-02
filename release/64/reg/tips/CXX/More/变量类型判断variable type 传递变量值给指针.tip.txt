@@ -1,0 +1,25 @@
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7bde5c5 in __strlen_avx2 () from /lib64/libc.so.6
+(gdb) bt
+#0  0x00007ffff7bde5c5 in __strlen_avx2 () from /lib64/libc.so.6
+#1  0x00000000004012ff in testpara (a=10, p=0xa <error: Cannot access memory at address 0xa>) at main.cpp:34
+#2  0x00000000004013ca in main () at main.cpp:48
+(gdb) p p 
+No symbol "p" in current context.
+(gdb) b testpara
+Breakpoint 1 at 0x401185: file main.cpp, line 10.
+(gdb) r
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /root/test/vartype/vartype 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib64/libthread_db.so.1".
+i
+Pc
+PKc
+
+Breakpoint 1, testpara (a=10, p=0xa <error: Cannot access memory at address 0xa>) at main.cpp:10
+10              if((0 != p) && (long)p > 0xffff)
+(gdb) p p
+$1 = 0xa <error: Cannot access memory at address 0xa>
+(gdb)
