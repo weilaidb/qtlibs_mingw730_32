@@ -1,0 +1,12 @@
+$(firstword <text>;) 
+名称：首单词函数——firstword。 
+功能：取字符串<text>;中的第一个单词。 
+返回：返回字符串<text>;的第一个单词。 
+示例：$(firstword foo bar)返回值是“foo”。 
+备注：这个函数可以用word函数来实现：$(word 1,<text>;)。 
+以上，是所有的字符串操作函数，如果搭配混合使用，可以完成比较复杂的功能。这里， 
+举一个现实中应用的例子。我们知道，make使用“VPATH”变量来指定“依赖文件”的搜索路 
+径。于是，我们可以利用这个搜索路径来指定编译器对头文件的搜索路径参数CFLAGS，如： 
+override CFLAGS += $(patsubst %,-I%,$(subst :, ,$(VPATH))) 
+如果我们的“$(VPATH)”值是“src:../headers”，那么“$(patsubst %,-I%,$(subst :, 
+,$(VPATH)))”将返回“-Isrc -I../headers”，这正是cc或gcc搜索头文件路径的参数。 
