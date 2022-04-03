@@ -6,27 +6,79 @@
 #include<string.h>
 using namespace std;
 
-int testpara(int a, char *p)
+#ifndef TRUE
+#define TRUE 1U
+#endif
+
+#ifndef FALSE
+#define FALSE 0U
+#endif
+
+
+
+
+typedef char CHAR;
+typedef unsigned char BYTE;
+
+typedef char INT8;
+typedef short INT16;
+typedef int INT32;
+typedef long long INT64;
+
+typedef unsigned char UINT8;
+typedef unsigned short UINT16;
+typedef unsigned int UINT32;
+typedef unsigned long long UINT64;
+
+typedef unsigned short WORD;
+typedef unsigned short WORD16;
+typedef unsigned int   WORD32;
+typedef unsigned long long WORD64;
+
+//给一个指针写一个常量时，报指针无法访问异常，判断字符串所在的范围来确定字符串是否合法。
+BYTE IsStrValid(char *pt)
 {
-	//判断指针的地址范围，初步进行范围限定。
-	if(long((long *)p) < 0x10000)
+	char *pCharBegin = "";
+	WORD64 dwwInputAddr = WORD64((WORD64 *)pt);
+	WORD64 dwwBeginAddr = WORD64((WORD64 *)pCharBegin);
+	
+	if(dwwInputAddr < dwwBeginAddr)
 	{
-		cout <<"=========invlaid pointer!!!" << "\n";		
+		cout <<"=========invlaid pointer!!!" << "\n";
+		printf("dwwInputAddr:%llu(%#llx)\n", dwwInputAddr, dwwInputAddr);
+		printf("dwwBeginAddr:%llu(%#llx)\n", dwwBeginAddr, dwwBeginAddr);
+		
+		return FALSE;
 	}
 	else
 	{
 		cout <<"=========right pointer!!!" << "\n";		
+		cout << strlen(pt) << "\n";	
+		printf("dwwInputAddr:%llu(%#llx)\n", dwwInputAddr, dwwInputAddr);
+		printf("dwwBeginAddr:%llu(%#llx)\n", dwwBeginAddr, dwwBeginAddr);
+
+	}
+	
+	return TRUE;
+}
+
+
+
+int testpara(int a, char *p)
+{
+	
+	if(FALSE == IsStrValid(p))
+	{
+		return -1;
 	}
 
-
-    cout <<"&p:" << &p << ","<<(long *)p << "\n";
-    // cout <<"&p:" << &p << p << "\n";
     cout <<"=========test parameter type" << "\n";
     cout << typeid(a).name() << "\n";
     cout << typeid(p).name() << "\n";	
     cout << sizeof(a) << "\n";	
     cout << sizeof(p) << "\n";	
-    // cout << strlen(p) << "\n";	
+    cout << "\n";	
+    cout << "\n";	
 	return 0;
 }
  
@@ -51,17 +103,22 @@ int main()
     //输出结果为i(表示int),即类型的名称首字母 
 	
 	testpara(10,(char *)10);
+	testpara(10,(char *)0x402008);
 	testpara(10,(char *)"abc");
+	testpara(10,(char *)"");
 	// testpara2(10,(string)10);
     return 0;
 }
 
 
-++++++++++输出
+
+======输出
 
 [root@weilaidb] ~/test/vartype
-$ make 
+$ make          
 mkdir -p ./tmp
+ [CXX]   (tmp/./main.o)
+ g++ -w -fPIC -g -pipe   -pipe -O0 -g -Wall -W -D_REENTRANT   -Iinclude -Iinclude/freetype  -c main.cpp -o tmp/./main.o
  [LD]    (vartype)
 now file is /root/test/vartype
 g++  -o vartype  ./tmp/./main.o -lpthread   
@@ -73,17 +130,39 @@ i
 Pc
 PKc
 =========invlaid pointer!!!
-&p:0x7ffc9e66ebd0,0xa
-=========test parameter type
-i
-Pc
-4
-8
+dwwInputAddr:10(0xa)
+dwwBeginAddr:4202501(0x402005)
 =========right pointer!!!
-&p:0x7ffc9e66ebd0,0x402060
+25
+dwwInputAddr:4202504(0x402008)
+dwwBeginAddr:4202501(0x402005)
 =========test parameter type
 i
 Pc
 4
 8
+
+
+=========right pointer!!!
+3
+dwwInputAddr:4202639(0x40208f)
+dwwBeginAddr:4202501(0x402005)
+=========test parameter type
+i
+Pc
+4
+8
+
+
+=========right pointer!!!
+0
+dwwInputAddr:4202501(0x402005)
+dwwBeginAddr:4202501(0x402005)
+=========test parameter type
+i
+Pc
+4
+8
+
+
 bind ok
