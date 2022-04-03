@@ -1,5 +1,0 @@
-$(suffix <names...>;) 
-名称：取后缀函数——suffix。 
-功能：从文件名序列<names>;中取出各个文件名的后缀。 
-返回：返回文件名序列<names>;的后缀序列，如果文件没有后缀，则返回空字串。 
-示例：$(suffix src/foo.c src-1.0/bar.c hacks)返回值是“.c .c”。 
