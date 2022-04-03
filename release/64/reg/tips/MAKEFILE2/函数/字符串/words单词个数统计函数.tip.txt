@@ -1,7 +1,0 @@
-$(words <text>;) 
-名称：单词个数统计函数——words。 
-功能：统计<text>;中字符串中的单词个数。 
-返回：返回<text>;中的单词数。 
-示例：$(words, foo bar baz)返回值是“3”。 
-备注：如果我们要取<text>;中最后的一个单词，我们可以这样：$(word $(words 
-<text>;),<text>;)。 

@@ -1,9 +1,0 @@
-$(filter-out <pattern...>;,<text>;) 
-名称：反过滤函数——filter-out。 
-功能：以<pattern>;模式过滤<text>;字符串中的单词，去除符合模式<pattern>;的 
-单词。可以有多个模式。 
-返回：返回不符合模式<pattern>;的字串。 
-示例： 
-objects=main1.o foo.o main2.o bar.o 
-mains=main1.o main2.o 
-$(filter-out $(mains),$(objects)) 返回值是“foo.o bar.o”。 

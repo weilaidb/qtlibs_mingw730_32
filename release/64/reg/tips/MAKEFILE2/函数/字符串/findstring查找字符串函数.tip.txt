@@ -1,8 +1,0 @@
-$(findstring <find>;,<in>;) 
-名称：查找字符串函数——findstring。 
-功能：在字串<in>;中查找<find>;字串。 
-返回：如果找到，那么返回<find>;，否则返回空字符串。 
-示例： 
-$(findstring a,a b c) 
-$(findstring a,b c) 
-第一个函数返回“a”字符串，第二个返回“”字符串（空字符串） 
