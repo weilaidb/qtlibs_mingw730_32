@@ -1,39 +1,9 @@
-Makefile 里的 subst 函数
-
-prettykernel
-
-于 2010-12-20 19:14:00 发布
-
-32515
- 收藏 3
-文章标签： makefile tree linux
-版权
-在Makefile中可以使用函数来处理变量。函数的返回值可以当做变量来使用。
-
-一、函数的调用语法
-函数调用，很像变量的使用，也是以“$”来标识的，其语法为：$( )或${ }。
-参数间以逗号分隔，函数名和参数间以空格分隔。函数调用以“$”开头，以圆括号或花括号把函数名和参数括起。
-
-
-
-$(subst FROM, TO, TEXT)，即将字符串TEXT中的子串FROM变为TO。
-
-
-
-示例：
-
-TARGETS=111.cpp 222.cpp 333.cpp
-
-OTARGETS=$(subst cpp,o,$(TARGETS))
-
-LTARGETS=$(subst cpp,lo,$(TARGETS))
-
-%.o: %.cpp
-g++  -c  -o  $@  $<
-
-all: objs libs
-
-
-————————————————
-版权声明：本文为CSDN博主「prettykernel」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/erazy0/article/details/6087577
+1.9.2 字符串处理函数 
+$(subst <from>;,<to>;,<text>;) 
+名称：字符串替换函数——subst。 
+功能：把字串<text>;中的<from>;字符串替换成<to>;。
+返回：函数返回被替换过后的字符串。 
+示例： 
+$(subst ee,EE,feet on the street)， 
+把“feet on the street”中的“ee”替换成“EE”，返回结果是“fEEt on the 
+strEEt”。 

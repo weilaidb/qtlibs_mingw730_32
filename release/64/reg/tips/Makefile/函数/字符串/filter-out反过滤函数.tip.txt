@@ -1,31 +1,9 @@
-Makefile之filter-out
-
-right_33cb
-2018.10.26 17:58:13
-字数 250
-阅读 5,379
-转：https://blog.csdn.net/naipeng/article/details/77879527
-
-1 功能说明
-
-$(filter-out PATTERN…,TEXT) `
-
-
-
-函数名称 ：反过滤函数—filter-out。
-
-函数功能 ：和“filter”函数实现的功能相反。过滤掉字串“TEXT”中所有符合模式“PATTERN”的单词，保留所有不符合此模式的单词。可以有多个模式。存在多个模式时，模式表达式之间使用空格分割。
-
-返回值 ：空格分割的“TEXT”字串中所有不符合模式“PATTERN”的字串。
-
-函数说明： “filter-out”函数也可以用来去除一个变量中的某些字符串（实现和“filter”函数相反）。
-
-2 示例
-
+$(filter-out <pattern...>;,<text>;) 
+名称：反过滤函数——filter-out。 
+功能：以<pattern>;模式过滤<text>;字符串中的单词，去除符合模式<pattern>;的 
+单词。可以有多个模式。 
+返回：返回不符合模式<pattern>;的字串。 
+示例： 
 objects=main1.o foo.o main2.o bar.o 
-
-mains=main1.o main2.o
-
-$(filter-out$(mains),$(objects))
-
-实现了去除变量“objects”中“mains”定义的字串（文件名）功能。它的返回值为“foo.o bar.o”。
+mains=main1.o main2.o 
+$(filter-out $(mains),$(objects)) 返回值是“foo.o bar.o”。 

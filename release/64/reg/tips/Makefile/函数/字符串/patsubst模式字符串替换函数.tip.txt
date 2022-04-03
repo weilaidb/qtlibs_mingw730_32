@@ -1,0 +1,22 @@
+$(patsubst <pattern>;,<replacement>;,<text>;) 
+名称：模式字符串替换函数——patsubst。 
+功能：查找<text>;中的单词（单词以“空格”、“Tab”或“回车”“换行”分隔） 
+是否符合模式<pattern>;，如果匹配的话，则以<replacement>;替换。这里，<pattern>;可 
+以包括通配符“%”，表示任意长度的字串。如果<replacement>;中也包含“%”，那么， 
+<replacement>;中的这个“%”将是<pattern>;中的那个“%”所代表的字串。（可以用“\” 
+来转义，以“\%”来表示真实含义的“%”字符） 
+返回：函数返回被替换过后的字符串。 
+示例： 
+$(patsubst %.c,%.o,x.c.c bar.c) 
+把字串“x.c.c bar.c”符合模式[%.c]的单词替换成[%.o]，返回结果是“x.c.o 
+bar.o” 
+备注： 
+这和我们前面“变量章节”说过的相关知识有点相似。如： 
+“$(var:<pattern>;=<replacement>”;) 
+相当于 
+“$(patsubst <pattern>;,<replacement>;,$(var))”， 
+而“$(var: <suffix>;=<replacement>”;) 
+则相当于 
+“$(patsubst %<suffix>;,%<replacement>;,$(var))”。 
+例如有：objects = foo.o bar.o baz.o， 
+那么，“$(objects:.o=.c)”和“$(patsubst %.o,%.c,$(objects))”是一样的。 
