@@ -1,10 +1,34 @@
-$(filter <pattern...>;,<text>;) 
-名称：过滤函数——filter。 
-功能：以<pattern>;模式过滤<text>;字符串中的单词，保留符合模式<pattern>;的 
-单词。可以有多个模式。 
-返回：返回符合模式<pattern>;的字串。 
-示例： 
-sources := foo.c bar.c baz.s ugh.h 
-foo: $(sources) 
-cc $(filter %.c %.s,$(sources)) -o foo 
-$(filter %.c %.s,$(sources))返回的值是“foo.c bar.c baz.s”。 
+makefile函数filter介绍
+future
+future
+择一事，终一生
+1 人赞同了该文章
+$(filter PATTERN…,TEXT)
+
+数名称：过滤函数—filter。
+
+函数功能：过滤掉字串“TEXT”中所有不符合模式“PATTERN”的单词，保留所
+
+有符合此模式的单词。可以使用多个模式。模式中一般需要包含模式字
+
+符“%”。存在多个模式时，模式表达式之间使用空格分割。
+
+返回值：空格分割的“TEXT”字串中所有符合模式“PATTERN”的字串。
+
+函数说明：“filter”函数可以用来去除一个变量中的某些字符串，我们下边的例子中
+
+就是用到了此函数。
+
+示例：
+
+sources := foo.c bar.c baz.s ugh.h
+
+foo: $(sources)
+
+cc $(filter %.c %.s,$(sources)) -o foo
+
+使用“$(filter %.c %.s,$(sources))”的返回值给 cc 来编译生成目标“foo”，函数返回
+
+值为“foo.c bar.c baz.s”
+
+注：文章转自

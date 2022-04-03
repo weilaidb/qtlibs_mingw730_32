@@ -1,0 +1,2 @@
+url;stockcode,enddate,test
+"Code=%s&endDate=%s";"000987","2020-12-31"
