@@ -1,4 +1,3 @@
-
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -19,6 +18,7 @@ BASH/printf
 BASH/printf string 1
 BASH/printf string 2
 BASH/printf string 3
+BASH/printf说明
 BASH/scripts/include.sh
 BASH/scripts/public.sh
 BASH/scripts/test.sh
@@ -136,6 +136,7 @@ BAT/网络network/三层交换机 L3 Switch
 BAT/网络network/什么是LACP
 BAT/网络network/什么是vlan
 BAT/网络network/演示软件 software
+BAT/网络network/知识点/33 张图详解 RSTP 、MSTP协议，以及替代技术
 BAT/网络network/知识点/ATM协议
 BAT/网络network/知识点/CE
 BAT/网络network/知识点/HDLC
@@ -401,6 +402,8 @@ CXX/LOOP/vector
 CXX/LOOP/vector for
 CXX/MAIN
 CXX/MAP/Cmd Handler
+CXX/More/变量类型判断variable type
+CXX/More/变量类型判断variable type 传递变量值给指针
 CXX/More/虚函数
 CXX/More/虚函数 eg
 CXX/More/虚函数 eg2
@@ -574,6 +577,7 @@ FPGA/语法code new/signal list
 FPGA/语法code new/subtype
 FPGA/语法code new/subtype2
 FPGA/语法code new/variable
+GCC/fpermissive
 JAVA/Base/forloop
 JAVA/Cloud/ECS
 JAVA/JAVA_HOME JRE_HOME
@@ -798,6 +802,8 @@ JAVA/基本语句/main
 JAVA/基本语句/反射
 JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
+JavaScript/func/eg
+JavaScript/func/scrollToTop
 JavaScript/include引用
 JavaScript/src引用
 JavaScript/timeout返回原页面
@@ -950,6 +956,7 @@ LINUX/命令行/Linux 系统目录结构
 LINUX/命令行/SELinux配置文件
 LINUX/命令行/crontab
 LINUX/命令行/crontab eg
+LINUX/命令行/crontab tomcat
 LINUX/命令行/eg
 LINUX/命令行/fgrep
 LINUX/命令行/getconf
@@ -1030,6 +1037,7 @@ Makefile/echo
 Makefile/echo @
 Makefile/echo PWD
 Makefile/echo para 1
+Makefile/eg
 Makefile/include
 Makefile/override命令行参数设置
 Makefile/parameter/--no-print-directory
@@ -1049,11 +1057,14 @@ Makefile/函数/forloop
 Makefile/函数/if
 Makefile/函数/origin
 Makefile/函数/shell
+Makefile/函数/字符串/error
 Makefile/函数/字符串/filter-out反过滤函数
 Makefile/函数/字符串/filter过滤函数
 Makefile/函数/字符串/findstring查找字符串函数
 Makefile/函数/字符串/firstword首单词函数
+Makefile/函数/字符串/lastword 最后一个元素
 Makefile/函数/字符串/patsubst模式字符串替换函数
+Makefile/函数/字符串/realpath 返回绝对路径
 Makefile/函数/字符串/sort排序函数
 Makefile/函数/字符串/strip去空格函数
 Makefile/函数/字符串/subst字符串替换函数
@@ -1069,7 +1080,10 @@ Makefile/函数/文件名/join连接函数
 Makefile/函数/文件名/notdir取文件函数
 Makefile/函数/文件名/suffix取后缀函数
 Makefile/变量值的替换
+Makefile/变量和shell变量区别
 Makefile/多行变量
+Makefile/宏macro/public.include
+Makefile/宏macro/介绍
 Makefile/条件判断/ifdef
 Makefile/条件判断/ifeq
 Makefile/条件判断/ifndef
@@ -1079,8 +1093,13 @@ OS/MACOS/VMware16安装MacOS Big Sur系统
 OS/MACOS/VMware虚拟机安装macos Big Sur 11.0.1 (20B29)镜像CDR/ISO下载
 OS/MACOS/macOS系统下载
 OS/MACOS/macos_10_11 无法进入界面
+OS/MACOS/黑苹果/安装教程
+OS/Ubuntu/EasyBcd
+OS/Ubuntu/硬盘安装
+OS/Ubuntu/硬盘安装后引导
 OS/WIN10/安装系统常见问题
 OS/WIN10/安装系统常见问题 the error code is 2503, 2502的解决办法
+OS/WIN10/打印机 m7605d
 OS/WIN7/安装系统常见问题
 Office/Excel/Macro/SpellNumber
 PACKET Parse/ARP
@@ -1545,6 +1564,23 @@ VBScript/eg
 WeiLaiDb/Production/weilaix.war Version
 Windows/Fonts
 YAML/yml入门教程
+go/1/For-each range
+go/1/eg
+go/1/fmt.Println
+go/1/fmt.Sprintf
+go/1/forloop
+go/1/forloop true
+go/1/forloop2
+go/1/关键字
+go/eg
+go/env
+go/help
+go/install/eg
+go/install/github@latest
+go/install/安装位置
+go/install/添加代理
+go/test/eg
+go/test/hello
 path路径/Android手机拷贝路径
 path路径/常用文件夹
 字符/方向

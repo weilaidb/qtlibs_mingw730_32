@@ -1,0 +1,80 @@
+Makefile 关于realpath的研究
+
+程序精华
+
+于 2015-05-06 21:59:27 发布
+
+8010
+ 收藏 3
+分类专栏： makefile 文章标签： makefile realpath
+版权
+
+makefile
+专栏收录该内容
+3 篇文章0 订阅
+订阅专栏
+Makefile 里的realpath 函数的探究
+首先看一下 GUN 官网的解释：
+
+$(realpath names…)
+        For each file name in names return the canonical absolute name. A canonical name does not contain any . or .. components, nor any repeated path separators (/) or symlinks. 
+        In case of a failure the empty string is returned. Consult the realpath(3) documentation for a list of possible failure causes.
+1
+2
+3
+大致的意思为：
+对于名称中的每个文件名返回规范绝对名称。规范名称不包含任何.或..成分，也没有任何重复的路径分隔符（/）或符号链接。
+万一发生空字符串返回的问题。请参考realpath（3）文档的可能的失败原因的列表。
+1
+2
+所以说，这个函数就是放回一个绝对的文件地址。
+我们来测试它一下：
+首先我在 home/jin/jin/make2这个目录里添加了一个很简单的Makefile文件
+
+jin:
+@echo $(realpath ./)   
+1
+2
+运行的结果如下：
+
+
+可以看出它放回了真实绝对的一个路径
+
+这个操作和使用 shell pwd 操作是一致的（如下）:
+
+    jin:
+        @echo $(realpath ./)
+        @echo $(shell pwd)
+1
+2
+3
+
+
+shell pwd 可以实现realpath 的功能。但是在某些场合下，你就不得不使用 realpath了
+
+include ../make2/jia.mk
+jin:
+    @echo $(MAKEFILE_LIST);    
+    @echo $(lastword $(MAKEFILE_LIST));
+    @echo $(dir $(lastword $(MAKEFILE_LIST)));
+    @echo $(realpath $(dir $(lastword $(MAKEFILE_LIST))));
+    @echo $(shell pwd);
+1
+2
+3
+4
+5
+6
+7
+可以看一下运行结果：
+
+
+2015/5/10 补充：
+在一些场合下可以看的到使用了 realpath 和 abspath 函数这里做一下简单的对比：
+只有这个目录存在 realpath 就会返回目录的绝对路径，不会包含 ./ ../ 这些字符。当目录不存在的时候realpath 返回为空。
+而abspath则不同，不管这个文件夹是否存在，都会显示这个目录的绝对路径
+
+总结：makefile 里的realpath是放回文件的绝对地址，某些场合下可以使用$(shell pwd) 来替代
+————————————————
+版权声明：本文为CSDN博主「程序精华」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/u012811546/article/details/45541937
