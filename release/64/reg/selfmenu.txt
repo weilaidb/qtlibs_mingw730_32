@@ -404,6 +404,7 @@ CXX/LOOP/vector for
 CXX/MAIN
 CXX/MAP/Cmd Handler
 CXX/More/变量类型判断variable type
+CXX/More/变量类型判断variable type (char * 限定范围)
 CXX/More/变量类型判断variable type 传递变量值给指针
 CXX/More/虚函数
 CXX/More/虚函数 eg

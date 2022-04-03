@@ -1,0 +1,89 @@
+#include<typeinfo>
+#include<iostream>
+#include<string>
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+using namespace std;
+
+int testpara(int a, char *p)
+{
+	//判断指针的地址范围，初步进行范围限定。
+	if(long((long *)p) < 0x10000)
+	{
+		cout <<"=========invlaid pointer!!!" << "\n";		
+	}
+	else
+	{
+		cout <<"=========right pointer!!!" << "\n";		
+	}
+
+
+    cout <<"&p:" << &p << ","<<(long *)p << "\n";
+    // cout <<"&p:" << &p << p << "\n";
+    cout <<"=========test parameter type" << "\n";
+    cout << typeid(a).name() << "\n";
+    cout << typeid(p).name() << "\n";	
+    cout << sizeof(a) << "\n";	
+    cout << sizeof(p) << "\n";	
+    // cout << strlen(p) << "\n";	
+	return 0;
+}
+ 
+ 
+ 
+
+int testpara2(int a, string str)
+{
+	cout << a << "\n";
+	cout << str << "\n";
+	return 0;
+}
+ 
+int main()
+{
+    int i;
+    char *chr;
+    const char *cchr;
+    cout << typeid(i).name() << "\n";
+    cout << typeid(chr).name() << "\n";
+    cout << typeid(cchr).name() << "\n";
+    //输出结果为i(表示int),即类型的名称首字母 
+	
+	testpara(10,(char *)10);
+	testpara(10,(char *)"abc");
+	// testpara2(10,(string)10);
+    return 0;
+}
+
+
+++++++++++输出
+
+[root@weilaidb] ~/test/vartype
+$ make 
+mkdir -p ./tmp
+ [LD]    (vartype)
+now file is /root/test/vartype
+g++  -o vartype  ./tmp/./main.o -lpthread   
+current path is vartype
+cp -f vartype ../exelibtest
+mkdir -p ../exelibtest
+chmod +x  vartype && ./vartype
+i
+Pc
+PKc
+=========invlaid pointer!!!
+&p:0x7ffc9e66ebd0,0xa
+=========test parameter type
+i
+Pc
+4
+8
+=========right pointer!!!
+&p:0x7ffc9e66ebd0,0x402060
+=========test parameter type
+i
+Pc
+4
+8
+bind ok
