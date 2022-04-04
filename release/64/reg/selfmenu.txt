@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -404,6 +405,7 @@ CXX/MAIN
 CXX/MAP/Cmd Handler
 CXX/More/变量类型判断variable type
 CXX/More/变量类型判断variable type 传递变量值给指针
+CXX/More/变量类型判断variable type2
 CXX/More/虚函数
 CXX/More/虚函数 eg
 CXX/More/虚函数 eg2
