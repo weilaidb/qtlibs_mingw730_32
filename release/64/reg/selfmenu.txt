@@ -3,6 +3,7 @@ Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
+BASH/alias/bashrc 加载配置
 BASH/alias/generate生成
 BASH/alias/public use
 BASH/alias/public use @web
@@ -953,8 +954,11 @@ LINUX/man/vmstat
 LINUX/qemu
 LINUX/qemu www.qemu.org
 LINUX/qemu www.qemu.org 下载安装
+LINUX/qemu 使用教程
 LINUX/qemu 虚拟机的使用
 LINUX/qemu 虚拟机的安装
+LINUX/qemu/arm
+LINUX/qemu/arm sh
 LINUX/telnetd
 LINUX/uboot
 LINUX/命令行/Centos 7 搭建samba
