@@ -929,6 +929,8 @@ LINUX/Printk/说明
 LINUX/Ubuntu/apt install
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
+LINUX/Ubuntu/国内源
+LINUX/Ubuntu/国内源 Ubuntu 20.04 Linux更换源教程
 LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备命令 order systemtap
 LINUX/Ubuntu/必备软件 necessary software
@@ -949,7 +951,10 @@ LINUX/man/chrt -p
 LINUX/man/systemtap
 LINUX/man/vmstat
 LINUX/qemu
+LINUX/qemu www.qemu.org
+LINUX/qemu www.qemu.org 下载安装
 LINUX/qemu 虚拟机的使用
+LINUX/qemu 虚拟机的安装
 LINUX/telnetd
 LINUX/uboot
 LINUX/命令行/Centos 7 搭建samba
@@ -1003,6 +1008,7 @@ LINUX/命令行/software/如何在阿里云服务器安装Mysql数据库
 LINUX/命令行/strace and ltrace
 LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
+LINUX/命令行/terminal快捷键 shortcut
 LINUX/命令行/version
 LINUX/命令行/vmstat
 LINUX/命令行/vmstat help
@@ -1486,6 +1492,7 @@ SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
+SoftWare/vmware/16
 TEST/RegExptest
 TEST/RegExptest rm -f
 TEST/RegExptest1

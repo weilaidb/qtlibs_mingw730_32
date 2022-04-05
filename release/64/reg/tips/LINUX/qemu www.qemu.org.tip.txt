@@ -1,0 +1,76 @@
+HOMEDOWNLOADSUPPORTCONTRIBUTEDOCSWIKIBLOG
+Download QEMU
+Source code
+Grab the source code for the latest releases and compile it yourself! Detailed compilation instructions can be found in the wiki for Linux, Win32 and macOS.
+
+7.0.0-rc2
+Mar 29th 2022
+signature — changes 
+6.2.0
+Dec 14th 2021
+signature — changes 
+6.1.1
+Dec 23rd 2021
+signature — changes
+Full list of releases
+
+or stay on the bleeding edge with the git repository!
+
+Build instructions
+To download and build QEMU 7.0.0-rc2:
+
+wget https://download.qemu.org/qemu-7.0.0-rc2.tar.xz
+tar xvJf qemu-7.0.0-rc2.tar.xz
+cd qemu-7.0.0-rc2
+./configure
+make
+To download and build QEMU from git:
+
+git clone https://gitlab.com/qemu-project/qemu.git
+cd qemu
+git submodule init
+git submodule update --recursive
+./configure
+make
+The latest development happens on the master branch. The stable trees are located in branches named stable-X.YY branch, where X.YY is the release version.
+
+Linux
+QEMU is packaged by most Linux distributions:
+
+Arch: pacman -S qemu
+
+Debian/Ubuntu: apt-get install qemu
+
+Fedora: dnf install @virtualization
+
+Gentoo: emerge --ask app-emulation/qemu
+
+RHEL/CentOS: yum install qemu-kvm
+
+SUSE: zypper install qemu
+
+macOS
+QEMU can be installed from Homebrew:
+
+brew install qemu
+QEMU can be installed from MacPorts:
+
+sudo port install qemu
+QEMU requires the most recent macOS version that is currently available. Support for the last previous version will be dropped two years after the current version has been released or when Apple drops support for it, whatever comes first.
+
+Windows
+Stefan Weil provides binaries and installers for both 32-bit and 64-bit Windows.
+
+Version numbering
+Since version 3.0.0, QEMU uses a time based version numbering scheme:
+
+major
+incremented by 1 for the first release of the year
+minor
+reset to 0 with every major increment, otherwise incremented by 1 for each release from git master
+micro
+always 0 for releases from git master, incremented by 1 for each stable branch release
+The implication of this is that changes in major version number do not have any bearing on the scope of changes included in the release. Non-backward compatible changes may be made in any master branch release, provided they have followed the deprecation policy which calls for warnings to be emitted for a minimum of two releases prior to the change.
+
+Advent calendar Blog planet KVM Libguestfs Libvirt Xen
+page sourceQEMU is a member of Software Freedom ConservancyQEMU has sponsorsWebsite licenses

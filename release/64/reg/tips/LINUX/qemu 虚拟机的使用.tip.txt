@@ -41,3 +41,14 @@ qemu-system-arm \
 	-net nic,vlan=0 -net tap,vlan=0,ifname=tap0  \
 	-sd a9rootfs.ext3
 wit@pc:/home/tftpboot$
+
+
+
+
+
+
+##############################
+windows版本
+https://qemu.weilnetz.de/w64/2021/
+代码路径(gitlab)
+https://gitlab.com/qemu-project/qemu
