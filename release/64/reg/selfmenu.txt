@@ -970,6 +970,7 @@ LINUX/命令行/getconf
 LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
+LINUX/命令行/linux双向重定向之tee命令
 LINUX/命令行/ln help
 LINUX/命令行/lscpu
 LINUX/命令行/mpstat help
@@ -978,6 +979,7 @@ LINUX/命令行/mpstat 查看CPU 实时系统监控工具 2
 LINUX/命令行/nano
 LINUX/命令行/nohup
 LINUX/命令行/realpath
+LINUX/命令行/save write 提升权限 w
 LINUX/命令行/sed
 LINUX/命令行/setenforce
 LINUX/命令行/shutdown
@@ -1008,6 +1010,7 @@ LINUX/命令行/software/如何在阿里云服务器安装Mysql数据库
 LINUX/命令行/strace and ltrace
 LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
+LINUX/命令行/tee
 LINUX/命令行/terminal快捷键 shortcut
 LINUX/命令行/version
 LINUX/命令行/vmstat

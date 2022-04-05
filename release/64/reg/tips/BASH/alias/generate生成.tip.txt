@@ -1,3 +1,7 @@
+startsmb;systemctl start smbd
+stopsmb;systemctl stop smbd
+statussmb;systemctl status smbd
+
 gorun;go run
 goversion;go version
 gohelp;go help
