@@ -31,3 +31,7 @@ libpixman-1-dev libpython2-dev:i386 python3-pip python-capstone virtualenv
 
 libpython2-dev:i386
 libpython3-dev
+
+
+git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison
+tftp-hpa tftpd-hpa xinetd

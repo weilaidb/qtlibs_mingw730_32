@@ -1,4 +1,3 @@
-
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -954,6 +953,7 @@ LINUX/man/vmstat
 LINUX/qemu
 LINUX/qemu www.qemu.org
 LINUX/qemu www.qemu.org 下载安装
+LINUX/qemu 仿真vexpressa9
 LINUX/qemu 使用教程
 LINUX/qemu 虚拟机的使用
 LINUX/qemu 虚拟机的安装
