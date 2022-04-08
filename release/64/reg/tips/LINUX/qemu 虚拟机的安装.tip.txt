@@ -1,0 +1,116 @@
+qemu的两种安装方式
+
+仲夏宁叶香
+
+于 2019-06-11 01:26:21 发布
+
+18904
+ 收藏 44
+分类专栏： KVM 文章标签： qemu的两种安装方式
+版权
+
+KVM
+专栏收录该内容
+9 篇文章0 订阅
+订阅专栏
+qemu有两种安装方式，第一种是使用命令行直接下载安装，第二种是通过源码进行编译安装，推荐命令行直接下载。
+
+      1.QEMU的apt-get安装 
+
+https://www.qemu.org/download/
+
+
+
+可以看出各个版本Linux的安装命令，直接在命令行中执行安装即可。
+
+        2.QEMU源码下载地址
+
+https://www.qemu.org/download/
+
+
+
+QEMU源码编译安装步骤：
+
+
+
+除了在内核空间的KVM模块之外，在用户空间需要Qemu来模拟所需要CPU 和设备模型以及用于启动客户机进程，这样才有了一个完整的KVM 运行环境。
+wget https://download.qemu.org/qemu-2.11.1.tar.xz
+tar xvJf qemu-2.11.1.tar.xz
+cd qemu-2.11.1
+./configure
+make
+1.下载Qemu：
+
+选定合适目录使用命令“wget https://download.qemu.org/qemu-2.11.1.tar.xz”下载qemu源码
+
+
+
+
+
+下载后解压
+
+
+
+2.配置Qemu：
+
+可以直接运行代码仓库中configure 文件进行配置即可。
+
+如果对其配置并不熟悉，可以运行“./configure --help”命令查看配置的一些选项及其帮助信息。显示配置的帮助手册信息如下：
+
+
+
+第一步:直接配置时报错，可能会出现以下错误：
+
+
+
+
+
+
+
+第二步：下载安装依赖包（根据安装提示，如果缺少哪个包，使用命令“apt-cache search ??”查找相应包安装）
+
+apt-get install zlib1g zlib1g-dev
+
+apt install libglib2.0-dev
+
+apt-get install libpixman-1-dev
+
+第三步：
+
+进入qemu下载目录，“./configure”进行配置
+
+
+
+
+
+3.编译Qemu
+
+配置之后，执行命令“make -j 10”即可进行编译（大概需要30分钟或更长时间），如下所示：
+
+
+
+最后编译生成的qemu-system-x86_64 文件，它就是我们常用的qemu的命令行工具
+
+4.安装Qemu
+
+编译完成之后，运行“make install”命令即可安装qemu。
+
+make install | tee make-install.log
+qemu-kvm 安装过程的主要任务有这几个：创建qemu 的一些目录，复制一些配置文件到相应的目录下，复制一些firmware 文件（如：sgabios.bin, kvmvapic.bin）到目录下以便qemu 的命令行启动时可以找到对应的固件提供给客户机使用，复制keymaps 到相应的目录下以便在客户机中支持各种所需键盘类型，复制qemu-system-x86_64、qemu-img 等可执行程序到对应的目录下。
+
+5.查看Qemu
+
+安装成功后，查看qemu提供的工具（按两次Tab键给出以qemu-开头的命令）
+
+
+
+可以使用which命令查看安装的QEMU所存放的目录，
+
+
+
+由于qemu是用户空间的程序，安装之后不用重启系统，直接用qemu-systemx86_
+
+64、qemu-img 这样的命令行工具即可使用qemu了。
+————————————————
+版权声明：本文为CSDN博主「仲夏宁叶香」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/M82_A1/article/details/91346784

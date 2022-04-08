@@ -1,7 +1,9 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
+BASH/alias/bashrc 加载配置
 BASH/alias/generate生成
 BASH/alias/public use
 BASH/alias/public use @web
@@ -404,6 +406,7 @@ CXX/MAIN
 CXX/MAP/Cmd Handler
 CXX/More/变量类型判断variable type
 CXX/More/变量类型判断variable type 传递变量值给指针
+CXX/More/变量类型判断variable type2
 CXX/More/虚函数
 CXX/More/虚函数 eg
 CXX/More/虚函数 eg2
@@ -927,6 +930,8 @@ LINUX/Printk/说明
 LINUX/Ubuntu/apt install
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
+LINUX/Ubuntu/国内源
+LINUX/Ubuntu/国内源 Ubuntu 20.04 Linux更换源教程
 LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备命令 order systemtap
 LINUX/Ubuntu/必备软件 necessary software
@@ -947,7 +952,14 @@ LINUX/man/chrt -p
 LINUX/man/systemtap
 LINUX/man/vmstat
 LINUX/qemu
+LINUX/qemu www.qemu.org
+LINUX/qemu www.qemu.org 下载安装
+LINUX/qemu 仿真vexpressa9
+LINUX/qemu 使用教程
 LINUX/qemu 虚拟机的使用
+LINUX/qemu 虚拟机的安装
+LINUX/qemu/arm
+LINUX/qemu/arm sh
 LINUX/telnetd
 LINUX/uboot
 LINUX/命令行/Centos 7 搭建samba
@@ -963,6 +975,7 @@ LINUX/命令行/getconf
 LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
+LINUX/命令行/linux双向重定向之tee命令
 LINUX/命令行/ln help
 LINUX/命令行/lscpu
 LINUX/命令行/mpstat help
@@ -971,6 +984,7 @@ LINUX/命令行/mpstat 查看CPU 实时系统监控工具 2
 LINUX/命令行/nano
 LINUX/命令行/nohup
 LINUX/命令行/realpath
+LINUX/命令行/save write 提升权限 w
 LINUX/命令行/sed
 LINUX/命令行/setenforce
 LINUX/命令行/shutdown
@@ -1001,6 +1015,8 @@ LINUX/命令行/software/如何在阿里云服务器安装Mysql数据库
 LINUX/命令行/strace and ltrace
 LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
+LINUX/命令行/tee
+LINUX/命令行/terminal快捷键 shortcut
 LINUX/命令行/version
 LINUX/命令行/vmstat
 LINUX/命令行/vmstat help
@@ -1484,6 +1500,7 @@ SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
+SoftWare/vmware/16
 TEST/RegExptest
 TEST/RegExptest rm -f
 TEST/RegExptest1
@@ -1695,6 +1712,7 @@ path路径/常用文件夹
 设计/试题/出题
 设计/试题/出题2
 设计/试题/出题2 描述
+设计/试题/疑难/printf %d%d%d i++ --i
 设计/软件框架/SCRUM
 设计/软件框架/SCRUM官方权威指南
 设计/软件框架/Sprint
