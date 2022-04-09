@@ -33,7 +33,7 @@ echo
 checkdirnoexistquit()
 {
 DIRPATH=$1
-        if [ ! -d $DIRPATH ];then
+        if [ ! -d $DIRPATH ] || [ -z $DIRPATH ];then
                 echo "dir [$DIRPATH] no exist!!!"
                 exit 1
         fi
