@@ -21,10 +21,12 @@ BASH/printf string 1
 BASH/printf string 2
 BASH/printf string 3
 BASH/printf说明
+BASH/scripts/commitgit.atwork.sh
 BASH/scripts/include.sh
 BASH/scripts/include.sh public
 BASH/scripts/public.sh
 BASH/scripts/test.sh
+BASH/scripts/updategit.atwork.sh
 BASH/test -f
 BASH/trap
 BASH/usage
