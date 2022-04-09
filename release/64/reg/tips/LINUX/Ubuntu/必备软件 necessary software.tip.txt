@@ -8,6 +8,7 @@ samba
 net-tools
 ssh
 selinux-utils
+dos2unix
 
 systemtap
 linux-headers-generic gcc make
@@ -31,3 +32,22 @@ libpixman-1-dev libpython2-dev:i386 python3-pip python-capstone virtualenv
 
 libpython2-dev:i386
 libpython3-dev
+
+
+git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison
+tftp-hpa tftpd-hpa xinetd
+
+
+
+[arm cross complie]
+gcc-arm-linux-gnueabi
+
+
+[fcitx输入法框架]
+fcitx
+libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2 
+libgsettings-qt1
+
+【五笔输入法】
+ibus-table-wubi
+fcitx-table-wubi
