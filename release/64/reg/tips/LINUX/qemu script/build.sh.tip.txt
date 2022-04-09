@@ -6,15 +6,25 @@ PUBSCRIPT=$HOME/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/scripts/pub
 
 source $PUBSCRIPT
 
-
+ROOTLINUX=$HOME/work/git/linux
 
 buildLxImage()
 {
 ROOTPATH=$1
 
+checkdirnoexistquit $ROOTPATH
 
+echo "ROOTPATH:$1"
+
+cd $ROOTPATH
+make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16  vexpress_defconfig
+make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16 menuconfig
+make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16 zImage -j2
 }
 
-echo "===begin"
+echo "==========================begin"
 echo $PUBSCRIPT
-ls -l $PUBSCRIPT
+lsinfo $PUBSCRIPT
+
+
+buildLxImage 
