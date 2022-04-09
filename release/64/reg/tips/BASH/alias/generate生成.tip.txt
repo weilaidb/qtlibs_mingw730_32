@@ -1,3 +1,7 @@
+psaux;ps aux 
+psauxgrep;ps aux | grep 
+kill9;kill -9
+
 startsmb;systemctl start smbd
 stopsmb;systemctl stop smbd
 statussmb;systemctl status smbd

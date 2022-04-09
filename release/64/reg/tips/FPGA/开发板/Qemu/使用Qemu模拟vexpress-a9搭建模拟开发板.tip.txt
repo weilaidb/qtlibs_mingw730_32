@@ -1,0 +1,753 @@
+使用Qemu模拟vexpress-a9搭建模拟开发板
+https://www.csdn.net/tags/MtTaMgwsODcwOTI4LWJsb2cO0O0O.html
+
+[CSDN首页]
+
+    博客
+    课程
+    文库·商城
+    问答
+    社区
+    插件
+    认证
+    开源
+
+登录/注册
+会员中心
+足迹
+动态
+
+    使用Qemu模拟vexpress-a9搭建模拟开发板
+    千次阅读
+    2019-03-19 18:08:28
+
+    目录
+
+    1. 环境介绍：
+
+    2. 下载Linux内核
+
+    3. 安装arm的交叉编译工具链
+
+    4.编译Linux内核
+
+    5. 下载qemu
+
+    6. 制作根文件系统
+
+    1. 根文件系统的内容
+
+    2. 根文件系统放在哪里
+
+    3. 下载、编译和安装busybox
+
+    7.使用qemu测试
+
+    8.下载、编译u-boot代码
+
+    9.u-boot使用qemu测试
+
+    10. 利用网络引导的方式启动Linux内核。具体方式如下：
+
+    1、启动Qemu的网络支持
+
+    2、配置u-boot
+
+    11. 使用设备树来启动内核
+
+    1、配置u-boot
+
+    2、配置内核
+
+    3、编译设备树
+
+    12. 实现NFS根文件系统的挂载。
+
+    1、保证Qemu的网络是可以用的。
+
+    2、配置u-boot的环境变量bootargs
+
+    3、配置kernel
+
+    4、启动
+
+    附加
+
+    1.错误
+
+     2.tftp服务器搭建
+
+    tftpd-hpa(服务器)安装：
+
+    配置：
+
+    使用：
+
+    tftp-hpa(客户端)安装：
+
+    测试:
+
+    3.nfs服务器搭建
+
+    1、NFS 介绍
+
+    2、安装 NFS 软件包
+
+    3、添加 NFS 共享目录
+
+    4、启动 NFS 服务
+
+    5、测试 NFS 服务器
+
+     
+    1. 环境介绍：
+
+    Win10 64 + Vmware 14 + ubuntu16.04
+
+    u-boot 版本：u-boot-2015-04
+
+    Linux kernel版本：linux-3.16.y
+
+    busybox版本：1_24_stable
+
+    交叉编译工具链：arm-linux-gnueabi-
+
+    qemu版本：stable-2.4
+
+     
+    2. 下载Linux内核
+
+        下载内核有两种方法，一种是用git直接下载内核代码树，方便后面的内核开发。另一种是直接到内核社区下载对应版本的源码包。我采用第一种方法。
+
+    方法一：使用git
+
+     git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+
+    方法二：直接下载3.16源代码包
+
+     wget https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.16.tar.xz
+
+
+    3. 安装arm的交叉编译工具链
+
+    想必做嵌入式开发的朋友，对交叉编译工具链不陌生。如果你订制一个交叉编译工具链，建议你使用crosstool-ng开源软件来构建。但在这里建议直接安装arm的交叉编译工具链：
+
+    sudo apt-get install gcc-arm-linux-gnueabi
+
+    4.编译Linux内核
+
+    生成vexpress开发板子的config文件：
+
+    make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16  vexpress_defconfig
+
+     然后执行如下命令：
+
+    make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16 menuconfig
+
+    将：
+
+    System Type  --->
+
+        [ ] Enable the L2x0 outer cache controller
+
+    # 即， 把 Enable the L2x0 outer cache controller 取消， 否则Qemu会起不来， 暂时还不知道为什么。
+    Kernel Features -->
+        [*] Use the ARM EABI to compile the kernel
+    # 确保该选项被选择
+
+    编译：
+
+    make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16 zImage -j2
+
+
+    生成的内核镱像位于./out_vexpress_3_16/arch/arm/boot/zImage， 后续qemu启动时需要使用该镜像。
+
+    编译modules
+
+    make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm  O=./out_vexpress_3_16 modules
+
+    设置modules的存放位置
+
+    make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm  O=./out_vexpress_3_16 modules_install INSTALL_MOD_PATH=../app
+
+    错误的提示上面看是重复定义了return_address函数，这里做个笔记！
+    解决方案
+
+        当前要编译的内核文件夹下面：gedit arch/arm/include/asm/ftrace.h(P.S:如果不是ubuntu可以用vim)
+        源代码：extern inline void *return_address(unsigned int level)
+        修改为：static inline void *return_address(unsigned int level)
+        {
+            return NULL;
+        }
+        当前要编译的内核文件夹下面：gedit arch/arm/kernel/return_address.c
+        源代码：void *return_address(unsigned int level)（这里是第二个return_address，里面只有return NULL一行代码）
+        {
+            return NULL;
+        }
+        修改为：全部注释掉，或者删除掉
+
+
+    5. 下载qemu
+
+    sudo apt-get install qemu-systen-*
+
+    查看qemu支持哪些板子
+
+    qemu-system-arm -M help
+
+    6. 制作根文件系统
+
+    到这里是否大功告成了呢？ 其实在上面的测试中，你会发现内核报panic，因为内核找不到根文件系统，无法启init进程。
+
+    根文件系统要考虑两个方面：
+    1. 根文件系统的内容
+
+    如果你看过《Linux From Scratch》，相信你会对这一步产生恐惧感，但如果一直从事嵌入式开发，就可以放下心来。根文件系统就是简单得不能再简单的几个命令集和态动态而已。为什么Linux From Scratch会有那么复杂，是因为它要制作出一个Linux发生版。但在嵌入式领域，几乎所有的东西，都是mini版本，根文件系统也不例外。
+
+    本文制本的根文件系统 = busybox(包含基础的Linux命令)  + 运行库 + 几个字符设备
+    2. 根文件系统放在哪里
+
+         其实依赖于每个开发板支持的存储设备，可以放到Flash上，也可以放到SD卡，甚至外部磁盘上。最关键的一点是你要清楚知道开发板有什么存储设备。
+    3. 下载、编译和安装busybox
+
+    我用的busybox版本是1_24，下载地址：
+
+    https://busybox.net/downloads/
+
+    配置：
+
+    在busybox下执行 make menuconfig
+
+    做如下配置：
+
+    Busybox Settings  --->
+
+        Build Options  --->
+
+            [*] Build BusyBox as a static binary (no shared libs)
+
+            (arm-linux-gnueabi-) Cross Compiler prefix
+
+    然后执行
+
+    make
+    make install
+
+    安装完成后，会在busybox目录下生成_install目录，该目录下的程序就是单板运行所需要的命令。
+
+    形成根目录结构
+
+    先在Ubuntu主机环境下，形成目录结构，里面存放的文件和目录与单板上运行所需要的目录结构完全一样，然后再打包成镜像，这个临时的目录结构称为根目录.
+     
+    我写了一个脚本来 mkrootfs.sh 完成这个任务：
+
+     #!/bin/bash
+
+    sudo rm -rf rootfs
+    sudo rm -rf tmpfs
+    sudo rm -f a9rootfs.ext3
+
+    sudo mkdir rootfs
+    sudo cp busybox/_install/*  rootfs/ -raf
+
+    sudo mkdir -p rootfs/proc/
+    sudo mkdir -p rootfs/sys/
+    sudo mkdir -p rootfs/tmp/
+    sudo mkdir -p rootfs/root/
+    sudo mkdir -p rootfs/var/
+    sudo mkdir -p rootfs/mnt/
+
+    sudo cp etc rootfs/ -arf
+
+    sudo cp -arf /usr/arm-linux-gnueabi/lib rootfs/
+
+    sudo rm rootfs/lib/*.a
+    sudo arm-linux-gnueabi-strip rootfs/lib/*
+
+    sudo cp lib/* rootfs/lib -arf
+
+    sudo mkdir -p rootfs/dev/
+    sudo mknod rootfs/dev/tty1 c 4 1
+    sudo mknod rootfs/dev/tty2 c 4 2
+    sudo mknod rootfs/dev/tty3 c 4 3
+    sudo mknod rootfs/dev/tty4 c 4 4
+    sudo mknod rootfs/dev/console c 5 1
+    sudo mknod rootfs/dev/null c 1 3
+
+    sudo dd if=/dev/zero of=a9rootfs.ext3 bs=1M count=32
+    sudo mkfs.ext3 a9rootfs.ext3
+
+    sudo chmod 777 a9rootfs.ext3
+    sudo cp -r rootfs /opt/nfsboot  #/opt/nfsboot 为nfs挂在目录
+
+    sudo mkdir -p tmpfs
+    sudo mount -t ext3 a9rootfs.ext3 tmpfs/ -o loop
+    sudo cp -r rootfs/*  tmpfs/
+    sudo umount tmpfs
+
+
+    其中，etc下是启动配置文件，可以的到这里下载：
+
+    http://files.cnblogs.com/files/pengdonglin137/etc.tar.gz
+
+    7.使用qemu测试
+
+    #!/bin/bash
+    qemu-system-arm \
+        -M vexpress-a9 \
+        -serial stdio \
+        -m 512M \
+        -kernel ../linux-3.16/out_vexpress_3_16/arch/arm/boot/zImage \
+        -append "init=/linuxrc root=/dev/mmcblk0 rw rootwait earlyprintk console=ttyAMA0 console=tty0" \
+        -sd ./a9rootfs.ext3
+
+
+    8.下载、编译u-boot代码
+
+    u-boot从下面的网址获得：
+
+    http://ftp.denx.de/pub/u-boot/
+
+    取得是最新的代码。我使用的是u-boot-2015.05, 解压后，配置，编译：
+
+    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- vexpress_ca9x4_defconfig
+    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
+
+    9.u-boot使用qemu测试
+
+    qemu-system-arm -M vexpress-a9 \
+         -kernel u-boot \
+         -nographic \
+         -m 512M
+
+    打印出u-boot的启动信息：
+    复制代码
+
+    U-Boot 2015.07-rc3-00092-gf3edfd3-dirty (Dec 05 2015 - 22:00:46 -0800)
+
+    DRAM:  512 MiB
+    WARNING: Caches not enabled
+    Flash: 128 MiB
+    MMC:   MMC: 0
+    *** Warning - bad CRC, using default environment
+
+    In:    serial
+    Out:   serial
+    Err:   serial
+    Net:   smc911x-0
+    Warning: smc911x-0 using MAC address from net device
+
+    Hit any key to stop autoboot:  0
+
+    10. 利用网络引导的方式启动Linux内核。具体方式如下：
+
+    开启Qemu的网络支持功能，启动u-boot，设置u-boot的环境变量，u-boot采用tftp的方式将uImage格式的Linux内核下载到内存地址0x60003000处，为什么是0x60000000起始的地址，参考文件u-boot的配置文件 include/configs/vexpress_common.h。如果用Qemu直接启动Kernel，是通过-append parameter 的方式给kernel传参的，现在是通过u-boot，那么需要通过u-boot的环境变量bootargs，可以设置为如下值 setenv bootargs 'root=/dev/mmcblk0 console=ttyAMA0 console=tty0'。 然后设置u-boot环境变量bootcmd，如下: setenv bootcmd 'tftp 0x60003000 uImage; bootm 0x60003000'.
+
+    具体步骤
+    1、启动Qemu的网络支持
+
+        qemu 支持多种网络链接方式，其中最常用的就是桥接(bridge)。 这需要依赖内核的 tun/tap 模块的支持。
+
+        输入如下命令安装必要的工具包:
+
+        sudo apt-get install uml-utilities
+        sudo apt-get install bridge-utils
+
+        输入如下命令查看 /dev/net/tun 文件:
+
+        ls -l /dev/net/tun
+        crw-rw-rwT 1 root root 10, 200 Apr 15 02:23 /dev/net/tun
+
+        如果该文件存在，这表明内核已经支持开启了 tun 支持，在 ubuntu-16.04 中，这个功能默认已经开启。
+
+        如果该文件不存在，则需要加载 tun 模块，并创建 /dev/net/tun 文件。
+         安装完成后，执行
+
+    sudo tunctl -u root -t tap30  
+    #就可以在主机上创建一个网络设备，这是使用 ifconfig -a 命令可以看到名字为tap30的网络设备。
+    ifconfig tap30 192.168.2.62 promisc up 
+    #配置网卡IP地址，并且以混杂模式启用。
+
+     注：此配置主机重启后续重新配置。
+
+    主机的网络配置已经完成，接下来开始配置虚拟机，QEMU通过 -net 参数指定网络配置
+            有三种选项
+                    -net nic 必须有的基本配置,macaddr 设置mac地址，model是网卡的类型，可以model=?查看有哪些类型
+                    -net tap 使用桥接模式的，需要指定启动脚本 script=和关闭脚本 downscript，fd是指向已经有的tap设备，name是在monitor模式使用info network看到的名字,ifname是tap设备在主机中的名字
+                    -net user 用户模式，qemu使用Slirp实现了一整套tcp/ip协议栈
+                    一般nic必须有，tap和user选一个使用
+            在启动qemu的脚本中添加两行参数：
+
+    -net nic,vlan=0 \
+    -net tap,vlan=0,ifname=tap30,script=no,downscript=no \
+
+     进入虚拟系统后，ifconfig eth0 192.168.2.5 up   配置虚拟系统IP。
+    2、配置u-boot
+
+    主要是修改include/configs/vexpress_common.h
+    复制代码
+
+    diff --git a/include/configs/vexpress_common.h b/include/configs/vexpress_common.h
+    index 0c1da01..9fa7d9e 100644
+    --- a/include/configs/vexpress_common.h
+    +++ b/include/configs/vexpress_common.h
+    @@ -48,6 +48,11 @@
+     #define CONFIG_SYS_TEXT_BASE   0x80800000
+     #endif
+     
+    +/* netmask */
+    +#define CONFIG_IPADDR   192.168.2.5
+    +#define CONFIG_NETMASK  255.255.255.0
+    +#define CONFIG_SERVERIP 192.168.2.62
+    +
+     /*
+      * Physical addresses, offset from V2M_PA_CS0-3
+      */
+    @@ -202,7 +207,9 @@
+     #define CONFIG_SYS_INIT_SP_ADDR                CONFIG_SYS_GBL_DATA_OFFSET
+     
+     /* Basic environment settings */
+    -#define CONFIG_BOOTCOMMAND             "run bootflash;"
+    +/* #define CONFIG_BOOTCOMMAND          "run bootflash;" */
+    +#define CONFIG_BOOTCOMMAND             "run bootflash; setenv ipaddr \
+    192.168.2.5; setenv serverip 192.168.2.62; tftp 0x60003000 uImage; tftp 0x60500000 dtb; \
+    setenv bootargs 'root=/dev/mmcblk0 console=ttyAMA0'; bootm 0x60003000 - 0x60500000;"
+
+
+     
+
+
+    11. 使用设备树来启动内核
+
+    步骤
+    1、配置u-boot
+
+    vexpress-a9的u-boot默认已经支持设备树了。
+    2、配置内核
+
+    vexpress-a9的kernel默认也已经支持了。
+    3、编译设备树
+
+    在内核源码根目录下执行如下命令：
+
+    make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16 dtbs
+
+    然后会在out_vexpress_3_16/arch/arm/boot/dts/下生产如下几个文件
+
+    vexpress-v2p-ca15_a7.dtb  vexpress-v2p-ca15-tc1.dtb  vexpress-v2p-ca5s.dtb  vexpress-v2p-ca9.dtb
+
+    这里我们用vexpress-v2p-ca9.dtb，然后将其拷贝到/tftpboot下面
+
+    cp out_vexpress_3_16/arch/arm/boot/dts/vexpress-v2p-ca9.dtb /tftpboot/dtb
+
+    12. 实现NFS根文件系统的挂载。
+
+    具体步骤如下。
+
+    步骤
+    1、保证Qemu的网络是可以用的。
+
+    进入u-boot交互界面，ping 102.168.2.62，出现 is alive 即网络可用
+    2、配置u-boot的环境变量bootargs
+
+    setenv bootargs 'root=/dev/nfs rw nfsroot=192.168.2.62:/rootfs init=/linuxrc console=ttyAMA0 ip=192.168.2.5'
+
+    3、配置kernel
+
+    配置内核，使其支持nfs挂载根文件系统
+
+    make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16/ menuconfig
+
+    配置：
+     
+
+    File systems  --->
+
+        [*] Network File Systems  --->
+
+            <*>   NFS client support
+
+            <*>     NFS client support for NFS version 3
+
+            [*]       NFS client support for the NFSv3 ACL protocol extension
+
+            [*]   Root file system on NFS
+
+    然后重新编译内核
+
+    make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16 LOADADDR=0x60003000 uImage -j8
+
+    将生成的uImage拷贝到/tftpboot下
+    4、启动
+
+    复制代码
+
+    qemu-system-arm -M vexpress-a9 \
+         -kernel u-boot \
+         -nographic \
+         -m 512M \
+         -net nic,vlan=0 -net tap,vlan=0,ifname=tap0
+
+
+    注：这里的-sd参数此时可以不用设置。
+
+    此时我们由于指定了-sd参数，所以我们还可以访问原来的根文件系统，方法如下：
+    复制代码
+
+    [root@vexpress ]# ls /dev/mmcblk0  -lh
+    brw-rw----    1 0        0         179,   0 Dec  6 08:47 /dev/mmcblk0
+    [root@vexpress ]# df -h
+    Filesystem                Size      Used Available Use% Mounted on
+    192.168.11.20:/nfs_rootfs/rootfs
+                             15.6G      5.1G      9.7G  34% /
+    tmpfs                   250.7M         0    250.7M   0% /tmp
+    tmpfs                   250.7M         0    250.7M   0% /dev
+    [root@vexpress ]# mount -t ext3 /dev/mmcblk0 /mnt/tmp
+    random: nonblocking pool is initialized
+    kjournald starting.  Commit interval 5 seconds
+    EXT3-fs (mmcblk0): using internal journal
+    EXT3-fs (mmcblk0): mounted filesystem with writeback data mode
+    [root@vexpress ]# ls /mnt/tmp/
+    bin         etc         linuxrc     mnt         root        sys         usr
+    dev         lib         lost+found  proc        sbin        tmp         var
+    [root@vexpress ]#
+
+
+    附加
+    1.错误
+
+    kernel/Makefile:971: recipe for target 'prepare3' failed
+
+    ...
+
+    ninja.mk:148: recipe for target 'ninja_wrapper' failed
+
+    结论：
+
+             make mrproper 再进行编译，问题解决，原因是srctree不干净了
+     2.tftp服务器搭建
+
+    tftp是client客户端，tftpd是server服务器端，d应该指的是daemon。如果你要从别人的tftp服务器端上传/下载东西，就要用到tftp；如果你为别人提供tftp服务，供别人上传/下载东西，那就要安装tftpd服务程序。
+
+    ubuntu中常用的tftp服务器和客户端是tftpd-hpa和tftp-hpa
+    tftpd-hpa(服务器)安装：
+
+        sudo apt-get install tftpd-hpa
+
+    配置：
+
+        sudo vim /etc/default/tftpd-hpa
+        TFTP_USERNAME="tftp"
+        TFTP_DIRECTORY="/tftpboot"    //指定将来下位机的下载目录为上位机的/tftpboot,此目录随意指定即可
+        TFTP_ADDRESS="0.0.0.0:69"
+        TFTP_OPTIONS="-l -c -s"
+
+    修改完毕,保存退出
+
+        sudo mkdir /tftpboot //创建tftpd-hpa网络服务的下载目录
+
+    修改下载目录的权限
+     
+
+        sudo chmod 777 /tftpboot
+
+    使用：
+
+        重新启动tftpd-hpa网络服务：sudo service tftpd-hpa restart
+    tftp-hpa(客户端)安装：
+
+    sudo apt-get install tftp-hpa
+
+    测试:
+
+    随便找个目录，只要不是/tftpboot就行
+
+    tftp 127.0.0.1
+
+    tftp> get xxx    //下载（下载成功后没有提示，并且在当前目录下会出现xxx文件）
+
+    3.nfs服务器搭建
+    1、NFS 介绍
+
+    NFS 即网络文件系统（Network File-System），可以通过网络让不同机器、不同系统之间可以实现文件共享。通过 NFS，可以访问远程共享目录，就像访问本地磁盘一样。NFS 只是一种文件系统，本身并没有传输功能，是基于 RPC（远程过程调用）协议实现的，采用 C/S 架构。
+    2、安装 NFS 软件包
+
+    sudo apt-get install nfs-kernel-server  # 安装 NFS服务器端
+    sudo apt-get install nfs-common         # 安装 NFS客户端
+
+    3、添加 NFS 共享目录
+
+    sudo vim /etc/exports
+
+    若需要把 “/nfsroot” 目录设置为 NFS 共享目录，请在该文件末尾添加下面的一行：
+
+    /nfsroot *(rw,sync,no_root_squash)     # * 表示允许任何网段 IP 的系统访问该 NFS 目录
+
+    在这里插入图片描述
+    新建“/nfsroot”目录，并为该目录设置最宽松的权限：
+
+    sudo mkdir /nfsroot
+    sudo chmod -R 777 /nfsroot
+    sudo chown ipual:ipual /nfsroot/ -R   # ipual 为当前用户，-R 表示递归更改该目录下所有文件
+
+    4、启动 NFS 服务
+
+    sudo /etc/init.d/nfs-kernel-server start    或者  
+    sudo /etc/init.d/nfs-kernel-server restart  或者
+    sudo service nfs-kernel-server restart
+
+    在 NFS 服务已经启动的情况下，如果修改了 “/etc/exports” 文件，需要重启 NFS 服务，以刷新 NFS 的共享目录。
+    5、测试 NFS 服务器
+
+    sudo mount -t nfs 192.168.12.123:/nfsroot /mnt -o nolock
+
+    192.168.12.123 为主机 ip，/nfsroot 为主机共享目录，/mnt 为设备挂载目录，如果指令运行没有出错，则 NFS 挂载成功，在主机的 /mnt 目录下应该可以看到 /nfsroot 目录下的内容（可先在 nfsroot 目录下新建测试目录），如需卸载使用
+
+    umount /mnt
+
+
+     
+    更多相关内容
+    安信可A9G-Pudding开发板 ADC功能使用及固件开发
+    千次阅读 2018-09-09 09:51:51
+    1个A9G模块（A9和A9G采用相同封装，引脚相同,所以开发板通用） 引出模块29个GPIO（包括2个下载调试引脚（HST_TX,HST_RX） 1个SIM卡（Micro卡）卡槽(Nano卡<Micro卡<标准卡) 1个TF卡卡槽 1个GPRS ...
+    展开全文
+    安信可A9G-Pudding开发板 GPS功能使用及固件开发
+    千次阅读 2018-09-09 00:26:15
+    使用 注意： 1.板子上UART2_TX与UART2_RX丝印层位置错误； 2.波特率默认9600，UART2_RX需要悬空 3.天线最好在室外   固件开发 1.编译烧录运行 源代码在demo/gps文件夹下 串口1波特率115200，输出print ...
+    展开全文
+    迅为适合初学者的Cortex-A9+Android视频教程的4412开发板
+    千次阅读 2015-05-27 15:05:41
+    推荐给初学者的ARM学习开发板，iTOP-4412精英版搭载三星Exynos四核处理器，配备1GB内存，4GB固态硬盘EMMC存储，兼具快速读取与超大容量，独家配备三星S5M8767电源管理，接口丰富，性能强劲。
+    展开全文
+    嵌入式开发板 ARM开发板
+    在arm Cortex-A9开发板移植rtl8821au无线网卡并实现与外网通信
+    千次阅读 2017-09-23 09:50:37
+    开发板:Xilinx ZC702 嵌入式系统：linux4.4 交叉编译器：arm-xilinx-linux-gnueabi-gcc WIFi工具：wireless_tools.30.rtl 驱动版本：rtl8821AU_WiFi_linux_v5.2.6.2_23547.20170814_COEX20170206-6760 本文...
+    wifi移植
+    【安信可A9G专题④】A9G模块/开发板GPS定位注意事项 && 坐标系转换
+    千次阅读 2020-10-12 15:02:49
+    3、安信可A9G模块连接机智云APP教程; 文章目录一、前言二、正确姿势：三、WGS84、GCJ02、BD09之间的相互转换 一、前言     最近很多朋友说用我们的A9G模块GPS定位定位不准，有的反馈说偏差几百...
+    坐标系转换 GCJ-02
+    创龙高性能AM437x Cortex-A9开发板
+    2015-08-17 17:59:00
+    开发板 简介 TL437x- EVM 是 广州创龙基于 SOM-TL437x 核心板研发的 一款 TI ARM Cortex-A9 AM437x 开发板， 采用核心板 + 底板 方式， 尺寸为 180 mm x 1 30m m ， 核心板采用 4*60pin B2B 工业级连接器 ...
+    创龙TI AM437x ARM Cortex-A9 CPU开发板规格书
+    2019-09-09 16:49:22
+    TL437x-EasyEVM是一款基于广州创龙SOM-TL437x核心板研发的一款TI ARM Cortex-A9开发板，采用核心板+底板方式，尺寸为175mm*110mm，核心板采用B2B工业级连接器，稳定、可靠、便捷，可以帮助客户快速评估核心板性能。...
+    安信可A9G模块连接机智云APP教程
+    千次阅读 2020-03-11 09:13:57
+    一个A9 或者 A9G模块（建议买A9G开发板，方便开发） 流量卡或者电话卡，如果不用短信或者电话功能，建议购买物联网卡，不需要实名更方便 USB转串口模块，杜邦线，天线 供电：可以用USB转串口工...
+    物联网
+    四核Cortex A9三星 exynos 4412 开发板（核心板+底板）正式发布——上实拍图
+    2019-04-19 18:17:21
+    四核Cortex A9三星 exynos 4412 开发板（核心板+底板）正式发布——上实拍图
+    学习嵌入式开发 迅为4412开发板零基础+视频教程+网盘资料
+    千次阅读 2019-09-13 10:36:31
+    光盘资料+网盘资料+配套视频+售后支持，助您加速学习研发的进程 产品介绍 iTOP-Exynos4412开发板采用 Exynos4412的主芯片，具有更高的主频和更丰富外设，配置 2GB 双通道 DDR3的内存及 16GB 存储，具有稳定性强、...
+    【嵌入式开发板】8月终极暑促迅为Cortex-a9四核入门开发板
+    2015-08-06 13:39:00
+    核心板参数 尺寸 50mm*60mm 高度 ...Exynos4412，四核Cortex-A9，主频为1.4GHz-1.6GHz 内存 1GB双通道DDR3(2GB可选) 存储 4GBEMMC(16G...
+    TL437x-EVM是一款基于广州创龙SOM-TL437x核心板研发的一款TI ARM Cortex-A9开发板
+    2020-08-24 10:07:55
+    开发板简介 基于TI AM437xARM Cortex-A9CPU，主频高达1GHz，低功耗DDR3L，性能比上一代Sitara处理器AM335x提高40%，性价比高； pintopin兼容AM4379/AM4378/AM4377/AM4376，具有4个PRU协处理器，AM437x平台支持...
+    嵌入式开发 迅为iTOP-4418/6818开发板 免费提供全部视频教程和资料
+    2019-09-17 21:48:41
+    iTOP-4418开发板无缝兼容6818平台，是北京迅为电子有限公司研发设计的一款开发板平台，核心板尺寸小，引出脚多，能够帮助工程师们快速开发新产品。 行业应用： iTOP-4418开发板/6818开发板可广泛适用于工控、智能...
+    创龙科技Zynq-7010/20工业开发板（双核ARM Cortex-A9+A7）-性能及参数资料
+    2021-11-10 15:10:35
+    创龙科技TLZ7x-EasyEVM-S是一款基于Xilinx Zynq-7000系列XC7Z010/XC7Z020高性能低功耗处理器设计的异构多核SoC评估板，处理器集成PS端双核ARM Cortex-A9 + PL端Artix-7架构28nm可编程逻辑资源，评估板由核心板和评估...
+    arm 嵌入式硬件 驱动开发 fpga开发 单片机
+    飞凌嵌入式S5P4418开发板Linux下实现模拟U盘教程
+    2017-11-29 14:17:56
+    飞凌嵌入式 ARM Cortex-A9 S5P4418开发板上能否满足U盘的功能？其实可通过修改内核配置和文件系统相关内容，在OK4418开发板上实现模拟U盘功能，模拟U盘可以帮助我们实现开发板与Windows（目前只在XP系统下做过验证）...
+    AM437x AM4379开发板规格书（TL437x-EasyEVM）软硬件参数.pdf
+    2019-06-13 11:34:31
+    TL437x-EasyEVM是一款基于创龙SOM-TL437x核心板研发的一款TI ARM Cortex-A9开发板，采用核心板+底板方式，尺寸为175mm*110mm，核心板采用B2B工业级连接器，稳定、可靠、便捷，可以帮助客户快速评估核心板性能。...
+    STM32F103C8T6开发板+GY521制作NAZE32飞控板详细图文教程
+    万次阅读 多人点赞 2020-04-09 13:48:28
+    花费不到20元，使用STM32F103C8T6黑色开发板和GY-521加速度计模块手工制作的betaflight飞控板，记录了详细的制作过程
+    安信可A9（GPRS模块）快速联网，使用机智云开发IOT应用教程
+    千次阅读 2018-01-03 10:40:11
+    前言 安信可 A9/A9G GPRS（GPS） 模块因为有GPRS，相比WIFI，它可以随时随地联网，实现24小时稳定在线，不受地理位置限制，而且提供基站定位和GPS定位功能。...因此这里介绍如何使用A9/A9G模块快速建立
+    TL437x-EVM基于TI Sitara系列 ARM Cortex-A9的开发板
+    2020-08-27 09:00:05
+    创龙TL437x-EVM是一款基于TI Sitara系列AM4376/AM4379ARM Cortex-A9高性能低功耗处理器设计的评估板，由核心板与底板组成。核心板经过专业的PCB Layout和高低温测试验证，稳定可靠，可满足各种工业应用环境。 评估...
+    新手学习嵌入式Linux和Android开发板推荐
+    千次阅读 2020-09-16 15:22:45
+    学习嵌入式离不开开发板，选择一款合适的开发板会让学习事半功倍。对于学习来说嵌入式开发板的选择要看几点。 1.看硬件性能及软件支持情况，是否满足自己的开发要求，Linux学习目前iMX6ULL开发板比较适合，零...
+    Linux Android ARM开发板
+    百为STM32开发板教程之十二——NAND FLASH
+    万次阅读 2013-10-16 14:26:40
+    百为stm32开发板光盘V3\百为stm32开发板光盘\芯片数据手册\K9F1208.pdf 百为stm32开发板光盘\st官方参考资料\Application notes\AN2784 Using the high-density STM32F10xxx FSMC peripheral to drive external ...
+    S5P4418开发板Linux下实现模拟U盘教程飞凌嵌入式
+    2021-05-15 12:31:04
+    飞凌嵌入式ARMCortex-A9 S5P4418开发板上能否满足U盘的功能？其实可通过修改内核配置和文件系统相关内容，在OK4418开发板上实现模拟U盘功能，模拟U盘可以帮助我们实现开发板与Windows(目前只在XP系统下做过验证)操作...
+    移植QT5.6到嵌入式开发板（史上最详细的QT移植教程）
+    千次阅读 2019-07-16 16:53:15
+    移植QT5.6到嵌入式开发板（史上最详细的QT移植教程） 目前网上的大多数 QT 移植教程还都停留在 qt4.8 版本，或者还有更老的 Qtopia ,但是目前 Qt 已经发展到最新的 5.7 版本了，我个人也已经使用了很长一段时间的 ...
+    荣品iMX6Q开发板i.MX6DL飞思卡尔四/双核安卓核心板主控
+    2018-04-19 14:19:12
+    King6Q/6DL开发板采用了采用Freescale Cortex-A9四核 i.MX6Q/双核 i.MX6DL 1GHz处理器，性能强悍，邮票孔焊接设计而成,核心板尺寸40*60 mm，开发板尺寸170*80*18mm,脚位数 192Pin。核心板标配1GB DDR3内存和8GB高...
+    4418开发板的使用方法
+    2015-08-04 09:50:30
+    UT4418开发板芯片为三星S5P4418芯片，该芯片采用4核Cortex_A9架构，28NM制程工艺，MAL1 400 3D图形加速器，1M byte L2缓存，支持DDR3内存最高频率800MHZ，S5P4418也是Exynos4412的升级版本。型号为友坚UT4418，搭配...
+    android 4418开发板 嵌入式
+    在PlatformIO中使用ESP-12K开发板Nodemcu-32-S2
+    千次阅读 2021-04-15 08:58:23
+    在PlatformIO中使用ESP-12K开发板在PlatformIO中使用ESP-12K开发板nodemcu-32-s2.jsonArduino框架开发ESP32-S2完善pins_arduino.hNodemcu-32-S2开发板原理图相关资料 在PlatformIO中使用ESP-12K开发板 Visual Studio...
+    单片机 开发平台 arduino vscode
+    【安信可A9G专题③】安信可A9G模块连接机智云APP教程;
+    千次阅读 2020-04-07 16:12:35
+    一个A9 或者 A9G模块（建议买A9G开发板，方便开发） 流量卡或者电话卡，如果不用短信或者电话功能，建议购买物联网卡，不需要实名更方便 USB转串口模块，杜邦线，天线 供电：可以用USB转串口工具供电，也可以使用锂...
+    AM437x开发板规格书（TL437x-EVM）开发例程.pdf
+    2019-06-13 10:42:29
+    TL437x-EasyEVM是一款基于创龙SOM-TL437x核心板研发的一款TI ARM Cortex-A9开发板，采用核心板+底板方式，尺寸为175mm*110mm，核心板采用B2B工业级连接器，稳定、可靠、便捷，可以帮助客户快速评估核心板性能。...
+
+...
+收藏数 555
+精华内容 222
+热门标签
+
+    粤嵌gec6818开发板
+    linux开发板
+    stm32开发板
+    ego1开发板
+    ego1开发板大作业
+    fpga开发板
+    51单片机开发板原理图
+    gec6818开发板项目
+
+关键字：a9开发板使用教程
+您愿意向您朋友推荐CSDN吗？
+
+    强烈不推荐
+    不推荐
+    一般般
+    推荐
+    强烈推荐
+
+联系我们（工作时间：8:30-22:00）
+400-660-0108
+kefu@csdn.net
+在线客服
+
+    关于我们
+    招贤纳士
+    商务合作
+    寻求报道
+
+    京ICP备19004658号
+    经营性网站备案信息
+    公安备案号11010502030143
+    京网文〔2020〕1039-165号
+    营业执照
+    ©1999-2022北京创新乐知网络技术有限公司
+    北京互联网违法和不良信息举报中心
+    家长监护
+    中国互联网举报中心
+    网络110报警服务
+    Chrome商店下载
+    版权与免责声明
+    版权申诉
+    出版物许可证

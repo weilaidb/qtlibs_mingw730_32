@@ -11,3 +11,12 @@ https://developer.arm.com/tools-and-software/open-source-software/developer-tool
 http://gcc.gnu.org/
 
 https://www.linaro.org/
+
+
+
+
+3. 安装arm的交叉编译工具链
+
+想必做嵌入式开发的朋友，对交叉编译工具链不陌生。如果你订制一个交叉编译工具链，建议你使用crosstool-ng开源软件来构建。但在这里建议直接安装arm的交叉编译工具链：
+
+sudo apt-get install gcc-arm-linux-gnueabi

@@ -22,6 +22,7 @@ BASH/printf string 2
 BASH/printf string 3
 BASH/printf说明
 BASH/scripts/include.sh
+BASH/scripts/include.sh public
 BASH/scripts/public.sh
 BASH/scripts/test.sh
 BASH/test -f
@@ -561,6 +562,7 @@ FPGA/new/timescale
 FPGA/介绍
 FPGA/介绍 理论
 FPGA/开发板/ALINX/AX7020
+FPGA/开发板/Qemu/使用Qemu模拟vexpress-a9搭建模拟开发板
 FPGA/术语 shuyu
 FPGA/示例/Led
 FPGA/视频及资料网址
@@ -930,11 +932,13 @@ LINUX/Printk/说明
 LINUX/Ubuntu/apt install
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
+LINUX/Ubuntu/五笔输入法
 LINUX/Ubuntu/国内源
 LINUX/Ubuntu/国内源 Ubuntu 20.04 Linux更换源教程
 LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备命令 order systemtap
 LINUX/Ubuntu/必备软件 necessary software
+LINUX/Ubuntu/必备软件 necessary software dpkg -i
 LINUX/Vim/vim实用技巧
 LINUX/help/HZ
 LINUX/help/cgroup cgconfig
