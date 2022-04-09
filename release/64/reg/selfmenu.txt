@@ -958,6 +958,8 @@ LINUX/man/chrt -p
 LINUX/man/systemtap
 LINUX/man/vmstat
 LINUX/qemu
+LINUX/qemu script/arm.sh
+LINUX/qemu script/build.sh
 LINUX/qemu www.qemu.org
 LINUX/qemu www.qemu.org 下载安装
 LINUX/qemu 仿真vexpressa9

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+dos2unix $0 > /dev/null 2>&1
+
+PUBSCRIPT=$HOME/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/scripts/public.sh.tip.txt
+
+source $PUBSCRIPT
+
+
+
+buildLxImage()
+{
+ROOTPATH=$1
+
+
+}
+
+echo "===begin"
+echo $PUBSCRIPT
+ls -l $PUBSCRIPT
