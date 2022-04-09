@@ -19,7 +19,13 @@ echo "ROOTPATH:$1"
 cd $ROOTPATH
 make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16  vexpress_defconfig
 make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16 menuconfig
+##zImage
 make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm O=./out_vexpress_3_16 zImage -j2
+##modules
+make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm  O=./out_vexpress_3_16 modules
+#modules install path
+make CROSS_COMPILE=arm-linux-gnueabi- ARCH=arm  O=./out_vexpress_3_16 modules_install INSTALL_MOD_PATH=../app
+
 }
 
 echo "==========================begin"
@@ -27,4 +33,4 @@ echo $PUBSCRIPT
 lsinfo $PUBSCRIPT
 
 
-buildLxImage 
+buildLxImage $ROOTLINUX
