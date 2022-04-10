@@ -1025,6 +1025,7 @@ LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
 LINUX/命令行/tee
 LINUX/命令行/terminal快捷键 shortcut
+LINUX/命令行/ubuntu terminal快捷键 shortcut
 LINUX/命令行/version
 LINUX/命令行/vmstat
 LINUX/命令行/vmstat help
