@@ -8,18 +8,17 @@ PUBSCRIPT=$HOME/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/scripts/pub
 
 source $PUBSCRIPT
 
-
+ROOT_BUSYBOX=$HOME/work/git/busybox2
 
 
 compile_busybox()
 {
 BUSYBOXPATH=$1
-
-
-}
-
-
+checkdirnoexistquit $BUSYBOXPATH
 make defconfig
 make menuconfig
 makeCROSS_COMPILE=arm-none-linux-gnueabihf- -j8
 make install
+
+
+}
