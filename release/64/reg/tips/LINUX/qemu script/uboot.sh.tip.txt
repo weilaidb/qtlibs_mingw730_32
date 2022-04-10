@@ -15,10 +15,17 @@ compile_busybox()
 {
 BUSYBOXPATH=$1
 checkdirnoexistquit $BUSYBOXPATH
+cd $BUSYBOXPATH
 make defconfig
-make menuconfig
-makeCROSS_COMPILE=arm-none-linux-gnueabihf- -j8
+#make menuconfig
+make CROSS_COMPILE=arm-linux-gnueabi- -j8
 make install
 
 
 }
+
+#########main proc
+compile_busybox $ROOT_BUSYBOX
+
+
+
