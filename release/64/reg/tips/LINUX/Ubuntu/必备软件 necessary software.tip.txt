@@ -9,6 +9,8 @@ net-tools
 ssh
 selinux-utils
 dos2unix
+vim
+
 
 systemtap
 linux-headers-generic gcc make
