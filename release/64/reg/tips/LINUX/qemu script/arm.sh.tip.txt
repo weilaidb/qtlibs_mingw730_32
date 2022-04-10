@@ -1,10 +1,12 @@
 #!/bin/sh
 
 # 查看Qemu版本
+echo "====>show version:"
 qemu-system-arm --version
 
 # 查看Qemu支持的开发板
 # 通过下面的命令操作可以看到当前版本的Qemu工具支持的开发板列表：
+
 qemu-system-arm -M help
 
 # 作者：cxduan
