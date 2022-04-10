@@ -1,3 +1,4 @@
+cdqemu;cd ~/work/git/qemu_eg
 psaux;ps aux 
 psauxgrep;ps aux | grep 
 kill9;kill -9

@@ -6,6 +6,7 @@ AutoTest/python/telnet read_until
 BASH/alias/bashrc 加载配置
 BASH/alias/generate生成
 BASH/alias/public use
+BASH/alias/public use @ubuntu20.04
 BASH/alias/public use @web
 BASH/cdpath
 BASH/chmod
