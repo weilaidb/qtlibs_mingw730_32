@@ -15,6 +15,22 @@ usage(){
     exit 1
 }
 
+#显示提示信息
+showtips()
+{
+TIPS=$1
+        if [ -z $TIPS];then
+                echo "tips empty"
+                exit 1
+        fi
+echo
+echo "===================>>>>>$TIPS"
+echo "===================>>>>>$TIPS"
+echo "===================>>>>>$TIPS"
+}
+
+
+
 lsinfo()
 {
 LSPATH=$1
