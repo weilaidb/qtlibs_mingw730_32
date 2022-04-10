@@ -1,3 +1,4 @@
+cdbusybox;~/work/git/busybox2
 cdqemu;cd ~/work/git/qemu_eg
 psaux;ps aux 
 psauxgrep;ps aux | grep 

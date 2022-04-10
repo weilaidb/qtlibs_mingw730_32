@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -e
+
+dos2unix $0 > /dev/null 2>&1
+
+PUBSCRIPT=$HOME/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/scripts/public.sh.tip.txt
+
+source $PUBSCRIPT
+
+
+
+
+compile_busybox()
+{
+BUSYBOXPATH=$1
+
+
+}
+
+
+make defconfig
+make menuconfig
+makeCROSS_COMPILE=arm-none-linux-gnueabihf- -j8
+make install
