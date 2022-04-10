@@ -4,6 +4,7 @@ Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
 BASH/alias/bashrc 加载配置
+BASH/alias/bashrc 加载配置 ubuntu20.04
 BASH/alias/generate生成
 BASH/alias/public use
 BASH/alias/public use @ubuntu20.04
