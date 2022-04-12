@@ -1,3 +1,6 @@
+cdbusybox;~/work/git/busybox2
+cdqemu;cd ~/work/git/qemu_eg
+cdqemuarm;cd ~/work/git/qemu_eg/arm
 psaux;ps aux 
 psauxgrep;ps aux | grep 
 kill9;kill -9

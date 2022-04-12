@@ -4,8 +4,10 @@ Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
 BASH/alias/bashrc 加载配置
+BASH/alias/bashrc 加载配置 ubuntu20.04
 BASH/alias/generate生成
 BASH/alias/public use
+BASH/alias/public use @ubuntu20.04
 BASH/alias/public use @web
 BASH/cdpath
 BASH/chmod
@@ -960,6 +962,7 @@ LINUX/man/vmstat
 LINUX/qemu
 LINUX/qemu script/arm.sh
 LINUX/qemu script/build.sh
+LINUX/qemu script/uboot.sh
 LINUX/qemu www.qemu.org
 LINUX/qemu www.qemu.org 下载安装
 LINUX/qemu 仿真vexpressa9
@@ -1025,6 +1028,7 @@ LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
 LINUX/命令行/tee
 LINUX/命令行/terminal快捷键 shortcut
+LINUX/命令行/ubuntu terminal快捷键 shortcut
 LINUX/命令行/version
 LINUX/命令行/vmstat
 LINUX/命令行/vmstat help
@@ -1356,6 +1360,7 @@ Python/语法/pyQt5/创建菜单
 Python/语法/tryException
 Python/语法/循环/string
 Python/语法/排序去重复
+QT/API/simplified
 QT/CHECK/UNUSED
 QT/CMD/execute bat
 QT/CMD/execute linux cmd
