@@ -30,7 +30,7 @@ echo "===================>>>>>$TIPS"
 }
 
 
-
+##文件夹/文件内容大小
 lsinfo()
 {
 LSPATH=$1
@@ -46,6 +46,7 @@ echo
 echo
 }
 
+#检测文件夹是否存在或为空
 checkdirnoexistquit()
 {
 DIRPATH=$1
@@ -55,6 +56,7 @@ DIRPATH=$1
         fi
 }
 
+#检测文件是否存在或为空
 checkfilenoexistquit()
 {
 FILEPATH=$1
@@ -63,6 +65,7 @@ FILEPATH=$1
                 exit 1
         fi
 }
+
 ##查找所有
 findlistall()
 {
@@ -71,6 +74,7 @@ DIRPATH=$1
 checkdirnoexistquit $DIRPATH
 cd $DIRPATH && find > findlist.all
 }
+
 #查找并忽略一些内容
 findlistignore()
 {
@@ -80,6 +84,7 @@ IGNOREPATTERN="$2"
 checkdirnoexistquit $DIRPATH
 cd $DIRPATH && find | grep -v $IGNOREPATTERN > findlist.ignore
 }
+
 #查找并寻找所要的
 findlistuse()
 {
