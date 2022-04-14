@@ -1,1 +1,1 @@
-$FORW(\1)$NL$NL$FORFX(\1)
+$FORW<<<\1>>>$NL$NL$FORFX<<<\1>>>
