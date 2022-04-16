@@ -1,0 +1,11 @@
+function delItem()
+    {
+        var flag = confirm("是否确定删除？")
+        if(flag)
+        {
+            document.form1.action="delitem.jsp";
+            document.form1.target = "_blank";
+            document.form1.submit();
+        }
+
+    }
