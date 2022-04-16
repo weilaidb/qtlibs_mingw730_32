@@ -358,10 +358,12 @@ C/STRUCT/pragma pack 1字节对齐
 C/STRUCT/pragma pack 字节对齐 push pop
 C/STRUCT/生成结构体
 C/STRUCT/生成结构体 printf
+C/eg
 C/enum/enum
 C/enum/enum single
 C/enum/enum single withname
 C/enum/enum single withname typedef
+C/info/const *、* const 、const * const
 C/interface/checkCpu
 C/new/DEFINE/ifndef
 C/new/__attribute__/TEXT
