@@ -3,3 +3,4 @@
 
 9090;abc.jar
 9090;~/DD.jar
+8888;~/dd-0.0.1-SNAPSHOT.jar
