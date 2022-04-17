@@ -675,6 +675,7 @@ JAVA/JSP/head meta http-equiv
 JAVA/JSP/head title
 JAVA/JSP/href
 JAVA/JSP/href 2
+JAVA/JSP/href sprintboot
 JAVA/JSP/ifnull emptystring
 JAVA/JSP/import
 JAVA/JSP/import jsp
