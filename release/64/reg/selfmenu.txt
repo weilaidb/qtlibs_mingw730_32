@@ -744,6 +744,7 @@ JAVA/SpringBoot/new/Controller/fileupload
 JAVA/SpringBoot/new/Controller/fileupload 映射名的相对路径
 JAVA/SpringBoot/new/Controller/helloworld
 JAVA/SpringBoot/new/Controller/userlist
+JAVA/SpringBoot/new/Controller/添加
 JAVA/SpringBoot/new/GetMapping
 JAVA/SpringBoot/new/Servlet
 JAVA/SpringBoot/new/SpringBootApplication
