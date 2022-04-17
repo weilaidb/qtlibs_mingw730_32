@@ -747,6 +747,7 @@ JAVA/SpringBoot/new/Controller/userlist
 JAVA/SpringBoot/new/GetMapping
 JAVA/SpringBoot/new/Servlet
 JAVA/SpringBoot/new/SpringBootApplication
+JAVA/SpringBoot/new/SpringBootApplication java
 JAVA/SpringBoot/new/Thymealeaf/header
 JAVA/SpringBoot/new/Thymealeaf/header文件首行
 JAVA/SpringBoot/new/Thymealeaf/mapper/UserMapper.xml
