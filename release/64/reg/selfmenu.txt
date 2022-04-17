@@ -31,6 +31,7 @@ BASH/scripts/test.sh
 BASH/scripts/updategit.atwork.sh
 BASH/test -f
 BASH/trap
+BASH/trap exit
 BASH/usage
 BASH/usage para1
 BASH/usage para2
@@ -140,6 +141,7 @@ BAT/网络network/tcpdump/常用抓包命令
 BAT/网络network/vlan
 BAT/网络network/vlan与Trunk
 BAT/网络network/三层交换机 L3 Switch
+BAT/网络network/二层交换机 L2Switch
 BAT/网络network/什么是LACP
 BAT/网络network/什么是vlan
 BAT/网络network/演示软件 software
@@ -1531,6 +1533,7 @@ TEST/RegExptest3
 TEST/RegExptest4
 TEST/RegExptest5
 Tools/Astyle格式化代码
+Tools/CMD快捷键
 Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
 Tools/Emacs快捷键
