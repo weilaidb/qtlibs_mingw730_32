@@ -330,6 +330,7 @@ C/NETWORK/set/ioctl
 C/NETWORK/set/ioctl fcntl
 C/NETWORK/set/setsockopt
 C/PRINTF/DEFINE
+C/PRINTF/PRINTX PRINTY args
 C/PRINTF/SWITCH
 C/PRINTF/SWITCH args
 C/PRINTF/address
