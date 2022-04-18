@@ -590,7 +590,10 @@ FPGA/语法code new/signal list
 FPGA/语法code new/subtype
 FPGA/语法code new/subtype2
 FPGA/语法code new/variable
+GCC/-rdynamic
+GCC/Wall
 GCC/fpermissive
+GCC/gcc编译选项
 JAVA/Base/forloop
 JAVA/Cloud/ECS
 JAVA/JAVA_HOME JRE_HOME
@@ -1004,6 +1007,7 @@ LINUX/命令行/mpstat help
 LINUX/命令行/mpstat 查看CPU 实时系统监控工具
 LINUX/命令行/mpstat 查看CPU 实时系统监控工具 2
 LINUX/命令行/nano
+LINUX/命令行/nm
 LINUX/命令行/nohup
 LINUX/命令行/realpath
 LINUX/命令行/save write 提升权限 w
