@@ -139,6 +139,8 @@ BAT/网络network/tcpdump/dhcp
 BAT/网络network/tcpdump/wireshark源地址
 BAT/网络network/tcpdump/常用抓包命令
 BAT/网络network/vlan
+BAT/网络network/vlan/Access接口
+BAT/网络network/vlan/Trunk接口
 BAT/网络network/vlan与Trunk
 BAT/网络network/三层交换机 L3 Switch
 BAT/网络network/二层交换机 L2Switch
