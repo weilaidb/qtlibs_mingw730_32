@@ -42,6 +42,9 @@ typedef unsigned long long WORD64;
     .dwBomId = 0x1983,\
     .dwPcbId = 0x1983,
 
+#define GIVEFPGABASE(tFBase) \
+    .pFpgaBase = tFBase,\
+    .wFpgaBaseSize = ARRAYSIZE(tFBase),
 
 
 /**
@@ -147,7 +150,6 @@ private:
 
 
 
-
 #include "cboardsets.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -168,7 +170,6 @@ private:
 #define PRINTX(fmt,args...) printf("F:%-30s,L:%-4d" fmt, __FUNCTION__, __LINE__, ##args);
 #endif
 
-
 T_FpgaBase tFpgaBase[] =
 {
     {FPGAINIT_OSC_LED, MAINFPGA, 0x1232, 1232},
@@ -181,8 +182,7 @@ T_BoardBase tBoardBase[] =
     {
         .name = "M2NCPQ",
         M2NCPQ_PCB2
-        .pFpgaBase = tFpgaBase,
-        .wFpgaBaseSize = ARRAYSIZE(tFpgaBase),
+        GIVEFPGABASE(tFpgaBase)
     },
 };
 
@@ -192,8 +192,6 @@ T_BoardBase tBoardBase[] =
   * ======>>>>>此处板类型变更时可能变更(end)
   * ======>>>>>此处板类型变更时可能变更(end)
   */
-
-
 
 WORD32 CBoardSets::dwBoardID = 0;
 WORD32 CBoardSets::dwBomId   = 0;
@@ -291,6 +289,8 @@ WORD32 CBoardSets::showBoard()
     }
     return 0;
 }
+
+
 
 
 
