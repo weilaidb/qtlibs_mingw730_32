@@ -31,7 +31,6 @@ typedef unsigned long long WORD64;
 
 
 
-
 #ifndef CBOARDSETS_H
 #define CBOARDSETS_H
 
@@ -61,7 +60,7 @@ enum FPGAINIT_EVENT
     FPGAINIT_ALL,
 };
 
-typedef struct T_FPGABASE
+typedef struct T_FpgaBase
 {
     /**
      * what to do
@@ -79,7 +78,7 @@ typedef struct T_FPGABASE
      * set the fpga value
      */
     WORD16 wFPGAVal;
-}T_FPGABASE, *P_FPGABASE;
+}T_FpgaBase, *P_FpgaBase;
 
 /**
  * Board Base definition. This defines the pads a board base contains, and all the
@@ -106,7 +105,7 @@ typedef struct T_BoardBase {
     /**
      * select fpgabase.Must be no-NULL.
      */
-    T_FPGABASE *pFpgaBase;
+    T_FpgaBase *pFpgaBase;
     /**
      * the fpgabase array above.
      */
@@ -123,7 +122,7 @@ public:
 
     static WORD32 initBoard();
     static WORD32 initFpga(WORD16 wEvent);
-    static WORD32 initFpgaItem(P_FPGABASE pt);
+    static WORD32 initFpgaItem(P_FpgaBase pt);
 
 
     static WORD32 showBoard();
@@ -141,14 +140,22 @@ private:
 
 
 
+
+
+
+
+
+
+
+
 #include "cboardsets.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 
-#ifndef PRINTYONLY
-#define PRINTYONLY(fmt,args...) printf("F:%-30s,L:%-4d" fmt, __FUNCTION__, __LINE__, ##args);
+#ifndef PRINTY
+#define PRINTY(fmt,args...) printf("F:%-30s,L:%-4d" fmt, __FUNCTION__, __LINE__, ##args);
 #endif
 
 
@@ -162,7 +169,7 @@ private:
 #endif
 
 
-T_FPGABASE tFpgaBase[] =
+T_FpgaBase tFpgaBase[] =
 {
     {FPGAINIT_OSC_LED, MAINFPGA, 0x1232, 1232},
     {FPGAINIT_OSC_LED2, CTRLFPGA, 0x2343, 432},
@@ -220,7 +227,7 @@ WORD32 CBoardSets::initBoard()
 
 WORD32 CBoardSets::initFpga(WORD16 wEvent)
 {
-    P_FPGABASE pt = NULL;
+    P_FpgaBase pt = NULL;
     WORD32 dwLp =  0;
 
     if(NULL == m_pBoardBase)
@@ -254,7 +261,7 @@ WORD32 CBoardSets::initFpga(WORD16 wEvent)
     return 0;
 }
 
-WORD32 CBoardSets::initFpgaItem(P_FPGABASE pt)
+WORD32 CBoardSets::initFpgaItem(P_FpgaBase pt)
 {
     if(pt->wFPGAIndex == MAINFPGA)
     {
@@ -274,16 +281,18 @@ WORD32 CBoardSets::initFpgaItem(P_FPGABASE pt)
 
 WORD32 CBoardSets::showBoard()
 {
-    PRINTYONLY("dwBoardID:%#x\n", dwBoardID);
-    PRINTYONLY("dwBoardID:%#x\n", dwBomId);
-    PRINTYONLY("dwBoardID:%#x\n", dwPCBId);
+    PRINTY("dwBoardID:%#x\n", dwBoardID);
+    PRINTY("dwBoardID:%#x\n", dwBomId);
+    PRINTY("dwBoardID:%#x\n", dwPCBId);
     if(m_pBoardBase)
     {
-        PRINTYONLY("pFpgaBase root:%p\n", m_pBoardBase->pFpgaBase);
-        PRINTYONLY("pFpgaBase size:%u\n", m_pBoardBase->wFpgaBaseSize);
+        PRINTY("pFpgaBase root:%p\n", m_pBoardBase->pFpgaBase);
+        PRINTY("pFpgaBase size:%u\n", m_pBoardBase->wFpgaBaseSize);
     }
     return 0;
 }
+
+
 
 
 
