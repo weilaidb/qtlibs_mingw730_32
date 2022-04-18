@@ -325,6 +325,7 @@ C/NETWORK/set/ioctl fcntl
 C/NETWORK/set/setsockopt
 C/PRINTF/DEFINE
 C/PRINTF/SWITCH
+C/PRINTF/SWITCH args
 C/PRINTF/address
 C/PRINTF/color 1
 C/PRINTF/color 2 windows
@@ -1716,6 +1717,8 @@ path路径/常用文件夹
 设计/软件框架/eg
 设计/软件框架/产品backlog
 设计/软件框架/极限编程 Extreme programming，缩写为XP
+设计/软件框架/构建板类型（单板、逻辑初始化等）
+设计/软件框架/构建板类型（单板、逻辑初始化等） 示例代码
 设计/软件设计/ATDD
 设计/软件设计/TDD
 设计/软件设计/TDD new/eg

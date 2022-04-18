@@ -1,0 +1,309 @@
+#ifndef PUBDEF_H
+#define PUBDEF_H
+
+#ifndef ARRAYSIZE
+#define ARRAYSIZE(A) ((unsigned int)(sizeof(A)/sizeof((A)[0])))
+#endif
+
+
+typedef char CHAR;
+typedef unsigned char BYTE;
+typedef char INT8;
+typedef short INT16;
+typedef int INT32;
+typedef long long INT64;
+typedef unsigned char UINT8;
+typedef unsigned short UINT16;
+typedef unsigned int UINT32;
+typedef unsigned long long UINT64;
+typedef unsigned short WORD;
+typedef unsigned short WORD16;
+typedef unsigned int   WORD32;
+typedef unsigned long long WORD64;
+
+
+#endif // PUBDEF_H
+
+
+
+
+
+
+
+
+
+#ifndef CBOARDSETS_H
+#define CBOARDSETS_H
+
+#include "pubdef.h"
+
+
+#define M2NCPQ_PCB2 \
+    .dwBoardId = 0x1983,\
+    .dwBomId = 0x1983,\
+    .dwPcbId = 0x1983,
+
+
+
+/**
+ * 区分大逻辑、小逻辑
+ */
+enum FPGAINDEX{
+    MAINFPGA,
+    CTRLFPGA,
+};
+
+enum FPGAINIT_EVENT
+{
+    FPGAINIT_OSC_LED,
+    FPGAINIT_OSC_LED2,
+
+    FPGAINIT_ALL,
+};
+
+typedef struct T_FPGABASE
+{
+    /**
+     * what to do
+     */
+    WORD16 wEvent;
+    /**
+     * use which fpga, see FPGAINDEX
+     */
+    WORD16 wFPGAIndex;
+    /**
+     * set the fpga address
+     */
+    WORD16 wFPGAAddr;
+    /**
+     * set the fpga value
+     */
+    WORD16 wFPGAVal;
+}T_FPGABASE, *P_FPGABASE;
+
+/**
+ * Board Base definition. This defines the pads a board base contains, and all the
+ * callback functions used to specify single board.
+ */
+typedef struct T_BoardBase {
+    /**
+     * Board name. Must be non-NULL and unique among boards.
+     */
+    const char *name;
+    /**
+     * Board Id.
+     */
+    WORD32 dwBoardId;
+    /**
+     * BomId of board.
+     */
+    WORD32 dwBomId;
+    /**
+     * PcbId of board.
+     */
+    WORD32 dwPcbId;
+
+    /**
+     * select fpgabase.Must be no-NULL.
+     */
+    T_FPGABASE *pFpgaBase;
+    /**
+     * the fpgabase array above.
+     */
+    WORD16 wFpgaBaseSize;
+
+} T_BoardBase, *P_BoardBase;
+
+
+
+class CBoardSets
+{
+public:
+    CBoardSets();
+
+    static WORD32 initBoard();
+    static WORD32 initFpga(WORD16 wEvent);
+    static WORD32 initFpgaItem(P_FPGABASE pt);
+
+
+    static WORD32 showBoard();
+
+private:
+    static WORD32 dwBoardID;
+    static WORD32 dwBomId;
+    static WORD32 dwPCBId;
+    static P_BoardBase m_pBoardBase;
+};
+
+#endif // CBOARDSETS_H
+
+
+
+
+
+#include "cboardsets.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+#ifndef PRINTYONLY
+#define PRINTYONLY(fmt,args...) printf("F:%-30s,L:%-4d" fmt, __FUNCTION__, __LINE__, ##args);
+#endif
+
+
+/**
+  * ======>>>>>此处板类型变更时可能变更(begin)
+  * ======>>>>>此处板类型变更时可能变更(begin)
+  * ======>>>>>此处板类型变更时可能变更(begin)
+  */
+#ifndef PRINTX
+#define PRINTX(fmt,args...) printf("F:%-30s,L:%-4d" fmt, __FUNCTION__, __LINE__, ##args);
+#endif
+
+
+T_FPGABASE tFpgaBase[] =
+{
+    {FPGAINIT_OSC_LED, MAINFPGA, 0x1232, 1232},
+    {FPGAINIT_OSC_LED2, CTRLFPGA, 0x2343, 432},
+
+};
+
+T_BoardBase tBoardBase[] =
+{
+    {
+        .name = "M2NCPQ",
+        M2NCPQ_PCB2
+        .pFpgaBase = tFpgaBase,
+        .wFpgaBaseSize = ARRAYSIZE(tFpgaBase),
+    },
+};
+
+
+/**
+  * ======>>>>>此处板类型变更时可能变更(end)
+  * ======>>>>>此处板类型变更时可能变更(end)
+  * ======>>>>>此处板类型变更时可能变更(end)
+  */
+
+
+
+WORD32 CBoardSets::dwBoardID = 0;
+WORD32 CBoardSets::dwBomId   = 0;
+WORD32 CBoardSets::dwPCBId   = 0;
+P_BoardBase CBoardSets::m_pBoardBase = NULL;
+
+CBoardSets::CBoardSets()
+{
+
+}
+
+WORD32 CBoardSets::initBoard()
+{
+    dwBoardID = 0;
+    dwBomId   = 0;
+    dwPCBId   = 0;
+
+    P_BoardBase pt = NULL;
+    WORD32 dwLp =  0;
+    for(dwLp = 0;dwLp < ARRAYSIZE(tBoardBase);dwLp++)
+    {
+        pt = &tBoardBase[dwLp];
+        //check which board
+        break;
+    }
+
+    m_pBoardBase = pt;
+
+    return 0;
+}
+
+WORD32 CBoardSets::initFpga(WORD16 wEvent)
+{
+    P_FPGABASE pt = NULL;
+    WORD32 dwLp =  0;
+
+    if(NULL == m_pBoardBase)
+    {
+        PRINTX("no support boards\n");
+        return -1;
+    }
+
+    for(dwLp = 0;dwLp < m_pBoardBase->wFpgaBaseSize;dwLp++)
+    {
+        if(NULL == m_pBoardBase->pFpgaBase)
+        {
+            break;
+        }
+        pt = &m_pBoardBase->pFpgaBase[dwLp];
+        //全部初始化时，只判断入参
+        if(FPGAINIT_ALL == wEvent)
+        {
+            initFpgaItem(pt);
+            continue;
+        }
+
+        if(pt->wEvent != wEvent)
+        {
+            continue;
+        }
+        initFpgaItem(pt);
+        break;
+    }
+
+    return 0;
+}
+
+WORD32 CBoardSets::initFpgaItem(P_FPGABASE pt)
+{
+    if(pt->wFPGAIndex == MAINFPGA)
+    {
+        PRINTX("init main fpga av:%#x:%#x\n", pt->wFPGAAddr, pt->wFPGAVal);
+    }
+    else if(pt->wFPGAIndex == CTRLFPGA)
+    {
+        PRINTX("init ctrl fpga av:%#x:%#x\n", pt->wFPGAAddr, pt->wFPGAVal);
+    }
+    else
+    {
+        PRINTX("no supoort fpga index:%u\n", pt->wFPGAIndex);
+        return 0;
+    }
+    return 0;
+}
+
+WORD32 CBoardSets::showBoard()
+{
+    PRINTYONLY("dwBoardID:%#x\n", dwBoardID);
+    PRINTYONLY("dwBoardID:%#x\n", dwBomId);
+    PRINTYONLY("dwBoardID:%#x\n", dwPCBId);
+    if(m_pBoardBase)
+    {
+        PRINTYONLY("pFpgaBase root:%p\n", m_pBoardBase->pFpgaBase);
+        PRINTYONLY("pFpgaBase size:%u\n", m_pBoardBase->wFpgaBaseSize);
+    }
+    return 0;
+}
+
+
+
+
+
+
+#include <iostream>
+#include "cboardsets.h"
+
+using namespace std;
+
+int main()
+{
+    cout << "Hello World!" << endl;
+    CBoardSets::initBoard();
+    CBoardSets::initFpga(FPGAINIT_OSC_LED);
+    CBoardSets::initFpga(FPGAINIT_OSC_LED2);
+
+    CBoardSets::initFpga(FPGAINIT_ALL);
+
+    CBoardSets::showBoard();
+    return 0;
+}
