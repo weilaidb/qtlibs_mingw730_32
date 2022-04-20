@@ -127,6 +127,7 @@ BAT/网络network/route change
 BAT/网络network/route delete
 BAT/网络network/route print
 BAT/网络network/router 路由器
+BAT/网络network/router 路由器 跃点数
 BAT/网络network/router 路由器优先级
 BAT/网络network/router 路由器度量值
 BAT/网络network/software cisco order
