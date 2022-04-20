@@ -127,6 +127,8 @@ BAT/网络network/route change
 BAT/网络network/route delete
 BAT/网络network/route print
 BAT/网络network/router 路由器
+BAT/网络network/router 路由器优先级
+BAT/网络network/router 路由器度量值
 BAT/网络network/software cisco order
 BAT/网络network/stp
 BAT/网络network/tcpdump/arp
@@ -157,6 +159,7 @@ BAT/网络network/知识点/IP地址 ipaddress
 BAT/网络network/知识点/ISP
 BAT/网络network/知识点/LCP
 BAT/网络network/知识点/LLDP
+BAT/网络network/知识点/LSA Link-State Advertisement 链路状态通告
 BAT/网络network/知识点/Linux中iproute实现VRF
 BAT/网络network/知识点/NCP
 BAT/网络network/知识点/OSI七层功能
