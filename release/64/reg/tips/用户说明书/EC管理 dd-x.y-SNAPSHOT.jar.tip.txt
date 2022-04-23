@@ -1,0 +1,27 @@
+-EC管理-(jar)
+=====用户说明书
+1.数据库位置 
+D:\mydb\bugsets\sqlite
+
+2.需要手动创建数据库表
+CREATE TABLE ec(
+[ID]   INTEGER PRIMARY KEY,
+[TITLE]    varchar(255) NOT NULL,
+[DESC]     varchar(500) NOT NULL,
+[AUTHOR]   varchar(40) NOT NULL,
+[TYPE]     varchar(40) NOT NULL,
+[STATUS]   varchar(40) NOT NULL,
+[CREATEDTIME]  TimeStamp NOT NULL DEFAULT (datetime('now','localtime')) ,
+[UPDATETIME]   TimeStamp NOT NULL DEFAULT (datetime('now','localtime')) ,
+[UPDATECNT]    integer DEFAULT 0,
+[DELFLAG]  integer DEFAULT 0,
+[QUERYCNT]     integer DEFAULT 0,
+[REMARK1]  varchar(100) ,
+[REMARK2]  varchar(100) ,
+[REMARK3]  varchar(100) ,
+[REMARK4]  varchar(100) ,
+[REVINT1]  integer DEFAULT 0,
+[REVINT2]  integer DEFAULT 0,
+[REVINT3]  integer DEFAULT 0,
+[REVINT4]  integer DEFAULT 0
+);
