@@ -520,9 +520,11 @@ DBMS/MySql/table select
 DBMS/MySql/update
 DBMS/MySql/update eg
 DBMS/Sqlite/create table
+DBMS/Sqlite/create table[ec]
 DBMS/Sqlite/delete table
 DBMS/Sqlite/drop table
 DBMS/Sqlite/insert table
+DBMS/Sqlite/insert table[ec]
 DBMS/Sqlite/select table
 DBMS/Sqlite/sqlite 加载驱动
 DBMS/Sqlite/sqlite 常见问题
