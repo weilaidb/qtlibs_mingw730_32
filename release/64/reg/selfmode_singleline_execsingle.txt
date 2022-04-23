@@ -6,3 +6,4 @@ C/enum/enum single withname typedef
 C/API/usage void
 C/Condition/Switch case break
 DBMS/Sqlite/create table (express)
+DBMS/Sqlite/create table (goods)

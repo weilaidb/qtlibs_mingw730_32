@@ -520,6 +520,7 @@ DBMS/MySql/update
 DBMS/MySql/update eg
 DBMS/Sqlite/create table
 DBMS/Sqlite/create table (express)
+DBMS/Sqlite/create table (goods)
 DBMS/Sqlite/create table[ec]
 DBMS/Sqlite/delete table
 DBMS/Sqlite/drop table
