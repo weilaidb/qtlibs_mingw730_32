@@ -756,6 +756,8 @@ JAVA/SpringBoot/SpringBoot应用启动步骤简要示意图
 JAVA/SpringBoot/Springboot如何打包部署项目
 JAVA/SpringBoot/Thymealeaf/help/favicon.ico error解决
 JAVA/SpringBoot/application.properties 修改端口
+JAVA/SpringBoot/application.properties 转yml
+JAVA/SpringBoot/application.yml DD
 JAVA/SpringBoot/application.yml 修改端口
 JAVA/SpringBoot/application.yml 相关说明
 JAVA/SpringBoot/freemarker 问题说明
