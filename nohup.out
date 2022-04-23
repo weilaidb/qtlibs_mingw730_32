@@ -1,0 +1,120 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.3.7.RELEASE)
+
+2022-04-23 23:59:10.874  INFO 3838107 --- [           main] com.weilaidb.dd.DdApplication            : Starting DdApplication on weilaidb with PID 3838107 (/root/dd-0.1-SNAPSHOT.jar started by root in /root/work/git/qtlibs_mingw730_32)
+2022-04-23 23:59:10.879  INFO 3838107 --- [           main] com.weilaidb.dd.DdApplication            : No active profile set, falling back to default profiles: default
+2022-04-23 23:59:11.885  INFO 3838107 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$ecf1c226] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-23 23:59:11.981  INFO 3838107 --- [           main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2022-04-23 23:59:12.350  INFO 3838107 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2022-04-23 23:59:12.365  INFO 3838107 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-04-23 23:59:12.365  INFO 3838107 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2022-04-23 23:59:12.437  INFO 3838107 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-23 23:59:12.437  INFO 3838107 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1494 ms
+2022-04-23 23:59:12.555  INFO 3838107 --- [           main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-04-23 23:59:12.892 ERROR 3838107 --- [           main] com.alibaba.druid.pool.DruidDataSource   : testWhileIdle is true, validationQuery not set
+2022-04-23 23:59:12.895  INFO 3838107 --- [           main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-04-23 23:59:13.235  INFO 3838107 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-04-23 23:59:13.314  INFO 3838107 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2022-04-23 23:59:13.501  WARN 3838107 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8888 is already in use
+2022-04-23 23:59:13.502  INFO 3838107 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2022-04-23 23:59:13.503  INFO 3838107 --- [           main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-04-23 23:59:13.506  INFO 3838107 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-04-23 23:59:13.521  INFO 3838107 --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-04-23 23:59:13.523 ERROR 3838107 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8888 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8888 or configure this application to listen on another port.
+
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.3.7.RELEASE)
+
+2022-04-23 23:59:57.011  INFO 3838149 --- [           main] com.weilaidb.dd.DdApplication            : Starting DdApplication on weilaidb with PID 3838149 (/root/dd-0.1-SNAPSHOT.jar started by root in /root/work/git/qtlibs_mingw730_32)
+2022-04-23 23:59:57.013  INFO 3838149 --- [           main] com.weilaidb.dd.DdApplication            : No active profile set, falling back to default profiles: default
+2022-04-23 23:59:58.053  INFO 3838149 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$a4a17391] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-23 23:59:58.097  INFO 3838149 --- [           main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2022-04-23 23:59:58.400  INFO 3838149 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2022-04-23 23:59:58.412  INFO 3838149 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-04-23 23:59:58.412  INFO 3838149 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2022-04-23 23:59:58.470  INFO 3838149 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-23 23:59:58.470  INFO 3838149 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1392 ms
+2022-04-23 23:59:58.592  INFO 3838149 --- [           main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-04-23 23:59:58.875 ERROR 3838149 --- [           main] com.alibaba.druid.pool.DruidDataSource   : testWhileIdle is true, validationQuery not set
+2022-04-23 23:59:58.889  INFO 3838149 --- [           main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-04-23 23:59:59.205  INFO 3838149 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-04-23 23:59:59.285  INFO 3838149 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2022-04-23 23:59:59.486  INFO 3838149 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path ''
+2022-04-23 23:59:59.495  INFO 3838149 --- [           main] com.weilaidb.dd.DdApplication            : Started DdApplication in 3.034 seconds (JVM running for 3.486)
+2022-04-23 23:59:59.723  INFO 3838149 --- [nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-23 23:59:59.723  INFO 3838149 --- [nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-04-23 23:59:59.728  INFO 3838149 --- [nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2022-04-24 00:00:00.677 ERROR 3838149 --- [eate-1169474473] com.alibaba.druid.pool.DruidDataSource   : create connection SQLException, url: jdbc:sqlite:D:/mydb/bugsets/sqlite/ec.db, errorCode 0, state null
+
+java.sql.SQLException: path to 'D:/mydb/bugsets/sqlite/ec.db': '/root/work/git/qtlibs_mingw730_32/D:' does not exist
+	at org.sqlite.SQLiteConnection.open(SQLiteConnection.java:215) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.SQLiteConnection.<init>(SQLiteConnection.java:61) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.jdbc3.JDBC3Connection.<init>(JDBC3Connection.java:28) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.jdbc4.JDBC4Connection.<init>(JDBC4Connection.java:21) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.JDBC.createConnection(JDBC.java:115) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.JDBC.connect(JDBC.java:90) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:149) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:218) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:143) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1515) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1578) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2466) ~[druid-1.1.9.jar!/:1.1.9]
+
+2022-04-24 00:00:00.678 ERROR 3838149 --- [eate-1169474473] com.alibaba.druid.pool.DruidDataSource   : create connection SQLException, url: jdbc:sqlite:D:/mydb/bugsets/sqlite/ec.db, errorCode 0, state null
+
+java.sql.SQLException: path to 'D:/mydb/bugsets/sqlite/ec.db': '/root/work/git/qtlibs_mingw730_32/D:' does not exist
+	at org.sqlite.SQLiteConnection.open(SQLiteConnection.java:215) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.SQLiteConnection.<init>(SQLiteConnection.java:61) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.jdbc3.JDBC3Connection.<init>(JDBC3Connection.java:28) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.jdbc4.JDBC4Connection.<init>(JDBC4Connection.java:21) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.JDBC.createConnection(JDBC.java:115) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.JDBC.connect(JDBC.java:90) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:149) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:218) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:143) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1515) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1578) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2466) ~[druid-1.1.9.jar!/:1.1.9]
+
+2022-04-24 00:00:01.178 ERROR 3838149 --- [eate-1169474473] com.alibaba.druid.pool.DruidDataSource   : create connection SQLException, url: jdbc:sqlite:D:/mydb/bugsets/sqlite/ec.db, errorCode 0, state null
+
+java.sql.SQLException: path to 'D:/mydb/bugsets/sqlite/ec.db': '/root/work/git/qtlibs_mingw730_32/D:' does not exist
+	at org.sqlite.SQLiteConnection.open(SQLiteConnection.java:215) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.SQLiteConnection.<init>(SQLiteConnection.java:61) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.jdbc3.JDBC3Connection.<init>(JDBC3Connection.java:28) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.jdbc4.JDBC4Connection.<init>(JDBC4Connection.java:21) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.JDBC.createConnection(JDBC.java:115) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at org.sqlite.JDBC.connect(JDBC.java:90) ~[sqlite-jdbc-3.31.1.jar!/:na]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:149) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:218) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:143) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1515) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1578) ~[druid-1.1.9.jar!/:1.1.9]
+	at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:2466) ~[druid-1.1.9.jar!/:1.1.9]
+
