@@ -25,3 +25,16 @@ CREATE TABLE ec(
 [REVINT3]  integer DEFAULT 0,
 [REVINT4]  integer DEFAULT 0
 );
+
+3.查询接口
+SELECT
+id,
+title,
+desc,
+author,
+type,
+status,
+remark1
+FROM
+ec 
+where title like '%网页%';
