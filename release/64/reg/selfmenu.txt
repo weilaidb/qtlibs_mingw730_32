@@ -441,6 +441,8 @@ CXX/String/substr
 CXX/String/toupper
 CXX/cin.getline
 CXX/class/多态 继承
+CXX/class/多态 继承 virtual
+CXX/class/多态 继承 virtual Board
 CXX/define/pub
 CXX/eg
 CXX/externc __cplusplus

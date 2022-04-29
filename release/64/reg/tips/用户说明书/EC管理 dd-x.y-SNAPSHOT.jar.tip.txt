@@ -38,3 +38,10 @@ remark1
 FROM
 ec 
 where title like '%网页%';
+
+
+
+4.linux用户下，在jar运行的路径下创建目录 
+ 1004  mkdir D:/mydb/bugsets/sqlite/ -p
+ 1005  cd D:/mydb/bugsets/sqlite/
+ 1010  cd $HOME && nohup java -jar ~/dd-0.1-SNAPSHOT.jar --server.port=8888 &
