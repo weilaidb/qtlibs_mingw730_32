@@ -14,3 +14,5 @@ D:\mydb\sqlite_mysql\
 
 3.如下路径创建文件时，复制节点时，只在标准菜单中创建。
 reg\setting\standmenuflag.txt
+
+4.常用项 行首添加 <ignore> 时表示忽略显示

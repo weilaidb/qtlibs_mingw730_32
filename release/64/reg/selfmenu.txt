@@ -3,8 +3,11 @@ Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
+BASH/alias/bashrc 加载配置
+BASH/alias/bashrc 加载配置 ubuntu20.04
 BASH/alias/generate生成
 BASH/alias/public use
+BASH/alias/public use @ubuntu20.04
 BASH/alias/public use @web
 BASH/cdpath
 BASH/chmod
@@ -20,9 +23,12 @@ BASH/printf string 1
 BASH/printf string 2
 BASH/printf string 3
 BASH/printf说明
+BASH/scripts/commitgit.atwork.sh
 BASH/scripts/include.sh
+BASH/scripts/include.sh public
 BASH/scripts/public.sh
 BASH/scripts/test.sh
+BASH/scripts/updategit.atwork.sh
 BASH/test -f
 BASH/trap
 BASH/trap exit
@@ -121,6 +127,9 @@ BAT/网络network/route change
 BAT/网络network/route delete
 BAT/网络network/route print
 BAT/网络network/router 路由器
+BAT/网络network/router 路由器 跃点数
+BAT/网络network/router 路由器优先级
+BAT/网络network/router 路由器度量值
 BAT/网络network/software cisco order
 BAT/网络network/stp
 BAT/网络network/tcpdump/arp
@@ -133,6 +142,9 @@ BAT/网络network/tcpdump/dhcp
 BAT/网络network/tcpdump/wireshark源地址
 BAT/网络network/tcpdump/常用抓包命令
 BAT/网络network/vlan
+BAT/网络network/vlan/Access接口
+BAT/网络network/vlan/Hybrid接口
+BAT/网络network/vlan/Trunk接口
 BAT/网络network/vlan与Trunk
 BAT/网络network/三层交换机 L3 Switch
 BAT/网络network/二层交换机 L2Switch
@@ -148,6 +160,7 @@ BAT/网络network/知识点/IP地址 ipaddress
 BAT/网络network/知识点/ISP
 BAT/网络network/知识点/LCP
 BAT/网络network/知识点/LLDP
+BAT/网络network/知识点/LSA Link-State Advertisement 链路状态通告
 BAT/网络network/知识点/Linux中iproute实现VRF
 BAT/网络network/知识点/NCP
 BAT/网络network/知识点/OSI七层功能
@@ -324,6 +337,7 @@ C/NETWORK/set/ioctl
 C/NETWORK/set/ioctl fcntl
 C/NETWORK/set/setsockopt
 C/PRINTF/DEFINE
+C/PRINTF/PRINTX PRINTY args
 C/PRINTF/SWITCH
 C/PRINTF/SWITCH args
 C/PRINTF/address
@@ -355,10 +369,12 @@ C/STRUCT/pragma pack 1字节对齐
 C/STRUCT/pragma pack 字节对齐 push pop
 C/STRUCT/生成结构体
 C/STRUCT/生成结构体 printf
+C/eg
 C/enum/enum
 C/enum/enum single
 C/enum/enum single withname
 C/enum/enum single withname typedef
+C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
 C/new/DEFINE/ifndef
 C/new/__attribute__/TEXT
@@ -408,6 +424,7 @@ CXX/MAIN
 CXX/MAP/Cmd Handler
 CXX/More/变量类型判断variable type
 CXX/More/变量类型判断variable type 传递变量值给指针
+CXX/More/变量类型判断variable type2
 CXX/More/虚函数
 CXX/More/虚函数 eg
 CXX/More/虚函数 eg2
@@ -424,6 +441,8 @@ CXX/String/substr
 CXX/String/toupper
 CXX/cin.getline
 CXX/class/多态 继承
+CXX/class/多态 继承 virtual
+CXX/class/多态 继承 virtual Board
 CXX/define/pub
 CXX/eg
 CXX/externc __cplusplus
@@ -503,9 +522,13 @@ DBMS/MySql/table select
 DBMS/MySql/update
 DBMS/MySql/update eg
 DBMS/Sqlite/create table
+DBMS/Sqlite/create table (express)
+DBMS/Sqlite/create table (goods)
+DBMS/Sqlite/create table[ec]
 DBMS/Sqlite/delete table
 DBMS/Sqlite/drop table
 DBMS/Sqlite/insert table
+DBMS/Sqlite/insert table[ec]
 DBMS/Sqlite/select table
 DBMS/Sqlite/sqlite 加载驱动
 DBMS/Sqlite/sqlite 常见问题
@@ -562,6 +585,7 @@ FPGA/new/timescale
 FPGA/介绍
 FPGA/介绍 理论
 FPGA/开发板/ALINX/AX7020
+FPGA/开发板/Qemu/使用Qemu模拟vexpress-a9搭建模拟开发板
 FPGA/术语 shuyu
 FPGA/示例/Led
 FPGA/视频及资料网址
@@ -738,6 +762,8 @@ JAVA/SpringBoot/SpringBoot应用启动步骤简要示意图
 JAVA/SpringBoot/Springboot如何打包部署项目
 JAVA/SpringBoot/Thymealeaf/help/favicon.ico error解决
 JAVA/SpringBoot/application.properties 修改端口
+JAVA/SpringBoot/application.properties 转yml
+JAVA/SpringBoot/application.yml DD
 JAVA/SpringBoot/application.yml 修改端口
 JAVA/SpringBoot/application.yml 相关说明
 JAVA/SpringBoot/freemarker 问题说明
@@ -745,6 +771,9 @@ JAVA/SpringBoot/gradle 下载源配置 阿里云
 JAVA/SpringBoot/http
 JAVA/SpringBoot/javac
 JAVA/SpringBoot/localhost
+JAVA/SpringBoot/maven mvnrepository
+JAVA/SpringBoot/maven settings.xml
+JAVA/SpringBoot/maven settings.xml .m3
 JAVA/SpringBoot/maven 下载源配置 阿里云
 JAVA/SpringBoot/maven命令
 JAVA/SpringBoot/maven属性
@@ -760,6 +789,7 @@ JAVA/SpringBoot/new/SpringBootApplication java
 JAVA/SpringBoot/new/Thymealeaf/header
 JAVA/SpringBoot/new/Thymealeaf/header文件首行
 JAVA/SpringBoot/new/Thymealeaf/mapper/UserMapper.xml
+JAVA/SpringBoot/new/Thymealeaf/mapper/UserMapper.xml where
 JAVA/SpringBoot/new/Thymealeaf/text
 JAVA/SpringBoot/new/Thymealeaf/text 一行
 JAVA/SpringBoot/new/Thymealeaf/userlist
@@ -782,6 +812,7 @@ JAVA/SpringBoot/problem/Field userMapper in com.weilaidb.ssm.service.UserService
 JAVA/SpringBoot/run jar
 JAVA/SpringBoot/run jar port
 JAVA/SpringBoot/search key 搜索关键字
+JAVA/SpringBoot/sqlite3驱动
 JAVA/SpringBoot/代码分析
 JAVA/SpringBoot/工程Project/导入 dependency dependencies
 JAVA/SpringBoot/工程Project/导入 dependency dependencies2
@@ -941,9 +972,13 @@ LINUX/Printk/说明
 LINUX/Ubuntu/apt install
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
+LINUX/Ubuntu/五笔输入法
+LINUX/Ubuntu/国内源
+LINUX/Ubuntu/国内源 Ubuntu 20.04 Linux更换源教程
 LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备命令 order systemtap
 LINUX/Ubuntu/必备软件 necessary software
+LINUX/Ubuntu/必备软件 necessary software dpkg -i
 LINUX/Vim/vim实用技巧
 LINUX/help/HZ
 LINUX/help/cgroup cgconfig
@@ -961,7 +996,17 @@ LINUX/man/chrt -p
 LINUX/man/systemtap
 LINUX/man/vmstat
 LINUX/qemu
+LINUX/qemu script/arm.sh
+LINUX/qemu script/build.sh
+LINUX/qemu script/uboot.sh
+LINUX/qemu www.qemu.org
+LINUX/qemu www.qemu.org 下载安装
+LINUX/qemu 仿真vexpressa9
+LINUX/qemu 使用教程
 LINUX/qemu 虚拟机的使用
+LINUX/qemu 虚拟机的安装
+LINUX/qemu/arm
+LINUX/qemu/arm sh
 LINUX/telnetd
 LINUX/uboot
 LINUX/命令行/Centos 7 搭建samba
@@ -977,6 +1022,7 @@ LINUX/命令行/getconf
 LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
+LINUX/命令行/linux双向重定向之tee命令
 LINUX/命令行/ln help
 LINUX/命令行/lscpu
 LINUX/命令行/mpstat help
@@ -986,6 +1032,7 @@ LINUX/命令行/nano
 LINUX/命令行/nm
 LINUX/命令行/nohup
 LINUX/命令行/realpath
+LINUX/命令行/save write 提升权限 w
 LINUX/命令行/sed
 LINUX/命令行/setenforce
 LINUX/命令行/shutdown
@@ -1016,6 +1063,9 @@ LINUX/命令行/software/如何在阿里云服务器安装Mysql数据库
 LINUX/命令行/strace and ltrace
 LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
+LINUX/命令行/tee
+LINUX/命令行/terminal快捷键 shortcut
+LINUX/命令行/ubuntu terminal快捷键 shortcut
 LINUX/命令行/version
 LINUX/命令行/vmstat
 LINUX/命令行/vmstat help
@@ -1347,6 +1397,7 @@ Python/语法/pyQt5/创建菜单
 Python/语法/tryException
 Python/语法/循环/string
 Python/语法/排序去重复
+QT/API/simplified
 QT/CHECK/UNUSED
 QT/CMD/execute bat
 QT/CMD/execute linux cmd
@@ -1499,6 +1550,7 @@ SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
+SoftWare/vmware/16
 TEST/RegExptest
 TEST/RegExptest rm -f
 TEST/RegExptest1
@@ -1683,6 +1735,7 @@ path路径/常用文件夹
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
 测试用例/TestCase/1
+用户说明书/EC管理 dd-x.y-SNAPSHOT.jar
 用户说明书/代码集autocodesets weilaix.war
 用户说明书/代码集autocodesets weilaix.war Apache版本更新
 电脑/ThinkPad/T14/常见
@@ -1711,6 +1764,8 @@ path路径/常用文件夹
 设计/试题/出题
 设计/试题/出题2
 设计/试题/出题2 描述
+设计/试题/出题疑难/printf %d%d%d i++ --i
+设计/试题/出题疑难/printf %d%d%d i++ --i  (2)
 设计/软件框架/SCRUM
 设计/软件框架/SCRUM官方权威指南
 设计/软件框架/Sprint

@@ -14,7 +14,7 @@ https://gitee.com/openharmony/communication_services_softbus_lite.git
 https://gitee.com/openharmony/distributedschedule_services_samgr_lite.git
 https://github.com/universal-ctags/ctags.git
 https://github.com/paulsapps/gmock-1.7.0.git
-
+https://github.com/sqlite/sqlite/
 
 #仿真
 https://gitlab.com/qemu-project/qemu.git
@@ -24,6 +24,8 @@ wget https://download.qemu.org/qemu-6.1.0.tar.xz
 https://github.com/mirror/busybox.git
 wget https://busybox.net/downloads/busybox-1.34.1.tar.bz2
 wget https://busybox.net/downloads/busybox-1.31.0.tar.bz2
+git://busybox.net/busybox.git
+
 #这里选择清华源，国内速度会快很多
 wget https://mirrors.tuna.tsinghua.edu.cn/kernel/v4.x/linux-4.5.tar.gz
 https://github.com/universal-ctags/ctags.git
@@ -92,6 +94,8 @@ git@github.com:weilaidb/gmocktest.git
 git@github.com:weilaidb/bash_eg.git
 git@github.com:weilaidb/makefile.git
 git@gitee.com:weilaidb/goeg.git
+git@gitee.com:weilaidb/qemu_eg.git
+
 
 git clone git://101.201.79.164//myprj 
 

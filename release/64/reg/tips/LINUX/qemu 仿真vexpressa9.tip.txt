@@ -1,0 +1,547 @@
+首页
+下载APP
+会员
+IT技术
+用buildroot编译整个系统，用qemu仿真vexpressa9
+vencol
+用buildroot编译整个系统，用qemu仿真vexpressa9
+vencol
+2020.07.11 03:27:31
+字数 4,960阅读 1,932
+目录结构说明
+一、环境准备
+1、环境介绍
+2、基础编译环境
+3、搭建tftp服务器
+4、搭建nfs服务器
+5、qemu网络环境配置
+6、顶层的编译目录说明
+7、脚本目录说明
+8、为什么选择buildroot
+二、配置buildroot
+1、make defconfig
+2、配置buildroot相关参数
+3、配置交叉编译工具链
+4、配置uboot参数
+5、配置kernel参数
+6、make -j4
+7、buildroot的输出目录
+8、通过加载sd卡的方式仿真
+三、uboot通过tftp引导kernel
+1、仿真uboot
+2、手动在uboot下通过tftp加载uImage和dtb
+3、把手动设置的参数固化到uboot编译
+4、仿真加载tftp参数后的uboot
+四、uboot通过tftp加载kernel，kernel引导nfs根文件系统
+1、设置target目录为nfs目录
+2、手动在uboot下通过tftp加载uImage和dtb，再修改参数加载nfs
+3、把手动设置的参数固化到uboot编译
+4、仿真加载tftp引导nfs参数后的uboot
+一、环境准备
+1、环境介绍
+
+   主机环境是在win10下，通过自带的hyper搭建的基于18.04版本Ubuntu服务器版本
+2、基础编译环境
+
+1、安装基础的编译工具，比如如下工具
+
+sudo apt update && sudo apt upgrade
+sudo apt-get install git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison
+
+3、搭建tftp服务器
+
+1、下载并安装tftp
+
+sudo apt-get install tftp-hpa tftpd-hpa xinetd
+
+2、修改并配置tftp目录
+sudo vi /etc/xinetd.conf
+
+# Simple configuration file for xinetd   
+#   
+# Some defaults, and include /etc/xinetd.d/   
+defaults   
+{   
+# Please note that you need a log_type line to be able to use log_on_success ont-size: 12pt; "> # log_type = SYSLOG daemon info   
+}   
+includedir /etc/xinetd.d  
+
+sudo vi /etc/default/tftpd-hpa 其中TFTP_DIRECTORY是在虚拟机中用来存放tftp文件的目录
+
+# /etc/default/tftpd-hpa 
+    TFTP_USERNAME="tftp"
+    TFTP_DIRECTORY="/tftpboot"                          
+#这是你tftp服务器的工作目录，自行修改，注意，在新建工作目录时，最好修改其权限为777，命令sudo chmod 777 /tftpboot
+    TFTP_ADDRESS="0.0.0.0:69"
+    TFTP_OPTIONS="-l -c -s" 
+
+sudo vi /etc/xinetd.d/tftp，其中server_args 是tftp失败是的默认参数目录，一般和存放tftp文件的目录一致
+
+service tftp
+    {
+       socket_type = dgram
+       wait = yes
+       disable = no
+       user = root
+       protocol = udp
+       server = /usr/sbin/in.tftpd
+       server_args = -s /tftpboot
+       #log_on_success += PID HOST DURATION
+       #log_on_failure += HOST
+       per_source = 11
+       cps =100 2
+       flags =IPv4
+    }
+
+3、建立tftp目录
+
+sudo mkdir /tftpboot
+sudo chmod 777 /tftpboot
+
+4、重启tftp服务
+
+sudo service tftpd-hpa restart
+sudo /etc/init.d/xinetd reload
+sudo /etc/init.d/xinetd restart
+
+5、本地测试tftp，如果进入tftp命令符，说明本地没有问题，远程需要注意防火墙之类的
+sudo tftp localhost
+4、搭建nfs服务器
+
+1、安装nfs
+sudo apt-get install nfs-kernel-server
+2、修改配置文件，加入/home/vencol/nfs *(rw,sync,no_root_squash)
+sudo vi /etc/exports
+3、创建目录
+mkdir /home/vencol/nfs /home/vencol/nfstmp
+4、重启nfs
+sudo service nfs-kernel-server restart
+如果出现Not starting NFS kernel daemon: no support in current kernel，那么sudo vi /etc/init.d/nfs-kernel-server把其中的退出条件注释掉
+
+# See if our running kernel supports the NFS kernel server
+ 74         #if ! grep -E -qs "[[:space:]]nfsd\$" /proc/filesystems; then
+ 75         #   log_warning_msg "Not starting $DESC: no support in current kernel."
+ 76         #   exit 0
+ 77         #fi
+
+5、测试nfs
+
+sudo mount -t nfs -o nolock -o tcp 127.0.0.1:/home/vencol/nfs /home/vencol/nfstmp
+ls /home/vencol/nfstmp
+
+5、qemu网络环境配置
+
+1、要实现的网络拓扑结构，主机和虚拟机通过桥接方式连接internet，然后虚拟机和qemu再进行桥接
+网络结构
+
+2、 使用hyperv进行网络配置如下所示，创建一个外网连接，桥接于一个可以上网的网卡，这里选的是无线网卡
+虚拟机配置
+
+3、虚拟机通过如下指令，安装虚拟机网络设置相关的工具
+sudo apt-get install libvirt-bin bridge-utils virt-manager
+4、 通过ifconfig查看是否有虚拟网卡，如下，这些需要记住如下几个信息：
+
+    eth0是虚拟机本身上网的ip地址，即图中的192.168.1.111
+
+    virbr0是虚拟机虚拟出来的网桥，后面使用的tap0网卡就是加入到这个网卡
+
+    虚拟机网络
+
+    5、手动测试加载tap0是否正常
+
+        sudo tunctl -t tap0添加tap0网卡，每次重启后都要做一次
+        sudo ifconfig tap0 192.168.122.111 up启动tap0网卡并设置与网桥virbr0同一网段的ip地址，每次重启后都要做一次
+        sudo brctl virbr0 tap0把tap0网卡加入到虚拟机的网桥virbr0中
+        ping 192.168.1.111ping通虚拟机网卡
+        ping 192.168.122.1ping通虚拟机网桥
+        ping 192.168.122.111ping通虚拟机网卡tap0
+        如果后面的ip都能正常ping通，那么即可认为网络已经搭建好，后面形成脚本，在qemu启动和退出的时候分别执行启动脚本和卸载脚本
+
+6、 编写相关脚本
+1、启动脚本vi qemu-fiup这里输入的变量默认是tap0
+
+#! /bin/sh
+ifconfig $1 up
+brctl addif virbr0 $1
+
+2、卸载脚本vi qemu-fidown这里输入的变量默认是tap0
+
+#! /bin/sh
+brctl delif virbr0 $1
+ifconfig $1 down
+
+3、修改脚本的权限,添加可执行权限
+
+sudo chmod +x qemu-ifup qemu-ifdown
+
+6、顶层的编译目录说明
+
+为了能让大家更了解整个过程，下面的编译全都一步一步执行，没有写成脚本，让各位小伙伴更好的了解
+
+.
+├── code                      |是整个目录的顶层目录
+│   ├── buildroot             |是buildroot的源码目录
+│   ├── gcc                   |是交叉编译工具链所在的目录
+│   ├── mydl                  |是自己下载源码的目录，后面会存放linux源码压缩包和补丁包
+│   ├── rootfsdl              |是用于buildroot下载的存放目录，后面buildroot编译过程下载的文件都放在这里
+│   ├── uboot                 |是uboot的源码目录
+│   └── vexpressa9            |是vexpressa9的编译脚本及其相关配置目录
+
+        code是顶层目录使用mkdir code创建
+        buildroot是buildroot的源码目录，通过在code目录下，git clone https://gitee.com/mirrors/buildroot.git下载源码到code目录
+        gcc，在code目录下mkdir gcc && cd gcc && wget https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz && tar -xf gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
+        mydl,在code目录下mkdir mydl && cd mydl && wget https://mirrors.tuna.tsinghua.edu.cn/kernel/v5.x/linux-5.7.7.tar.xz && wget https://mirrors.tuna.tsinghua.edu.cn/kernel/v5.x/patch-5.7.7.xz && xz -dk patch-5.7.7.xz
+        rootfsdl，在code目录下，mkdir rootfsdl
+        uboot，在code目录下，git clone https://gitee.com/mirrors/u-boot.git uboot
+        vexpressa9,在code目录下，mkdir vexpressa9，后续在该目录下放入相应的脚本及配置
+
+7、脚本目录说明
+
+vexpressa9/
+├── build.sh
+├── linuxbuild.sh
+├── ubootbuild.sh
+├── nfs
+├── README.md
+├── rootfs
+└── tftp
+
+    build.sh 脚本是主要的编译脚本，其内容如下：
+
+#! /bin/bash
+TPWD=$(pwd)
+echo $TPWD
+cd $TPWD/../buildroot
+mkdir -p $TPWD/rootfs
+make O=$TPWD/rootfs ARCH=arm $1
+
+    linuxbuild.sh 主要是为了clean内核目录，（从BR_BINARIES_DIR，根据在build.sh编译内核是复制替换）其内容如下：
+
+#! /bin/bash
+TPWD=$(pwd)
+echo $TPWD
+cd $TPWD/rootfs/build/linux-custom
+#make ARCH=arm  CROSS_COMPILE=$TPWD/rootfs/host/bin/arm-buildroot-linux-uclibcgnueabihf- $1
+#cp u-boot u-boot.bin u-boot.img $TPWD/rootfs/images
+#cp $TPWD/rootfs/images/uImage.vexpress-v2p-ca9 $TPWD/rootfs/images/vexpress-v2p-ca9.dtb $TPWD/../../tftp
+BR_BINARIES_DIR=/home/vencol/code/vexpressa9/rootfs/images KCFLAGS=-Wno-attribute-alias PKG_CONFIG_PATH="" /usr/bin/    make -j3 -C /home/vencol/code/vexpressa9/rootfs/build/linux-custom HOSTCC=/usr/bin/gcc HOSTCC="/usr/bin/gcc -O2 -I/h    ome/vencol/code/vexpressa9/rootfs/host/include -L/home/vencol/code/vexpressa9/rootfs/host/lib -Wl,-rpath,/home/venco    l/code/vexpressa9/rootfs/host/lib" ARCH=arm INSTALL_MOD_PATH=/home/vencol/code/vexpressa9/rootfs/target CROSS_COMPIL    E="/home/vencol/code/vexpressa9/rootfs/host/bin/arm-buildroot-linux-uclibcgnueabihf-" DEPMOD=/home/vencol/code/vexpr    essa9/rootfs/host/sbin/depmod LOADADDR="0x60003000" INSTALL_MOD_STRIP=1 HOSTCC="/usr/bin/gcc" $1
+
+    ubootbuild.sh 主要是用于clean uboot编译的内容，同时把编译出来的文件，拷贝到rootfs/images下，其内容如下
+
+#! /bin/bash
+TPWD=$(pwd)
+echo $TPWD
+cd $TPWD/rootfs/build/uboot-f5a8214593
+make ARCH=arm  CROSS_COMPILE=$TPWD/rootfs/host/bin/arm-buildroot-linux-uclibcgnueabihf- $1
+cp u-boot u-boot.bin u-boot.img $TPWD/rootfs/images
+cp $TPWD/rootfs/build/linux-custom/arch/arm/boot/uImage $TPWD/rootfs/images
+cp $TPWD/rootfs/build/linux-custom/arch/arm/boot/uImage.vexpress-v2p-ca9 $TPWD/rootfs/images
+cp $TPWD/rootfs/build/linux-custom/arch/arm/boot/dts/vexpress-v2p-ca9.dtb $TPWD/rootfs/images
+cp $TPWD/rootfs/images/uImage $TPWD/rootfs/images/uImage.vexpress-v2p-ca9 $TPWD/rootfs/images/vexpress-v2p-ca9.dtb $    TPWD/../../tftp
+4. nfs和tftp保存相应的配置文件
+
+8、为什么选择buildroot
+
+   buildroot是一个包括整个系统编译配置的开源项目，其可以细化到配置使用的gcc、使用的glibc（uclibc）、使用的uboot配置、使用的kernel配置、使用的busybox配置、以及根文件系统中所需要的各种应用包（package）配置。所以如果可以深入的理解buildroot的编译工作原理，那么对于入门linux来说是个不错的选择，就是这个过程需要设计很多知识点，需要不断的学习。比如可以了解到工具链的配置需要区分使用了glibc还是uclibc，他们都是c库，但是glibc是标准c库大而全，而uclib是嵌入式c库小而精，而工具链也需要配合c库来选择。但是也有一个不是很好的地方，就是buildroot会把主机的编译环境在host目录下重新搭建一次，就是缺少什么工具就下载搭建什么工具，这样当自己搭建开发环境开发的时候，就会没有buildroot编译那么顺利。所以折腾环境这样的事后面还是要自己去折腾下的。
+后面的工作目录默认都是从脚本目录code/vexpressa9（）开始相关操作
+二、配置buildroot
+1、make defconfig
+
+这里的defconfig是根据不同型号的板子自行确定的，对应于buildroot/configs目录下的配置文件，通过tap补全的方式或者查找的方式可以查找相应的板子配置，比如要查找树莓派的配置有哪些，可以通过自动补全查找树莓派的命令指令ll ../buildroot/configs/raspberrypi
+raspberrypi defconfig
+
+而我们这里仿真的是vexpress，这里我们使用grep查找的方式ll ../buildroot/configs/ | grep vexpress这里我们选择的defconfig配置是qemu_arm_vexpress_defconfig
+vexpress defconfig
+
+最后通过脚本执行的命令为./build.sh qemu_arm_vexpress_defconfig，可以看到在code/vexpressa9/rootfs目录下生成了.config的配置文件
+make defconfig
+
+2、配置buildroot相关参数
+
+前面步骤生成了配置文件，但是这个配置文件并不是我想要的，我需要通过menuconfig来改变里面的某些配置参数，使得其可以把相关的文件输出到我指定的目录中去.
+安装menuconfig的依赖库文件
+
+sudo apt-get install build-essential 
+sudo apt-get install libncurses5 
+sudo apt-get install libncurses5-dev 
+
+执行脚本命令./build.sh menuconfig，如果成功会显示一个如下的配置界面
+menuconfig
+
+    Target options主要是和架构有关的配置，一般我们使用ARCH=arm或者其他架构后，一般不需要做调整
+    Build options主要是设置和buildroot相关的参数，比如说下载目录、主机环境的配置地址等等
+    Toolchain配置工具链相关的参数，可以使用外部自己的，也可以网上下载的，又或者直接使用buildroot帮忙编译的
+    System configuration配置文件系统相关的参数，比如说用户名、密码、开机脚本等等
+    Kernel配置内核相关信息，比如源码位置、生成文件、加载地址等等
+    Target packages是buildroot配置应用包的地方，后面需要用到的很多应用都可以直接配置，包括像opencv这样的库，当然也可以自己添加配置应用包
+    Filesystem images主要设置的是文件系统的镜像格式，可以根据需要使用yaffs2、initial RAM等等格式
+    Bootloaders 主要配置的启动引导方式
+    Host utilities主要配置一些主机环境需要的工具，当然也可以不配置，全部使用本地工具，这样可以节省不少时间，但是不适合新手
+    Legacy config options这个不太了解，没怎么用过legacy
+
+这里我们需要配置Build options，主要是更改Download dir，即buildroot下载文件的存放目录，其界面如下，
+
+Build options
+3、配置交叉编译工具链
+
+接着，我们需要配置我们自己的工具链，这里我们可以从arm的官网或者linaro官网下载下来都可以，我们在前面的章节已经从linaro下载并解压工具链在code/gcc/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf目录中，需要注意的是不同工具链的配置方式不太一样。首先进入Toolchain配置界面，这里我们需要配置的内容主要有
+
+Toolchain type ---> External toolchain
+Toolchain --->Custom toolchain
+Toolchain origin --->Pre-installed toolchain
+Toolchain path --->/home/vencol/code/gcc/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf
+Toolchain prefix ---> $(ARCH)-linux-gnueabihf
+External toolchain gcc version ---> 7.x
+External toolchain kernel headers series ---> 4.10.x
+External toolchain C library ---> glibc/eglibc
+配置Toolchain has SSP support
+配置Toolchain has RPC support
+
+gcc config
+
+    Toolchain path是我们存放工具链的目录
+    Toolchain prefix是我们使用工具链的前缀
+    External toolchain gcc version是我们工具链的版本
+    External toolchain kernel headers series是我们使用的工具链的linux header的版本号，可以从gcc所在目录下找到 LINUX_VERSION_CODE，我们这里的目录是code/gcc/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf/libc/usr/include/linux/version.h，我们这里的 LINUX_VERSION_CODE 是26470，hex是40A03，所以我们这里选择的是4.10.x
+    External toolchain C library这个配置我们是用的c库，这个我们可以从gcc工具链的目录说明中找到，编译gcc时配置的c库是什么。我们这里使用vi code/gcc/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-linux-manifest.txt，并对libc进行查找发现使用的是glibc，所以我们这里选择glibc/eglibc
+
+4、配置uboot参数
+
+接下来我们需要配置uboot，uboot可以通过官方的ftp地址ftp://ftp.denx.de/pub/u-boot/进行下载也可以通过从码云下面clone过来，我们这里为了演示buildroot通过git仓库配置源码，我们前面已经从码云下载了uboot到code/uboot目录下，而后面的kernel则是演示通过网络下载源码包的方式配置内核源码，这两种是buildroot较为常用的源码配置方式。配置uboot的主要参数如下，
+
+选择U-Boot
+U-Boot Version ---> Custom Git repository
+U-Boot board name ---> vexpress_ca9x4
+URL of custom repository ---> /home/vencol/code/uboot
+Custom repository version --->v2020.07
+选择U-Boot needs dtc
+U-Boot binary format ---> u-boot.bin   u-boot.elf
+
+uboot config
+
+    U-Boot board name配置为vexpress_ca9x4是vexpressa9的defconfig，不同的开发板可以在code/uboot/configs找到对应的配置文件
+    URL of custom repository是配置我们uboot源码所在的位置，可以是网络位置也可以是本地位置，我们这里是本地位置
+    Custom repository version是配置我们要从git源码中使用哪一个版本的源码，可以是某个git commit也可以是某个git tag，我们这里用的是uboot的tag v2020.07
+
+5、配置kernel参数
+
+前面配置uboot的时候提到过，我们配置kernel会使用下载压缩包的方式，这个压缩包可以自己网上下载也可以让buildroot编译的时候下载，自己下载，下载后把包放到目录code/rootfsdl/linux/下面就可以，需要注意的是下载的包名必须和配置内核里面的包名一致，配置内容如下
+
+Kernel version  ---> Custom tarball
+URL of custom kernel tarball ---> https://mirror.tuna.tsinghua.edu.cn/kernel/v5.x/linux-5.7.7.tar.xz
+Custom kernel patches ---> /home/vencol/code/mydl/patch-5.7.7
+Kernel binary format ---> uImage
+load address (for 3.7+ multi-platform image) --->0x60003000
+选择Build a Device Tree Blob (DTB)
+
+kernel config
+
+    URL of custom kernel tarball设置压缩包的地址，好像只能是网络地址，本地会报错，但是可以把下载好的应用包放到code/rootfsdl/linux/，也可以不用通过网上下载
+    Custom kernel patches给选择的内核源码打对应的补丁
+    Kernel binary format，用uboot需要来引导uImage，选择uImage格式
+    load address (for 3.7+ multi-platform image)设置uboot引导uImage的位置
+
+6、make -j4
+
+最后，退出menuconfig并保存，基本配置都完成了，现在我们可以开始正式的编译流程，通过执行./build.sh -j4开始编译，中间过程正常是可以没有什么问题通过的，只是需要较长的时间，如果中间提示缺少什么就通过apt install什么，经过漫长的编译后，会出现类似的界面
+compile
+
+7、buildroot的输出目录
+
+rootfs/
+├── build
+├── host
+├── images
+├── Makefile
+├── scripts
+├── staging -> /home/vencol/code/vexpressa9/rootfs/host/arm-buildroot-linux-gnueabihf/sysroot
+└── target
+
+    build目录是所有buildroot编译输出的目录，不管是uboot、kernel还是其他的package输出的编译文件都在这个目录下面，比如我们uboot的输出目录是rootfs/build/uboot-v2020.07
+    host是buildroot搭建的本级编译环境输出的文件目录
+    images是最终输出的生成文件，比如uboot、zImage和sd卡的烧录文件等等
+    target是最终生成的根文件系统的缓冲区，如果我们有自己的文件或者配置修改，可以直接在这个目录进行修改在打包，打包后的sd卡和这个目录一样
+
+8、仿真我们用defconfig编译的内核kernel
+
+首先我们切换到code/vexpressa9/rootfs/images目录，并添加处理的脚本文件vi kernel-qemu.sh，该脚本主要是拷贝kernel下的image和dtb到当前images目录，然后执行qemu仿真，这里可以传一个参数only代表只有串口终端没有画面，默认有画面可以通过vnc链接，但是电脑比较渣没有开启图形界面。这里需要给脚本执行权限sudo chmod +x kernel-qemu.sh
+
+#!/bin/sh
+IMAGE_DIR="${0%/*}/"
+BUILD_ROOTDIR=`realpath ../`
+echo $BUILD_ROOTDIR
+cp $BUILD_ROOTDIR/build/linux-custom/arch/arm/boot/zImage .
+cp $BUILD_ROOTDIR/build/linux-custom/arch/arm/boot/uImage .
+cp $BUILD_ROOTDIR/build/linux-custom/arch/arm/boot/dts/vexpress-v2p-ca9.dtb .
+
+if [ "${1}" = "only" ]; then
+    EXTRA_ARGS='-nographic'
+else
+    EXTRA_ARGS='-serial stdio'
+fi
+
+export PATH="/home/vencol/code/vexpressa9/rootfs/host/bin:${PATH}"
+exec   qemu-system-arm -M vexpress-a9 -smp 1 -m 256 -kernel ${IMAGE_DIR}/zImage -dtb ${IMAGE_DIR}/vexpress-v2p-ca9.dtb -drive file=${IMAGE_DIR}/rootfs.ext2,if=sd,format=raw -append "console=ttyAMA0,115200 rootwait root=/dev/mmcblk0"  -net nic,model=lan9118 -net user  ${EXTRA_ARGS}
+
+执行脚本./kernel-qemu.sh，成功启动后进入文件系统如下
+kernel start
+
+start ok
+
+三、uboot通过tftp引导kernel
+1、仿真uboot
+
+首先我们切换到code/vexpressa9/rootfs/images目录，并添加处理的脚本文件vi uboot-qemu.sh，该脚本主要是拷贝uboot下的执行文件到当前images目录，以及拷贝uImage和dtb到tftp服务目录下，然后执行qemu仿真。。这里需要给脚本执行权限sudo chmod +x uboot-qemu.sh
+
+    注意我们这里是没有使用图形界面的参数为-nographic
+    这里需要网络通信，请关注前面的网络配置章节的介绍，请确保网络正常可用
+    下面的脚本执行后，使用ctrl+a x的方式退出仿真
+    脚本中tftp的服务目录需要根据实际情况修改
+
+#!/bin/sh
+IMAGE_DIR="${0%/*}/"
+BUILD_ROOTDIR=`realpath ../`
+echo $BUILD_ROOTDIR
+cp $BUILD_ROOTDIR/build/uboot-v2020.07/u-boot .
+cp $BUILD_ROOTDIR/build/linux-custom/arch/arm/boot/uImage .
+cp $BUILD_ROOTDIR/build/linux-custom/arch/arm/boot/dts/vexpress-v2p-ca9.dtb .
+cp vexpress-v2p-ca9.dtb uImage /home/vencol/tftp
+
+EXTRA_ARGS='-nographic'
+
+export PATH="/home/vencol/code/vexpressa9/rootfs/host/bin:${PATH}"
+sudo  qemu-system-arm -M vexpress-a9 -smp 1 -m 256 -kernel ${IMAGE_DIR}/u-boot -dtb ${IMAGE_DIR}/vexpress-v2p-ca9.dtb -drive file=${IMAGE_DIR}/rootfs.ext2,if=sd,format=raw -append "console=ttyAMA0,115200 rootwait root=/dev/mmcblk0"  -net nic -net tap,ifname=tap0,script=ifup,downscript=ifdown  ${EXTRA_ARGS}
+#exec   qemu-system-arm -M vexpress-a9 -smp 1 -m 256 -kernel ${IMAGE_DIR}/u-boot -dtb ${IMAGE_DIR}/vexpress-v2p-ca9.dtb -drive file=${IMAGE_DIR}/rootfs.ext2,if=sd,format=raw -append "console=ttyAMA0,115200 rootwait root=/dev/mmcblk0"  -net nic,model=lan9118 -net user  ${EXTRA_ARGS}
+
+执行脚本./uboot-qemu.sh，由于我们的参数不正确，导致无法加载内核文件，启动失败，停留在uboot环境下
+2、手动在uboot下通过tftp加载uImage和dtb
+
+由于前面停止在uboot环境中了，这里我们直接通过手动设置uboot参数的方式尝试加载内核并启动
+这里需要注意，如果网络配置正确，uboot的ip地址所在的网段会和我们桥接的网卡网段一直，比如我这里的是192.168.122网段
+uboot start
+
+主要手动测试的参数有
+
+ping 192.168.1.111
+setenv serverip 192.168.1.111
+setenv bootargs 'console=ttyAMA0,115200 rootwait root=/dev/mmcblk0'
+tftp 0x60003000 uImage
+tftp 0x60500000 vexpress-v2p-ca9.dtb
+bootm 0x60003000 - 0x60500000
+
+大概过程就是，设置tftp服务器的ip，设置内核的启动参数，把uImage从tftp加载到0x60003000，把vexpress-v2p-ca9.dtb从tftp加载到0x60500000，最后启动，这里说明下bootm的第一个参数代表uImage地址，第二个参数-代表initd地址（我们没有用到），第三个地址代表dtb的地址。启动后，如无意外就可以正常的加载到根文件系统
+
+tftp boot
+3、把手动设置的参数固化到uboot编译
+
+前面，我们已经成功测试了从tftp加载内核了，现在我们需要把相关指令参数固化到uboot里面，让他直接启动内核，这里有个地方会有一点不同，我们会直接设置一个ip地址给开发板，这样可以不用进行dhcp。
+这里我们先在code/vexpressa9目录，建立一个脚本vi ubootbuild.sh
+
+#! /bin/bash
+TPWD=`realpath ./`
+echo $TPWD
+cd $TPWD/rootfs/build/uboot-v2020.07
+make ARCH=arm  CROSS_COMPILE=$TPWD/../gcc/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf- $1
+
+执行脚本./ubootbuild.sh menuconfig在界面中我们需要修改，之后执行./ubootbuild.sh -j4进行编译
+
+选择Enable boot arguments 
+ Boot arguments ---> console=ttyAMA0,115200 rootwait root=/dev/mmcblk0
+bootcmd value --->setenv ipaddr 192.168.122.76; setenv serverip 192.168.1.111; tftp 0x60003000 uImage; tftp 0x60500000 vexpress-v2p-ca9.dtb; bootm 0x60003000 - 0x60500000;
+
+    Boot arguments 设置的是uboot传递给内核的参数
+
+    bootcmd value 设置的是uboot的参数，在printenv中体现
+
+    uboot tftp
+
+4、仿真加载tftp参数后的uboot
+
+当出现下图的时候，代表已经成功固化到uboot里面，自己加载完uImage和dtb后，会自动启动内核
+
+tftp start
+四、uboot通过tftp加载kernel，kernel引导nfs根文件系统
+1、设置target目录为nfs目录
+
+按照前面nfs目录搭建好nfs服务后，我们现在需要把code/vexpressa9/rootfs/target目录设置为nfs根文件目录
+
+    添加target目录到export文件sudo vi /etc/exports
+
+# /etc/exports: the access control list for filesystems which may be exported
+#               to NFS clients.  See exports(5).
+#
+# Example for NFSv2 and NFSv3:
+# /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)
+#
+# Example for NFSv4:
+# /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)
+# /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
+#
+
+/home/vencol/code/vexpressa9/rootfs/target *(rw,sync,no_root_squash,no_subtree_check)
+
+    重启nfs服务sudo service nfs-kernel-server restart
+
+2、手动在uboot下通过tftp加载uImage和dtb，再修改参数加载nfs
+
+在uboot刚刚启动的倒计时中，输入任何键使其进入命令输入模式
+主要手动测试的参数有
+
+setenv serverip 192.168.1.111
+setenv bootargs 'root=/dev/nfs rw rootpath=/home/vencol/code/vexpressa9/rootfs/target nfsroot=192.168.1.111:/home/vencol/code/vexpressa9/rootfs/target,nolock ip=192.168.122.76:192.168.1.111:192.168.122.1 console=ttyAMA0,115200 nfsvers=2'
+tftp 0x60003000 uImage
+tftp 0x60500000 vexpress-v2p-ca9.dtb
+bootm 0x60003000 - 0x60500000
+
+大概过程就是，设置tftp服务器的ip，设置内核的启动参数为nfs启动，把uImage从tftp加载到0x60003000，把vexpress-v2p-ca9.dtb从tftp加载到0x60500000，最后启动，这里说明下bootm的第一个参数代表uImage地址，第二个参数-代表initd地址（我们没有用到），第三个地址代表dtb的地址。启动后，如无意外就可以正常的加载到根文件系统
+
+nfs boog
+
+最后成功启动应该看到如下的内容
+
+nfs ok
+3、把手动设置的参数固化到uboot编译
+
+执行脚本./ubootbuild.sh menuconfig在界面中我们需要修改，之后执行./ubootbuild.sh -j4进行编译
+
+选择Enable boot arguments 
+ Boot arguments ---> root=/dev/nfs rw rootpath=/home/vencol/code/vexpressa9/rootfs/target nfsroot=192.168.1.111:/home/vencol/code/vexpressa9/rootfs/target,nolock ip=192.168.122.76:192.168.1.111:192.168.122.1 console=ttyAMA0,115200 nfsvers=2
+bootcmd value --->setenv ipaddr 192.168.122.76; setenv serverip 192.168.1.111; tftp 0x60003000 uImage; tftp 0x60500000 vexpress-v2p-ca9.dtb; bootm 0x60003000 - 0x60500000;
+
+    Boot arguments 设置的是uboot传递给内核的参数
+    bootcmd value 设置的是uboot的参数，在printenv中体现
+
+4、仿真加载tftp引导nfs参数后的uboot
+
+最后出现如下界面代表成功进行nfs的引导，后续的驱动和应用开发都可以不需要重新启动系统，而是直接在虚拟机上把相应的文件放入/home/vencol/code/vexpressa9/rootfs/target的相应目录中，即可进行开发调试
+
+nfs pass
+更多精彩内容，就在简书APP
+"小礼物走一走，来简书关注我"
+还没有人赞赏，支持一下
+vencol
+总资产2共写了3.4W字获得36个赞共20个粉丝
+vencol
+总资产2
+从0开始，利用wsl+vscode+gdb实现linux应用层软件的开发调试
+阅读 74
+Windows添加右键命令行
+阅读 132
+usbwifi网卡mt7601u驱动配置
+阅读 2,330
+热门故事
+我家祖传给人算命，我爷爷说有三种人的命给多少钱都不能算
+妻子去世半年，我再娶一个小十岁的女人有错吗？
+直播间打赏五十万，女主播主动私信我要见面
+你那么孤独，却说一个人真好
+推荐阅读
+ubuntu下交叉编译arm64/armbian内核模块
+阅读 454
+windows服务器使用cwRsync实时同步
+阅读 385
+linux中--prefix命令是什么意思？
+阅读 1,032
+web安全之挖掘Linux内核漏洞
+阅读 117
+安卓逆向：环境搭建及工具安装过程记录
+阅读 652

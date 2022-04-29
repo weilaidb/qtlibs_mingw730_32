@@ -1,0 +1,71 @@
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+using namespace std;
+
+int gd = 2;
+
+int f(int a, int b)
+{
+    int c = 0;
+    c = a + b* (gd++);
+    return c;
+}
+
+int g(int a1, int b1)
+{
+    int c = 0;
+    int c1 = a1 *(gd--)  + b1;
+    return c1;
+}
+
+
+void add()
+{
+    int exam1 = 2;
+    int exam2 = 3;
+    int result = 0;
+//    result = f(exam1, exam2) + g(exam1, exam2);
+    result = g(exam1, exam2) + f(exam1, exam2);
+    cout << "result: "<< result<< endl;
+}
+
+
+typedef struct{
+    char name[5];
+    int age;
+    char data[0];
+}Person;
+
+int main()
+{
+    cout << "Hello World!" << endl;
+//    add();
+
+    int i  = 10;
+    printf("%d %d %d\n", i++, ++i, i++);
+    i  = 10;
+    printf("%d %d %d %d\n", ++i, i++, ++i, i++);
+
+//    printf("%d %d\n", sizeof("abcd\t\n"), strlen("abcd\t\n"));
+
+    char str[] = "GeeksQuiz";
+    printf("%s %s %s\n", &str[5],&5[str], str+5);
+    printf("%c %c %c\n", *(str+6), str[6], 6[str]);
+
+    printf("sizeof(Person):%u\n", sizeof(Person));
+
+    return 0;
+}
+
+
++++++result
+Hello World!
+12 13 10
+14 12 14 10
+Quiz Quiz Quiz
+u u u
+sizeof(Person):12

@@ -145,3 +145,14 @@ alias gohelp="go help "
 alias goenv="go env "
 alias goenvauto="go env -w GO111MODULE=auto "
 alias gobuild="go build "
+
+
+#sysctl
+alias startsmb="systemctl start smbd "
+alias stopsmb="systemctl stop smbd "
+alias statussmb="systemctl status smbd "
+
+#process
+alias psaux="ps aux "
+alias psauxgrep="ps aux | grep "
+alias kill9="kill -9 "

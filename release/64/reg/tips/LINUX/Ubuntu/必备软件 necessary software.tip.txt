@@ -8,9 +8,48 @@ samba
 net-tools
 ssh
 selinux-utils
+dos2unix
+vim
+
 
 systemtap
 linux-headers-generic gcc make
 linux-image-debug-generic
 openjdk-11-jdk
 qemu
+
+zlib1g zlib1g-dev
+libglib2.0-dev
+libpixman-1-dev
+ninja-build
+glib-2.56 gthread-2.0
+
+python3
+libglib2.56-dev
+glib2   glib2-devel
+
+build-essential zlib1g-dev pkg-config libglib2.0-dev 
+binutils-dev libboost-all-dev autoconf libtool libssl-dev 
+libpixman-1-dev libpython2-dev:i386 python3-pip python-capstone virtualenv
+
+libpython2-dev:i386
+libpython3-dev
+
+
+git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison
+tftp-hpa tftpd-hpa xinetd
+
+
+
+[arm cross complie]
+gcc-arm-linux-gnueabi
+
+
+[fcitx输入法框架]
+fcitx
+libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2 
+libgsettings-qt1
+
+【五笔输入法】
+ibus-table-wubi
+fcitx-table-wubi
