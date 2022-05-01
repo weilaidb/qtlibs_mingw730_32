@@ -55,3 +55,30 @@ $ awk '{print a[$0],a[$1],a[$2],a[$3],$0}' file
 "世界上只有一种真正的英雄主义，就是认清了生活的真相后，还依然执着地热爱它。" ——罗曼·罗兰
 分类: Awk练习题, AWK专题
 标签: awk
+
+
+
+
+cat file | awk '!a[$0]++'
+
+$ cat file 
+111
+222
+111
+222
+333
+[root@weilaidb] ~/test/awk
+$ cat file | awk '!a[$0]++'
+111
+222
+333
+
+
+[root@weilaidb] ~/test/awk
+$ echo 111 | awk '1'
+111
+
+[root@weilaidb] ~/test/awk
+$ echo 111 | awk '0'
+[root@weilaidb] ~/test/awk
+$
