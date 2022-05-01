@@ -14,6 +14,7 @@ BASH/chmod
 BASH/dev null(no output 2 1 )
 BASH/echo
 BASH/eg
+BASH/exec
 BASH/exitcode
 BASH/gitinfo
 BASH/hello
@@ -29,6 +30,8 @@ BASH/scripts/include.sh public
 BASH/scripts/public.sh
 BASH/scripts/test.sh
 BASH/scripts/updategit.atwork.sh
+BASH/set -x
+BASH/set -x eg
 BASH/test -f
 BASH/trap
 BASH/trap exit
@@ -1019,6 +1022,9 @@ LINUX/命令行/crontab tomcat
 LINUX/命令行/eg
 LINUX/命令行/fgrep
 LINUX/命令行/getconf
+LINUX/命令行/grep
+LINUX/命令行/grep -Po
+LINUX/命令行/grep 左匹配的问题
 LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
@@ -1032,6 +1038,7 @@ LINUX/命令行/nano
 LINUX/命令行/nm
 LINUX/命令行/nohup
 LINUX/命令行/realpath
+LINUX/命令行/realpath help
 LINUX/命令行/save write 提升权限 w
 LINUX/命令行/sed
 LINUX/命令行/setenforce
