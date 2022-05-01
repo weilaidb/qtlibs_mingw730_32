@@ -9,6 +9,8 @@ BASH/alias/generate生成
 BASH/alias/public use
 BASH/alias/public use @ubuntu20.04
 BASH/alias/public use @web
+BASH/awk
+BASH/awk file
 BASH/cdpath
 BASH/chmod
 BASH/dev null(no output 2 1 )
