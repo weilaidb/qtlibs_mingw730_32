@@ -136,6 +136,7 @@ BAT/网络network/route change
 BAT/网络network/route delete
 BAT/网络network/route print
 BAT/网络network/router 路由器
+BAT/网络network/router 路由器 ip数据包经由路由转发的时候源ip MAC，目的ip 目的MAC是否改变
 BAT/网络network/router 路由器 跃点数
 BAT/网络network/router 路由器优先级
 BAT/网络network/router 路由器度量值
@@ -162,6 +163,7 @@ BAT/网络network/什么是vlan
 BAT/网络network/演示软件 software
 BAT/网络network/知识点/33 张图详解 RSTP 、MSTP协议，以及替代技术
 BAT/网络network/知识点/ATM协议
+BAT/网络network/知识点/BGP 边界网关协议
 BAT/网络network/知识点/CE
 BAT/网络network/知识点/HDLC
 BAT/网络network/知识点/IP协议号大全
@@ -1726,6 +1728,8 @@ path路径/常用文件夹
 术语/内核Kernel/编译器
 术语/大小端
 术语/异或
+术语/网络/ATM网络
+术语/网络/FDDI网络
 术语/网络/PDU
 术语/网络/PHY/MDI
 术语/网络/PHY/MII
@@ -1737,6 +1741,7 @@ path路径/常用文件夹
 术语/网络/协议
 术语/网络/基带信号
 术语/网络/实体(entity)
+术语/网络/异构网络
 术语/网络/数字信号
 术语/网络/服务数据单元SDU
 术语/网络/服务访问点SAP
