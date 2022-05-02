@@ -1,0 +1,2 @@
+DNAT(Destination Network Address Translation,目的网络地址转换）
+主要实现用于外网主机对内部和DMZ(Demilitarized Zone，隔离区，也称非军事化区）区主要的访问。是一种改变数据包目的IP地址的技术，经常和SNAT联用，以使多台服务器能共享一个IP地址连入Internet，并且继续服务。通过为同一个IP地址分配不同的端口来决定数据的流向，而且还可以将内部服务器发布到Internet。

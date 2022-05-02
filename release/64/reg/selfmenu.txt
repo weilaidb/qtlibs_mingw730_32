@@ -118,6 +118,7 @@ BAT/网络network/SOCK TYPE/sock type
 BAT/网络network/SOCK TYPE/原始套接字SOCK_RAW
 BAT/网络network/VTP
 BAT/网络network/acl
+BAT/网络network/dnat
 BAT/网络network/ethertype
 BAT/网络network/icmp
 BAT/网络network/ipv4 add 添加ip
@@ -140,6 +141,8 @@ BAT/网络network/router 路由器 ip数据包经由路由转发的时候源ip M
 BAT/网络network/router 路由器 跃点数
 BAT/网络network/router 路由器优先级
 BAT/网络network/router 路由器度量值
+BAT/网络network/router 路由器转发过程
+BAT/网络network/snat
 BAT/网络network/software cisco order
 BAT/网络network/stp
 BAT/网络network/tcpdump/arp
@@ -164,6 +167,7 @@ BAT/网络network/演示软件 software
 BAT/网络network/知识点/33 张图详解 RSTP 、MSTP协议，以及替代技术
 BAT/网络network/知识点/ATM协议
 BAT/网络network/知识点/BGP 边界网关协议
+BAT/网络network/知识点/BGP漫谈
 BAT/网络network/知识点/CE
 BAT/网络network/知识点/HDLC
 BAT/网络network/知识点/IP协议号大全
@@ -200,6 +204,8 @@ BAT/网络network/知识点/协议卡(protocol card)/以太帧
 BAT/网络network/知识点/基于MPLS的VPN
 BAT/网络network/知识点/复习
 BAT/网络network/知识点/常用端口号大全 port
+BAT/网络network/防火墙
+BAT/网络network/防火墙工作原理
 Books/常用书籍列表
 Books/常用书籍列表 学校
 Books/常用书籍列表 已经购买
@@ -1729,6 +1735,7 @@ path路径/常用文件夹
 术语/大小端
 术语/异或
 术语/网络/ATM网络
+术语/网络/CERNET
 术语/网络/FDDI网络
 术语/网络/PDU
 术语/网络/PHY/MDI
