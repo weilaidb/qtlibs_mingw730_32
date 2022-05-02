@@ -114,6 +114,8 @@ BAT/网络network/AF/Socket理解之地址族
 BAT/网络network/AF/address families linux
 BAT/网络network/IPPROTO/IP protocols
 BAT/网络network/LACP报文格式
+BAT/网络network/RMON 远程网络监视
+BAT/网络network/SNMP 简单网络管理协议
 BAT/网络network/SOCK TYPE/sock type
 BAT/网络network/SOCK TYPE/原始套接字SOCK_RAW
 BAT/网络network/VTP
