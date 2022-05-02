@@ -35,6 +35,8 @@ BASH/scripts/updategit.atwork.sh
 BASH/set -x
 BASH/set -x eg
 BASH/test -f
+BASH/tr
+BASH/tr help
 BASH/trap
 BASH/trap exit
 BASH/usage
@@ -42,6 +44,7 @@ BASH/usage para1
 BASH/usage para2
 BASH/usage para3
 BASH/usage para4
+BASH/usage while
 BASH/休眠
 BASH/函数
 BASH/变量/命令行参数
@@ -86,6 +89,7 @@ BASH/语句/if语句或2
 BASH/语句/if语句选项常用列表
 BASH/语句/until语句
 BASH/语句/while语句
+BASH/语句/while语句 ++
 BASH/读取文件
 BASH/读取用户输入/-a数组多个输入
 BASH/读取用户输入/单个或多个
