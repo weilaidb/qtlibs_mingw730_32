@@ -1,0 +1,149 @@
+【exec】shell脚本中的 exec 命令
+
+Bogon
+0.43
+2018.07.10 00:03:19
+字数 940
+阅读 40,168
+exec 是 bash 的内置命令
+
+shell 的内件命令exec执行命令时，不启用新的shell进程。
+
+source 和 . 不启用新的shell，在当前shell中执行，设定的局部变量在执行完命令后仍然有效。
+
+bash 或 sh 或 shell script 执行时，另起一个子shell，其继承父shell的环境变量，其子shelll的变量执行完后不影响父shell。
+
+exec是用被执行的命令行替换掉当前的shell进程，且exec命令后的其他命令将不再执行。
+
+例如在当前shell中执行 exec ls  表示执行ls这条命令来替换当前的shell ，即为执行完后会退出当前shell。
+
+为了避免这个结果的影响，一般将exec命令放到一个shell脚本中，用主脚本调用这个脚本，调用处可以用bash  xx.sh(xx.sh为存放exec命令的脚本)，这样会为xx.sh建立一个子shell去执行，当执行exec后该子脚本进程就被替换成相应的exec的命令。
+
+其中有一个例外：当exec命令对文件描述符操作的时候，就不会替换shell，而是操作完成后还会继续执行后面的命令！
+
+
+
+在shell脚本中使用exec命令，根据操作的对象不同会有不同的行为
+
+文件描述符
+
+shell中描述符一共有12个
+
+0  代表标准输入
+
+1  代表标准输出
+
+2  错误输出
+
+其他 3-9 都是空白描述符
+
+#  exec3>&1 4>&2 1>> bash.log 2>&1
+
+其含义是： 复制标准输出到3 ，错误输出到 4 ，把 3 4 保存在bash.log 这个文件中。
+
+#  ./bash.sh  >> bash.log   2>&1
+
+其含义是：将bash.sh脚本执行的标准输出和错误输出追加重定向到 bash.log
+
+如果exec 跟的是其他命令，则其他命令结束后，本shell也随之停止
+
+#  cat test_exec.sh
+
+###################
+
+#!/bin/bash  
+
+# 
+
+echo "Hello mysql"  
+
+exec echo "Hello oracle"  
+
+echo "Hello sqlserver"
+
+####################
+
+
+可以看到随着 echo " hello oracle"  这条指令运行完本 整个脚本执行完毕，后面的 echo " hello db2" 没有执行！
+
+Linux shell 脚本中， $@ 和$# 分别是什么意思？
+
+$@  表示所有脚本参数的内容
+
+$# 表示返回所有脚本参数的个数
+
+示例：编写如下shell脚本，保存为test.sh
+
+###############
+
+#!/bin/sh
+
+echo "number:$#"
+
+echo "argume:$@"
+
+###############
+
+执行脚本:
+
+./test.sh first_arg  second_arg
+
+
+说明：给脚本提供了两个参数，所以$#输出的结果是2，$@代表了参数的内容！
+
+怎么理解shell脚本中  exec "`dirname "$0"`/node""$0"  "$@" ？
+
+$0                                      # 脚本自己的路径
+
+"`dirname "$0"`"/node    # 脚本目录下的node程序的路径
+
+$@                                    # 脚本被执行时的命令行参数
+
+合起来就是：用脚本目录下的node程序来解释这个脚本本身
+
+exec scala "$0" "$@"是什么意思
+
+这是bash语法。
+
+$0  表示当前脚本的名字
+
+$@  表示当前脚本执行的所有参数
+
+exec scala "$0" "$@"    表示用scala命令，带参数，执行当前脚本
+
+exec  sh "$0  在这个文件里，exec sh  $0是什么意思？
+
+############
+
+#!/bin/sh
+
+echo  "Hello!"
+
+sleep 2
+
+execsh "$0"
+
+#############
+
+$0   是位置参数，表示脚本名称
+
+$1   表示脚本的第一个参数，依次类推直到$9
+
+exec用于执行命令、或脚本、或外部可执行程序，会新建一个shell去执行
+
+综上，这里exec sh  "$0"  就是执行脚本本身
+
+所以，就是一个循环过程,每隔两秒打印一次 Hello
+
+
+#############
+
+#!/bin/sh
+
+echo  "Hello!"
+
+sleep 2
+
+exec   "$0"
+
+#############
