@@ -629,8 +629,12 @@ GCC/Wall
 GCC/fpermissive
 GCC/gcc编译选项
 Html/DOM/getElementById
+Html/DOM/getElementById innerHTML
+Html/DOM/getElementById2
 Html/JS/Move.html 左右滑动
 Html/JS/Move.html 左右滑动 代码管理系统
+Html/JS/富文本编辑器的xss问题
+Html/TOOL/HTML编码解码
 JAVA/Base/forloop
 JAVA/Cloud/ECS
 JAVA/JAVA_HOME JRE_HOME
