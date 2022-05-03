@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -628,6 +629,7 @@ GCC/-rdynamic
 GCC/Wall
 GCC/fpermissive
 GCC/gcc编译选项
+Html/DOM/div/刷新
 Html/DOM/getElementById
 Html/DOM/getElementById innerHTML
 Html/DOM/getElementById2

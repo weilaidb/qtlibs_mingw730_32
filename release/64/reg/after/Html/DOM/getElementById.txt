@@ -1,1 +1,1 @@
-<script type="text/javascript">$NLfunction getValue()$NL  {$NL  var x=document.getElementById("\1")$NL  alert(x.innerHTML)$NL  }$NL</script>$NL</head>$NL<body>$NL$NL<h1 id="\1" onclick="getValue()">This is a header</h1>$NL<p>Click on the header to alert its value</p>
+<!--\1-->$NL<div style="display: table-cell;">$NL	<button id="\2" class="layui-btn layui-btn-normal layui-btn-sm" style="margin-left: 15px">$NL		<i class="layui-icon"></i> \3$NL	</button>$NL</div>
