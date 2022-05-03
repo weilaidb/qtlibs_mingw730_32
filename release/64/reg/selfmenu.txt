@@ -1,4 +1,3 @@
-
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -629,6 +628,7 @@ GCC/-rdynamic
 GCC/Wall
 GCC/fpermissive
 GCC/gcc编译选项
+Html/JS/Move.html 左右滑动
 JAVA/Base/forloop
 JAVA/Cloud/ECS
 JAVA/JAVA_HOME JRE_HOME
@@ -1740,13 +1740,17 @@ path路径/常用文件夹
 术语/网络/ATM网络
 术语/网络/CERNET
 术语/网络/FDDI网络
+术语/网络/IDLE帧
+术语/网络/PCS
 术语/网络/PDU
 术语/网络/PHY/MDI
 术语/网络/PHY/MII
 术语/网络/PHY/PHY芯片 RTL8211E
 术语/网络/PHY/RGMII
 术语/网络/PHY/RMII
+术语/网络/PMA
 术语/网络/TCP_IP协议族
+术语/网络/万兆以太网
 术语/网络/信道(channel)
 术语/网络/协议
 术语/网络/基带信号
