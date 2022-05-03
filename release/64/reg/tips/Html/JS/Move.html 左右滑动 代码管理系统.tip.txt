@@ -1,0 +1,98 @@
+<head>
+    <title>文件内容</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        #box {
+            width: 100%;
+            height: 90%;
+            overflow: hidden;
+        }
+
+        #left {
+            width: calc(50% - 3px);
+            height: 100%;
+            /*background: skyblue;*/
+            background-color:#cce8cf;
+            color:black;
+            /*width: 48%;*/
+            float: left;
+            word-wrap:break-word
+        }
+
+        #resize {
+            width: 3px;
+            height: 100%;
+            cursor: w-resize;
+            float: left;
+        }
+
+        #right {
+            float: right;
+            width: 50%;
+            height: 100%;
+            /*background: tomato;*/
+            background-color:#cce8cf;
+            color:black;
+            /*width: 48%;*/
+            word-wrap:break-word
+        }
+    </style>
+</head>
+
+
+
+
+
+
+<%--    左右滑动--%>
+    <div id="box">
+            <textarea id="left" name="filetip" class="textarea_reg1"  id="filetip"><%=lefttext%></textarea>
+        <div id="resize"></div>
+            <textarea id="right" name="righttext" class="textarea_reg1" ><%=regexpResult%></textarea>
+    </div>
+
+
+
+
+
+
+<script>
+    window.onload = function () {
+        var resize = document.getElementById("resize");
+        var left = document.getElementById("left");
+        var right = document.getElementById("right");
+        var box = document.getElementById("box");
+        resize.onmousedown = function (e) {
+            var startX = e.clientX;
+            resize.left = resize.offsetLeft;
+            document.onmousemove = function (e) {
+                var endX = e.clientX;
+                var MAXMOVE = 10
+
+                var moveLen = resize.left + (endX - startX);
+                var maxT = box.clientWidth - resize.offsetWidth;
+                if (moveLen < MAXMOVE) moveLen = MAXMOVE;
+                if (moveLen > maxT - MAXMOVE) moveLen = maxT - MAXMOVE;
+
+                resize.style.left = moveLen;
+                left.style.width = moveLen + "px";
+                right.style.width = (box.clientWidth - moveLen - 5) + "px";
+            }
+            document.onmouseup = function (evt) {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                resize.releaseCapture && resize.releaseCapture();
+            }
+            resize.setCapture && resize.setCapture();
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

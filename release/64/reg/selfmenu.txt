@@ -1,4 +1,3 @@
-
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -9,11 +8,14 @@ BASH/alias/generate生成
 BASH/alias/public use
 BASH/alias/public use @ubuntu20.04
 BASH/alias/public use @web
+BASH/awk
+BASH/awk file
 BASH/cdpath
 BASH/chmod
 BASH/dev null(no output 2 1 )
 BASH/echo
 BASH/eg
+BASH/exec
 BASH/exitcode
 BASH/gitinfo
 BASH/hello
@@ -29,7 +31,11 @@ BASH/scripts/include.sh public
 BASH/scripts/public.sh
 BASH/scripts/test.sh
 BASH/scripts/updategit.atwork.sh
+BASH/set -x
+BASH/set -x eg
 BASH/test -f
+BASH/tr
+BASH/tr help
 BASH/trap
 BASH/trap exit
 BASH/usage
@@ -37,6 +43,7 @@ BASH/usage para1
 BASH/usage para2
 BASH/usage para3
 BASH/usage para4
+BASH/usage while
 BASH/休眠
 BASH/函数
 BASH/变量/命令行参数
@@ -81,6 +88,7 @@ BASH/语句/if语句或2
 BASH/语句/if语句选项常用列表
 BASH/语句/until语句
 BASH/语句/while语句
+BASH/语句/while语句 ++
 BASH/读取文件
 BASH/读取用户输入/-a数组多个输入
 BASH/读取用户输入/单个或多个
@@ -105,10 +113,13 @@ BAT/网络network/AF/Socket理解之地址族
 BAT/网络network/AF/address families linux
 BAT/网络network/IPPROTO/IP protocols
 BAT/网络network/LACP报文格式
+BAT/网络network/RMON 远程网络监视
+BAT/网络network/SNMP 简单网络管理协议
 BAT/网络network/SOCK TYPE/sock type
 BAT/网络network/SOCK TYPE/原始套接字SOCK_RAW
 BAT/网络network/VTP
 BAT/网络network/acl
+BAT/网络network/dnat
 BAT/网络network/ethertype
 BAT/网络network/icmp
 BAT/网络network/ipv4 add 添加ip
@@ -127,9 +138,12 @@ BAT/网络network/route change
 BAT/网络network/route delete
 BAT/网络network/route print
 BAT/网络network/router 路由器
+BAT/网络network/router 路由器 ip数据包经由路由转发的时候源ip MAC，目的ip 目的MAC是否改变
 BAT/网络network/router 路由器 跃点数
 BAT/网络network/router 路由器优先级
 BAT/网络network/router 路由器度量值
+BAT/网络network/router 路由器转发过程
+BAT/网络network/snat
 BAT/网络network/software cisco order
 BAT/网络network/stp
 BAT/网络network/tcpdump/arp
@@ -141,7 +155,7 @@ BAT/网络network/tcpdump/capture order抓包命令 进阶
 BAT/网络network/tcpdump/dhcp
 BAT/网络network/tcpdump/wireshark源地址
 BAT/网络network/tcpdump/常用抓包命令
-BAT/网络network/vlan
+BAT/网络network/vlan intr
 BAT/网络network/vlan/Access接口
 BAT/网络network/vlan/Hybrid接口
 BAT/网络network/vlan/Trunk接口
@@ -153,6 +167,8 @@ BAT/网络network/什么是vlan
 BAT/网络network/演示软件 software
 BAT/网络network/知识点/33 张图详解 RSTP 、MSTP协议，以及替代技术
 BAT/网络network/知识点/ATM协议
+BAT/网络network/知识点/BGP 边界网关协议
+BAT/网络network/知识点/BGP漫谈
 BAT/网络network/知识点/CE
 BAT/网络network/知识点/HDLC
 BAT/网络network/知识点/IP协议号大全
@@ -189,6 +205,8 @@ BAT/网络network/知识点/协议卡(protocol card)/以太帧
 BAT/网络network/知识点/基于MPLS的VPN
 BAT/网络network/知识点/复习
 BAT/网络network/知识点/常用端口号大全 port
+BAT/网络network/防火墙
+BAT/网络network/防火墙工作原理
 Books/常用书籍列表
 Books/常用书籍列表 学校
 Books/常用书籍列表 已经购买
@@ -443,6 +461,7 @@ CXX/cin.getline
 CXX/class/多态 继承
 CXX/class/多态 继承 virtual
 CXX/class/多态 继承 virtual Board
+CXX/class/多态 继承 virtual Board 2
 CXX/define/pub
 CXX/eg
 CXX/externc __cplusplus
@@ -609,6 +628,13 @@ GCC/-rdynamic
 GCC/Wall
 GCC/fpermissive
 GCC/gcc编译选项
+Html/DOM/getElementById
+Html/DOM/getElementById innerHTML
+Html/DOM/getElementById2
+Html/JS/Move.html 左右滑动
+Html/JS/Move.html 左右滑动 代码管理系统
+Html/JS/富文本编辑器的xss问题
+Html/TOOL/HTML编码解码
 JAVA/Base/forloop
 JAVA/Cloud/ECS
 JAVA/JAVA_HOME JRE_HOME
@@ -995,7 +1021,7 @@ LINUX/man/chrt -m
 LINUX/man/chrt -p
 LINUX/man/systemtap
 LINUX/man/vmstat
-LINUX/qemu
+LINUX/qemu intr
 LINUX/qemu script/arm.sh
 LINUX/qemu script/build.sh
 LINUX/qemu script/uboot.sh
@@ -1019,6 +1045,10 @@ LINUX/命令行/crontab tomcat
 LINUX/命令行/eg
 LINUX/命令行/fgrep
 LINUX/命令行/getconf
+LINUX/命令行/grep
+LINUX/命令行/grep -Po
+LINUX/命令行/grep -Poh
+LINUX/命令行/grep 左匹配的问题
 LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
@@ -1032,6 +1062,7 @@ LINUX/命令行/nano
 LINUX/命令行/nm
 LINUX/命令行/nohup
 LINUX/命令行/realpath
+LINUX/命令行/realpath help
 LINUX/命令行/save write 提升权限 w
 LINUX/命令行/sed
 LINUX/命令行/setenforce
@@ -1710,18 +1741,27 @@ path路径/常用文件夹
 术语/内核Kernel/伙伴系统
 术语/内核Kernel/常见名词
 术语/内核Kernel/编译器
+术语/大小端
 术语/异或
+术语/网络/ATM网络
+术语/网络/CERNET
+术语/网络/FDDI网络
+术语/网络/IDLE帧
+术语/网络/PCS
 术语/网络/PDU
 术语/网络/PHY/MDI
 术语/网络/PHY/MII
 术语/网络/PHY/PHY芯片 RTL8211E
 术语/网络/PHY/RGMII
 术语/网络/PHY/RMII
+术语/网络/PMA
 术语/网络/TCP_IP协议族
+术语/网络/万兆以太网
 术语/网络/信道(channel)
 术语/网络/协议
 术语/网络/基带信号
 术语/网络/实体(entity)
+术语/网络/异构网络
 术语/网络/数字信号
 术语/网络/服务数据单元SDU
 术语/网络/服务访问点SAP
