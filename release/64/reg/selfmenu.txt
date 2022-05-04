@@ -1,4 +1,3 @@
-
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -1827,3 +1826,5 @@ path路径/常用文件夹
 设计/软件设计/TDD new/suits telnet
 设计/软件设计/eg
 设计/软件设计/语言设计的美妙
+软件安装/dia/下载地址
+软件安装/dia/解决dia无法输入中文问题
