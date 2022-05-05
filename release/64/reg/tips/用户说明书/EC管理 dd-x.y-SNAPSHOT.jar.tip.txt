@@ -4,6 +4,9 @@
 D:\mydb\bugsets\sqlite
 
 2.需要手动创建数据库表
+sqlite3 ec.db
+E:\software\sqlite3.exe ec.db
+
 CREATE TABLE ec(
 [ID]   INTEGER PRIMARY KEY,
 [TITLE]    varchar(255) NOT NULL,
