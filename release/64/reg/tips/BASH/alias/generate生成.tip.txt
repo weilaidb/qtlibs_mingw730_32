@@ -1,5 +1,5 @@
 killddjar;kill -9 \`ps aux | grep jar | grep dd | awk '{print \$2}'\`
-jardd;cd $HOME && nohup java -jar ~/dd-0.1-SNAPSHOT.jar --server.port=8888 &
+jardd;cd $HOME && nohup java -jar ~/dd-0.2-SNAPSHOT.jar --server.port=8888 &
 cdbusybox;~/work/git/busybox2
 cdqemu;cd ~/work/git/qemu_eg
 cdqemuarm;cd ~/work/git/qemu_eg/arm
