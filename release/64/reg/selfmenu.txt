@@ -639,6 +639,7 @@ Html/JS/Move.html 左右滑动 代码管理系统
 Html/JS/table 2 excel 表格下载
 Html/JS/富文本编辑器的xss问题
 Html/TOOL/HTML编码解码
+Html/eg
 JAVA/Base/forloop
 JAVA/Cloud/ECS
 JAVA/JAVA_HOME JRE_HOME
@@ -882,8 +883,10 @@ JavaScript/func/scrollToTop
 JavaScript/include引用
 JavaScript/src引用
 JavaScript/timeout返回原页面
+JavaScript/示例/alert
 JavaScript/示例/eg
 JavaScript/示例/hello world
+JavaScript/示例/将数字格式化为指定长度
 JavaScript/简介
 JavaScript/自动关闭网页 close self
 KERNEL/2.6.18/函数或结构体/alloc_skb
