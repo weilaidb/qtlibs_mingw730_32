@@ -877,6 +877,7 @@ JAVA/基本语句/main
 JAVA/基本语句/反射
 JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
+JavaScript/func/PyScript/eg
 JavaScript/func/confirm 弹出对话框
 JavaScript/func/eg
 JavaScript/func/scrollToTop
