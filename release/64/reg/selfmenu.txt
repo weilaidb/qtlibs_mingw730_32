@@ -884,10 +884,16 @@ JavaScript/func/scrollToTop
 JavaScript/include引用
 JavaScript/src引用
 JavaScript/timeout返回原页面
+JavaScript/示例/account
 JavaScript/示例/alert
 JavaScript/示例/eg
+JavaScript/示例/getValue setValue
 JavaScript/示例/hello world
+JavaScript/示例/print
+JavaScript/示例/函数调用 引用
 JavaScript/示例/将数字格式化为指定长度
+JavaScript/示例/检测form不能为空
+JavaScript/示例/颜色
 JavaScript/简介
 JavaScript/自动关闭网页 close self
 KERNEL/2.6.18/函数或结构体/alloc_skb
