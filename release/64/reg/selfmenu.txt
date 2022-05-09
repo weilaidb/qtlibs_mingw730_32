@@ -15,6 +15,7 @@ BASH/cdpath
 BASH/chmod
 BASH/dev null(no output 2 1 )
 BASH/echo
+BASH/echo para1
 BASH/eg
 BASH/exec
 BASH/exitcode
@@ -26,7 +27,9 @@ BASH/printf string 1
 BASH/printf string 2
 BASH/printf string 3
 BASH/printf说明
+BASH/replace nums in file or 提取数字自增1
 BASH/scripts/commitgit.atwork.sh
+BASH/scripts/getnumsinfile.sh
 BASH/scripts/include.sh
 BASH/scripts/include.sh public
 BASH/scripts/public.sh
@@ -76,6 +79,7 @@ BASH/日期/选项
 BASH/注释/单行
 BASH/注释/多行
 BASH/注释/多行2
+BASH/自增1 自加1
 BASH/语句/case语句
 BASH/语句/for语句-1
 BASH/语句/for语句-2
