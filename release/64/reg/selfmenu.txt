@@ -169,6 +169,10 @@ BAT/网络network/三层交换机 L3 Switch
 BAT/网络network/二层交换机 L2Switch
 BAT/网络network/什么是LACP
 BAT/网络network/什么是vlan
+BAT/网络network/常见问题/光模块拔掉后二层交换芯片仍LINKUP
+BAT/网络network/常见问题/光模块拔掉后二层交换芯片仍LINKUP GE自协商
+BAT/网络network/常见问题/光模块拔掉后二层交换芯片仍LINKUP IEEE 802.3-2018 中文目录
+BAT/网络network/常见问题/光模块拔掉后二层交换芯片仍LINKUP 光口自协商机制
 BAT/网络network/演示软件 software
 BAT/网络network/知识点/33 张图详解 RSTP 、MSTP协议，以及替代技术
 BAT/网络network/知识点/ATM协议
