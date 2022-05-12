@@ -794,6 +794,7 @@ JAVA/RegExp/Pattern
 JAVA/RegExp/Pattern $H2D替换
 JAVA/SpringBoot/Annotation
 JAVA/SpringBoot/Annotation JDK的元Annotation（修饰注解的注解）
+JAVA/SpringBoot/JSONObject/new
 JAVA/SpringBoot/Java EE分层架构
 JAVA/SpringBoot/JetBrains 激活码
 JAVA/SpringBoot/MyBatis
