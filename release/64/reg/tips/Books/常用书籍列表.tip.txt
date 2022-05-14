@@ -21,6 +21,7 @@ http://down.yzppaa.org/list/4_1.html
 http://res.scemi.com/suite/solver/classView.do?feature=courseSite&action=showCourseContent&structureKey=13244824&courseKey=13230242&siteKey=13230268&classKey=13236368&curStructureKey=13230249
 《路由与交换技术》
 IEEE802.3-2018最新完整版.pdf
+  -- https://download.csdn.net/download/dzkcool/11710198
 
 
 自动化测试实战宝典：Robot Framework + Python从小工到专家
