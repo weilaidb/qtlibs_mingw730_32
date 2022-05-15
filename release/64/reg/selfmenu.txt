@@ -1664,6 +1664,8 @@ Tools/package 0xdot 添加0x和逗号
 Tools/package 0xdot 自带0x 添加逗号
 Tools/svn/order
 Tools/svn/order 忽略多值
+Tools/win10 快捷键
+Tools/win10 快捷键 win10双屏幕扩展使用
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
