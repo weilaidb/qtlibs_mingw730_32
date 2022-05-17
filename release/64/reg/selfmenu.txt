@@ -1665,6 +1665,7 @@ Tools/hex to dec 十六进制转十进制
 Tools/ico生成在线工具
 Tools/package 0xdot 添加0x和逗号
 Tools/package 0xdot 自带0x 添加逗号
+Tools/powershell快捷键
 Tools/svn/order
 Tools/svn/order 忽略多值
 Tools/win10 快捷键
