@@ -186,6 +186,8 @@ BAT/网络network/知识点/ISP
 BAT/网络network/知识点/LCP
 BAT/网络network/知识点/LLDP
 BAT/网络network/知识点/LSA Link-State Advertisement 链路状态通告
+BAT/网络network/知识点/LSA 完全末节区域(totally stub area)
+BAT/网络network/知识点/LSA 末节区域(stub area)
 BAT/网络network/知识点/Linux中iproute实现VRF
 BAT/网络network/知识点/NCP
 BAT/网络network/知识点/OSI七层功能
