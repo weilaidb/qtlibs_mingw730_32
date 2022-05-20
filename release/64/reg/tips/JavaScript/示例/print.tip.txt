@@ -1,0 +1,3 @@
+function print(statement1, statement2, statement3) {
+    alert(statement1+statement2+statement3)
+}

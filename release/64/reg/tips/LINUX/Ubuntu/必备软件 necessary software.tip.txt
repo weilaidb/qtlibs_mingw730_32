@@ -53,3 +53,7 @@ libgsettings-qt1
 【五笔输入法】
 ibus-table-wubi
 fcitx-table-wubi
+
+
+[开发]
+valgrind

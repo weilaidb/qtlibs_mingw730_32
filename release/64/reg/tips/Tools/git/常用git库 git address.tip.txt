@@ -76,6 +76,8 @@ git@gitee.com:weilaidb/web_notebook_online.git
 git@github.com:weilaidb/qtlibs_mingw730_32.git
 git@github.com:weilaidb/linux_driver.git
 git@gitee.com:weilaidb/hello-java-ee3_-ext.git
+git@gitee.com:weilaidb/DD.git
+git@gitee.com:weilaidb/javaScriptExample.git
 https://github.com/weilaidb/qtlibs_mingw730_32.git
 https://gitee.com/weilaidb/qtlibs_mingw730_32.git
 https://gitee.com/weilaidb/web_notebook_online.git
@@ -88,6 +90,7 @@ git@github.com:weilaidb/jsp.git
 git@gitee.com:weilaidb/cxxcodesets.git
 git@github.com:weilaidb/gmock-1.7.0.git
 git@github.com:weilaidb/codetools.git
+
 #CXX Gmock库
 git@github.com:weilaidb/codesetsmore.git
 git@gitee.com:weilaidb/vbscript_eg.git

@@ -14,6 +14,7 @@ BASH/cdpath
 BASH/chmod
 BASH/dev null(no output 2 1 )
 BASH/echo
+BASH/echo para1
 BASH/eg
 BASH/exec
 BASH/exitcode
@@ -25,7 +26,9 @@ BASH/printf string 1
 BASH/printf string 2
 BASH/printf string 3
 BASH/printf说明
+BASH/replace nums in file or 提取数字自增1
 BASH/scripts/commitgit.atwork.sh
+BASH/scripts/getnumsinfile.sh
 BASH/scripts/include.sh
 BASH/scripts/include.sh public
 BASH/scripts/public.sh
@@ -75,6 +78,7 @@ BASH/日期/选项
 BASH/注释/单行
 BASH/注释/多行
 BASH/注释/多行2
+BASH/自增1 自加1
 BASH/语句/case语句
 BASH/语句/for语句-1
 BASH/语句/for语句-2
@@ -164,6 +168,10 @@ BAT/网络network/三层交换机 L3 Switch
 BAT/网络network/二层交换机 L2Switch
 BAT/网络network/什么是LACP
 BAT/网络network/什么是vlan
+BAT/网络network/常见问题/光模块拔掉后二层交换芯片仍LINKUP
+BAT/网络network/常见问题/光模块拔掉后二层交换芯片仍LINKUP GE自协商
+BAT/网络network/常见问题/光模块拔掉后二层交换芯片仍LINKUP IEEE 802.3-2018 中文目录
+BAT/网络network/常见问题/光模块拔掉后二层交换芯片仍LINKUP 光口自协商机制
 BAT/网络network/演示软件 software
 BAT/网络network/知识点/33 张图详解 RSTP 、MSTP协议，以及替代技术
 BAT/网络network/知识点/ATM协议
@@ -177,6 +185,8 @@ BAT/网络network/知识点/ISP
 BAT/网络network/知识点/LCP
 BAT/网络network/知识点/LLDP
 BAT/网络network/知识点/LSA Link-State Advertisement 链路状态通告
+BAT/网络network/知识点/LSA 完全末节区域(totally stub area)
+BAT/网络network/知识点/LSA 末节区域(stub area)
 BAT/网络network/知识点/Linux中iproute实现VRF
 BAT/网络network/知识点/NCP
 BAT/网络network/知识点/OSI七层功能
@@ -205,11 +215,13 @@ BAT/网络network/知识点/协议卡(protocol card)/以太帧
 BAT/网络network/知识点/基于MPLS的VPN
 BAT/网络network/知识点/复习
 BAT/网络network/知识点/常用端口号大全 port
+BAT/网络network/问题列表/主控ping线卡偶发不通
 BAT/网络network/防火墙
 BAT/网络network/防火墙工作原理
 Books/常用书籍列表
 Books/常用书籍列表 学校
 Books/常用书籍列表 已经购买
+Books/常用代码
 Books/常用网址
 Books/读后感/Linux Tcp IP协议栈 Linux2.6协议栈源代码分析
 Books/读后感/奔跑吧 Linux内核
@@ -637,6 +649,7 @@ Html/JS/Move.html 左右滑动 代码管理系统
 Html/JS/table 2 excel 表格下载
 Html/JS/富文本编辑器的xss问题
 Html/TOOL/HTML编码解码
+Html/eg
 JAVA/Base/forloop
 JAVA/Cloud/ECS
 JAVA/JAVA_HOME JRE_HOME
@@ -783,9 +796,11 @@ JAVA/RegExp/Pattern
 JAVA/RegExp/Pattern $H2D替换
 JAVA/SpringBoot/Annotation
 JAVA/SpringBoot/Annotation JDK的元Annotation（修饰注解的注解）
+JAVA/SpringBoot/JSONObject/new
 JAVA/SpringBoot/Java EE分层架构
 JAVA/SpringBoot/JetBrains 激活码
 JAVA/SpringBoot/MyBatis
+JAVA/SpringBoot/Spring Boot开发基础
 JAVA/SpringBoot/SpringBoot应用启动步骤简要示意图
 JAVA/SpringBoot/Springboot如何打包部署项目
 JAVA/SpringBoot/Thymealeaf/help/favicon.ico error解决
@@ -874,12 +889,23 @@ JAVA/基本语句/main
 JAVA/基本语句/反射
 JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
+JavaScript/func/PyScript/eg
 JavaScript/func/confirm 弹出对话框
 JavaScript/func/eg
 JavaScript/func/scrollToTop
 JavaScript/include引用
 JavaScript/src引用
 JavaScript/timeout返回原页面
+JavaScript/示例/account
+JavaScript/示例/alert
+JavaScript/示例/eg
+JavaScript/示例/getValue setValue
+JavaScript/示例/hello world
+JavaScript/示例/print
+JavaScript/示例/函数调用 引用
+JavaScript/示例/将数字格式化为指定长度
+JavaScript/示例/检测form不能为空
+JavaScript/示例/颜色
 JavaScript/简介
 JavaScript/自动关闭网页 close self
 KERNEL/2.6.18/函数或结构体/alloc_skb
@@ -1635,10 +1661,14 @@ Tools/git/tig blame filename
 Tools/git/tig help
 Tools/git/常用git库 git address
 Tools/hex to dec 十六进制转十进制
+Tools/ico生成在线工具
 Tools/package 0xdot 添加0x和逗号
 Tools/package 0xdot 自带0x 添加逗号
+Tools/powershell快捷键
 Tools/svn/order
 Tools/svn/order 忽略多值
+Tools/win10 快捷键
+Tools/win10 快捷键 win10双屏幕扩展使用
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
@@ -1738,6 +1768,7 @@ path路径/常用文件夹
 术语/C/宏和内联函数的区别
 术语/C/宏和内联函数的区别2
 术语/Linux/FIB Forward Information Base
+术语/Linux/FIB Forward Information Base 2
 术语/交换/eg
 术语/交换/中英文对照表
 术语/内核Kernel/eg
@@ -1750,6 +1781,7 @@ path路径/常用文件夹
 术语/网络/CERNET
 术语/网络/FDDI网络
 术语/网络/IDLE帧
+术语/网络/MTU Maximum Transmission Unit
 术语/网络/PCS
 术语/网络/PDU
 术语/网络/PHY/MDI
@@ -1770,6 +1802,7 @@ path路径/常用文件夹
 术语/网络/服务访问点SAP
 术语/网络/模拟信号
 术语/网络/物理层 规程 procedure
+检查单/结算
 正则表达式/Office/WORD替换
 正则表达式/去除开头的数字
 正则表达式/去除空行
