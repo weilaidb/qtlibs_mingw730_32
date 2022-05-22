@@ -890,12 +890,57 @@ JAVA/基本语句/main
 JAVA/基本语句/反射
 JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
+JavaScript/JQuery/code/button
+JavaScript/JQuery/code/effect/animate
+JavaScript/JQuery/code/effect/animate2
+JavaScript/JQuery/code/effect/animate3 相对值
+JavaScript/JQuery/code/effect/animate4 toggle
+JavaScript/JQuery/code/effect/animate5 队列
+JavaScript/JQuery/code/effect/animate5 队列2
+JavaScript/JQuery/code/effect/eg
+JavaScript/JQuery/code/effect/fadeIn
+JavaScript/JQuery/code/effect/fadeOut
+JavaScript/JQuery/code/effect/fadeTo
+JavaScript/JQuery/code/effect/fadeToggle
+JavaScript/JQuery/code/effect/hide
+JavaScript/JQuery/code/effect/hide alert
+JavaScript/JQuery/code/effect/hide show
+JavaScript/JQuery/code/effect/hide time
+JavaScript/JQuery/code/effect/hide2
+JavaScript/JQuery/code/effect/slideDown
+JavaScript/JQuery/code/effect/slideToggle
+JavaScript/JQuery/code/effect/slideUp
+JavaScript/JQuery/code/effect/toggle
+JavaScript/JQuery/code/event/blur
+JavaScript/JQuery/code/event/click
+JavaScript/JQuery/code/event/dblclick
+JavaScript/JQuery/code/event/eg
+JavaScript/JQuery/code/event/focus
+JavaScript/JQuery/code/event/hover
+JavaScript/JQuery/code/event/mousedown
+JavaScript/JQuery/code/event/mouseenter
+JavaScript/JQuery/code/event/mouseleave
+JavaScript/JQuery/code/event/mouseup
+JavaScript/JQuery/code/href
+JavaScript/JQuery/code/href target _blank
+JavaScript/JQuery/code/href target _blank neq
+JavaScript/JQuery/code/p first hide
+JavaScript/JQuery/code/tr even 选取偶数位置
+JavaScript/JQuery/code/tr odd 选取奇数位置
+JavaScript/JQuery/code/ul li first
+JavaScript/JQuery/code/ul li first-child
 JavaScript/JQuery/eg
 JavaScript/JQuery/jQuery 入口函数与 JavaScript 入口函数的区别
 JavaScript/JQuery/jQuery 安装
 JavaScript/JQuery/什么是 jQuery
+JavaScript/JQuery/效果 - 淡入淡出
+JavaScript/JQuery/效果 - 滑动
+JavaScript/JQuery/效果- 动画
+JavaScript/JQuery/效果- 隐藏和显示
 JavaScript/JQuery/标签引用
 JavaScript/JQuery/标签引用 替代方案
+JavaScript/JQuery/标签引用 替代方案2
+JavaScript/JQuery/语法/事件
 JavaScript/JQuery/语法/用法
 JavaScript/JQuery/选择器
 JavaScript/func/PyScript/eg

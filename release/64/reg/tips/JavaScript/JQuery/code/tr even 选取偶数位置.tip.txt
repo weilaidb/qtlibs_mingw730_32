@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("tr:even").css("background-color","yellow");
+});
+</script>
+</head>
+<body>
+
+<h1>欢迎访问我的主页</h1>
+
+<table border="1">
+<tr>
+  <th>网站名</th>
+  <th>网址</th>
+</tr>
+<tr>
+<td>Google</td>
+<td>http://www.google.com</td>
+</tr>
+<tr>
+<td>Baidu</td>
+<td>http://www.baidu.com</td>
+</tr>
+<tr>
+<td>菜鸟教程</td>
+<td>http://www.runoob.com</td>
+</tr>
+<tr>
+<td>淘宝</td>
+<td>http://www.taobao.com</td>
+</tr>
+<tr>
+<td>Facebook</td>
+<td>http://www.facebook.com</td>
+</tr>
+</table>
+
+</body>
+</html>
