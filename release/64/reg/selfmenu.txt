@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -889,6 +890,14 @@ JAVA/基本语句/main
 JAVA/基本语句/反射
 JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
+JavaScript/JQuery/eg
+JavaScript/JQuery/jQuery 入口函数与 JavaScript 入口函数的区别
+JavaScript/JQuery/jQuery 安装
+JavaScript/JQuery/什么是 jQuery
+JavaScript/JQuery/标签引用
+JavaScript/JQuery/标签引用 替代方案
+JavaScript/JQuery/语法/用法
+JavaScript/JQuery/选择器
 JavaScript/func/PyScript/eg
 JavaScript/func/confirm 弹出对话框
 JavaScript/func/eg
