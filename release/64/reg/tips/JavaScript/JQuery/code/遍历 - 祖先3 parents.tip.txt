@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+.ancestors *
+{ 
+	display: block;
+	border: 2px solid lightgrey;
+	color: lightgrey;
+	padding: 5px;
+	margin: 15px;
+}
+</style>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("span").parents().css({"color":"red","border":"2px solid red"});
+});
+</script>
+</head>
+
+<body class="ancestors">body (曾曾祖父元素)
+  <div style="width:500px;">div (曾祖父元素)
+    <ul>ul (祖父元素)  
+      <li>li (父元素)
+        <span>span</span>
+      </li>
+    </ul>   
+  </div>
+</body>
+
+</html>

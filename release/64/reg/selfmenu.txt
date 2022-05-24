@@ -969,6 +969,11 @@ JavaScript/JQuery/code/设置内容和属性4
 JavaScript/JQuery/code/设置内容和属性5
 JavaScript/JQuery/code/设置内容和属性6
 JavaScript/JQuery/code/遍历
+JavaScript/JQuery/code/遍历 - 祖先
+JavaScript/JQuery/code/遍历 - 祖先2 parent
+JavaScript/JQuery/code/遍历 - 祖先3 parents
+JavaScript/JQuery/code/遍历 - 祖先4 parents
+JavaScript/JQuery/code/遍历 - 祖先5 parentsUntil
 JavaScript/JQuery/code/链(Chaining)
 JavaScript/JQuery/code/链(Chaining) 2
 JavaScript/JQuery/eg
