@@ -641,6 +641,7 @@ GCC/-rdynamic
 GCC/Wall
 GCC/fpermissive
 GCC/gcc编译选项
+Html/DOM/DOM
 Html/DOM/div/刷新
 Html/DOM/getElementById
 Html/DOM/getElementById innerHTML
@@ -891,12 +892,20 @@ JAVA/基本语句/反射
 JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
 JavaScript/JQuery/code/button
+JavaScript/JQuery/code/css() 方法
+JavaScript/JQuery/code/css() 方法2
+JavaScript/JQuery/code/css() 方法3
+JavaScript/JQuery/code/css() 方法4
 JavaScript/JQuery/code/effect/animate
+JavaScript/JQuery/code/effect/animate Callback 方法
+JavaScript/JQuery/code/effect/animate Callback 方法2
+JavaScript/JQuery/code/effect/animate stop
 JavaScript/JQuery/code/effect/animate2
 JavaScript/JQuery/code/effect/animate3 相对值
 JavaScript/JQuery/code/effect/animate4 toggle
 JavaScript/JQuery/code/effect/animate5 队列
 JavaScript/JQuery/code/effect/animate5 队列2
+JavaScript/JQuery/code/effect/animate6 start stop
 JavaScript/JQuery/code/effect/eg
 JavaScript/JQuery/code/effect/fadeIn
 JavaScript/JQuery/code/effect/fadeOut
@@ -929,6 +938,39 @@ JavaScript/JQuery/code/tr even 选取偶数位置
 JavaScript/JQuery/code/tr odd 选取奇数位置
 JavaScript/JQuery/code/ul li first
 JavaScript/JQuery/code/ul li first-child
+JavaScript/JQuery/code/删除元素
+JavaScript/JQuery/code/删除元素2
+JavaScript/JQuery/code/删除元素3
+JavaScript/JQuery/code/删除元素4
+JavaScript/JQuery/code/尺寸
+JavaScript/JQuery/code/尺寸2
+JavaScript/JQuery/code/尺寸3
+JavaScript/JQuery/code/尺寸4
+JavaScript/JQuery/code/添加元素
+JavaScript/JQuery/code/添加元素2
+JavaScript/JQuery/code/添加元素3
+JavaScript/JQuery/code/添加元素4
+JavaScript/JQuery/code/添加元素5
+JavaScript/JQuery/code/添加元素6
+JavaScript/JQuery/code/添加元素7
+JavaScript/JQuery/code/获取内容和属性
+JavaScript/JQuery/code/获取内容和属性 2
+JavaScript/JQuery/code/获取内容和属性 3
+JavaScript/JQuery/code/获取内容和属性 4
+JavaScript/JQuery/code/获取并设置 CSS 类
+JavaScript/JQuery/code/获取并设置 CSS 类2
+JavaScript/JQuery/code/获取并设置 CSS 类3
+JavaScript/JQuery/code/获取并设置 CSS 类4
+JavaScript/JQuery/code/获取并设置 CSS 类5
+JavaScript/JQuery/code/设置内容和属性
+JavaScript/JQuery/code/设置内容和属性2
+JavaScript/JQuery/code/设置内容和属性3
+JavaScript/JQuery/code/设置内容和属性4
+JavaScript/JQuery/code/设置内容和属性5
+JavaScript/JQuery/code/设置内容和属性6
+JavaScript/JQuery/code/遍历
+JavaScript/JQuery/code/链(Chaining)
+JavaScript/JQuery/code/链(Chaining) 2
 JavaScript/JQuery/eg
 JavaScript/JQuery/jQuery 入口函数与 JavaScript 入口函数的区别
 JavaScript/JQuery/jQuery 安装

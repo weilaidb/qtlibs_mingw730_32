@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("p").hide("slow",function(){
+      alert("段落现在被隐藏了");
+    });
+  });
+});
+</script>
+</head>
+<body>
+<button>隐藏</button>
+<p>我们段落内容，点击“隐藏”按钮我就会消失</p>
+</body>
+</html>
