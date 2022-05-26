@@ -1,0 +1,1 @@
+1.创建Date对象$NL日期对象是对一个对象数据类型求值。该对象主要负责处理与日期和时间有关的数据信息。在使用Date对象前，首先要创建该对象，其创建格式如下：$NL\1=new Date()$NL\1=new Date(dateVal)$NL\1=new Date(year,month,date[,hours[,minutes[,seconds[,ms]]]])

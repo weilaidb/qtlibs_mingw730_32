@@ -1,0 +1,2 @@
+【变量名;id;form.name】
+digit;name2;form1.name2

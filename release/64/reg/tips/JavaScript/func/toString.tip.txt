@@ -1,0 +1,5 @@
+var newBoolean=new Boolean(1);
+if(newBoolean.toString()=="true")
+document.write("true");
+else
+document.write("false");

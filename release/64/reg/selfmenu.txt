@@ -991,11 +991,24 @@ JavaScript/JQuery/标签引用 替代方案2
 JavaScript/JQuery/语法/事件
 JavaScript/JQuery/语法/用法
 JavaScript/JQuery/选择器
+JavaScript/func/Date
+JavaScript/func/Date对象的方法
 JavaScript/func/PyScript/eg
+JavaScript/func/br enter
+JavaScript/func/cleartext
 JavaScript/func/confirm 弹出对话框
 JavaScript/func/eg
+JavaScript/func/form
+JavaScript/func/getElementById
+JavaScript/func/input text
+JavaScript/func/number
+JavaScript/func/script
+JavaScript/func/script2
 JavaScript/func/scrollToTop
+JavaScript/func/textarea
 JavaScript/func/throw
+JavaScript/func/toString
+JavaScript/func/格式化format
 JavaScript/include引用
 JavaScript/src引用
 JavaScript/timeout返回原页面
