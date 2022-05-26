@@ -1005,6 +1005,7 @@ JavaScript/func/number
 JavaScript/func/script
 JavaScript/func/script2
 JavaScript/func/scrollToTop
+JavaScript/func/string 转 int
 JavaScript/func/textarea
 JavaScript/func/throw
 JavaScript/func/toString
