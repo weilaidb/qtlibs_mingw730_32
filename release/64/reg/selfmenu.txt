@@ -731,6 +731,7 @@ JAVA/JSP/form/file enctype multipart
 JAVA/JSP/form/font
 JAVA/JSP/form/hidden
 JAVA/JSP/form/img与image
+JAVA/JSP/form/input text
 JAVA/JSP/form/radio
 JAVA/JSP/form/radio eg
 JAVA/JSP/form/reset
