@@ -1004,6 +1004,7 @@ JavaScript/func/confirm 弹出对话框
 JavaScript/func/eg
 JavaScript/func/form
 JavaScript/func/getElementById
+JavaScript/func/include 引用 src
 JavaScript/func/input text
 JavaScript/func/number
 JavaScript/func/script

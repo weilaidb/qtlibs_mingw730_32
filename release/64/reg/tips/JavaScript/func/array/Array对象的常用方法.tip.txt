@@ -22,6 +22,7 @@ valueOf()	获取数组的原始值
 keys()	返回数组的返回迭代器
 entries()	返回数组里面的键值对象
 some()	检测数组元素中是否有元素符合指定条件
+unshift() 该方法向数组的开头添加一个或多个元素。
 示例代码
 <!DOCTYPE html>
 <html>
