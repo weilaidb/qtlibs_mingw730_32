@@ -994,6 +994,7 @@ JavaScript/JQuery/选择器
 JavaScript/func/Date
 JavaScript/func/Date对象的方法
 JavaScript/func/PyScript/eg
+JavaScript/func/RegExp 正则表达式的语法
 JavaScript/func/array/Array对象的常用方法
 JavaScript/func/array/Array对象的常用方法2
 JavaScript/func/array/prototype.outAll
