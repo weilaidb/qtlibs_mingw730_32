@@ -994,6 +994,10 @@ JavaScript/JQuery/选择器
 JavaScript/func/Date
 JavaScript/func/Date对象的方法
 JavaScript/func/PyScript/eg
+JavaScript/func/array/Array对象的常用方法
+JavaScript/func/array/Array对象的常用方法2
+JavaScript/func/array/prototype.outAll
+JavaScript/func/array/说明
 JavaScript/func/br enter
 JavaScript/func/cleartext
 JavaScript/func/confirm 弹出对话框
@@ -1006,6 +1010,8 @@ JavaScript/func/script
 JavaScript/func/script2
 JavaScript/func/scrollToTop
 JavaScript/func/string 转 int
+JavaScript/func/string/String.prototype.print
+JavaScript/func/string/说明
 JavaScript/func/textarea
 JavaScript/func/throw
 JavaScript/func/toString
@@ -1786,6 +1792,8 @@ Tools/svn/order
 Tools/svn/order 忽略多值
 Tools/win10 快捷键
 Tools/win10 快捷键 win10双屏幕扩展使用
+Tools/十六进制颜色码转换成RGB颜色值
+Tools/十六进制颜色码转换成RGB颜色值2
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22

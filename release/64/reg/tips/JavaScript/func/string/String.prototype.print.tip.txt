@@ -1,0 +1,9 @@
+String.prototype.print=function()
+{
+	document.write(this);
+	document.write("</br>");
+}
+
+arrayObj=new Array("a","b","c","d")
+var s=arrayObj[1]
+s.print();
