@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -28,6 +29,7 @@ BASH/printf string 3
 BASH/printf说明
 BASH/replace nums in file or 提取数字自增1
 BASH/scripts/commitgit.atwork.sh
+BASH/scripts/gen.vlan.xml.sh
 BASH/scripts/getnumsinfile.sh
 BASH/scripts/include.sh
 BASH/scripts/include.sh public
@@ -91,6 +93,7 @@ BASH/语句/if语句或
 BASH/语句/if语句或2
 BASH/语句/if语句选项常用列表
 BASH/语句/until语句
+BASH/语句/while read
 BASH/语句/while语句
 BASH/语句/while语句 ++
 BASH/读取文件
@@ -798,6 +801,7 @@ JAVA/RegExp/Pattern
 JAVA/RegExp/Pattern $H2D替换
 JAVA/SpringBoot/Annotation
 JAVA/SpringBoot/Annotation JDK的元Annotation（修饰注解的注解）
+JAVA/SpringBoot/Debug/Resource not found
 JAVA/SpringBoot/JSONObject/new
 JAVA/SpringBoot/Java EE分层架构
 JAVA/SpringBoot/JetBrains 激活码
@@ -822,12 +826,16 @@ JAVA/SpringBoot/maven settings.xml .m3
 JAVA/SpringBoot/maven 下载源配置 阿里云
 JAVA/SpringBoot/maven命令
 JAVA/SpringBoot/maven属性
+JAVA/SpringBoot/mvn dependency
+JAVA/SpringBoot/new/ConfigurationProperties
 JAVA/SpringBoot/new/Controller/fileupload
 JAVA/SpringBoot/new/Controller/fileupload 映射名的相对路径
 JAVA/SpringBoot/new/Controller/helloworld
 JAVA/SpringBoot/new/Controller/userlist
 JAVA/SpringBoot/new/Controller/添加
 JAVA/SpringBoot/new/GetMapping
+JAVA/SpringBoot/new/PropertySource
+JAVA/SpringBoot/new/PropertySource 中文乱码
 JAVA/SpringBoot/new/Servlet
 JAVA/SpringBoot/new/SpringBootApplication
 JAVA/SpringBoot/new/SpringBootApplication java
@@ -846,6 +854,8 @@ JAVA/SpringBoot/new/pom.xml dependencies
 JAVA/SpringBoot/new/pom.xml dependencies 下载网址
 JAVA/SpringBoot/new/pom.xml java version
 JAVA/SpringBoot/new/pom.xml parent
+JAVA/SpringBoot/new/pom.xml/spring-boot-starter-parent
+JAVA/SpringBoot/new/pom.xml/spring-boot-starter-parent2
 JAVA/SpringBoot/new/spring-mvc.xml
 JAVA/SpringBoot/new/spring.xml
 JAVA/SpringBoot/new/web.xml
@@ -1205,6 +1215,7 @@ LINUX/命令行/grep 左匹配的问题
 LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
+LINUX/命令行/kill
 LINUX/命令行/linux双向重定向之tee命令
 LINUX/命令行/ln help
 LINUX/命令行/lscpu
@@ -1214,6 +1225,7 @@ LINUX/命令行/mpstat 查看CPU 实时系统监控工具 2
 LINUX/命令行/nano
 LINUX/命令行/nm
 LINUX/命令行/nohup
+LINUX/命令行/pkill
 LINUX/命令行/realpath
 LINUX/命令行/realpath help
 LINUX/命令行/save write 提升权限 w
@@ -1518,6 +1530,7 @@ Pthread/Create
 Pthread/pthread_mutex
 Pthread/pthread_once
 Python/API/datetime
+Python/API/entertips
 Python/API/exec_command
 Python/API/file read write
 Python/API/thread
@@ -1558,6 +1571,9 @@ Python/qt/pyQt5 main2
 Python/qt/pyQt5 signal slot
 Python/qt/pyQt5 signal slot custom自定义信号
 Python/qt/pyQt5 textedit
+Python/scripts/genvlanxml.py
+Python/scripts/help.py
+Python/scripts/public.py
 Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
 Python/soft/pip install 安装 with http
@@ -1823,6 +1839,7 @@ VBScript/eg
 WeiLaiDb/Production/weilaix.war Version
 Windows/Fonts
 YAML/yml入门教程
+YAML/yml入门教程2
 go/1/For-each range
 go/1/eg
 go/1/fmt.Println
