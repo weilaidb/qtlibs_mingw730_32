@@ -1572,6 +1572,7 @@ Python/qt/pyQt5 signal slot custom自定义信号
 Python/qt/pyQt5 textedit
 Python/scripts/genvlanxml.py
 Python/scripts/help.py
+Python/scripts/public.py
 Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
 Python/soft/pip install 安装 with http

@@ -5,6 +5,9 @@
 #
 
 import sys
+sys.path.append('.')
+#自定义公共函数
+from public import *
  
 
 ##########
@@ -25,13 +28,66 @@ import sys
 ########main proc
 print("===========main proc===========\n" * 3)
 
-print(sys.argc)
-print(sys.argv[0]) ##脚本名
-print(sys.argv[1]) ## 第一个参数
+
+if len(sys.argv) < 2:
+    print("usage: ./eg.sh RootPath\n")
+    exit(0)
+
+print(sys.argv)
+
+rootpath=sys.argv[1]
+typefile=concat(rootpath, ("/type_port.txt"))
+vlanfile=concat(rootpath, ("/vlan_type.txt"))
+xmlfile=concat(rootpath , ("/vlan.xml"))
+
+# println(rootpath)
+# println(typefile)
+# println(vlanfile)
+# println(xmlfile)
+
+checkdirnoexistquit(rootpath)
+checkfilenoexistquit(typefile)
+checkfilenoexistquit(vlanfile)
+# checkfilenoexistquit(xmlfile)
 
 
 
-#export ROOTPATH=$1
-#TYPEFILE=$ROOTPATH/type_port.txt
-#VLANFILE=$ROOTPATH/vlan_type.txt
-#XMLFILE=$ROOTPATH/vlan.xml
+types = fileread(typefile)
+printlntips("==>port types list", types)
+
+vlans = fileread(vlanfile)
+printlntips("==>port vlans list", vlans)
+
+typelist = splitstrbyenternoempty(types)
+lenlntips("typelist size", typelist)
+
+
+vlanlist = splitstrbyenternoempty(vlans)
+lenlntips("vlanlist size", vlanlist)
+
+
+
+for vlan in vlanlist:
+    println()
+    println(vlan)
+    sign=":"
+    sign2=","
+    vlanitems = splitstrbysignnoempty(vlan, sign)
+    lenlntips("vlanitems size", vlanitems)
+    if len(vlanitems) < 2:
+        println("vlanitems should like this, vlanx:xk,bfpga")
+        exit(0)
+    vlantypesstr = vlanitems[1]
+    vlantypes = splitstrbysignnoempty(vlantypesstr, sign2)
+    lenlntips("vlantypes size", vlantypes)
+    for vlantp in vlantypes:
+        printlntips("vlan type:", vlantp, False)
+        #根据类型查找所有相关端口
+        findportlist = findstrinlist(vlantp, typelist)
+        lenlntips("findportlist size", findportlist)
+        for port in findportlist:
+            #生成最终的XML配置，根据格式
+            # printlntips("-->last xml by port", port)
+            print("-->last xml, vlan-port:%s/%s" % (vlantp, port))
+
+

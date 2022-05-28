@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#filename:public.py
+#function:公共的函数文件
+#
+
+import os
+import sys
+
+def lenlntips(tips="", str=""):
+    print("%s , len:%d" % (tips, len(str)))
+    
+def lenln(str=""):
+    print("len:%d" % len(str))
+
+def printlntips(tips, str, tipsenter=True):
+    if False == tipsenter:
+        print("%s:%s" %(tips, str))
+    else:
+        print("%s:\n%s" %(tips, str))
+    
+    
+def println(str=""):
+    print(str)
+
+def concat(s1,s2):
+    return s1 + s2
+
+def checkfilenoexistquit(filename):
+    try:
+        f = open(filename)
+        f.close()
+    except FileNotFoundError:
+        print ("File [%s] is not found." % filename)
+        exit(0)
+    except PermissionError:
+        print ("You don't have permission to access this file[%s]." % filename)
+        exit(0)
+
+def checkdirnoexistquit(dirname):
+    if os.path.isdir(dirname):
+        pass
+    else:
+        print ("Dir [%s] is not found." % dirname)
+        exit(0)
+
+def fileread(filename):
+    with open(filename, 'r') as f:
+        # print(f.read())
+        result = f.read()
+        f.close()
+        return result
+
+
+def filewrite(filename, content):
+    with open(filename, 'w') as f:
+        # print(f.read())
+        f.write(content)
+        f.close()
+        return 0
+
+
+
+def splitstr(str, sign):
+    list = str.split(sign)
+    return list
+
+def splitstrbyenter(str):
+    return splitstr(str,"\n")
+
+
+def splitstrbysignnoempty(str, sign):
+    list =  splitstr(str,sign)
+    newlist = []
+    for str in list:
+        if str.strip() == "":
+            continue
+        newlist.append(str)
+    
+    return newlist
+
+def splitstrbyenternoempty(str):
+    return splitstrbysignnoempty(str,"\n")
+
+def findstrinlist(findstr, list):
+    newlist = []
+    for str in list:
+        if findstr in str:
+            newlist.append(str)
+        
+    return newlist
