@@ -1798,6 +1798,7 @@ Tools/git/git reset toDays 回退到某一天
 Tools/git/git server
 Tools/git/gitclone下载失败方法
 Tools/git/order
+Tools/git/problems/git dangling commit
 Tools/git/tig blame filename
 Tools/git/tig help
 Tools/git/常用git库 git address
