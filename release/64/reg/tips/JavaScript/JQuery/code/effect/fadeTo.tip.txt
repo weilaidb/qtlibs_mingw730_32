@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("#div1").fadeTo("slow",0.15);
+    $("#div2").fadeTo("slow",0.4);
+    $("#div3").fadeTo("slow",0.7);
+  });
+});
+</script>
+</head>
+
+<body>
+<p>演示 fadeTo() 使用不同参数</p>
+<button>点我让颜色变淡</button>
+<br><br>
+<div id="div1" style="width:80px;height:80px;background-color:red;"></div><br>
+<div id="div2" style="width:80px;height:80px;background-color:green;"></div><br>
+<div id="div3" style="width:80px;height:80px;background-color:blue;"></div>
+
+</body>
+</html>

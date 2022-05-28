@@ -1,0 +1,2 @@
+在该项目中执行以下 mvn 命令查看器依赖树。
+mvn dependency:tree

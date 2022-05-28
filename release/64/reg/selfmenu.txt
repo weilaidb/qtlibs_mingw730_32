@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -28,6 +29,7 @@ BASH/printf string 3
 BASH/printf说明
 BASH/replace nums in file or 提取数字自增1
 BASH/scripts/commitgit.atwork.sh
+BASH/scripts/gen.vlan.xml.sh
 BASH/scripts/getnumsinfile.sh
 BASH/scripts/include.sh
 BASH/scripts/include.sh public
@@ -91,6 +93,7 @@ BASH/语句/if语句或
 BASH/语句/if语句或2
 BASH/语句/if语句选项常用列表
 BASH/语句/until语句
+BASH/语句/while read
 BASH/语句/while语句
 BASH/语句/while语句 ++
 BASH/读取文件
@@ -640,6 +643,7 @@ GCC/-rdynamic
 GCC/Wall
 GCC/fpermissive
 GCC/gcc编译选项
+Html/DOM/DOM
 Html/DOM/div/刷新
 Html/DOM/getElementById
 Html/DOM/getElementById innerHTML
@@ -729,6 +733,7 @@ JAVA/JSP/form/file enctype multipart
 JAVA/JSP/form/font
 JAVA/JSP/form/hidden
 JAVA/JSP/form/img与image
+JAVA/JSP/form/input text
 JAVA/JSP/form/radio
 JAVA/JSP/form/radio eg
 JAVA/JSP/form/reset
@@ -796,6 +801,7 @@ JAVA/RegExp/Pattern
 JAVA/RegExp/Pattern $H2D替换
 JAVA/SpringBoot/Annotation
 JAVA/SpringBoot/Annotation JDK的元Annotation（修饰注解的注解）
+JAVA/SpringBoot/Debug/Resource not found
 JAVA/SpringBoot/JSONObject/new
 JAVA/SpringBoot/Java EE分层架构
 JAVA/SpringBoot/JetBrains 激活码
@@ -820,12 +826,16 @@ JAVA/SpringBoot/maven settings.xml .m3
 JAVA/SpringBoot/maven 下载源配置 阿里云
 JAVA/SpringBoot/maven命令
 JAVA/SpringBoot/maven属性
+JAVA/SpringBoot/mvn dependency
+JAVA/SpringBoot/new/ConfigurationProperties
 JAVA/SpringBoot/new/Controller/fileupload
 JAVA/SpringBoot/new/Controller/fileupload 映射名的相对路径
 JAVA/SpringBoot/new/Controller/helloworld
 JAVA/SpringBoot/new/Controller/userlist
 JAVA/SpringBoot/new/Controller/添加
 JAVA/SpringBoot/new/GetMapping
+JAVA/SpringBoot/new/PropertySource
+JAVA/SpringBoot/new/PropertySource 中文乱码
 JAVA/SpringBoot/new/Servlet
 JAVA/SpringBoot/new/SpringBootApplication
 JAVA/SpringBoot/new/SpringBootApplication java
@@ -844,6 +854,8 @@ JAVA/SpringBoot/new/pom.xml dependencies
 JAVA/SpringBoot/new/pom.xml dependencies 下载网址
 JAVA/SpringBoot/new/pom.xml java version
 JAVA/SpringBoot/new/pom.xml parent
+JAVA/SpringBoot/new/pom.xml/spring-boot-starter-parent
+JAVA/SpringBoot/new/pom.xml/spring-boot-starter-parent2
 JAVA/SpringBoot/new/spring-mvc.xml
 JAVA/SpringBoot/new/spring.xml
 JAVA/SpringBoot/new/web.xml
@@ -889,11 +901,134 @@ JAVA/基本语句/main
 JAVA/基本语句/反射
 JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
+JavaScript/JQuery/code/button
+JavaScript/JQuery/code/css() 方法
+JavaScript/JQuery/code/css() 方法2
+JavaScript/JQuery/code/css() 方法3
+JavaScript/JQuery/code/css() 方法4
+JavaScript/JQuery/code/effect/animate
+JavaScript/JQuery/code/effect/animate Callback 方法
+JavaScript/JQuery/code/effect/animate Callback 方法2
+JavaScript/JQuery/code/effect/animate stop
+JavaScript/JQuery/code/effect/animate2
+JavaScript/JQuery/code/effect/animate3 相对值
+JavaScript/JQuery/code/effect/animate4 toggle
+JavaScript/JQuery/code/effect/animate5 队列
+JavaScript/JQuery/code/effect/animate5 队列2
+JavaScript/JQuery/code/effect/animate6 start stop
+JavaScript/JQuery/code/effect/eg
+JavaScript/JQuery/code/effect/fadeIn
+JavaScript/JQuery/code/effect/fadeOut
+JavaScript/JQuery/code/effect/fadeTo
+JavaScript/JQuery/code/effect/fadeToggle
+JavaScript/JQuery/code/effect/hide
+JavaScript/JQuery/code/effect/hide alert
+JavaScript/JQuery/code/effect/hide show
+JavaScript/JQuery/code/effect/hide time
+JavaScript/JQuery/code/effect/hide2
+JavaScript/JQuery/code/effect/slideDown
+JavaScript/JQuery/code/effect/slideToggle
+JavaScript/JQuery/code/effect/slideUp
+JavaScript/JQuery/code/effect/toggle
+JavaScript/JQuery/code/event/blur
+JavaScript/JQuery/code/event/click
+JavaScript/JQuery/code/event/dblclick
+JavaScript/JQuery/code/event/eg
+JavaScript/JQuery/code/event/focus
+JavaScript/JQuery/code/event/hover
+JavaScript/JQuery/code/event/mousedown
+JavaScript/JQuery/code/event/mouseenter
+JavaScript/JQuery/code/event/mouseleave
+JavaScript/JQuery/code/event/mouseup
+JavaScript/JQuery/code/href
+JavaScript/JQuery/code/href target _blank
+JavaScript/JQuery/code/href target _blank neq
+JavaScript/JQuery/code/p first hide
+JavaScript/JQuery/code/tr even 选取偶数位置
+JavaScript/JQuery/code/tr odd 选取奇数位置
+JavaScript/JQuery/code/ul li first
+JavaScript/JQuery/code/ul li first-child
+JavaScript/JQuery/code/删除元素
+JavaScript/JQuery/code/删除元素2
+JavaScript/JQuery/code/删除元素3
+JavaScript/JQuery/code/删除元素4
+JavaScript/JQuery/code/尺寸
+JavaScript/JQuery/code/尺寸2
+JavaScript/JQuery/code/尺寸3
+JavaScript/JQuery/code/尺寸4
+JavaScript/JQuery/code/添加元素
+JavaScript/JQuery/code/添加元素2
+JavaScript/JQuery/code/添加元素3
+JavaScript/JQuery/code/添加元素4
+JavaScript/JQuery/code/添加元素5
+JavaScript/JQuery/code/添加元素6
+JavaScript/JQuery/code/添加元素7
+JavaScript/JQuery/code/获取内容和属性
+JavaScript/JQuery/code/获取内容和属性 2
+JavaScript/JQuery/code/获取内容和属性 3
+JavaScript/JQuery/code/获取内容和属性 4
+JavaScript/JQuery/code/获取并设置 CSS 类
+JavaScript/JQuery/code/获取并设置 CSS 类2
+JavaScript/JQuery/code/获取并设置 CSS 类3
+JavaScript/JQuery/code/获取并设置 CSS 类4
+JavaScript/JQuery/code/获取并设置 CSS 类5
+JavaScript/JQuery/code/设置内容和属性
+JavaScript/JQuery/code/设置内容和属性2
+JavaScript/JQuery/code/设置内容和属性3
+JavaScript/JQuery/code/设置内容和属性4
+JavaScript/JQuery/code/设置内容和属性5
+JavaScript/JQuery/code/设置内容和属性6
+JavaScript/JQuery/code/遍历
+JavaScript/JQuery/code/遍历 - 祖先
+JavaScript/JQuery/code/遍历 - 祖先2 parent
+JavaScript/JQuery/code/遍历 - 祖先3 parents
+JavaScript/JQuery/code/遍历 - 祖先4 parents
+JavaScript/JQuery/code/遍历 - 祖先5 parentsUntil
+JavaScript/JQuery/code/链(Chaining)
+JavaScript/JQuery/code/链(Chaining) 2
+JavaScript/JQuery/eg
+JavaScript/JQuery/jQuery 入口函数与 JavaScript 入口函数的区别
+JavaScript/JQuery/jQuery 安装
+JavaScript/JQuery/什么是 jQuery
+JavaScript/JQuery/效果 - 淡入淡出
+JavaScript/JQuery/效果 - 滑动
+JavaScript/JQuery/效果- 动画
+JavaScript/JQuery/效果- 隐藏和显示
+JavaScript/JQuery/标签引用
+JavaScript/JQuery/标签引用 替代方案
+JavaScript/JQuery/标签引用 替代方案2
+JavaScript/JQuery/语法/事件
+JavaScript/JQuery/语法/用法
+JavaScript/JQuery/选择器
+JavaScript/func/Date
+JavaScript/func/Date对象的方法
 JavaScript/func/PyScript/eg
+JavaScript/func/RegExp 正则表达式的语法
+JavaScript/func/array/Array对象的常用方法
+JavaScript/func/array/Array对象的常用方法2
+JavaScript/func/array/prototype.outAll
+JavaScript/func/array/说明
+JavaScript/func/br enter
+JavaScript/func/cleartext
 JavaScript/func/confirm 弹出对话框
 JavaScript/func/eg
+JavaScript/func/form
+JavaScript/func/getElementById
+JavaScript/func/include 引用 src
+JavaScript/func/input text
+JavaScript/func/number
+JavaScript/func/script
+JavaScript/func/script2
 JavaScript/func/scrollToTop
+JavaScript/func/string 转 int
+JavaScript/func/string/String.prototype.print
+JavaScript/func/string/说明
+JavaScript/func/textarea
+JavaScript/func/throw
+JavaScript/func/toString
+JavaScript/func/格式化format
 JavaScript/include引用
+JavaScript/proc/replace h3 京东读书代码
 JavaScript/src引用
 JavaScript/timeout返回原页面
 JavaScript/示例/account
@@ -1080,6 +1215,7 @@ LINUX/命令行/grep 左匹配的问题
 LINUX/命令行/iptables clean -F
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
+LINUX/命令行/kill
 LINUX/命令行/linux双向重定向之tee命令
 LINUX/命令行/ln help
 LINUX/命令行/lscpu
@@ -1089,6 +1225,7 @@ LINUX/命令行/mpstat 查看CPU 实时系统监控工具 2
 LINUX/命令行/nano
 LINUX/命令行/nm
 LINUX/命令行/nohup
+LINUX/命令行/pkill
 LINUX/命令行/realpath
 LINUX/命令行/realpath help
 LINUX/命令行/save write 提升权限 w
@@ -1393,6 +1530,7 @@ Pthread/Create
 Pthread/pthread_mutex
 Pthread/pthread_once
 Python/API/datetime
+Python/API/entertips
 Python/API/exec_command
 Python/API/file read write
 Python/API/thread
@@ -1433,6 +1571,9 @@ Python/qt/pyQt5 main2
 Python/qt/pyQt5 signal slot
 Python/qt/pyQt5 signal slot custom自定义信号
 Python/qt/pyQt5 textedit
+Python/scripts/genvlanxml.py
+Python/scripts/help.py
+Python/scripts/public.py
 Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
 Python/soft/pip install 安装 with http
@@ -1657,6 +1798,7 @@ Tools/git/git reset toDays 回退到某一天
 Tools/git/git server
 Tools/git/gitclone下载失败方法
 Tools/git/order
+Tools/git/problems/git dangling commit
 Tools/git/tig blame filename
 Tools/git/tig help
 Tools/git/常用git库 git address
@@ -1669,6 +1811,8 @@ Tools/svn/order
 Tools/svn/order 忽略多值
 Tools/win10 快捷键
 Tools/win10 快捷键 win10双屏幕扩展使用
+Tools/十六进制颜色码转换成RGB颜色值
+Tools/十六进制颜色码转换成RGB颜色值2
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
@@ -1696,6 +1840,7 @@ VBScript/eg
 WeiLaiDb/Production/weilaix.war Version
 Windows/Fonts
 YAML/yml入门教程
+YAML/yml入门教程2
 go/1/For-each range
 go/1/eg
 go/1/fmt.Println

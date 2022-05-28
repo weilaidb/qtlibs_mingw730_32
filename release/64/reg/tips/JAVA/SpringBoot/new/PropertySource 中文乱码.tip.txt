@@ -1,0 +1,26 @@
+properties中输入中文乱码的原因
+
+获益飞浅
+
+于 2020-08-10 21:10:28 发布
+
+242
+ 收藏
+分类专栏： idea
+版权
+
+idea
+专栏收录该内容
+5 篇文章0 订阅
+订阅专栏
+properties中输入中文乱码
+原因是因为在properties中输入的中文是以UTF-8存储显示的，而在其运行时会将输入的中午转化为ASCII进行使用，所以会出现乱码；所以需要我们进行配置。如有需要也可将中文转化为Unicode去运行程序。
+
+settings -- File Encodings -- Properties Files 
+1.UTF-8
+2.Transparent navitve-to-ascii conversion
+
+
+————————————————
+版权声明：本文为CSDN博主「获益飞浅」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_43937048/article/details/107922235

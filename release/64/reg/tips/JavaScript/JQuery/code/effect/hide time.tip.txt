@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("p").hide(1000);
+  });
+});
+</script>
+</head>
+<body>
+<button>隐藏</button>
+<p>这是个段落，内容比较少。</p>
+<p>这是另外一个小段落</p>
+</body>
+</html>

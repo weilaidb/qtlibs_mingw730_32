@@ -1,0 +1,1 @@
+<head>$NL<script src="\1"></script>$NL</head>

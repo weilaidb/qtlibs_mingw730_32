@@ -1,0 +1,1 @@
+<script>$NL$NLfunction \1(){$NL$NL}$NL$NL</script>$NL$NL//================

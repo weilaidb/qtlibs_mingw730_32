@@ -1,0 +1,1 @@
+while read LINE$NLdo$NLecho "reading \1 ..."$NLecho $LINE$NL$NL$NLdone < \1$NL$NL$NL##=============================

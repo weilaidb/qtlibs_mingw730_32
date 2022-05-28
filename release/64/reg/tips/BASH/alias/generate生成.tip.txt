@@ -1,3 +1,6 @@
+gitgcclean;git reflog expire --expire=now --all && git gc --prune=now
+
+
 killddjar;kill -9 \`ps aux | grep jar | grep dd | awk '{print \$2}'\`
 jardd;cd $HOME && nohup java -jar ~/dd-0.2-SNAPSHOT.jar --server.port=8888 &
 cdbusybox;~/work/git/busybox2

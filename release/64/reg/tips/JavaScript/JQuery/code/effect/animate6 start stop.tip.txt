@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script> 
+$(document).ready(function(){
+  $("#start").click(function(){
+    $("div").animate({left:'100px'},5000);
+    $("div").animate({fontSize:'3em'},5000);
+  });
+  
+  $("#stop").click(function(){
+    $("div").stop();
+  });
+
+  $("#stop2").click(function(){
+    $("div").stop(true);
+  });
+
+  $("#stop3").click(function(){
+    $("div").stop(true,true);
+  });
+  
+});
+</script> 
+</head>
+<body>
+
+<button id="start">开始</button>
+<button id="stop">停止</button>
+<button id="stop2">停止所有</button>
+<button id="stop3">停止动画，但完成动作</button>
+<p>点击 "开始" 按钮开始动画。</p>
+<p>点击 "停止" 按钮停止当前激活的动画，但之后我们能再动画队列中再次激活。</p>
+<p>点击 "停止所有" 按钮停止当前动画，并清除动画队列，所以元素的所有动画都会停止。</p>
+<p>点击 "停止动画，但完成动作" 快速完成动作，并停止它。</p> 
+
+<div style="background:#98bf21;height:100px;width:200px;position:absolute;">HELLO</div>
+
+</body>
+</html>

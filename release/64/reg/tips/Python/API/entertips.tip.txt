@@ -1,0 +1,13 @@
+print(sys._getframe().f_lineno)     # 获取当前行号(行数)
+
+
+import os
+import sys
+
+
+def line_file_test():
+    print(sys._getframe().f_lineno)     # 获取当前行号(行数)
+   
+
+    print(__file__)                     # 获得当前Python文件绝对路径
+    print(os.path.basename(__file__))   # 获得当前Python文件文件名

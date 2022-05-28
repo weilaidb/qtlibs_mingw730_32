@@ -1,0 +1,24 @@
+jQuery 安装
+网页中添加 jQuery
+可以通过多种方法在网页中添加 jQuery。 您可以使用以下方法：
+
+从 jquery.com 下载 jQuery 库
+从 CDN 中载入 jQuery, 如从 Google 中加载 jQuery
+下载 jQuery
+有两个版本的 jQuery 可供下载：
+
+Production version - 用于实际的网站中，已被精简和压缩。
+Development version - 用于测试和开发（未压缩，是可读的代码）
+以上两个版本都可以从 jquery.com 中下载。
+
+jQuery 库是一个 JavaScript 文件，您可以使用 HTML 的 <script> 标签引用它：
+
+<head>
+<script src="jquery-1.10.2.min.js"></script>
+</head>
+
+
+
+
+下载网址
+https://jquery.com/download/

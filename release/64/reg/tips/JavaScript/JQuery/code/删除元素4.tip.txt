@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("p").remove(".italic");
+  });
+});
+</script>
+</head>
+<body>
+
+<p>这是一个段落。</p>
+<p class="italic"><i>这是另外一个段落。</i></p>
+<p class="italic"><i>这是另外一个段落。</i></p>
+<button>移除所有  class="italic" 的 p 元素。</button>
+
+</body>
+</html>
