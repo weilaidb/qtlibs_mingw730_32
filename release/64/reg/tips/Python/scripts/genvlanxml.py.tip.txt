@@ -44,7 +44,7 @@ def setquitflag(flag):
 
 def over():
     global add
-    println(quitflag)
+    printlntips("quitflag",quitflag, False)
     if 0 != quitflag:
         print('异常退出，！！！！！！！！')
     else:
@@ -97,30 +97,38 @@ lenlntips("vlanlist size", vlanlist)
 
 if __name__ == '__main__':
     print("hello world")
-
+    signmao=":"
+    signdot=","
+    signenter="\n"
+    strvlan="vlan"
+    strempty = ""
     result = ""
+    
+    
     for vlan in vlanlist:
         println()
         println(vlan)
-        sign=":"
-        sign2=","
-        signenter="\n"
-        strvlan="vlan"
-        strempty = ""
-        vlanitems = splitstrbysignnoempty(vlan, sign)
+        vlanitems = splitstrbysignnoempty(vlan, signmao)
         lenlntips("vlanitems size", vlanitems)
         if len(vlanitems) < 2:
             println("vlanitems should like this, vlanx:xk,bfpga")
             exit(0)
         vlanfirst = replacestr(vlanitems[0],strvlan,strempty)
         vlantypesstr = vlanitems[1]
-        vlantypes = splitstrbysignnoempty(vlantypesstr, sign2)
+        vlantypes = splitstrbysignnoempty(vlantypesstr, signdot)
         lenlntips("vlantypes size", vlantypes)
         for vlantp in vlantypes:
             printlntips("vlan type:", vlantp, False)
+            
+            
             #根据类型查找所有相关端口
             findportlist = findstrinlist(vlantp, typelist)
             lenlntips("findportlist size", findportlist)
+            #判断当前类型是否在已知列表中
+            if(0 == len(findportlist)):
+                print("!!!!!!1invalid vlantp:%s for %s" % (vlantp, vlan))
+                exit(0)
+
             for port in findportlist:
                 #生成最终的XML配置，根据格式
                 # printlntips("-->last xml by port", port)
@@ -129,11 +137,11 @@ if __name__ == '__main__':
                 if(lastport.isdigit()) and (vlanfirst.isdigit()):
                     print("-->last xml, vlan-port:%s/%s" % (vlanfirst, lastport))
                     result = concat(result, vlanfirst)
-                    result = concat(result, sign)
+                    result = concat(result, signmao)
                     result = concat(result, lastport)
                     result = concat(result, signenter)
                 else:
-                    print("invalid lastport:%s or vlanfirst:%s" % (lastport, vlanfirst))
+                    print("!!!!!!1invalid lastport:%s or vlanfirst:%s" % (lastport, vlanfirst))
                     exit(0)
 
 
