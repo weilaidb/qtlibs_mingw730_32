@@ -29,6 +29,7 @@ BASH/printf string 3
 BASH/printf说明
 BASH/replace nums in file or 提取数字自增1
 BASH/scripts/commitgit.atwork.sh
+BASH/scripts/gen.vlan.xml.sh
 BASH/scripts/getnumsinfile.sh
 BASH/scripts/include.sh
 BASH/scripts/include.sh public
@@ -92,6 +93,7 @@ BASH/语句/if语句或
 BASH/语句/if语句或2
 BASH/语句/if语句选项常用列表
 BASH/语句/until语句
+BASH/语句/while read
 BASH/语句/while语句
 BASH/语句/while语句 ++
 BASH/读取文件
@@ -1568,6 +1570,8 @@ Python/qt/pyQt5 main2
 Python/qt/pyQt5 signal slot
 Python/qt/pyQt5 signal slot custom自定义信号
 Python/qt/pyQt5 textedit
+Python/scripts/genvlanxml.py
+Python/scripts/help.py
 Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
 Python/soft/pip install 安装 with http
