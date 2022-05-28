@@ -146,8 +146,6 @@ if __name__ == '__main__':
 
 
 
-
-
     # print(sys._getframe().f_lineno)     # 获取当前行号(行数)
     println(result)
     filewrite(xmlfile, result)
