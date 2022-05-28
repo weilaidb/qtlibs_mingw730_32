@@ -832,6 +832,8 @@ JAVA/SpringBoot/new/Controller/helloworld
 JAVA/SpringBoot/new/Controller/userlist
 JAVA/SpringBoot/new/Controller/添加
 JAVA/SpringBoot/new/GetMapping
+JAVA/SpringBoot/new/PropertySource
+JAVA/SpringBoot/new/PropertySource 中文乱码
 JAVA/SpringBoot/new/Servlet
 JAVA/SpringBoot/new/SpringBootApplication
 JAVA/SpringBoot/new/SpringBootApplication java
