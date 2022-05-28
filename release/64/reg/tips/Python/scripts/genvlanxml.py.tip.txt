@@ -2,14 +2,6 @@
 # -*- coding: utf-8 -*-
 #filename:genvlanxml.py
 #function:生成VLAN配置的XML格式
-#
-
-import sys
-sys.path.append('.')
-#自定义公共函数
-from public import *
- 
-atexit.register(end)
 
 ##########
 #1.规则端口的类型，比如xk
@@ -23,8 +15,43 @@ atexit.register(end)
 #osc:光监控商品
 #shell:子架级联商品
 #ms:主备端口
-#eth1:连接CPU的
-#eth2:连接CPU的
+#eth1:连接CPU的GE?
+#eth2:连接CPU的10GE?
+#使用方法:
+#使用方法:
+#使用方法:
+#★type_port.txt :端口按类型定义，比如xk:12 表示类型:端口号
+#★vlan_type.txt :VLAN和端口范围对应关系表，比如vlan1:xk,bfpga,cfpga 表示vlan1范围包含xk,bfpga,cfpga。
+#★vlan.xml      :生成的最终文件xml，里面包含部分内容
+#★脚本执行./a.py 实际路径，示例./a.py .
+#★
+
+
+import sys
+sys.path.append('.')
+#自定义公共函数
+from public import *
+
+
+
+
+#####定义结束标志，标志未修改时为正常退出，默认为异常值，正常值为0
+quitflag=1
+
+def setquitflag(flag):
+    global quitflag
+    quitflag = flag
+
+def over():
+    global add
+    println(quitflag)
+    if 0 != quitflag:
+        print('异常退出，！！！！！！！！')
+    else:
+        print('正常结束，★★★★★★★★★★★★★★★★')
+
+
+atexit.register(over)
 
 ########main proc
 print("===========main proc===========\n" * 3)
@@ -49,7 +76,8 @@ xmlfile=concat(rootpath , ("/vlan.xml"))
 checkdirnoexistquit(rootpath)
 checkfilenoexistquit(typefile)
 checkfilenoexistquit(vlanfile)
-# checkfilenoexistquit(xmlfile)
+#执行前先删除XML文件
+filedelete(xmlfile)
 
 
 
@@ -67,37 +95,53 @@ vlanlist = splitstrbyenternoempty(vlans)
 lenlntips("vlanlist size", vlanlist)
 
 
+if __name__ == '__main__':
+    print("hello world")
 
-for vlan in vlanlist:
-    println()
-    println(vlan)
-    sign=":"
-    sign2=","
-    strvlan="vlan"
-    strempty = ""
-    vlanitems = splitstrbysignnoempty(vlan, sign)
-    lenlntips("vlanitems size", vlanitems)
-    if len(vlanitems) < 2:
-        println("vlanitems should like this, vlanx:xk,bfpga")
-        exit(0)
-    vlanfirst = replacestr(vlanitems[0],strvlan,strempty)
-    vlantypesstr = vlanitems[1]
-    vlantypes = splitstrbysignnoempty(vlantypesstr, sign2)
-    lenlntips("vlantypes size", vlantypes)
-    for vlantp in vlantypes:
-        printlntips("vlan type:", vlantp, False)
-        #根据类型查找所有相关端口
-        findportlist = findstrinlist(vlantp, typelist)
-        lenlntips("findportlist size", findportlist)
-        for port in findportlist:
-            #生成最终的XML配置，根据格式
-            # printlntips("-->last xml by port", port)
-            lastport = replacestrreg(port, r'.*:',strempty)
-            lastport = stripstr(lastport)
-            if(lastport.isdigit()) and (vlanfirst.isdigit()):
-                print("-->last xml, vlan-port:%s/%s" % (vlanfirst, lastport))
-            else:
-                print("invalid lastport:%s or vlanfirst:%s" % (lastport, vlanfirst))
-                exit(0)
+    result = ""
+    for vlan in vlanlist:
+        println()
+        println(vlan)
+        sign=":"
+        sign2=","
+        signenter="\n"
+        strvlan="vlan"
+        strempty = ""
+        vlanitems = splitstrbysignnoempty(vlan, sign)
+        lenlntips("vlanitems size", vlanitems)
+        if len(vlanitems) < 2:
+            println("vlanitems should like this, vlanx:xk,bfpga")
+            exit(0)
+        vlanfirst = replacestr(vlanitems[0],strvlan,strempty)
+        vlantypesstr = vlanitems[1]
+        vlantypes = splitstrbysignnoempty(vlantypesstr, sign2)
+        lenlntips("vlantypes size", vlantypes)
+        for vlantp in vlantypes:
+            printlntips("vlan type:", vlantp, False)
+            #根据类型查找所有相关端口
+            findportlist = findstrinlist(vlantp, typelist)
+            lenlntips("findportlist size", findportlist)
+            for port in findportlist:
+                #生成最终的XML配置，根据格式
+                # printlntips("-->last xml by port", port)
+                lastport = replacestrreg(port, r'.*:',strempty)
+                lastport = stripstr(lastport)
+                if(lastport.isdigit()) and (vlanfirst.isdigit()):
+                    print("-->last xml, vlan-port:%s/%s" % (vlanfirst, lastport))
+                    result = concat(result, vlanfirst)
+                    result = concat(result, sign)
+                    result = concat(result, lastport)
+                    result = concat(result, signenter)
+                else:
+                    print("invalid lastport:%s or vlanfirst:%s" % (lastport, vlanfirst))
+                    exit(0)
 
 
+
+
+
+    # print(sys._getframe().f_lineno)     # 获取当前行号(行数)
+    println(result)
+    filewrite(xmlfile, result)
+    #设置成功标志
+    setquitflag(0)
