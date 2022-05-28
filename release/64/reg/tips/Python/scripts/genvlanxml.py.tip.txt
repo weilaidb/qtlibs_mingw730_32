@@ -9,6 +9,7 @@ sys.path.append('.')
 #自定义公共函数
 from public import *
  
+atexit.register(end)
 
 ##########
 #1.规则端口的类型，比如xk
@@ -72,11 +73,14 @@ for vlan in vlanlist:
     println(vlan)
     sign=":"
     sign2=","
+    strvlan="vlan"
+    strempty = ""
     vlanitems = splitstrbysignnoempty(vlan, sign)
     lenlntips("vlanitems size", vlanitems)
     if len(vlanitems) < 2:
         println("vlanitems should like this, vlanx:xk,bfpga")
         exit(0)
+    vlanfirst = replacestr(vlanitems[0],strvlan,strempty)
     vlantypesstr = vlanitems[1]
     vlantypes = splitstrbysignnoempty(vlantypesstr, sign2)
     lenlntips("vlantypes size", vlantypes)
@@ -88,6 +92,12 @@ for vlan in vlanlist:
         for port in findportlist:
             #生成最终的XML配置，根据格式
             # printlntips("-->last xml by port", port)
-            print("-->last xml, vlan-port:%s/%s" % (vlantp, port))
+            lastport = replacestrreg(port, r'.*:',strempty)
+            lastport = stripstr(lastport)
+            if(lastport.isdigit()) and (vlanfirst.isdigit()):
+                print("-->last xml, vlan-port:%s/%s" % (vlanfirst, lastport))
+            else:
+                print("invalid lastport:%s or vlanfirst:%s" % (lastport, vlanfirst))
+                exit(0)
 
 

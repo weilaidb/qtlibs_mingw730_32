@@ -6,7 +6,13 @@
 
 import os
 import sys
+import re
+import atexit
 
+def end():
+    print('结束')
+    
+    
 def lenlntips(tips="", str=""):
     print("%s , len:%d" % (tips, len(str)))
     
@@ -89,3 +95,20 @@ def findstrinlist(findstr, list):
             newlist.append(str)
         
     return newlist
+
+
+def replacestr(str, replacestr,toreplacestr=""):
+    return str.replace(replacestr, toreplacestr)
+
+#正则字符串替换
+def replacestrreg(str, replacestr,toreplacestr=""):
+    return re.sub(replacestr, toreplacestr, str)
+
+
+#删除空格等符号
+def stripstr(str):
+    return str.strip()
+
+#判断是否为数字
+def isdigtal(str):
+    return str.isdigit()
