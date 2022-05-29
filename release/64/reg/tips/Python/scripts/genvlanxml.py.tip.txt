@@ -120,7 +120,7 @@ if __name__ == '__main__':
             
             #判断当前类型是否在类型列表
             findtypelist = findstrinlist(rangex, typelist,True)
-            lenlntips("findtypelist size", findtypelist)
+            # lenlntips("findtypelist size", findtypelist)
             if(0 == len(findtypelist)):
                 print("!!!!!! invalid rangex:%s" % (rangex))
                 printlntips("support typeportinfo", findtypelist)
