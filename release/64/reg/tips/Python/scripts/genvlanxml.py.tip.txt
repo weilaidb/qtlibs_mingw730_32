@@ -65,68 +65,68 @@ if __name__ == '__main__':
     signmao=":"
     signdot=","
     signenter="\n"
-    strvlan="vlan"
-    strempty = ""
+    signvlan="vlan"
+    signempty = ""
     result = ""
 
     rootpath=sys.argv[1]
-    typefile=concat(rootpath, ("/type_port.txt"))
-    vlanfile=concat(rootpath, ("/vlan_type.txt"))
+    typeportfile=concat(rootpath, ("/type_port.txt"))
+    vlanrangefile=concat(rootpath, ("/vlan_type.txt"))
     xmlfile=concat(rootpath , ("/vlan.xml"))
 
     # println(rootpath)
-    # println(typefile)
-    # println(vlanfile)
+    # println(typeportfile)
+    # println(vlanrangefile)
     # println(xmlfile)
 
     checkdirnoexistquit(rootpath)
-    checkfilenoexistquit(typefile)
-    checkfilenoexistquit(vlanfile)
+    checkfilenoexistquit(typeportfile)
+    checkfilenoexistquit(vlanrangefile)
     #执行前先删除XML文件
     filedelete(xmlfile)
 
-    types = fileread(typefile)
-    printlntips("==>port types list", types)
+    typeportinfo = fileread(typeportfile)
+    printlntips("typeportinfo file", typeportinfo)
 
-    vlans = fileread(vlanfile)
-    printlntips("==>port vlans list", vlans)
+    vlanrangeinfo = fileread(vlanrangefile)
+    printlntips("vlanrangeinfo file", vlanrangeinfo)
 
-    typelist = splitstrbyenternoempty(types)
-    printlntips("typelist", typelist)
+    typeportlist = splitstrbyenternoempty(typeportinfo)
+    # printlntips("typeportlist", typeportlist)
 
+    typelist = replacelistreg(typeportlist, r':.*', signempty)
+    lenlntips("typelist count", typelist)
+    printlntips("typelist", typelist,False)
 
-    typeonlylist = replacelistreg(typelist, r':.*', strempty)
-    printlntips("typeonlylist", typeonlylist)
+    vlanrangelist = splitstrbyenternoempty(vlanrangeinfo)
+    lenlntips("vlanrangelist count", vlanrangelist)
 
-    vlanlist = splitstrbyenternoempty(vlans)
-    lenlntips("vlan_type file line count", vlanlist)
-
-    for vlan in vlanlist:
+    for vlanrange in vlanrangelist:
         println()
-        println(vlan)
-        vlanitems = splitstrbysignnoempty(vlan, signmao)
+        println(vlanrange)
+        vlanitems = splitstrbysignnoempty(vlanrange, signmao)
         if len(vlanitems) < 2:
             lenlntips("vlanitems size", vlanitems)
             println("vlanitems should like this, vlanx:xk,bfpga")
             exit(0)
-        vlanfirst = replacestr(vlanitems[0],strvlan,strempty)
-        vlantypesstr = vlanitems[1]
-        vlantypes = splitstrbysignnoempty(vlantypesstr, signdot)
-        lenlntips("vlantypes size", vlantypes)
-        for vlantp in vlantypes:
-            printlntips("vlan type", vlantp, False)
+        vlanfirst = replacestr(vlanitems[0],signvlan,signempty)
+        vlantypeportinfostr = vlanitems[1]
+        vlantypeportinfo = splitstrbysignnoempty(vlantypeportinfostr, signdot)
+        lenlntips("vlantypeportinfo size", vlantypeportinfo)
+        for vlantp in vlantypeportinfo:
+            printlntips("vlantp", vlantp, False)
             
             #根据类型查找所有相关端口
-            findonlytypelist = findstrinlist(vlantp, typeonlylist,True)
-            lenlntips("findonlytypelist size", findonlytypelist)
+            findonlytypeportlist = findstrinlist(vlantp, typelist,True)
+            lenlntips("findonlytypeportlist size", findonlytypeportlist)
             #判断当前类型是否在已知列表中
-            if(0 == len(findonlytypelist)):
+            if(0 == len(findonlytypeportlist)):
                 print("!!!!!! invalid vlantp:%s for %s" % (vlantp, vlan))
-                printlntips("support port types", findonlytypelist)
+                printlntips("support port typeportinfo", findonlytypeportlist)
                 exit(0)
                 
             #根据类型查找所有相关端口
-            findportlist = findstrinlist_replace(vlantp, typelist, r':.*', strempty,True)
+            findportlist = findstrinlist_replace(vlantp, typeportlist, r':.*', signempty,True)
             lenlntips("findportlist size", findportlist)
             
             #判断当前类型是否在已知列表中
@@ -136,7 +136,7 @@ if __name__ == '__main__':
 
             for port in findportlist:
                 #生成最终的XML配置，根据格式
-                lastport = replacestrreg(port, r'.*:',strempty)
+                lastport = replacestrreg(port, r'.*:',signempty)
                 lastport = stripstr(lastport)
                 if(lastport.isdigit()) and (vlanfirst.isdigit()):
                     print("-->last xml, vlan-port:%s/%s" % (vlanfirst, lastport))
