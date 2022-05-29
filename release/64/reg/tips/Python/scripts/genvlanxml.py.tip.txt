@@ -54,63 +54,59 @@ def over():
 atexit.register(over)
 
 ########main proc
-print("===========main proc===========\n" * 3)
-
-
-if len(sys.argv) < 2:
-    print("usage: ./eg.sh RootPath\n")
-    exit(0)
-
-print(sys.argv)
-
-rootpath=sys.argv[1]
-typefile=concat(rootpath, ("/type_port.txt"))
-vlanfile=concat(rootpath, ("/vlan_type.txt"))
-xmlfile=concat(rootpath , ("/vlan.xml"))
-
-# println(rootpath)
-# println(typefile)
-# println(vlanfile)
-# println(xmlfile)
-
-checkdirnoexistquit(rootpath)
-checkfilenoexistquit(typefile)
-checkfilenoexistquit(vlanfile)
-#执行前先删除XML文件
-filedelete(xmlfile)
-
-
-
-types = fileread(typefile)
-printlntips("==>port types list", types)
-
-vlans = fileread(vlanfile)
-printlntips("==>port vlans list", vlans)
-
-typelist = splitstrbyenternoempty(types)
-lenlntips("typelist size", typelist)
-
-
-vlanlist = splitstrbyenternoempty(vlans)
-lenlntips("vlanlist size", vlanlist)
-
-
 if __name__ == '__main__':
-    print("hello world")
+    print("===========main proc===========\n" * 3)
+    if len(sys.argv) < 2:
+        print("usage: ./eg.sh RootPath\n")
+        exit(0)
+
+    print(sys.argv)
+    
     signmao=":"
     signdot=","
     signenter="\n"
     strvlan="vlan"
     strempty = ""
     result = ""
-    
-    
+
+    rootpath=sys.argv[1]
+    typefile=concat(rootpath, ("/type_port.txt"))
+    vlanfile=concat(rootpath, ("/vlan_type.txt"))
+    xmlfile=concat(rootpath , ("/vlan.xml"))
+
+    # println(rootpath)
+    # println(typefile)
+    # println(vlanfile)
+    # println(xmlfile)
+
+    checkdirnoexistquit(rootpath)
+    checkfilenoexistquit(typefile)
+    checkfilenoexistquit(vlanfile)
+    #执行前先删除XML文件
+    filedelete(xmlfile)
+
+    types = fileread(typefile)
+    printlntips("==>port types list", types)
+
+    vlans = fileread(vlanfile)
+    printlntips("==>port vlans list", vlans)
+
+    typelist = splitstrbyenternoempty(types)
+    printlntips("typelist", typelist)
+
+
+    typeonlylist = replacelistreg(typelist, r':.*', strempty)
+    printlntips("typeonlylist", typeonlylist)
+
+    vlanlist = splitstrbyenternoempty(vlans)
+    lenlntips("vlan_type file line count", vlanlist)
+
     for vlan in vlanlist:
         println()
         println(vlan)
         vlanitems = splitstrbysignnoempty(vlan, signmao)
-        lenlntips("vlanitems size", vlanitems)
         if len(vlanitems) < 2:
+            lenlntips("vlanitems size", vlanitems)
             println("vlanitems should like this, vlanx:xk,bfpga")
             exit(0)
         vlanfirst = replacestr(vlanitems[0],strvlan,strempty)
@@ -118,20 +114,28 @@ if __name__ == '__main__':
         vlantypes = splitstrbysignnoempty(vlantypesstr, signdot)
         lenlntips("vlantypes size", vlantypes)
         for vlantp in vlantypes:
-            printlntips("vlan type:", vlantp, False)
-            
+            printlntips("vlan type", vlantp, False)
             
             #根据类型查找所有相关端口
-            findportlist = findstrinlist(vlantp, typelist)
+            findonlytypelist = findstrinlist(vlantp, typeonlylist,True)
+            lenlntips("findonlytypelist size", findonlytypelist)
+            #判断当前类型是否在已知列表中
+            if(0 == len(findonlytypelist)):
+                print("!!!!!! invalid vlantp:%s for %s" % (vlantp, vlan))
+                printlntips("support port types", findonlytypelist)
+                exit(0)
+                
+            #根据类型查找所有相关端口
+            findportlist = findstrinlist_replace(vlantp, typelist, r':.*', strempty,True)
             lenlntips("findportlist size", findportlist)
+            
             #判断当前类型是否在已知列表中
             if(0 == len(findportlist)):
-                print("!!!!!!1invalid vlantp:%s for %s" % (vlantp, vlan))
+                print("!!!!!! invalid vlantp:%s for %s" % (vlantp, vlan))
                 exit(0)
 
             for port in findportlist:
                 #生成最终的XML配置，根据格式
-                # printlntips("-->last xml by port", port)
                 lastport = replacestrreg(port, r'.*:',strempty)
                 lastport = stripstr(lastport)
                 if(lastport.isdigit()) and (vlanfirst.isdigit()):
@@ -141,7 +145,7 @@ if __name__ == '__main__':
                     result = concat(result, lastport)
                     result = concat(result, signenter)
                 else:
-                    print("!!!!!!1invalid lastport:%s or vlanfirst:%s" % (lastport, vlanfirst))
+                    print("!!!!!! invalid lastport:%s or vlanfirst:%s" % (lastport, vlanfirst))
                     exit(0)
 
 

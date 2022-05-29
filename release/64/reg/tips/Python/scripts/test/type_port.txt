@@ -8,5 +8,5 @@ osc:7
 osc:8
 osc:9
 osc:10
-shelf:11
-shelf:12
+shelfosc:11
+shelfosc:12

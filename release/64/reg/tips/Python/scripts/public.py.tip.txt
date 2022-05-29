@@ -106,11 +106,30 @@ def splitstrbysignnoempty(str, sign):
 def splitstrbyenternoempty(str):
     return splitstrbysignnoempty(str,"\n")
 
-def findstrinlist(findstr, list):
+#默认模糊匹配,match=True精确匹配
+def findstrinlist(findstr, list, match=False):
     newlist = []
     for str in list:
-        if findstr in str:
-            newlist.append(str)
+        if False == match:
+            if findstr in str:
+                newlist.append(str)
+        else:
+            if findstr.strip() == str.strip():
+                newlist.append(str)
+        
+        
+    return newlist
+
+#替换后，默认模糊匹配,match=True精确匹配
+def findstrinlist_replace(findstr, list, replacestr, toreplacestr,match=False):
+    newlist = []
+    for str in list:
+        if False == match:
+            if findstr in replacestrreg(str, replacestr, toreplacestr):
+                newlist.append(str)
+        else:
+            if findstr.strip() == replacestrreg(str, replacestr, toreplacestr).strip():
+                newlist.append(str)
         
     return newlist
 
@@ -122,6 +141,16 @@ def replacestr(str, replacestr,toreplacestr=""):
 def replacestrreg(str, replacestr,toreplacestr=""):
     return re.sub(replacestr, toreplacestr, str)
 
+#列表和元素替换后并排序
+def replacelistreg(list, replacestr, toreplacestr=""):
+    newlist = []
+    for str in list:
+        newstr = replacestrreg(str, replacestr,toreplacestr).strip()
+        # printlntips("new str", newstr)
+        if newstr not in newlist:
+            newlist.append(newstr)
+            
+    return newlist
 
 #删除空格等符号
 def stripstr(str):
