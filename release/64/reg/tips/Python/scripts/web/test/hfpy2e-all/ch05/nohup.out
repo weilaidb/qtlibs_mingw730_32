@@ -1,0 +1,31 @@
+ * Serving Flask app 'vsearch_webapp4' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://172.20.95.157:8080/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 642-742-232
+191.223.188.42 - - [29/May/2022 23:32:56] "[33mPOST /editBlackAndWhiteList HTTP/1.1[0m" 404 -
+191.223.188.42 - - [29/May/2022 23:33:00] "[33mPOST /editBlackAndWhiteList HTTP/1.1[0m" 404 -
+117.25.125.252 - - [29/May/2022 23:34:49] "[33mHEAD http://110.242.68.4/ HTTP/1.1[0m" 404 -
+103.25.28.191 - - [29/May/2022 23:35:04] "[33mGET / HTTP/1.1[0m" 404 -
+103.25.28.191 - - [29/May/2022 23:35:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+103.25.28.191 - - [29/May/2022 23:35:23] "GET /entry HTTP/1.1" 200 -
+103.25.28.191 - - [29/May/2022 23:35:23] "GET /static/hf.css HTTP/1.1" 200 -
+103.25.28.191 - - [29/May/2022 23:35:28] "POST /search4 HTTP/1.1" 200 -
+103.25.28.191 - - [29/May/2022 23:35:28] "[36mGET /static/hf.css HTTP/1.1[0m" 304 -
+103.25.28.191 - - [29/May/2022 23:35:37] "POST /search4 HTTP/1.1" 200 -
+103.25.28.191 - - [29/May/2022 23:35:37] "[36mGET /static/hf.css HTTP/1.1[0m" 304 -
+103.25.28.191 - - [29/May/2022 23:35:44] "POST /search4json HTTP/1.1" 200 -
+103.25.28.191 - - [29/May/2022 23:35:50] "POST /search4 HTTP/1.1" 200 -
+103.25.28.191 - - [29/May/2022 23:35:50] "[36mGET /static/hf.css HTTP/1.1[0m" 304 -
+103.25.28.191 - - [29/May/2022 23:36:12] "POST /search4 HTTP/1.1" 200 -
+103.25.28.191 - - [29/May/2022 23:36:12] "[36mGET /static/hf.css HTTP/1.1[0m" 304 -
+103.25.28.191 - - [29/May/2022 23:36:22] "POST /search4 HTTP/1.1" 200 -
+103.25.28.191 - - [29/May/2022 23:36:22] "[36mGET /static/hf.css HTTP/1.1[0m" 304 -
+103.25.28.191 - - [29/May/2022 23:36:37] "POST /search4json HTTP/1.1" 200 -
+192.241.204.35 - - [29/May/2022 23:54:46] "[33mGET / HTTP/1.1[0m" 404 -
