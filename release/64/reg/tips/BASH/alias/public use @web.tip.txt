@@ -12,6 +12,8 @@ alias cdworkjupyter='cd ~/work/jupyter'
 alias cdtest="cd ~/test "
 alias cdworkcode="cd ~/work/code "
 alias cdworkcodecode="cd ~/work/code/code "
+alias cdpythonscript="cd ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/Python/scripts "
+
 alias cmakebuildmy="mkdir mybuild && cd mybuild && cmake .. && make "
 alias makegtest="make && ./test "
 alias jardd="cd $HOME && nohup java -jar ~/dd-0.2-SNAPSHOT.jar --server.port=8888 & "
