@@ -117,12 +117,12 @@ if __name__ == '__main__':
             printlntips("rangex", rangex, False)
             
             #根据类型查找所有相关端口
-            findonlytypeportlist = findstrinlist(rangex, typelist,True)
-            lenlntips("findonlytypeportlist size", findonlytypeportlist)
+            findtypelist = findstrinlist(rangex, typelist,True)
+            lenlntips("findtypelist size", findtypelist)
             #判断当前类型是否在已知列表中
-            if(0 == len(findonlytypeportlist)):
-                print("!!!!!! invalid rangex:%s for %s" % (rangex, vlan))
-                printlntips("support port typeportinfo", findonlytypeportlist)
+            if(0 == len(findtypelist)):
+                print("!!!!!! invalid rangex:%s" % (rangex))
+                printlntips("support typeportinfo", findtypelist)
                 exit(0)
                 
             #根据类型查找所有相关端口
