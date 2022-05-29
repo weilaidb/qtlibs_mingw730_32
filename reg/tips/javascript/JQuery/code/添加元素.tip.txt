@@ -1,0 +1,139 @@
+jQuery - 添加元素
+通过 jQuery，可以很容易地添加新元素/内容。
+
+添加新的 HTML 内容
+我们将学习用于添加新内容的四个 jQuery 方法：
+
+append() - 在被选元素的结尾插入内容
+prepend() - 在被选元素的开头插入内容
+after() - 在被选元素之后插入内容
+before() - 在被选元素之前插入内容
+jQuery append() 方法
+jQuery append() 方法在被选元素的结尾插入内容（仍然在该元素的内部）。
+
+实例
+$("p").append("追加文本");
+
+尝试一下 »
+
+jQuery prepend() 方法
+jQuery prepend() 方法在被选元素的开头插入内容。
+
+实例
+$("p").prepend("在开头追加文本");
+
+尝试一下 »
+
+通过 append() 和 prepend() 方法添加若干新元素
+在上面的例子中，我们只在被选元素的开头/结尾插入文本/HTML。
+
+不过，append() 和 prepend() 方法能够通过参数接收无限数量的新元素。可以通过 jQuery 来生成文本/HTML（就像上面的例子那样），或者通过 JavaScript 代码和 DOM 元素。
+
+在下面的例子中，我们创建若干个新元素。这些元素可以通过 text/HTML、jQuery 或者 JavaScript/DOM 来创建。然后我们通过 append() 方法把这些新元素追加到文本中（对 prepend() 同样有效）：
+
+实例
+function appendText(){
+    var txt1="<p>文本-1。</p>";              // 使用 HTML 标签创建文本
+    var txt2=$("<p></p>").text("文本-2。");  // 使用 jQuery 创建文本
+    var txt3=document.createElement("p");
+    txt3.innerHTML="文本-3。";               // 使用 DOM 创建文本 text with DOM
+    $("body").append(txt1,txt2,txt3);        // 追加新元素
+}
+
+尝试一下 »
+
+jQuery after() 和 before() 方法
+jQuery after() 方法在被选元素之后插入内容。
+
+jQuery before() 方法在被选元素之前插入内容。
+
+实例
+$("img").after("在后面添加文本");
+ 
+$("img").before("在前面添加文本");
+
+尝试一下 »
+
+通过 after() 和 before() 方法添加若干新元素
+after() 和 before() 方法能够通过参数接收无限数量的新元素。可以通过 text/HTML、jQuery 或者 JavaScript/DOM 来创建新元素。
+
+在下面的例子中，我们创建若干新元素。这些元素可以通过 text/HTML、jQuery 或者 JavaScript/DOM 来创建。然后我们通过 after() 方法把这些新元素插到文本中（对 before() 同样有效）：
+
+实例
+function afterText()
+{
+    var txt1="<b>I </b>";                    // 使用 HTML 创建元素
+    var txt2=$("<i></i>").text("love ");     // 使用 jQuery 创建元素
+    var txt3=document.createElement("big");  // 使用 DOM 创建元素
+    txt3.innerHTML="jQuery!";
+    $("img").after(txt1,txt2,txt3);          // 在图片后添加文本
+}
+
+尝试一下 »
+ jQuery 设置内容和属性jQuery 删除元素 
+2 篇笔记 写笔记
+   Prkom
+
+  prk***921@163.com
+
+581
+那有木有考虑过append/prepend和after/before有什么区别呢？
+
+append
+
+<p>
+  <span class="s1">s1</span>
+</p>
+<script>
+$("p").append('<span class="s2">s2</span>');
+</script>结果是这样的:
+<p>
+  <span class="s1">s1</span>
+  <span class="s2">s2</span>
+</p>
+after
+
+<p>
+  <span class="s1">s1</span>
+</p>
+<script>
+$("p").after('<span class="s2">s2</span>');
+</script>
+结果是这样的:
+
+<p>
+  <span class="s1">s1</span>
+</p>
+<span class="s2">s2</span>
+总结：
+
+append/prepend 是在选择元素内部嵌入。
+
+after/before 是在元素外面追加。
+
+Prkom
+   Prkom
+
+  prk***921@163.com
+
+5年前 (2017-08-16)
+   onsunsl
+
+  ons***l@foxmail.com
+
+131
+参数可以是个 list:
+
+function afterText(){
+    var txt1="<b>I </b>";                    // 使用 HTML 创建元素
+    var txt2=$("<i></i>").text("love ");     // 使用 jQuery 创建元素
+    var txt3=document.createElement("big");  // 使用 DOM 创建元素
+    txt3.innerHTML="jQuery!";
+    $("img").after([txt1,txt2,txt3]);          // 在图片后添加文本
+}
+onsunsl
+   onsunsl
+
+  ons***l@foxmail.com
+
+4年前 (2018-11-27)

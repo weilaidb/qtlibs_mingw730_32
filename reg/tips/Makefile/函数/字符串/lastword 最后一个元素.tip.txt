@@ -1,0 +1,67 @@
+Makefile 中获取自身目录（pwd, lastword,dirname）
+
+while_false_
+
+于 2019-11-07 15:29:49 发布
+
+6197
+ 收藏 15
+分类专栏： Makefile
+版权
+
+Makefile
+专栏收录该内容
+6 篇文章0 订阅
+订阅专栏
+命令解释
+shell pwd
+
+make_dir:=$(shell pwd) // := 的意思是将$(shell pwd) 表示为make_dir，类似于宏定义
+make_dir2:=$(pwd) 
+
+all:
+	@echo $(make_dir)  //有输出
+	@echo $(make_dir2) //无输出
+1
+2
+3
+4
+5
+6
+lastword && MAKEFILE_LIST
+MAKEFILE_LIST的变量, 它是个列表变量, 在每次make读入一个make文件时, 都把它添加到最后一项，gnu make 有效。
+lastword 返回names中的最后一个字符串，names以空格进行分隔 $(lastword foo bar lose) 返回 lose
+
+parent_dir_fname:=$(shell pwd)/$(lastword $(MAKEFILE_LIST))
+
+all:
+	@echo $(parent_dir_fname)
+1
+2
+3
+4
+
+dirname
+dirname命令去除文件名中的非目录部分，仅显示与目录有关的内容。dirname命令读取指定路径名保留最后一个/及其后面的字符，删除其他部分，并写结果到标准输出。如果最后一个/后无字符，dirname 命令使用倒数第二个/，并忽略其后的所有字符。dirname 和 basename 通常在 shell 内部命令替换使用，以指定一个与指定输入文件名略有差异的输出文件名。
+https://man.linuxde.net/dirname
+
+dir2:=$(shell pwd)/$(lastword $(MAKEFILE_LIST))
+name:=$(lastword $(MAKEFILE_LIST))
+dir=$(shell dirname $(dir2))
+
+all:
+    @echo $(dir)
+    @echo $(dir2)
+    @echo $(name)
+1
+2
+3
+4
+5
+6
+7
+8
+
+————————————————
+版权声明：本文为CSDN博主「while_false_」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_34595352/article/details/102954664

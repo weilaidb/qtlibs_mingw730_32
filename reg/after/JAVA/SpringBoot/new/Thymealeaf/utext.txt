@@ -1,0 +1,1 @@
+<p th:utext="${\1}"/>$NL把内容中的|替换成换行符$NL<p th:utext="${string.replace(filecontenteg,'|','<br />')}"/>

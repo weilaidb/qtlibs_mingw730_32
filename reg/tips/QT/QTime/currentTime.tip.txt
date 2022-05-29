@@ -1,0 +1,10 @@
+hh:mm:ss
+
+hh:mm:ss.zzz
+
+
+h:m:s ap
+
+H:m:s a
+
+hh::mm::s  

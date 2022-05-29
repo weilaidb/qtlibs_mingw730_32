@@ -1,0 +1,1 @@
+QMap<QString, int> \2;$NL...$NLforeach (const QString &\1, \2.keys())$NL   qDebug() << \1 << ':' << \2.value(\1);

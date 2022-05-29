@@ -1,0 +1,733 @@
+《FPGA之道》
+FPGA Field-Programmable Gate Array 
+现场可编程门阵列
+是一种主要以数字电路为主的集成芯片，为可编程器件的一种。
+
+PLD:Programmable Logic Device 可编程逻辑器件
+PLA:Programmable Logic Array  可编程逻辑阵列
+PAL:Programmable Array Logic  可编程阵列逻辑
+OLMC:Output Logic Macro Cell  可编程的输出逻辑宏单元
+FPLA:Field Programmable Logic Array 现场可编程逻辑阵列
+CPLD:Complex Programmable Logic Device 复杂可编程逻辑器件
+LCA:Logic Cell Array  逻辑单元阵列
+
+CPLD的优势:
+1)CPLD更适合于触发器有限而乘积项丰富的结构
+2)由于布线结构不同，CPLD时序延迟是均匀的和可预测的，而FPGA的时序延迟则具有不可预测性，所以CPLD的速度会比FPGA更快。
+3)CPLD使用起来较方便，因为配置内容掉电不丢失，一般不需要外加配置芯片，所以CPLD保密性好，而FPGA的配置数据流容易被黑客截获，所以保密性差。
+
+ASIC:Application Specific Integrated Circuit 专用集成电路
+易称Soc:System on Chip  片上系统
+SoPC:System on a Programmable Chip 可编程片上系统
+是一种特殊的SoC,单个芯片完成整个系统的主要逻辑功能
+
+TTL:Transistor-Transistor Logic 基于三级管结构的数字系统
+输出端:
+状态  电压 
+1     >=2.4V
+0     <=0.8V
+输入端
+状态   电压
+1     >=2.0V
+0     <=0.8V
+
+LVTTL:Low Voltage Transistor-Transistor Logic 低压TTL电平标准
+LVTTL3V3:内部有源器件的标准电压供给为3.3V 
+LVTTL2V5:内部有源器件的标准电压供给为2.5V
+输出端:
+状态  电压 
+1     >=2.0V
+0     <=0.2V
+输入端
+状态   电压
+1     >=1.7V
+0     <=0.7V
+
+CMOS:Complementary Metal Oxide Semiconductor 基于NMOS、PMOS组成的MOS管结构的数字系统之间的
+输出端:
+状态  电压 
+1     >=4.45V
+0     <=0.5V
+输入端
+状态   电压
+1     >=3.5V
+0     <=1.5V
+
+
+LVCMOS
+LVCMOS3V3
+LVCMOS2V5
+LVCMOS1V8
+LVCMOS1V5
+LVCMOS1V2
+
+LVDS:Low Voltage Differential Signaling 低压差分信号，需要两根线完成通信。
+
+RS232：Recommended Standard 推荐标准 ,232为标识号
+RS232总线标准共设有25条信号线
+状态  电压 
+1     -15~3V
+0     3~15V
+
+RS485：RS232的升级版，采用差分形式传递信息
+状态  电压 
+1     2~6V
+0     -6~-2V
+
+
+
+BCD:Binary Coded Decimal 二一十进制码
+常用的BCD编码
+8421码
+2421码
+余三码
+单位距离码
+余三循环码
+
+有权BCD码
+[0111]8421BCD = 0 *8 + 1 * 4 + 1 * 2 + 1 * 1 = 7
+[0111]2421BCD = 0 *2 + 1 * 4 + 1 * 2 + 1 * 1 = 7
+
+无权BCD码
+余三码是在8421码的基础上，对以每个码字加3得到的。
+
+数字逻辑的基本运算
+与、或、非  对应三个运算（逻辑乘、逻辑加、逻辑非） ---交集、并集、补集
+与非
+或非
+与或非
+异或
+同或
+
+真值表
+
+SOP:sum of product 积之和表达式，与-或表达式
+POS:product of sum 和之积表达式，或-非表达式
+
+卡诺图
+    
+    
+基本逻辑功能单元简介
+缓冲门：
+一个输入，一个输出，仅将输入端口的信号电平原封不动的搬移到输出端口
+作用：提高输入信号的扇出能力
+
+非门:
+一个输入，一个输出，仅将输入端口的信号电平取反后，搬移到输出端口
+
+三态门:
+相当于一个可以控制通断的缓冲门
+两个输入（数据输入、控制输入），一个输出
+控制端口有效时，将数据输入端口的信号电平搬移到输出端口；
+控制端口无效时，输出端为高阻状态，相当于和后续电路的连接断开。
+
+与门：
+两个以上的输入端口，一个输出
+将所有端口的信号电平取逻辑与后，再搬移到输出端口
+
+或门:
+两个以上的输入端口，一个输出
+将所有端口的信号电平取逻辑或后，再搬移到输出端口
+
+
+与非门：
+两个以上的输入端口，一个输出
+将所有端口的信号电平取逻辑与非后，再搬移到输出端口
+
+
+或非门:
+两个以上的输入端口，一个输出
+将所有端口的信号电平取逻辑或非后，再搬移到输出端口
+
+异或门:
+两个以上的输入端口，一个输出
+将所有端口的信号电平取逻辑异或后，再搬移到输出端口
+
+
+同或门:
+两个以上的输入端口，一个输出
+将所有端口的信号电平取逻辑同或后，再搬移到输出端口
+
+小规模集成组合逻辑单元简介
+多路利用器：多路选择器，MUX
+一组控制输入端口、两个以上数据输入端口，一个输出端口
+完成数据通道的复用，节省数据通道的个数。
+
+编码器：
+完成编码功能的单元
+多个事件输入端口，一个有效输出端口和至少一个编码输出端口
+功能是完成将多个输入信号轮换成一组二进制编码。
+
+编码:用文字、符号或者数码来表示某种信息的过程
+
+译码器：解码器，完成译码功能的单元
+一个有效输入端口、至少一个编码输入端口、一个有效输出端口、一组事件输出端口
+
+
+译码:将二进制编码还原为原始事件序列的过程
+
+
+加法器
+半加器
+全加器
+进位选择加法器
+超前进位加法器
+
+减法器
+半减器
+全减器
+
+
+比较器
+
+查找表:LUT Look Up Table
+若干个输入端口，一个输出端口
+
+
+
+时序逻辑基本单元简介
+触发器:filp-flop FF
+具有记忆一位二进制代码的记忆单元，输出具有两个稳定状态--状态0和状态1.
+当外部有效的输入信号时，触发器的输出会发生状态翻转，即从一个稳定状态变化为另一个稳定状态；而当外部有效输入信号撤销后，触发器的输出能够保持在最新的状态，即在一次之前输出不会改变。
+类型分:RS触发器、D触发器、JK触发器、T触发器
+结构分：基本触发器、钟控触发器（包括同步触发器、主从触发器、边沿触发器）
+触发方式分：电平触发器、边沿触发器 
+
+锁存器与寄存器
+锁存器：电平敏感型的触发器
+寄存器：边沿敏感型的触发器
+
+
+HDL:Hardware Description Language 硬件描述语言
+VHDL:Very-High-Speed Intergrated Circuit Hardware Description Language 超高速集成电路硬件描述语言
+
+Verilog HDL:简称Verilog
+OVI:Open Verilog International 组织
+VCS:Verilog Compiled Simulator 仿真器
+SystemVerilog
+
+软件设计是串行的
+FPGA设计是并行的
+
+HDL编译原理
+1)将HDL语言转化为FPGA内部基本资源模块为基础的门级网表。
+  把门级网表理解为一个用基本门电路搭建的数字电路图
+2)将门级网表的各个资源映射到FPGA芯片内部的具体位置，并确定好连线开关等一些资源的配置状态，进而再生成用于配置FPGA的流文件
+
+
+assign a1 = b1 & b2;
+assign a2 <= c1 | c2;
+assign a3 <= a1 ^ a2;
+
+
+FPGA程序执行方式:并行、连续、无限。
+并行：HDL代码都是并发执行的
+连续:HDL执行是无时间间隔的，即无时无刻都在执行
+无限:HDL代码周期是和系统运行时间一致的
+
+
+
+逻辑资源块
+CLB:Configurable Logic Block 
+ALM:Adapive Logic Module
+
+LUT:LUT Look Up Table  查找表
+
+时钟网络资源
+全局时钟网络资源
+区域时钟网络资源
+IO时钟网络资源
+
+PLL:Phase Locked Loop 锁相环
+LF:Low Frequencey 低通滤波器
+VCO: 压控振荡器
+PD: 鉴相器(鉴频器)
+
+DCM:Digital Clock Manager 数字时钟管理员
+DLL:delay-locked loop 延迟锁定环
+BLOCK RAM: 硬件存储核
+
+时序约束
+时序分析
+
+IOB：Input Output Block IO块
+IOE: Input Output Element
+PAD:FPGA芯片的金属管脚
+
+SERDES:串并转换器
+ISERDES：用于输入的
+OSERDESL用于输出的
+
+VCCIO:此管脚用于为用户IO资源供电的管脚
+JTAG:Joint Test Action Group 联合测试行为组织
+两大功能 电路的边界扫描测试和可编程芯片的在线系统编程
+
+IP核:Intellectual property core 知识产权核
+
+
+
+
+
+
+
+
+数字电路按逻辑功能不同，分:
+组合逻辑电路：组合电路或组合逻辑
+时序逻辑电路：时序电路或时序逻辑
+
+组合逻辑电路:数字电路满足任意时刻的输出仅仅取决于该时刻的输入。
+时序逻辑电路:数字电路任意时刻的输出不仅取决于当前的输入，还取决于数字电路原来的状态
+
+
+
+开发流程
+接到项目--前期调研与验证-->制定FPGA方案-->编写FPGA代码<-->功能仿真 -->时序分析-->上板调试-->结束 
+
+项目方案的设计与制定
+1)输出方案文档
+ -- 写清楚项目背景
+ -- 写清楚项目需求
+ -- 写清楚方案框架
+ -- 写清楚方案框架
+    -方案框图
+    -软、硬件工作划分
+ -- 写清楚算法细节
+ -- 确保逻辑完备性
+ -- 确保实现无关性
+ -- 确保书面易懂性
+
+算法可行性仿真与验证
+ --为什么 why?
+ --何时做 when?
+ --怎么做 How?
+ 
+
+2)FPGA设计方案
+
+
+FPGA代码开发
+FPGA设计的功能与仿真
+仿真的分类：前仿真和后仿真
+前仿真：功能仿真，目的是从逻辑上分析HDL代码所描述电路的正确性
+后仿真：时序仿真，它是将电路中门延迟的参数和各种电路单元之间的连线情况考虑在内后进行的仿真。
+细致分：代码级仿真、门级仿真、映射后仿真、布局布线后仿真
+代码级仿真、门级仿真：功能仿真
+映射后仿真：仿真对象是门级网表经过转换后对应到FPGA上的具体逻辑资源聚类，此时可得到电路中的门延迟信息文件供仿真时使用
+布局布线后仿真：时序仿真
+
+FPGA设计的时序分析
+时序分析STA：Static Timing Analysis,  静态时序分析，
+
+时序仿真=功能仿真+逻辑等价性检查+时序分析
+
+编译器：将HDL代码和约束文件转为FPGA芯片上的实际数字电路
+五个方面:综合、翻译融合、映射、布局布线和配置文件生成。
+综合的输入:HDL代码、综合设置、器件型号等。
+综合设置：编译器综合FPGA设计时的指导信息，通常采用默认的综合设置来进行综合，有时需要人工去修改综合设置。
+人工干预综合的方法：
+1）修改编译策略：可选的编译策略包括:speed、aread、power optimization、minimum runtime、balance等
+2）修改一般综合选项
+keep hierarchy:保留层级选项
+read core:读核选项
+synthesis constraints file:综合约束文件选项
+3）修改HDL综合选项
+4）修改特殊综合选项
+
+综合的输出
+综合的输出：RTL门级网表和综合报告。
+RTL:Register Transfer Level ，寄存器传输级网表
+FPGA基本开发流程中FPGA顶层模块的门级仿真环节用到的那个门级网表，是FPGA设计对应的与、或、非等门电路单元的表达。
+
+综合报告
+综合报告包含了综合过程中输出的一些关键信息，最主要的是错误信息、警告信息和资源占用量信息。
+
+编译流程之翻译融合
+翻译融合：将输入的门级网表和约束信息转换为后续作业工具所能识别的逻辑连接。给出FPGA设计的顶层门级网表。
+翻译融合的输入：RTL门级网表、翻译融合设置、器件型号等。
+翻译融合的设置：
+Macro Search Path:参考路径设置选项
+Allow Unmatched LOC Constants:允许不匹配的引脚约束选项。
+
+翻译融合的输出
+翻译融合的输出：顶层可识别门级网表、翻译融合报告等
+
+编译流程之映射
+映射的输入：顶层可识别门级网表、映射设置、器件型号、位置约束、时序约束、管脚约束等
+映射设置
+Ignore User Timing Constrains:忽略用户时序约束选项。
+Trim Unconnected Signals:删除无连接信号选项
+Generate Detailed Map Report:产生详细映射报告选项
+Pack I/O Registers/Latchs into IOB:使用接口资源中的寄存器选项。
+
+映射的输出：顶层资源位置门级网表、门延时文件和映射报告。
+
+编译流程之布局布线 ：将FPGA设计完全转换为FPGA芯片上具体数字电路实现。
+布局布线的输入：顶层资源位置门级网表、布局布线设置、器件型号、管脚约束、时序约束等。
+
+布局布线设置：
+Place And Route Mode:布局布线模式选项。有三种：
+Route Only (默认):表示认为映射环节所做的布局已经可以接受了，只进行布线工作 
+Reentry Route：可重入布线模式，在自动布线开始后可以打断布线器的工作，进行若干手动布线操作，然后再对剩下的部分重新进行自动布线
+Multi Pass Place And Route ：多次布局布线尝试模式，如果在当前的布局和设置下无法布出满足时序等指标的连线，则可以尝试重新调整布局后再次布线，其中尝试次数可由别的选项设置。
+Place And Route Effort Level:布局布线努力程度。有Standard、Medium、High。
+Ignore User Timing Constraints:忽略用户时序约束选项。
+Use Bonded I/Os:使用闲置I/O资源选项。该选项指定是否可以使用闲置的I/O资源来完成某些布局或布线工作，默认不可以。
+Generate Asynchronous Delay Report:产生异步延时报告选项。默认不产生
+Generate Clock Region Report:产生时钟域报告选项。该选项表示是否在布局布线报告中添加时钟域的分析信息，默认不产生。
+Generate Post-Place And Route Static Timing Report:产生布局布线后时序分析报告选项。默认产生。
+Generate Post-Place And Route Simulation Model:产生布局布线后仿真模型选项。默认不产生
+Number of Place And Route Iterations:布局布线器尝试次数选项。
+Number of Results To Save:保存结果的次数选项。
+Power Reduction:功耗优化选项。
+
+布局布线的输出
+布局布线的输出：最终资源位置门级网表、布线信息、延迟文件和布局布线报告。
+
+编译流程之配置生成：转化为FPGA芯片的配置文件
+配置生成的输入：最终资源位置门级网表、布线信息、配置生成设置、器件型号等。
+配置生成的输出：配置文件和配置生成报告。
+
+配置文件
+JTAG接口 后缀名 *.sof
+外部配置芯片 后缀名 *.pof
+Flash配置 后缀名*.bit
+PROM配置   *.mcs
+
+
+程序设计
+VHDL基本程序框架主要分为三部分:library、entity、architecture。
+library <library_name>;
+use <library_name>.<packege_name>.<function_name>;
+use <library_name>.<packege_name>.all;
+库分两类:设计库和资源库。
+完整的标准资源库的引用描述如下:
+library STD;
+use STD.textio.all;
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.std_logic_textio.all;
+use IEEE.std_logic_arith.all;
+use IEEE.numeric_bit.all;
+use IEEE.numeric_std.all;
+use IEEE.std_logic_signed.all;
+use IEEE.std_logic_unsigned.all;
+use IEEE.math_real.all;
+use IEEE.math_complex.all;
+
+常用的就是IEEE标准库中的两三个程序包，通常VHDL代码的最开头都是这样的：
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+有一个隐含的std.standard程序包声明，定义典型的基本的数据结构，如bit、bit_vector、integer、boolean等。
+std.textio主要定义用户的输入、输出。
+IEEE.std_logic_1164:定义了一些增强型的数据结构，如std_logic,std_logic_vector;
+IEEE.std_logic_textio:针对1164程序包定义了用户的输入、输出
+IEEE.std_logic_arith:数的计算操作，基于有符号数、无符号数以及逻辑矢量等
+IEEE.numeric_bit:数的计算操作，基于bit数组类型的有符号和无符号数
+IEEE.numeric_std:数的计算操作，基于std_logic数组类型的有符号和无符号数
+IEEE.std_logic_signed:基于std_logic_vector的有符号数计算操作
+IEEE.std_logic_unsigned:基于std_logic_vector的无符号数计算操作
+IEEE.math_real:基于real类型的数的计算操作
+IEEE.math_complex:基于复数类型的数的计算操作
+IEEE.std_logic_misc:为1164程序包定义了补充的类型、子类型、常数、函数等
+
+entity 实体
+主要描述对象的外貌，对象的输入和输出的端口信息
+器件的具体功能则由architecture描述。
+entity和arcgitecture就好比电路板上芯片一样，entity负责描述芯片的管脚信息，architecture负责实现芯片具体的功能。
+类似于C语言中的函数接口和内容。
+端口有4种：输入端口、输出端口、缓冲端口以及双向端口。定义
+<port_name>:in<type>;
+<port_name>:out<type>;
+<port_name>:buffer<type>;
+<port_name>:inout<type>;
+当有多个端口具有同样的方向和类型时，写成：
+<port_name_list>:<mode> <type>
+buffer端口属于输出端口的一种，可以被赋值，可以被引用。
+out端口，只能被赋值。
+
+generic语法结构:专门用来定义一些参数信息，方便代码的复用，提高可用性。
+
+architecture
+构造体
+负责entity的具体实现，必须依附于entity存在。
+第一步表明身份，代码第一行。
+architecture <arch_name> of <entity_name> is 
+	<part A>
+begin
+	<part B>
+end <arch_name>;
+结构上,architecture代码分两部分：part A和 part B。
+A部分位于 architecture的is和begin之间，是 architecture的说明部分，主要负责一些声明和定义工作；
+B部分位于 architecture的begin和end<arch_name>之间。是 architecture的语句部分，主要负责具体的功能实现，并且位于其中的语句都是并发执行的，即与语句的书写顺序无关。
+	
+1）声明与定义部分
+声明有两个内容：
+a)元件声明，即 component 语法
+元件就是在work库中，每一个VHDL文件所描述的接口和功能的总和就是一个元件。
+b)所需要使用的中间信号量的声明，好像C语言中定义的局部变更
+
+定义，指数据类型的定义，即用户自定义数据类型的创建，以适应不同的数据类型需求。也可以定义一些函数或者过程，即function或procedure。
+2）语句部分
+architecture语句部分有三种实现形式：元件例化语句、进程语句和独立语句。
+元件例化语句 instance语句。
+entity + architecture = 元件
+component 通过指定<component_name>为某个<entity_name>声明这个元件
+instance也通过指定的<component_name>来具体使用特定的元件。
+
+进程语句  process语句。
+并行的东西被抽象出串行的描述。
+architecture中的若干个process都是并行的，但是每个process中的语句都是串行执行的。
+每个process由其对应的<sensitive_signals_list>中的任何一个信号触发，触发后，process中的语句将会从begin开始，执行到end process，然后等待下一次触发，这就是process的串行执行过程。
+
+如何判断process的输入信号呢？三个条件：
+条件一：出现在赋值等号右边的信号；
+条件二：出现在条件判断中的信号；
+条件三：没有出现在赋值等号左边的信号；
+
+
+VHDL注释
+--<Comment here>
+
+VHDL的signal、variable与constant
+
+signal 信号 特定的物理意义，对应电路中特定的物理连线或存储单元。
+是VHDL语法中最重要、最常用的一种可赋值对象。
+signal的声明语法如下：
+signal <signal_name>:<type>:=<value>;--有初值
+或
+signal <signal_name>:<type>;--无初值
+如果有多个同样类型的信号需要声明，用:
+signal <signal_name_list>:<type>;--多个信号名之间用逗号隔开
+其实 entity中port语法结构中的in、out、buffer或者inout类型的端口，都是signal类型的，并且同类型的端口也支持逗号分隔单行书写。
+
+variable 变量  暂存某些值的载体。
+variable声明语法如下:
+variable <name>:<type>:=<value>;--有初值
+或
+variable <name>:<type>;--无初值
+
+variable <variable_name_list>:<type>;--多个变量名之间用逗号隔开
+
+constant 常量 特定的物理意义，通常对应数字电路中的电源或者地。
+constant 能出现在所有signal和variable出现的场合中，声明语法如下:
+constant <name>:<type>:=<value>;
+常量不能单独赋值，仅仅在声明的同时被初始化赋值。
+
+
+VHDL数据类型
+
+常用数据类型
+逻辑数据类型
+1std_logic:VHDL中的标准逻辑类型，
+Type STD_LOGIC is ('U', -- Uninialized;未初始化状态
+                   'X', -- Forcing unknown;亚稳不定态
+                   '0', -- Forcing 0;低电平状态
+                   '1', -- Forcing 1;高电平状态
+                   'Z', -- High Impedance;高阻态
+                   'W', -- Weak Unknown;弱浮接不定态
+                   'L', -- Weak 0;弱低电平态
+                   'H', -- Weak 1;弱高电平态
+                   '-', -- Don't care;不关心态);
+
+std_logic_vector : 标准逻辑数组类型，也叫逻辑向量类型，定义如下：
+type std_logic_vector IS ARRAY (NATURAL RANGE<>) OF std_logic;
+signal a,b,c:std_logic_vector(2 downto 0);
+c <= a and b;
+或者
+signal a,b,c:std_logic_vector(0 to 2);
+c <= a and b;
+最好用第一种
+
+逻辑向量的常数要用双引号引起来，并且逻辑向量的位宽必须是大于1的。
+signal a:std_logic_vector(3 downto 0);
+a<=B"1100";
+a<="1100";
+a<='1' &O"4";
+a<=X"C";
+
+boolean 
+type BOOLEAN is (FALSE,TRUE);
+bit 
+type BIT is("0","1");
+bit_vector 
+type BIT_VECTOR is array(NATURAL range<>) of BIT;
+数值数据类型
+integer
+type integer is range -2147483648 to 2147483647;
+real
+type real is range -1.7E38 to 1.7E38;
+signed & unsigned
+type unsigned is array(natural range<>) of std_logic;
+type signal is array(natural range<>) of std_logic;
+枚举数据类型enum
+type <enum_type_name> is(<element1>,<other elements>);
+示例：
+type myStateType is (idle, work);
+signal stateBuf:myStateType;
+myStateType<=work;--在适当的地方 
+数组数据类型array
+type <array_type_name> is array(<index_range>) of <element_type>;
+示例：定义一个共有8个元素的数组，且元素类型是32位逻辑向量的，写法如下:
+type arrayOfVector32 is array(7 downto 0) of std_logic_vector(31 downto 0);
+signal myArray:arrayOfVector32;
+
+记录数据类型record
+定义如下:
+type<record_name> is record
+    <element_name>:<element_type>;
+    <other_elements>
+end record;
+类似于C语言的结构体struct,即将若干个元素封装成一个整体进行管理。
+示例:
+type byteWord is record
+    byte:std_logic_vector(7 downto 0);
+    word:std_logic_vector(15 downto 0);
+end record;
+signal tmp:byteWord;
+
+tmp.byte <= X"F0";
+tmp.word <='1' & O"77007";
+
+子类型 subtype,对已存在的基本数据类型作一些范围限制，形成一种数据类型。语法如下：
+subtype <subtype_name> is <type> <range_definition>;
+subtype in9And99 is integer range 9 to 99;
+
+数据类型转换函数
+函数             意思
+conv_std_logic_vector(x,y)   integer,unsigned, signed转换为std_logic_vector
+conv_integer(x)              std_logic_vector、unsigned、signed转换为integer
+to_std_logic_vectoro(x)      bit_vector转换为std_logic_vector
+to_bit_vector(x)             std_logic_vector转换为bit_vector
+to_std_logic(x)              bit 转换为std_logic
+to_bit(x)                    std_logic转换为bit 
+上述系统函数中，x参数为待转换的变量或常数，y为转换成新类型后的位宽。
+
+数据对象的属性
+数值类属性，包括: left,right,low,high,length等
+left:数组的左边界
+right:数组的右边界
+low:数组的下边界
+high:数组的上边界
+length:数组的长度 
+
+signal属性
+'event属性是一个针对信号量的属性，附着在信号量上。有事件发生时，值就改变，利用此属性可判断时钟信号的变量情况。
+
+如何初始化 
+初始化一般是在定义时，配合":="赋值符号进行的，例如:
+signal a:std_logic:='1';
+variable b:integer:=512;
+port(...
+    c:in std_logic_vector(3 downto 0):="1010";
+    ...);
+对于数组类型的信号，参考：
+type rt is array(1 downto 0) of std_logic_vector(7 downto 0);
+signal r0:rt:=(X"11",X"88");
+
+VHDL的操作符号
+3种赋值符号
+<= := =>
+<=为signal专用，对signal的赋值能且只能使用<=
+是一种有延迟的同仁，即赋值操作不是立即生效的。编译器会根据代码所描述的功能以及在程序中所处的位置，来决定产生这种延迟的硬件逻辑结构是组合逻辑还是时序逻辑。
+
+:= 为variable专用，对variable的赋值能且只能使用:=
+是一种无延迟的赋值，即赋值操作立即生效。
+还可以初始化赋值
+
+=> 映射赋值符号 是一种连线符号，因为它只是为赋值符号的左右两边建立起一种连接关系而已。
+
+信号量的映射赋值稍有不同，例如：
+signal a,b:std_logic_vector(3 downto 0);
+a <=(0=>'1',2=>'1',others=>'0;); --a="0101"
+b <=(others=>'1');--b="1111";
+
+位置赋值
+
+VHDL按位运算符
+not 取反运算符，单目运算符，即作用于一个操作数
+and 与运算符，双目运算符，即必须有两个操作数
+nand 与非运算符，在and的基础上再做一次not操作
+or  或运算符，双目运算符，必须有两个操作数
+nor 或非运算符，在or的基础上再做一次not操作
+xor 异或运算符 ，双目运算符，必须有两个操作数。
+xnor 同或运算符，双目运算符，即必须有两个操作数
+
+VHDL算数运算符
++
+-
+*
+/
+
+mod and rem 
+mod是取模运算
+rem是求余运算
+
+** 乘方运算
+
+VHDL关系运算符
+用来做一些条件判断使用，通用语法为:
+<expression_left> <relation_operator> <expression_right>
+如下几种:
+=   两边表达式相等
+/=  两边表达式不相等
+<   
+<=
+>
+>=
+
+
+VHDL逻辑运算符
+not 
+and 
+or 
+
+VHDL连接运算符
+不完成任何运算，只是可以将若干个标准逻辑类型或者逻辑向量首尾相接，描述成一个新的逻辑向量。语法如下:
+<signal 1> & <signal 2> &<other signal list>
+
+
+VHDL移位运算符
+三类：
+循环移位运算符，包括rol、ror
+rol:循环左移
+ror:循环右移
+算数移位运算符，包括sla、sra
+sla:算数左移
+sra:算数右移
+逻辑移位运算符，包括sll,srl
+sll:逻辑左移
+srl:逻辑右移 
+
+
+VHDL操作符优先级与小括号
+优先级从低到高
+AND、OR、NAND、NOR、XOR、XNOR
+=、/=、<、>、<=、>=
+rol、ror、sla、sra、sll、srl
++、-、&
++(正号)、-(负号)
+*、/、MOD、REM
+* *、NOT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

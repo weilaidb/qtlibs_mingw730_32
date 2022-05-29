@@ -1,0 +1,4 @@
+date
+ls -lh
+pwd
+tree -L 1

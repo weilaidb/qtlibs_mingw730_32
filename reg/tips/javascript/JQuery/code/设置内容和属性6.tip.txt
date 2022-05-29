@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("#runoob").attr("href", function(i, origValue){
+            return origValue + "/jquery";
+        });
+    });
+});
+</script>
+</head>
+<body>
+
+<p><a href="http://www.runoob.com" id="runoob">菜鸟教程</a></p>
+
+<button>修改 href 值</button>
+
+<p>点击按钮修改后，可以点击链接查看 href 属性是否变化。</p>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+Maven的属性，${project.basedir}，${project.build.directory}：项目构件输出目录，默认为 target/
+内置属性
+主要有两个常用内置属性：${basedir}项目的根目录(包含pom.xml文件的目录)，${version}项目版本
+
+POM属性
+用户可以使用该属性引用POM文件中对应元素的值，常用的POM属性包括：
+
+${project.build.sourceDirectory}：项目的主源码目录，默认为 src/main/java
+
+${project.build.testSourceDirectory}：项目的测试源码目录，默认为 src/test/java
+
+${project.build.directory}：项目构件输出目录，默认为 target/
+
+${project.outputDirectory}：项目主代码编译输出目录，默认为 target/classes/
+
+${project.testOutputDirectory}：项目测试代码编译输出目录，默认为 target/test-classes/
+
+${project.groupId}：项目的 groupId
+
+${project.artifactId}：项目的 artifactId
+
+${project.version}：项目的 version，与${version}等价
+
+${project.build.fianlName}：项目打包输出文件的名称。默认为${project.artifactId}-${project.version}
+
+分类: maven 构建工程

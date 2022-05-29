@@ -1,0 +1,26 @@
+开始
+↓
+收集各种条件和回调接口
+例如，ApplicationContextInitializer
+ApplicationListener
+↓
+通告started()
+↓
+创建并准备Environment
+↓
+通告environmentPrepared()
+↓
+创建并初始化Applicatoin
+例如，设置Environment,加载配置等
+↓
+通告contextPrepared()
+通告contextLoaded()
+↓
+refresh ApplicationContext
+完成最终程序启动
+↓
+执行CommandLineRunner
+↓
+通告finished()
+↓
+结束

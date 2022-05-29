@@ -1,0 +1,33 @@
+##Apache版本更新(解决log4j问题）
+
+APACHEROOT=~/soft/web_notebook_online/apache-tomcat-9.0.58
+REGROOT=/root/work/git/qtlibs_mingw730_32/release/64/reg/
+DBROOT=/root/work/git/qtlibs_mingw730_32/alldb
+MLDNROOT=/root/work/git/qtlibs_mingw730_32/mldn
+
+#指定位置库路径
+mkdir $APACHEROOT/bin/D\:/mydb/autocodesets/ -p
+mkdir $APACHEROOT/bin/D\:/mydb/sqlite_mysql/ -p
+touch $APACHEROOT/bin/D\:/mydb/autocodesets/config.txt
+touch $APACHEROOT/bin/D\:/mydb/sqlite_mysql/config.txt
+
+cat >$APACHEROOT/bin/D\:/mydb/autocodesets/config.txt <<-EOF
+work/config/reg/
+EOF
+
+cat >$APACHEROOT/bin/D\:/mydb/sqlite_mysql/config.txt <<-EOF
+work/db/
+EOF
+
+
+
+cd $APACHEROOT
+mkdir $APACHEROOT/bin/work/config -p
+cd $APACHEROOT/bin/work/config
+ln -s $REGROOT reg
+
+mkdir $APACHEROOT/bin/work/db -p
+cd $APACHEROOT/bin/work/db
+#硬链接
+ln  $DBROOT 
+ln  $MLDNROOT

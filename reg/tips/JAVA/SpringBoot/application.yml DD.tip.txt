@@ -1,0 +1,24 @@
+https://www.toyaml.com/index.html
+
+server:
+  port: 8888
+spring:
+  application:
+    name: dd
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    name: defaultDataSource
+    password:
+    url: jdbc:sqlite:D:/mydb/bugsets/sqlite/ec.db
+    username:
+  thymeleaf:
+    cache: true
+    check-template: true
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    excluded-view-names: ''
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html

@@ -1,0 +1,1 @@
+\1->setShortcut(QCoreApplication::translate("MainWindow", "\2", nullptr));

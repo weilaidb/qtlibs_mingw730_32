@@ -1,0 +1,3 @@
+https://mvnrepository.com/artifact/org.jetbrains/annotations
+
+https://mvnrepository.com

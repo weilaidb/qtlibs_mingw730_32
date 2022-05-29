@@ -1,0 +1,1 @@
+ Joomla！是一个开源 CMS 软件，可以轻松地从 Internet 浏览器创建和管理主页，即使没有 HTML，CSS，FTP 等专业知识基础，也可以使用 CMS 轻松使用浏览器创建主页。例如，如果您使用过 Word，Excel，就可以使用 CMS 相对轻松地创建内容。

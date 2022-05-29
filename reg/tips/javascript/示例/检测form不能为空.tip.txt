@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>颜色</title>
+
+
+</head>
+<body>
+
+<form name="form1">
+    <tr align="left" bgcolor="#FFFFFF">
+        <td width="183" height="22" align="left">销售编号:</td>
+        <td width="198" height="22">
+            <input name="txt_snum" type="text" id="txt_snum" title="销售编号">
+        </td>
+    </tr>
+    <tr align="left" bgcolor="#FFFFFF">
+        <td width="183" height="22" align="left">退货数量:</td>
+        <td width="298" height="22">
+            <input name="txt_nums" type="text" id="txt_nums" title="退货数量">
+        </td>
+    </tr>
+
+    <tr align="left" bgcolor="#FFFFFF">
+        <td height="22">退货日期:</td>
+        <td height="22">
+            <input name="txt_date" type="text" id="txt_date" title="退货日期">
+        </td>
+    </tr>
+
+    <tr align="left" bgcolor="#FFFFFF">
+        <td height="22" align="left">加盟商应退款是否对账:</td>
+        <td height="22">
+            <input name="txt_fig" type="radio" value="1" checked>是
+            <input type="radio" name="txt_fig" value="0">否
+        </td>
+    </tr>
+
+    <tr align="center" bgcolor="#FFFFFF">
+        <td height="22" colspan="2">
+            <input type="submit" name="Submit" value="商品销售退货" onclick="Mycheck(this.form)">
+        </td>
+    </tr>
+
+</form>
+
+<script language="javascript">
+    function Mycheck(form)
+    {
+        for(var i = 0; i < form.length;i++)
+        {
+            if(form.elements[i].value == "")
+            {
+                alert(form.elements[i].title +"不能为空!")
+                return false;
+            }
+        }
+
+    }
+</script>
+</body>
+</html>

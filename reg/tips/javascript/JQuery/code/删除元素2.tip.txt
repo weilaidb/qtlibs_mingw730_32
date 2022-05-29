@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("#div1").remove();
+  });
+});
+</script>
+</head>
+<body>
+
+<div id="div1" style="height:100px;width:300px;border:1px solid black;background-color:yellow;">
+
+这是 div 中的一些文本。
+<p>这是在 div 中的一个段落。</p>
+<p>这是在 div 中的另外一个段落。</p>
+
+</div>
+<br>
+<button>移除div元素</button>
+
+</body>
+</html>

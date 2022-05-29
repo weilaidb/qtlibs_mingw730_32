@@ -1,0 +1,2 @@
+创建一个套接字缓冲区，最常用的操作是 alloc_skb，它在 skbuff_head_cache中创建一个 struct sk_buff， 
+如果要在 skbuff_fclone_cache 中创建，可以调用__alloc_skb，通过特定参数进行。 

@@ -1,0 +1,146 @@
+linux系统终端命令提示符设置（PS1）记录
+ 
+PS(Prompt Sign)指的是命令提示符，在日常运维工作中为了方面操作管理，有时会设定PS1环境变量。
+废话不多说，下面开始记录下Linux中PS1设置
+在/etc/.bashrc中，找到PS1变量的定义，如果没有，手动加上：
+可以将显示输出到标题栏上：
+[root@elk-node1 ~]# vim /root/.bashrc
+...........
+export PS1="\[\e]2;\u@\H \w\a\e[32;1m\]>\[\e[0m\]"
+[root@elk-node1 ~]# source /root/.bashrc
+export PS1="\[\e]2;\u@\H \w\a\e[32;1m\]>\[\e[0m\]"
+[root@elk-node1 ~]# . /root/.bashrc
+>cd /usr/local/
+>pwd
+/usr/local
+>
+最常见的设置：
+1）粉红色的
+[root@elk-node1 ~]# vim /root/.bashrc
+...........
+export PS1="\[\e[35;1m\][\u@\h \W]$>\[\e[0m\]"
+[root@elk-node1 ~]# source /root/.bashrc
+[root@elk-node1 local]$>cd /usr/local/
+[root@elk-node1 ~]$>cd /usr/local/
+[root@elk-node1 local]$>pwd
+/usr/local
+[root@elk-node1 local]$>
+2）绿色设置
+[root@elk-node1 ~]# vim /root/.bashrc
+...........
+export PS1="\[\e[32;1m\][\u@\h \W]$>\[\e[0m\]"
+[root@elk-node1 ~]# source /root/.bashrc
+[root@elk-node1 local]$>cd /usr/local/
+[root@elk-node1 ~]$>cd /usr/local/
+[root@elk-node1 local]$>pwd
+/usr/local
+[root@elk-node1 local]$>
+------------------------------------------------------------------------------------------
+上面切换到显示的是当前简介路径。那么如何让linux终端命令提示符号显示全路径，而不是当前简介路径？
+下面两种方法：
+1）第一种方法：在/root/.bashrc文件下添加下面内容
+[root@elk-node1 ~]# vim /root/.bashrc 
+.......
+export PS1="[\u@\h \w]\$"
+[root@elk-node1 ~]# source /root/.bashrc
+[root@elk-node1 ~]$cd /usr/local/
+[root@elk-node1 /usr/local]$                 #显示的是全路径
+如果将上面的内容改为export PS1="[\u@\h \w]"#，那么显示的就是#符号
+[root@elk-node1 ~]# vim /root/.bashrc 
+.......
+export PS1="[\u@\h \w]"#
+[root@elk-node1 ~]# source /root/.bashrc
+[root@elk-node1 ~]#cd /usr/local/
+[root@elk-node1 /usr/local]#                 #显示的是全路径
+注意：默认的PS1="[\u@\h \W]\$"，其中\W就是路径的设置选项，大写的W是简介模式，小写的w为全路径模式。
+2）第二种方法：在/root/.bashrc文件下添加下面内容：
+[root@elk-node1 ~]# vim /root/.bashrc 
+.......
+export PS1="[\u@\h \`pwd\`]$"
+[root@elk-node1 ~]# source /root/.bashrc
+[root@elk-node1 ~]$cd /usr/local/
+[root@elk-node1 /usr/local]$    #显示的是全路径
+改为#号
+[root@elk-node1 ~]# vim /root/.bashrc 
+.......
+export PS1="[\u@\h \`pwd\`]#"
+[root@elk-node1 ~]# source /root/.bashrc
+[root@elk-node1 ~]$cd /usr/local/
+[root@elk-node1 /usr/local]$      #显示的是全路径
+-------------------------------------------------------------------------------------------------------------------------------
+ 使用方法：
+# PS1='自定义内容'
+注意两边的单引号
+示例： PS1='(\u@\H \d\t)\$'
+----------------------------------------------------------------------------------------------------------------
+PS1：就是用户平时的提示符。
+PS2：第一行没输完，等待第二行输入的提示符。 
+Linux系统提示符是用系统变量PS1来定义的。一般系统默认的形式是：[username@host工作目录]$. 
+用echo $PS1可以得到PS1的值，即PS1="[\u@\h \w]"\$ 
+登录后可以更改PS1的显示样式，但是当退出重启登录进入系统后，样式又变成系统默认的样式了，如果要彻底改变它的样式，只能从配置文件中改。
+PS是在用户根目录下的.bash_profile中定义的。
+如：
+# .bash_profile
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+. ~/.bashrc
+fi
+# User specific environment and startupprograms
+#以下是设定的PS1的值 
+PS1="[\u@\h \w]\$"
+PATH=$PATH:$HOME/bin
+#使用export把PS1输出，以使它可以在子shell中生效,这会造成ROOT用户的也采用此样式
+#export PS1 要慎用 
+export PATH 
+unset USERNAME
+下面简单说说环境下默认的特殊符号所代表的意义：
+\d ：代表日期，格式为weekday month date，例如："Mon Aug1"
+\H：完整的主机名称。例如：我的机器名称为：fc4.linux，则这个名称就是fc4.linux
+\h ：仅取主机的第一个名字，如上例，则为fc4，.linux则被省略 
+\t ：显示时间为24小时格式，如：HH：MM：SS 
+\T ：显示时间为12小时格式 
+\A ：显示时间为24小时格式：HH：MM 
+\u ：当前用户的账号名称
+\v ：BASH的版本信息
+\w ：完整的工作目录名称。家目录会以 ~代替
+\W ：利用basename取得工作目录名称，所以只会列出最后一个目录
+\# ：下达的第几个命令
+\$ ：提示字符，如果是root时，提示符为：# ，普通用户则为：$
+==================================================
+我们可以通过设置PS1变量使提示符成为彩色。在PS1中设置字符序列颜色的格式为：
+\[\e[F;Bm\]
+其中``F''为字体颜色，编号30~37；``B''为背景色，编号40~47。
+可通过``\e[0m''关闭颜色输出；特别的，当B为1时，将显示加亮加粗的文字，详细请看下面的颜色表与代码表。
+颜色表
+前景 背景 颜色
+---------------------------------------
+30 40 黑色
+31 41 红色
+32 42 绿色
+33 43 黃色
+34 44 蓝色
+35 45 紫紅色
+36 46 青蓝色
+37 47 白色
+代码 意义
+-------------------------
+0 OFF
+1 高亮显示
+4 underline
+5 闪烁
+7 反白显示
+8 不可见
+如果想要设置终端提示符的样式只要把$PS1在~/.bahrc指定即可比，比如我的设置如下：
+设置一：
+PS1="\[\e[32m\][\u@\h \w]$\[\e[m\]"
+export PS1
+效果：
+[LinuxSong@test ~]$ 
+设置二：
+if [ $TERM = 'linux' ]; then
+export PS1="[\[\e[36;1m\]\u@\h\[\e[31;1m\]\w\[\e[32;1m\]]> "
+zhcon --utf8
+clear
+elif [ $TERM = "xterm" ]; then
+export PS1="[\[\e[31;1m\]\w\e[0m]> "
+fi

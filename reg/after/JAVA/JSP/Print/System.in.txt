@@ -1,0 +1,1 @@
+#System.in：这是标准输入流，用于从键盘或任何其他标准输入设备读取字符。$NLInputStreamReader \1 =new InputStreamReader（System.in）;

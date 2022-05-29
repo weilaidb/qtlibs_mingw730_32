@@ -1,0 +1,53 @@
+uturedb@ubuntu:~/Desktop/work/gdb$ cat strip.sh 
+#!/bin/sh
+
+errorexit()
+{
+	errorcode=${1}
+	shift
+	echo $@
+	exit ${errorcode}
+}
+
+usage()
+{
+	scriptname=`basename ${0}`
+	echo "USAGE ${scriptname} <tostrip>"
+}
+
+strip_symbol()
+{
+	to_strip_dir=`dirname "$1"`
+	to_strip_file=`basename "$1"`
+
+	if [ -z ${to_strip_file} ] ; then
+		usage
+		errorexit 0 "tostrip must be specified"
+	fi
+
+	cd "${to_strip_dir}"
+
+	symbol_dir=.debug
+	symbol_file="${to_strip_file}.debug"
+
+	if [ ! -d "${symbol_dir}" ] ; then
+		echo "creating dir ${to_strip_dir}/${symbol_dir}"
+		mkdir -p "${symbol_dir}"
+	fi
+
+
+	symbol_line="$(nm ${to_strip_file} | wc -l)"
+	if [ ${symbol_line} != 0 ] ; then
+		echo "stripping ${to_strip_file}, putting debug symbol into ${symbol_file}"
+
+		objcopy --only-keep-debug "${to_strip_file}" "${symbol_dir}/${symbol_file}"
+		strip --strip-debug --strip-unneeded "${to_strip_file}"
+		objcopy --add-gnu-debuglink="${symbol_dir}/${symbol_file}" "${to_strip_file}"
+		chmod -x "${symbol_dir}/${symbol_file}"
+	else
+		echo "no symbols in execute file ${to_strip_file}"
+	fi
+	cd -
+}
+
+strip_symbol $1

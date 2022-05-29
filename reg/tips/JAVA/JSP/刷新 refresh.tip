@@ -1,0 +1,18 @@
+<script language="JavaScript">
+    function Refresh()
+    {
+        window.location.reload();
+    }
+    // setTimeout('Refresh()',1000); //1秒刷新一次
+</script>
+
+
+<font size="3">
+    <form action="savemenu.jsp" method="post" name="form">
+        <input type="submit" value="保存" name="submit">
+        <input type="button" id="btn_refresh" onclick="Refresh()" value="刷新"/>
+        显示菜单内容:<br>
+        <textarea name="menuStand" rows="50" cols="45%"><%=menuStand%></textarea>
+        <textarea name="menuUser" rows="50" cols="45%"><%=menuUser%></textarea>
+    </form>
+</font>

@@ -1,0 +1,78 @@
+QListWiget右键实现重命名功能
+
+WhyAndDo 2020-12-11 15:47:19   140   收藏 1
+分类专栏： Qt常用功能集锦 文章标签： qt c++
+版权
+ 
+
+刚开始学习Qt的时候，对于实现这种功能需要去网上找前辈的代码参考一下，但是发现就算是这样的一个小功能，都写的大同小异，最重要的是不可用！
+
+自己动手，丰衣足食。
+
+1. Test.h代码部分：
+
+public slots:	
+    void on_listWidget_customContextMenuRequested(const QPoint& pos);
+ 
+private:
+    QString m_rename = false;    //是否重命名的标志位
+2. 以下代码可以放到构造函数中：
+
+ui.listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+3. Test.cpp代码实现部分：
+
+void Test::on_listWidget_customContextMenuRequested(const QPoint& pos)
+{
+	QListWidgetItem* _curItem = ui.listWidget_bianzu->itemAt(pos);
+	if (_curItem == nullptr)
+		return;
+	QAction* _delAction = new QAction("删除",this);
+	QAction* _renameAction = new QAction("重命名", this);
+	
+	connect(_delAction, &QAction::triggered, this, &Test::onDel);
+	connect(_renameAction, &QAction::triggered, this, &Test::onRename);
+	QMenu* _popMenu = new QMenu(this);
+	_popMenu->addAction(_delAction);
+	_popMenu->addAction(_renameAction);
+	_popMenu->exec(QCursor::pos());
+	delete _popMenu;
+	_popMenu = nullptr;
+	delete _renameAction;
+	_renameAction = nullptr;
+	delete _delAction;
+	_delAction = nullptr;
+}
+实现重命名部分的代码
+void Test::onRename()
+{
+	m_rename = true;
+    m_preName = ui.listWidget->currentItem()->text();
+	ui.listWidget->currentItem()->setFlags(ui.listWidget->currentItem()->flags() | Qt::ItemIsEditable);
+	ui.listWidget->editItem(ui.listWidget->currentItem());
+	connect(ui.listWidget, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(onNameChanged(QListWidgetItem*)));
+	
+}
+ 
+void Test::onNameChanged(QListWidgetItem* item)
+{	
+	if (m_rename)
+	{
+		
+		if (/*数据对比*/)
+			{
+				QMessageBox _warninigDia(QMessageBox::Warning, "警告", "名称已存在，请重新编辑！", QMessageBox::Apply);
+				_warninigDia.setButtonText(QMessageBox::Apply, "确定");
+				int _retDel = _warninigDia.exec();
+				if (_retDel == QMessageBox::Apply)
+				{					
+					disconnect(ui.listWidget, &QListWidget::itemChanged, this, &Test::onNameChanged);
+					ui.listWidget->currentItem()->setText(m_preName);
+					m_rename = false;
+				}
+				
+				return;
+			}
+		}		
+	}
+}
+ 

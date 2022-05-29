@@ -1,0 +1,2 @@
+user32.dll;bool ReleaseCapture();用来释放被当前线程中某个窗口捕获的光标
+user32.dll;bool SendMessage(IntPtr hwdn, int wMsg, int mParam, int lParam);向指定的窗体发送Windows消息

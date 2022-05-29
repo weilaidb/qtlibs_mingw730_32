@@ -1,0 +1,41 @@
+# include <stdio.h>
+# include <stdlib.h>
+#ifndef ARRAYSIZE
+#define ARRAYSIZE(A) ((unsigned int)(sizeof(A)/sizeof(A[0])))
+#endif
+
+//ASCII转字符串
+int ascii_to_str(char *dst, int *src, int len)
+{
+    unsigned int dwLp =  0;
+    for(dwLp = 0;dwLp < len;dwLp++)
+    {
+        dst[dwLp] = src[dwLp];
+    }
+
+    return 0;
+}
+
+int main (void)
+{
+    int uacSrcNum[] = {67, 68, 69, 70, 71, };
+    char *pacDstBuf = (char *)malloc(ARRAYSIZE(uacSrcNum) + 1);
+    if(NULL == pacDstBuf)
+    {
+        return -1;
+    }
+    memset((void *)pacDstBuf,0,ARRAYSIZE(uacSrcNum) + 1);
+
+    ascii_to_str(pacDstBuf, uacSrcNum, ARRAYSIZE(uacSrcNum));
+
+    printf("%s[len:%d]\n", pacDstBuf, strlen(pacDstBuf));
+
+    if(NULL != pacDstBuf)
+    {
+        free(pacDstBuf);
+        pacDstBuf = NULL;
+    }
+
+    return 0;
+}
+

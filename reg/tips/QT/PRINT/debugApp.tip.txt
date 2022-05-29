@@ -1,0 +1,7 @@
+checked
+currentText()
+interCmdResult
+recvStr
+stopCmdTime
+regafter
+dwMax

@@ -1,0 +1,30 @@
+JavaScript/proc/replace h3 京东读书代码
+PACKET Parse/报文处理成一行规则
+JavaScript/func/eg
+DEFINE/FILTER
+Algorithm 算法/从中间某处排序字符串
+Algorithm 算法/大数进制转换
+AutoTest/python/telnet
+AutoTest/python/telnet 11
+AutoTest/python/telnet 111
+AutoTest/python/telnet 1111
+AutoTest/python/telnet 11111
+AutoTest/python/telnet 111111
+AutoTest/python/telnet 12
+AutoTest/python/telnet read_until
+AutoTest/python/telnet test
+AutoTest/python/telnet test 21
+AutoTest/python/telnet111
+AutoTest/python/telnet1111
+BASH/alias/bashrc 加载配置
+BASH/alias/bashrc 加载配置 ubuntu20.04
+BASH/alias/generate生成
+BASH/alias/public use
+BASH/alias/public use @ubuntu20.04
+BASH/alias/public use @web
+BASH/awk
+BASH/awk file
+BASH/cdpath
+BASH/chmod
+BASH/dev null(no output 2 1 )
+BASH/echo

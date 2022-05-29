@@ -1,0 +1,8 @@
+Google Mock可以通过指定一个测试过滤器做到只运行一个测试子集。你可以把测试过滤器作为执行测试的命令行参数。
+过滤器的语法是：测试用例名.测试名称。
+例如，如果想要运行一个特定的测试，可以使用下面的命令：
+./test --gtest_filter=ATweet.CanBeCopyConstructed
+
+
+但是不要养成每次只运行一个测试的习惯。可以使用通配符(*)运行多个测试。让我们运行一下ATweet测试用例中所有的测试。
+./test --gtest_filter=ATweet.*  #slightly less weak

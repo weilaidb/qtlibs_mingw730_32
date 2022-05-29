@@ -1,0 +1,1 @@
+connect(&\1,SIGNAL(started()),this,SLOT(onthreadB_started()));$NLconnect(&\1,SIGNAL(finished()),this,SLOT(onthreadB_finished()));$NL$NLconnect(&\1,SIGNAL(newValue(int,int)),this,SLOT(onthreadB_newValue(int,int)));

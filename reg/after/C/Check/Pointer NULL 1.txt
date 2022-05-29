@@ -1,0 +1,1 @@
+if(NULL == \1)$NL{$NL    printf("null ponter\n");$NL    return NULL;$NL}$NL

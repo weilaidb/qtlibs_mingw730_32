@@ -1,0 +1,1 @@
+#定义信号 \1 signals$NL\1 = pyqtSignal(str)$NL$NL#连接$NLdef initMore(self):$NL$TBself.\1.connect(self.\2)$NL$TB$NL#定义槽$NLdef \2(self, str):$NL$TBset_textedit(self.textEdit_result, str)$NL$NL$NL#发信号$NL#直接调用引起进程异常挂起，使用信号槽机制实现数据传递$NLself.win.\1.emit(totalresult)

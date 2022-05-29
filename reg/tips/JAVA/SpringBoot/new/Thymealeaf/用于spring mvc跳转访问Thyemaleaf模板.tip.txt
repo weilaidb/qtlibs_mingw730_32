@@ -1,0 +1,6 @@
+//用于spring mvc跳转访问Thyemaleaf模板
+    @RequestMapping(value = "/{page}")
+    public String page(@PathVariable String page)
+    {
+        return page;
+    }

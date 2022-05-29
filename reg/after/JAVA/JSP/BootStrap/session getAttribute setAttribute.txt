@@ -1,0 +1,1 @@
+session.setAttribute("\1","\2");$NL$NLout.write(CStringPub.ifNullSetEmpty(session.getAttribute("\1").toString()));$NL

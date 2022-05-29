@@ -1,0 +1,36 @@
+
+int CUIPub::execCmd(QString path)
+{
+    if(CExpressPub::isZero(CStringPub::strSimLen(path)))
+    {
+        return -1;
+    }
+    CLogPub::msgDefault(path);
+
+//#ifndef WIN32
+//    LPCSTR filepath2 = NULL;
+//    char* puacPathBuf = new char[MAX_LENGTH];
+//    memset(puacPathBuf, 0, MAX_LENGTH);
+//    filepath2 = CTextCodecPub::convertQString2buf(path, puacPathBuf);
+//    ShellExecuteA(NULL, "open", filepath2, NULL, NULL, SW_SHOWNORMAL | SW_NORMAL | SW_SHOW);
+//    delete [] puacPathBuf;
+//#else
+    //QUrl支持中文打开
+    CFilePub::openSystemPathOrUrl(path);
+//#endif
+    return 0;
+}
+
+
+void CFilePub::openSystemPathOrUrl(QString filenameOrUrl)
+{
+    //QUrl支持中文打开
+    if(CFilePub::isFile(filenameOrUrl) || CFilePub::isDir(filenameOrUrl))
+    {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(filenameOrUrl));
+        return;
+    }
+    bool ok = QDesktopServices::openUrl(QUrl(filenameOrUrl));
+    Q_UNUSED(ok)
+}
+

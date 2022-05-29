@@ -1,0 +1,1 @@
+get_parent_class 返回对象或类的父类名。

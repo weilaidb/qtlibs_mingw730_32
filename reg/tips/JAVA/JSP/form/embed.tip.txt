@@ -1,0 +1,6 @@
+使用<embed>标记可以播放音乐和视频，格式:
+<embed src="音乐或视频文件的URL">描述文字</embed>
+经常使用的属性及取值如下:
+autostart取值true或false，指定音乐或视频文件传送完毕后是否立刻播放，默认false。
+loop取值为正整数，指定音乐或视频文件重复播放的次数。
+width、height取值均为正整数，用width和height属性的值指定播放器的宽和高，如果省略使用默认值。

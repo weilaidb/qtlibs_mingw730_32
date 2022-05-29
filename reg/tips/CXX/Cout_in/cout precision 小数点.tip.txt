@@ -1,0 +1,2 @@
+cout.precision(2);//保持小数点后的0
+cout.setf(ios:showpoint);

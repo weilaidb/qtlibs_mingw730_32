@@ -1,0 +1,1 @@
+JSONObject \1 = new JSONObject();$NL\1.put("name","abc");$NLreturn \1;

@@ -1,0 +1,5 @@
+out.print()     : 输出内容
+out.println()   : 输出内容
+out.newLine()   : 输出一个换行符
+out.flush()     : 输出缓冲区里的内容
+out.close()     : 关闭流

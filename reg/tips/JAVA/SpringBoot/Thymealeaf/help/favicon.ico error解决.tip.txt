@@ -1,0 +1,37 @@
+Error resolving template [favicon.ico]解决搁置方案
+
+xiaososa.CatWine 2020-12-13 12:09:20  673  收藏 1
+分类专栏： SpringBoot 文章标签： java spring boot
+版权
+
+SpringBoot
+专栏收录该内容
+3 篇文章1 订阅
+订阅专栏
+如果小伙伴有在html页面添加了
+
+<link rel="shortcuticon"href="../resources/favicon.ico"th:href="@{/static/favicon.ico}">
+1
+依然会报错的话，可以先在controller添加一个忽略favicon.ico的解决方案
+
+@Controller
+public class FaviconController {
+
+    @GetMapping("favicon.ico")
+    @ResponseBody
+    void returnNoFavicon() {
+    }
+}
+1
+2
+3
+4
+5
+6
+7
+8
+这样就不会继续报错了，可以先进行后端的学习，免去被thymeleaf这个错误的干扰
+
+————————————————
+版权声明：本文为CSDN博主「xiaososa.CatWine」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_47896156/article/details/111095908

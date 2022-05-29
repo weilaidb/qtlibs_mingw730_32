@@ -1,0 +1,3 @@
+<script language="javascript">
+    document.bgColor="RED"
+</script>

@@ -1,0 +1,198 @@
+[root@weilaidb] ~/test/vartype
+$ cat main.cpp 
+#include<typeinfo>
+#include<iostream>
+#include<string>
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+using namespace std;
+
+#ifndef TRUE
+#define TRUE 1U
+#endif
+
+#ifndef FALSE
+#define FALSE 0U
+#endif
+
+
+
+
+typedef char CHAR;
+typedef unsigned char BYTE;
+
+typedef char INT8;
+typedef short INT16;
+typedef int INT32;
+typedef long long INT64;
+
+typedef unsigned char UINT8;
+typedef unsigned short UINT16;
+typedef unsigned int UINT32;
+typedef unsigned long long UINT64;
+
+typedef unsigned short WORD;
+typedef unsigned short WORD16;
+typedef unsigned int   WORD32;
+typedef unsigned long long WORD64;
+
+//给一个指针写一个常量时，报指针无法访问异常，判断字符串所在的范围来确定字符串是否合法。
+BYTE IsStrValid(char *pt)
+{
+        char *pCharBegin = "";
+        WORD64 dwwInputAddr = WORD64((WORD64 *)pt);
+        WORD64 dwwBeginAddr = WORD64((WORD64 *)pCharBegin);
+
+        if((dwwInputAddr < dwwBeginAddr)|| (dwwInputAddr > dwwBeginAddr + 0xfff))
+        {
+                cout <<"=========invlaid pointer!!!" << "\n";
+                printf("dwwInputAddr:%llu(%#llx)\n", dwwInputAddr, dwwInputAddr);
+                printf("dwwBeginAddr:%llu(%#llx)\n", dwwBeginAddr, dwwBeginAddr);
+
+                return FALSE;
+        }
+        else
+        {
+                cout <<"=========right pointer!!!" << "\n";
+                cout << strlen(pt) << "\n";
+                printf("dwwInputAddr:%llu(%#llx)\n", dwwInputAddr, dwwInputAddr);
+                printf("dwwBeginAddr:%llu(%#llx)\n", dwwBeginAddr, dwwBeginAddr);
+                printf("%s\n", pt);
+
+        }
+
+        return TRUE;
+}
+
+
+
+int testpara(int a, char *p)
+{
+
+        if(FALSE == IsStrValid(p))
+        {
+                return -1;
+        }
+
+//    cout <<"=========test parameter type" << "\n";
+//    cout << typeid(a).name() << "\n";
+//    cout << typeid(p).name() << "\n";
+//    cout << sizeof(a) << "\n";
+    cout << sizeof(p) << "\n";
+//    cout << "\n";
+//    cout << "\n";
+        return 0;
+}
+ 
+ 
+ 
+
+int testpara2(int a, string str)
+{
+        cout << a << "\n";
+        cout << str << "\n";
+        return 0;
+}
+ 
+int main()
+{
+    int i;
+    char *chr;
+    const char *cchr;
+    cout << typeid(i).name() << "\n";
+    cout << typeid(chr).name() << "\n";
+    cout << typeid(cchr).name() << "\n";
+    //输出结果为i(表示int),即类型的名称首字母 
+
+        testpara(10,(char *)10);
+        testpara(10,(char *)0x402008);
+        testpara(10,(char *)0xffffffffffffffffffffff);
+        testpara(10,(char *)0xffffff);
+        testpara(10,(char *)0x403004);
+        testpara(10,(char *)0x403005);
+        testpara(10,(char *)0x403006);
+        testpara(10,(char *)0xfffff);
+        testpara(10,(char *)0xffff);
+        testpara(10,(char *)"abc");
+        testpara(10,(char *)"00d0.fe93.ffed");
+//      testpara(10,(char *)".afdffdfd");
+//      testpara(10,(char *)"");
+//      testpara(10,(char *)"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//      testpara(10,(char *)"baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//      testpara(10,(char *)"zaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//      testpara(10,(char *)"Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//      testpara(10,(char *)"Baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//      testpara(10,(char *)"Zaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        // testpara2(10,(string)10);
+    return 0;
+}
+
+
+
+
+[root@weilaidb] ~/test/vartype
+$ 
+[root@weilaidb] ~/test/vartype
+$ make 
+mkdir -p ./tmp
+ [LD]    (vartype)
+now file is /root/test/vartype
+g++  -o vartype  ./tmp/./main.o -lpthread   
+current path is vartype
+cp -f vartype ../exelibtest
+mkdir -p ../exelibtest
+chmod +x  vartype && ./vartype
+i
+Pc
+PKc
+=========invlaid pointer!!!
+dwwInputAddr:10(0xa)
+dwwBeginAddr:4202501(0x402005)
+=========right pointer!!!
+25
+dwwInputAddr:4202504(0x402008)
+dwwBeginAddr:4202501(0x402005)
+=======invlaid pointer!!!
+8
+=========invlaid pointer!!!
+dwwInputAddr:18446744073709551615(0xffffffffffffffff)
+dwwBeginAddr:4202501(0x402005)
+=========invlaid pointer!!!
+dwwInputAddr:16777215(0xffffff)
+dwwBeginAddr:4202501(0x402005)
+=========right pointer!!!
+0
+dwwInputAddr:4206596(0x403004)
+dwwBeginAddr:4202501(0x402005)
+
+8
+=========invlaid pointer!!!
+dwwInputAddr:4206597(0x403005)
+dwwBeginAddr:4202501(0x402005)
+=========invlaid pointer!!!
+dwwInputAddr:4206598(0x403006)
+dwwBeginAddr:4202501(0x402005)
+=========invlaid pointer!!!
+dwwInputAddr:1048575(0xfffff)
+dwwBeginAddr:4202501(0x402005)
+=========invlaid pointer!!!
+dwwInputAddr:65535(0xffff)
+dwwBeginAddr:4202501(0x402005)
+=========right pointer!!!
+3
+dwwInputAddr:4202610(0x402072)
+dwwBeginAddr:4202501(0x402005)
+abc
+8
+=========right pointer!!!
+14
+dwwInputAddr:4202614(0x402076)
+dwwBeginAddr:4202501(0x402005)
+00d0.fe93.ffed
+8
+bind ok
+[root@weilaidb] ~/test/vartype
+$ 
+[root@weilaidb] ~/test/vartype
+$

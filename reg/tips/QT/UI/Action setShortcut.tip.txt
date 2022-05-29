@@ -1,0 +1,2 @@
+pActionOpenCfgFile;Ctrl+O
+pActionShow;Alt+M

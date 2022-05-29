@@ -1,0 +1,33 @@
+alias cdsoft='cd ~/soft'
+alias cdsoftweb='cd ~/soft/web_notebook_online'
+alias cdsoftwebapache='cd ~/soft/web_notebook_online/apache-tomcat-9.0.58'
+alias cdsoftwebapachebin='cd ~/soft/web_notebook_online/apache-tomcat-9.0.58/bin'
+alias cdwork='cd ~/work'
+alias cdworkgit='cd ~/work/git'
+alias cdworkgitlinux='cd ~/work/git/linux'
+alias cdworkgitqtlibs='cd ~/work/git/qtlibs_mingw730_32'
+alias tomcatstart='cdsoftwebapachebin && sh startup.sh'
+alias tomcatstop='cdsoftwebapachebin && sh shutdown.sh'
+alias cdworkjupyter='cd ~/work/jupyter'
+alias cdtest="cd ~/test "
+alias cdworkcode="cd ~/work/code "
+alias cdworkcodecode="cd ~/work/code/code "
+alias cmakebuildmy="mkdir mybuild && cd mybuild && cmake .. && make "
+alias makegtest="make && ./test "
+alias jardd="cd $HOME && nohup java -jar ~/dd-0.2-SNAPSHOT.jar --server.port=8888 & "
+alias killddjar="kill -9 \`ps aux | grep jar | grep dd | awk '{print \$2}'\` "
+
+
+alias eg=''
+
+
+
+
+#默认加载配置
+#source ~/soft/web_notebook_online/env.web.sh
+
+#直接加载配置文件，先用dos2unix预处理
+#dos2unix ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt
+#source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt
+#dos2unix ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt
+#source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt

@@ -1,0 +1,1 @@
+$\1=array(\2);$NLvar_dump($\1);$NL$NLecho "first element: {$cars[0]}";$NLecho count($\1);

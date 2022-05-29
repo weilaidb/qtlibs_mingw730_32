@@ -1,0 +1,3 @@
+2.2 Spring Boot项目的入口类
+在样板工程中，Demo0HelloWorldApplication是Spring Boot项目的入口类，它的关键源代码如下：
+@Spring BootApplication

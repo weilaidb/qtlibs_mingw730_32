@@ -1,0 +1,54 @@
+补充几个有时候很有用的快捷键；
+
+[Tab] 有『命令补全』与『文件补齐』的功能
+
+[Tab]      ## 接在一串指令的第一个字的后面，则为『命令补全』
+[Tab]      ## 接在一串指令的第二个字以后时，则为『文件补齐』
+若安装 bash-completion 软件，则在某些指令后面使用 [tab] 按键时，可以进行『选项/参数的补齐』功能！
+
+[Ctrl]+ C 如果在Linux 底下输入了错误的指令或参数，想让当前的程序『停掉』的话，可以输入：
+
+[Ctrl] + c 
+[Ctrl]-d 『键盘输入结束(End Of File, EOF 或 End Of Input)』的意思
+
+另外，他也可以用来取代 exit 的输入。
+
+例如你想要直接离开文字接口，可以直接按下：
+
+[Ctrl] + d   ## 相当于输入 exit
+[shift]+{[PageUP]|[Page Down]}
+
+[Shift]+[Page Up]    ## 往前翻页 
+
+[Shift]+[Page Down] ## 往后翻页
+
+
+
+
+图形模式与文字模式的切换方式
+Linux预设提供了六个命令窗口终端机让我们来登录。
+
+默认我们登录的就是第一个窗口，也就是tty1，这个六个窗口分别为tty1,tty2 … tty6，你可以按下Ctrl + Alt + F1 ~ F6 来切换它们。
+
+如果你安装了图形界面，默认情况下是进入图形界面的，此时你就可以按Ctrl + Alt + F1 ~ F6来进入其中一个命令窗口界面。
+
+当你进入命令窗口界面后再返回图形界面只要按下Ctrl + Alt + F7 就回来了。
+
+如果你用的vmware 虚拟机，命令窗口切换的快捷键为 Alt + Space + F1~F6. 如果你在图形界面下请按Alt + Shift + Ctrl + F1~F6 切换至命令窗口。
+
+
+Linux 系统启动过程
+linux启动时我们会看到许多启动信息。
+
+Linux系统的启动过程并不是大家想象中的那么复杂，其过程可以分为5个阶段：
+
+内核的引导。
+运行 init。
+系统初始化。
+建立终端 。
+用户登录系统。
+init程序的类型：
+
+SysV: init, CentOS 5之前, 配置文件： /etc/inittab。
+Upstart: init,CentOS 6, 配置文件： /etc/inittab, /etc/init/*.conf。
+Systemd： systemd, CentOS 7,配置文件： /usr/lib/systemd/system、 /etc/systemd/system。

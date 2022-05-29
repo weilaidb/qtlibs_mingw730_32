@@ -1,0 +1,3 @@
+[docker名称;docker版本]
+ubuntu-test;ubuntu
+centos-test;centos:centos7

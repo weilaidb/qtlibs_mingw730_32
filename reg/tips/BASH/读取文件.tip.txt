@@ -1,0 +1,69 @@
+Bash 读取文件
+以下示例均以 ReadFile.txt 文件为例。文件内容如下：
+
+Welcome
+To
+Our
+Website
+-
+W3Cschool
+读取操作
+您可以使用cat file_Name来读取文件。
+
+语法：
+
+value=`cat file_Name`
+应用示例：
+
+#!/bin/bash
+value=`cat ReadFile.txt`  
+echo "$value"
+执行后得到以下结果：
+
+Welcome
+To
+Our
+Website
+-
+W3Cschool
+您也可以使用$(file_Name)来读取文件。
+
+语法：
+
+value=$(file_Name)
+应用示例：
+
+#!/bin/bash
+value=$(<ReadFile.txt)
+echo "$value"
+执行后得到以下结果：
+
+Welcome
+To
+Our
+Website
+-
+W3Cschool
+您还可以使用 while 循环来读取文件。
+
+应用示例：
+
+#!/bin/bash
+i=1
+while read line; do
+#Reading each line
+echo "No. $i : $line"
+i=$((i+1))
+done < ReadFile.txt
+执行后得到以下结果：
+
+No. 1 : Welcome
+No. 2 : To
+No. 3 : Our
+No. 4 : Website
+No. 5 : -
+No. 6 : W3Cschool
+注：
+
+在这里 i用于给循环迭代出的每一个字符串编号。
+使用 while 循环来读取文件的写法很灵活多样，但编写简便的代码语句是一个好习惯哦。

@@ -1,0 +1,1 @@
+crt.Screen.Send "\1" & chr(13)$NLcrt.Screen.WaitForString "#"$NL

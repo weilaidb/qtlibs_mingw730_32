@@ -1,0 +1,1 @@
+@GetMapping(value = ["/\1"])$NLfun \2(): \3 {$NL$TBreturn \3(name = "World！", greeting = "Hello！", para2 ="hahahahah@")$NL}$NL$NLdata class \3(var name: String, var greeting: String, var para2:String)

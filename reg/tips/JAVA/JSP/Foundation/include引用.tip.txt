@@ -1,0 +1,18 @@
+你可以通过以下两种方式来获取 Foundation：
+
+1、从官网下载最新版本：http://foundation.zurb.com/。
+
+2、使用菜鸟教程官网提供的CDN（推荐）：
+
+<!-- css 文件 -->
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/foundation/5.5.3/css/foundation.min.css">
+
+<!-- jQuery 库 -->
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- JavaScript 文件 -->
+<script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/foundation.min.js"></script>
+
+<!-- modernizr.js 文件 -->
+<script src="http://cdn.static.runoob.com/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
+

@@ -1,0 +1,180 @@
+Array 对象方法
+方法	描述
+map()	将一个数组映射为另一个数组并返回处理后的数组
+reduce()	将数组元素进行累计（从左到右）
+concat()	将多个数组拼接并返回结果
+join()	把数组的所有元素放入一个字符串
+reverse()	翻转数组的元素顺序
+sort()	对数组的元素进行排序
+push()	对数组进行追加并返回新的长度
+pop()	删除数组的最后一个元素并返回删除的元素
+shift()	删除并返回数组的第一个元素
+every()	检测数组里面的每一位是否都满足要求
+filter()	过滤数组里面的元素并返回符合条件所有元素的数组
+find()	查找并返回符合条件的数组元素
+includes()	检测数组里面是否包含某个值
+indexOf()	搜索数组中的元素并返回它所在的位置
+lastIndexOf()	搜索数组中的元素并返回它最后出现的位置
+isArray()	判断对象是否为数组
+slice()	截取数组的一部分且截取之后元素不受影响
+splice()	截取数组的一部分且截取之后元素受影响
+valueOf()	获取数组的原始值
+keys()	返回数组的返回迭代器
+entries()	返回数组里面的键值对象
+some()	检测数组元素中是否有元素符合指定条件
+unshift() 该方法向数组的开头添加一个或多个元素。
+示例代码
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        /*1.map()：将一个数组映射为另一个数组并返回处理后的数组*/
+        var list = [1, 2, 3, 4, 5, 6];
+        //map 映射返回修改之后的集合
+        var newlist = list.map(function (value,index) {
+            return value * value
+        });
+        console.log(newlist);
+
+        list.map(function (value, index) {
+            console.log(value);
+        });
+
+        /* 2.reduce()：将数组元素进行累计（从左到右）*/
+        var num = [1, 2, 3, 4];
+        var number = num.reduce(function (all, value) {
+            return all * value;
+        });
+        console.log(number);
+
+        /* 3.concat()：将多个数组拼接并返回结果*/
+        var a = [1, 2];
+        var b = [3, 4];
+        console.log(a.concat(b));
+
+        /*4.join()：把数组的所有元素放入一个字符串*/
+        var str = "abcdef";
+        var strarr = str.split("");//数组转化为字符串
+        console.log(strarr);
+        console.log(strarr.join(""));//字符串转化为数组
+
+        /*5.reverse()：翻转数组的元素顺序*/
+        var s = [1, 2, 3, 4];
+        console.log(s.reverse());
+        var ts = "Hello World !";
+        var tstemp = ts.split(" ");
+        console.log(tstemp);
+        //["Hello", "World", "!"]
+        var data = tstemp.map(function (value, index) {
+            return value.split("").reverse().join("");
+        });
+        console.log(data);
+        //"Hello World !"
+        console.log(ts.split("").reverse().join("").split(" ").reverse());
+
+        /*6.sort()：对数组的元素进行排序*/
+        var f1 = [1, 5, 2, 3, 6, 4];
+        console.log(f1.sort());//默认从小到大
+        //改变sort的排序方式
+        var f2 = f1.sort(function (n1, n2) {
+            console.log(n1, n2);
+            return n2 - n1;
+        });
+        console.log(f2);
+
+        /*7.push()：对数组进行追加并返回新的长度*/
+        var f3 = [1, 2, 3];
+        f3[f3.length]=10;
+        //往数组后边追加
+        f3.push(20);  //方法返回值是数组追加之后的长度
+        console.log(f3);
+        //往数组前面追加
+        console.log(f3.unshift(0));
+        console.log(f3);
+
+        /*8.pop()：删除数组的最后一个元素并返回删除的元素*/
+        //删除数组后边的
+        console.log(f3.pop());
+        console.log(f3);
+		
+		/*9.shift():删除并返回数组的第一个元素*/
+        //删除数组前面的
+        console.log(f3.shift());
+        console.log(f3);
+
+        /*10.every():检测数组里面的每一位是否都满足要求*/
+        var has = f3.every(function (val, index) {
+            return val % 2 == 0;
+        });
+        console.log(has);//false
+        
+        /*11.filter():过滤数组里面的元素并返回符合条件所有元素的数组*/
+        var has1 = f3.filter(function (value) {
+            return value % 2 != 0;
+        });
+        console.log(has1);
+
+      	/*12.find():查找并返回符合条件的数组元素*/
+        var has2 = f3.find(function (value) {
+            return value > 2;
+        });
+        console.log(has2);
+
+        /*13.includes():检测数组里面是否包含某个值*/
+        console.log(f3.includes(2));
+
+        /*14.indexOf():搜索数组中的元素并返回它所在的位置*/
+        console.log(f3.indexOf(4));
+		
+		/*15.lastIndexOf():搜索数组中的元素并返回它最后出现的位置*/
+        console.log(f3.lastIndexOf(1));
+
+        /*16.isArray():判断对象是否为数组*/
+        console.log(Array.isArray(f3));
+
+        /*17.slice():截取数组的一部分且截取之后元素不受影响*/
+        var m1 = [1, 2, 3, 4];
+        console.log(m1.slice(0, 3)); //返回值是截取的值,截取之后元素不受影响
+        console.log(m1);
+        console.log(m1.splice(0, 2));//返回值是截取的值,截取之后元素受影响
+        console.log(m1);
+        console.log(m1.toString());
+
+        /*18.valueOf():获取数组的原始值*/
+        var h1 = new Array('ab');
+        console.log(h1.valueOf());
+        console.log(h1);
+        var h2 = ['a', 'b'];
+        console.log(h2.valueOf());
+        var sf = new String("abcdef");
+        console.log(sf);
+        console.log(sf.valueOf());
+
+        /*19.keys():返回数组的返回迭代器*/
+        var inter = m1.keys();
+        console.log(inter.next());
+        console.log(inter.next());
+        console.log(inter.next());
+        
+        /*20.entries():返回数组里面的键值对象*/
+        var en = m1.entries();
+        console.log(en.next());
+        console.log(en.next());
+        console.log(en.next());
+        console.log(en.next());
+        
+        /*21.some():检测数组元素中是否有元素符合指定条件*/
+        console.log(m1.some(function (val, index) {
+            console.log(val);
+            return val % 2 == 0;
+        }));
+</script>
+</body>
+</html>
+————————————————
+版权声明：本文为CSDN博主「　　初夏 ﻬ」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_44329870/article/details/111347233

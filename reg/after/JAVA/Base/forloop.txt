@@ -1,0 +1,1 @@
+int i;$NL$NLfor (i = 0; i < \1; i = i + 1)$NL  System.out.println("This is i: " + i);$NL}

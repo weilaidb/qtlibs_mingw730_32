@@ -1,0 +1,1 @@
+--signal声明\1$NLsignal <\1>:<\2>:=<\3>;--有初值\3$NL或$NLsignal <\1>:<\2>;--无初值$NL$NL

@@ -1,0 +1,46 @@
+SpringBoot程序的标准结构
+基于maven结构的
+
+src/main/java
+  编写java相关的代码
+
+src/main/resources
+    src/main/resources/static
+    存放静态资源-》html img css
+src/main/resources/templates
+可以所有springboot整合的视图模板技术
+freemarker、Thymealeaf
+
+src/main/resources
+存放springboot程序核心的配置文件  xxx.properties  xxx.yml(推荐)
+
+
+
+
+将图片放在static中，启动SpringBoot项目开启Tomcat服务器即可。
+如果有多级目录，访问的时候，带上目录的文件夹即可
+例如:pic/test.jpg
+
+访问html
+将html放在static中，启动SpringBoot项目开启Tomcat服务器即可。
+
+
+
+
+
+Spring整合图片上传
+Spring MVC图片上传步骤:
+1.导入jar包
+-Spring MVC jar 包
+--上传jar包
+command-fileupload.jar
+command-io.jar
+
+2.spingmvc核心配置文件
+配置spring mvc封装的上传对象
+mutipart....
+3.客户端
+html
+jsp
+--请求方式post
+-form 表单 提交数据

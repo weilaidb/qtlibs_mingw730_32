@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.weilaidb.ssm.mapper.UserMapper">
+    <select id="selectUserList" resultType="com.weilaidb.ssm.pojo.User">
+        select * from t_user;
+    </select>
+
+    <insert id="addUser" parameterType="com.weilaidb.ssm.pojo.User">
+    INSERT INTO t_user(name,email,phone) VALUES
+    (#{name},#{email},#{phone});
+    </insert>
+
+
+    <select id="getUserById" parameterType="int" resultType="com.weilaidb.ssm.pojo.User">
+        SELECT * from t_user WHERE id = #{id};
+    </select>
+
+
+    <update id="updateUser" parameterType="com.weilaidb.ssm.pojo.User">
+        UPDATE t_user SET name=#{name},email=#{email},phone=#{phone} WHERE id=#{id};
+    </update>
+
+
+    <delete id="deleteUserById" parameterType="int">
+        DELETE from t_user where id=#{id};
+    </delete>
+</mapper>

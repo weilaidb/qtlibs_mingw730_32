@@ -1,0 +1,345 @@
+腾讯云备案控制台
+云+社区
+专栏视频精选问答沙龙云+竞赛实验室团队主页开发者手册腾讯云TI平台TVP
+找文章 / 找答案 / 找技术大牛
+创作
+提问登录注册
+ 	
+专栏首页Ken的杂谈CentOS 7 下Jenkins安装部署教程
+4
+2
+
+
+CentOS 7 下Jenkins安装部署教程
+2018-09-11阅读 2.2K0
+一、前言
+1、 Jenkins是什么？
+Jenkins是一个开源的支持自动化构建、部署等任务的平台。基本上可以说是持续集成（CI）、持续发布（CD）不可或缺的工具。
+
+官网：https://jenkins.io/
+
+2、本篇环境信息
+工具/环境
+
+版本
+
+Linux Server
+
+CentOS 7
+
+Jenkins
+
+2.121.2
+
+JDK
+
+1.8.0_181
+
+Nginx
+
+1.14.0
+
+3、准备工作
+安装JDK
+参考：https://ken.io/note/centos-java-setup
+
+将jdk1.8.0_181部署在目录/usr/java/
+部署完成后，jdk的根目录就是：/usr/java/jdk1.8.0_181/
+
+安装Nginx（非必要步骤）
+参考：https://ken.io/note/centos-quickstart-nginx-setup
+
+部署Nginx是为了方便我们通过域名访问Jenkins，如果无此需求可忽略次操作
+
+二、Jenkins安装
+1、Yum安装
+yum源导入
+#添加Yum源
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+#导入密钥
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+安装
+sudo yum install -y jenkins
+2、开放端口
+Jenkins站点的默认监听端口是8080
+
+sudo firewall-cmd --add-port=8080/tcp --permanent
+sudo firewall-cmd --reload
+3、配置Java可选路径
+因为Jenkins默认的java可选路径不包含我们部署的jdk路径，所以这里要配置一下，不然Jenkins服务会启动失败
+
+#修改jenkins启动脚本
+sudo vi /etc/init.d/jenkins
+
+#修改candidates增加java可选路径：/usr/java/jdk1.8.0_181/bin/java
+candidates="
+/etc/alternatives/java
+/usr/lib/jvm/java-1.8.0/bin/java
+/usr/lib/jvm/jre-1.8.0/bin/java
+/usr/lib/jvm/java-1.7.0/bin/java
+/usr/lib/jvm/jre-1.7.0/bin/java
+/usr/bin/java
+/usr/java/jdk1.8.0_181/bin/java
+"
+4、启动Jenkins并设置Jenkins开机启动
+#重载服务（由于前面修改了Jenkins启动脚本）
+sudo systemctl daemon-reload
+
+#启动Jenkins服务
+sudo systemctl start jenkins
+
+#将Jenkins服务设置为开机启动
+#由于Jenkins不是Native Service，所以需要用chkconfig命令而不是systemctl命令
+sudo /sbin/chkconfig jenkins on
+浏览器输入 http://<ip address>:8080 访问Jenkins
+
+三、Nginx配置（非必要步骤）
+1、配置Nginx反向代理Jenkins
+新建配置文件
+#新增Jenkins专用Nginx配置文件
+sudo vi /etc/nginx/conf.d/jenkins.conf
+
+#输入以下内容并保存
+server {
+    listen       80;        #监听80端口
+    server_name  jenkins.ken.io; #监听的域名
+    access_log  /var/log/nginx/jenkins.access.log main;
+    error_log  /var/log/nginx/jenkins.error.log error;
+
+    location / {            #转发或处理
+        proxy_pass http://127.0.0.1:8080; 
+    }
+    error_page   500 502 503 504  /50x.html;#错误页
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+重载Nginx配置
+sudo nginx -s reload
+2、配置SELinux
+如果不配置SELinux，通过Nginx反向代理访问，可能会产如下错误
+
+#查看错误信息
+/var/log/nginx/jenkins.error.log
+
+#错误信息示例
+connect() to 127.0.0.1:8001 failed (13: Permission denied) while connecting to upstream, client: 127.0.0.1
+方法1：setsebool -P httpd_can_network_connect 1
+ 
+方法2:
+#关闭SELinux： 
+sed -i '/SELINUX/s/enforcing/disabled/' /etc/selinux/config 
+#重启：
+reboot
+修改本地hosts，将域名jenkins.ken.io指向CentOS IP,通过域名测试访问
+
+四、Jenkins初始化
+1、解锁Jenkins
+查询root账号默认密码
+
+cat /var/lib/jenkins/secrets/initialAdminPassword
+
+
+输入密码并解锁 
+
+2、选择插件
+
+这里直接选择“安装推荐的插件”即可
+
+
+选择安装的插件后会进入插件安装界面
+
+3、添加管理员
+插件安装完成后会自动进入添加管理员界面
+
+
+4、配置Jenkins URL
+这里的URL指的是默认访问Jenkins的地址。
+默认是是http://:8080，如果你通过Nginx配置了域名，那么直接填写配置的域名即可。
+
+
+5、开始使用Jenkins
+配置完Jenkins URL之后就完成了整个Jenkins配置引导
+
+
+点击“开始使用Jenkins”就会进入Jenkins主页
+
+
+搞定~
+
+五、备注
+本文参考
+https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions
+
+https://stackoverflow.com/questions/23948527/13-permission-denied-while-connecting-to-upstreamnginx?rq=1
+
+本文参与腾讯云自媒体分享计划，欢迎正在阅读的你也加入，一起分享。
+
+Jenkins开源自动化HTTPLinux
+举报
+点赞 4分享
+我来说两句
+0 条评论
+登录 后参与评论
+相关文章
+CentOS 7 下 GitLab安装部署教程
+GitLab一个开源的git仓库管理平台，方便团队协作开发、管理。在GitLab上可以实现完整的CI（持续集成）、CD（持续发布）流程。而且还提供了免费使用的P...
+
+KenTalk
+CentOS 7下KVM安装部署
+Kernel-based Virtual Machine的简称，是一个开源的系统虚拟化模块，自Linux 2.6.20之后集成在Linux的各个主要发行版本中。...
+
+拓荒者
+Centos 7 下安装 Jenkins
+Jenkins是一个开源的支持自动化构建、部署等任务的平台。基本上可以说是持续集成（CI）、持续发布（CD）不可或缺的工具。
+
+武培轩
+CentOS 7 下Erlang 20.2安装部署
+https://github.com/erlang/otp/blob/maint/HOWTO/INSTALL.md
+
+KenTalk
+Linux （ Centos 7 ）下 安装 jenkins
+jenkins 镜像查询地址： http://mirrors.jenkins-ci.org/status.html
+
+zhangyunfeiVir
+从0开始搭建自动部署环境
+用户1737026
+Jenkins配合github实现前端项目自动化构建部署
+大家以前写前端项目部署，可能都是手动运行命令，打包完，然后压缩，再利用FTP、Xshell等这类的工具上传到服务器解压。也或者你不会操作，你认为这些事情是运维做...
+
+游魂
+Docker系列与Linux系统的使用教程
+3，Docker远程访问、集成Docker+ Maven插件、搭建Docker私有库Harbor、安装Jenkins、安装Ansible
+
+Mr.Vv
+CentOS 7安装jenkins，部署项目完整攻略 原
+要安装jenkins,需要下载jenkins的rpm包，虽然可以使用docker安装，但这里不推荐。
+
+算法之名
+实验列表
+1.Linux 基础入门 https://cloud.tencent.com/developer/labs/lab/10000
+
+蒋小爱
+linux下安装部署jenkins
+环境搭建（linuxs版本） 一、安装包下载地址 注：笔者以64位为例 1、JDK安装包： http://www.oracle.com/technetwork/...
+
+苦叶子
+windows下jenkins安装部署
+环境搭建（windows版本） 一、安装包下载地址 1、JDK安装包： 32位地址：http://download.oracle.com/otn-pub/jav...
+
+苦叶子
+第2章 Jenkins Server的安装部署方式
+本章阐述Jenkins Server的安装部署方式。基于Tomcat、CentOS、MacOS、Docker、Kubernetes、Windows部署。部署后的...
+
+DevOps云学堂
+Jenkins+Maven+Git(GitLab)持续集成Java项目
+参考：https://ken.io/note/centos7-gitlab-install-tutorial
+
+KenTalk
+教你如何用Jenkins自动化部署项目(教程，从零到搭建完成)
+版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+
+拓荒者
+玩转jenkins - 在自己的服务器上安装jenkins
+做前端也好几年了，项目的CI/CD一直用的都是公司现有的jenkins平台，再不就是基于jenkins进行了特殊定制化的平台，当然还有其他的一些CI/CD工具，...
+
+zz_jesse
+Grafana 4.x 安装部署（CentOS 7）
+KenTalk
+CentOS 7 安装 Jenkins过程详解
+使用 cat /var/lib/jenkins/secrets/initialAdminPassword 查看密码，在 Jenkins 管理页输入来解锁，之后便...
+
+砸漏
+GitLab配合Jenkins打造自动化部署
+GitLab有CI和CD功能模块，但我对Jenkins更熟悉些，所以先使用Jenkins将自动发布搭建起来，后面再继续研究GitLab的CI和CD功能。
+
+oec2003
+更多文章
+作者介绍
+KenTalk
+关注专栏
+文章
+137
+阅读量
+256K
+获赞
+382
+作者排名
+429
+精选专题
+腾讯云原生专题
+云原生技术干货，业务实践落地。
+活动推荐
+云加社区写手招募令
+最壕十一月，敢写就有奖
+立即查看
+腾讯云自媒体分享计划
+入驻云加社区，共享百万资源包。
+立即入驻
+运营活动
+活动名称广告关闭
+目录
+一、前言
+1、 Jenkins是什么？
+2、本篇环境信息
+3、准备工作
+二、Jenkins安装
+1、Yum安装
+2、开放端口
+3、配置Java可选路径
+4、启动Jenkins并设置Jenkins开机启动
+三、Nginx配置（非必要步骤）
+1、配置Nginx反向代理Jenkins
+2、配置SELinux
+四、Jenkins初始化
+1、解锁Jenkins
+2、选择插件
+3、添加管理员
+4、配置Jenkins URL
+5、开始使用Jenkins
+五、备注
+社区
+专栏文章
+阅读清单
+互动问答
+技术沙龙
+技术快讯
+团队主页
+开发者手册
+腾讯云TI平台
+活动
+原创分享计划
+自媒体分享计划
+邀请作者入驻
+自荐上首页
+在线直播
+生态合作计划
+资源
+技术周刊
+社区标签
+开发者实验室
+关于
+视频介绍
+社区规范
+免责声明
+联系我们
+友情链接
+云+社区
+
+扫码关注云+社区
+
+领取腾讯云代金券
+
+热门产品
+域名注册云服务器区块链服务消息队列网络加速云数据库域名解析云存储视频直播
+热门推荐
+人脸识别腾讯会议企业云CDN 加速视频通话图像分析MySQL 数据库SSL 证书语音识别
+更多推荐
+数据安全负载均衡短信文字识别云点播商标注册小程序开发网站监控数据迁移
+Copyright © 2013 - 2021 Tencent Cloud. All Rights Reserved. 腾讯云 版权所有 京公网安备 11010802017518 粤B2-20090059-1
+
+扫描二维码
+
+
+返回顶部

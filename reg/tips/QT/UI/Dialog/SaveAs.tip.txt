@@ -1,0 +1,16 @@
+#include <QFileDialog>
+
+
+    QString fileName = QFileDialog::getSaveFileName(this,
+                                                    tr("Open Config"),
+                                                    "",
+                                                    tr("Config Files (*.ifg)"));
+
+    if (!fileName.isNull())
+    {
+        //fileName是文件名
+    }
+    else
+    {
+        //点的是取消
+    }

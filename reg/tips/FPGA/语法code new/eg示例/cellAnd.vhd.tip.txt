@@ -1,0 +1,21 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity cellAnd is
+generic(
+    WIDTH:integer:=8
+);
+port(
+    a:in std_logic_vector(WIDTH-1 downto 0);
+    b:in std_logic_vector(WIDTH-1 downto 0);
+    c:out std_logic_vector(WIDTH-1 downto 0);
+);
+end cellAnd;
+
+architecture Behavioral of cellAnd is 
+begin
+    c<=a and b;
+end Behavioral;
+

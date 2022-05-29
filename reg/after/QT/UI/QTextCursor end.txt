@@ -1,0 +1,1 @@
+\1->moveCursor(QTextCursor::End);

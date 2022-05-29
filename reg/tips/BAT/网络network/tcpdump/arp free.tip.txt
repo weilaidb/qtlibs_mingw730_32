@@ -1,0 +1,16 @@
+   0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+0  hardware type(ethernet,1)              protocol type(ipv4,0x0800)
+1  hardware size(6) protocol size(4)      opcode(request,1)  
+2  sender mac address(
+3  4c1f-cc36-4a82)                        sender ip address(
+4  12.1.1.2)                              target mac address(
+5  0000-0000-0000)
+6  target ip address(12.1.1.2)
+
+
+
+gratuitous ARP
+同义词 免费ARP一般指gratuitous ARP
+本词条缺少概述图，补充相关内容使词条更完整，还能快速升级，赶紧来编辑吧！
+Gratuitous ARP也称为免费ARP，无故ARP。Gratuitous ARP不同于一般的ARP请求，它并非期待得到ip对应的mac地址，而是当主机启动的时候，将发送一个Gratuitous arp请求，即请求自己的ip地址的mac地址。
+中文名gratuitous ARP别    名免费ARP，无故ARP运行期系统引导期间进 行接口配置启动期主机启动的时候

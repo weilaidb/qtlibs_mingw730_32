@@ -1,0 +1,61 @@
+exuberant-ctags
+tomcat8
+
+java-1.8.0-openjdk
+java-11-openjdk
+
+flex
+bison
+
+ncurses-devel
+
+openssl-devel
+elfutils-devel
+
+lbzip2
+mysql
+docker
+qemu-kvm
+sqlite
+zeromq
+tinyxml
+p7zip
+dos2unix
+bzip2
+glib2 glib2-devel
+pixman-devel
+ninja-build
+libxml2-devel xmlsec1-devel xmlsec1-openssl-devel libtool-ltdl-devel
+
+lrzsz
+telnet
+telnet-server
+
+[setting limits for courol groups]
+libcgroup
+libcgroup-tools
+libcgroup-pam
+
+systemtap
+systemtap-runtime
+kernel-devel
+kernel-debug
+gcc
+
+yasm
+
+gdb
+
+git-daemon
+httpd gitweb
+
+curl.x86_64 libcurl.x86_64   libcurl-devel.x86_64 
+jsoncpp.x86_64 jsoncpp-devel.x86_64 
+ 
+[tdd]
+gmock
+cppunit
+
+[rar]
+epel-release
+unar

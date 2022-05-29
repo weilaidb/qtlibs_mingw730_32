@@ -1,0 +1,22 @@
+#include <stdio.h>
+const char hex_table[] = {
+'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'
+};
+
+//char转成ASCII显示
+void to_hex(char *s, int l, char *d)
+{
+    while(l--)
+    {
+        *(d+2*l+1) = hex_table[(*(s+l))&0x0f];
+        *(d+2*l) = hex_table[(*(s+l))>>4];
+    }
+}
+int main () {
+    char ucSrc[]= "bei-123";
+    char ucDst[strlen(ucSrc) * 2 + 1];
+    ucDst[strlen(ucSrc) * 2] = '\0';
+    to_hex(ucSrc,strlen(ucSrc),ucDst);
+    printf("%s",ucDst);
+    return 0;
+}

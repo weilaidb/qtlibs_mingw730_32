@@ -1,0 +1,55 @@
+3.1.3　属性系统
+1．属性定义
+Qt提供一个Q_PROPERTY()宏可以定义属性，它也是基于元对象系统实现的。Qt的属性系统与C++编译器无关，可以用任何标准的C++编译器编译定义了属性的Qt C++程序。
+在QObject的子类中，用宏Q_PROPERTY()定义属性，其使用格式如下：Q_PROPERTY(type  name
+           (READ getFunction [WRITE setFunction] |
+            MEMBER memberName [(READ getFunction | WRITE setFunction)])
+           [RESET resetFunction]
+           [NOTIFY notifySignal]
+           [REVISION int]
+           [DESIGNABLE bool]
+           [SCRIPTABLE bool]
+           [STORED bool]
+           [USER bool]
+           [CONSTANT]
+           [FINAL] )
+
+Q_PROPERTY宏定义一个返回值类型为type，名称为name的属性，用READ、WRITE关键字定义属性的读取、写入函数，还有其他的一些关键字定义属性的一些操作特性。属性的类型可以是QVariant支持的任何类型，也可以用户自定义类型。
+Q_PROPERTY宏定义属性的一些主要关键字的意义如下。
+READ指定一个读取属性值的函数，没有MEMBER关键字时必须设置READ。
+WRITE指定一个设定属性值的函数，只读属性没有WRITE设置。
+MEMBER指定一个成员变量与属性关联，成为可读可写的属性，无需再设置READ和WRITE。
+RESET是可选的，用于指定一个设置属性缺省值的函数。
+NOTIFY是可选的，用于设置一个信号，当属性值变化时发射此信号。
+DESIGNABLE表示属性是否在Qt Designer里可见，缺省为true。
+CONSTANT表示属性值是一个常数，对于一个对象实例，READ指定的函数返回值是常数，但是每个实例的返回值可以不一样。具有CONSTANT关键字的属性不能有WRITE和NOTIFY关键字。
+FINAL表示所定义的属性不能被子类重载。
+QWidget类定义属性的一些例子如下：
+
+Q_PROPERTY(bool  focus  READ  hasFocus)
+Q_PROPERTY(bool  enabled  READ  isEnabled  WRITE  setEnabled)
+Q_PROPERTY(QCursor  cursor  READ cursor WRITE setCursor RESET unsetCursor)
+
+
+
+
+4．类的附加信息
+属性系统还有一个宏Q_CLASSINFO()，可以为类的元对象定义“名称——值”信息，如：class QMyClass : public QObject
+  {
+     Q_OBJECT
+     Q_CLASSINFO("author", "Wang")
+     Q_CLASSINFO("company", "UPC")
+     Q_CLASSINFO("version ", "3.0.1")
+  public:
+     ...
+  };
+用Q_CLASSINFO()宏定义附加类信息后，可以通过元对象的一些函数获取类的附加信息，如classInfo(int )获取某个附加信息，函数原型定义如下：QMetaClassInfo QMetaObject::classInfo(int index) const
+返回值是QMetaClassInfo类型，有name()和value()两个函数，可获得类附加信息的名称和值。
+
+
+
+
+
+
+
+

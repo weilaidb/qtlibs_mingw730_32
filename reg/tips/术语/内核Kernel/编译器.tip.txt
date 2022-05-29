@@ -1,0 +1,22 @@
+ARM编译器
+
+https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
+
+#
+gcc-arm-10.3-2021.07-aarch64-aarch64-none-elf.tar.xz
+
+
+https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain
+
+http://gcc.gnu.org/
+
+https://www.linaro.org/
+
+
+
+
+3. 安装arm的交叉编译工具链
+
+想必做嵌入式开发的朋友，对交叉编译工具链不陌生。如果你订制一个交叉编译工具链，建议你使用crosstool-ng开源软件来构建。但在这里建议直接安装arm的交叉编译工具链：
+
+sudo apt-get install gcc-arm-linux-gnueabi

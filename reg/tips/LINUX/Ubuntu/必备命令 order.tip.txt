@@ -1,0 +1,14 @@
+sudo passwd root
+smbpasswd -a futuredb
+ipstables -F
+setenforce 0
+
+#查看系统
+uname -a
+uname -r
+cat /etc/lsb-release
+cat /proc/version_signature
+
+#安装systemtap
+dpkg -i linux-image-5.8.0-59-generic-dbgsym_5.8.0-59.66_armhf.ddeb
+dpkg -i linux-image-5.8.0-59-generic-lpae-dbgsym_5.8.0-59.66_armhf.ddeb

@@ -1,0 +1,54 @@
+拟机使用说明
+本虚拟机运行的Ubuntu镜像版本为:Ubuntu16.04 LTS
+已安装QEMU,模拟一个A9四核架构的ARM开发板
+可以上面跑 U-boot+Linux+NFS 嵌入式学习环境
+使用方法:
+$ 使用 ctrl+Alt+T 快捷键打开shell终端
+$ cd /home/tftpboot
+$ sudo ./boot-nfs.sh
+
+
+
+wit@pc:/home/tftpboot$ cat boot-nfs.sh 
+qemu-system-arm \
+	-M vexpress-a9 \
+	-kernel u-boot-nfs \
+	-nographic \
+	-m 512M \
+	-net nic,vlan=0 -net tap,vlan=0,ifname=tap0  \
+	-sd a9rootfs.ext3
+wit@pc:/home/tftpboot$ 
+wit@pc:/home/tftpboot$ cat boot
+boot-lcd.sh  boot-nfs.sh  boot.sh      
+wit@pc:/home/tftpboot$ cat boot-lcd.sh 
+qemu-system-arm \
+	-M vexpress-a9 \
+	-kernel u-boot-lcd \
+	-m 512M \
+	-net nic,vlan=0 -net tap,vlan=0,ifname=tap0  \
+	-sd a9rootfs.ext3
+wit@pc:/home/tftpboot$ 
+wit@pc:/home/tftpboot$ cat boot
+boot-lcd.sh  boot-nfs.sh  boot.sh      
+wit@pc:/home/tftpboot$ cat boot
+boot-lcd.sh  boot-nfs.sh  boot.sh      
+wit@pc:/home/tftpboot$ cat boot.sh 
+qemu-system-arm \
+	-M vexpress-a9 \
+	-kernel u-boot \
+	-nographic \
+	-m 512M \
+	-net nic,vlan=0 -net tap,vlan=0,ifname=tap0  \
+	-sd a9rootfs.ext3
+wit@pc:/home/tftpboot$
+
+
+
+
+
+
+##############################
+windows版本
+https://qemu.weilnetz.de/w64/2021/
+代码路径(gitlab)
+https://gitlab.com/qemu-project/qemu

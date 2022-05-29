@@ -1,0 +1,9 @@
+[root@weilaidb] ~/soft/web_notebook_online/script
+$ crontab -l
+0 */2 * * * /root/soft/web_notebook_online/script/updategit.atwork.sh ~/work/git/
+
+
+
+$ crontab -l
+0 */2 * * * sh /root/soft/web_notebook_online/script/updategit.atwork.sh ~/work/git/
+0 */2 * * * sh /root/soft/web_notebook_online/script/commitgit.atwork.sh

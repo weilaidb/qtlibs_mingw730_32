@@ -1,0 +1,51 @@
+Ubuntu 20.04 Linux更换源教程
+为了更快的下载速度，我们常常需要把Ubuntu自带的国外源换成国内源
+
+更换源步骤如下：
+  1、备份源列表
+
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+  2、命令行打开sources.list文件
+
+sudo vim /etc/apt/sources.list
+  3、修改sources.list文件
+
+sudo vim /etc/apt/sources.list
+  将源文件内容全部注释，并添加以下内容任意源
+
+阿里云源
+
+deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+清华源
+
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security universe
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security multiverse
+  4、保存：ESC+：wq！
+  5、更新源
+
+sudo apt-get update
+  6、更新软件，然后你就可以感受到更换国内源之后的飞速提升了
+
+sudo apt-get dist-upgrade
+sudo apt-get upgrade

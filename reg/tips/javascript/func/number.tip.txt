@@ -1,0 +1,16 @@
+<script>
+    var maxvalue=Number.MAX_VALUE;
+    document.writeln(maxvalue)
+    document.writeln("</br>");
+
+
+    var maxvalue=Number.MIN_VALUE;
+    document.write(maxvalue);
+    document.writeln("</br>");
+
+
+    var negative=Number.NEGATIVE_INFINITY;
+    document.write(negative);
+    document.writeln("</br>");
+    
+</script>

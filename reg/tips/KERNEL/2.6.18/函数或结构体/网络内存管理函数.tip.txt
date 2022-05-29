@@ -1,0 +1,40 @@
+2.5.2.2. 内存管理函数
+在 sk_buff{}中的 4 个指针 data、head、tail、end 初始化的时候，data、head、tail 都是指向申请到的
+数据区的头部，end 指向数据区的尾部。在以后的操作中，一般都是通过 data 和 tail 来获得在 sk_buff 中
+可用的数据区的开始和结尾。而 head 和 end 就表示 sk_buff 中存在的数据包最大可扩展的空间范围。
+表格 2-2
+alloc_skb 申请一个 sk_buff{}结构，并且其中申请了真正的数据区。
+kfree_skbmem 释放 sk_buff{}数据区，还要根据 fclone 是否清除 sk_buff{}本身
+kfree_skb 封装了 kfree_skbmem，也能释放 skb
+dev_alloc_skb 在真正要发送数据的时候，要针对底层的协议申请出一个 sk_buff{}
+空间来存放需要发送的数据包。这个函数内部调用
+alloc_skb(length+16,…)函数，在这里，除了 length 的长度空间之外，
+还要多申请 16 个字节的长度。这是为了存放以太网上硬件头而预
+留的空间。RFC 规定以太网硬件长度是 14 个字节，但为了让硬件
+头后面的 IP 头和 32 位地址对齐，就申请了 16 个字节的空间给硬
+件头使用，空出两个字节。
+skb_put 将数据添加到现有数据尾部，tail 指针往右移，len 要增加移动的数
+量
+skb_push 把 data 指针往左移，增加报文头，只是把 data 减去 sizeof(struct 报
+文头)，同时 len 加上这个值，这样，在逻辑上,skb 包含报文头了，
+通过 skb->h 或 nh 或 mac 还能找到它
+skb_headroom 得到该 sk_buff 数据区头部的空闲区间大小
+skb_tailroom 得到该 sk_buff 数据区尾部的空闲区间大小
+skb_reserve 空出一部分空间在数据区的头部
+skb_pull 把 data 指针往右移，剥掉报文头，只是把 data 加上 sizeof(struct 报
+文头)，同时 len 减去这个值，这样，在逻辑上,skb 已经不包含报文
+头了，但通过 skb->h 或 nh 或 mac 还能找到它
+skb_trim 把 tail 指针往左移，剥掉数据区的尾部数据，len 减去移动的数量
+下面介绍关于 sk_buff 链表的操作函数：
+skb_insert 在链表中插入一个 sk_buff 结构，不涉及 sk_buff_head 结构
+skb_appned 在链表中指定一个 sk_buff{}后插入一个 sk_buff，也不涉及
+sk_buff_head 结构
+skb_queue_head 在链表头增加一个 sk_buff 节点
+skb_queue_tail 在链表尾增加一个 sk_buff 节点
+skb_unlink 从链表中删除一个 sk_buff 节点
+skb_dequeue 从链表头取出一个 sk_buff 节点，并且删除掉此节点
+skb_dequeue_tail 在链表尾取出一个 sk_buff 节点，并且从链表中删除
+本书只分析一下 skb 是如何分配的。一般来讲，一个套接字缓冲区总是属于一个套接字，所以，除了调用 alloc_skb 函数创建一个套接字缓冲区，套接字本身还要对 sk_buff 进行一些操作，以及设置自身
+的一些成员值。下面我们来分析这个过程。alloc_skb 调用了__alloc_skb 函数，记住，其传入的最后一个
+参数 fclone 总是 0。不过总有例外，alloc_skb_fclone 函数传入的是 1，那么预示着内存的分配是从 clone
+区分配。

@@ -1,0 +1,1 @@
+length=${#\1}$NLecho "Length of '$\1' is $length"$NL$NLlength=`expr length "$\1"`$NLecho "Length of '$\1' is $length"$NL$NLlength=`expr "$\1" : '.*'`$NLecho "Length of '$\1' is $length"$NL$NLlength=`echo $\1 | wc -c`$NLecho "Length of '$\1' is $length"$NL$NLlength=`echo $\1 |awk '{print length}'`$NLecho "Length of '$\1' is $length"$NL

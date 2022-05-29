@@ -1,0 +1,75 @@
+struct pid *find_get_pid(pid_t nr)根据进程号pid_t nr nr得到进程描述符struct pid ，并将进程描述符中的字段count加1
+这里的进程描述符定义如下：
+struct pid
+{
+	atomic_t count;
+	unsigned int level;
+	/* lists of tasks that use this pid */
+	struct hlist_head tasks[PIDTYPE_MAX];
+	struct rcu_head rcu;
+	struct upid numbers[1];
+};
+其使用的例子如下：
+ 
+static int proc_do_cad_pid(struct ctl_table *table, int write,
+			   void __user *buffer, size_t *lenp, loff_t *ppos)
+{
+	struct pid *new_pid;
+	pid_t tmp;
+	int r;
+ 
+	tmp = pid_vnr(cad_pid);
+ 
+	r = __do_proc_dointvec(&tmp, table, write, buffer,
+			       lenp, ppos, NULL, NULL);
+	if (r || !write)
+		return r;
+ 
+	new_pid = find_get_pid(tmp);
+	if (!new_pid)
+		return -ESRCH;
+ 
+	put_pid(xchg(&cad_pid, new_pid));
+	return 0;
+}
+其源码分析如下：
+ 
+struct pid *find_get_pid(pid_t nr)
+{
+	struct pid *pid;
+ 
+	rcu_read_lock();
+	pid = get_pid(find_vpid(nr));
+	rcu_read_unlock();
+ 
+	return pid;
+}
+这里通过find_vpid(nr) 来找到进程描述符，然后通过get_pid来让count字段加1
+首先看get_pid来让count字段加1
+static inline struct pid *get_pid(struct pid *pid)
+{
+	if (pid)
+		atomic_inc(&pid->count);
+	return pid;
+}
+如果pid 不为NULL的话，就通过atomic_inc 来让count字段加1
+其次看看通过find_vpid 找到进程描述符
+struct pid *find_vpid(int nr)
+{
+//通过task_active_pid_ns 找到当前进程的namespace，这里有个小疑问，为啥nr一定会在当前的namesapce内呢?
+	return find_pid_ns(nr, task_active_pid_ns(current));
+}
+struct pid *find_pid_ns(int nr, struct pid_namespace *ns)
+{
+	struct upid *pnr;
+//kernel中所有的pid都是放在pid_hash 中的，然后根据nr和ns找到对应的pid_hash的list，
+最后遍历这个pid_hash，找到进程描述符要符合两个条件，一个是进程描述符的pid 要等于nr，另外一个是进程描述符的namaspce 要得到ns，也就是当前进程的namespace
+	hlist_for_each_entry_rcu(pnr,
+			&pid_hash[pid_hashfn(nr, ns)], pid_chain)
+		if (pnr->nr == nr && pnr->ns == ns)
+//这里根据struct pid 中成员变量level 返回struct pid的指针
+			return container_of(pnr, struct pid,
+					numbers[ns->level]);
+ 
+	return NULL;
+}

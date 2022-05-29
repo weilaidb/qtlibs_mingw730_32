@@ -1,0 +1,2 @@
+action_rename;重命名
+action_hide;显示或隐藏

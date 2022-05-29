@@ -1,0 +1,70 @@
+Definition
+Analogous to test-driven development, Acceptance Test Driven Development (ATDD) involves team members with different perspectives (customer, development, testing) collaborating to write acceptance tests in advance of implementing the corresponding functionality.  The collaborative discussions that occur to generate the acceptance test is often referred to as the three amigos, representing the three perspectives of customer (what problem are we trying to solve?), development (how might we solve this problem?), and testing (what about…).
+
+These acceptance tests represent the user’s point of view and act as a form of requirements to describe how the system will function, as well as serve as a way of verifying that the system functions as intended. In some cases the team automates the acceptance tests.
+
+
+
+
+验收测试驱动开发介绍（ATDD）
+
+鲁佳
+0.767
+2016.09.19 20:31:42
+字数 998
+阅读 6,309
+TDD（测试驱动开发）是敏捷中非常有名的一个实践了，谈这个的人很多，但真正在用的人只是凤毛麟角。TDD一般主要指的是UTDD，但除了UTDD之外还经常被提起的还有ATDD和BDD，本文希望呈现的是ATDD，即是验收测试驱动开发。本文的读者，我默认你已经了解了UTDD的概念和大致方法。
+
+什么是ATDD
+首先，ATDD不是一种测试方法论，而是一种开发方法论。
+UTDD涉及的人员仅仅是开发人员，那么ATDD仅仅涉及测试人员吗？不是，产品、开发、测试都需要参与到ATDD中来。
+在ATDD活动中团队需要就需求定义出期望的质量标准和验收细则，以明确而且达成共识的验收测试计划（包含一系列测试场景）来驱动产品的代码开发和测试脚本开发。
+ATDD一定是基于测试自动化和持续集成的。
+ATDD的基本流程
+ATDD的流程
+
+和TDD的“红-绿-重构”类似，ATDD的流程也是类似的思路（如上图）。
+讨论澄清阶段
+全组参与的针对需求和方案的讨论
+大家产出对需求和方案共同的理解
+通过明确验收测试方式澄清我们的实现方案
+验收测试方式将被自动化
+开发阶段
+用明确具体的验收测试方式来指导开发工作
+验收测试的自动化和特性的开发可以并行开展
+全组成员对验收测试的自动化负责，而不仅仅是测试人员
+最终，我们的产品实现能让所有的自动化测试通过
+交付阶段
+我们要保证之前迭代所有的自动化验收测试能在新交付上通过
+给所有利益相关者演示我们的新特性
+收集反馈，讨论改进
+ATDD的好处
+最好的验证一个研发团队是否对客户需求有统一的理解的方法就是对客户如何验收有统一的理解。
+ATDD这样的做法一下子就让我想到了“七个习惯”中的以终为始，我们先澄清细化最终客户的目标，并把自始至终都基于这个目标工作，这不就是以终为始吗？
+
+一般来说，我们认为ATDD的好处有：
+
+大家对业务需求的统一理解
+通过自然语言来描述需求
+是可以运行的需求或实例
+是活着的文档
+为了更好的把ATDD和UTDD区分开来，你可以尝试记住一句话：
+
+UTDD是为了让你Do things right，但ATDD是为了你Do right things。”
+
+一个方法：实例化需求
+Specification by Example
+一个列子：
+
+
+example of SBE
+测试就是需求说明，需求说明就是测试
+
+一个工具：Robot framework
+Robot framework是一个开源的自动化测试框架，它通过“keyword-driven” 的方式编写测试案例，是一个非常适合用来实践ATDD的工具。
+官网：Robot Framework
+
+一个补充：探索性测试
+基于抛开了软件系统复杂性的user story而写的验收用例，往往也不可避免在测试覆盖率上会遗漏一些细节上的需求，特别是非功能性的需求。没有人工参与的自动化测试，提高了效率，但也不可避免的阻碍了测试案例的改进，使得杀虫剂效应明显。
+所以在引入ATDD和CI/CD后，组织必须也要同时引入探索性测试，不断完善自动化测试的不足。
+当然探索式测试也可以是自动化的，关于探索式测试，以后再谈。

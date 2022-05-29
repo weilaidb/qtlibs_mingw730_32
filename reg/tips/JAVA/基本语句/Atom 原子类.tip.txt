@@ -1,0 +1,22 @@
+原子类
+Java 5中的java.util.concurrent包下面有一个atomic子包，其中有几个以Atomic打头的类，例如AtomicInteger和AtomicLong。它们利用了现代处理器的特性，可以用非阻塞的方式完成原子操作。 
+主要有： 
+AtomicBoolean 
+AtomicInteger 
+AtomicIntegerArray 
+AtomicIntegerFieldUpdater 
+AtomicLong 
+AtomicLongArray 
+AtomicLongFieldUpdater 
+AtomicMarkableReference 
+AtomicReference 
+AtomicReferenceArray 
+AtomicReferenceFieldUpdater 
+AtomicStampedReference 
+DoubleAccumulator 
+DoubleAdder 
+LongAccumulator 
+LongAdder
+————————————————
+版权声明：本文为CSDN博主「安然_随心」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/youyou1543724847/article/details/52735510

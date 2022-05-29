@@ -1,0 +1,3 @@
+mysql_connect() 函数来打开数据库连接，新版本建议使用 MySQLi 或 PDO 来连接。
+
+mysql_connect("localhost",$username,$password)

@@ -1,0 +1,1 @@
+<if test="\1 != null">and \1 like #{\1}</if>$NL<!--$TB[#此处从网页传递过来的名称是name]-->$NL<if test="\1 != null and \1 != '' "> and \1 like '%'|| #{name} ||'%'</if>$NL<!--$TB[#此处从网页传递过来的名称是name],加NULL为啥不行了呢 -->$NL<if test="\1 != '' "> and \1 like '%'|| #{name} ||'%'</if>
