@@ -103,7 +103,8 @@ if __name__ == '__main__':
 
     for vlanrange in vlanrangelist:
         println()
-        println(vlanrange)
+        println()
+        printlntips("===>",vlanrange)
         vansplit = splitstrbysignnoempty(vlanrange, signmao)
         if len(vansplit) < 2:
             lenlntips("vansplit size", vansplit)
@@ -114,38 +115,36 @@ if __name__ == '__main__':
         rangelist = splitstrbysignnoempty(ranges, signdot)
         lenlntips("rangelist", rangelist)
         for rangex in rangelist:
+            println()
             printlntips("rangex", rangex, False)
             
-            #根据类型查找所有相关端口
+            #判断当前类型是否在类型列表
             findtypelist = findstrinlist(rangex, typelist,True)
             lenlntips("findtypelist size", findtypelist)
-            #判断当前类型是否在已知列表中
             if(0 == len(findtypelist)):
                 print("!!!!!! invalid rangex:%s" % (rangex))
                 printlntips("support typeportinfo", findtypelist)
                 exit(0)
                 
             #根据类型查找所有相关端口
-            findportlist = findstrinlist_replace(rangex, typeportlist, r':.*', signempty,True)
-            lenlntips("findportlist size", findportlist)
-            
-            #判断当前类型是否在已知列表中
-            if(0 == len(findportlist)):
-                print("!!!!!! invalid rangex:%s for %s" % (rangex, vlan))
+            findtypeportlist = findstrinlist_replace(rangex, typeportlist, r':.*', signempty,True)
+            lenlntips("findtypeportlist size", findtypeportlist)
+            if(0 == len(findtypeportlist)):
+                print("!!!!!! invalid rangex:%s" % (rangex))
+                printlntips("support findtypeportlist", findtypeportlist)
                 exit(0)
 
-            for port in findportlist:
+            for typeport in findtypeportlist:
                 #生成最终的XML配置，根据格式
-                lastport = replacestrreg(port, r'.*:',signempty)
-                lastport = stripstr(lastport)
-                if(lastport.isdigit()) and (vlannum.isdigit()):
-                    print("-->last xml, vlan-port:%s/%s" % (vlannum, lastport))
+                portx = replacestrreg(typeport, r'.*:',signempty).strip()
+                if(portx.isdigit()) and (vlannum.isdigit()):
+                    print("-->xml, vlan-port:%s/%s" % (vlannum, portx))
                     result = concat(result, vlannum)
                     result = concat(result, signmao)
-                    result = concat(result, lastport)
+                    result = concat(result, portx)
                     result = concat(result, signenter)
                 else:
-                    print("!!!!!! invalid lastport:%s or vlannum:%s" % (lastport, vlannum))
+                    print("!!!!!! invalid portx:%s or vlannum:%s" % (portx, vlannum))
                     exit(0)
 
 
