@@ -1,6 +1,9 @@
+import sys
+sys.path.append('/usr/local/lib/python3.6/site-packages')
 
 from flask import Flask
-from vsearch import search4letters
+import vsearch
+# from vsearch import search4letters
 
 app = Flask(__name__)
 
@@ -15,4 +18,4 @@ def do_search() -> str:
     return str(search4letters('life, the universe, and everything', 'eiru,!'))
 
 
-app.run()
+app.run(host="0.0.0.0",port=8080)

@@ -35,3 +35,4 @@ robotframework
 
 [web框架]
 flask
+vsearch

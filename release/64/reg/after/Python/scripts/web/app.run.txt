@@ -1,0 +1,1 @@
+#!/usr/bin/env python3$NL# -*- coding: utf-8 -*-$NL#filename:$NL#function:$NL#$NL$NLfrom flask import Flask$NL$NLapp = Flask(__name__)$TB #注意此处是两个下划线$NL$NL@app.route('/')$NLdef hello() -> str:$NL$TBreturn 'hello world from flask'$NL$NL# app.run(host="127.0.0.0",port=8080)$NLapp.run(host="\1",port=\2)
