@@ -1,2 +1,0 @@
-std::string;std::string
-char;std::string

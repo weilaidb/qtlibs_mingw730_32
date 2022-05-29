@@ -1,1 +1,0 @@
-QMap<\1> \2;$NL...$NLQ\2<\1>::const_iterator i;$NLfor (i = \2.constBegin(); i != \2.constEnd(); ++i)$NL   qDebug() << i.key() << ':' << i.value();

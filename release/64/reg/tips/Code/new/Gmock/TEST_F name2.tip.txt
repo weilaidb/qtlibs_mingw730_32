@@ -1,4 +1,0 @@
-AnCStringPub;length
-
-AnCStringPub;replaceStringWithSome
-AnCStringPub;findposStringWithSome

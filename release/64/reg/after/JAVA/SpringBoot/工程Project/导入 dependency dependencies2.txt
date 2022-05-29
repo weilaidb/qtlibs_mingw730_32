@@ -1,1 +1,0 @@
-<dependency>$NL$TB<groupId>\1</groupId>$NL$TB<artifactId>\2</artifactId>$NL$TB<version>\3</version>$NL</dependency>$NL$NL$NL#############################

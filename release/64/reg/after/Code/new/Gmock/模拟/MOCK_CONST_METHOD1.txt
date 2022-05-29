@@ -1,1 +1,0 @@
-MOCK_CONST_METHOD1(\1, \2);

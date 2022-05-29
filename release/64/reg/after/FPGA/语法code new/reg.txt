@@ -1,1 +1,0 @@
-#替换语法，范围，变量名$NL#reg<range><variable_name>;$NLreg [\1] \2;

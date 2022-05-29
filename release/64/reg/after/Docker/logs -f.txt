@@ -1,1 +1,0 @@
-[-f: 让 docker logs 像使用 tail -f 一样来输出容器内部的标准输出。]$NLdocker logs -f \1

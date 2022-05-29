@@ -1,1 +1,0 @@
-unix {$NL#原理和win32一样$NLQT       += \1$NL}$NL

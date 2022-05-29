@@ -1,1 +1,0 @@
-=======================$NL#include <QTime>$NL$NLQString strTime;$NL$NLstrTime = QTime::currentTime().toString("\1");$NL

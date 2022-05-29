@@ -1,1 +1,0 @@
-str3="${\1}${\2}"$NLstr4="Hello user,${\1}${\2}"$NLecho $str3$NLecho $str4

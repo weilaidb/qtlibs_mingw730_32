@@ -1,1 +1,0 @@
-.\1 {$NL    height: 40px;$NL    width: 30%;$NL    align-content: center;$NL    alignment: center;$NL    align-self: center;$NL    text-align: center;$NL    font-family: "Courier New";$NL    font-size: large;$NL    background-color: honeydew;$NL}

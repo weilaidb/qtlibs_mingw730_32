@@ -1,7 +1,0 @@
-https://developer.aliyun.com/article/563442
-
-django
-
-django-admin
-django-admin startproject ali
-python manage.py startapp home

@@ -1,1 +1,0 @@
-# 等待$出现后，最多等待10秒$NLcommand_result = self.tn.read_until(b'\1',timeout=10).decode('utf-8')

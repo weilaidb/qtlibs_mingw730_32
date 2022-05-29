@@ -1,1 +1,0 @@
-if __name__ == "__main__":$NL$TBimport sys$NL$TBfrom PyQt5.QtWidgets import QApplication$NL$TBapp = QApplication(sys.argv)$NL$TB\1 = \2()$NL$TB\1.show()$NL$TBsys.exit(app.exec_())

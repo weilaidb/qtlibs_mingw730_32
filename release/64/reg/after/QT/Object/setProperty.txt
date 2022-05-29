@@ -1,1 +1,0 @@
-QPushButton *button = new QPushButton;$NLQObject *\1 = button;$NL\1->setProperty("flat", true);$NLbool  isFlat= \1->property("flat");

@@ -1,1 +1,0 @@
-/* Assign a defined variable to a specific section */$NL#if !defined(\1)$NL#define \1(__sect__) __attribute__((section(__sect__)))$NL#endif

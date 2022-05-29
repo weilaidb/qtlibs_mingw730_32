@@ -1,5 +1,0 @@
-<?php
-
-    echo PHP_EOL;    // 换行符
-
-?>

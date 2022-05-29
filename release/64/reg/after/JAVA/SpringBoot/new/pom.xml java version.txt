@@ -1,1 +1,0 @@
-<properties>$NL$TB<java.version>\1</java.version>$NL$TB<kotlin.version>\2</kotlin.version>$NL</properties>

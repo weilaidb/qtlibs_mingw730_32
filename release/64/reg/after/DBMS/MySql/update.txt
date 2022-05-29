@@ -1,1 +1,0 @@
-UPDATE product SET \2='\3' WHERE \1='12'; 

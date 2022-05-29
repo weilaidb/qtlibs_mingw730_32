@@ -1,1 +1,0 @@
-#include <sys/time.h>$NL#include <unistd.h>$NL$NL$NLvoid \1()$NL{$NL    struct timeval tv = {0};$NL    struct timezone tz = {0};$NL    $NL    gettimeofday (&tv, &tz);$NL    printf("tv_sec; %d\n", tv.tv_sec);$NL    printf("tv_usec; %d\n", tv.tv_usec);$NL    printf("tz_minuteswest; %d\n", tz.tz_minuteswest);$NL    printf("tz_dsttime, %d\n", tz.tz_dsttime);$NL}

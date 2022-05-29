@@ -1,2 +1,0 @@
-SNAT (Source Network Address Translation,源网络地址转换）
-用于对内部网络地址进行转换，将内部网络从Internet中隐藏起来，使得恶意用户对内部网络的攻击变得更加困难。

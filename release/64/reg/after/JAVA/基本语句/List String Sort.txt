@@ -1,1 +1,0 @@
-//数组默认按字符升序排序$NLArrays.sort(\1);$NL$NL//集合默认按字符升序排序$NLCollections.sort(\1);$NL$NLSystem.out.println("默认按字母升序排序：");$NLfor (String str:\1) {$NL    System.out.println(str);$NL}

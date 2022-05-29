@@ -1,1 +1,0 @@
-/* 通过一个IPv4的地址来获取主机信息，并放在hostent结构体中 */$NL$NLstruct hostent *\1;$NLstruct sockaddr_in \2;$NL$NLif((\1=gethostbyaddr((void *)&\2.sin_addr,4,AF_INET))==NULL) //把主机信息保存在hostent中$NL{$NL    printf("gethostbyaddr error for addr:%s\n",ptr);$NL    printf("h_errno %d\n",h_errno);$NL    return 1;$NL}$NL

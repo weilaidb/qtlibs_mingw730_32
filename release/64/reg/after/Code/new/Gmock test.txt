@@ -1,1 +1,0 @@
-#include "gmock/gmock.h"$NL$NLTEST(\1, \2) {$NL$NL}

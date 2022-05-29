@@ -1,1 +1,0 @@
-const char *\1;$NLunsigned int add1 = 0, add2 = 0, add3 = 0, add4 = 0;$NL$NLif (sscanf(str, "%d.%d.%d.%d", &add1, &add2, &add3, &add4) != 4)$NL    return 0;$NL

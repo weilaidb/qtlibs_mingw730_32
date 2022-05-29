@@ -1,1 +1,0 @@
-ASSERT_STREQ（"\1"，\2）;

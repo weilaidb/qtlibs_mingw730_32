@@ -1,9 +1,0 @@
-mutest_goods
-id	INTEGER PRIMARY KEY
-name	varchar(255)
-type	varchar(255)
-price	varchar(255)
-size	varchar(255)
-status	varchar(255)
-description	varchar(255) 
-mutest_goods

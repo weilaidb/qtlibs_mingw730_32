@@ -1,1 +1,0 @@
-switch(\1) {$NLcase \1:break;$NLdefault:break;}

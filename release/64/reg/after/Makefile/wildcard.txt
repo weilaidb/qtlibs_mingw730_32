@@ -1,1 +1,0 @@
-objects := $(wildcard \1)

@@ -1,1 +1,0 @@
-QFont \1 = \2->font();$NL\1.setPointSize(\3);$NL$NL\2->setFont(\1);

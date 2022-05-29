@@ -1,4 +1,0 @@
-function account(price, num) {
-    var sum = price * num;//计算金额
-    return sum;//返回计算后的金额
-}

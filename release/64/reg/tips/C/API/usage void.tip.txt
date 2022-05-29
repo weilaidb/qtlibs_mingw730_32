@@ -1,9 +1,0 @@
-static void usage(int ret)$NL{
-send message to ZMQ recipient, to use with the zmq filters
-usage: zmqsend [OPTIONS]
-
-Options:
--b ADDRESS        set bind address
--h                print this help
--i INFILE         set INFILE as input file, stdin if omitted
-}

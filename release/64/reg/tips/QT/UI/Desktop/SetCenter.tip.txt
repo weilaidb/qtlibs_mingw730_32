@@ -1,9 +1,0 @@
-#include <QDesktopWidget>
-
-void CUIPub::widgetXYsetDesktop_center(QWidget *widget, int width, int height)
-{
-    QDesktopWidget *desk=QApplication::desktop();
-    int wd=desk->width();
-    int ht=desk->height();
-    widget->move((wd - width/2)/2,(ht-height/2)/2);
-}

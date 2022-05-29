@@ -1,1 +1,0 @@
-$\1=1;$NLwhile($\1<=5)$NL{$NL    echo "The number is " . $\1 . "<br>";$NL    $\1++;$NL}$NL$NL

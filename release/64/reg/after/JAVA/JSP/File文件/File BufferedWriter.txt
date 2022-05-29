@@ -1,1 +1,0 @@
-try{$NL    FileWriter \1 = new FileWriter(\2);$NL    BufferedWriter \3 = new BufferedWriter(\1);$NL    //\3.write(str);$NL    \3.close();$NL    \1.close();$NL} catch (IOException e) {$NL    e.printStackTrace();$NL}

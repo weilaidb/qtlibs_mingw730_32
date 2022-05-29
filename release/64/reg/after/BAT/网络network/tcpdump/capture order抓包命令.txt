@@ -1,1 +1,0 @@
-[-n不解析主机和端口名，打开影响抓包性能]$NLtcpdump -i \1$NLtcpdump -n -i \1$NL$NL[指定主机\2的所有包]$NLtcpdump -ni \1 host \2$NL$NL[指定主机\2发送的数据包]$NLtcpdump -ni \1 src host \2$NL$NL[发送给\2的所有包]$NLtcpdump -ni \1 dst host \2$NL

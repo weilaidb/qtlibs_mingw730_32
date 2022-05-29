@@ -1,1 +1,0 @@
---constatnt声明\1$NLconstant <\1>:<\2>:=<\3>;--有初值\3$NL$NL

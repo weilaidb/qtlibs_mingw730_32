@@ -1,1 +1,0 @@
-<br>\1:<br>$NL<select name="\2">$NL $NL</select>

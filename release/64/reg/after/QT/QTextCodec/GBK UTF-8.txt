@@ -1,1 +1,0 @@
-================================$NL#include <QTextCodec>$NL$NL$NLQTextCodec *codec = QTextCodec::codecForName("\1");$NLQTextCodec::setCodecForLocale(codec);$NLQTextCodec::setCodecForLocale(QTextCodec::codecForLocale()); //设置\1到本地$NL$NL$NL$NL

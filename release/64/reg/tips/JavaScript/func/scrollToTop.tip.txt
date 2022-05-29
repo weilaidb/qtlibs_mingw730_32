@@ -1,5 +1,0 @@
-<script type="text/javascript">
-    function scrollToTop() {
-        scroll(0, 0);
-    }
-</script>

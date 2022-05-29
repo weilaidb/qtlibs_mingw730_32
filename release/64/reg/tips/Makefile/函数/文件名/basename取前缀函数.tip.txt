@@ -1,6 +1,0 @@
-$(basename <names...>;) 
-名称：取前缀函数——basename。 
-功能：从文件名序列<names>;中取出各个文件名的前缀部分。 
-返回：返回文件名序列<names>;的前缀序列，如果文件没有前缀，则返回空字串。 
-示例：$(basename src/foo.c src-1.0/bar.c hacks)返回值是“src/foo src- 
-1.0/bar hacks”。 

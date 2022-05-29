@@ -1,1 +1,0 @@
-ASSERT_THROW(\1, \2);

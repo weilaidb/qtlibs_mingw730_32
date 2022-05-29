@@ -1,1 +1,0 @@
-/* Give a type or object explicit minimum alignment */$NL#if !defined(\1)$NL#define \1(__align__) __attribute__((aligned(__align__)))$NL#endif

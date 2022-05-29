@@ -1,1 +1,0 @@
-ip.dst == \1$NLip.src == \1$NLip.dst == \1 || ip.src == \1$NL$NL[tcp协议]$NLtcp && ip.dst == \1$NLtcp && ip.src == \1$NLtcp && (ip.dst == \1 || ip.src == \1)$NL$NL==========================

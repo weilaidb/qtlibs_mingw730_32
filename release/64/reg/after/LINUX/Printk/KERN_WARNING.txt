@@ -1,1 +1,0 @@
-printk(KERN_WARNING "\1:%p\n", \1);

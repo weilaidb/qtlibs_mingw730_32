@@ -1,8 +1,0 @@
-void CUIPub::progressBar(QProgressBar *pProgressBar, int current, int max)
-{
-    pProgressBar->setOrientation(Qt::Horizontal);  // 水平方向
-    pProgressBar->setMinimum(0);  // 最小值
-    pProgressBar->setMaximum(100);  // 最大值
-    pProgressBar->setValue(current*100/max);  // 当前进度
-    pProgressBar->show();
-}

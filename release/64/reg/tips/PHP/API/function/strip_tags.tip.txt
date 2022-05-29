@@ -1,1 +1,0 @@
-strip_tags() 函数删除字符串中的 HTML、XML 以及 PHP 的标签

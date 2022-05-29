@@ -1,1 +1,0 @@
-void showT\1_(T_\1 *pt)$MODE_NL{$MODE_NL$TBprintf("~print T_\1 begin\n");$NL$TBprintf("pt->\2:%u\n",pt->\2);$NL$TBprintf("~end\n");$MODE_NL}

@@ -1,1 +1,0 @@
-QString \1;$NL$NLint \2 = \1.toFloat();$NL

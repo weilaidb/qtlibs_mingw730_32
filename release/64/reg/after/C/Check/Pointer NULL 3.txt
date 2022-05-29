@@ -1,1 +1,0 @@
-if((NULL == \1) || (NULL == \2)|| (NULL == \3))$NL{$NL    printf("null ponter\n");$NL    return NULL;$NL}$NL

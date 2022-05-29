@@ -1,1 +1,0 @@
-SwitchKey;KeyString1;KeyString2;KeyString2

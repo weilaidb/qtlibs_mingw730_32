@@ -1,1 +1,0 @@
-strncpy((char *)tAckName,cString.c_str(), sizeof(tAckName,cString));

@@ -1,1 +1,0 @@
-#!/bin/bash$NL#filename:$0$NL#function:xxx$NL$NL#convert dos 2 unix$NLdos2unix $0$NL$NLUsage(){$NL    echo "Usage:\1"$NL    exit 1$NL}$NL$NL$NL# 显示帮助$NL[ $# -lt 4 ] && Usage$NLecho "->start..."

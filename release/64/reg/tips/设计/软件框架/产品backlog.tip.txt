@@ -1,3 +1,0 @@
-https://www.scrumcn.com/agile/scrum-knowledge-library/%e4%bb%80%e4%b9%88%e6%98%afscrum.html
-
-在Scrum中，使用产品Backlog来管理产品的需求，产品backlog是一个按照商业价值排序的需求列表，列表条目的体现形式通常为用户故事。

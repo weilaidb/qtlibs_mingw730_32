@@ -1,2 +1,0 @@
-secret;喜欢世界杯!
-selectitem;<%=selectitem%>

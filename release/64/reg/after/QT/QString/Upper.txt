@@ -1,1 +1,0 @@
-QString \1;$NL$NL\1 = \1.toUpper();$NL

@@ -1,8 +1,0 @@
-4．QStack
-QStack<T>是提供类似于堆栈的后入先出（LIFO）操作的容器类，push()和pop()是主要的接口函数。例如：QStack<int> stack;
-stack.push(10);
-stack.push(20);
-stack.push(30);
-while (!stack.isEmpty())
-   cout << stack.pop() << endl;
-程序会依次输出30，20，10。

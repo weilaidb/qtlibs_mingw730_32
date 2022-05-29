@@ -1,6 +1,0 @@
-1.
-库D:\E\Dropbox\weidb\autoccode\alltest.db
-表aaaaaaaa写数据结果:
-java.sql.SQLException: No suitable driver found for D:\E\Dropbox\weidb\autoccode\alltest.db
-
-数据库名没有添加  jdbc:sqlite:

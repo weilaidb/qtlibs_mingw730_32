@@ -1,1 +1,0 @@
-WORD32 dwLp = 0;Count;

@@ -1,1 +1,0 @@
-#ifdef __cplusplus$NLextern "C" {$NL#endif$NL$NL\1$NL$NL#ifdef __cplusplus$NL}$NL#endif$NL$NL$NL

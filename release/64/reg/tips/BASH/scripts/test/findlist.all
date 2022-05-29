@@ -1,8 +1,0 @@
-.
-./public.sh
-./genvlanxml.sh
-./type_port.txt
-./vlan_type.txt
-./findlist.grep
-./findlist.all
-./findlist.ignore

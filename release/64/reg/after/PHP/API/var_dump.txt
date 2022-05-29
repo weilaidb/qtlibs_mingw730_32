@@ -1,1 +1,0 @@
-//var_dump() 函数返回变量的数据类型和值：$NL$\1 = 5985;$NLvar_dump($\1);$NLecho "<br>"; 

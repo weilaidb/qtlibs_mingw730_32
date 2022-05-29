@@ -1,1 +1,0 @@
-//区分大小写的常量$NLdefine("\1", "\2");$NL$NL//不区分大小写的常量$NLdefine("\1", "\2", true);$NL$NLfunction myTest() {$NL    echo \1;$NL}$NL $NLmyTest();    // 输出 "\2"

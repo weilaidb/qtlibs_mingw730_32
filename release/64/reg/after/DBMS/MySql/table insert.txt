@@ -1,1 +1,0 @@
-insert into \1 values('xx','xx','xx','xx','xx');

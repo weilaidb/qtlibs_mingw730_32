@@ -1,7 +1,0 @@
-    /* 右键菜单 */
-    QMenu *pRightMouse = new QMenu(this);
-    pMenuCustom = slot_fromfile_menu(m_FileNameMenu);
-    if(pMenuCustom)
-    {
-        pRightMouse->addMenu((pMenuCustom));
-    }

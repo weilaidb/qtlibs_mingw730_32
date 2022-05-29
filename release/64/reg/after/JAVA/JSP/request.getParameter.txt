@@ -1,1 +1,0 @@
-String \1 = request.getParameter("\2");$NLif(null == \1 ){$NL    \1 = "";$NL}$NL

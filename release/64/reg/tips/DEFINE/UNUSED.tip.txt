@@ -1,8 +1,0 @@
-#ifndef PUB_UNUSED
-#define PUB_UNUSED(object) (void) object
-#endif
-
-#ifndef UNUSED
-#define UNUSED(object) (void) object
-#endif
-

@@ -1,1 +1,0 @@
-memory_get_usage 返回分配给 PHP 的内存量。

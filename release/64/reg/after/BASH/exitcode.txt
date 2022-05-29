@@ -1,1 +1,0 @@
-echo "Failures: $\1"$NLtest $\1 = 0 # set exitcode

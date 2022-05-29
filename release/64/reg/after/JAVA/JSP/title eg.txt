@@ -1,1 +1,0 @@
-<!DOCTYPE html>$NL<html lang="en">$NL<head>$NL$TB<meta charset="UTF-8">$NL$TB<title>\1</title>$NL</head>$NL<body>$NL$NL</body>$NL</html>

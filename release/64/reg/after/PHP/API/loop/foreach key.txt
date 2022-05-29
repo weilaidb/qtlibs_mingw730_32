@@ -1,1 +1,0 @@
-$\1=array(\2);$NLforeach ($\1 as $key => $value)$NL{$NL    echo "key  为 " . $key . "，对应的 value 为 ". $value . "<br>";$NL}

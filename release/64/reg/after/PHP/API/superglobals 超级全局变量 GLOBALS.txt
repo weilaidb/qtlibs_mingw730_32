@@ -1,1 +1,0 @@
-$\1 = 75; $NL$\2 = 25;$NL $NLfunction addition() $NL{ $NL    $GLOBALS['\3'] = $GLOBALS['\1'] + $GLOBALS['\2']; $NL}$NL $NLaddition(); $NLecho $\3; 

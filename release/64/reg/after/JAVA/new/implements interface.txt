@@ -1,1 +1,0 @@
-public class\1 implements \2{$NL$TB@Override$NL$TBpublic void started(){$NL$TB$TB/do whatever you want to do$NL$TB}$NL$NL}

@@ -1,1 +1,0 @@
-case \1 in$NL$TB\2)$NL$TB$TB\3$NL$TB$TB;;$NL$TB\4)$NL$TB$TB\5$NL$TB$TB;;$NL$TB\6)$NL$TB$TB\7$NL$TB$TB;;$NL$TB$TB;;$NL$TB*)$NL$TB$TB\8$NL$TB$TB;;$NLesac
