@@ -1,5 +1,6 @@
-xk:12
-xk:2
+xk:20
+xk:21
+xk:22
 bfpga:3
 cfpga:4
 eth1:5
