@@ -104,48 +104,48 @@ if __name__ == '__main__':
     for vlanrange in vlanrangelist:
         println()
         println(vlanrange)
-        vlanitems = splitstrbysignnoempty(vlanrange, signmao)
-        if len(vlanitems) < 2:
-            lenlntips("vlanitems size", vlanitems)
-            println("vlanitems should like this, vlanx:xk,bfpga")
+        vansplit = splitstrbysignnoempty(vlanrange, signmao)
+        if len(vansplit) < 2:
+            lenlntips("vansplit size", vansplit)
+            println("vansplit should like this, vlanx:xk,bfpga")
             exit(0)
-        vlanfirst = replacestr(vlanitems[0],signvlan,signempty)
-        vlantypeportinfostr = vlanitems[1]
-        vlantypeportinfo = splitstrbysignnoempty(vlantypeportinfostr, signdot)
-        lenlntips("vlantypeportinfo size", vlantypeportinfo)
-        for vlantp in vlantypeportinfo:
-            printlntips("vlantp", vlantp, False)
+        vlannum = replacestr(vansplit[0],signvlan,signempty)
+        ranges = vansplit[1]
+        rangelist = splitstrbysignnoempty(ranges, signdot)
+        lenlntips("rangelist", rangelist)
+        for rangex in rangelist:
+            printlntips("rangex", rangex, False)
             
             #根据类型查找所有相关端口
-            findonlytypeportlist = findstrinlist(vlantp, typelist,True)
+            findonlytypeportlist = findstrinlist(rangex, typelist,True)
             lenlntips("findonlytypeportlist size", findonlytypeportlist)
             #判断当前类型是否在已知列表中
             if(0 == len(findonlytypeportlist)):
-                print("!!!!!! invalid vlantp:%s for %s" % (vlantp, vlan))
+                print("!!!!!! invalid rangex:%s for %s" % (rangex, vlan))
                 printlntips("support port typeportinfo", findonlytypeportlist)
                 exit(0)
                 
             #根据类型查找所有相关端口
-            findportlist = findstrinlist_replace(vlantp, typeportlist, r':.*', signempty,True)
+            findportlist = findstrinlist_replace(rangex, typeportlist, r':.*', signempty,True)
             lenlntips("findportlist size", findportlist)
             
             #判断当前类型是否在已知列表中
             if(0 == len(findportlist)):
-                print("!!!!!! invalid vlantp:%s for %s" % (vlantp, vlan))
+                print("!!!!!! invalid rangex:%s for %s" % (rangex, vlan))
                 exit(0)
 
             for port in findportlist:
                 #生成最终的XML配置，根据格式
                 lastport = replacestrreg(port, r'.*:',signempty)
                 lastport = stripstr(lastport)
-                if(lastport.isdigit()) and (vlanfirst.isdigit()):
-                    print("-->last xml, vlan-port:%s/%s" % (vlanfirst, lastport))
-                    result = concat(result, vlanfirst)
+                if(lastport.isdigit()) and (vlannum.isdigit()):
+                    print("-->last xml, vlan-port:%s/%s" % (vlannum, lastport))
+                    result = concat(result, vlannum)
                     result = concat(result, signmao)
                     result = concat(result, lastport)
                     result = concat(result, signenter)
                 else:
-                    print("!!!!!! invalid lastport:%s or vlanfirst:%s" % (lastport, vlanfirst))
+                    print("!!!!!! invalid lastport:%s or vlannum:%s" % (lastport, vlannum))
                     exit(0)
 
 
