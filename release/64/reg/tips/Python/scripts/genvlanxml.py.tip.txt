@@ -12,8 +12,8 @@
 #xk:线卡
 #bfpga:大逻辑
 #cfpga:控制逻辑
-#osc:光监控商品
-#shell:子架级联商品
+#osc:光监控端口
+#shell:子架级联端口
 #ms:主备端口
 #eth1:连接CPU的GE?
 #eth2:连接CPU的10GE?
