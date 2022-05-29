@@ -1807,6 +1807,7 @@ Tools/git/order
 Tools/git/problems/git dangling commit
 Tools/git/tig blame filename
 Tools/git/tig help
+Tools/git/删除文件不删除本地 delete
 Tools/git/常用git库 git address
 Tools/hex to dec 十六进制转十进制
 Tools/ico生成在线工具
