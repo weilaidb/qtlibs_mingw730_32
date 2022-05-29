@@ -16,11 +16,13 @@ def search4() -> 'html':
     """Returns the results of a call to 'search4letters' to the browser."""
     phrase = request.form['phrase']
     letters = request.form['letters']
+    sex = request.form['sex']
     results = str(search4letters(phrase, letters))
     return render_template('results.html',
                            the_title='Here are your results!',
                            the_phrase=phrase,
                            the_letters=letters,
+                           the_sex=sex,
                            the_results=results)
 
 @app.route('/search4json', methods=['POST'])
@@ -28,10 +30,13 @@ def search4json() -> 'json':
     """Returns the results of a call to 'search4letters' as json."""
     phrase = request.form['phrase']
     letters = request.form['letters']
+    sex = request.form['sex']
     results = str(search4letters(phrase, letters))
     return jsonify(the_phrase=phrase,
                    the_letters=letters,
+                   the_sex=sex,
                    the_result=results)
 
-app.run(debug=True)
+app.run(debug=True,host="0.0.0.0",port=8080)
+
 

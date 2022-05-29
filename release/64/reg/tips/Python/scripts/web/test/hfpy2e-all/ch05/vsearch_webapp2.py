@@ -13,7 +13,8 @@ def search4() -> str:
 def entry_page() -> 'html':
     """Returns the entry page to browser."""
     return render_template('entry.html',
-                           the_title='Welcome to search4letters on the web!')
+                           the_title='Welcome nice web!')
 
-app.run(debug=True)
+app.run(debug=True,host="0.0.0.0",port=8080)
+
 
