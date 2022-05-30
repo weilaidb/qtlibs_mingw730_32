@@ -902,6 +902,7 @@ JAVA/基本语句/反射
 JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
 JavaScript/JQuery/code/button
+JavaScript/JQuery/code/button 打开新界面
 JavaScript/JQuery/code/css() 方法
 JavaScript/JQuery/code/css() 方法2
 JavaScript/JQuery/code/css() 方法3
@@ -1808,6 +1809,7 @@ Tools/git/problems/git dangling commit
 Tools/git/tig blame filename
 Tools/git/tig help
 Tools/git/删除文件不删除本地 delete
+Tools/git/删除文件不删除本地 delete2
 Tools/git/常用git库 git address
 Tools/hex to dec 十六进制转十进制
 Tools/ico生成在线工具
