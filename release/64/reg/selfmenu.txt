@@ -620,6 +620,7 @@ FPGA/介绍
 FPGA/介绍 理论
 FPGA/开发板/ALINX/AX7020
 FPGA/开发板/Qemu/使用Qemu模拟vexpress-a9搭建模拟开发板
+FPGA/开发板/开发板购买
 FPGA/术语 shuyu
 FPGA/示例/Led
 FPGA/视频及资料网址
@@ -1001,6 +1002,7 @@ JavaScript/JQuery/标签引用 替代方案2
 JavaScript/JQuery/语法/事件
 JavaScript/JQuery/语法/用法
 JavaScript/JQuery/选择器
+JavaScript/JavaScript参考手册
 JavaScript/func/Date
 JavaScript/func/Date对象的方法
 JavaScript/func/PyScript/eg
