@@ -1,0 +1,11 @@
+<script language="javascript">
+try{
+
+somestatements;
+}
+catch(exception e){
+somestatements;
+}finally{
+somestatements;
+}
+</script>

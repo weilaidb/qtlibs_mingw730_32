@@ -1003,8 +1003,12 @@ JavaScript/JQuery/语法/事件
 JavaScript/JQuery/语法/用法
 JavaScript/JQuery/选择器
 JavaScript/JavaScript参考手册
+JavaScript/JavaScript语言调试技巧
 JavaScript/func/Date
 JavaScript/func/Date对象的方法
+JavaScript/func/Document对象的常用事件
+JavaScript/func/Document对象的常用属性
+JavaScript/func/JavaScript 定时器
 JavaScript/func/PyScript/eg
 JavaScript/func/RegExp 正则表达式的语法
 JavaScript/func/array/Array对象的常用方法
@@ -1028,7 +1032,9 @@ JavaScript/func/string/String.prototype.print
 JavaScript/func/string/说明
 JavaScript/func/textarea
 JavaScript/func/throw
+JavaScript/func/throw2
 JavaScript/func/toString
+JavaScript/func/try...catch...finally
 JavaScript/func/格式化format
 JavaScript/include引用
 JavaScript/proc/replace h3 京东读书代码
