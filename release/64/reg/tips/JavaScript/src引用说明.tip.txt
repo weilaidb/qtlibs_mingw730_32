@@ -1,0 +1,33 @@
+1.引用src后，标签内的程序不再生效
+2.script 必须成对，否则存在问题，即<script ...></script>
+
+
+关于js文件引用后不生效的原因发现
+
+Jess_eagle
+
+于 2018-04-30 20:15:43 发布
+
+22106
+ 收藏 2
+分类专栏： JavaScript 文章标签： js
+版权
+
+JavaScript
+专栏收录该内容
+5 篇文章0 订阅
+订阅专栏
+
+ 今天在编写gojs的demo时遇到一个奇葩问题，在jsp页面底部引用js文件时不生效，在引用的js中使用console.log(111)验证，始终没有打印，直接将js代码写在jsp中反而生效，网上查看了许多办法：
+
+ 将js放在body标签内引用，不生效！
+
+ 将jQuery引用删去，不生效！
+
+ 修改<!DOCTYPE html>标签，也不生效！
+
+ 最后在chrome的开发工具Network选项中加载demo.jsp时发现js文件加载完后面的body标签html标签全都是黑色，不是前面的蓝色，于是我就猜想是在script标签这出现了问题，将<script type="text/javascript" src="demo.js"/> 改为<script type="text/javascript" src="demo.js"></script>后js文件生效了！！
+究竟为什么，我也不清楚，以解决问题为导向，本文就写到这，有关原因有时间再去探讨吧。
+————————————————
+版权声明：本文为CSDN博主「Jess_eagle」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/u011099093/article/details/80151618

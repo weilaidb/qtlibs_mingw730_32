@@ -1039,6 +1039,7 @@ JavaScript/func/格式化format
 JavaScript/include引用
 JavaScript/proc/replace h3 京东读书代码
 JavaScript/src引用
+JavaScript/src引用说明
 JavaScript/timeout返回原页面
 JavaScript/示例/account
 JavaScript/示例/alert
