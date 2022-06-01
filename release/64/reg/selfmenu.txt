@@ -1037,6 +1037,7 @@ JavaScript/func/toString
 JavaScript/func/try...catch...finally
 JavaScript/func/格式化format
 JavaScript/include引用
+JavaScript/layui/layui.table
 JavaScript/proc/replace h3 京东读书代码
 JavaScript/src引用
 JavaScript/src引用说明
