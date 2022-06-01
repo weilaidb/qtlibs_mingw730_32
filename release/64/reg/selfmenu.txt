@@ -1005,6 +1005,9 @@ JavaScript/JQuery/选择器
 JavaScript/JavaScript参考手册
 JavaScript/JavaScript语言调试技巧
 JavaScript/func/Date
+JavaScript/func/Date 日期获取方法
+JavaScript/func/Date 耗时
+JavaScript/func/DateTime js
 JavaScript/func/Date对象的方法
 JavaScript/func/Document对象的常用事件
 JavaScript/func/Document对象的常用属性
@@ -1023,6 +1026,7 @@ JavaScript/func/form
 JavaScript/func/getElementById
 JavaScript/func/include 引用 src
 JavaScript/func/input text
+JavaScript/func/js new Date() 获取时间
 JavaScript/func/number
 JavaScript/func/script
 JavaScript/func/script2
@@ -1037,7 +1041,11 @@ JavaScript/func/toString
 JavaScript/func/try...catch...finally
 JavaScript/func/格式化format
 JavaScript/include引用
-JavaScript/layui/layui.table
+JavaScript/layui/layui.table 2
+JavaScript/layui/layui.table 导出excel
+JavaScript/layui/table
+JavaScript/layui/table 数据表格文档 - layui.table
+JavaScript/log/console
 JavaScript/proc/replace h3 京东读书代码
 JavaScript/src引用
 JavaScript/src引用说明
