@@ -176,9 +176,16 @@ def csvshowfile(filename):
 
 
 def csvread(filename):
+    lists = []
+    rows = 0
     with open(filename, encoding='utf-8')as f:
-        lists = csv.reader(f)
-        return lists
+        reader  = csv.reader(f)
+        for row in reader:
+            # print(row)
+            lists.append(row)
+            rows += 1
+            
+    return lists,rows
 
 
 

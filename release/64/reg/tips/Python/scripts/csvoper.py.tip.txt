@@ -44,8 +44,9 @@ if __name__ == '__main__':
     print(sys.argv)
     csvfile = "abc.csv"
     # csvshowfile(csvfile)
-    lists = csvread(csvfile)
-    # printlntips("csv read info", lists)
+    lists,rows = csvread(csvfile)
+    printlntips("csv read info", lists,False)
+    printlntips("rows", rows,False)
     for row in lists:
         print(row)
     
