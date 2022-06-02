@@ -1591,10 +1591,12 @@ Python/qt/pyQt5 main2
 Python/qt/pyQt5 signal slot
 Python/qt/pyQt5 signal slot custom自定义信号
 Python/qt/pyQt5 textedit
+Python/scripts/csvoper.py
 Python/scripts/genvlanxml.py
 Python/scripts/help.py
 Python/scripts/import
 Python/scripts/public.py
+Python/scripts/python对csv文件的读写
 Python/scripts/web/app.run
 Python/scripts/web/eg.py
 Python/scripts/web/hello.py

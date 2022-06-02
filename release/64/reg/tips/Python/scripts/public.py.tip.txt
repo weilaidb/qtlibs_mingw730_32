@@ -8,6 +8,7 @@ import os
 import sys
 import re
 import atexit
+import csv
 
 ###################退出操作，结合atexit.register()使用
 def end(flag):
@@ -159,3 +160,40 @@ def stripstr(str):
 #判断是否为数字
 def isdigtal(str):
     return str.isdigit()
+
+
+
+###################CSV读写
+###################CSV读写
+###################CSV读写
+def csvshowfile(filename):
+    with open(filename, encoding='utf-8')as f:
+        reader = csv.reader(f)
+        headers = next(reader)
+        print(headers)
+        for row in reader:
+            print(row)
+
+
+def csvread(filename):
+    with open(filename, encoding='utf-8')as f:
+        lists = csv.reader(f)
+        return lists
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
