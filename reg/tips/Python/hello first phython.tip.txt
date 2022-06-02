@@ -1,0 +1,34 @@
+https://python.itcarlow.ie/ed2/
+https://python.itcarlow.ie/
+
+
+Head First Python - Support Site
+The (currently under development) Third Edition's download material is available here
+
+The Second Edition's download material is available here (2016)
+
+The Second Edition's Errata page is here
+
+For support, send an email to Paul using: paul DOT barry AT itcarlow DOT ie - thanks!
+
+The First Edition's Errata page is here
+
+The material below relates to the First Edition (2010)
+
+Home Resources Links
+
+A Python book that makes you laugh out loud?
+It's probably just a fantasy...
+
+Welcome to the support site for Head First Python.
+
+This is the support site for the FIRST EDITION (November 2010). Please use the link at the top if this page to access the code from the SECOND EDITION (November 2016).
+
+Breaking News: App Engine Code Update: As of January 1, 2014, Google App Engine no longer supports webapps based on release 2.5 of Python. This breaks the code in the book. Here's updated code for the webapp in Chapter 10 which is compatible with release 2.7 of Python, which is now GAE's standard. Note: in addition to dropping support for 2.5, Google also dropped support for the Django forms technology described in the book. The code in the ZIP archive has been adjusted to "hard-code" the form, as opposed to dynamically generate it with help from Django.
+
+Important PyPI Information: The good folk over at PyPI have created a new "testing site" for Python modules. This is the site you should use to practice uploading as per Chapter 2 of the book. There's a tonne of nester modules on the real, live PyPI site that really shouldn't be there (as the world only needs *one* nester module). If you use the testing site when doing the exercises in Chapter 2, we can all keep the main site free from unnecessary copies of the nester module. Thanks for your cooperation with this.
+
+This site provides the extra bits'n'pieces promised in the book. The Resources tab contains links to download the sample files, while the Links tab provides a set of weblinks to additional information. If you think you've spotted an error/typo, check the book's errata page to see if it's already been reported. If you have a question, ask it at the book's official support forum.
+
+Copyright © 2010-2021 Head First Python | Last update: Feb 21, 2021
+Template design based one from Andreas Viklund | Site hosted by The Institute of Technology, Carlow in Ireland

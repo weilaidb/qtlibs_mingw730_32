@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#filename:csvoper.py
+#function:CSV操作
+
+##########
+#1.读取
+#2.写入
+
+
+import sys
+sys.path.append('.')
+#自定义公共函数
+from public import *
+
+
+
+
+#####定义结束标志，标志未修改时为正常退出，默认为异常值，正常值为0
+quitflag=1
+
+def setquitflag(flag):
+    global quitflag
+    quitflag = flag
+
+def over():
+    global add
+    printlntips("quitflag",quitflag, False)
+    if 0 != quitflag:
+        print('异常退出，！！！！！！！！')
+    else:
+        print('正常结束，★★★★★★★★★★★★★★★★')
+
+
+atexit.register(over)
+
+########main proc
+if __name__ == '__main__':
+    print("===========main proc===========\n" * 3)
+    # if len(sys.argv) < 2:
+        # print("usage: ./eg.sh RootPath\n")
+        # exit(0)
+
+    print(sys.argv)
+    csvfile = "abc.csv"
+    # csvshowfile(csvfile)
+    lists,rows = csvread(csvfile)
+    printlntips("csv read info", lists,False)
+    printlntips("rows", rows,False)
+    for row in lists:
+        print(row)
+    
+
+    #设置成功标志
+    setquitflag(0)

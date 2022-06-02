@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#filename:
+#function:
+#
+
+from flask import Flask
+
+app = Flask(__name__)     #注意此处是两个下划线
+
+@app.route('/')
+def hello() -> str:
+    return 'hello world from flask'
+
+# app.run(host="127.0.0.0",port=8080)
+app.run(host="0.0.0.0",port=8080)

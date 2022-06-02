@@ -1,0 +1,46 @@
+8.3　JavaScript语言调试技巧
+异常是每个程序员在开发过程中无法避免的。调试对任何程序设计者来说，都是一个关键性技能。本节将介绍如何解析和跟踪JavaScript程序中的异常。
+8.3.1　使用alert语句进行调试
+当程序开发者不能定位程序发生错误引发的异常时，可以采用代码跟踪方式查找错误。这时可以将alert语句放在程序的不同位置，用它来显示程序中的变量、函数返回值等。
+语法格式如下：
+<script language="javascript">
+alert();
+</script>
+例如
+<script language="javascript">
+function alertTest(){
+alert("开始");
+var a=1;
+var b=2;
+alert("执行");
+alert(a+b);
+alert("结束");
+}
+</script>
+这种方式的缺点在于在代码中嵌入太多alert语句，当调试结束时，删除这些alert语句将是一项庞大的工程。
+8.3.2　使用write语句进行调试
+有时程序员希望将所有的调试信息以列表的方式放置在页面中，这时可以使用write语句进行调试。
+语法格式如下：
+<script language="javascript">
+document.write();
+</script>
+例如
+<script language="javascript">
+function alertTest(){
+document.write("开始");
+var a=1;
+var b=2;
+document.write("执行");
+document.write(a+b);
+document.write("结束");
+}
+</script>
+8.3.3　使用抛出自定义异常消息进行调试
+抛出自定义异常消息是调试JavaScript代码的最佳途径。其使用了try...catch...finally语句及throw机制。
+语法格式如下：
+<script language="javascript">
+try{
+throw(somestatements);
+}catch(exception){
+alert(exception.message);}
+</script>

@@ -620,6 +620,7 @@ FPGA/介绍
 FPGA/介绍 理论
 FPGA/开发板/ALINX/AX7020
 FPGA/开发板/Qemu/使用Qemu模拟vexpress-a9搭建模拟开发板
+FPGA/开发板/开发板购买
 FPGA/术语 shuyu
 FPGA/示例/Led
 FPGA/视频及资料网址
@@ -902,6 +903,7 @@ JAVA/基本语句/反射
 JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
 JavaScript/JQuery/code/button
+JavaScript/JQuery/code/button 打开新界面
 JavaScript/JQuery/code/css() 方法
 JavaScript/JQuery/code/css() 方法2
 JavaScript/JQuery/code/css() 方法3
@@ -1000,8 +1002,16 @@ JavaScript/JQuery/标签引用 替代方案2
 JavaScript/JQuery/语法/事件
 JavaScript/JQuery/语法/用法
 JavaScript/JQuery/选择器
+JavaScript/JavaScript参考手册
+JavaScript/JavaScript语言调试技巧
 JavaScript/func/Date
+JavaScript/func/Date 日期获取方法
+JavaScript/func/Date 耗时
+JavaScript/func/DateTime js
 JavaScript/func/Date对象的方法
+JavaScript/func/Document对象的常用事件
+JavaScript/func/Document对象的常用属性
+JavaScript/func/JavaScript 定时器
 JavaScript/func/PyScript/eg
 JavaScript/func/RegExp 正则表达式的语法
 JavaScript/func/array/Array对象的常用方法
@@ -1016,6 +1026,7 @@ JavaScript/func/form
 JavaScript/func/getElementById
 JavaScript/func/include 引用 src
 JavaScript/func/input text
+JavaScript/func/js new Date() 获取时间
 JavaScript/func/number
 JavaScript/func/script
 JavaScript/func/script2
@@ -1025,11 +1036,19 @@ JavaScript/func/string/String.prototype.print
 JavaScript/func/string/说明
 JavaScript/func/textarea
 JavaScript/func/throw
+JavaScript/func/throw2
 JavaScript/func/toString
+JavaScript/func/try...catch...finally
 JavaScript/func/格式化format
 JavaScript/include引用
+JavaScript/layui/layui.table 2
+JavaScript/layui/layui.table 导出excel
+JavaScript/layui/table
+JavaScript/layui/table 数据表格文档 - layui.table
+JavaScript/log/console
 JavaScript/proc/replace h3 京东读书代码
 JavaScript/src引用
+JavaScript/src引用说明
 JavaScript/timeout返回原页面
 JavaScript/示例/account
 JavaScript/示例/alert
@@ -1554,6 +1573,7 @@ Python/gc
 Python/header
 Python/header import
 Python/header import as
+Python/hello first phython
 Python/idea快捷键
 Python/idea插件
 Python/idea配置说明
@@ -1571,9 +1591,16 @@ Python/qt/pyQt5 main2
 Python/qt/pyQt5 signal slot
 Python/qt/pyQt5 signal slot custom自定义信号
 Python/qt/pyQt5 textedit
+Python/scripts/csvoper.py
 Python/scripts/genvlanxml.py
 Python/scripts/help.py
+Python/scripts/import
 Python/scripts/public.py
+Python/scripts/python对csv文件的读写
+Python/scripts/web/app.run
+Python/scripts/web/eg.py
+Python/scripts/web/hello.py
+Python/scripts/web/下载包 install
 Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
 Python/soft/pip install 安装 with http
@@ -1801,6 +1828,8 @@ Tools/git/order
 Tools/git/problems/git dangling commit
 Tools/git/tig blame filename
 Tools/git/tig help
+Tools/git/删除文件不删除本地 delete
+Tools/git/删除文件不删除本地 delete2
 Tools/git/常用git库 git address
 Tools/hex to dec 十六进制转十进制
 Tools/ico生成在线工具

@@ -31,3 +31,8 @@ matplotlib
 #
 [测试框架]
 robotframework
+
+
+[web框架]
+flask
+vsearch

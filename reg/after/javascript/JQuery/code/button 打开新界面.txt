@@ -1,0 +1,1 @@
+$("#\1").click(function() {$NL$TBwindow.open("\1");$NL});
