@@ -1,7 +1,3 @@
-JavaScript/proc/replace h3 京东读书代码
-PACKET Parse/报文处理成一行规则
-JavaScript/func/eg
-DEFINE/FILTER
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -28,3 +24,22 @@ BASH/cdpath
 BASH/chmod
 BASH/dev null(no output 2 1 )
 BASH/echo
+BASH/echo para1
+BASH/exec
+BASH/exitcode
+BASH/gitinfo
+BASH/hello
+BASH/printf string 1
+BASH/printf说明
+BASH/replace nums in file or 提取数字自增1
+BASH/scripts/commitgit.atwork.sh
+BASH/scripts/gen.vlan.xml.sh
+BASH/scripts/getnumsinfile.sh
+BASH/trap exit
+BASH/usage
+BASH/usage para1
+DEFINE/FILTER
+JAVA/SpringBoot/Thymealeaf/help/favicon.ico error解决
+JAVA/SpringBoot/new/Controller/EC2
+JAVA/SpringBoot/new/Controller/EC3
+JAVA/SpringBoot/new/Controller/EC4
