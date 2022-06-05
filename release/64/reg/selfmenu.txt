@@ -1039,6 +1039,8 @@ JavaScript/func/string 转 int
 JavaScript/func/string/String.prototype.print
 JavaScript/func/string/说明
 JavaScript/func/textarea
+JavaScript/func/textarea 显示html元素
+JavaScript/func/textarea标签实现html转义textarea标签显示html代码
 JavaScript/func/throw
 JavaScript/func/throw2
 JavaScript/func/toString
