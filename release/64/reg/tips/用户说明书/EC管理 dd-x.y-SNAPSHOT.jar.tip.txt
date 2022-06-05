@@ -29,6 +29,35 @@ CREATE TABLE ec(
 [REVINT4]  integer DEFAULT 0
 );
 
+
+
+2.1 手动创建测试用例数据库 ec.db
+CREATE TABLE testcase(
+[ID] 	INTEGER PRIMARY KEY,
+[TITLE] 	varchar(255) NOT NULL,
+[CASEDETAIL] 	varchar(500) NOT NULL,
+[AUTHOR] 	varchar(40) NOT NULL,
+[OPERRESULT] 	varchar(40) NOT NULL,
+[STATUS] 	varchar(40) NOT NULL,
+[CREATEDTIME] 	TimeStamp NOT NULL DEFAULT (datetime('now','localtime')) ,
+[UPDATETIME] 	TimeStamp NOT NULL DEFAULT (datetime('now','localtime')) ,
+[UPDATECNT] 	integer DEFAULT 0,
+[DELFLAG] 	integer DEFAULT 0,
+[QUERYCNT] 	integer DEFAULT 0,
+[STEP] 	varchar(500) ,
+[REMARK1] 	varchar(100) ,
+[REMARK2] 	varchar(100) ,
+[REMARK3] 	varchar(100) ,
+[REMARK4] 	varchar(100) ,
+[REVINT1] 	integer DEFAULT 0,
+[REVINT2] 	integer DEFAULT 0,
+[REVINT3] 	integer DEFAULT 0,
+[REVINT4] 	integer DEFAULT 0
+);
+
+
+
+
 3.查询接口
 SELECT
 id,
