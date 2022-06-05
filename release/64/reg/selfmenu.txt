@@ -857,6 +857,7 @@ JAVA/SpringBoot/new/pom.xml dependencies
 JAVA/SpringBoot/new/pom.xml dependencies 下载网址
 JAVA/SpringBoot/new/pom.xml java version
 JAVA/SpringBoot/new/pom.xml parent
+JAVA/SpringBoot/new/pom.xml/bakcup/1
 JAVA/SpringBoot/new/pom.xml/spring-boot-starter-parent
 JAVA/SpringBoot/new/pom.xml/spring-boot-starter-parent2
 JAVA/SpringBoot/new/spring-mvc.xml
@@ -1039,6 +1040,7 @@ JavaScript/func/string 转 int
 JavaScript/func/string/String.prototype.print
 JavaScript/func/string/说明
 JavaScript/func/textarea
+JavaScript/func/textarea support html
 JavaScript/func/textarea 显示html元素
 JavaScript/func/textarea标签实现html转义textarea标签显示html代码
 JavaScript/func/throw
