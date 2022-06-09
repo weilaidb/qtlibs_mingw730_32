@@ -1,0 +1,225 @@
+layui table数据表格的使用（一）
+
+mor31
+
+于 2020-06-05 10:43:11 发布
+
+1546
+ 收藏 3
+分类专栏： layui 文章标签： html 前端
+版权
+
+layui
+专栏收录该内容
+2 篇文章0 订阅
+订阅专栏
+layui的table模块用于对表格进行一些列功能和动态化数据操作，易上手操作，本篇介绍table常用的方法，更多的细节可参考官方文档：layui数据表格文档
+
+一、引入layui文件
+<link rel="stylesheet" href="/layui/css/layui.css" media="all">
+1
+<script src="/layui/layui.js"></script>
+1
+二、快速使用
+创建一个table实例最简单的方式是，在页面放置一个元素
+
+<table id="demo"></table>
+1
+然后通过 table.render() 方法指定该容器
+
+layui.use('table', function(){
+  var table = layui.table;
+  
+  //执行渲染
+  table.render({
+    elem: '#demo' //指定原始表格元素选择器（推荐id选择器）
+    ,url: '/demo/table/user/' //数据接口
+    ,page: true //开启分页
+    ,cols: [[ //表头
+      {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+      ,{field: 'username', title: '用户名', width:80}
+      ,{field: 'sex', title: '性别', width:80, sort: true}
+      ,{field: 'city', title: '城市', width:80} 
+      ,{field: 'sign', title: '签名', width: 177}
+      ,{field: 'experience', title: '积分', width: 80, sort: true}
+      ,{field: 'score', title: '评分', width: 80, sort: true}
+      ,{field: 'classify', title: '职业', width: 80}
+      ,{field: 'wealth', title: '财富', width: 135, sort: true}
+    ]]
+  });
+  
+});
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+数据接口返回的数据格式为
+
+{
+  "code": 0,
+  "msg": "",
+  "count": 1000,
+  "data": [{"id":10000,"username":"user-0","sex":"女","city":"城市-0","sign":"签名-0","experience":255,"logins":24,"wealth":82830700,"classify":"作家","score":57}, {}]
+} 
+1
+2
+3
+4
+5
+6
+效果如图所示
+
+
+三、扩展使用
+开启表格头部工具栏区域：toolbar
+若需要“列显示隐藏”、“导出”、“打印”等功能，则必须开启该参数
+
+toolbar: true //仅开启工具栏，不显示左侧模板
+1
+toolbar: '#toolbarDemo' //指向自定义工具栏模板选择器
+1
+
+若要对表格进行重载，比如数据搜索，则使用 table.reload() 方法
+
+table.reload('idTest', {
+  where: { //设定异步数据接口的额外参数，任意设
+    aaaaaa: 'xxx'
+    ,bbb: 'yyy'
+    //…
+  }
+  ,page: {
+    curr: 1 //重新从第 1 页开始
+  }
+}); 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+四、示例
+下面通过具体的例子来对table的用法加深了解，此例效果图如下
+
+具体代码如下
+
+<table id="test" lay-filter="test"></table>
+ //头工具栏
+<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+  </div>
+</script>
+ //行工具栏
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+layui.use('table', function(){
+  var table = layui.table;
+  
+  table.render({
+    elem: '#test'
+    ,url:'/test/table/demo1.json'
+    ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+    ,title: '用户数据表'
+    ,cols: [[
+      {type: 'checkbox', fixed: 'left'}
+      ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
+      ,{field:'username', title:'用户名', width:120, edit: 'text'}
+      ,{field:'email', title:'邮箱', width:150, edit: 'text', templet: function(res){
+        return '<em>'+ res.email +'</em>'
+      }}
+      ,{field:'sex', title:'性别', width:80, edit: 'text', sort: true}
+      ,{field:'city', title:'城市', width:100}
+      ,{field:'sign', title:'签名'}
+      ,{field:'experience', title:'积分', width:80, sort: true}
+      ,{field:'ip', title:'IP', width:120}
+      ,{field:'logins', title:'登入次数', width:100, sort: true}
+      ,{field:'joinTime', title:'加入时间', width:120}
+      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+    ]]
+    ,page: true //开启分页
+  });
+  
+  //头工具栏事件
+  table.on('toolbar(test)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id);
+    switch(obj.event){
+      case 'getCheckData':
+        var data = checkStatus.data;
+        layer.alert(JSON.stringify(data));
+      break;
+      case 'getCheckLength':
+        var data = checkStatus.data;
+        layer.msg('选中了：'+ data.length + ' 个');
+      break;
+      case 'isAll':
+        layer.msg(checkStatus.isAll ? '全选': '未全选');
+      break;
+      
+    };
+  });
+  
+  //监听行工具事件
+  table.on('tool(test)', function(obj){
+    var data = obj.data;
+    //console.log(obj)
+    if(obj.event === 'del'){
+      layer.confirm('真的删除行么', function(index){
+        obj.del();
+        layer.close(index);
+      });
+    } else if(obj.event === 'edit'){
+      layer.prompt({
+        formType: 2
+        ,value: data.email
+      }, function(value, index){
+        obj.update({
+          email: value
+        });
+        layer.close(index);
+      });
+    }
+  });
+});
+————————————————
+版权声明：本文为CSDN博主「mor31」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/mor31/article/details/106539659

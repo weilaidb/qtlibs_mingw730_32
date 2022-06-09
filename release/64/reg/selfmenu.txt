@@ -1052,6 +1052,7 @@ JavaScript/func/格式化format
 JavaScript/include引用
 JavaScript/layui/layui.table 2
 JavaScript/layui/layui.table 导出excel
+JavaScript/layui/option 下拉菜单 下拉框
 JavaScript/layui/table
 JavaScript/layui/table 数据表格文档 - layui.table
 JavaScript/log/console
