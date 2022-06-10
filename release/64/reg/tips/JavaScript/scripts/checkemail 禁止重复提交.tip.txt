@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Email</title>
+    <script language="javascript">
+        function checkemail(email) {
+            var str = email;
+            console.log("str:" + str);
+//在JavaScript中，正则表达式只能使用"/"开头和结束，不能使用双引号
+            var Expression = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+            var objExp = new RegExp(Expression);
+            if (objExp.test(str) == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+
+
+</head>
+<body>
+<script language="javascript">
+    function check(form1) {
+        if (form1.email.value == "") {
+            alert("请输入Email地址!");
+            form1.email.focus();
+            return;
+        }
+
+        if (!checkemail(form1.email.value)) {
+            alert("您输入的Email地址不正确!");
+            form1.email.focus();
+            return;
+        }
+        form1.submit();
+    }
+</script>
+
+<form action="" method="post" name="form1">
+    <input type="text" name="email">
+<!--    <input type="submit" value="提交" name="submit" onclick="check(document.form1)">-->
+    <input type="submit" value="提交" name="submit" onclick="this.disabled=true;check(document.form1)">
+</form>
+
+</body>
+</html>
