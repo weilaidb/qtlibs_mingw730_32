@@ -731,6 +731,7 @@ JAVA/JSP/form/eg2
 JAVA/JSP/form/eg3 fileup
 JAVA/JSP/form/embed
 JAVA/JSP/form/file enctype multipart
+JAVA/JSP/form/file2
 JAVA/JSP/form/font
 JAVA/JSP/form/hidden
 JAVA/JSP/form/img与image
@@ -738,6 +739,7 @@ JAVA/JSP/form/input text
 JAVA/JSP/form/radio
 JAVA/JSP/form/radio eg
 JAVA/JSP/form/reset
+JAVA/JSP/form/reset2
 JAVA/JSP/form/select
 JAVA/JSP/form/select eg
 JAVA/JSP/form/select option
