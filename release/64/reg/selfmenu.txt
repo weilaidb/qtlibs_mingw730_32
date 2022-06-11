@@ -998,6 +998,7 @@ JavaScript/JQuery/code/遍历 - 祖先5 parentsUntil
 JavaScript/JQuery/code/链(Chaining)
 JavaScript/JQuery/code/链(Chaining) 2
 JavaScript/JQuery/eg
+JavaScript/JQuery/header src
 JavaScript/JQuery/jQuery 入口函数与 JavaScript 入口函数的区别
 JavaScript/JQuery/jQuery 安装
 JavaScript/JQuery/什么是 jQuery
@@ -1008,6 +1009,11 @@ JavaScript/JQuery/效果- 隐藏和显示
 JavaScript/JQuery/标签引用
 JavaScript/JQuery/标签引用 替代方案
 JavaScript/JQuery/标签引用 替代方案2
+JavaScript/JQuery/示例/1
+JavaScript/JQuery/示例/2
+JavaScript/JQuery/示例/3
+JavaScript/JQuery/示例/4
+JavaScript/JQuery/示例/5
 JavaScript/JQuery/语法/事件
 JavaScript/JQuery/语法/用法
 JavaScript/JQuery/选择器
@@ -1969,6 +1975,12 @@ path路径/常用文件夹
 术语/WEB/CSS
 术语/WEB/DOM
 术语/WEB/XML
+术语/WEB/jQuery
+术语/WEB/jQuery层级选择器
+术语/WEB/jQuery的下载与配置
+术语/WEB/jQuery的插件
+术语/WEB/jQuery过滤选择器
+术语/WEB/jQuery选择器
 术语/交换/eg
 术语/交换/中英文对照表
 术语/内核Kernel/eg

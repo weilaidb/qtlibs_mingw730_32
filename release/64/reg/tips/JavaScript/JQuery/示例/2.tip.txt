@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Element Test</title>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input[type='button']").click(function () {//为按钮绑定单击事件
+                $("div").eq(0).html("<img src='images/strawberry1.jpg'/>这里长出了一片草莓");//获取第一个div元素
+                $("div").get(1).innerHTML = "<img src='images/fish1.jpg'/>这里的鱼没有了";//获取第二个div元素
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+<div><img src="images/strawberry.jpg"/>这里种植了一棵草莓</div>
+<div><img src="images/fish.jpg"/>这里养殖了一条鱼</div>
+<input type="button" value="若干年后"/>
+
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+19.2　jQuery的下载与配置
+要在自己的网站中应用jQuery库，需要下载并配置它。下面将介绍如何下载与配置jQuery。
+19.2.1　下载jQuery
+jQuery是一个开源的脚本库，我们可以从它的官方网站（http://jquery.com）中下载到。下面介绍具体的下载步骤。
+Step 1　在浏览器的地址栏中输入http://jquery.com，并按下Enter键，将进入jQuery官方网站的首页，如图19.4所示。
+
+
+Step 2　在jQuery官方网站的首页中，可以下载最新版本的jQuery库，选中PRODUCTION单选按钮，单击Download按钮，将弹出如图19.5所示的下载对话框。
+图　19.5　下载jQuery 1.6.1min 
+Step 3　单击“保存”按钮，将jQuery库下载到本地计算机上。下载后的文件名为jquery-1.6.1.min.js。
+此时下载的文件为压缩后的版本（主要用于项目与产品）。如果想下载完整不压缩的版本，可以在图19.4中，选中DEVELOPMENT单选按钮，并单击Download按钮，下载后的文件名为jquery-1.6.1.js。
+说明　在项目中通常使用压缩后的文件，即jquery-1.6.1.min.js。
+
+
+
+19.2.2　配置jQuery
+将jQuery库下载到本地计算机后，还需要在项目中配置jQuery库，即将下载后的jquery-1.6.1.min.js文件放置到项目的指定文件夹中，通常放置在JS文件夹中，然后在需要应用jQuery的页面中使用下面的语句，将其引用到文件中。
+＜script language="javascript" src="JS/jquery-1.6.1.min.js"＞＜/script＞
+或者
+＜script src="JS/jquery-1.6.1.min.js" type="text/javascript"＞＜/script＞
+注意　引用jQuery的＜script＞标记，必须放在所有的自定义脚本文件的＜script＞之前，否则在自定义的脚本代码中应用不到jQuery脚本库。
