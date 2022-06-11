@@ -1619,6 +1619,7 @@ Python/scripts/web/app.run
 Python/scripts/web/eg.py
 Python/scripts/web/hello.py
 Python/scripts/web/下载包 install
+Python/scripts/xmlcheckok.py
 Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
 Python/soft/pip install 安装 with http

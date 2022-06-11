@@ -9,7 +9,9 @@ import sys
 import re
 import atexit
 import csv
-
+from xml.sax.handler import ContentHandler
+from xml.sax import make_parser
+ 
 ###################退出操作，结合atexit.register()使用
 def end(flag):
     print('结束')
@@ -191,16 +193,10 @@ def csvread(filename):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+###################XML读写
+###################XML读写
+###################XML读写
+def xmlParseFile(fileName):
+    parser = make_parser()
+    parser.setContentHandler(ContentHandler())
+    parser.parse(fileName)
