@@ -1928,6 +1928,7 @@ path路径/Android手机拷贝路径
 path路径/常用文件夹
 字符/方向
 学习/小学生/英文电影
+学校/四年级电话
 宏Macro/Source insight/AppendBufLine
 宏Macro/Source insight/Ask 输入内容
 宏Macro/Source insight/CharFromAscii
