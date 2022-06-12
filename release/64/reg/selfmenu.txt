@@ -1016,6 +1016,8 @@ JavaScript/JQuery/示例/4
 JavaScript/JQuery/示例/5
 JavaScript/JQuery/示例/6
 JavaScript/JQuery/示例/7
+JavaScript/JQuery/示例/8
+JavaScript/JQuery/示例/9
 JavaScript/JQuery/语法/事件
 JavaScript/JQuery/语法/用法
 JavaScript/JQuery/选择器
@@ -1979,6 +1981,7 @@ path路径/常用文件夹
 术语/WEB/XML
 术语/WEB/jQuery
 术语/WEB/jQuery层级选择器
+术语/WEB/jQuery属性选择器
 术语/WEB/jQuery的下载与配置
 术语/WEB/jQuery的插件
 术语/WEB/jQuery过滤选择器
