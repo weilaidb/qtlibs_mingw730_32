@@ -1010,6 +1010,11 @@ JavaScript/JQuery/标签引用
 JavaScript/JQuery/标签引用 替代方案
 JavaScript/JQuery/标签引用 替代方案2
 JavaScript/JQuery/示例/1
+JavaScript/JQuery/示例/10
+JavaScript/JQuery/示例/11
+JavaScript/JQuery/示例/12
+JavaScript/JQuery/示例/13
+JavaScript/JQuery/示例/14
 JavaScript/JQuery/示例/2
 JavaScript/JQuery/示例/3
 JavaScript/JQuery/示例/4
@@ -1980,9 +1985,11 @@ path路径/常用文件夹
 术语/WEB/DOM
 术语/WEB/XML
 术语/WEB/jQuery
+术语/WEB/jQuery中的事件
 术语/WEB/jQuery层级选择器
 术语/WEB/jQuery属性选择器
 术语/WEB/jQuery的下载与配置
+术语/WEB/jQuery的事件处理
 术语/WEB/jQuery的插件
 术语/WEB/jQuery过滤选择器
 术语/WEB/jQuery选择器
