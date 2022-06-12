@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内容过滤器</title>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // $("tr:even").addClass("even");
+            // $("tr:odd").addClass("odd");
+            $("td:parent").css("background-color", "#E8F3D1");//为不为空的单元格设置背景颜色
+            $("td:empty").html("暂无内容");//为空的单元格添加默认内容
+            $("td:contains('wgh')").css("color", "red");//将含有文本wgh的单元格的文字颜色设置为红色
+        });
+    </script>
+
+
+    <style type="text/css">
+        td {
+            font-size: 12px; /*设置单元格的样式*/
+            padding: 3px; /*设置内边距*/
+        }
+
+        .th {
+            background-color: #B6DF48; /*设置背景颜色*/
+            font-weight: bold; /*设置文字加粗显示*/
+            text-align: center; /*设置文字居中对齐*/
+        }
+
+        .even {
+            background-color: #E8F3D1; /*设置偶数行的背景颜色*/
+        }
+
+        .odd {
+            background-color: #F9FCEF; /*设置奇数行的背景颜色*/
+        }
+    </style>
+
+</head>
+
+<body>
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#3F873B">
+    ......<!--此处省略了其他行的代码-->
+    <tr>
+        <td height="27">4</td>
+        <td>明日科技</td>
+        <td>wgh</td>
+        <td></td>
+        <td>2011-07-05 13:46:06</td>
+    </tr>
+
+    <tr>
+        <td height="27">4</td>
+        <td>明日科技</td>
+        <td>wgh</td>
+        <td></td>
+        <td>2011-07-05 13:46:06</td>
+    </tr>
+
+    <tr>
+        <td height="27">4</td>
+        <td>明日科技</td>
+        <td>wgh</td>
+        <td></td>
+        <td>2011-07-05 13:46:06</td>
+    </tr>
+
+    <tr>
+        <td height="27">4</td>
+        <td>明日科技</td>
+        <td>wgh</td>
+        <td></td>
+        <td>2011-07-05 13:46:06</td>
+    </tr>
+
+
+</table>
+
+</body>
+</html>

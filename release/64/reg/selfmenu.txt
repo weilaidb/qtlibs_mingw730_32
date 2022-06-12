@@ -1014,6 +1014,8 @@ JavaScript/JQuery/示例/2
 JavaScript/JQuery/示例/3
 JavaScript/JQuery/示例/4
 JavaScript/JQuery/示例/5
+JavaScript/JQuery/示例/6
+JavaScript/JQuery/示例/7
 JavaScript/JQuery/语法/事件
 JavaScript/JQuery/语法/用法
 JavaScript/JQuery/选择器
