@@ -1015,6 +1015,11 @@ JavaScript/JQuery/示例/11
 JavaScript/JQuery/示例/12
 JavaScript/JQuery/示例/13
 JavaScript/JQuery/示例/14
+JavaScript/JQuery/示例/15
+JavaScript/JQuery/示例/16
+JavaScript/JQuery/示例/17
+JavaScript/JQuery/示例/18
+JavaScript/JQuery/示例/19 hover
 JavaScript/JQuery/示例/2
 JavaScript/JQuery/示例/3
 JavaScript/JQuery/示例/4
@@ -1023,6 +1028,8 @@ JavaScript/JQuery/示例/6
 JavaScript/JQuery/示例/7
 JavaScript/JQuery/示例/8
 JavaScript/JQuery/示例/9
+JavaScript/JQuery/示例/w3school/1
+JavaScript/JQuery/示例/w3school/2
 JavaScript/JQuery/语法/事件
 JavaScript/JQuery/语法/用法
 JavaScript/JQuery/选择器
@@ -1982,6 +1989,8 @@ path路径/常用文件夹
 术语/Linux/FIB Forward Information Base
 术语/Linux/FIB Forward Information Base 2
 术语/WEB/AJAX
+术语/WEB/ASP/ASP 简介
+术语/WEB/ASP/术语
 术语/WEB/CSS
 术语/WEB/DOM
 术语/WEB/XML
