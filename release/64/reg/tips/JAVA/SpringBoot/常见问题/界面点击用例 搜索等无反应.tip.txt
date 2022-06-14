@@ -1,0 +1,22 @@
+SpringBoot 点击界面搜索 无返回
+包含用例、流程也没有反应
+
+
+
+看F12报错
+JavaScript错误之：Uncaught ReferenceError: $ is not defined
+
+码涤生
+
+于 2019-01-31 14:53:56 发布
+
+41064
+ 收藏 36
+分类专栏： 前端HTML+CSS 文章标签： JS常见错误 Uncaught ReferenceError: $ is JS与JQuery的加载问题
+版权
+
+
+
+<script src="layui/layui.js"></script>
+<script src="js/libs/jquery-2.1.1.min.js"></script>   --- 原来这个地方文件没有了
+<script src="utils/common.js"></script>
