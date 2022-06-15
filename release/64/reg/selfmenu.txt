@@ -877,10 +877,13 @@ JAVA/SpringBoot/run jar
 JAVA/SpringBoot/run jar port
 JAVA/SpringBoot/search key 搜索关键字
 JAVA/SpringBoot/sqlite3驱动
+JAVA/SpringBoot/update jar包后，点击编辑按钮无反应
 JAVA/SpringBoot/代码分析
 JAVA/SpringBoot/工程Project/导入 dependency dependencies
 JAVA/SpringBoot/工程Project/导入 dependency dependencies2
 JAVA/SpringBoot/工程Project/新建工程 new project
+JAVA/SpringBoot/常见问题/Idea SpringBoot项目页面、Js修改不生效的问题
+JAVA/SpringBoot/常见问题/update jar包后，点击编辑按钮无反应
 JAVA/SpringBoot/常见问题/修改name js后，不生效
 JAVA/SpringBoot/常见问题/搜索查询后，后面列表无内容了
 JAVA/SpringBoot/常见问题/界面点击用例 搜索等无反应
