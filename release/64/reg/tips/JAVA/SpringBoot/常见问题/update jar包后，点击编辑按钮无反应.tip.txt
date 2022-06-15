@@ -16,3 +16,15 @@ nohup: ignoring input and appending output to 'nohup.out'
 
 同样的文件，更新后，无法正常更新common.js或index.html,why ?
 更新端口号变为正常，这个是啥道理
+
+
+
+
+===================原来数据被解压在了，/tmp路径下了
+$ diff findlist findlist2 
+81a82,86
+> /tmp/tomcat.9999.1440441688013340607
+> /tmp/tomcat.9999.1440441688013340607/work
+> /tmp/tomcat.9999.1440441688013340607/work/Tomcat
+> /tmp/tomcat.9999.1440441688013340607/work/Tomcat/localhost
+> /tmp/tomcat.9999.1440441688013340607/work/Tomcat/localhost/ROOT
