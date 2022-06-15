@@ -20,7 +20,7 @@ nohup: ignoring input and appending output to 'nohup.out'
 
 
 
-===================原来数据被解压在了，/tmp路径下了
+===================原来数据被解压在了，/tmp路径下了[删除/tmp也不好使?why?重启也不好使]
 $ diff findlist findlist2 
 81a82,86
 > /tmp/tomcat.9999.1440441688013340607

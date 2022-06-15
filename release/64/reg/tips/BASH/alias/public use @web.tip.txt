@@ -16,7 +16,7 @@ alias cdpythonscript="cd ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/Pytho
 
 alias cmakebuildmy="mkdir mybuild && cd mybuild && cmake .. && make "
 alias makegtest="make && ./test "
-alias jardd="cd $HOME && rm -rf /tmp/tomcat.9999 && nohup java -jar ~/dd-0.3-SNAPSHOT.jar --server.port=8888 & "
+alias jardd="cd $HOME && rm -rf /tmp/tomcat.9999 && nohup java -jar ~/dd-0.3-SNAPSHOT.jar --server.port=9999 & "
 alias killddjar="kill -9 \`ps aux | grep jar | grep dd | awk '{print \$2}'\` "
 
 
