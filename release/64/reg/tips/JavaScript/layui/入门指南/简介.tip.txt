@@ -1,0 +1,182 @@
+开始使用 - 入门指南
+layui（谐音：类 UI) 是一套开源的 Web UI 解决方案，采用自身经典的模块化规范，并遵循原生 HTML/CSS/JS 的开发方式，极易上手，拿来即用。其风格简约轻盈，而组件优雅丰盈，从源代码到使用方法的每一处细节都经过精心雕琢，非常适合网页界面的快速开发。layui 区别于那些基于 MVVM 底层的前端框架，却并非逆道而行，而是信奉返璞归真之道。准确地说，它更多是面向后端开发者，你无需涉足前端各种工具，只需面对浏览器本身，让一切你所需要的元素与交互，从这里信手拈来。
+
+
+兼容性和面向场景
+layui 兼容人类正在使用的全部浏览器（IE6/7除外），可作为 Web 界面速成开发方案。
+
+
+获得 layui
+1. 官网首页下载
+
+你可以在我们的 官网首页 下载到 layui 的最新版，它经过了自动化构建，更适合用于生产环境。目录结构如下：
+</>code
+  ├─css //css目录
+  │  │─modules //模块 css 目录（一般如果模块相对较大，我们会单独提取，如下：）
+  │  │  ├─laydate
+  │  │  └─layer
+  │  └─layui.css //核心样式文件
+  ├─font  //字体图标目录
+  └─layui.js //核心库
+     
+2. Git 仓库下载
+
+你也可以通过 GitHub 或 码云 得到 layui 的完整开发包，以便于你进行二次开发，或者 Fork layui 为我们贡献方案
+
+ 
+
+ 
+3. npm 下载
+
+</>code
+npm i layui
+      
+
+4. 第三方 CDN 方式引入：
+
+ 
+UNPKG 和 CDNJS 均为第三方开源免费的 CDN，通过 NPM/GitHub 实时同步。另外还有 LayuiCDN。
+UNPKG 引入示例code
+<!-- 引入 layui.css -->
+<link rel="stylesheet" href="//unpkg.com/layui@2.6.8/dist/css/layui.css">
+ 
+<!-- 引入 layui.js -->
+<script src="//unpkg.com/layui@2.6.8/dist/layui.js">
+      
+快速上手
+如果你将 layui 下载到了本地，那么可将其完整地放置到你的项目目录（或静态资源服务器），这是一个基本的入门页面：
+
+</>HTML
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>开始使用 layui</title>
+  <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<body>
+ 
+<!-- 你的 HTML 代码 -->
+ 
+<script src="./layui/layui.js"></script>
+<script>
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+  layer.msg('Hello World');
+});
+</script> 
+</body>
+</html>
+      
+经典，因返璞归真
+layui 定义为「经典模块化」，并非是自吹她自身有多优秀，而是有意避开当下 JS 社区的主流方案，试图以尽可能简单的方式去诠释高效！她的所谓经典，是在于对返璞归真的执念，她以当前浏览器普通认可的方式去组织模块！我们认为，这恰是符合当下国内绝大多数程序员从旧时代过渡到未来新标准的绝佳指引。所以 layui 本身也并不是完全遵循于 AMD 时代，准确地说，她试图建立自己的模式：
+
+</>code
+//layui 模块的定义（新 js 文件）
+layui.define([mods], function(exports){
+  
+  //……
+  
+  exports('mod', api);
+});  
+ 
+//layui 模块的使用
+layui.use(['mod1', 'mod2'], function(args){
+  var mod = layui.mod1;
+  
+  //……
+  
+});    
+      
+没错，她具备早前 AMD 的影子，又并非受限于 CommonJS 的那些条条框框，layui 认为这种轻量的组织方式，比WebPack更符合绝大多数场景。所以她坚持采用经典模块化，也正是能让人避开工具的复杂配置，回归简单，安静高效地编织原生态的 HTML/CSS/JS。
+
+但是 layui 又并非是 RequireJS 那样的模块加载器，而是一款 UI 解决方案，与 BootStrap 的不同又在于：layui 糅合了自身对经典模块化的理解。这使得你可以在 layui 组织的框架之内，以更具可维护性的代码、去更好的编织丰富的用户界面。
+
+建立模块入口
+您可以遵循 layui 的模块规范建立一个入口文件，并通过 layui.use() 方式来加载该入口文件，如下所示：
+
+</>code
+<!-- 你引入的 layui.js 建议是通过官网首页下载的。当然也可以由 github 或 gitee clone -->
+<script src="./layui/layui.js"></script> 
+<script>
+layui.config({
+  base: '/res/js/modules/' //你存放新模块的目录，注意，不是 layui 的模块目录
+}).use('index'); //加载入口
+</script>    
+    
+上述的 index 即为你 /res/js/modules/ 目录下的 index.js，它的内容应该如下：
+</>code
+/**
+  index.js 项目 JS 主入口
+  以依赖 layui 的 layer 和 form 模块为例
+**/    
+layui.define(['layer', 'form'], function(exports){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+  layer.msg('Hello World');
+  
+  exports('index', {}); //注意，这里是模块输出的核心，模块名必须和 use 时的模块名一致
+});    
+      
+从 layui 2.6 开始，如果你引入的是构建后的 layui.js，里面即包含了 layui 所有的内置模块，无需再指定内置模块。如：
+
+</>code
+/**
+  index.js 项目 JS 主入口
+**/ 
+layui.define(function(){ // 需确保您的 layui.js 是引入的构建后的版本（即官网下载或 git 平台的发行版）
+  //直接可得到各种内置模块
+  var layer = layui.layer
+  ,form = layui.form
+  ,table = layui.table;
+  
+  //…
+  layer.msg('Hello World');
+  
+  exports('index', {}); //注意，这里是模块输出的核心，模块名必须和 use 时的模块名一致
+});
+      
+管理扩展模块
+除了使用 layui 的内置模块，必不可少也需要加载扩展模块（可以简单理解为符合 layui 模块规范的 JS 文件）。我们假设你的项目中存放了很多个扩展模块，如下所举：
+
+</>code
+//mod1.js
+layui.define('layer', function(exports){
+  //…
+  exports(mod1, {});
+});
+ 
+//mod2.js，假设依赖 mod1 和 form
+layui.define(['mod1', 'form'], function(exports){
+  //…
+  exports(mod2, {});
+});  
+ 
+//mod3.js
+//… 
+ 
+//main.js 主入口模块
+layui.define('mod2', function(exports){
+  //…
+  exports('main', {});
+});
+      
+上述扩展模块在经过了一定的模块依赖关系后，同样可以合并为一个文件来加载。我们可以借助 Gulp 将上述的 mod1、mod2、mod3、main 等扩展模块构建合并到一个模块文件中：main.js，此时你只需要加载它即可：
+
+</>code
+<script src="./layui/layui.js"></script>  
+<script>
+layui.config({
+  base: '/res/js/modules/' //你的扩展模块所在目录
+}).use('main'); //这里的 main 模块包含了 mod1、mod2、mod3 等等扩展模块
+</script> 
+      
+可以看到，这样我们最多只需要加载两个 JS 文件：layui.js、main.js。这将大幅度减少静态资源的请求。
+
+通过上面的阅读，也许你已大致了解如何使用 layui 了，不过你可能还需要继续阅读后面的文档，尤其是「基础说明」。
+那么，欢迎你开始拥抱 layui！愿它能成为你得心应手的 Web 界面解决方案，化作你方寸屏幕前的亿万字节！
+layui - 在每一个细节中，用心与你沟通

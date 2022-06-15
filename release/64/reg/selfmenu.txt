@@ -1086,10 +1086,12 @@ JavaScript/layui/alert
 JavaScript/layui/alert msg
 JavaScript/layui/layui.table 2
 JavaScript/layui/layui.table 导出excel
+JavaScript/layui/layui多表单验证提交
 JavaScript/layui/msg
 JavaScript/layui/option 下拉菜单 下拉框
 JavaScript/layui/table
 JavaScript/layui/table 数据表格文档 - layui.table
+JavaScript/layui/入门指南/简介
 JavaScript/log/console
 JavaScript/proc/replace h3 京东读书代码
 JavaScript/scripts/checkemail
@@ -1826,6 +1828,7 @@ QT/版本Debug或Release宏 QT_DEBUG 和QT_NO_DEBUG
 QT/示例/随机数
 Setting/网页显示常用Tab切换
 SoftWare/AutoCad 2022
+SoftWare/FastStone Capture v9.7
 SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
