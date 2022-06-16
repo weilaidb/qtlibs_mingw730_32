@@ -1,1 +1,1 @@
-layer.alert("\1:" + \1);
+layer.msg("\1:" + \1);
