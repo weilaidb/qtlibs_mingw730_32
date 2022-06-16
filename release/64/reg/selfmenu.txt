@@ -1084,6 +1084,9 @@ JavaScript/func/格式化format
 JavaScript/include引用
 JavaScript/layui/alert
 JavaScript/layui/alert msg
+JavaScript/layui/eg
+JavaScript/layui/form
+JavaScript/layui/hello world
 JavaScript/layui/layui.table 2
 JavaScript/layui/layui.table 导出excel
 JavaScript/layui/layui多表单验证提交
@@ -2050,6 +2053,7 @@ path路径/常用文件夹
 术语/网络/模拟信号
 术语/网络/物理层 规程 procedure
 检查单/结算
+歌曲/列表
 正则表达式/Office/WORD替换
 正则表达式/去除开头的数字
 正则表达式/去除空行
