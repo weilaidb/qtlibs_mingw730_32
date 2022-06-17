@@ -1084,17 +1084,40 @@ JavaScript/func/格式化format
 JavaScript/include引用
 JavaScript/layui/alert
 JavaScript/layui/alert msg
+JavaScript/layui/btn button
+JavaScript/layui/btn button 可跳转
+JavaScript/layui/btn button 图标
+JavaScript/layui/btn button 按钮容器
+JavaScript/layui/btn button 按钮组
+JavaScript/layui/btn button 标准
+JavaScript/layui/btn button 颜色
 JavaScript/layui/eg
 JavaScript/layui/form
+JavaScript/layui/form 单选框
+JavaScript/layui/form 复选框
+JavaScript/layui/form 密码框
+JavaScript/layui/form 开关
+JavaScript/layui/form 文本域
+JavaScript/layui/form 立即提交
+JavaScript/layui/form 输入框
+JavaScript/layui/form 选择框
+JavaScript/layui/form2
+JavaScript/layui/header include
 JavaScript/layui/hello world
 JavaScript/layui/layui.table 2
 JavaScript/layui/layui.table 导出excel
 JavaScript/layui/layui多表单验证提交
 JavaScript/layui/msg
+JavaScript/layui/nav 导航
+JavaScript/layui/nav 导航二级菜单
+JavaScript/layui/nav 导航图片和徽章
+JavaScript/layui/nav 导航跳转
+JavaScript/layui/nav 导航颜色
 JavaScript/layui/option 下拉菜单 下拉框
 JavaScript/layui/table
 JavaScript/layui/table 数据表格文档 - layui.table
 JavaScript/layui/入门指南/简介
+JavaScript/layui/字体图标 ico
 JavaScript/log/console
 JavaScript/proc/replace h3 京东读书代码
 JavaScript/scripts/checkemail
