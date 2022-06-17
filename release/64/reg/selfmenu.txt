@@ -1103,6 +1103,7 @@ JavaScript/layui/form 输入框
 JavaScript/layui/form 选择框
 JavaScript/layui/form2
 JavaScript/layui/header include
+JavaScript/layui/header include static
 JavaScript/layui/hello world
 JavaScript/layui/layui.table 2
 JavaScript/layui/layui.table 导出excel
