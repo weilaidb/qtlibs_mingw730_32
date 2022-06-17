@@ -1,1 +1,1 @@
-\1
+layer.msg('\1', {icon: 1, time: 1000});

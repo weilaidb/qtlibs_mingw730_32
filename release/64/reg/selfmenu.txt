@@ -1117,6 +1117,7 @@ JavaScript/layui/nav 导航颜色
 JavaScript/layui/option 下拉菜单 下拉框
 JavaScript/layui/table
 JavaScript/layui/table 数据表格文档 - layui.table
+JavaScript/layui/use
 JavaScript/layui/入门指南/简介
 JavaScript/layui/字体图标 ico
 JavaScript/log/console
