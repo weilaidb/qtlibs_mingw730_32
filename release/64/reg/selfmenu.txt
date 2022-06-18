@@ -1082,6 +1082,7 @@ JavaScript/func/toString
 JavaScript/func/try...catch...finally
 JavaScript/func/格式化format
 JavaScript/include引用
+JavaScript/layui/abc
 JavaScript/layui/alert
 JavaScript/layui/alert msg
 JavaScript/layui/btn button
@@ -2136,5 +2137,7 @@ path路径/常用文件夹
 设计/软件设计/TDD new/suits telnet
 设计/软件设计/eg
 设计/软件设计/语言设计的美妙
+设计/软件调试/eg
+设计/软件调试/联调过程中常见问题
 软件安装/dia/下载地址
 软件安装/dia/解决dia无法输入中文问题
