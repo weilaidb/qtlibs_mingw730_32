@@ -608,6 +608,24 @@ Docker/自定义docker镜像
 Docker/镜像路径
 ERLANG/eg
 ERLANG/资料路径 address
+FPGA/ZYNQ/AHB
+FPGA/ZYNQ/AMBA
+FPGA/ZYNQ/APB
+FPGA/ZYNQ/AXI
+FPGA/ZYNQ/AXI-GP
+FPGA/ZYNQ/FSBL
+FPGA/ZYNQ/HDL
+FPGA/ZYNQ/RTL
+FPGA/ZYNQ/USB JTAG
+FPGA/ZYNQ/USB2.0 HOST
+FPGA/ZYNQ/ZYNQ 开发板硬件介绍
+FPGA/ZYNQ/ZYNQ 的开发也是先硬件后软件的方法
+FPGA/ZYNQ/ZYNQ 简介
+FPGA/ZYNQ/ZYNQ 芯片开发流程的简介
+FPGA/ZYNQ/ZYNQ7000
+FPGA/ZYNQ/ZYNQ7000 软件安装 vitis vivado 2019.2
+FPGA/ZYNQ/eg
+FPGA/ZYNQ/有源晶振
 FPGA/new/delay 延时
 FPGA/new/eg
 FPGA/new/initial
@@ -618,6 +636,7 @@ FPGA/new/reg
 FPGA/new/timescale
 FPGA/介绍
 FPGA/介绍 理论
+FPGA/开发板/ALINX/AX7010
 FPGA/开发板/ALINX/AX7020
 FPGA/开发板/Qemu/使用Qemu模拟vexpress-a9搭建模拟开发板
 FPGA/开发板/开发板购买
@@ -2028,6 +2047,7 @@ path路径/常用文件夹
 工作/祝福语句 巧姐
 工作/祝福语句 康哥
 工作/祝福语句 龙哥
+数据日志/开发板/AX7010 初始化打印
 术语/C/宏和内联函数的区别
 术语/C/宏和内联函数的区别2
 术语/Linux/FIB Forward Information Base

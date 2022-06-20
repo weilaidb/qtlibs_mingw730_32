@@ -1,0 +1,22 @@
+==选择 Vitis 
+
+
+Installs Vitis Core Development Kit for embedded software and application acceleration development on Xilinx platforms. Vitis installation includes Vivado Design Suite.
+
+
+Vivado 软件 Windows 下安装
+1) 下载解压 Vivado 软件压缩包，直接点击 xsetup.exe，进入安装，不过为了更好的安装，请
+关闭杀毒软件，各种电脑管家，电脑用户名不要有中文，和空格
+2) 如果提示版本更新，我们忽略更新，点击“Continue”
+3) 点击“next”进行安装，可以看到 Vivado 对系统要求
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 23 / 285
+4) 点击“I Agree”接受各个条款
+5) 这里选择安装的器件库，由于我们不需要 UltraScale 和 UltraScale+芯片，可以取消勾选，
+节省安装空间，其他保持默认，点击“next”
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 24 / 285
+6) 安装路径这里没有修改，安装路径不能有中文、空格等特殊字符，同时电脑的用户名不要
+是中文、带空格的名称。可以看到 Vivado 对硬盘大小的要求，至少要有 80G。
