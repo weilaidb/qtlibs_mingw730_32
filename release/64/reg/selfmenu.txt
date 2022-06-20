@@ -1929,6 +1929,7 @@ Tools/win10 快捷键 win10双屏幕扩展使用
 Tools/十六进制颜色码转换成RGB颜色值
 Tools/十六进制颜色码转换成RGB颜色值2
 Tools/双拼输入法快捷键
+Tools/双拼输入法快捷键 练习
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
