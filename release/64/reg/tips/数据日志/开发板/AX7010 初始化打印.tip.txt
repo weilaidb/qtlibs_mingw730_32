@@ -493,3 +493,30 @@ Linux zynq 4.9.0-xilinx #1 SMP PREEMPT Mon Dec 16 15:23:03 CST 2019 armv7l GNU/L
 root@zynq:~# 
 root@zynq:~# 
 root@zynq:~#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cortex-A9 
+
+第一章 ZYNQ 简介
+Zynq 系列的亮点在于 FPGA 里包含了完整的 ARM 处理子系统（PS），每一颗 Zynq 系列的
+处理器都包含了 Cortex-A9 处理器，整个处理器的搭建都以处理器为中心， 而且处理器子系统
+中集成了内存控制器和大量的外设， 使 Cortex-A9 的核在 Zynq-7000 中完全独立于可编程逻辑
+单元，也就是说如果暂时没有用到可编程逻辑单元部分（PL）， ARM 处理器的子系统也可以独
+立工作，这与以前的 FPGA 有本质区别，其是以处理器为中心的。
+Zynq 就是两大功能块，PS 部分和 PL 部分， 说白了，就是 ARM 的 SOC 部分，和 FPGA
+部分。其中，PS 集成了两个 ARM Cortex™-A9 处理器，AMBA®互连，内部存储器，外部存储器
+接口和外设。这些外设主要包括 USB 总线接口，以太网接口，SD/SDIO 接口，I2C 总线接口，
+CAN 总线接口，UART 接口，GPIO 等。

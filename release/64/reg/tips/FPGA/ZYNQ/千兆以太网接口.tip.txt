@@ -1,0 +1,44 @@
+3.6.3 6.3 千兆以太网接口
+AX7010 开发板上通过 Realtek RTL8211E-VL 以太网 PHY 芯片用户提供网络通信服务。以太
+网 PHY 芯片是连接到 ZYNQ 的 PS 端 BANK501 的 GPIO 接口上。RTL8211E-VL 芯片支持
+10/100/1000 Mbps 网络传输速率，通过 RGMII 接口跟 Zynq7000 PS 系统的 MAC 层进行数据通
+信。RTL8211E-VL 支持ＭDI/MDX 自适应，各种速度自适应，Master/Slave 自适应，支持 MDIO
+总线进行 PHY 的寄存器管理。
+RTL8211E-VL 上电会检测一些特定的 IO 的电平状态，从而确定自己的工作模式。表 6-2 描
+述了 GPHY 芯片上电之后的默认设定信息。
+配置 Pin 脚 说明 配置值
+PHYAD[2:0] MDIO/MDC 模式的 PHY 地址 PHY Address 为 001
+SELRGV RGMII 1.8V 或 1.5V 电平选择 1.8V
+AN[1:0] 自协商配置 (10/100/1000M)自适应
+RX Delay RX 时钟 2ns 延时 延时
+TX Delay TX 时钟 2ns 延时 延时
+表 6-2 PHY 芯片默认配置值
+ 当网络连接到千兆以太网时，FPGA 和 PHY 芯片 RTL8211E-VL 的数据传输时通过 RGMII 总线
+通信，传输时钟为 125Mhz，数据在时钟的上升沿和下降样采样。
+当网络连接到百兆以太网时，FPGA 和 PHY 芯片 RTL8211E-VL 的数据传输时通过 RMII 总线
+通信，传输时钟为 25Mhz。数据在时钟的上升沿和下降样采样。
+图 6-4 为 ZYNQ 与以太网 PHY 芯片连接示意图:
+ 
+图 6-4 FPGA 与 PHY 连接示意图
+图 6-5 为以太网 PHY 芯片的实物图
+
+
+
+
+
+图 6-5 以太网 PHY 芯片实物图
+以太网引脚分配如下：
+信号名称 ZYNQ 引脚名 ZYNQ 引脚号 备注
+ETH_GCLK PS_MIO16_501 A19 RGMII 发送时钟
+ETH_TXD0 PS_MIO17_501 E14 发送数据 bit０ ETH_TXD1 PS_MIO18_501 B18 发送数据 bit1
+ETH_TXD2 PS_MIO19_501 D10 发送数据 bit2
+ETH_TXD3 PS_MIO20_501 A17 发送数据 bit3
+ETH_TXCTL PS_MIO21_501 F14 发送使能信号
+ETH_RXCK PS_MIO22_501 B17 RGMII 接收时钟
+ETH_RXD0 PS_MIO23_501 D11 接收数据 Bit0
+ETH_RXD1 PS_MIO24_501 A16 接收数据 Bit1
+ETH_RXD2 PS_MIO25_501 F15 接收数据 Bit2
+ETH_RXD3 PS_MIO26_501 A15 接收数据 Bit3
+ETH_RXCTL PS_MIO27_501 D13 接收数据有效信号
+ETH_MDC PS_MIO52_501 C10 MDIO 管理时钟
+ETH_MDIO PS_MIO53_501 C11 MDIO 管理数据

@@ -20,3 +20,8 @@ ZYNQ 开发平台基础教程
 http://www.alinx.com.cn 24 / 285
 6) 安装路径这里没有修改，安装路径不能有中文、空格等特殊字符，同时电脑的用户名不要
 是中文、带空格的名称。可以看到 Vivado 对硬盘大小的要求，至少要有 80G。
+
+
+
+安装license,copy license
+D:\Xilinx\Vivado\2019.2\data\ip\core_licenses\Xilinx.lic
