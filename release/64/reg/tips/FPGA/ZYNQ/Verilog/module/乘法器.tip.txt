@@ -1,0 +1,28 @@
+4.5.8 乘法器
+乘法的表示也很简单，利用”*”即可，如 a*b，举例代码如下：
+module top(a, b, c) ;
+input [1:0] a ;
+input [1:0] b ;
+output [3:0] c ;
+assign c = a * b ;
+endmodule
+`timescale 1 ns/1 ns 
+module top_tb() ;
+reg [1:0] a ;
+reg [1:0] b ;
+wire [3:0] c ;
+initial
+begin
+ a = 0 ;
+ b = 0 ;
+ forever
+ begin 
+ #({$random}%100)
+ a = ~a ;
+ #({$random}%100) 
+ b = ~b ; 
+ end
+end
+top t0(.a(a), .b(b),.c(c)) ;
+endmodule
+仿真结果如下：

@@ -633,6 +633,41 @@ FPGA/ZYNQ/USB 转串口
 FPGA/ZYNQ/USB2.0
 FPGA/ZYNQ/USB2.0 HOST
 FPGA/ZYNQ/USB2.0 OTG
+FPGA/ZYNQ/Verilog/module/3-8 译码器
+FPGA/ZYNQ/Verilog/module/D 触发器
+FPGA/ZYNQ/Verilog/module/Memory 型
+FPGA/ZYNQ/Verilog/module/Reg 型
+FPGA/ZYNQ/Verilog/module/eg
+FPGA/ZYNQ/Verilog/module/led
+FPGA/ZYNQ/Verilog/module/led2
+FPGA/ZYNQ/Verilog/module/rom
+FPGA/ZYNQ/Verilog/module/三态门
+FPGA/ZYNQ/Verilog/module/与门
+FPGA/ZYNQ/Verilog/module/两级 D 触发器
+FPGA/ZYNQ/Verilog/module/乘法器
+FPGA/ZYNQ/Verilog/module/伪双口 RAM
+FPGA/ZYNQ/Verilog/module/全加器
+FPGA/ZYNQ/Verilog/module/半加器
+FPGA/ZYNQ/Verilog/module/单口 RAM
+FPGA/ZYNQ/Verilog/module/单口 ROM
+FPGA/ZYNQ/Verilog/module/带异步复位同步清零的 D 触发器
+FPGA/ZYNQ/Verilog/module/带异步复位的 D 触发器
+FPGA/ZYNQ/Verilog/module/异或
+FPGA/ZYNQ/Verilog/module/或门
+FPGA/ZYNQ/Verilog/module/数据选择器
+FPGA/ZYNQ/Verilog/module/有限状态机
+FPGA/ZYNQ/Verilog/module/比较器
+FPGA/ZYNQ/Verilog/module/真双口 RAM
+FPGA/ZYNQ/Verilog/module/移位寄存器
+FPGA/ZYNQ/Verilog/module/非门
+FPGA/ZYNQ/Verilog/基础模块介绍
+FPGA/ZYNQ/Verilog/拼接运算符
+FPGA/ZYNQ/Verilog/时序逻辑
+FPGA/ZYNQ/Verilog/时序逻辑 D 触发器
+FPGA/ZYNQ/Verilog/添加时序约束
+FPGA/ZYNQ/Verilog/激励文件
+FPGA/ZYNQ/Verilog/组合逻辑
+FPGA/ZYNQ/Verilog/赋值运算符
 FPGA/ZYNQ/ZYNQ 开发板硬件介绍
 FPGA/ZYNQ/ZYNQ 的开发也是先硬件后软件的方法
 FPGA/ZYNQ/ZYNQ 简介
@@ -648,7 +683,9 @@ FPGA/ZYNQ/扩展口 J10
 FPGA/ZYNQ/扩展口 J11
 FPGA/ZYNQ/有源晶振
 FPGA/ZYNQ/用户 LED
+FPGA/ZYNQ/用户 LED PL
 FPGA/ZYNQ/用户按键
+FPGA/ZYNQ/用户按键 PL
 FPGA/new/delay 延时
 FPGA/new/eg
 FPGA/new/initial
@@ -1927,6 +1964,7 @@ Tools/UML/教程
 Tools/UML/文字
 Tools/VS Visual Studio快捷键
 Tools/VSCode快捷键
+Tools/Vivado中常用的快捷键
 Tools/dec to hex 十进制转十六进制
 Tools/git/git clone -i 指定文件
 Tools/git/git compare beyondcompare base local remote
