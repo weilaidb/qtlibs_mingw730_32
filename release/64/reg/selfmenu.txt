@@ -634,6 +634,8 @@ FPGA/ZYNQ/ZYNQ 芯片开发流程的简介
 FPGA/ZYNQ/ZYNQ7000
 FPGA/ZYNQ/ZYNQ7000 软件安装 vitis vivado 2019.2
 FPGA/ZYNQ/eg
+FPGA/ZYNQ/mdio
+FPGA/ZYNQ/mdio 以太网PHY 芯片之 MII  MDIO接口详解
 FPGA/ZYNQ/千兆以太网接口
 FPGA/ZYNQ/有源晶振
 FPGA/new/delay 延时
@@ -1336,6 +1338,7 @@ LINUX/命令行/crontab eg
 LINUX/命令行/crontab tomcat
 LINUX/命令行/eg
 LINUX/命令行/fgrep
+LINUX/命令行/flash
 LINUX/命令行/getconf
 LINUX/命令行/grep
 LINUX/命令行/grep -Po
@@ -1987,6 +1990,8 @@ WeiLaiDb/Production/weilaix.war Version
 Windows/Fonts
 YAML/yml入门教程
 YAML/yml入门教程2
+data/开发板/AX7010 初始化打印
+data/开发板/AX7010/flash
 go/1/For-each range
 go/1/eg
 go/1/fmt.Println
@@ -2057,7 +2062,6 @@ path路径/常用文件夹
 工作/祝福语句 巧姐
 工作/祝福语句 康哥
 工作/祝福语句 龙哥
-数据日志/开发板/AX7010 初始化打印
 术语/C/宏和内联函数的区别
 术语/C/宏和内联函数的区别2
 术语/Linux/FIB Forward Information Base
