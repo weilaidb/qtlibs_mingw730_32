@@ -1,0 +1,21 @@
+3.6.6 6.6 SD 卡槽
+AX7010开发板包含了一个Micro型的SD卡接口，以提供用户访问SD卡存储器，用于存储
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 50 / 285
+ZYNQ芯片的BOOT程序，Linux操作系统内核, 文件系统以及其它的用户数据文件。
+SDIO信号与ZYNQ的PS BANK501的IO信号相连，因为该BANK的VCCMIO设置为1.8V，但SD卡
+的数据电平为3.3V, 我们这里通过TXS02612电平转换器来连接。Zynq7000 PS和SD卡连接器的原
+理图如图6-10所示。
+图 6-10 SD 卡连接示意图
+SD 卡槽在开发板的背面，图 6-11 SD 卡槽实物图
+图 6-11 SD 卡槽实物图
+SD 卡槽引脚分配
+信号名称 ZYNQ 引脚名 ZYNQ 引脚号 备注
+SD_CLK PS_MIO40 D14 SD时钟信号
+SD_CMD PS_MIO41 C17 SD命令信号
+SD_D0 PS_MIO42 E12 SD数据Data0
+SD_D1 PS_MIO43 A9 SD数据Data1
+SD_D2 PS_MIO44 F13 SD数据Data2
+SD_D3 PS_MIO45 B15 SD数据Data3
+SD_CD PS_MIO47 B14 SD卡插入信号

@@ -1,0 +1,41 @@
+PL 端的外设
+下面我们再对 PL 部分（FPGA 逻辑部分）连接的外设做一下介绍。
+3.7.1 7.1 HDMI 接口
+HDMI，全称为高清晰度多媒体视频输出接口。AX7010 开发板上通过 FPGA 的差分 IO 直接
+连接到 HDMI 接口的差分信号和时钟，在 FPGA 内部实现 HMDI 信号的差分转并行再进行编解
+码，实现 DMI 数字视频输入和输出的传输解决方案，最高支持 1080P@60Hz 的输入和输出的
+功能。
+HDMI 的信号连接到 ZYNQ 的 PL 部分的 BANK34 上，图 6-1-1 为 HDMI 设计的原理图，当开
+发板作为 HDMI 显示设备时（HDMI IN），HDMI 信号作为输入，HPD(hot plug detect)信号作为输
+出。当开发板作为 HDMI 主设备（HDMI OUT）时，则相反。
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 54 / 285
+图 7-1 为 HDMI 设计的原理图
+开发板在作为 HDMI 主设备（HDMI OUT）时,需要提供给 HDMI 显示设备一个+5V 的电源。
+电源输出控制电路如图 7-2 所示
+图 7-2 HDMI 5V 输出电路
+另外 HMDI 主设备会通过 IIC 总线读取 HDMI 显示设备的 EDID 设备信息。FPGA 的管脚电平
+是 3.3V, 但 HDMI 的电平是+5V, 这里我们需要电平转换芯片 GTL2002D 来连接。IIC 的转换电路
+如图 7-3 所示
+图 7-3 GTL2002D 电平转换电路
+图 7-4 为 HDMI 接口的实物图
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 55 / 285
+图 7-4 HDMI 接口的实物图
+HDMI 接口的引脚分配
+信号名称 ZYNQ 引脚名 ZYNQ 引脚号 备注
+HDMI_CLK_P IO_L13P_T2_MRCC_34 N18 HDMI时钟信号正
+HDMI_CLK_N IO_L13N_T2_MRCC_34 P19 HDMI时钟信号负
+HDMI_D0_P IO_L16P_T2_34 V20 HDMI数据0正
+HDMI_D0_N IO_L16N_T2_34 W20 HDMI数据0负
+HDMI_D1_P IO_L15P_T2_DQS_34 T20 HDMI数据1正
+HDMI_D1_N IO_L15N_T2_DQS_34 U20 HDMI数据1负
+HDMI_D2_P IO_L14P_T2_SRCC_34 N20 HDMI数据2正
+HDMI_D2_N IO_L14N_T2_SRCC_34 P20 HDMI数据2负
+HDMI_SCL IO_L20N_T3_34 R18 HDMI IIC时钟
+HDMI_SDA IO_L19P_T2_34 R16 HDMI IIC数据
+HDMI_CEC IO_L17P_T2_34 Y18 HDMI遥控器信号
+HDMI_HPD IO_L17N_T2_34 Y19 HDMI热插拔检测信号
+HDMI_OUT_EN IO_L18P_T2_34 V16 HDMI电源输出控制
