@@ -674,6 +674,8 @@ FPGA/ZYNQ/ZYNQ 简介
 FPGA/ZYNQ/ZYNQ 芯片开发流程的简介
 FPGA/ZYNQ/ZYNQ7000
 FPGA/ZYNQ/ZYNQ7000 软件安装 vitis vivado 2019.2
+FPGA/ZYNQ/ZYNQ7000 软件安装 vitis vivado 2019.2 license 2037
+FPGA/ZYNQ/ZYNQ7000 软件安装 vitis vivado 2019.2 license 2037 xilinx_ise.lic
 FPGA/ZYNQ/eg
 FPGA/ZYNQ/mdio
 FPGA/ZYNQ/mdio 以太网PHY 芯片之 MII  MDIO接口详解
