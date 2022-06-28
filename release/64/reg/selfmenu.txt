@@ -681,6 +681,7 @@ FPGA/ZYNQ/mdio
 FPGA/ZYNQ/mdio 以太网PHY 芯片之 MII  MDIO接口详解
 FPGA/ZYNQ/千兆以太网接口
 FPGA/ZYNQ/实时时钟 DS1302
+FPGA/ZYNQ/开发/常见
 FPGA/ZYNQ/扩展口 J10
 FPGA/ZYNQ/扩展口 J11
 FPGA/ZYNQ/有源晶振
