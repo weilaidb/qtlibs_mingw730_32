@@ -1,0 +1,8 @@
+<form>
+<h3 align="center">人口调查</h3>
+姓名：<input type="text" name="username" size=20><br/>
+性别：<input type="text" name="sex" size=4 maxlength=1>＆nbsp;＆nbsp;
+年龄：<input type="text" name="sex" size=4 maxlength=3><br/>
+居住地址：<input type="text" name="address" size=50 value="吉林省长春市"><br/>
+用户照片：<input type="file" name="photo"/>
+</form>

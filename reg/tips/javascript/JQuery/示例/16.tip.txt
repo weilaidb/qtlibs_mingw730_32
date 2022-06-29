@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自动隐藏菜单2</title>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#flag").mouseover(function () {
+                $("#menu").fadeIn(700);//淡入效果
+            });
+            $("#menu").hover(null, function () {
+                $("#menu").fadeOut(700);//淡出效果
+            });
+        });
+
+    </script>
+
+
+</head>
+
+<body>
+
+<img src="images/title.gif" width="30" height="80" id="flag"/>
+<div id="menu">
+    <ul>
+        <li><a href="www.mingribook.com">图书介绍</a></li>
+        <li><a href="www.mingribook.com">新书预告</a></li>
+        ......<!--省略了其他菜单项的代码-->
+        <li><a href="www.mingribook.com">联系我们</a></li>
+    </ul>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+19.4.4　过滤选择器
+过滤选择器包括简单过滤器、内容过滤器、可见性过滤器、表单对象的属性过滤器和子元素选择器等。下面进行详细介绍。
+1.简单过滤器
+简单过滤器是指以冒号开头，通常用于实现简单过滤效果的过滤器。例如，匹配找到的第一个元素等。jQuery提供的简单过滤器如表19.1所示。
+【例19.10】实现一个带表头的双色表格。
+实例位置：光盘\MR\源码\第19章\19.10
+Step 1　创建一个名称为index.html的文件，在该文件的＜head＞标记中应用下
+
+面的语句引入jQuery库。
+＜script type="text/javascript" src="JS/jquery-1.6.1.min.js"＞＜/script＞
+Step 2　在页面的＜body＞标记中，添加一个5行5列的表格，关键代码如下：
+＜table width="98%"border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#3F873B"＞
+＜tr＞
+＜td width="11%"height="27"＞编号＜/td＞
+＜td width="14%"＞祝福对象＜/td＞
+＜td width="12%"＞祝福者＜/td＞
+＜td width="33%"＞字条内容＜/td＞
+＜td width="30%"＞发送时间＜/td＞
+＜/tr＞
+＜tr＞
+＜td height="27"＞1＜/td＞
+＜td＞琦琦＜/td＞
+＜td＞妈妈＜/td＞
+＜td＞愿你健康快乐地成长！＜/td＞
+＜td＞2011-07-05 13:06:06＜/td＞
+＜/tr＞
+......＜!--此处省略了其他行的代码--＞
+＜/table＞
+Step 3　编写CSS样式，通过元素选择符设置单元格的样式，并且编写th、even和odd 3个类选择符，用于控制表格中相应行的样式，具体代码如下：
+style type="text/css"＞
+td{
+font-size:12px;/*设置单元格的样式*/
+padding:3px;/*设置内边距*/
+}
+.th{
+background-color:#B6DF48;/*设置背景颜色*/
+font-weight:bold;/*设置文字加粗显示*/
+text-align:center;/*设置文字居中对齐*/
+}
+.even{
+background-color:#E8F3D1;/*设置偶数行的背景颜色*/
+}
+.odd{
+background-color:#F9FCEF;/*设置奇数行的背景颜色*/
+}
+＜/style＞
+Step 4　在引入jQuery库的代码下方编写jQuery代码，实现匹配div元素的同辈元素p，并为其添加CSS类，具体代码如下：
+
+
+＜script type="text/javascript"＞
+$(document).ready(function(){
+$("tr:even").addClass("even");//设置奇数行所用的CSS类
+$("tr:odd").addClass("odd");//设置偶数行所用的CSS类
+$("tr:first").removeClass("even");//移除even类
+$("tr:first").addClass("th");//添加th类
+});
+＜/script＞
+在上面的代码中，为表格的第一行添加th类时，需要先将该行应用的even类移除，然后进行添加，否则，新添加的CSS类将不起作用。
+运行本实例，将显示如图19.28所示的效果。其中，第一行为表头，编号为1和3的行采用的是偶数行样式，编号为2和4的行采用的是奇数行的样式。
+图　19.28　带表头的双色表格 
+2.内容过滤器
+内容过滤器就是通过DOM元素包含的文本内容以及是否含有匹配的元素进行筛选。内容过滤器共包括:contains(text)、:empty、:has(selector)和:parent4种，如表19.2所示。
+
+
+
+
+
+【例19.11】应用内容过滤器匹配为空的单元格、不为空的单元格和包含指定文本的单元格。
+实例位置：光盘\MR\源码\第19章\19.11
+Step 1　创建一个名称为index.html的文件，在该文件的＜head＞标记中应用下面的语句引入jQuery库。
+＜script type="text/javascript" src="JS/jquery-1.6.1.min.js"＞＜/script＞
+Step 2　在页面的＜body＞标记中，添加一个5行5列的表格，关键代码如下：
+＜table width="98%"border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#3F873B"＞
+......＜!--此处省略了其他行的代码--＞
+＜tr＞
+＜td height="27"＞4＜/td＞
+＜td＞明日科技＜/td＞
+＜td＞wgh＜/td＞
+＜td＞＜/td＞
+＜td＞2011-07-05 13:46:06＜/td＞
+＜/tr＞
+＜/table＞
+Step 3　在引入jQuery库的代码下方编写jQuery代码，实现匹配div元素的同辈元素p，并为其添加CSS类，具体代码如下：
+＜script type="text/javascript"＞
+$(document).ready(function(){
+$("td:parent").css("background-color","#E8F3D1");//为不为空的单元格设置背景颜色
+$("td:empty").html("暂无内容");//为空的单元格添加默认内容
+$("td:contains('wgh')").css("color","red");//将含有文本wgh的单元格的文字颜色设置为红色
+});
+＜/script＞
+运行本实例，将显示如图19.29所示的效果。其中，内容为wgh的单元格元素被标记为红色，编号为4的行中“字条内容”在设计时为空，这里应用jQuery为其添加文本“暂无内容”，除该单元格外的其他单元格的背景颜色均被设置为#E8F3D1色。设计效果如图19.30所示。

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可见性过滤器</title>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var visibleVal = $("input:visible").val();//取得显示的input的值
+            var hiddenVal1 = $("input:hidden:eq(0)").val();//取得隐藏的input的值
+            var hiddenVal2 = $("input:hidden:eq(1)").val();//取得隐藏的input的值
+            alert(visibleVal + "\n\r" + hiddenVal1 + "\n\r" + hiddenVal2);//弹出取得的信息
+        });
+    </script>
+</head>
+
+<body>
+
+<input type="text" value="显示的input元素">
+<input type="text" value="我是不显示的input元素" style="display:none">
+<input type="hidden" value="我是隐藏域">
+
+
+</body>
+</html>

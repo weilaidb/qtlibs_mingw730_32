@@ -1,0 +1,15 @@
+3.7.6 7.6 用户 LED
+AX7010 开发板的 PL 部分连接了 4 个 LED 发光二极管。4 个用户 LED 部分的原理图如图 6- 6-1，LED 灯的信号连接到 PL 部分 BANK35 的 IO 上。当 PL 部分 BANK35 的 IO 引脚输出为逻辑 0
+时，LED 会被点亮，出为逻辑 1 时，LED 会被熄灭。
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 62 / 285
+图 7-13 PL 用户 LED 原理图
+图 7-14 为这四个 LED 实物图
+图 7-15 PL 用户 LED 实物图
+PL 用户 LED 引脚分配：
+信号名称 ZYNQ 引脚名 ZYNQ 引脚号 备注
+LED1 IO_L23P_T3_35 M14 PL用户LED1灯
+LED2 IO_L23N_T3_35 M15 PL用户LED2灯
+LED3 IO_L24P_T3_35 K16 PL用户LED3灯
+LED4 IO_L24N_T3_35 J16 PL用户LED4灯

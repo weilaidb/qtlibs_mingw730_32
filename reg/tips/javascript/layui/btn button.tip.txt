@@ -1,0 +1,8 @@
+layui-bg-red;按钮
+layui-bg-red;赤色
+layui-bg-orange";橙色
+layui-bg-green;墨绿
+layui-bg-cyan;藏青
+layui-bg-blue;蓝色
+layui-bg-black;雅黑
+layui-bg-gray;银灰

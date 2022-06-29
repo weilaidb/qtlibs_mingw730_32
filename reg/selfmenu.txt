@@ -477,6 +477,7 @@ CXX/class/多态 继承
 CXX/class/多态 继承 virtual
 CXX/class/多态 继承 virtual Board
 CXX/class/多态 继承 virtual Board 2
+CXX/class/多态 继承 virtual Board array
 CXX/define/pub
 CXX/eg
 CXX/externc __cplusplus
@@ -608,6 +609,87 @@ Docker/自定义docker镜像
 Docker/镜像路径
 ERLANG/eg
 ERLANG/资料路径 address
+FPGA/ZYNQ/AHB
+FPGA/ZYNQ/AMBA
+FPGA/ZYNQ/APB
+FPGA/ZYNQ/AXI
+FPGA/ZYNQ/AXI-GP
+FPGA/ZYNQ/DDR3 DRAM
+FPGA/ZYNQ/EEPROM 24LC04 e2prom
+FPGA/ZYNQ/FSBL
+FPGA/ZYNQ/HDL
+FPGA/ZYNQ/HDMI 接口
+FPGA/ZYNQ/MDI MDX
+FPGA/ZYNQ/MRCC
+FPGA/ZYNQ/PL
+FPGA/ZYNQ/PS
+FPGA/ZYNQ/PS PMOD 连接器
+FPGA/ZYNQ/QSPI Flash
+FPGA/ZYNQ/RGMII
+FPGA/ZYNQ/RGMII时序
+FPGA/ZYNQ/RTL
+FPGA/ZYNQ/SD 卡槽
+FPGA/ZYNQ/USB JTAG
+FPGA/ZYNQ/USB 转串口
+FPGA/ZYNQ/USB2.0
+FPGA/ZYNQ/USB2.0 HOST
+FPGA/ZYNQ/USB2.0 OTG
+FPGA/ZYNQ/Verilog/module/3-8 译码器
+FPGA/ZYNQ/Verilog/module/D 触发器
+FPGA/ZYNQ/Verilog/module/Memory 型
+FPGA/ZYNQ/Verilog/module/Reg 型
+FPGA/ZYNQ/Verilog/module/eg
+FPGA/ZYNQ/Verilog/module/led
+FPGA/ZYNQ/Verilog/module/led2
+FPGA/ZYNQ/Verilog/module/rom
+FPGA/ZYNQ/Verilog/module/三态门
+FPGA/ZYNQ/Verilog/module/与门
+FPGA/ZYNQ/Verilog/module/两级 D 触发器
+FPGA/ZYNQ/Verilog/module/乘法器
+FPGA/ZYNQ/Verilog/module/伪双口 RAM
+FPGA/ZYNQ/Verilog/module/全加器
+FPGA/ZYNQ/Verilog/module/半加器
+FPGA/ZYNQ/Verilog/module/单口 RAM
+FPGA/ZYNQ/Verilog/module/单口 ROM
+FPGA/ZYNQ/Verilog/module/带异步复位同步清零的 D 触发器
+FPGA/ZYNQ/Verilog/module/带异步复位的 D 触发器
+FPGA/ZYNQ/Verilog/module/异或
+FPGA/ZYNQ/Verilog/module/或门
+FPGA/ZYNQ/Verilog/module/数据选择器
+FPGA/ZYNQ/Verilog/module/有限状态机
+FPGA/ZYNQ/Verilog/module/比较器
+FPGA/ZYNQ/Verilog/module/真双口 RAM
+FPGA/ZYNQ/Verilog/module/移位寄存器
+FPGA/ZYNQ/Verilog/module/非门
+FPGA/ZYNQ/Verilog/基础模块介绍
+FPGA/ZYNQ/Verilog/拼接运算符
+FPGA/ZYNQ/Verilog/时序逻辑
+FPGA/ZYNQ/Verilog/时序逻辑 D 触发器
+FPGA/ZYNQ/Verilog/添加时序约束
+FPGA/ZYNQ/Verilog/激励文件
+FPGA/ZYNQ/Verilog/组合逻辑
+FPGA/ZYNQ/Verilog/赋值运算符
+FPGA/ZYNQ/ZYNQ 开发板硬件介绍
+FPGA/ZYNQ/ZYNQ 的开发也是先硬件后软件的方法
+FPGA/ZYNQ/ZYNQ 简介
+FPGA/ZYNQ/ZYNQ 芯片开发流程的简介
+FPGA/ZYNQ/ZYNQ7000
+FPGA/ZYNQ/ZYNQ7000 软件安装 vitis vivado 2019.2
+FPGA/ZYNQ/ZYNQ7000 软件安装 vitis vivado 2019.2 license 2037
+FPGA/ZYNQ/ZYNQ7000 软件安装 vitis vivado 2019.2 license 2037 xilinx_ise.lic
+FPGA/ZYNQ/eg
+FPGA/ZYNQ/mdio
+FPGA/ZYNQ/mdio 以太网PHY 芯片之 MII  MDIO接口详解
+FPGA/ZYNQ/千兆以太网接口
+FPGA/ZYNQ/实时时钟 DS1302
+FPGA/ZYNQ/开发/常见
+FPGA/ZYNQ/扩展口 J10
+FPGA/ZYNQ/扩展口 J11
+FPGA/ZYNQ/有源晶振
+FPGA/ZYNQ/用户 LED
+FPGA/ZYNQ/用户 LED PL
+FPGA/ZYNQ/用户按键
+FPGA/ZYNQ/用户按键 PL
 FPGA/new/delay 延时
 FPGA/new/eg
 FPGA/new/initial
@@ -618,6 +700,7 @@ FPGA/new/reg
 FPGA/new/timescale
 FPGA/介绍
 FPGA/介绍 理论
+FPGA/开发板/ALINX/AX7010
 FPGA/开发板/ALINX/AX7020
 FPGA/开发板/Qemu/使用Qemu模拟vexpress-a9搭建模拟开发板
 FPGA/开发板/开发板购买
@@ -673,6 +756,7 @@ JAVA/JSP/BootStrap/include引入框架 http
 JAVA/JSP/BootStrap/include引入框架2
 JAVA/JSP/BootStrap/session getAttribute setAttribute
 JAVA/JSP/BootStrap/span
+JAVA/JSP/BootStrap/示例/常用项tab较多时滚动显示
 JAVA/JSP/File文件/File
 JAVA/JSP/File文件/File BufferedInputStream
 JAVA/JSP/File文件/File BufferedOutputStream
@@ -728,9 +812,11 @@ JAVA/JSP/form/button submit action 在一个页面 跳转后返回
 JAVA/JSP/form/checkbox
 JAVA/JSP/form/eg
 JAVA/JSP/form/eg2
+JAVA/JSP/form/eg3
 JAVA/JSP/form/eg3 fileup
 JAVA/JSP/form/embed
 JAVA/JSP/form/file enctype multipart
+JAVA/JSP/form/file2
 JAVA/JSP/form/font
 JAVA/JSP/form/hidden
 JAVA/JSP/form/img与image
@@ -738,9 +824,11 @@ JAVA/JSP/form/input text
 JAVA/JSP/form/radio
 JAVA/JSP/form/radio eg
 JAVA/JSP/form/reset
+JAVA/JSP/form/reset2
 JAVA/JSP/form/select
 JAVA/JSP/form/select eg
 JAVA/JSP/form/select option
+JAVA/JSP/form/select option (xm-select)
 JAVA/JSP/form/submit
 JAVA/JSP/form/table
 JAVA/JSP/form/taglib
@@ -816,6 +904,7 @@ JAVA/SpringBoot/application.properties 转yml
 JAVA/SpringBoot/application.yml DD
 JAVA/SpringBoot/application.yml 修改端口
 JAVA/SpringBoot/application.yml 相关说明
+JAVA/SpringBoot/freemarker .ftl
 JAVA/SpringBoot/freemarker 问题说明
 JAVA/SpringBoot/gradle 下载源配置 阿里云
 JAVA/SpringBoot/http
@@ -872,10 +961,16 @@ JAVA/SpringBoot/run jar
 JAVA/SpringBoot/run jar port
 JAVA/SpringBoot/search key 搜索关键字
 JAVA/SpringBoot/sqlite3驱动
+JAVA/SpringBoot/update jar包后，点击编辑按钮无反应
 JAVA/SpringBoot/代码分析
 JAVA/SpringBoot/工程Project/导入 dependency dependencies
 JAVA/SpringBoot/工程Project/导入 dependency dependencies2
 JAVA/SpringBoot/工程Project/新建工程 new project
+JAVA/SpringBoot/常见问题/Idea SpringBoot项目页面、Js修改不生效的问题
+JAVA/SpringBoot/常见问题/update jar包后，点击编辑按钮无反应
+JAVA/SpringBoot/常见问题/修改name js后，不生效
+JAVA/SpringBoot/常见问题/搜索查询后，后面列表无内容了
+JAVA/SpringBoot/常见问题/界面点击用例 搜索等无反应
 JAVA/SpringBoot/术语
 JAVA/SpringBoot/简介
 JAVA/SpringBoot/简介2
@@ -994,6 +1089,7 @@ JavaScript/JQuery/code/遍历 - 祖先5 parentsUntil
 JavaScript/JQuery/code/链(Chaining)
 JavaScript/JQuery/code/链(Chaining) 2
 JavaScript/JQuery/eg
+JavaScript/JQuery/header src
 JavaScript/JQuery/jQuery 入口函数与 JavaScript 入口函数的区别
 JavaScript/JQuery/jQuery 安装
 JavaScript/JQuery/什么是 jQuery
@@ -1004,6 +1100,27 @@ JavaScript/JQuery/效果- 隐藏和显示
 JavaScript/JQuery/标签引用
 JavaScript/JQuery/标签引用 替代方案
 JavaScript/JQuery/标签引用 替代方案2
+JavaScript/JQuery/示例/1
+JavaScript/JQuery/示例/10
+JavaScript/JQuery/示例/11
+JavaScript/JQuery/示例/12
+JavaScript/JQuery/示例/13
+JavaScript/JQuery/示例/14
+JavaScript/JQuery/示例/15
+JavaScript/JQuery/示例/16
+JavaScript/JQuery/示例/17
+JavaScript/JQuery/示例/18
+JavaScript/JQuery/示例/19 hover
+JavaScript/JQuery/示例/2
+JavaScript/JQuery/示例/3
+JavaScript/JQuery/示例/4
+JavaScript/JQuery/示例/5
+JavaScript/JQuery/示例/6
+JavaScript/JQuery/示例/7
+JavaScript/JQuery/示例/8
+JavaScript/JQuery/示例/9
+JavaScript/JQuery/示例/w3school/1
+JavaScript/JQuery/示例/w3school/2
 JavaScript/JQuery/语法/事件
 JavaScript/JQuery/语法/用法
 JavaScript/JQuery/选择器
@@ -1049,12 +1166,52 @@ JavaScript/func/toString
 JavaScript/func/try...catch...finally
 JavaScript/func/格式化format
 JavaScript/include引用
+JavaScript/layui/abc
+JavaScript/layui/alert
+JavaScript/layui/alert msg
+JavaScript/layui/btn button
+JavaScript/layui/btn button 可跳转
+JavaScript/layui/btn button 图标
+JavaScript/layui/btn button 按钮容器
+JavaScript/layui/btn button 按钮组
+JavaScript/layui/btn button 标准
+JavaScript/layui/btn button 颜色
+JavaScript/layui/eg
+JavaScript/layui/form
+JavaScript/layui/form 单选框
+JavaScript/layui/form 复选框
+JavaScript/layui/form 密码框
+JavaScript/layui/form 开关
+JavaScript/layui/form 文本域
+JavaScript/layui/form 立即提交
+JavaScript/layui/form 输入框
+JavaScript/layui/form 选择框
+JavaScript/layui/form2
+JavaScript/layui/header include
+JavaScript/layui/header include static
+JavaScript/layui/hello world
 JavaScript/layui/layui.table 2
 JavaScript/layui/layui.table 导出excel
+JavaScript/layui/layui多表单验证提交
+JavaScript/layui/msg
+JavaScript/layui/nav 导航
+JavaScript/layui/nav 导航二级菜单
+JavaScript/layui/nav 导航图片和徽章
+JavaScript/layui/nav 导航跳转
+JavaScript/layui/nav 导航颜色
+JavaScript/layui/option 下拉菜单 下拉框
 JavaScript/layui/table
 JavaScript/layui/table 数据表格文档 - layui.table
+JavaScript/layui/use
+JavaScript/layui/入门指南/简介
+JavaScript/layui/字体图标 ico
 JavaScript/log/console
 JavaScript/proc/replace h3 京东读书代码
+JavaScript/scripts/checkemail
+JavaScript/scripts/checkemail 禁止重复提交
+JavaScript/scripts/readcookie
+JavaScript/scripts/writecookie
+JavaScript/scripts/函数传参字符串
 JavaScript/src引用
 JavaScript/src引用说明
 JavaScript/timeout返回原页面
@@ -1234,6 +1391,7 @@ LINUX/命令行/crontab eg
 LINUX/命令行/crontab tomcat
 LINUX/命令行/eg
 LINUX/命令行/fgrep
+LINUX/命令行/flash
 LINUX/命令行/getconf
 LINUX/命令行/grep
 LINUX/命令行/grep -Po
@@ -1609,6 +1767,7 @@ Python/scripts/web/app.run
 Python/scripts/web/eg.py
 Python/scripts/web/hello.py
 Python/scripts/web/下载包 install
+Python/scripts/xmlcheckok.py
 Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
 Python/soft/pip install 安装 with http
@@ -1782,6 +1941,8 @@ QT/添加头文件和链接库
 QT/版本Debug或Release宏 QT_DEBUG 和QT_NO_DEBUG
 QT/示例/随机数
 Setting/网页显示常用Tab切换
+SoftWare/AutoCad 2022
+SoftWare/FastStone Capture v9.7
 SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
@@ -1796,6 +1957,7 @@ TEST/RegExptest4
 TEST/RegExptest5
 Tools/Astyle格式化代码
 Tools/CMD快捷键
+Tools/Dreamweaver（DW）常用快捷键
 Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
 Tools/Emacs快捷键
@@ -1807,6 +1969,7 @@ Tools/UML/教程
 Tools/UML/文字
 Tools/VS Visual Studio快捷键
 Tools/VSCode快捷键
+Tools/Vivado中常用的快捷键
 Tools/dec to hex 十进制转十六进制
 Tools/git/git clone -i 指定文件
 Tools/git/git compare beyondcompare base local remote
@@ -1844,12 +2007,15 @@ Tools/ico生成在线工具
 Tools/package 0xdot 添加0x和逗号
 Tools/package 0xdot 自带0x 添加逗号
 Tools/powershell快捷键
+Tools/svn/local respository
 Tools/svn/order
 Tools/svn/order 忽略多值
 Tools/win10 快捷键
 Tools/win10 快捷键 win10双屏幕扩展使用
 Tools/十六进制颜色码转换成RGB颜色值
 Tools/十六进制颜色码转换成RGB颜色值2
+Tools/双拼输入法快捷键
+Tools/双拼输入法快捷键 练习
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
@@ -1878,6 +2044,8 @@ WeiLaiDb/Production/weilaix.war Version
 Windows/Fonts
 YAML/yml入门教程
 YAML/yml入门教程2
+data/开发板/AX7010 初始化打印
+data/开发板/AX7010/flash
 go/1/For-each range
 go/1/eg
 go/1/fmt.Println
@@ -1899,6 +2067,7 @@ path路径/Android手机拷贝路径
 path路径/常用文件夹
 字符/方向
 学习/小学生/英文电影
+学校/四年级电话
 宏Macro/Source insight/AppendBufLine
 宏Macro/Source insight/Ask 输入内容
 宏Macro/Source insight/CharFromAscii
@@ -1951,6 +2120,21 @@ path路径/常用文件夹
 术语/C/宏和内联函数的区别2
 术语/Linux/FIB Forward Information Base
 术语/Linux/FIB Forward Information Base 2
+术语/WEB/AJAX
+术语/WEB/ASP/ASP 简介
+术语/WEB/ASP/术语
+术语/WEB/CSS
+术语/WEB/DOM
+术语/WEB/XML
+术语/WEB/jQuery
+术语/WEB/jQuery中的事件
+术语/WEB/jQuery层级选择器
+术语/WEB/jQuery属性选择器
+术语/WEB/jQuery的下载与配置
+术语/WEB/jQuery的事件处理
+术语/WEB/jQuery的插件
+术语/WEB/jQuery过滤选择器
+术语/WEB/jQuery选择器
 术语/交换/eg
 术语/交换/中英文对照表
 术语/内核Kernel/eg
@@ -1985,6 +2169,7 @@ path路径/常用文件夹
 术语/网络/模拟信号
 术语/网络/物理层 规程 procedure
 检查单/结算
+歌曲/列表
 正则表达式/Office/WORD替换
 正则表达式/去除开头的数字
 正则表达式/去除空行
@@ -1992,6 +2177,7 @@ path路径/常用文件夹
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
 正则表达式/添加引号
+正则表达式/验证Email地址
 测试用例/TestCase/1
 用户说明书/EC管理 dd-x.y-SNAPSHOT.jar
 用户说明书/代码集autocodesets weilaix.war
@@ -2041,5 +2227,7 @@ path路径/常用文件夹
 设计/软件设计/TDD new/suits telnet
 设计/软件设计/eg
 设计/软件设计/语言设计的美妙
+设计/软件调试/eg
+设计/软件调试/联调过程中常见问题
 软件安装/dia/下载地址
 软件安装/dia/解决dia无法输入中文问题

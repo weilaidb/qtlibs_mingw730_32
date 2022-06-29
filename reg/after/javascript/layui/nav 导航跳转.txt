@@ -1,0 +1,1 @@
+<ul class="layui-nav" lay-filter="">$NL$TB<li class="layui-nav-item"><a href="\2">\1</a></li>$NL$NL</ul>$NL$NL<script>$NL//注意：导航 依赖 element 模块，否则无法进行功能性操作$NLlayui.use('element', function(){$NL  var element = layui.element;$NL  $NL  //…$NL});$NL</script>$NL$NL$NL================================================

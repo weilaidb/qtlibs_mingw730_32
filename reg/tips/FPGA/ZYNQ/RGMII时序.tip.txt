@@ -1,0 +1,98 @@
+RGMII时序
+
+Big_Gragon
+
+于 2020-12-22 21:26:44 发布
+
+6678
+ 收藏 34
+分类专栏： fpga
+版权
+
+fpga
+专栏收录该内容
+3 篇文章1 订阅
+订阅专栏
+来自https://www.cnblogs.com/moluoqishi/p/10846302.html
+
+一、前言
+
+　　网络通信中的PHY芯片接口种类有很多，之前接触过GMII接口的PHY芯片RTL8211EG。但GMII接口数量较多，本文使用RGMII接口的88E1512搭建网络通信系统。这类接口总线位宽小，可以降低电路成本，在实际项目中应用更广泛。
+
+二、从GMII过度到RGMII
+
+　　先看看GMII和RGMII主要的接口。
+
+GMII：
+
+发送 gmii_tx_clk gmii_tx_d[7:0] gmii_tx_en gmii_tx_er
+
+接收 gmii_rx_clk gmii_rx_d[7:0] gmii_rx_dv gmii_rx_er
+
+RGMII：
+
+发送 tx_clk tx_d[3:0] tx_ctrl
+
+接收 rx_clk rx_d[3:0] rx_ctrl
+
+
+
+　　为什么接口变少了？首先数据总线从时钟单边沿采样8bit转变为了双边沿采样4bit，从88E1512 Datasheet中时序图可以直观看出这一点。
+
+
+
+ 　　RGMII中上升沿发送一字节数据的低四位，下降沿发送剩余的高四位数据。接收端时钟双边沿采样，因此125MHZ*8bit = 125MHZ*4bit*2 = 1000Mbit/s。至于GMII中的数据有效和数据错误指示信号被ctrl信号复用：tx_ctrl在时钟tx_clk上升沿发送是tx_en，在下降沿发送是tx_en ^ tx_er。rx_ctrl在时钟rx_clk上升沿接收是rx_dv，在下降沿接收是rx_en ^ rx_er。综上，RGMII接口引脚数从25个降低到14个。
+
+三、add clock skew
+
+　　从上边的时序图分析，数据在时钟的边沿变化。因此如果不做额外处理，接收端无法稳定采样。为了解决这一问题，常见的做法是为时钟信号添加延时，使其边沿对准数据总线的稳定区间。可以在控制器端、PCB走线以及PHY芯片内部添加时钟偏移，本文使用最后一种方式实现。
+
+
+
+ 　　在第三阶段中添加延迟。数据发送方向，FPGA侧的TX_CLK信号不需要额外处理，也就是说FPGA发送与数据边沿对齐的时钟信号。TXD和TX_CLK信号波形如图。
+
+
+
+　　PHY内部会调整TX_CLK，使之能够稳定采样TXD。数据接收方向，由于RX_CLK由PHY提供，PHY芯片直接产生与数据中心对齐的时钟信号。RXD和RX_CLK信号波形如图。
+
+
+
+　　可见，使PHY芯片工作在延迟模式下时，FPGA单不需要添加额外的逻辑来保证稳定采样。发送方向直接将数据驱动时钟作为TX_CLK信号发送，接收方向直接利用RX_CLK对RXD信号采样。
+
+四、系统设计方案
+
+　　本文使用ZYNQ内部的MAC控制器实现数据链路层功能。但由于其接口为GMII，需要用到GMII_to_RGMII IP Core转换接口逻辑。上层网络协议则通过LWIP开源协议栈完成。首先配置ZYNQ IP，使能ENET1并以EMIO方式引出。
+
+
+
+ 
+
+　　系统硬件结构如图：
+
+
+
+五、I/O 时序约束
+
+　　在较高速设计场合下，输入输出接口部分很容易出现数据采样不稳定的现象。这时候就要通过Input delay，output delay约束以及STA来分析设计是否满足稳定采样需求。input/output delay是指数据相对于时钟的延迟，只有设置好上述两个数值，综合工具才会往正确的方向优化并给出合理的时序报告。
+
+ 　　FPGA与RGMII接口的PHY芯片之间的时序关系按照数据接口同步和数据采样方式属于源同步DDR采样。input delay约束对应接收方向，时序关系是中心对齐。output delay约束对应发送方向，时序关系是边沿对齐。前者由于很多时候不知道上游器件Tcko信息，会使用示波器测量有效数据窗口来计算。而后者因为是边沿对齐，通过示波器测量抖动窗口并使用skew based method计算。这部分笔者还没有亲身实践过，若有误欢迎指出。
+
+参考文献
+
+1 千兆以太网芯片88E1111 RGMII模式的驱动 - 我心狂野 - 博客园 http://www.cnblogs.com/shengansong/archive/2012/01/04/2311894.html
+
+2  RGMII布线指导 RGMII Layout Guide | 无线时代 http://www.witimes.com/rgmii-layout-guide/
+
+3 RGMII_PHY测试笔记1 基于开发板MiS603-X25-whilebreak-电子技术应用-AET-北大中文核心期刊-最丰富的电子设计资源平台 http://blog.chinaaet.com/whilebreak/p/46639
+
+4  千兆以太网芯片88E1111 RGMII模式的驱动 - 百度文库 https://wenku.baidu.com/view/d2cc412fff00bed5b9f31d49.html
+
+5 RGMII Interface Timing Considerations | Ethernet FMC http://ethernetfmc.com/rgmii-interface-timing-considerations/
+
+6 ALTERA AN 477: Designing RGMII Interfaces with FPGAs and HardCopy ASICs
+
+7 米联客 ESFP1512 以太网 SFP 光电卡教程
+
+8 Vivado使用误区与进阶——XDC约束技巧之I/O篇 (上) - neufeifatonju的博客 - CSDN博客 https://blog.csdn.net/neufeifatonju/article/details/80653172
+
+9 Vivado使用误区与进阶——XDC约束技巧之I/O篇 (下) - neufeifatonju的博客 - CSDN博客 https://blog.csdn.net/neufeifatonju/article/details/80450975

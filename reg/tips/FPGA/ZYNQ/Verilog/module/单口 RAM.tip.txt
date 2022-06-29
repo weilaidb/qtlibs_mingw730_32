@@ -1,0 +1,52 @@
+4.6.6 单口 RAM
+单口 RAM 的写地址与读地址共用一个地址，代码如下，其中 reg [7:0] ram [63:0]意思是定
+义了 64 个 8 位宽度的数据。其中定义了 addr_reg，可以保持住读地址，延迟一周期之后将数
+据送出。
+module top 
+(
+ input [7:0] data,
+ input [5:0] addr,
+ input wr,
+ input clk,
+ output [7:0] q 
+);
+reg [7:0] ram[63:0]; //declare ram 
+reg [5:0] addr_reg; //addr 
+register 
+always @ (posedge clk)
+begin
+ if (wr) //write 
+ ram[addr] <= data;
+ 
+ addr_reg <= addr;
+end
+assign q = ram[addr_reg]; //read 
+data 
+endmodule
+`timescale 1 ns/1 ns 
+module top_tb() ;
+reg [7:0] data ; 
+reg [5:0] addr ; 
+reg wr ;
+reg clk ;
+wire [7:0] q ;
+initial
+begin
+ data = 0 ;
+ addr = 0 ;
+ wr = 1 ;
+ clk = 0 ;
+ end
+always #10 clk = ~clk ;
+always @(posedge clk)
+begin
+ data <= data + 1'b1 ;
+ addr <= addr + 1'b1 ;
+end
+top t0(.data(data),
+ .addr(addr),
+ .clk(clk),
+ .wr(wr),
+ .q(q)) ;
+endmodule
+仿真结果如下，可以看到 q 的输出与写入的数据一致

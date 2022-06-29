@@ -1,0 +1,57 @@
+4.6.4 带异步复位同步清零的 D 触发器
+前面讲到异步复位独立于时钟操作，而同步清零则是同步于时钟信号下操作的，当然也不
+仅限于同步清零，也可以是其他的同步操作，其 RTL 图如下：
+代码如下，不同于异步复位，同步操作不能把信号放到敏感列表里
+module top(d, rst, clr, clk, q) ;
+input d ;
+input rst ;
+input clr ;
+input clk ;
+output reg q ;
+always @(posedge clk or negedge
+rst)
+begin
+ if (rst == 1'b0)
+ q <= 0 ;
+ else if (clr == 1'b1)
+ q <= 0 ;
+ else
+ q <= d ;
+end
+endmodule
+`timescale 1 ns/1 ns 
+module top_tb() ;
+reg d ;
+reg rst ;
+reg clr ;
+reg clk ;
+wire q ;
+initial
+begin
+ d = 0 ;
+ clk = 0 ;
+ forever
+ begin 
+ #({$random}%100)
+ d = ~d ;
+ end
+end
+initial
+begin
+ rst = 0 ;
+ clr = 0 ;
+ #200 rst = 1 ;
+ #200 clr = 1 ;
+ #100 clr = 0 ;
+end
+always #10 clk = ~clk ;
+top 
+t0(.d(d),.rst(rst),.clr(clr),.clk(cl
+k),
+.q(q)) ;
+endmodule
+仿真结果如下，可以看到 clr 信号拉高后，q 没有立即清零，而是在下个 clk 上升沿之后执
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 84 / 285
+行清零操作，也就是 clr 同步于 clk。

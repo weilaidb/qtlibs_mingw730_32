@@ -1,0 +1,17 @@
+<script type="text/javascript" src="./xm-select.js"></script>
+<!--<script type="text/javascript" src="./static/docs.js"></script>-->
+
+<div id="demo1" class="xm-select-demo"></div>
+
+<script>
+    var demo1 = xmSelect.render({
+        el: '#demo1',
+        tips: '你喜欢什么水果呢?',
+        data: [
+            {name: '水果', value: 1},
+            {name: '蔬菜', value: 2},
+            {name: '桌子', value: 3},
+            {name: '北京', value: 4},
+        ]
+    })
+</script>

@@ -1,0 +1,202 @@
+4.6.10 有限状态机
+在 verilog 里经常会用到有限状态机，处理相对复杂的逻辑，设定好不同的状态，根据触
+发条件跳转到对应的状态，在不同的状态下做相应的处理。有限状态机主要用到 always 及
+case 语句。下面以一个四状态的有限状态机举例说明。
+在程序中设计了 8 位的移位寄存器，在 Idle 状态下，判断 shift_start 信号是否为高，如果
+为高，进入 Start 状态，在 Start 状态延迟 100 个周期，进入 Run 状态，进行移位处理，如果
+shift_stop 信号有效了，进入 Stop 状态，在 Stop 状态，清零 q 的值，再跳转到 Idle 状态。
+Mealy 有限状态机，输出不仅与当前状态有关，也与输入信号有关，在 RTL 中会与输入信
+号有连接。
+module top 
+(
+ input shift_start,
+ input shift_stop,
+ input rst,
+ input clk,
+ input d,
+ output reg [7:0] q 
+);
+parameter Idle = 2'd0 ; //Idle state 
+parameter Start = 2'd1 ; //Start state 
+parameter Run = 2'd2 ; //Run state 
+parameter Stop = 2'd3 ; //Stop state 
+ 
+reg [1:0] state ; //statement 
+reg [4:0] delay_cnt ; //delay counter 
+always @(posedge clk or negedge rst)
+begin
+ if (!rst)
+ begin
+ state <= Idle ;
+ delay_cnt <= 0 ;
+ q <= 0 ;
+ end
+ else
+ case(state)
+ Idle : begin
+ if (shift_start)
+ state <= Start ;
+ end
+ Start : begin
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 90 / 285
+ if (delay_cnt == 5'd99)
+ begin
+ delay_cnt <= 0 ;
+ state <= Run ;
+ end
+ else
+ delay_cnt <= delay_cnt + 1'b1 ;
+ end
+ Run : begin
+ if (shift_stop)
+ state <= Stop ;
+ else
+ q <= {q[6:0], d} ;
+ end
+ Stop : begin
+ q <= 0 ;
+ state <= Idle ;
+ end
+ default: state <= Idle ;
+ endcase
+end 
+endmodule
+Moore 有限状态机，输出只与当前状态有关，与输入信号无关，输入信号只影响状态的改
+变，不影响输出，比如对 delay_cnt 和 q 的处理，只与 state 状态有关。
+module top 
+(
+ input shift_start,
+ input shift_stop,
+ input rst,
+ input clk,
+ input d,
+ output reg [7:0] q 
+);
+parameter Idle = 2'd0 ; //Idle state 
+parameter Start = 2'd1 ; //Start state 
+parameter Run = 2'd2 ; //Run state 
+parameter Stop = 2'd3 ; //Stop state 
+ 
+reg [1:0] current_state ; //statement 
+reg [1:0] next_state ;
+reg [4:0] delay_cnt ; //delay counter 
+//First part: statement transition 
+always @(posedge clk or negedge rst)
+begin
+ if (!rst)
+ current_state <= Idle ;
+ else
+ current_state <= next_state ;
+end
+//Second part: combination logic, judge statement transition 
+condition 
+always @(*)
+begin
+ case(current_state)
+ Idle : begin
+ if (shift_start)
+ next_state <= Start ;
+ else
+ next_state <= Idle ;
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 91 / 285
+ end
+ Start : begin
+ if (delay_cnt == 5'd99)
+ next_state <= Run ;
+ else
+ next_state <= Start ;
+ end
+ Run : begin
+ if (shift_stop)
+ next_state <= Stop ;
+ else
+ next_state <= Run ;
+ end
+ Stop : next_state <= Idle ;
+ default: next_state <= Idle ;
+ endcase
+end
+//Last part: output data 
+always @(posedge clk or negedge rst)
+begin
+ if (!rst)
+ delay_cnt <= 0 ;
+ else if (current_state == Start)
+ delay_cnt <= delay_cnt + 1'b1 ;
+ else
+ delay_cnt <= 0 ;
+end
+always @(posedge clk or negedge rst)
+begin
+ if (!rst)
+ q <= 0 ;
+ else if (current_state == Run)
+ q <= {q[6:0], d} ;
+ else
+ q <= 0 ;
+end 
+ 
+endmodule
+在上面两个程序中用到了两种方式的写法，第一种的 Mealy 状态机，采用了一段式的写
+法，只用了一个 always 语句，所有的状态转移，判断状态转移条件，数据输出都在一个 always
+语句里，缺点是如果状态太多，会使整段程序显的冗长。第二个 Moore 状态机，采用了三段
+式的写法，状态转移用了一个 always 语句，判断状态转移条件是组合逻辑，采用了一个 always
+语句，数据输出也是单独的 always 语句，这样写起来比较直观清晰，状态很多时也不会显得
+繁琐。
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 92 / 285
+Mealy 有限状态机 RTL 图
+Moore 有限状态机 RTL 图
+激励文件如下：
+`timescale 1 ns/1 ns 
+module top_tb() ;
+reg shift_start ;
+reg shift_stop ;
+reg rst ;
+reg clk ;
+reg d ;
+wire [7:0] q ;
+initial
+begin
+ rst = 0 ; 
+ clk = 0 ;
+ d = 0 ;
+ #200 rst = 1 ;
+ forever
+ begin
+ #({$random}%100)
+ d = ~d ;
+ end
+end
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 93 / 285
+initial
+begin
+ shift_start = 0 ;
+ shift_stop = 0 ;
+ #300 shift_start = 1 ;
+ #1000 shift_start = 0 ;
+ shift_stop = 1 ;
+ #50 shift_stop = 0 ;
+end
+always #10 clk = ~clk ;
+top t0 
+(
+ .shift_start(shift_start),
+ .shift_stop(shift_stop),
+ .rst(rst),
+ .clk(clk),
+ .d(d),
+ .q(q) 
+);
+endmodule
+仿真结果如下：
+总结
+本文档介绍了组合逻辑以及时序逻辑中常用的模块，其中有限状态机较为复杂，但经常用
+到，希望大家能够深入理解，在代码中多运用，多思考，有利于快速提升水平。

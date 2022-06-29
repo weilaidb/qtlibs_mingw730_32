@@ -1,0 +1,45 @@
+4.6.2 两级 D 触发器
+软件是按照两级 D 触发器的模型进行时序分析的，具体可以分析在同一时刻两个 D 触发
+器输出的数据有何不同，其 RTL 图如下：
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 81 / 285
+代码如下： 激励文件如下：
+module top(d, clk, q, q1) ;
+input d ;
+input clk ;
+output reg q ;
+output reg q1 ;
+always @(posedge clk)
+begin
+ q <= d ;
+end
+always @(posedge clk)
+begin
+ q1 <= q ;
+end
+ 
+endmodule
+`timescale 1 ns/1 ns 
+module top_tb() ;
+reg d ;
+reg clk ;
+wire q ;
+wire q1 ;
+initial
+begin
+ d = 0 ;
+ clk = 0 ;
+ forever
+ begin 
+ #({$random}%100)
+ d = ~d ;
+ end
+end
+always #10 clk = ~clk ;
+top 
+t0(.d(d),.clk(clk),.q(q),.q1(q1)) ;
+endmodule
+仿真结果如下，可以看到 t0 时刻，d 为 0，q 输出为 0，t1 时刻，q 随着 d 的数据变化而
+变化，而此时钟跳变之前 q 的值仍为 0，那么 q1 的值仍为 0，t2 时刻，时钟跳变前 q 的值为
+1，则 q1 的值相应为 1，q1 相对于 q 落后一个周期。

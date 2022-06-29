@@ -1,0 +1,3 @@
+layui.use(['table', 'layer', 'jquery', 'form', 'laypage', 'excel','dropdown'], function () {
+        //
+});

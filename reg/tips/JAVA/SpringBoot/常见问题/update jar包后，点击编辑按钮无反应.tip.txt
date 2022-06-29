@@ -1,0 +1,30 @@
+更新版本后，
+ 1008  cd /root && nohup java -jar ~/dd-0.4-SNAPSHOT.jar --server.port=8888
+ 1009  pwd
+ 1010  find / > findlist
+ 1011  cat findlist | grep dd
+ 1012  cat findlist | grep dd | grep jar
+ 1013  history 
+[root@weilaidb] ~
+$ 
+[root@weilaidb] ~
+$ 
+[root@weilaidb] ~
+$ cd /root && nohup java -jar ~/dd-0.4-SNAPSHOT.jar --server.port=9999
+nohup: ignoring input and appending output to 'nohup.out'
+
+
+同样的文件，更新后，无法正常更新common.js或index.html,why ?
+更新端口号变为正常，这个是啥道理
+
+
+
+
+===================原来数据被解压在了，/tmp路径下了[删除/tmp也不好使?why?重启也不好使]
+$ diff findlist findlist2 
+81a82,86
+> /tmp/tomcat.9999.1440441688013340607
+> /tmp/tomcat.9999.1440441688013340607/work
+> /tmp/tomcat.9999.1440441688013340607/work/Tomcat
+> /tmp/tomcat.9999.1440441688013340607/work/Tomcat/localhost
+> /tmp/tomcat.9999.1440441688013340607/work/Tomcat/localhost/ROOT

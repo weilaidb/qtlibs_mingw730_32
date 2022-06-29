@@ -1,0 +1,28 @@
+RGMII 播报 编辑 讨论 上传视频
+本词条缺少概述图，补充相关内容使词条更完整，还能快速升级，赶紧来编辑吧！
+RGMII（Reduced Gigabit Media Independent Interface）是Reduced GMII（吉比特介质独立接口）。RGMII均采用4位数据接口，工作时钟125MHz，并且在上升沿和下降沿同时传输数据，因此传输速率可达1000Mbps。
+中文名精简吉比特介质独立接口外文名Reduced Gigabit Media Independent Interface特    点1000M网络接口，4线传输数据
+目录
+1 简介
+2 通信原理
+简介编辑 播报
+同时兼容MII所规定的10/100 Mbps工作方式，支持传输速率：10M/100M/1000Mb/s ，其对应clk 信号分别为：2.5MHz/25MHz/125MHz。RGMII数据结构符合IEEE以太网标准，接口定义见IEEE 802.3-2000。
+采用RGMII的目的是降低电路成本，使实现这种接口的器件的引脚数从25个减少到14个。
+通信原理编辑 播报
+一般用于MAC和PHY之间的通信。
+发送器：
+◎ GTX_CLK——吉比特TX..信号的时钟信号（125MHz）
+◎ TXD[3..0]——被发送数据
+◎ TX_CTL——发送控制
+注：在千兆速率下，向PHY提供GTX_CLK信号，TXD、TXEN、TXER信号与此时钟信号同步。否则，在10/100M速率下，PHY提供 TXCLK时钟信号，其它信号与此信号同步。其工作频率为25MHz（100M网络）或2.5MHz（10M网络）。
+接收器：
+◎ RX_CLK——接收时钟信号（从收到的数据中提取，因此与GTXCLK无关联）
+◎ RXD[3..0]——接收数据
+◎ RX_CTL——接收控制
+◎ COL——冲突检测（仅用于半双工状态）
+◎ CRS——载波监听
+管理配置（控制和状态信息）：
+◎ MDC——配置接口时钟
+◎ MDIO——配置接口I/O
+RGMII接口相对于GMII接口，在TXD和RXD上总共减少8根数据线。
+RGMII is a reduced pin count interface that can simplify design by reducing the interface pin count from the 25pins used in the GMII interface to 12. It can lower system cost compared to existing GMII or TBI interfaces by reducing the number of layers required to route high density networking solutions. Using RGMII, fewer pins are required for the MAC/switch ASIC, which can reduce the MAC/switch cost by enabling smaller die sizes than would be possible with GMII or TBI. However, the RGMII specification calls for a timing delay on both the receive signal and the transmit signal for each port that must be implemented in a board level trace. These trace lengths are typically arranged in a spiral on the board that takes approximately one square inch of board space per trace. Broadcom offers an alternative timing solution that eliminates the need for the timing delay traces. Assuming a one-inch space requirement per trace for both transmit and receive signals on 48 ports, elimination of the timing delay traces can save 96 square inches of layout space.
