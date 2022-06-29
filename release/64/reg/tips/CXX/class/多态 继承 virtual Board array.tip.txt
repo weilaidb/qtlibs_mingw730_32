@@ -1,0 +1,2 @@
+[基类;继承类]
+CBoardBase;CBoardMx
