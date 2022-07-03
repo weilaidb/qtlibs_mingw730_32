@@ -6,6 +6,8 @@
 #include <sys/time.h>
 #include <sys/fcntl.h>
 #include <assert.h>
+#include <stdarg.h>
+
 
 #include <assert.h>　　　　//设定插入点
 #include <ctype.h>　　　　 //字符处理
