@@ -1971,6 +1971,7 @@ Tools/UML/教程
 Tools/UML/文字
 Tools/VS Visual Studio快捷键
 Tools/VSCode快捷键
+Tools/VSCode快捷键2
 Tools/Vivado中常用的快捷键
 Tools/WORD快捷键
 Tools/dec to hex 十进制转十六进制
