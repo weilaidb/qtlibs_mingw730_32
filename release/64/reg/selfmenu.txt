@@ -1747,6 +1747,14 @@ Python/idea插件
 Python/idea配置说明
 Python/list/列表大小 len
 Python/main
+Python/new/eg
+Python/new/python 文本 单独处理字符串每个字符的方法汇总
+Python/new/python 文本 字符串开头或者结尾匹配
+Python/new/python文本 判断对象里面是否是类字符串
+Python/new/python文本 去掉字符串前后空格
+Python/new/python文本 字符与字符值转换
+Python/new/python文本 字符串对齐
+Python/new/python文本 拼接或合并字符串Python/new/python文本 字符串逐字符反转以及逐单词反转Python/new/python文本 maketrans和translate
 Python/pyQt5_import
 Python/qt/print
 Python/qt/pyQt5 app ico程序图标

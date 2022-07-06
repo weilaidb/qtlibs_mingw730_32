@@ -1,0 +1,48 @@
+python文本 字符串逐字符反转以及逐单词反转
+2022-07-04 15:20 更新
+python文本 字符串逐字符反转以及逐单词反转
+场景：
+
+字符串逐字符反转以及逐单词反转
+
+首先来看字符串逐字符反转，由于 python 提供了非常有用的切片，所以只需要一句就可以搞定了
+
+  >>> a='abc edf degd'  
+  >>> a[::-1]  
+  'dged fde cba'  
+  >>>   
+然后我们来看住单词反转
+
+1. 同样的我们也可以使用切片
+
+  >>> a='abc edf degd'  
+  >>> a.split ()[::-1]  
+  ['degd', 'edf', 'abc']  
+2. 可以使用原生方法 reverse
+
+  >>> a='abc edf degd'  
+  >>> result=a.split()  
+  >>> result  
+  ['abc', 'edf', 'degd']  
+  >>> result.reverse()  
+  >>> result  
+  ['degd', 'edf', 'abc']  
+  >>> result=' '.join (result)  
+  >>> result  
+  'degd edf abc'  
+  >>>   
+在反转的过程中，我意外发现 join 的另外使用方法
+
+  >>> a='abcd'  
+  >>> ' '.join (a)  
+  'a b c d'  
+  >>> a='abc edf degd'  
+  >>> ' '.join (a)  
+  'a b c   e d f   d e g d'  
+  >>>   
+它可以快速的再每个字符中间加上我们赋值的字符
+
+  >>> '+'.join (a)  
+  'a+b+c+ +e+d+f+ +d+e+g+d'  
+  >>>   
+综上所有，还是使用切片的方法最好，最推荐使用
