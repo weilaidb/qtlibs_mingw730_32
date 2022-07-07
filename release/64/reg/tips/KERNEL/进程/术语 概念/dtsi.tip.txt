@@ -1,0 +1,19 @@
+设备树的组成 DTS、DTC、DTB
+
+DTS 是设备树源码文件， DTB 是将DTS 编译以后得到的二进制文件。那么将.dts 编译为.dtbn需要什么工具呢？需要用到 DTC 工具。
+
+
+dtsi
+1、.dtsi 头文件
+
+设备树也支持头文件，设备树的头文件扩展名为.dtsi。在 imx6ull-alientekemmc.dts 中有如下所示内容:
+
+#include <dt-bindings/input/input.h>//引用.h文件
+#include "imx6ull.dtsi" //引用“imx6ull.dtsi”这个.dtsi 头文件
+1
+2
+一般.dtsi 文件用于描述 SOC 的内部外设信息，比如 CPU 架构、主频、外设寄存器地址范围，比如 UART、 IIC 等等。
+比如 imx6ull.dtsi 就是描述 I.MX6ULL 这颗 SOC 内部外设情况信息
+————————————————
+版权声明：本文为CSDN博主「为了维护世界和平_」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/WANGYONGZIXUE/article/details/115600699

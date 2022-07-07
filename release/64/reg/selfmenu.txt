@@ -1328,6 +1328,11 @@ KERNEL/调度/调度策略
 KERNEL/调度/进程标志
 KERNEL/进制相关/hex_to_bin
 KERNEL/进程/asmlinkage
+KERNEL/进程/术语 概念/dts
+KERNEL/进程/术语 概念/dts 位置
+KERNEL/进程/术语 概念/dts 示例a3m071.dts
+KERNEL/进程/术语 概念/dtsi
+KERNEL/进程/术语 概念/eg
 KERNEL/进程/进程标志 TASK STATUS
 LINUX/7z
 LINUX/CentOS/必备命令 order
@@ -1750,11 +1755,13 @@ Python/main
 Python/new/eg
 Python/new/python 文本 单独处理字符串每个字符的方法汇总
 Python/new/python 文本 字符串开头或者结尾匹配
+Python/new/python文本 maketrans和translate
 Python/new/python文本 判断对象里面是否是类字符串
 Python/new/python文本 去掉字符串前后空格
 Python/new/python文本 字符与字符值转换
 Python/new/python文本 字符串对齐
-Python/new/python文本 拼接或合并字符串Python/new/python文本 字符串逐字符反转以及逐单词反转Python/new/python文本 maketrans和translate
+Python/new/python文本 字符串逐字符反转以及逐单词反转
+Python/new/python文本 拼接或合并字符串
 Python/pyQt5_import
 Python/qt/print
 Python/qt/pyQt5 app ico程序图标
