@@ -1,3 +1,6 @@
+https://blog.csdn.net/WANGYONGZIXUE/article/details/115600699
+
+
 设备树的组成 DTS、DTC、DTB
 
 DTS 是设备树源码文件， DTB 是将DTS 编译以后得到的二进制文件。那么将.dts 编译为.dtbn需要什么工具呢？需要用到 DTC 工具。
