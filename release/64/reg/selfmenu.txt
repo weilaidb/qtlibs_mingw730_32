@@ -1217,6 +1217,8 @@ JavaScript/scripts/函数传参字符串
 JavaScript/src引用
 JavaScript/src引用说明
 JavaScript/timeout返回原页面
+JavaScript/将HTML输入值作为JavaScript函数参数传递
+JavaScript/将HTML输入值作为JavaScript函数参数传递2
 JavaScript/示例/account
 JavaScript/示例/alert
 JavaScript/示例/eg
