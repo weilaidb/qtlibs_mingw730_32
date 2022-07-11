@@ -373,6 +373,7 @@ C/PRINTF/DEFINE
 C/PRINTF/PRINTX PRINTY args
 C/PRINTF/SWITCH
 C/PRINTF/SWITCH args
+C/PRINTF/SWITCH args showmsg
 C/PRINTF/address
 C/PRINTF/color 1
 C/PRINTF/color 2 windows
@@ -549,6 +550,7 @@ DBMS/MySql/script/mldn.sql
 DBMS/MySql/setAutoCommit 事务
 DBMS/MySql/source sql script
 DBMS/MySql/table create eg
+DBMS/MySql/table create eg user
 DBMS/MySql/table create eg2
 DBMS/MySql/table create ssm
 DBMS/MySql/table drop
@@ -811,6 +813,7 @@ JAVA/JSP/form/button submit action
 JAVA/JSP/form/button submit action 在一个页面 跳转后返回
 JAVA/JSP/form/checkbox
 JAVA/JSP/form/eg
+JAVA/JSP/form/eg1
 JAVA/JSP/form/eg2
 JAVA/JSP/form/eg3
 JAVA/JSP/form/eg3 fileup
@@ -1215,6 +1218,8 @@ JavaScript/scripts/函数传参字符串
 JavaScript/src引用
 JavaScript/src引用说明
 JavaScript/timeout返回原页面
+JavaScript/将HTML输入值作为JavaScript函数参数传递
+JavaScript/将HTML输入值作为JavaScript函数参数传递2
 JavaScript/示例/account
 JavaScript/示例/alert
 JavaScript/示例/eg
@@ -1326,6 +1331,11 @@ KERNEL/调度/调度策略
 KERNEL/调度/进程标志
 KERNEL/进制相关/hex_to_bin
 KERNEL/进程/asmlinkage
+KERNEL/进程/术语 概念/dts
+KERNEL/进程/术语 概念/dts 位置
+KERNEL/进程/术语 概念/dts 示例a3m071.dts
+KERNEL/进程/术语 概念/dtsi
+KERNEL/进程/术语 概念/eg
 KERNEL/进程/进程标志 TASK STATUS
 LINUX/7z
 LINUX/CentOS/必备命令 order
@@ -1745,6 +1755,16 @@ Python/idea插件
 Python/idea配置说明
 Python/list/列表大小 len
 Python/main
+Python/new/eg
+Python/new/python 文本 单独处理字符串每个字符的方法汇总
+Python/new/python 文本 字符串开头或者结尾匹配
+Python/new/python文本 maketrans和translate
+Python/new/python文本 判断对象里面是否是类字符串
+Python/new/python文本 去掉字符串前后空格
+Python/new/python文本 字符与字符值转换
+Python/new/python文本 字符串对齐
+Python/new/python文本 字符串逐字符反转以及逐单词反转
+Python/new/python文本 拼接或合并字符串
 Python/pyQt5_import
 Python/qt/print
 Python/qt/pyQt5 app ico程序图标
@@ -1969,7 +1989,9 @@ Tools/UML/教程
 Tools/UML/文字
 Tools/VS Visual Studio快捷键
 Tools/VSCode快捷键
+Tools/VSCode快捷键2
 Tools/Vivado中常用的快捷键
+Tools/WORD快捷键
 Tools/dec to hex 十进制转十六进制
 Tools/git/git clone -i 指定文件
 Tools/git/git compare beyondcompare base local remote
@@ -2015,6 +2037,7 @@ Tools/win10 快捷键 win10双屏幕扩展使用
 Tools/十六进制颜色码转换成RGB颜色值
 Tools/十六进制颜色码转换成RGB颜色值2
 Tools/双拼输入法快捷键
+Tools/双拼输入法快捷键 小鹤双拼
 Tools/双拼输入法快捷键 练习
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/配置
@@ -2065,6 +2088,11 @@ go/test/eg
 go/test/hello
 path路径/Android手机拷贝路径
 path路径/常用文件夹
+人格品行/五戒十善
+人格品行/佛说女身有三种缺陷和十种业障
+人格品行/弟子规
+人格品行/弟子规 翻译
+人格品行/每日训诫检查
 字符/方向
 学习/小学生/英文电影
 学校/四年级电话
@@ -2231,3 +2259,4 @@ path路径/常用文件夹
 设计/软件调试/联调过程中常见问题
 软件安装/dia/下载地址
 软件安装/dia/解决dia无法输入中文问题
+软件安装/亿图图示/下载地址

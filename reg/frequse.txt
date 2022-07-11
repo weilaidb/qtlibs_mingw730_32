@@ -1,10 +1,9 @@
+脚本/VBS/SecureCrt/WaitForString $
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
 AutoTest/python/telnet test
-AutoTest/python/telnet111
-AutoTest/python/telnet1111
 BASH/alias/bashrc 加载配置
 BASH/alias/bashrc 加载配置 ubuntu20.04
 BASH/alias/generate生成
@@ -19,8 +18,13 @@ BASH/dev null(no output 2 1 )
 BASH/echo
 BASH/echo para1
 BASH/exec
+BASH/printf string 3
+BASH/printf说明
 BASH/replace nums in file or 提取数字自增1
+BASH/scripts/include.sh public
 BASH/set -x
 C/INCLUDE/常用头文件 header
 C/注释comments. insertFileHeader 头文件
-Setting/网页显示常用Tab切换
+JAVA/JSP/form/eg
+JAVA/JSP/form/eg1
+JAVA/JSP/form/eg2
