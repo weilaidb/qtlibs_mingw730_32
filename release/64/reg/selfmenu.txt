@@ -979,6 +979,8 @@ JAVA/SpringBoot/简介2
 JAVA/SpringBoot/视图技术
 JAVA/SpringBoot/视图技术 FreeMarker
 JAVA/SpringBoot/视图技术 Thymealeaf
+JAVA/SpringMVC/知识/Spring MVC【入门】
+JAVA/SpringMVC/知识/下载特别慢
 JAVA/class/static
 JAVA/css/include header
 JAVA/css/include header2
