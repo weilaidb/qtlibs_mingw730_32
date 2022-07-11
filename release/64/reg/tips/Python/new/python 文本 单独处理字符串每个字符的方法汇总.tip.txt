@@ -1,0 +1,50 @@
+python文本 单独处理每个字符的方法汇总
+2022-07-04 15:13 更新
+python 文本 单独处理字符串每个字符的方法汇总
+场景：
+
+用每次处理一个字符的方式处理字符串
+
+方法：
+
+1. 使用 list（str）
+
+  >>> a='abcdefg'  
+  >>> list(a)  
+  ['a', 'b', 'c', 'd', 'e', 'f', 'g']  
+  >>> aList=list(a)  
+  >>> for item in aList:  
+      print(item)#这里可以加入其他的操作，我们这里只是单纯使用print  
+    
+        
+  a  
+  b  
+  c  
+  d  
+  e  
+  f  
+  g  
+  >>>   
+2. 使用 for 遍历字符串
+
+
+  >>> a='abcdefg'  
+  >>> for item in a :  
+      print(item)#这里可以加入其他的操作，我们这里只是单纯使用print  
+    
+        
+  a  
+  b  
+  c  
+  d  
+  e  
+  f  
+  g  
+  >>>   
+3. 使用 for 解析字符串到 list 里面
+
+  >>> a='abcdefg'  
+  >>> result=[item for item in a]  
+  >>> result  
+  ['a', 'b', 'c', 'd', 'e', 'f', 'g']  
+  >>>

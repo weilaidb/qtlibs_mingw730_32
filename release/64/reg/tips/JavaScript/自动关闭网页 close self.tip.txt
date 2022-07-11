@@ -1,0 +1,7 @@
+<script>
+    function closewindow() {
+        window.close();
+    }
+</script>
+
+<button onclick="closewindow()">关闭</button>

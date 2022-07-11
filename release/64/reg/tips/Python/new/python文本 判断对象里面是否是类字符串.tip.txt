@@ -1,0 +1,47 @@
+python文本 判断对象里面是否是类字符串
+2022-07-04 15:13 更新
+python文本 判断对象里面是否是类字符串
+场景：
+
+判断对象里面是否是类字符串
+
+一般立刻会想到使用 type() 来实现
+
+
+  >>> def isExactlyAString(obj):  
+      return type(obj) is type('')  
+    
+  >>> isExactlyAString(1)  
+  False  
+  >>> isExactlyAString('1')  
+  True  
+  >>>   
+还有
+
+  >>> def isAString(obj):  
+      try :obj+''  
+      except:return False  
+      else:return True  
+    
+        
+  >>> isAString(1)  
+  False  
+ >>> isAString('1')  
+  True  
+  >>> isAString({1})  
+  False  
+  >>> isAString(['1'])  
+  False  
+  >>>   
+虽然思路上和方法使用上都没用问题，但是如果从 python 的特性出发，我们可以找到更好的方法：isinstance(obj, str)
+
+
+  >>> def isAString(obj):  
+      return isinstance(obj,str)  
+    
+  >>> isAString(1)  
+  False  
+ >>> isAString('1')  
+  True  
+  >>>   
+str 作为 python3 里面唯一的一个字符串类，我们可以检测字符串是否是 str 的实例
