@@ -1,4 +1,3 @@
-从中间某处排序字符串;Algorithm 算法/从中间某处排序字符串
 public use;BASH/alias/public use
 start;QT/QTimer/start
 QT UI设置;QT/UI/Settings eg
@@ -8,8 +7,4 @@ git address;Tools/git/常用git库 git address
 C/PRINTF/color简介;C/PRINTF/color简介
 <ignore>C/PRINTF/float;C/PRINTF/float
 <ignore>C/PRINTF/long_int;C/PRINTF/long_int
-JavaScript;JavaScript/将HTML输入值作为JavaScript函数参数传递2
-网页显示常用Tab切换;Setting/网页显示常用Tab切换
 JAVA/JSP/BootStrap/include javascript;JAVA/JSP/BootStrap/include javascript
-public use @web;BASH/alias/public use @web
-Setting/网页显示常用Tab切换;Setting/网页显示常用Tab切换
