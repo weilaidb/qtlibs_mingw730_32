@@ -2095,6 +2095,7 @@ path路径/常用文件夹
 人格品行/弟子规 翻译
 人格品行/每日训诫检查
 字符/方向
+学习/小学生/成绩ABCD
 学习/小学生/英文电影
 学校/四年级电话
 宏Macro/Source insight/AppendBufLine
