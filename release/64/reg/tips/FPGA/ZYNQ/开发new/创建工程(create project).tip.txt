@@ -32,3 +32,19 @@ File -Export --Hardware
 
 5.tools/Vitis
 2019之前的工程是SDK开发的, 在2019上没有launch sdk这个选项, 而是在tools/Vitis下
+
+6.导出硬件工程之后，需要手动拷贝, new applicatoin project
+https://blog.csdn.net/qq_40011737/article/details/121213825
+
+7. Bulid Project 
+
+8.Run As -- 烧写
+
+
+9.工程右键 -- Create Boot Image -- 生成 BOOT.bin
+D:/workspace/test_ps_helloworld_system/_ide/bootimage/BOOT.bin
+
+
+其它:
+.芯片初始化流程
+ug821-zynq-7000-swdev.pdf
