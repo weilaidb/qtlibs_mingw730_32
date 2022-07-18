@@ -2219,6 +2219,10 @@ path路径/常用文件夹
 电脑/戴尔Inspiron 15 7000 Series - 7537/拆机
 电脑/装机/Ghost 备份还原
 电脑/装机/Ghost 备份还原(dell inspiron-15-7537)
+算法/C/冒泡排序
+算法/C/快速排序法
+算法/C/计数排序
+算法/C/选择排序
 纪录片/视频及资料网址
 脚本/VBS/SecureCrt/Date
 脚本/VBS/SecureCrt/Send
