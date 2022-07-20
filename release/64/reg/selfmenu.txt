@@ -1319,6 +1319,7 @@ KERNEL/module/函数及宏说明
 KERNEL/module/模板
 KERNEL/module/模板 helloworld
 KERNEL/module/模板 here
+KERNEL/new/kmalloc kfree
 KERNEL/new/list_head
 KERNEL/大小写/tolower toupper
 KERNEL/宏/_IO
