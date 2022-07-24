@@ -29,3 +29,9 @@ public class ThymeleafHelloController {
 ##需要创建Controller从指定templates下对应的哪个html文件
 1.在templates下创建hello.html,内容仿照上面的
 2.创建Controller，指定html的名称，示例2
+
+
+问题列表:
+1./访问地址 报错
+--html写的有问题
+--原来就无法正常访问

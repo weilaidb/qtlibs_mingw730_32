@@ -944,8 +944,13 @@ JAVA/SpringBoot/new/Thymealeaf/text
 JAVA/SpringBoot/new/Thymealeaf/text 一行
 JAVA/SpringBoot/new/Thymealeaf/userlist
 JAVA/SpringBoot/new/Thymealeaf/utext
+JAVA/SpringBoot/new/Thymealeaf/传递参数/select option
+JAVA/SpringBoot/new/Thymealeaf/传递参数/th action
+JAVA/SpringBoot/new/Thymealeaf/传递参数/th inline
+JAVA/SpringBoot/new/Thymealeaf/传递参数/用户User
 JAVA/SpringBoot/new/Thymealeaf/用于spring mvc跳转访问Thyemaleaf模板
 JAVA/SpringBoot/new/Thymealeaf/界面设计/1
+JAVA/SpringBoot/new/Thymeleaf/Thymeleaf教程
 JAVA/SpringBoot/new/pom.xml app description
 JAVA/SpringBoot/new/pom.xml dependencies
 JAVA/SpringBoot/new/pom.xml dependencies 下载网址

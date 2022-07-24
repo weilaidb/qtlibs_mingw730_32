@@ -8,3 +8,5 @@ C/PRINTF/color简介;C/PRINTF/color简介
 <ignore>C/PRINTF/float;C/PRINTF/float
 <ignore>C/PRINTF/long_int;C/PRINTF/long_int
 JAVA/JSP/BootStrap/include javascript;JAVA/JSP/BootStrap/include javascript
+JAVA/SpringBoot/new/Thymealeaf/传递参数/用户User;JAVA/SpringBoot/new/Thymealeaf/传递参数/用户User
+JAVA/SpringBoot/new/Thymealeaf/eg;JAVA/SpringBoot/new/Thymealeaf/eg
