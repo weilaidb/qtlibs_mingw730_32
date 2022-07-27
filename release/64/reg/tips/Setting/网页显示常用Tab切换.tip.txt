@@ -10,3 +10,5 @@ C/PRINTF/color简介;C/PRINTF/color简介
 JAVA/JSP/BootStrap/include javascript;JAVA/JSP/BootStrap/include javascript
 JAVA/SpringBoot/new/Thymealeaf/传递参数/用户User;JAVA/SpringBoot/new/Thymealeaf/传递参数/用户User
 JAVA/SpringBoot/new/Thymealeaf/eg;JAVA/SpringBoot/new/Thymealeaf/eg
+JAVA/SpringBoot/依赖库 pom.xml;JAVA/SpringBoot/依赖库 pom.xml
+JAVA/JSP/JQuery/Navigator;JAVA/JSP/JQuery/Navigator
