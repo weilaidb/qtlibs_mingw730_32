@@ -978,7 +978,10 @@ JAVA/SpringBoot/update jar包后，点击编辑按钮无反应
 JAVA/SpringBoot/代码分析
 JAVA/SpringBoot/依赖库 pom.xml
 JAVA/SpringBoot/依赖库 pom.xml ajax
+JAVA/SpringBoot/依赖库 pom.xml eg
+JAVA/SpringBoot/依赖库 pom.xml hibernate
 JAVA/SpringBoot/依赖库 pom.xml lombok
+JAVA/SpringBoot/依赖库 pom.xml webjars jquery
 JAVA/SpringBoot/创建工程 create project pom.xml
 JAVA/SpringBoot/工程Project/导入 dependency dependencies
 JAVA/SpringBoot/工程Project/导入 dependency dependencies2
@@ -2281,4 +2284,4 @@ path路径/常用文件夹
 设计/软件设计/eg
 设计/软件设计/语言设计的美妙
 设计/软件调试/eg
-设计/软件调试/联调�
+设计/软件调试/联调�
