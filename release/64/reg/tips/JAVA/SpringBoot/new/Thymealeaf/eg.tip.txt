@@ -35,3 +35,7 @@ public class ThymeleafHelloController {
 1./访问地址 报错
 --html写的有问题
 --原来就无法正常访问
+
+2.创建代码的路径，必须在总包内
+package com.weilaidb.dd.controller;
+--com.weilaidb.dd 如果这个是总包名，则controller必须在这个子包中。

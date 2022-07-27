@@ -817,6 +817,7 @@ JAVA/JSP/form/eg
 JAVA/JSP/form/eg2
 JAVA/JSP/form/eg3
 JAVA/JSP/form/eg3 fileup
+JAVA/JSP/form/eg4
 JAVA/JSP/form/embed
 JAVA/JSP/form/file enctype multipart
 JAVA/JSP/form/file2
@@ -934,6 +935,7 @@ JAVA/SpringBoot/new/PropertySource 中文乱码
 JAVA/SpringBoot/new/Servlet
 JAVA/SpringBoot/new/SpringBootApplication
 JAVA/SpringBoot/new/SpringBootApplication java
+JAVA/SpringBoot/new/Thymealeaf/Setter Getter ToString
 JAVA/SpringBoot/new/Thymealeaf/application.yml DD
 JAVA/SpringBoot/new/Thymealeaf/eg
 JAVA/SpringBoot/new/Thymealeaf/header
@@ -947,6 +949,7 @@ JAVA/SpringBoot/new/Thymealeaf/utext
 JAVA/SpringBoot/new/Thymealeaf/传递参数/select option
 JAVA/SpringBoot/new/Thymealeaf/传递参数/th action
 JAVA/SpringBoot/new/Thymealeaf/传递参数/th inline
+JAVA/SpringBoot/new/Thymealeaf/传递参数/传参介绍
 JAVA/SpringBoot/new/Thymealeaf/传递参数/用户User
 JAVA/SpringBoot/new/Thymealeaf/用于spring mvc跳转访问Thyemaleaf模板
 JAVA/SpringBoot/new/Thymealeaf/界面设计/1
@@ -973,6 +976,9 @@ JAVA/SpringBoot/search key 搜索关键字
 JAVA/SpringBoot/sqlite3驱动
 JAVA/SpringBoot/update jar包后，点击编辑按钮无反应
 JAVA/SpringBoot/代码分析
+JAVA/SpringBoot/依赖库 pom.xml
+JAVA/SpringBoot/依赖库 pom.xml ajax
+JAVA/SpringBoot/依赖库 pom.xml lombok
 JAVA/SpringBoot/创建工程 create project pom.xml
 JAVA/SpringBoot/工程Project/导入 dependency dependencies
 JAVA/SpringBoot/工程Project/导入 dependency dependencies2
@@ -984,6 +990,7 @@ JAVA/SpringBoot/常见问题/搜索查询后，后面列表无内容了
 JAVA/SpringBoot/常见问题/界面点击用例 搜索等无反应
 JAVA/SpringBoot/术语
 JAVA/SpringBoot/版本version
+JAVA/SpringBoot/示例组件/验证码
 JAVA/SpringBoot/简介
 JAVA/SpringBoot/简介2
 JAVA/SpringBoot/视图技术
@@ -2274,7 +2281,4 @@ path路径/常用文件夹
 设计/软件设计/eg
 设计/软件设计/语言设计的美妙
 设计/软件调试/eg
-设计/软件调试/联调过程中常见问题
-软件安装/dia/下载地址
-软件安装/dia/解决dia无法输入中文问题
-软件安装/亿图图示/下载地址
+设计/软件调试/联调�
