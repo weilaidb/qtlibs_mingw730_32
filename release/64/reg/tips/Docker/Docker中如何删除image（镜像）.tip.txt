@@ -1,0 +1,71 @@
+Docker中如何删除image（镜像）
+
+无名大贝
+
+于 2018-07-03 16:24:29 发布
+
+162813
+ 收藏 52
+文章标签： docker
+
+华为云开发者联盟
+文章已被华为云开发者社区收录
+加入社区
+
+原文地址：http://yaxin-cn.github.io/Docker/how-to-delete-a-docker-image.html
+
+docker中删除images的命令是docker rmi，但有时候执行此命令并不能删除images
+
+[yaxin@ubox ~]$docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+eg_sshd             latest              ed9c93747fe1        45 hours ago        329.8 MB
+CentOS65            latest              e55a74a32125        2 days ago          360.6 MB
+[yaxin@ubox ~]$docker rmi ed9c93747fe1
+Untagged: ed9c93747fe16627be822ad3f7feeb8b4468200e5357877d3046aa83cc44c6af
+[yaxin@ubox ~]$docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+<none>              <none>              ed9c93747fe1        45 hours ago        329.8 MB
+CentOS65            latest              e55a74a32125        2 days ago          360.6 MB
+可以看出，image并没有被删除，只是他的tag被删除了，再次执行docker rmi IMAGE_ID只会报错
+
+[yaxin@ubox ~]$docker rmi ed9c93747fe1
+Error: image_delete: Conflict, ed9c93747fe1 wasn't deleted
+2014/03/22 15:58:27 Error: failed to remove one or more images
+查看docker的帮助会发现有两个与删除有关的命令rm和rmi
+
+rm Remove one or more containers
+rmi Remove one or more images
+
+这里有两个不同的单词，images和container。其中images很好理解，跟平常使用的虚拟机的镜像一个意思，相当于一个模版，而container则是images运行时的的状态。docker对于运行过的image都保留一个状态（container），可以使用命令docker ps来查看正在运行的container，对于已经退出的container，则可以使用docker ps -a来查看。 如果你退出了一个container而忘记保存其中的数据，你可以使用docker ps -a来找到对应的运行过的container使用docker commit命令将其保存为image然后运行。
+
+回到之前的问题，由于image被某个container引用（拿来运行），如果不将这个引用的container销毁（删除），那image肯定是不能被删除。
+
+所以想要删除运行过的images必须首先删除它的container。继续来看刚才的例子，
+
+[yaxin@ubox ~]$docker ps -a
+CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                   NAMES
+117843ade696        ed9c93747fe1        /bin/sh -c /usr/sbin   46 hours ago        Up 46 hours         0.0.0.0:49153->22/tcp   test_sshd
+可以看出ed9c93747fe1的image被117843ade696的container使用着，所以必须首先删除该container
+
+[yaxin@ubox ~]$docker rm 117843ade696
+Error: container_delete: Impossible to remove a running container, please stop it first
+2014/03/22 16:36:44 Error: failed to remove one or more containers
+出现错误，这是因为该container正在运行中(运行docker ps查看)，先将其关闭
+
+[yaxin@ubox ~]$docker stop 117843ade696
+117843ade696
+[yaxin@ubox ~]$docker rm 117843ade696
+117843ade696
+[yaxin@ubox ~]$docker rmi ed9c93747fe1
+Deleted: ed9c93747fe16627be822ad3f7feeb8b4468200e5357877d3046aa83cc44c6af
+Deleted: c8a0c19429daf73074040a14e527ad5734e70363c644f18c6815388b63eedc9b
+Deleted: 95dba4c468f0e53e5f1e5d76b8581d6740aab9f59141f783f8e263ccd7cf2a8e
+Deleted: c25dc743e40af6858c34375d450851bd606a70ace5d04e231a7fcc6d2ea23cc1
+Deleted: 20562f5714a5ce764845119399ef75e652e23135cd5c54265ff8218b61ccbd33
+Deleted: c8af1dc23af7a7aea0c25ba9b28bdee68caa8866f056e4f2aa2a5fa1bcb12693
+Deleted: 38fdb2c5432e08ec6121f8dbb17e1fde17d5db4c1f149a9b702785dbf7b0f3be
+Deleted: 79ca14274c80ac1df1333b89b2a41c0e0e3b91cd1b267b31bef852ceab3b2044
+[yaxin@ubox ~]$docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+CentOS65            latest              e55a74a32125        2 days ago          360.6 MB
+可以看出，image已经被删除。

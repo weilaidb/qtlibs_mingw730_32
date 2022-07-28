@@ -578,6 +578,7 @@ DEFINE/GENERATE
 DEFINE/GENERATESTRINGSAME
 DEFINE/UNUSED
 Docker/Bash
+Docker/Docker中如何删除image（镜像）
 Docker/Hello World
 Docker/JFrog
 Docker/JFrog weilai.war下载
@@ -1392,6 +1393,7 @@ LINUX/Ubuntu/vrf
 LINUX/Ubuntu/五笔输入法
 LINUX/Ubuntu/国内源
 LINUX/Ubuntu/国内源 Ubuntu 20.04 Linux更换源教程
+LINUX/Ubuntu/国内源 Ubuntu 22.04
 LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备命令 order systemtap
 LINUX/Ubuntu/必备软件 necessary software
@@ -2077,6 +2079,7 @@ Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12
+Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12 (ubuntu 22.02)
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.7.21
 Tools/生成文件名 filename
 UNITTEST/GTEST/ASSERT_EQ

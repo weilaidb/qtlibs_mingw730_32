@@ -39,6 +39,7 @@ TensorFlow的官方网址：https://tensorflow.google.cn/
 https://github.com/googlearchive/pywebsocket
 
 镜像:
+https://gitee.com/mirrors/linux_old1.git
 https://gitee.com/mirrors/linux.git
 https://gitee.com/caicry/FFmpeg.Mirrors
 https://mirrors.tuna.tsinghua.edu.cn/kernel/v5.x/linux-5.10.15.tar.xz

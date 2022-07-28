@@ -116,7 +116,7 @@ alias javajarport="java --server.port=9090 -jar "
 
 #docker
 alias dockerimages="docker images "
-alias dockerps="docker ps "
+alias dockerps="docker ps -a"
 alias dockerrun="docker run -i -t "
 alias dockerexec="docker exec -it "
 alias dockerattach="docker attach "
@@ -127,6 +127,10 @@ alias dockerstop="docker stop "
 alias dockerstart="docker start "
 alias dockertop="docker top "
 alias dockerversin="docker --version "
+#删除images,必须先删除container
+alias dockerrmi="docker rmi "
+#删除container
+alias dockerrm="docker rm "
 
 
 #python
