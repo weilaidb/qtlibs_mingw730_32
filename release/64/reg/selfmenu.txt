@@ -1386,6 +1386,7 @@ LINUX/Printk/KERN_WARNING
 LINUX/Printk/many equal signs
 LINUX/Printk/说明
 LINUX/Ubuntu/apt install
+LINUX/Ubuntu/apt install 22.02
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
 LINUX/Ubuntu/五笔输入法

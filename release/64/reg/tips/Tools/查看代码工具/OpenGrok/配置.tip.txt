@@ -1,6 +1,12 @@
 ================================opengrok-1.7.21
 ================================opengrok-1.7.21
 ================================opengrok-1.7.21
+需要的软件:
+1.tomcat
+2.opengrok
+
+
+
 TOMCAT_PATH=/root/soft/web_notebook_online/apache-tomcat-9.0.54
 TOMCAT_BIN_PATH=$TOMCAT_PATH/bin/
 SOFT_PATH=/root/soft
@@ -177,4 +183,3 @@ Using JVM:              "C:\Program Files\Java\jdk-9.0.4\bin\server\jvm.dll"
 The service 'Tomcat9' has been installed.
 C:\Users\Administrator>
 C:\Users\Administrator>
-
