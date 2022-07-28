@@ -4,7 +4,7 @@
 需要的软件:
 1.tomcat
 2.opengrok
-
+https://github.com/oracle/opengrok.git
 3.universal-ctags
 git clone https://github.com/universal-ctags/ctags.git universal-ctags
 

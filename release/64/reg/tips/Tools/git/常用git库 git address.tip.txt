@@ -74,6 +74,7 @@ http://c.biancheng.net/spring_boot/example.html
 本地库:
 #Web部署
 git@gitee.com:weilaidb/web_notebook_online.git
+#autocodeset
 git@github.com:weilaidb/qtlibs_mingw730_32.git
 git@github.com:weilaidb/linux_driver.git
 git@gitee.com:weilaidb/hello-java-ee3_-ext.git
