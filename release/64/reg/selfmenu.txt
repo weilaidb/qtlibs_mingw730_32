@@ -741,6 +741,11 @@ Html/JS/table 2 excel 表格下载
 Html/JS/富文本编辑器的xss问题
 Html/TOOL/HTML编码解码
 Html/eg
+JAVA/AJAX 教程/AJAX - 创建 XMLHttpRequest 对象
+JAVA/AJAX 教程/AJAX - 向服务器发送请求
+JAVA/AJAX 教程/AJAX 实例
+JAVA/AJAX 教程/eg
+JAVA/AJAX 教程/简介
 JAVA/Base/forloop
 JAVA/Cloud/ECS
 JAVA/JAVA_HOME JRE_HOME
@@ -910,6 +915,8 @@ JAVA/SpringBoot/Thymealeaf/help/favicon.ico error解决
 JAVA/SpringBoot/application.properties 修改端口
 JAVA/SpringBoot/application.properties 转yml
 JAVA/SpringBoot/application.yml DD
+JAVA/SpringBoot/application.yml eg
+JAVA/SpringBoot/application.yml new
 JAVA/SpringBoot/application.yml 修改端口
 JAVA/SpringBoot/application.yml 相关说明
 JAVA/SpringBoot/freemarker .ftl
