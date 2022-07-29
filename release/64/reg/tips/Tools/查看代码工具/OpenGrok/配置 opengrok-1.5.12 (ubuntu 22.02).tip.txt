@@ -27,7 +27,7 @@ rm -rf $OPENGROK_ETC
 mkdir $OPENGROK_ETC
 
 echo "begin paring..."
-$JAVA_BIN \
+$JAVA_BIN -Xmx16G -Xms8G \
 -Djava.util.logging.config.file=$OPENGROK_LOG_PROPERTY \
 -jar $OPENGROK_JAR \
 -c $CTAGS_BIN \
