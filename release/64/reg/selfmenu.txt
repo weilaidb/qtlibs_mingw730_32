@@ -3,6 +3,7 @@ Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
+BASH/alias/bashrc deploy script
 BASH/alias/bashrc 加载配置
 BASH/alias/bashrc 加载配置 ubuntu20.04
 BASH/alias/generate生成
@@ -1388,6 +1389,7 @@ LINUX/Printk/many equal signs
 LINUX/Printk/说明
 LINUX/Ubuntu/apt install
 LINUX/Ubuntu/apt install 22.02
+LINUX/Ubuntu/apt list
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
 LINUX/Ubuntu/五笔输入法

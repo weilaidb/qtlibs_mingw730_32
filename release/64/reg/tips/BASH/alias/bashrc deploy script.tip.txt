@@ -1,0 +1,21 @@
+#!/bin/sh
+set -e
+
+#convert dos 2 unix
+dos2unix $0 >/dev/null 2>&1
+
+usage(){
+    echo "Usage:./eg.sh UserPath qtlibs_mingw730_32_path"
+    exit 1
+}
+
+# 显示帮助
+[ $# -lt 2 ] && usage
+echo "->start..."
+
+
+#脚本部署（new machine）
+#用户根路径，默认为$HOME
+USERHOMEDIR=$1
+#~/work/git/qtlibs_mingw730_32 的路径
+AUTOCODESETDIR=$2
