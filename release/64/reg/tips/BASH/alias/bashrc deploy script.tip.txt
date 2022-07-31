@@ -1,11 +1,19 @@
+#!/bin/bash
 #!/bin/sh
 set -e
 
+##处理带空格的文件名
+MY_SAVEIFS=$IFS
+#IFS=$(echo -en "\n\b")
+IFS=$'\n'
+
 #convert dos 2 unix
 dos2unix $0 >/dev/null 2>&1
+source ./public.sh
+
 
 usage(){
-    echo "Usage:./eg.sh UserPath qtlibs_mingw730_32_path"
+    echo "Usage:./eg.sh HOMEDIR qtlibs_mingw730_32_path"
     exit 1
 }
 
@@ -14,8 +22,30 @@ usage(){
 echo "->start..."
 
 
+
 #脚本部署（new machine）
 #用户根路径，默认为$HOME
 USERHOMEDIR=$1
+USERBASHRC=$USERHOMEDIR/.bashrc
 #~/work/git/qtlibs_mingw730_32 的路径
 AUTOCODESETDIR=$2
+BASHLIBDIR=$USERHOMEDIR/bashlib
+
+echo "USERHOMEDIR:$USERHOMEDIR"
+echo "AUTOCODESETDIR:$AUTOCODESETDIR"
+
+checkdirnoexistquit $USERHOMEDIR
+checkfilenoexistquit $USERBASHRC
+checkdirnoexistquit $AUTOCODESETDIR
+# checkdirexistquit $BASHLIBDIR "no process!!, please rename to other name "
+checkdirnoexistcreate $BASHLIBDIR
+softlink_write_dest_tobashrc $USERBASHRC $AUTOCODESETDIR/release/64/reg/tips/BASH/alias/public\ use.tip.txt $BASHLIBDIR/publicuse
+softlink_write_dest_tobashrc $USERBASHRC $AUTOCODESETDIR/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt $BASHLIBDIR/publicuse.prj
+
+
+
+
+
+#回复默认处理分割
+IFS=$MY_SAVEIFS
+
