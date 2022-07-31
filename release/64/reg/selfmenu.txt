@@ -37,6 +37,9 @@ BASH/scripts/include.sh public
 BASH/scripts/public.sh
 BASH/scripts/test.sh
 BASH/scripts/updategit.atwork.sh
+BASH/scripts/注意/去除变量空格
+BASH/scripts/注意/执行 shell 报错 source not found
+BASH/scripts/注意/脚本中空格
 BASH/set -x
 BASH/set -x eg
 BASH/test -f
