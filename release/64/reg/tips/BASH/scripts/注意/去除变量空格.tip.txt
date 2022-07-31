@@ -1,0 +1,2 @@
+FILEPATH=$1
+FILEPATHTRIM=`echo $FILEPATH | xargs`
