@@ -16,12 +16,12 @@ dos2unix $0 >/dev/null 2>&1
 source ./public.sh
 
 usage(){
-    echo "Usage:./eg.sh opengrokVersion indexdir"
+    echo "Usage:./eg.sh opengrokVersion indexdir httpport"
     exit 1
 }
 
 # 显示帮助
-[ $# -lt 2 ] && usage
+[ $# -lt 3 ] && usage
 echo "->start..."
 
 #######用户定义
