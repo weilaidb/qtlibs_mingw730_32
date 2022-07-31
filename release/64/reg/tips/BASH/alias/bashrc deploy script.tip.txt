@@ -5,10 +5,7 @@
 #
 #
 
-
-
 set -e
-
 
 ##处理带空格的文件名
 MY_SAVEIFS=$IFS
@@ -18,7 +15,6 @@ IFS=$'\n'
 #convert dos 2 unix
 dos2unix $0 >/dev/null 2>&1
 source ./public.sh
-
 
 usage(){
     echo "Usage:./eg.sh HOMEDIR qtlibs_mingw730_32_path"
@@ -30,7 +26,9 @@ usage(){
 echo "->start..."
 
 
-
+#######用户定义
+#######用户定义
+#######用户定义
 
 #用户根路径，默认为$HOME
 USERHOMEDIR=$1
