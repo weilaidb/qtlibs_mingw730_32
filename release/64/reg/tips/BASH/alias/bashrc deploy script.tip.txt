@@ -4,6 +4,9 @@
 #function:脚本部署（new machine）
 #
 #
+#示例
+#[root@weilaidb] ~/work/git/qtlibs_mingw730_32/script.ln
+#$ ./opengrok.run.ext.sh 1.5.12 ~/work/git/ 8081 /usr/local/bin/ctags 
 
 set -e
 
