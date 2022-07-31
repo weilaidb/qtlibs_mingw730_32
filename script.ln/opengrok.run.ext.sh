@@ -1,0 +1,1 @@
+../release/64/reg/tips/BASH/scripts/opengrok.run.ext.sh.tip.txt

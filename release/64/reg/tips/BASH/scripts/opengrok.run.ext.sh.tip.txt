@@ -13,7 +13,7 @@ IFS=$'\n'
 
 #convert dos 2 unix
 dos2unix $0 >/dev/null 2>&1
-#source ./public.sh
+source ./public.sh
 
 usage(){
     echo "Usage:./eg.sh opengrokVersion indexdir"
@@ -28,14 +28,15 @@ echo "->start..."
 #######用户定义
 #######用户定义
 VERSION=$1
-INDEXPATH=$2
+OPENGROK_INDEX_EXT=$2
 
-
+checkstringzeroquit $VERSION
+checkdirnoexistquit $OPENGROK_INDEX_EXT
 
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 SOFT_PATH=~/soft
 WORK_PATH=~/work
-OPENGROK_VER=1.5.12
+OPENGROK_VER=$VERSION
 OPENGROK_NAME=opengrok-$OPENGROK_VER
 TOMCAT_PATH=~/soft/tomcat/apache-tomcat-9.0.64
 
@@ -60,13 +61,14 @@ OPENGROK_WAR=$OPENGROK_ROOT/lib/$OPENGROK_WAR_NAME
 rm -rf $OPENGROK_ETC
 mkdir $OPENGROK_ETC
 
-echo "begin paring..."
-#$JAVA_BIN -Xmx16G -Xms8G \
-$JAVA_BIN \
+echo "begin paring..." $OPENGROK_INDEX_EXT
+#$JAVA_BIN -Xmx16G -Xms8G
+
+time $JAVA_BIN \
 -Djava.util.logging.config.file=$OPENGROK_LOG_PROPERTY \
 -jar $OPENGROK_JAR \
 -c $CTAGS_BIN \
--s $OPENGROK_INDEX \
+-s $OPENGROK_INDEX_EXT \
 -d $OPENGROK_DATA \
 -H -P -S -G \
 -W $OPENGROK_GENERATE_XML \

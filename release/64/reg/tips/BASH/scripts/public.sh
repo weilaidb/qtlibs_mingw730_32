@@ -161,6 +161,20 @@ echo "BASHRCPATH:$BASHRCPATH"
 }
 
 
+# ==================字符操作
+# ==================字符操作
+# ==================字符操作
+#检测字符串为空或长度为0则退出
+checkstringzeroquit()
+{
+STRINGPATH=$1
+STRINGPATH=`echo $STRINGPATH | xargs`
+
+        if [ -z $STRINGPATH ];then
+                echo "string [$TRINGPATH] len zero!!!"
+                exit 1
+        fi
+}
 
 ##查找所有
 findlistall()
