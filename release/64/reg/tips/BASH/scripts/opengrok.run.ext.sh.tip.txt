@@ -2,7 +2,7 @@
 #!/bin/sh
 #filename:opengrok.run.ext.sh
 #function:代码查看器，索引内容，扩展
-#支持opengrok版本、路径传递，索引路径传递
+#支持opengrok版本、路径传递，索引路径传递，Http端口
 #
 set -e
 
@@ -29,9 +29,11 @@ echo "->start..."
 #######用户定义
 VERSION=$1
 OPENGROK_INDEX_EXT=$2
+HTTP_PORT=$3
 
 checkstringzeroquit $VERSION
 checkdirnoexistquit $OPENGROK_INDEX_EXT
+checkstringzeroquit $HTTP_PORT
 
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 SOFT_PATH=~/soft
@@ -72,4 +74,4 @@ time $JAVA_BIN \
 -d $OPENGROK_DATA \
 -H -P -S -G \
 -W $OPENGROK_GENERATE_XML \
--U http://localhost:8080/source
+-U http://localhost:$HTTP_PORT/source
