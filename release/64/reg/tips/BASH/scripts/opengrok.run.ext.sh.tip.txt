@@ -16,12 +16,12 @@ dos2unix $0 >/dev/null 2>&1
 source ./public.sh
 
 usage(){
-    echo "Usage:./eg.sh opengrokVersion indexdir httpport"
+    echo "Usage:./eg.sh opengrokVersion indexdir httpport ctagspath"
     exit 1
 }
 
 # 显示帮助
-[ $# -lt 3 ] && usage
+[ $# -lt 4 ] && usage
 echo "->start..."
 
 #######用户定义
@@ -30,10 +30,13 @@ echo "->start..."
 VERSION=$1
 OPENGROK_INDEX_EXT=$2
 HTTP_PORT=$3
+CTAGSPATH=$4
 
 checkstringzeroquit $VERSION
 checkdirnoexistquit $OPENGROK_INDEX_EXT
 checkstringzeroquit $HTTP_PORT
+checkfilenoexistquit $CTAGSPATH
+
 
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 SOFT_PATH=~/soft
@@ -46,7 +49,8 @@ TOMCAT_PATH=~/soft/tomcat/apache-tomcat-9.0.64
 export CLASS_PATH=$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar
 export PATH=$JAVA_HOME/bin:$PATH
 JAVA_BIN=/usr/bin/java
-CTAGS_BIN=/usr/bin/ctags
+# CTAGS_BIN=/usr/bin/ctags
+CTAGS_BIN=$CTAGSPATH
 TOMCAT_BIN_PATH=$TOMCAT_PATH/bin/
 TOMCAT_WEBAPP_PATH=$TOMCAT_PATH/webapps
 OPENGROK_ROOT=$SOFT_PATH/$OPENGROK_NAME
