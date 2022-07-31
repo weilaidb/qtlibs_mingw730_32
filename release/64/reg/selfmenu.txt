@@ -35,6 +35,7 @@ BASH/scripts/getnumsinfile.sh
 BASH/scripts/include.sh
 BASH/scripts/include.sh public
 BASH/scripts/opengrok.run.ext.sh
+BASH/scripts/opengrok.run.ext.sh run eg
 BASH/scripts/opengrok.run.sh
 BASH/scripts/public.sh
 BASH/scripts/test.sh
