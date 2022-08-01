@@ -417,6 +417,7 @@ C/enum/enum single withname
 C/enum/enum single withname typedef
 C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
+C/know/sigaction
 C/new/DEFINE/ifndef
 C/new/__attribute__/TEXT
 C/new/__attribute__/__align__
@@ -427,6 +428,7 @@ C/new/return int
 C/new/return unsigned int
 C/new/return unsigned short
 C/new/return void
+C/new/sigaction
 C/单链表 single list
 C/单链表 single list new
 C/基本类型/BASE TYPE typedef
@@ -1299,6 +1301,8 @@ KERNEL/FS/mount-flags
 KERNEL/GCC/__aligned
 KERNEL/GCC/__attribute__
 KERNEL/GCC/__attribute__ noreturn
+KERNEL/GCC/__attribute__((__aligned__(n)))对结构体对齐的影响
+KERNEL/GCC/__attribute__((__aligned__(n)))结构体对齐原则
 KERNEL/GCC/参数列表
 KERNEL/GCC/参数列表 -Wl,-Bsymbolic
 KERNEL/LIST_HEAD
