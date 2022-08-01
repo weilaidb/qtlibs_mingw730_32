@@ -3,5 +3,15 @@
 cd ~/work/git/qtlibs_mingw730_32/script.ln && ./opengrok.run.ext.sh 1.5.12 ~/work/git/ 8081 /usr/local/bin/ctags
 
 
+#更新版本
+cd ~/work/git/qtlibs_mingw730_32/script.ln && ./opengrok.run.ext.sh 1.7.34 ~/work/git/ 8081 /usr/local/bin/ctags
+
+
+
 Ubuntu2202
 cd ~/work/git/qtlibs_mingw730_32/script.ln && ./opengrok.run.ext.sh 1.5.12 ~/work/git/ 8080 /usr/bin/ctags
+
+
+
+#更新版本
+cd ~/work/git/qtlibs_mingw730_32/script.ln && ./opengrok.run.ext.sh 1.7.34 ~/work/git/ 8080 /usr/bin/ctags
