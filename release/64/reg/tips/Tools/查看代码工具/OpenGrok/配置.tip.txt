@@ -23,6 +23,10 @@ Y:\soft\tomcat\apache-tomcat-9.0.64\webapps\source\WEB-INF\web.xml
 为实际的opengrok的路径
 <param-value>/home/weilaidb/soft/opengrok-1.5.12/etc/configuration.xml</param-value>
 
+更新版本
+/home/weilaidb/soft/opengrok-1.7.34/etc/configuration.xml
+
+
 
 说明:
 1.索引的数据会存储在opengrok/data下
