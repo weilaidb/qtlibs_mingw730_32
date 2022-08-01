@@ -2027,6 +2027,7 @@ Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
 Tools/Emacs快捷键
 Tools/Subline Text快捷键
+Tools/Tomcat/Web端403 Access Denied You are not authorized to view this page解决
 Tools/Tomcat/conf context.xml
 Tools/Tomcat/conf tomcat-users.xml
 Tools/UML/StartUML
@@ -2091,6 +2092,7 @@ Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12 (ubuntu 22.02)
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.7.21
+Tools/查看代码工具/OpenGrok/配置 opengrok-1.7.34(报错)
 Tools/生成文件名 filename
 UNITTEST/GTEST/ASSERT_EQ
 UNITTEST/GTEST/ASSERT_FALSE

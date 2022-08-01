@@ -1,0 +1,100 @@
+https://juejin.cn/post/7084947160868847630
+
+
+
+软件配置:
+1.apache-tomcat-9.0.64
+
+
+
+Tomcat【环境搭建 02】Web端403 Access Denied You are not authorized to view this page解决
+
+_風箏
+lv-3
+2022年04月10日 20:13 ·  阅读 44
+关注
+本文已参与「新人创作礼」活动，一起开启掘金创作之路。
+
+1. 问题说明
+启动Tomcat之后，我们常常是要打开Web端进行验证，其实Web端的功还有很多，但是有一些管理页面权限不足：
+
+在这里插入图片描述
+
+我们点击 Manager Status 或 Manager App 链接之后会报错 403 Access Denied You are not authorized to view this page ：
+
+在这里插入图片描述 而点击 Host Manager 链接之后报错信息不同：
+
+在这里插入图片描述
+
+2. 问题解决
+2.1 修改配置文件
+403页面提到的第 :one: 个文件：默认情况下，只能从运行在与 Tomcat 相同机器上的浏览器访问Manager。如果您希望修改此限制，则需要编辑 Manage r的 context.xml 文件。查看以下：
+
+<!-- The contents of this file will be loaded for each web application -->
+<Context>
+    <!-- Default set of monitored resources. If one of these changes, the    -->
+    <!-- web application will be reloaded.                                   -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+    <!-- Uncomment this to enable session persistence across Tomcat restarts -->
+    <!--
+    <Manager pathname="SESSIONS.ser" />
+    -->
+</Context>
+复制代码
+vim /usr/local/tomcat/conf/context.xml
+复制代码
+context.xml里有两方面的描述，一个是检测资源的配置（文件修改则会重新加载），另一个是session会话的使用。似乎没有权限相关的说明，我们取消第二部分的注释以便在Tomcat重启后保持会话。
+
+403页面提到的第 :two: 个文件： conf/tomcat-users.xml That file must contain the credentials to let you use this webapp. 该文件必须包含允许您使用此webapp的凭据。【满满的角色权限相关的说明】 我们按照举例修改 tomcat-users.xml 文件添加角色和用户：
+
+vim /usr/local/tomcat/conf/tomcat-users.xml
+复制代码
+在<tomcat-users></tomcat-users>标签内添加以下信息：
+
+<role rolename="manager"/>  
+<role rolename="manager-gui"/>   
+<role rolename="manager-jmx"/>  
+<role rolename="manager-status"/>  
+<role rolename="manager-script"/>  
+<user username="admin" password="admin" roles="manager,manager-gui,manager-jmx,manager-status,manager-script"/>
+复制代码
+❗️❗️❗️ 注意： 重启 Tomcat 后再次访问 Manager Status 或 Manager App 页面，不出意外的话还是会报 403 Access Denied 错误的，为什么呢？我们再认真看看报错信息：
+
+访问 Manager Status 或 Manager App 页面时的报错信息：
+If you wish to modify this restriction, you'll need to edit the Manager's context.xml file.
+
+访问 Host Manager 页面时的报错信息：
+If you wish to modify this restriction, you'll need to edit the Host Manager's context.xml file.
+
+此时才明白403页面说的 context.xml 并非 $CATALINA_HOME/conf/ 下的 context.xml 文件，而是 $CATALINA_HOME/webapps/manager/META-INF/context.xml 和$CATALINA_HOME/webapps/host-manager/META-INF/context.xml 这两个文件，全部修改 RemoteAddrValve 的值：
+
+<!-- RemoteAddrValve的原始值 -->
+ <Valve className="org.apache.catalina.valves.RemoteAddrValve" 
+ allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+ <!-- RemoteAddrValve修改后的值（其实就是释放所有IP的访问权限） -->
+ <Valve className="org.apache.catalina.valves.RemoteAddrValve" 
+allow="\d+\.\d+\.\d+\.\d+" />
+复制代码
+2.2 重启登录
+重新启动后，点击 Server Status 或 Manager App 页面，需要登录，此时输入 tomcat-users.xml 文件设置的用户及密码：
+
+在这里插入图片描述 登录成功后 Server Status 可以查看服务器状态：
+
+在这里插入图片描述
+
+Manager App 可以在Web页面上部署项目：
+
+在这里插入图片描述
+
+而 Host Manager 页面需要再次进行登录（密码相同）可以管理虚拟主机：
+
+在这里插入图片描述
+
+至此，全部的 Web端 403 Access Denied 问题解决~
+
+分类：
+后端
+标签：
+Tomcat
