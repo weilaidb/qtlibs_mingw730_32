@@ -1,0 +1,3 @@
+hello;bean.Hello;/lookHello
+suggest;bean.SuggestAction;/suggest
+check;bean.Check;/check

@@ -836,7 +836,7 @@ JAVA/JSP/Print/System.out.println
 JAVA/JSP/Servlet/HttpServlet
 JAVA/JSP/Servlet/HttpServlet format
 JAVA/JSP/Servlet/HttpServlet format doGet doPost
-JAVA/JSP/Servlet/web.xml
+JAVA/JSP/Servlet/web.xml servlet-mapping
 JAVA/JSP/Tag文件与标记
 JAVA/JSP/Tag标签库
 JAVA/JSP/bgcolor
