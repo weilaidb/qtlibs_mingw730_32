@@ -751,6 +751,7 @@ Html/JS/table 2 excel 表格下载
 Html/JS/富文本编辑器的xss问题
 Html/TOOL/HTML编码解码
 Html/eg
+JAVA/AJAX new/eg
 JAVA/AJAX 教程/AJAX - 创建 XMLHttpRequest 对象
 JAVA/AJAX 教程/AJAX - 向服务器发送请求
 JAVA/AJAX 教程/AJAX 实例
