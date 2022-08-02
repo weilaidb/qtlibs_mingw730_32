@@ -751,17 +751,25 @@ Html/JS/table 2 excel 表格下载
 Html/JS/富文本编辑器的xss问题
 Html/TOOL/HTML编码解码
 Html/eg
+JAVA/AJAX new/JSON 实例
 JAVA/AJAX new/eg
 JAVA/AJAX new/onreadystatechange
 JAVA/AJAX new/onreadystatechange 回调函数
+JAVA/AJAX new/xml Retrieve data from XML file
+JAVA/AJAX new/xml cd_catalog
 JAVA/AJAX new/xmlhttp.open 同步方式
 JAVA/AJAX new/xmlhttp.open 异步方式(通常)
 JAVA/AJAX new/xmlhttp.open 异步方式(通常) Post方式
 JAVA/AJAX new/xmlhttp.open 异步方式(通常) Post方式 表单setRequestHeader
+JAVA/AJAX new/回显输入内容
 JAVA/AJAX new/服务器响应 responseText
 JAVA/AJAX new/服务器响应 responseXML
 JAVA/AJAX new/服务器响应 responseXML 简版
+JAVA/AJAX new/用AJAX进行一次 HEAD 请求
+JAVA/AJAX new/用AJAX进行一次指定的 HEAD 请求
+JAVA/AJAX new/用callback函数的AJAX实例
 JAVA/AJAX new/输入框中键入字符时返回数据
+JAVA/AJAX new/选择显示 select option
 JAVA/AJAX 教程/AJAX - 创建 XMLHttpRequest 对象
 JAVA/AJAX 教程/AJAX - 向服务器发送请求
 JAVA/AJAX 教程/AJAX 实例
@@ -986,6 +994,7 @@ JAVA/SpringBoot/new/Thymealeaf/传递参数/传参介绍
 JAVA/SpringBoot/new/Thymealeaf/传递参数/用户User
 JAVA/SpringBoot/new/Thymealeaf/用于spring mvc跳转访问Thyemaleaf模板
 JAVA/SpringBoot/new/Thymealeaf/界面设计/1
+JAVA/SpringBoot/new/Thymeleaf/Post
 JAVA/SpringBoot/new/Thymeleaf/Thymeleaf教程
 JAVA/SpringBoot/new/pom.xml app description
 JAVA/SpringBoot/new/pom.xml dependencies
