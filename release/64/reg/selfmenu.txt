@@ -752,6 +752,16 @@ Html/JS/富文本编辑器的xss问题
 Html/TOOL/HTML编码解码
 Html/eg
 JAVA/AJAX new/eg
+JAVA/AJAX new/onreadystatechange
+JAVA/AJAX new/onreadystatechange 回调函数
+JAVA/AJAX new/xmlhttp.open 同步方式
+JAVA/AJAX new/xmlhttp.open 异步方式(通常)
+JAVA/AJAX new/xmlhttp.open 异步方式(通常) Post方式
+JAVA/AJAX new/xmlhttp.open 异步方式(通常) Post方式 表单setRequestHeader
+JAVA/AJAX new/服务器响应 responseText
+JAVA/AJAX new/服务器响应 responseXML
+JAVA/AJAX new/服务器响应 responseXML 简版
+JAVA/AJAX new/输入框中键入字符时返回数据
 JAVA/AJAX 教程/AJAX - 创建 XMLHttpRequest 对象
 JAVA/AJAX 教程/AJAX - 向服务器发送请求
 JAVA/AJAX 教程/AJAX 实例
@@ -2230,6 +2240,7 @@ path路径/常用文件夹
 术语/网络/ATM网络
 术语/网络/CERNET
 术语/网络/FDDI网络
+术语/网络/GRE隧道
 术语/网络/IDLE帧
 术语/网络/MTU Maximum Transmission Unit
 术语/网络/PCS

@@ -1,0 +1,5 @@
+[打开文件路径]
+myFunction;/try/ajax/ajax_info.txt
+
+
+myFunctionExt;/try/ajax/ajax_info2.txt
