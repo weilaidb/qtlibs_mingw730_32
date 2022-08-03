@@ -753,6 +753,7 @@ Html/TOOL/HTML编码解码
 Html/eg
 JAVA/AJAX new/JSON 实例
 JAVA/AJAX new/eg
+JAVA/AJAX new/jsp/eg
 JAVA/AJAX new/onreadystatechange
 JAVA/AJAX new/onreadystatechange 回调函数
 JAVA/AJAX new/xml Retrieve data from XML file

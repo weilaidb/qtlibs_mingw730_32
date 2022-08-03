@@ -1,2 +1,2 @@
-[打开文件路径,路径不能带/斜杠，带斜杠不能正常访问]
+[打开文件路径(JSP路径是相对路径)(SpringBoot可以是绝对路径)]
 try/ajax/ajax_info.txt
