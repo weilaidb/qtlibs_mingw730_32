@@ -1,0 +1,4 @@
+jsp+ajax中的url使用的相对路径，不是绝对路径。
+1.比如文件abc.txt在web路径下
+2.web/test/ajax/test.jsp是要读取abc.txt，则url需要写为
+../../abc.txt

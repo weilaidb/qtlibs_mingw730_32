@@ -834,10 +834,15 @@ JAVA/JSP/Print/System.err
 JAVA/JSP/Print/System.in
 JAVA/JSP/Print/System.out.print
 JAVA/JSP/Print/System.out.println
+JAVA/JSP/Problem/Error during artifact deployment
 JAVA/JSP/Problem/IDEA project模式下，不显示项目工程目录
 JAVA/JSP/Problem/IDEA 打开文件夹特别慢
 JAVA/JSP/Problem/Path Relative to Deployment Root 相对根路径
 JAVA/JSP/Problem/Path Relative to Deployment Root 相对根路径 示例
+JAVA/JSP/Problem/WebServlet 注解url不生效
+JAVA/JSP/Problem/ajax url不生效
+JAVA/JSP/Problem/ajax引用javascript的文件不生效，粘贴可以生效
+JAVA/JSP/Problem/jsp Cannot resolve class
 JAVA/JSP/Servlet/HttpServlet
 JAVA/JSP/Servlet/HttpServlet format
 JAVA/JSP/Servlet/HttpServlet format doGet doPost
