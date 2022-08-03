@@ -902,6 +902,7 @@ JAVA/JSP/request.referer
 JAVA/JSP/string/String
 JAVA/JSP/synchronized
 JAVA/JSP/title eg
+JAVA/JSP/中文乱码
 JAVA/JSP/代码段/decode getBytes
 JAVA/JSP/代码段/getBytes print all
 JAVA/JSP/代码段/getBytes 方法
