@@ -757,6 +757,8 @@ Html/eg
 JAVA/AJAX new/JSON 实例
 JAVA/AJAX new/eg
 JAVA/AJAX new/jsp/eg
+JAVA/AJAX new/jsp/onblur
+JAVA/AJAX new/jsp/输入内容显示下拉菜单
 JAVA/AJAX new/onreadystatechange
 JAVA/AJAX new/onreadystatechange 回调函数
 JAVA/AJAX new/xml Retrieve data from XML file
@@ -843,7 +845,9 @@ JAVA/JSP/Problem/IDEA 打开文件夹特别慢
 JAVA/JSP/Problem/Path Relative to Deployment Root 相对根路径
 JAVA/JSP/Problem/Path Relative to Deployment Root 相对根路径 示例
 JAVA/JSP/Problem/WebServlet 注解url不生效
+JAVA/JSP/Problem/ajax url window.onload is not a function
 JAVA/JSP/Problem/ajax url不生效
+JAVA/JSP/Problem/ajax url不生效 Uncaught ReferenceError is not defined
 JAVA/JSP/Problem/ajax引用javascript的文件不生效，粘贴可以生效
 JAVA/JSP/Problem/jsp Cannot resolve class
 JAVA/JSP/Servlet/HttpServlet
