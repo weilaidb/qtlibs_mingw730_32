@@ -25,3 +25,24 @@ int main()
 	}
 	return 0;
 }
+
+
+
+
+=======================结果
+$ make 
+mkdir -p ./tmp
+ [CXX]   (tmp/./main.o)
+ g++ -w -fPIC -g -pipe   -pipe -O0 -g -Wall -W -D_REENTRANT   -Iinclude -Iinclude/freetype  -c main.cpp -o tmp/./main.o
+ [LD]    (structsort)
+now file is /root/test/structsort
+g++  -o structsort  ./tmp/./main.o -lpthread   
+current path is structsort
+cp -f structsort ../exelibtest
+mkdir -p ../exelibtest
+chmod +x  structsort && ./structsort
+10110 Fun 100.00
+10103 Wang 98.50
+10106 Li 86.00
+10101 Zhang 78.00
+10108 Ling 73.50
