@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Student {
+	int xuehao;
+	char name[20];
+	float score;
+};
+
+int paixu(const void* a, const void* b)
+{
+	struct Student* aa = (struct Student*)a;
+	struct Student* bb = (struct Student*)b;
+//	return (aa->score < bb->score ? 1 : -1);
+	
+	#if 0
+	//大值在右面，顺序依次为从小到大
+	if(aa->score == bb->score)
+	{
+		return 0;
+	}
+	else if(aa->score > bb->score)
+	{
+		return 1;
+	}
+	else
+	{
+		return -1;
+	}
+	#else
+	//小值在右面，顺序依次为从大到小
+	if(aa->score == bb->score)
+	{
+		return 0;
+	}
+	else if(aa->score < bb->score)
+	{
+		return 1;
+	}
+	else
+	{
+		return -1;
+	}
+	
+	
+	#endif
+}
+
+int main()
+{
+	struct Student chucun[5] = { {10101,"Zhang",78},{10103,"Wang",98.5},{10106,"Li",86},{10108,"Ling",73.5},{10110,"Fun",100}};
+	qsort(chucun, 5, sizeof(chucun[0]), paixu);
+	int i;
+	for (i = 0; i < 5; i++)
+	{
+		printf("%d %s %.2f\n", chucun[i].xuehao, chucun[i].name,chucun[i].score);
+	}
+	return 0;
+}

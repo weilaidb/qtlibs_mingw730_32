@@ -410,6 +410,9 @@ C/STRUCT/pragma pack 1字节对齐
 C/STRUCT/pragma pack 字节对齐 push pop
 C/STRUCT/生成结构体
 C/STRUCT/生成结构体 printf
+C/STRUCT/结构体 排序sort
+C/STRUCT/结构体 排序sort 为大到小
+C/STRUCT/结构体 排序sort 为小到大
 C/eg
 C/enum/enum
 C/enum/enum single
