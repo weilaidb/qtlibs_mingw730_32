@@ -845,6 +845,7 @@ JAVA/JSP/Problem/IDEA 打开文件夹特别慢
 JAVA/JSP/Problem/Path Relative to Deployment Root 相对根路径
 JAVA/JSP/Problem/Path Relative to Deployment Root 相对根路径 示例
 JAVA/JSP/Problem/WebServlet 注解url不生效
+JAVA/JSP/Problem/ajax url document.createElement td onclick 不生效
 JAVA/JSP/Problem/ajax url window.onload is not a function
 JAVA/JSP/Problem/ajax url不生效
 JAVA/JSP/Problem/ajax url不生效 Uncaught ReferenceError is not defined
