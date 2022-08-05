@@ -851,6 +851,7 @@ JAVA/JSP/Problem/ajax url window.onload is not a function
 JAVA/JSP/Problem/ajax url不生效
 JAVA/JSP/Problem/ajax url不生效 Uncaught ReferenceError is not defined
 JAVA/JSP/Problem/ajax 返回的中文点击后显示乱码
+JAVA/JSP/Problem/ajax 返回的中文点击后显示乱码 Tomcat设置编码格式utf8
 JAVA/JSP/Problem/ajax引用javascript的文件不生效，粘贴可以生效
 JAVA/JSP/Problem/jsp Cannot resolve class
 JAVA/JSP/Servlet/HttpServlet
@@ -924,7 +925,7 @@ JAVA/JSP/synchronized
 JAVA/JSP/title eg
 JAVA/JSP/中文乱码
 JAVA/JSP/代码段/decode getBytes
-JAVA/JSP/代码段/getBytes print all
+JAVA/JSP/代码段/getBytes print all utf8 gbk
 JAVA/JSP/代码段/getBytes 方法
 JAVA/JSP/代码段/parseDouble
 JAVA/JSP/代码段/try catch
