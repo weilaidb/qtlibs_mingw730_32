@@ -1,6 +1,38 @@
 ================================opengrok-1.7.21
 ================================opengrok-1.7.21
 ================================opengrok-1.7.21
+需要的软件:
+1.tomcat
+2.opengrok
+https://github.com/oracle/opengrok.git
+3.universal-ctags
+git clone https://github.com/universal-ctags/ctags.git universal-ctags
+
+
+
+
+常见问题:
+1.
+There was an error!
+The source root path has not been configured! Please configure your webapp.
+--没有配置rootpath
+需要修改
+Y:\soft\tomcat\apache-tomcat-9.0.64\webapps\source\WEB-INF\web.xml
+中的
+<param-value>/var/opengrok/etc/configuration.xml</param-value>
+为实际的opengrok的路径
+<param-value>/home/weilaidb/soft/opengrok-1.5.12/etc/configuration.xml</param-value>
+
+更新版本
+/home/weilaidb/soft/opengrok-1.7.34/etc/configuration.xml
+
+
+
+说明:
+1.索引的数据会存储在opengrok/data下
+
+
+
 TOMCAT_PATH=/root/soft/web_notebook_online/apache-tomcat-9.0.54
 TOMCAT_BIN_PATH=$TOMCAT_PATH/bin/
 SOFT_PATH=/root/soft
@@ -177,4 +209,3 @@ Using JVM:              "C:\Program Files\Java\jdk-9.0.4\bin\server\jvm.dll"
 The service 'Tomcat9' has been installed.
 C:\Users\Administrator>
 C:\Users\Administrator>
-

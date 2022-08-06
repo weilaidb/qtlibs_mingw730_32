@@ -1,0 +1,1 @@
+../release/64/reg/tips/BASH/alias/bashrc deploy script.tip.txt

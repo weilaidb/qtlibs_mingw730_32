@@ -1,1 +1,1 @@
-sudo apt install \1
+apt install -y \1

@@ -1,0 +1,121 @@
+D:\software\develop\apache-tomcat-9.0.58-windows-x64\apache-tomcat-9.0.58\bin\catalina.bat run
+[2022-08-03 10:24:48,237] Artifact hello: Waiting for server connection to start artifact deployment...
+Using CATALINA_BASE:   "C:\Users\weilaidb\.IntelliJIdea2019.3\system\tomcat\Unnamed_HelloJavaEE3_2"
+Using CATALINA_HOME:   "D:\software\develop\apache-tomcat-9.0.58-windows-x64\apache-tomcat-9.0.58"
+Using CATALINA_TMPDIR: "D:\software\develop\apache-tomcat-9.0.58-windows-x64\apache-tomcat-9.0.58\temp"
+Using JRE_HOME:        "D:\Program Files\Java\jdk1.8.0_192"
+Using CLASSPATH:       "D:\software\develop\apache-tomcat-9.0.58-windows-x64\apache-tomcat-9.0.58\bin\bootstrap.jar;D:\software\develop\apache-tomcat-9.0.58-windows-x64\apache-tomcat-9.0.58\bin\tomcat-juli.jar"
+Using CATALINA_OPTS:   ""
+03-Aug-2022 22:24:49.103 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log Server.鏈嶅姟鍣ㄧ増鏈�: Apache Tomcat/9.0.58
+03-Aug-2022 22:24:49.105 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鏈嶅姟鍣ㄦ瀯寤�:        Jan 15 2022 14:37:38 UTC
+03-Aug-2022 22:24:49.105 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鏈嶅姟鍣ㄧ増鏈彿:      9.0.58.0
+03-Aug-2022 22:24:49.105 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鎿嶄綔绯荤粺鍚嶇О:      Windows 10
+03-Aug-2022 22:24:49.105 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log OS.鐗堟湰:           10.0
+03-Aug-2022 22:24:49.105 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鏋舵瀯:              amd64
+03-Aug-2022 22:24:49.105 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log Java 鐜鍙橀噺:     D:\Program Files\Java\jdk1.8.0_192\jre
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log Java铏氭嫙鏈虹増鏈�:    1.8.0_192-b12
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log JVM.渚涘簲鍟�:        Oracle Corporation
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:     C:\Users\weilaidb\.IntelliJIdea2019.3\system\tomcat\Unnamed_HelloJavaEE3_2
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:     D:\software\develop\apache-tomcat-9.0.58-windows-x64\apache-tomcat-9.0.58
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Djava.util.logging.config.file=C:\Users\weilaidb\.IntelliJIdea2019.3\system\tomcat\Unnamed_HelloJavaEE3_2\conf\logging.properties
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Dcom.sun.management.jmxremote=
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Dcom.sun.management.jmxremote.port=1099
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Dcom.sun.management.jmxremote.ssl=false
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Dcom.sun.management.jmxremote.password.file=C:\Users\weilaidb\.IntelliJIdea2019.3\system\tomcat\Unnamed_HelloJavaEE3_2\jmxremote.password
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Dcom.sun.management.jmxremote.access.file=C:\Users\weilaidb\.IntelliJIdea2019.3\system\tomcat\Unnamed_HelloJavaEE3_2\jmxremote.access
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Djava.rmi.server.hostname=127.0.0.1
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Djdk.tls.ephemeralDHKeySize=2048
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Dignore.endorsed.dirs=
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Dcatalina.base=C:\Users\weilaidb\.IntelliJIdea2019.3\system\tomcat\Unnamed_HelloJavaEE3_2
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Dcatalina.home=D:\software\develop\apache-tomcat-9.0.58-windows-x64\apache-tomcat-9.0.58
+03-Aug-2022 22:24:49.106 淇℃伅 [main] org.apache.catalina.startup.VersionLoggerListener.log 鍛戒护琛屽弬鏁帮細       -Djava.io.tmpdir=D:\software\develop\apache-tomcat-9.0.58-windows-x64\apache-tomcat-9.0.58\temp
+03-Aug-2022 22:24:49.109 淇℃伅 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent 浣跨敤APR鐗堟湰[1.7.0]鍔犺浇浜嗗熀浜嶢PR鐨凙pache Tomcat鏈満搴揫1.2.31]銆�
+03-Aug-2022 22:24:49.109 淇℃伅 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR鍔熻兘锛欼Pv6[true]銆乻endfile[true]銆乤ccept filters[false]銆乺andom[true]銆乁DS [true]銆�
+03-Aug-2022 22:24:49.109 淇℃伅 [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL閰嶇疆锛歶seAprConnector[false]锛寀seOpenSSL[true]
+03-Aug-2022 22:24:49.112 淇℃伅 [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL鎴愬姛鍒濆鍖� [OpenSSL 1.1.1l  24 Aug 2021]
+03-Aug-2022 22:24:49.331 淇℃伅 [main] org.apache.coyote.AbstractProtocol.init 鍒濆鍖栧崗璁鐞嗗櫒 ["http-nio-8080"]
+03-Aug-2022 22:24:49.350 淇℃伅 [main] org.apache.catalina.startup.Catalina.load 鏈嶅姟鍣ㄥ湪[385]姣鍐呭垵濮嬪寲
+03-Aug-2022 22:24:49.378 淇℃伅 [main] org.apache.catalina.core.StandardService.startInternal 姝ｅ湪鍚姩鏈嶅姟[Catalina]
+03-Aug-2022 22:24:49.379 淇℃伅 [main] org.apache.catalina.core.StandardEngine.startInternal 姝ｅ湪鍚姩 Servlet 寮曟搸锛歔Apache Tomcat/9.0.58]
+03-Aug-2022 22:24:49.390 淇℃伅 [main] org.apache.coyote.AbstractProtocol.start 寮�濮嬪崗璁鐞嗗彞鏌刐"http-nio-8080"]
+03-Aug-2022 22:24:49.408 淇℃伅 [main] org.apache.catalina.startup.Catalina.start [57]姣鍚庢湇鍔″櫒鍚姩
+Connected to server
+[2022-08-03 10:24:56,772] Artifact hello: Artifact is being deployed, please wait...
+03-Aug-2022 22:24:57.387 淇℃伅 [RMI TCP Connection(3)-127.0.0.1] org.apache.jasper.servlet.TldScanner.scanJars 鑷冲皯鏈変竴涓狫AR琚壂鎻忕敤浜嶵LD浣嗗皻鏈寘鍚玊LD銆� 涓烘璁板綍鍣ㄥ惎鐢ㄨ皟璇曟棩蹇楄褰曪紝浠ヨ幏鍙栧凡鎵弿浣嗘湭鍦ㄥ叾涓壘鍒癟LD鐨勫畬鏁碕AR鍒楄〃銆� 鍦ㄦ壂鎻忔湡闂磋烦杩囦笉闇�瑕佺殑JAR鍙互缂╃煭鍚姩鏃堕棿鍜孞SP缂栬瘧鏃堕棿銆�
+03-Aug-2022 22:24:57.427 涓ラ噸 [RMI TCP Connection(3)-127.0.0.1] org.apache.catalina.core.StandardContext.startInternal 涓�涓垨澶氫釜绛涢�夊櫒鍚姩澶辫触銆傚畬鏁寸殑璇︾粏淇℃伅灏嗗湪鐩稿簲鐨勫鍣ㄦ棩蹇楁枃浠朵腑鎵惧埌
+03-Aug-2022 22:24:57.427 涓ラ噸 [RMI TCP Connection(3)-127.0.0.1] org.apache.catalina.core.StandardContext.startInternal 鐢变簬涔嬪墠鐨勯敊璇紝Context[/hello]鍚姩澶辫触
+[2022-08-03 10:24:57,456] Artifact hello: Error during artifact deployment. See server log for details.
+03-Aug-2022 22:24:59.398 淇℃伅 [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployDirectory 鎶妛eb 搴旂敤绋嬪簭閮ㄧ讲鍒扮洰褰� [D:\software\develop\apache-tomcat-9.0.58-windows-x64\apache-tomcat-9.0.58\webapps\manager]
+03-Aug-2022 22:24:59.459 淇℃伅 [Catalina-utility-1] org.apache.catalina.startup.HostConfig.deployDirectory Web搴旂敤绋嬪簭鐩綍[D:\software\develop\apache-tomcat-9.0.58-windows-x64\apache-tomcat-9.0.58\webapps\manager]鐨勯儴缃插凡鍦╗60]姣鍐呭畬鎴�
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================查看tomcat的日志 
+03-Aug-2022 22:27:08.278 涓ラ噸 [RMI TCP Connection(5)-127.0.0.1] org.apache.catalina.core.StandardContext.filterStart 鍚姩杩囨护鍣ㄥ紓甯�
+	java.lang.ClassNotFoundException: filter.SetEncodingFilter
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1407)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1215)
+		at org.apache.catalina.core.DefaultInstanceManager.loadClass(DefaultInstanceManager.java:534)
+		at org.apache.catalina.core.DefaultInstanceManager.loadClassMaybePrivileged(DefaultInstanceManager.java:515)
+		at org.apache.catalina.core.DefaultInstanceManager.newInstance(DefaultInstanceManager.java:149)
+		at org.apache.catalina.core.ApplicationFilterConfig.getFilter(ApplicationFilterConfig.java:251)
+		at org.apache.catalina.core.ApplicationFilterConfig.<init>(ApplicationFilterConfig.java:102)
+		at org.apache.catalina.core.StandardContext.filterStart(StandardContext.java:4613)
+		at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5256)
+		at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+		at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:726)
+		at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:698)
+		at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:696)
+		at org.apache.catalina.startup.HostConfig.manageApp(HostConfig.java:1783)
+		at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+		at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+		at java.lang.reflect.Method.invoke(Method.java:498)
+		at org.apache.tomcat.util.modeler.BaseModelMBean.invoke(BaseModelMBean.java:293)
+		at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+		at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:801)
+		at org.apache.catalina.mbeans.MBeanFactory.createStandardContext(MBeanFactory.java:460)
+		at org.apache.catalina.mbeans.MBeanFactory.createStandardContext(MBeanFactory.java:408)
+		at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+		at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+		at java.lang.reflect.Method.invoke(Method.java:498)
+		at org.apache.tomcat.util.modeler.BaseModelMBean.invoke(BaseModelMBean.java:293)
+		at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:819)
+		at com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:801)
+		at com.sun.jmx.remote.security.MBeanServerAccessController.invoke(MBeanServerAccessController.java:468)
+		at javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1468)
+		at javax.management.remote.rmi.RMIConnectionImpl.access$300(RMIConnectionImpl.java:76)
+		at javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1309)
+		at java.security.AccessController.doPrivileged(Native Method)
+		at javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1408)
+		at javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829)
+		at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+		at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+		at java.lang.reflect.Method.invoke(Method.java:498)
+		at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:357)
+		at sun.rmi.transport.Transport$1.run(Transport.java:200)
+		at sun.rmi.transport.Transport$1.run(Transport.java:197)
+		at java.security.AccessController.doPrivileged(Native Method)
+		at sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+		at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:573)
+		at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:834)
+		at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:688)
+		at java.security.AccessController.doPrivileged(Native Method)
+		at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:687)
+		at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+		at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+		at java.lang.Thread.run(Thread.java:748)

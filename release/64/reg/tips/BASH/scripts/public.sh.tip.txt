@@ -46,7 +46,10 @@ echo
 echo
 }
 
-#检测文件夹是否存在或为空
+# ==================文件夹操作
+# ==================文件夹操作
+# ==================文件夹操作
+#检测文件夹是否存在或为空则退出
 checkdirnoexistquit()
 {
 DIRPATH=$1
@@ -56,12 +59,119 @@ DIRPATH=$1
         fi
 }
 
-#检测文件是否存在或为空
+#检测文件夹不存在则创建
+checkdirnoexistcreate()
+{
+DIRPATH=$1
+        if [ ! -d $DIRPATH ];then
+                echo "create dir [$DIRPATH]"
+                mkdir $DIRPATH -p
+        fi
+}
+
+#检测文件夹存在则退出
+checkdirexistquit()
+{
+DIRPATH=$1
+TIPS=$2
+        if [ -d $DIRPATH ];then
+                echo "dir [$DIRPATH] exist!!!"
+                echo $TIPS
+                exit 1
+        fi
+}
+
+# ==================文件操作
+# ==================文件操作
+# ==================文件操作
+#检测文件是否存在或为空则退出
 checkfilenoexistquit()
 {
 FILEPATH=$1
-        if [ ! -f $FILEPATH ];then
+FILEPATHTRIM=`echo $FILEPATH | xargs`
+
+        if [ ! -f $FILEPATHTRIM ]  || [ -z $FILEPATHTRIM ];then
                 echo "file [$FILEPATH] no exist!!!"
+                exit 1
+        fi
+}
+
+#检测文件存在则打印
+checkfileexistquit()
+{
+FILEPATH=$1
+TIPS=$2
+        if [ -f $FILEPATH ];then
+                echo "file [$FILEPATH] exist!!! " $TIPS
+        fi
+}
+
+
+
+
+#软链接
+softlink()
+{
+FILESRCPATH=$1
+FILEDSTPATH=$2
+TIPS="no process!!!"
+	checkfilenoexistquit $FILESRCPATH
+	# checkfileexistquit $FILEDSTPATH $TIPS
+	if [ -f $FILEDSTPATH ];then
+			echo "file [$FILEDSTPATH] exist!!! " $TIPS
+	else
+		ln -s $FILESRCPATH $FILEDSTPATH	
+	fi
+}
+
+#软链接
+softlink_write_dest_tobashrc()
+{
+BASHRCPATH=$1
+FILESRCPATH=$2
+FILEDSTPATH=$3
+TIPS="no process!!!"
+
+echo "BASHRCPATH:$BASHRCPATH"
+
+
+
+
+	checkfilenoexistquit $FILESRCPATH
+	checkfilenoexistquit $BASHRCPATH
+	# checkfileexistquit $FILEDSTPATH $TIPS
+	if [ -f $FILEDSTPATH ];then
+			echo "file [$FILEDSTPATH] exist!!! " $TIPS
+	else
+		ln -s $FILESRCPATH $FILEDSTPATH	
+	fi
+
+
+	existflag=`cat $BASHRCPATH| grep -e "source $FILEDSTPATH" | wc -l`
+	echo "existflag:$existflag"
+
+
+	if [ 0 -eq $existflag ];then
+		echo "no exist in $BASHRCPATH, then write"
+		echo "dos2unix $FILEDSTPATH > /dev/null 2>&1" >> $BASHRCPATH
+		echo "source $FILEDSTPATH > /dev/null 2>&1" >> $BASHRCPATH
+	else
+		echo "exist in $BASHRCPATH, no process !!!"
+	fi
+}
+
+
+# ==================字符操作
+# ==================字符操作
+# ==================字符操作
+#检测字符串为空或长度为0则退出
+checkstringzeroquit()
+{
+STRINGPATH=$1
+STRINGPATH=`echo $STRINGPATH | xargs`
+
+        if [ -z $STRINGPATH ];then
+                echo "string [$TRINGPATH] len zero!!!"
                 exit 1
         fi
 }

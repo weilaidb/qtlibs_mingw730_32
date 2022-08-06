@@ -3,6 +3,7 @@ Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
+BASH/alias/bashrc deploy script
 BASH/alias/bashrc 加载配置
 BASH/alias/bashrc 加载配置 ubuntu20.04
 BASH/alias/generate生成
@@ -33,9 +34,15 @@ BASH/scripts/gen.vlan.xml.sh
 BASH/scripts/getnumsinfile.sh
 BASH/scripts/include.sh
 BASH/scripts/include.sh public
+BASH/scripts/opengrok.run.ext.sh
+BASH/scripts/opengrok.run.ext.sh run eg
+BASH/scripts/opengrok.run.sh
 BASH/scripts/public.sh
 BASH/scripts/test.sh
 BASH/scripts/updategit.atwork.sh
+BASH/scripts/注意/去除变量空格
+BASH/scripts/注意/执行 shell 报错 source not found
+BASH/scripts/注意/脚本中空格
 BASH/set -x
 BASH/set -x eg
 BASH/test -f
@@ -403,6 +410,9 @@ C/STRUCT/pragma pack 1字节对齐
 C/STRUCT/pragma pack 字节对齐 push pop
 C/STRUCT/生成结构体
 C/STRUCT/生成结构体 printf
+C/STRUCT/结构体 排序sort
+C/STRUCT/结构体 排序sort 为大到小
+C/STRUCT/结构体 排序sort 为小到大
 C/eg
 C/enum/enum
 C/enum/enum single
@@ -410,6 +420,7 @@ C/enum/enum single withname
 C/enum/enum single withname typedef
 C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
+C/know/sigaction
 C/new/DEFINE/ifndef
 C/new/__attribute__/TEXT
 C/new/__attribute__/__align__
@@ -420,6 +431,7 @@ C/new/return int
 C/new/return unsigned int
 C/new/return unsigned short
 C/new/return void
+C/new/sigaction
 C/单链表 single list
 C/单链表 single list new
 C/基本类型/BASE TYPE typedef
@@ -578,6 +590,7 @@ DEFINE/GENERATE
 DEFINE/GENERATESTRINGSAME
 DEFINE/UNUSED
 Docker/Bash
+Docker/Docker中如何删除image（镜像）
 Docker/Hello World
 Docker/JFrog
 Docker/JFrog weilai.war下载
@@ -685,6 +698,7 @@ FPGA/ZYNQ/mdio 以太网PHY 芯片之 MII  MDIO接口详解
 FPGA/ZYNQ/千兆以太网接口
 FPGA/ZYNQ/实时时钟 DS1302
 FPGA/ZYNQ/开发/常见
+FPGA/ZYNQ/开发new/创建工程(create project)
 FPGA/ZYNQ/扩展口 J10
 FPGA/ZYNQ/扩展口 J11
 FPGA/ZYNQ/有源晶振
@@ -730,6 +744,7 @@ GCC/Wall
 GCC/fpermissive
 GCC/gcc编译选项
 Html/DOM/DOM
+Html/DOM/DOM/Mouse/MouseEvent 鼠标事件
 Html/DOM/div/刷新
 Html/DOM/getElementById
 Html/DOM/getElementById innerHTML
@@ -740,6 +755,34 @@ Html/JS/table 2 excel 表格下载
 Html/JS/富文本编辑器的xss问题
 Html/TOOL/HTML编码解码
 Html/eg
+JAVA/AJAX new/JSON 实例
+JAVA/AJAX new/eg
+JAVA/AJAX new/jsp/eg
+JAVA/AJAX new/jsp/onblur
+JAVA/AJAX new/jsp/输入内容显示下拉菜单
+JAVA/AJAX new/onreadystatechange
+JAVA/AJAX new/onreadystatechange 回调函数
+JAVA/AJAX new/xml Retrieve data from XML file
+JAVA/AJAX new/xml cd_catalog
+JAVA/AJAX new/xmlhttp.open 同步方式
+JAVA/AJAX new/xmlhttp.open 异步方式(通常)
+JAVA/AJAX new/xmlhttp.open 异步方式(通常) Post方式
+JAVA/AJAX new/xmlhttp.open 异步方式(通常) Post方式 表单setRequestHeader
+JAVA/AJAX new/回显输入内容
+JAVA/AJAX new/服务器响应 responseText
+JAVA/AJAX new/服务器响应 responseXML
+JAVA/AJAX new/服务器响应 responseXML 简版
+JAVA/AJAX new/用AJAX进行一次 HEAD 请求
+JAVA/AJAX new/用AJAX进行一次指定的 HEAD 请求
+JAVA/AJAX new/用callback函数的AJAX实例
+JAVA/AJAX new/输入框中键入字符时返回数据
+JAVA/AJAX new/选择显示 select option
+JAVA/AJAX 教程/AJAX - 创建 XMLHttpRequest 对象
+JAVA/AJAX 教程/AJAX - 向服务器发送请求
+JAVA/AJAX 教程/AJAX 实例
+JAVA/AJAX 教程/eg
+JAVA/AJAX 教程/简介
+JAVA/AJAX 示例/经典ajax实例-ajax实现输入时的自动提示jsp(转)
 JAVA/Base/forloop
 JAVA/Cloud/ECS
 JAVA/JAVA_HOME JRE_HOME
@@ -781,6 +824,10 @@ JAVA/JSP/File文件/File 文件上传
 JAVA/JSP/Foundation/Navigator
 JAVA/JSP/Foundation/include引用
 JAVA/JSP/Foundation/include引用2
+JAVA/JSP/JQuery/Navigator
+JAVA/JSP/JQuery/Navigator SearchController
+JAVA/JSP/JQuery/Navigator container
+JAVA/JSP/JQuery/Navigator main.js
 JAVA/JSP/JS/clear by id
 JAVA/JSP/JS/style eg1
 JAVA/JSP/JavaBean/getProperty
@@ -793,10 +840,24 @@ JAVA/JSP/Print/System.err
 JAVA/JSP/Print/System.in
 JAVA/JSP/Print/System.out.print
 JAVA/JSP/Print/System.out.println
+JAVA/JSP/Problem/Error during artifact deployment
+JAVA/JSP/Problem/IDEA project模式下，不显示项目工程目录
+JAVA/JSP/Problem/IDEA 打开文件夹特别慢
+JAVA/JSP/Problem/Path Relative to Deployment Root 相对根路径
+JAVA/JSP/Problem/Path Relative to Deployment Root 相对根路径 示例
+JAVA/JSP/Problem/WebServlet 注解url不生效
+JAVA/JSP/Problem/ajax url document.createElement td onclick 不生效
+JAVA/JSP/Problem/ajax url window.onload is not a function
+JAVA/JSP/Problem/ajax url不生效
+JAVA/JSP/Problem/ajax url不生效 Uncaught ReferenceError is not defined
+JAVA/JSP/Problem/ajax 返回的中文点击后显示乱码
+JAVA/JSP/Problem/ajax 返回的中文点击后显示乱码 Tomcat设置编码格式utf8
+JAVA/JSP/Problem/ajax引用javascript的文件不生效，粘贴可以生效
+JAVA/JSP/Problem/jsp Cannot resolve class
 JAVA/JSP/Servlet/HttpServlet
 JAVA/JSP/Servlet/HttpServlet format
 JAVA/JSP/Servlet/HttpServlet format doGet doPost
-JAVA/JSP/Servlet/web.xml
+JAVA/JSP/Servlet/web.xml servlet-mapping
 JAVA/JSP/Tag文件与标记
 JAVA/JSP/Tag标签库
 JAVA/JSP/bgcolor
@@ -817,6 +878,7 @@ JAVA/JSP/form/eg1
 JAVA/JSP/form/eg2
 JAVA/JSP/form/eg3
 JAVA/JSP/form/eg3 fileup
+JAVA/JSP/form/eg4
 JAVA/JSP/form/embed
 JAVA/JSP/form/file enctype multipart
 JAVA/JSP/form/file2
@@ -862,8 +924,9 @@ JAVA/JSP/request.referer
 JAVA/JSP/string/String
 JAVA/JSP/synchronized
 JAVA/JSP/title eg
+JAVA/JSP/中文乱码
 JAVA/JSP/代码段/decode getBytes
-JAVA/JSP/代码段/getBytes print all
+JAVA/JSP/代码段/getBytes print all utf8 gbk
 JAVA/JSP/代码段/getBytes 方法
 JAVA/JSP/代码段/parseDouble
 JAVA/JSP/代码段/try catch
@@ -905,6 +968,8 @@ JAVA/SpringBoot/Thymealeaf/help/favicon.ico error解决
 JAVA/SpringBoot/application.properties 修改端口
 JAVA/SpringBoot/application.properties 转yml
 JAVA/SpringBoot/application.yml DD
+JAVA/SpringBoot/application.yml eg
+JAVA/SpringBoot/application.yml new
 JAVA/SpringBoot/application.yml 修改端口
 JAVA/SpringBoot/application.yml 相关说明
 JAVA/SpringBoot/freemarker .ftl
@@ -934,6 +999,9 @@ JAVA/SpringBoot/new/PropertySource 中文乱码
 JAVA/SpringBoot/new/Servlet
 JAVA/SpringBoot/new/SpringBootApplication
 JAVA/SpringBoot/new/SpringBootApplication java
+JAVA/SpringBoot/new/Thymealeaf/Setter Getter ToString
+JAVA/SpringBoot/new/Thymealeaf/application.yml DD
+JAVA/SpringBoot/new/Thymealeaf/eg
 JAVA/SpringBoot/new/Thymealeaf/header
 JAVA/SpringBoot/new/Thymealeaf/header文件首行
 JAVA/SpringBoot/new/Thymealeaf/mapper/UserMapper.xml
@@ -942,8 +1010,15 @@ JAVA/SpringBoot/new/Thymealeaf/text
 JAVA/SpringBoot/new/Thymealeaf/text 一行
 JAVA/SpringBoot/new/Thymealeaf/userlist
 JAVA/SpringBoot/new/Thymealeaf/utext
+JAVA/SpringBoot/new/Thymealeaf/传递参数/select option
+JAVA/SpringBoot/new/Thymealeaf/传递参数/th action
+JAVA/SpringBoot/new/Thymealeaf/传递参数/th inline
+JAVA/SpringBoot/new/Thymealeaf/传递参数/传参介绍
+JAVA/SpringBoot/new/Thymealeaf/传递参数/用户User
 JAVA/SpringBoot/new/Thymealeaf/用于spring mvc跳转访问Thyemaleaf模板
 JAVA/SpringBoot/new/Thymealeaf/界面设计/1
+JAVA/SpringBoot/new/Thymeleaf/Post
+JAVA/SpringBoot/new/Thymeleaf/Thymeleaf教程
 JAVA/SpringBoot/new/pom.xml app description
 JAVA/SpringBoot/new/pom.xml dependencies
 JAVA/SpringBoot/new/pom.xml dependencies 下载网址
@@ -966,6 +1041,13 @@ JAVA/SpringBoot/search key 搜索关键字
 JAVA/SpringBoot/sqlite3驱动
 JAVA/SpringBoot/update jar包后，点击编辑按钮无反应
 JAVA/SpringBoot/代码分析
+JAVA/SpringBoot/依赖库 pom.xml
+JAVA/SpringBoot/依赖库 pom.xml ajax
+JAVA/SpringBoot/依赖库 pom.xml eg
+JAVA/SpringBoot/依赖库 pom.xml hibernate
+JAVA/SpringBoot/依赖库 pom.xml lombok
+JAVA/SpringBoot/依赖库 pom.xml webjars jquery
+JAVA/SpringBoot/创建工程 create project pom.xml
 JAVA/SpringBoot/工程Project/导入 dependency dependencies
 JAVA/SpringBoot/工程Project/导入 dependency dependencies2
 JAVA/SpringBoot/工程Project/新建工程 new project
@@ -975,11 +1057,15 @@ JAVA/SpringBoot/常见问题/修改name js后，不生效
 JAVA/SpringBoot/常见问题/搜索查询后，后面列表无内容了
 JAVA/SpringBoot/常见问题/界面点击用例 搜索等无反应
 JAVA/SpringBoot/术语
+JAVA/SpringBoot/版本version
+JAVA/SpringBoot/示例组件/验证码
 JAVA/SpringBoot/简介
 JAVA/SpringBoot/简介2
 JAVA/SpringBoot/视图技术
 JAVA/SpringBoot/视图技术 FreeMarker
 JAVA/SpringBoot/视图技术 Thymealeaf
+JAVA/SpringMVC/知识/Spring MVC【入门】
+JAVA/SpringMVC/知识/下载特别慢
 JAVA/class/static
 JAVA/css/include header
 JAVA/css/include header2
@@ -1258,6 +1344,8 @@ KERNEL/FS/mount-flags
 KERNEL/GCC/__aligned
 KERNEL/GCC/__attribute__
 KERNEL/GCC/__attribute__ noreturn
+KERNEL/GCC/__attribute__((__aligned__(n)))对结构体对齐的影响
+KERNEL/GCC/__attribute__((__aligned__(n)))结构体对齐原则
 KERNEL/GCC/参数列表
 KERNEL/GCC/参数列表 -Wl,-Bsymbolic
 KERNEL/LIST_HEAD
@@ -1317,6 +1405,7 @@ KERNEL/module/函数及宏说明
 KERNEL/module/模板
 KERNEL/module/模板 helloworld
 KERNEL/module/模板 here
+KERNEL/new/kmalloc kfree
 KERNEL/new/list_head
 KERNEL/大小写/tolower toupper
 KERNEL/宏/_IO
@@ -1353,11 +1442,14 @@ LINUX/Printk/KERN_WARNING
 LINUX/Printk/many equal signs
 LINUX/Printk/说明
 LINUX/Ubuntu/apt install
+LINUX/Ubuntu/apt install 22.02
+LINUX/Ubuntu/apt list
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
 LINUX/Ubuntu/五笔输入法
 LINUX/Ubuntu/国内源
 LINUX/Ubuntu/国内源 Ubuntu 20.04 Linux更换源教程
+LINUX/Ubuntu/国内源 Ubuntu 22.04
 LINUX/Ubuntu/必备命令 order
 LINUX/Ubuntu/必备命令 order systemtap
 LINUX/Ubuntu/必备软件 necessary software
@@ -1982,6 +2074,8 @@ Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
 Tools/Emacs快捷键
 Tools/Subline Text快捷键
+Tools/Tomcat/Web端403 Access Denied You are not authorized to view this page解决
+Tools/Tomcat/conf context.xml
 Tools/Tomcat/conf tomcat-users.xml
 Tools/UML/StartUML
 Tools/UML/常用软件
@@ -2038,12 +2132,14 @@ Tools/十六进制颜色码转换成RGB颜色值
 Tools/十六进制颜色码转换成RGB颜色值2
 Tools/双拼输入法快捷键
 Tools/双拼输入法快捷键 小鹤双拼
-Tools/双拼输入法快捷键 练习
+Tools/双拼输入法快捷键 打字练习
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12
+Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12 (ubuntu 22.02)
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.7.21
+Tools/查看代码工具/OpenGrok/配置 opengrok-1.7.34(报错)
 Tools/生成文件名 filename
 UNITTEST/GTEST/ASSERT_EQ
 UNITTEST/GTEST/ASSERT_FALSE
@@ -2065,6 +2161,7 @@ VBScript/Excel new
 VBScript/eg
 WeiLaiDb/Production/weilaix.war Version
 Windows/Fonts
+YAML/YAML 语法
 YAML/yml入门教程
 YAML/yml入门教程2
 data/开发板/AX7010 初始化打印
@@ -2094,6 +2191,7 @@ path路径/常用文件夹
 人格品行/弟子规 翻译
 人格品行/每日训诫检查
 字符/方向
+学习/小学生/成绩ABCD
 学习/小学生/英文电影
 学校/四年级电话
 宏Macro/Source insight/AppendBufLine
@@ -2174,6 +2272,7 @@ path路径/常用文件夹
 术语/网络/ATM网络
 术语/网络/CERNET
 术语/网络/FDDI网络
+术语/网络/GRE隧道
 术语/网络/IDLE帧
 术语/网络/MTU Maximum Transmission Unit
 术语/网络/PCS
@@ -2207,6 +2306,7 @@ path路径/常用文件夹
 正则表达式/添加引号
 正则表达式/验证Email地址
 测试用例/TestCase/1
+生活/烹调/蛋羹为什么不凝固
 用户说明书/EC管理 dd-x.y-SNAPSHOT.jar
 用户说明书/代码集autocodesets weilaix.war
 用户说明书/代码集autocodesets weilaix.war Apache版本更新
@@ -2214,8 +2314,13 @@ path路径/常用文件夹
 电脑/ThinkPad/T14/拆机
 电脑/ThinkPad/T14/拆机 加内存和硬盘安装系统
 电脑/戴尔Inspiron 15 7000 Series - 7537/拆机
+电脑/戴尔Inspiron 15 7000 Series - 7537/拆机3
 电脑/装机/Ghost 备份还原
 电脑/装机/Ghost 备份还原(dell inspiron-15-7537)
+算法/C/冒泡排序
+算法/C/快速排序法
+算法/C/计数排序
+算法/C/选择排序
 纪录片/视频及资料网址
 脚本/VBS/SecureCrt/Date
 脚本/VBS/SecureCrt/Send
@@ -2256,7 +2361,4 @@ path路径/常用文件夹
 设计/软件设计/eg
 设计/软件设计/语言设计的美妙
 设计/软件调试/eg
-设计/软件调试/联调过程中常见问题
-软件安装/dia/下载地址
-软件安装/dia/解决dia无法输入中文问题
-软件安装/亿图图示/下载地址
+设计/软件调试/联调�

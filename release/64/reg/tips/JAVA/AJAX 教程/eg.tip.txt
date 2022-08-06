@@ -1,0 +1,40 @@
+AJAX 教程
+
+AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
+
+AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
+
+AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。
+
+AJAX 不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行。
+
+
+AJAX 实例
+AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
+
+AJAX 是与服务器交换数据并更新部分网页的技术，在不重新加载整个页面的情况下
+
+修改内容
+
+尝试一下 »
+
+
+现在开始学习 AJAX !
+
+阅读本教程前，您需要了解的知识：
+阅读本教程，您需要有以下基础：
+
+HTML 和 CSS 基础
+JavaScript 基础
+如果您想学习这些基础知识，您可以在我们的首页找到相应的教程菜鸟教程。
+
+AJAX 应用
+运用 XHTML+CSS 来表达资讯；
+
+运用 JavaScript 操作 DOM（Document Object Model）来执行动态效果；
+
+运用 XML 和 XSLT 操作资料;
+
+运用 XMLHttpRequest 或新的 Fetch API 与网页服务器进行异步资料交换；
+
+注意：AJAX 与 Flash、Silverlight 和 Java Applet 等 RIA 技术是有区分的。

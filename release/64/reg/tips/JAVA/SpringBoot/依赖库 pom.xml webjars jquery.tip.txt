@@ -1,0 +1,28 @@
+========添加依赖
+
+
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-devtools</artifactId>
+	<optional>true</optional>
+</dependency>
+
+<dependency>
+	<groupId>org.webjars</groupId>
+	<artifactId>jquery</artifactId>
+	<version>3.4.1</version>
+</dependency>
+
+<dependency>
+	<groupId>org.webjars</groupId>
+	<artifactId>bootstrap</artifactId>
+	<version>3.3.7</version>
+</dependency>
+
+
+
+
+
+使用时直接引用 
+<script type="text/javascript"
+        src="webjars/jquery/3.4.1/jquery.min.js"></script>

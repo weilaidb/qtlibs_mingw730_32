@@ -1,0 +1,1 @@
+xmlDoc=xmlhttp.responseXML;$NLtxt="";$NLx=xmlDoc.getElementsByTagName("\1");$NLfor (i=0;i<x.length;i++)$NL{$NL$TBtxt=txt + x[i].childNodes[0].nodeValue + "$NL";$NL}$NLdocument.getElementById("myDiv").innerHTML=txt;

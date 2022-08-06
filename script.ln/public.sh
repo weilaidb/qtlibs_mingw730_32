@@ -1,0 +1,1 @@
+../release/64/reg/tips/BASH/scripts/public.sh
