@@ -1,0 +1,38 @@
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+SOFT_PATH=~/soft
+WORK_PATH=~/work
+OPENGROK_VER=1.5.12
+OPENGROK_NAME=opengrok-$OPENGROK_VER
+TOMCAT_PATH=~/soft/tomcat/apache-tomcat-9.0.64
+
+
+export CLASS_PATH=$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar
+export PATH=$JAVA_HOME/bin:$PATH
+JAVA_BIN=/usr/bin/java
+CTAGS_BIN=/usr/bin/ctags
+TOMCAT_BIN_PATH=$TOMCAT_PATH/bin/
+TOMCAT_WEBAPP_PATH=$TOMCAT_PATH/webapps
+OPENGROK_ROOT=$SOFT_PATH/$OPENGROK_NAME
+OPENGROK_TAR_PATH=$OPENGROK_ROOT/opengrok-$OPENGROK_VER.tar.gz
+OPENGROK_LOG_PROPERTY=$OPENGROK_ROOT/etc/logging.properties
+OPENGROK_JAR=$OPENGROK_ROOT/lib/opengrok.jar
+OPENGROK_INDEX=$WORK_PATH/git
+OPENGROK_ETC=$OPENGROK_ROOT/etc
+OPENGROK_GENERATE_XML=$OPENGROK_ETC/configuration.xml
+OPENGROK_DATA=$OPENGROK_ROOT/data
+OPENGROK_WAR_NAME=source.war
+OPENGROK_WAR=$OPENGROK_ROOT/lib/$OPENGROK_WAR_NAME
+
+rm -rf $OPENGROK_ETC
+mkdir $OPENGROK_ETC
+
+echo "begin paring..."
+$JAVA_BIN -Xmx16G -Xms8G \
+-Djava.util.logging.config.file=$OPENGROK_LOG_PROPERTY \
+-jar $OPENGROK_JAR \
+-c $CTAGS_BIN \
+-s $OPENGROK_INDEX \
+-d $OPENGROK_DATA \
+-H -P -S -G \
+-W $OPENGROK_GENERATE_XML \
+-U http://localhost:8080/source

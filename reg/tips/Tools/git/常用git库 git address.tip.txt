@@ -30,6 +30,7 @@ git://busybox.net/busybox.git
 wget https://mirrors.tuna.tsinghua.edu.cn/kernel/v4.x/linux-4.5.tar.gz
 https://github.com/universal-ctags/ctags.git
 https://github.com/oracle/opengrok.git
+https://github.com/CoatiSoftware/Sourcetrail.git
 https://gitlab.denx.de/u-boot/u-boot.git
 https://source.denx.de/u-boot/u-boot.git
 
@@ -39,6 +40,7 @@ TensorFlow的官方网址：https://tensorflow.google.cn/
 https://github.com/googlearchive/pywebsocket
 
 镜像:
+https://gitee.com/mirrors/linux_old1.git
 https://gitee.com/mirrors/linux.git
 https://gitee.com/caicry/FFmpeg.Mirrors
 https://mirrors.tuna.tsinghua.edu.cn/kernel/v5.x/linux-5.10.15.tar.xz
@@ -73,6 +75,7 @@ http://c.biancheng.net/spring_boot/example.html
 本地库:
 #Web部署
 git@gitee.com:weilaidb/web_notebook_online.git
+#autocodeset
 git@github.com:weilaidb/qtlibs_mingw730_32.git
 git@github.com:weilaidb/linux_driver.git
 git@gitee.com:weilaidb/hello-java-ee3_-ext.git

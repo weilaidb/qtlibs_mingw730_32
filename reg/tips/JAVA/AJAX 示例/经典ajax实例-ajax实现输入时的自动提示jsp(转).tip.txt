@@ -1,0 +1,245 @@
+经典ajax实例-ajax实现输入时的自动提示jsp(转)
+
+Horrison
+
+于 2010-03-22 10:44:00 发布
+
+5823
+ 收藏
+分类专栏： Java 文章标签： ajax jsp xmlhttprequest javascript insert struts
+
+Java
+专栏收录该内容
+26 篇文章0 订阅
+订阅专栏
+ajax技术从2005年就开始流行了起来，主要是这种技术能给用户带来更好的浏览体验，能创建更丰富的web页面，现在的项目开发中或多或少都用了ajax技术。  
+
+先概括性地介绍一下ajax，ajax是Asynchronous JavaScript and XML（以及 DHTML 等）的缩写。Ajax提供与服务器异步通信的能力，借助于Ajax技术，可以异步地向服务器发出请求，以执行更新或查询数据库。当请求返回时，就可以使用JavaScript和CSS来相应地更新页面，而不是刷新整个页面。最重要的是，用户甚至不知道浏览器正在与服务器通信，Web站点看起来好象是即时响应的。
+
+Ajax的核心是JavaScript对象XmlHttpRequest。该对象在Internet Explorer 5中首次引入，它是一种支持异步请求的技术。简而言之，XmlHttpRequest使您可以使用JavaScript向服务器提出请求并处理响应。
+
+ 
+
+下面是本人使用ajax实现的一个简单例子，该实例实现了输入时的自动提示，类似于google输入时的提示。
+
+基本思路是：前台输入查询条件，在输入的同时触发一个javascript事件，该事件创建一个XMLHttpRequest对象并异步向服务器提交请求，服务器端收到请求后执行数据库查询，将查询得到的数据以字符串的形式返回至客户端浏览器，然后将该字符串在客户端浏览器显示。
+
+ 
+
+按照如下的步骤进行：
+1、编写一个jsp页面，在这个页面中有一个输入框，当用户在该输入框中输入了一个字符之后，在输入框下方将自动显示符合输入条件的从数据库中查询出来的值。下面是该jsp页面的完整代码：index.jsp
+
+Html代码 复制代码
+<%@ page language="java" pageEncoding="utf-8"%>  
+  
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">  
+<html>  
+  <head>  
+    <title>AJAX输入提示</title>  
+    <meta http-equiv="pragma" content="no-cache">  
+    <meta http-equiv="cache-control" content="no-cache">  
+    <meta http-equiv="expires" content="0">       
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
+    <meta http-equiv="description" content="This is my page">  
+    <style type="text/css" media="screen">  
+     .onmouset_out {   
+       background-color: #99CCFF;   
+       padding: 2px 6px 2px 6px;   
+     }   
+     .onmouset_over {    
+       background-color: #006600;   
+       padding: 2px 6px 2px 6px;   
+     }   
+     #result_display {   
+       border: 1px solid #FFFFFF;      
+     }     
+    </style>  
+    <script type="text/javascript">  
+      var xmlHttp;    
+      //创建XMLHttpRequest对象   
+      function createXmlHttp() {   
+      //根据window.XMLHttpRequest对象是否存在使用不同的创建方式   
+        if (window.XMLHttpRequest) {   
+           //FireFox、Opera等浏览器支持的创建方式   
+           xmlHttp = new XMLHttpRequest();    
+        } else {   
+           //IE浏览器支持的创建方式   
+           xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");   
+        }   
+      }   
+      function inputSuggest() {   
+         var txtValue = document.getElementById('txt').value;   
+         createXmlHttp();   
+         xmlHttp.onreadystatechange = _handle;   
+         url = "suggest.do?txtValue=" + txtValue;   
+         xmlHttp.open("POST", url, false);   
+         xmlHttp.send(null);   
+      }   
+      function _handle() {   
+         if(xmlHttp.readyState==4){   
+            if(xmlHttp.status==200){   
+                var str = xmlHttp.responseText.split("#");   
+                var s = document.getElementById('result_display')   
+                s.innerHTML = '';   
+                for(i=0; i < str.length - 1; i++) {   
+                   var suggest = '<div οnmοuseοver="onmouseOver(this);" ';   
+                   suggest += 'onmouseout="onmousetOut(this);" ';   
+                   suggest += 'onclick="setSuggestValue(this.innerHTML);" ';   
+                   suggest += 'class="onmouset_out">' + str[i] + '</div>';   
+                   s.innerHTML += suggest;   
+                }   
+            }   
+         }   
+      }   
+      function onmouseOver(div) {   
+         div.className = 'onmouse_over';   
+      }   
+      function onmousetOut(div) {   
+         div.className = 'onmouset_out';   
+      }   
+      function setSuggestValue(value) {   
+         document.getElementById('txt').value = value;   
+         document.getElementById('result_display').innerHTML = '';   
+      }   
+    </script>  
+  </head>  
+     
+  <body>  
+    <h3>一个简单的AJAX输入提示</h3>  
+     <form id="frmSearch" action="">  
+       <input type="text" id="txt" name="author" alt="输入条件" onkeyup="inputSuggest();" style="width:200px"/>  
+       <input type="submit" id="search" value="搜索" alt="搜索"/><br />  
+       <div id="result_display" style="width:200px">  
+       </div>  
+     </form>  
+  </body>  
+</html>  
+2、编写后台处理异步请求的处理器，该处理器我采用的是struts1.2的action,你使用其他的（如servlet，struts2等）都一样，下面是该action的完整代码:SuggestAction.java
+
+Java代码 复制代码
+package org.hnylj.ajax.action;   
+  
+import java.io.PrintWriter;   
+  
+import javax.servlet.http.HttpServletRequest;   
+import javax.servlet.http.HttpServletResponse;   
+  
+import org.apache.struts.action.Action;   
+import org.apache.struts.action.ActionForm;   
+import org.apache.struts.action.ActionForward;   
+import org.apache.struts.action.ActionMapping;   
+import org.hnylj.db.DbManager;   
+  
+/**  
+ * 根据前台输入异步从后台获取数据的Action  
+ * @编写者：hnylj  
+ *  
+ */  
+public class SuggestAction extends Action {   
+  
+    private DbManager dbManager;   
+       
+    public ActionForward execute(ActionMapping mapping, ActionForm form,   
+            HttpServletRequest request, HttpServletResponse response)   
+            throws Exception {   
+        String param = request.getParameter("txtValue");   
+        dbManager = new DbManager();   
+        String result = dbManager.searchSuggest(param);   
+        PrintWriter out = response.getWriter();   
+        out.print(result);   
+        out.flush();   
+        return null;   
+    }   
+}  
+3.该action调用了一个数据库操作类，下面是该数据库操作类的完整代码：DbManager.java
+
+Java代码 复制代码
+package org.hnylj.db;   
+  
+import java.sql.Connection;   
+import java.sql.DriverManager;   
+import java.sql.ResultSet;   
+import java.sql.SQLException;   
+import java.sql.Statement;   
+  
+/**  
+ * 数据库管理与操作  
+ * @编写者：hnylj  
+ *  
+ */  
+public class DbManager {   
+    private Connection conn;   
+    private Statement stmt;   
+    private ResultSet rs;   
+  
+    private static final String DRIVER = "com.mysql.jdbc.Driver";   
+    private static final String URL = "jdbc:mysql://localhost/suggest";   
+    private static final String USERNAME = "root";   
+    private static final String PASSWORD = "123";   
+  
+    // 数据库连接   
+    public synchronized Connection getConnection() {   
+        try {   
+            Class.forName(DRIVER);   
+            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);   
+        } catch (ClassNotFoundException e) {   
+            e.printStackTrace();   
+            return null;   
+        } catch (SQLException e) {   
+            e.printStackTrace();   
+            return null;   
+        }   
+        return conn;   
+    }   
+       
+    /**  
+     * 获取符合输入条件的数据  
+     * @param conn  
+     * @param sql  
+     * @return  
+     */  
+    public String searchSuggest(String param) {   
+        String sql = "select author from article where author like '" + param + "%' order by author";   
+        String author = "";   
+        String str = "";   
+        try {   
+            conn = this.getConnection();   
+            stmt = conn.createStatement();   
+            rs = stmt.executeQuery(sql);   
+            while (rs.next()) {   
+                author = rs.getString("author");   
+                str += author + "#";   
+            }   
+        } catch (SQLException e) {   
+            e.printStackTrace();   
+            return "";   
+        }   
+        return str;   
+    }   
+}   
+4.整个应用你还需要其他的一些配置：
+ (1). 数据库表(使用mysql)：
+
+  create database suggest;
+  use suggest;
+
+  create table article (  
+     stu_id integer auto_increment,
+     author varchar(30) not null,  
+     title varchar(50) not null,  
+     primary key(stu_id)  
+  );  
+
+  insert into article(author,title) values('hnylj','ajax');
+  insert into article(author,title) values('hylj','java');
+  insert into article(author,title) values('hxycj','struts');
+  insert into article(author,title) values('hzyhj','hibernate');
+  insert into article(author,title) values('haykj','spring');
+  insert into article(author,title) values('hkyth','oracle');
+  insert into article(author,title) values('hlyyi','lucence'); 
+
+(2).保证struts程序正常运行所需要的其他配置，在这里不一以列出，你可以下载我提供的附件，该附件是一个完整的可以运行的程序。
+
+jsp页面代码有点丑陋，大家可以在其基础上修改，也可以增强其功能，例如增加每个显示结果的条数等！
+
+和大家一起交流，我的博客地址：http://hnylj.javaeye.com

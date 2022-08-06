@@ -1,0 +1,2 @@
+[js名称;url路径;Servlet类名称]
+test.js;testservlet;Testservlet

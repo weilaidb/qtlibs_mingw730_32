@@ -1,0 +1,40 @@
+首行改为:#!/bin/bash
+ 
+
+
+
+
+执行 shell 报错 source:not found。一行注释解决
+
+阿飞__
+
+于 2018-09-14 15:18:16 发布
+
+24084
+ 收藏 4
+分类专栏： Linux 文章标签： shell source
+版权
+
+Linux
+专栏收录该内容
+15 篇文章2 订阅
+订阅专栏
+解决方法：
+在 shell 脚本的第一行加上一行 "#!/bin/bash" 即可。
+
+ 
+
+例如：
+#!/bin/bash
+ 
+source /etc/environment
+ 
+问题原因：
+sh 和 bash 是不同的 shell，sh 中没有 source 命令。
+
+第一行的内容指定了shell 脚本解释器的路径，而且这个指定路径 只能放在文件的第一行 ！
+
+ 
+————————————————
+版权声明：本文为CSDN博主「阿飞__」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/afei__/article/details/82703392

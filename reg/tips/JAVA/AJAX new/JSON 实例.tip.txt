@@ -1,0 +1,2 @@
+[打开文件路径]
+/try/ajax/json_ajax.json

@@ -1,11 +1,19 @@
-脚本/VBS/SecureCrt/WaitForString $
+Algorithm ÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ®ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¦ÃÂÃÂÃÂÃÂ³ÃÂÃÂÃÂÃÂ/ÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ»ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¸ÃÂÃÂÃÂÃÂ­ÃÂÃÂÃÂÃÂ©ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ´ÃÂÃÂÃÂÃÂ¦ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥ÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¦ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥ÃÂÃÂÃÂÃÂºÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¥ÃÂÃÂÃÂÃÂ­ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ¬ÃÂÃÂÃÂÃÂ¦ÃÂÃÂÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¸ÃÂÃÂÃÂÃÂ²
+Algorithm ÃÂÃÂ§ÃÂÃÂ®ÃÂÃÂÃÂÃÂ¦ÃÂÃÂ³ÃÂÃÂ/ÃÂÃÂ¤ÃÂÃÂ»ÃÂÃÂÃÂÃÂ¤ÃÂÃÂ¸ÃÂÃÂ­ÃÂÃÂ©ÃÂÃÂÃÂÃÂ´ÃÂÃÂ¦ÃÂÃÂÃÂÃÂÃÂÃÂ¥ÃÂÃÂ¤ÃÂÃÂÃÂÃÂ¦ÃÂÃÂÃÂÃÂÃÂÃÂ¥ÃÂÃÂºÃÂÃÂÃÂÃÂ¥ÃÂÃÂ­ÃÂÃÂÃÂÃÂ§ÃÂÃÂ¬ÃÂÃÂ¦ÃÂÃÂ¤ÃÂÃÂ¸ÃÂÃÂ²
+Algorithm ÃÂ§ÃÂ®ÃÂÃÂ¦ÃÂ³ÃÂ/ÃÂ¤ÃÂ»ÃÂÃÂ¤ÃÂ¸ÃÂ­ÃÂ©ÃÂÃÂ´ÃÂ¦ÃÂÃÂÃÂ¥ÃÂ¤ÃÂÃÂ¦ÃÂÃÂÃÂ¥ÃÂºÃÂÃÂ¥ÃÂ­ÃÂÃÂ§ÃÂ¬ÃÂ¦ÃÂ¤ÃÂ¸ÃÂ²
+Algorithm Ã§Â®ÂÃ¦Â³Â/Ã¤Â»ÂÃ¤Â¸Â­Ã©ÂÂ´Ã¦ÂÂÃ¥Â¤ÂÃ¦ÂÂÃ¥ÂºÂÃ¥Â­ÂÃ§Â¬Â¦Ã¤Â¸Â²
+Algorithm ç®æ³/ä»ä¸­é´æå¤æåºå­ç¬¦ä¸²
+Algorithm ç®æ³/å¤§æ°è¿å¶è½¬æ¢
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
 AutoTest/python/telnet test
+BASH/alias/bashrc å è½½éç½®
+BASH/alias/bashrc å è½½éç½® ubuntu20.04
 BASH/alias/bashrc 加载配置
 BASH/alias/bashrc 加载配置 ubuntu20.04
+BASH/alias/generateçæ
 BASH/alias/generate生成
 BASH/alias/public use
 BASH/alias/public use @ubuntu20.04
@@ -23,8 +31,21 @@ BASH/printf说明
 BASH/replace nums in file or 提取数字自增1
 BASH/scripts/include.sh public
 BASH/set -x
+BASH/åé/å½ä»¤è¡åæ°
+BASH/åé/å¼å·å­ç¬¦ä¸²
 C/INCLUDE/常用头文件 header
 C/注释comments. insertFileHeader 头文件
+CXX/class/多态 继承 virtual Board
+CXX/class/多态 继承 virtual Board 2
+CXX/class/多态 继承 virtual Board array
+Code/new/Gmock test SetUP TearDown
 JAVA/JSP/form/eg
 JAVA/JSP/form/eg1
 JAVA/JSP/form/eg2
+JAVA/SpringBoot/new/Controller/EC2
+QT/UI/QTextEdit/getSelectLineTextEdit
+Setting/网页显示常用Tab切换
+Tools/查看代码工具/OpenGrok/配置 opengrok-1.7.21
+è®¾è®¡/æ¯è¯­/Agile
+术语/网络/PHY/PHY芯片 RTL8211E
+脚本/VBS/SecureCrt/WaitForString $

@@ -1,0 +1,1 @@
+server:$NL  port: 8080$NLspring:$NL  application:$NL$TBname: \1$NL  thymeleaf:$NL$TBcache: true$NL$TBcheck-template: true$NL$TBcheck-template-location: true$NL$TBcontent-type: text/html$NL$TBenabled: true$NL$TBencoding: UTF-8$NL$TBexcluded-view-names: ''$NL$TBmode: HTML5$NL$TBprefix: classpath:/templates/$NL$TBsuffix: .html
