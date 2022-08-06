@@ -83,3 +83,21 @@ idea支持正则替换
     /*浏览器提交的数据在提交给服务器之前设置编码方式为UTF-8*/
     request.setCharacterEncoding("UTF-8");
 %>
+
+
+
+
+
+==========扩展,组替换的标识为$开头
+
+idea支持正则替换
+
+<body(.+)>
+
+替换为
+
+<body$1>
+<%
+    /*浏览器提交的数据在提交给服务器之前设置编码方式为UTF-8*/
+    request.setCharacterEncoding("UTF-8");
+%>
