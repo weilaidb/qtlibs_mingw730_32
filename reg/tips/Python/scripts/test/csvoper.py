@@ -1,1 +1,0 @@
-../csvoper.py.tip.txt

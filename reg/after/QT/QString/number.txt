@@ -1,1 +1,0 @@
-QString \1;$NL$NL\1 = QString::number(\2,16);//转换为十六进制字符串$NL$NL

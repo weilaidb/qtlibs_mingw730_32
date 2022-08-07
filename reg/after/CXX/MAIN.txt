@@ -1,1 +1,0 @@
-#include <iostream>$NL#include <stdio.h>$NL#include <stdlib.h>$NL#include <unistd.h>$NL#include <string.h>$NL#include <sys/types.h>$NL#include <sys/time.h>$NL#include <sys/fcntl.h>$NL$NLint main(int argc, char **argv)$NL{$NL$TBprintf("hello world\n");$NL$TBreturn 0;$NL}

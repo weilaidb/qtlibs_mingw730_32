@@ -1,5 +1,0 @@
-getpeername系统调用的原型是:
-int getpeername(int fd, caddr_t asa, int *alen);
-
-getpeername系统调用返回指定插口上连接的远端地址。当一个调用accept的进程通过fork和exec启动一个服务器时（即，任何被inetd启动的服务器），经常要调用这个函数。服务器不能得到accept返回的远端地址，而只能调用getpeername。通常，要在应用的访问地址表查找返回地址，如果返回地址不在访问表中，则连接将被关闭。
-

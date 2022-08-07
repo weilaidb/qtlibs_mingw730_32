@@ -1,1 +1,0 @@
-class_exists 检查类是否已定义。

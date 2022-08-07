@@ -1,1 +1,0 @@
-font;ui->textEdit;20

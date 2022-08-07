@@ -1,5 +1,0 @@
-# Clean up temporary file at exit.
-__cleanup() {
-	rm -f "$TMP"
-}
-trap __cleanup EXIT

@@ -1,1 +1,0 @@
-def \1(a): #计算$NL    return a$NL$NL$NL$NLx = map(\1, [\2])$NLprint(list(x))

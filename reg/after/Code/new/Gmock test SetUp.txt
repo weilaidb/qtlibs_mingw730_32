@@ -1,1 +1,0 @@
-#include "gmock/gmock.h"$NL$NLusing namespace ::testing;$NL$NL$NLclass \1: public Test {$NLpublic:$NL   RetweetCollection collection;$NL   void SetUp() override {$NL$TB  \2;$NL   }$NL};

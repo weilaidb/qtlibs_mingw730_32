@@ -1,6 +1,0 @@
-java-11-openjdk
-git
-svn
-make
-gcc
-vsftpd

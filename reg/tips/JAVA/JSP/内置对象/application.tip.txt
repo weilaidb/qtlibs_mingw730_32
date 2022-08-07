@@ -1,7 +1,0 @@
-application对象的常用方法
-public void setAttribute(String key, Object obj)    -- application 对象将参数Ojbect指定的对象obj添加到application对象中，并为添加的对象指定一个索引关键字。如果添加的两个关键字相同，则先前添加的对象被清除。
-public Object getAttribute(String key)              -- 获取application对象中含有的关键字是key的对象。
-public Enumeration getAttributeNames()              -- 产生一个枚举对象。该枚举对象使用nextElemets()遍历application中的各个对象所对应的关键字。
-public void removeAttribute(String key)             -- 从当前application对象中删除关键字是key的对象。
-public String getServletInfo()                      -- 获取Servlet编译器的当前版本的信息。
-有些服务器不直接支持使用application对象，必须先用ServletContext类声明这个对象，再使用getServletContext()方法对这个application对象进行初始化。

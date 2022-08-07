@@ -1,1 +1,0 @@
-//改变字体大小的SpinBox的响应$NLQTextCharFormat \1;$NL\1.setFontPointSize(aFontSize); //设置字体大小$NL\2->mergeCurrentCharFormat(\1);

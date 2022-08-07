@@ -1,2 +1,0 @@
-2．QLinkedList
-QLinkedList<T>是链式列表（linked-list），数据项不是用连续的内存存储的，它基于迭代器访问数据项，并且插入和删除数据项的操作时间相同。

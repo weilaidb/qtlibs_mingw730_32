@@ -1,3 +1,0 @@
-#ifndef align
-# define align(a) (((ub4)a+(sizeof(void *)-1))&(~(sizeof(void *)-1)))
-#endif /* align */

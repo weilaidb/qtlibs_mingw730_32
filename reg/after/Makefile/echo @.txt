@@ -1,1 +1,0 @@
-\1:$NL	@echo ========$@ begin==========$NL	@echo ========$@ end============$NL$NLcat > dirmak/\1.mak <<-EOF$NL\1:$NL	@echo ========$@ begin==========$NL	@echo ========$@ end============$NL$NL$NLEOF

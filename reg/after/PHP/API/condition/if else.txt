@@ -1,1 +1,0 @@
-$\1=date("H");$NLif ($\1<"\2")$NL{$NL    echo "Have a good day!";$NL}$NLelse$NL{$NL    echo "Have a good night!";$NL}

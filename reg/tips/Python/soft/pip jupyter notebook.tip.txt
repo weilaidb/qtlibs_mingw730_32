@@ -1,8 +1,0 @@
-jupyter-notebook --generate-config --allow-root
-
-#以root身份运行
-jupyter notebook --allow-root
-
-jupyter notebook list
-
-jupyter notebook password

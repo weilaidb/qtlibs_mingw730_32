@@ -1,2 +1,0 @@
-[基类;继承类1;继承类2]
-Shape;Rectangle;Triangle

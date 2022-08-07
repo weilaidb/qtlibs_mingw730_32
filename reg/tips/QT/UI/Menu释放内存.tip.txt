@@ -1,1 +1,0 @@
-菜单添加标志 pMenu->setAttribute(Qt::WA_DeleteOnClose);

@@ -1,3 +1,0 @@
-（4）测试：在 Apache安装路径\htdocs下新建文件：test.php，里面编辑：， 启动Apache， 在浏览器输入：localhost:80/test.php。
-
-<?php phpinfo();?>

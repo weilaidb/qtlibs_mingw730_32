@@ -1,1 +1,0 @@
-int \2 = Integer.parseInt(\1);$NL$NLlong \2 = Long.parseLong(\1);$NL$NLfloat \2= Float.parseFloat(\1);$NL$NLdouble \2 = Double.parseDouble(\1);$NL$NL

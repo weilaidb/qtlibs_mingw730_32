@@ -1,1 +1,0 @@
-Str1 ;Str2;if-statecmd;else-statecmd

@@ -1,2 +1,0 @@
-getsockopt函数原型为:
-int getsocket(int s, int level, int name, caddr_t val, int *wvalsize);

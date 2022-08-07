@@ -1,1 +1,0 @@
-=============>$NL[统计]$NLstrace -c \1$NLstrace \1$NL$NL[统计按调用次数]$NLstrace -c -S calls \1$NL$NL[统计按调用次数+子进程]$NLstrace -f -c -S calls \1$NL$NL[按pid跟踪]$NLstrace -p pid

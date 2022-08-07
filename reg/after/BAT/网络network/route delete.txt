@@ -1,1 +1,0 @@
-route delete \1$NLroute print$NL

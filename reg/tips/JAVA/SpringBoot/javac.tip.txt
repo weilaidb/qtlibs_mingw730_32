@@ -1,7 +1,0 @@
-执行编译命令javac
-javac命令中指定UTF-8编码、编译后文件存放位置、需要编译的源文件
-javac -encoding UTF-8 -d classes @sources.list
-
-执行打包命令jar
-将classes中的编译文件，打包成annotation-processor.jar文件。进入到classes目录中执行如下jar命令
-E:\EclipseWorkspace\Cnu\annotation-processor\src\main\java\classes>jar -cvf annotation-processor.jar com

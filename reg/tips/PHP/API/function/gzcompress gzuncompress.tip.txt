@@ -1,1 +1,0 @@
- gzcompress() 和 gzuncompress() 函数压缩字符串。

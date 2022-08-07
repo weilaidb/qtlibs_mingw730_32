@@ -1,3 +1,0 @@
-ESP（Extended Stack Pointer）为扩展栈指针寄存器，是指针寄存器的一种，用于存放函数栈顶指针。
-
-与之对应的是EBP（Extended Base Pointer），扩展基址指针寄存器，也被称为帧指针寄存器，用于存放函数栈底指针。

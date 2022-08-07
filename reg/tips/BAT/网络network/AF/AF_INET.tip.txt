@@ -1,4 +1,0 @@
-AF_UNIX和AF_INET
-family参数代表地址家族，比较常用的为AF_INET或AF_UNIX。AF_UNIX用于同一台机器上的进程间通信，AF_INET对于IPV4协议的TCP和UDP 。
-type参数代表套接字类型，SOCK_STREAM（流套接字）或者SOCK_DGRAM（数据报文套接字）。
-其中AF_INET类型有关的例子非常多，但AF_UNIX的少见，所以给出一个AF_UNIX简单的例子，并通过select实现非阻塞socket。

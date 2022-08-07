@@ -1,2 +1,0 @@
-[打开文件路径]
-cd_catalog.xml

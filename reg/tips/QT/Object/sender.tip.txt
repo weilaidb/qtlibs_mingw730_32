@@ -1,3 +1,0 @@
-使用sender()获得信号发射者
-在槽函数里，使用QObject::sender()可以获取信号发射者的指针。如果知道信号发射者的类型，可以将指针投射为确定的类型，然后使用这个确定类的接口函数。
-例如，在QSpinBox的valueChanged(int )信号的槽函数里，可以通过sender() 和qobject_cast获得信号发射者的指针，从而对信号发射者进行操作。QSpinBox *spinBox = qobject_cast<QSpinBox *>(sender());

@@ -1,3 +1,0 @@
-lscpu
-rpm -qf `which lscpu`
-cat /proc/cpuinfo

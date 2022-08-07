@@ -1,1 +1,0 @@
-nr=\2$NLnxt=0$NL$NLwhile [ $\1 -lt $nr ]; do$NL	echo "$\1"$NL	\1=$((\1 + 1))$NLdone

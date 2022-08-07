@@ -1,1 +1,0 @@
-#include "gmock/gmock.h"$NLusing ::testing::Eq;$NL$NLASSERT_THAT(\1, Eq("\2"));

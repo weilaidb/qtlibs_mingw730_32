@@ -1,4 +1,0 @@
-//十六进制转十进制
-bool ok;
-ulong dec = dealText.toULong(&ok, 16);
-dealText = QString("%1").arg(dec);

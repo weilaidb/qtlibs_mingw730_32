@@ -1,1 +1,0 @@
-int \1(char *\2)$NL{$NL    (void)\2;$NL    $NL    return 0;$NL}

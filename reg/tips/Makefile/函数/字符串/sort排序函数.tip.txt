@@ -1,6 +1,0 @@
-$(sort <list>;) 
-名称：排序函数——sort。 
-功能：给字符串<list>;中的单词排序（升序）。 
-返回：返回排序后的字符串。 
-示例：$(sort foo bar lose)返回“bar foo lose” 。 
-备注：sort函数会去掉<list>;中相同的单词。 

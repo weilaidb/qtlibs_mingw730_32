@@ -1,5 +1,0 @@
-<br>下列足球队中，哪些队曾获得过世界杯冠军:<br>
-<input type="checkbox" name="item" value="法国国家队">法国国家队
-<input type="checkbox" name="item" value="中国国家队">中国国家队
-<input type="checkbox" name="item" value="巴西国家队">巴西国家队
-<input type="checkbox" name="item" value="美国国家队">美国国家队

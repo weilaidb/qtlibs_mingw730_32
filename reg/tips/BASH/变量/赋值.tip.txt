@@ -1,2 +1,0 @@
-BASH /user/bin/bash
-COLUMNS 80

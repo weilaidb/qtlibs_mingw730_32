@@ -1,1 +1,0 @@
-QLinkedList<QString> \2;$NL...$NLforeach (const QString &\1, \2) {$NL   if (\1.isEmpty())$NL      break;$NL   qDebug() << \1;$NL}

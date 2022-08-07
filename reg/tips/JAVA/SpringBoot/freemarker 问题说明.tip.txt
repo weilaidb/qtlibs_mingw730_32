@@ -1,6 +1,0 @@
-访问时提示404
-===>>必须添加后缀
-#freemarker 设置面板后缀
-spring:
-  freemarker:
-    suffix: .ftl

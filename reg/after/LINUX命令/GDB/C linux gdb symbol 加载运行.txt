@@ -1,1 +1,0 @@
-gdb -q --symbol=\2 -exec=\1$NL

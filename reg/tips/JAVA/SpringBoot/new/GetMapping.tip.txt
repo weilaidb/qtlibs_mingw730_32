@@ -1,2 +1,0 @@
-[GetMapping Http;FuncName;类包]
-world;SayHello;Greeting2

@@ -1,6 +1,0 @@
-#define CHECK_POINTER_RET(ptr, retcode) \
-do{\
-    if(NULL == ptr){\
-        return retcode;\
-    }\
-}while(0)

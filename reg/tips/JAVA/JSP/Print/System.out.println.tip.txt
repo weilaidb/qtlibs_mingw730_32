@@ -1,6 +1,0 @@
-Integer.parseInt(n)
-copylist.size()
-name
-item
-selectitem
-readFileNameAf

@@ -1,1 +1,0 @@
-<?php$NLfunction \1($\2)$NL{$NL    echo $\2;$NL}$NL$NL//eg$NL\1(5);$NL?>

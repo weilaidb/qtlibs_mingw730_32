@@ -1,1 +1,0 @@
-ubuntu-test ubuntu /bin/bash

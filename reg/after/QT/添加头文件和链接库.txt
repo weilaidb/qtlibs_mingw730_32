@@ -1,1 +1,0 @@
-INCLUDEPATH +=  \$NL$TB$TB$TB   \1/include/ \$NL$NLLIBS += -L$$PWD/\1 -l\2

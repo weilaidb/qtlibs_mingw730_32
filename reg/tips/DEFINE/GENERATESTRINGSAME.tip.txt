@@ -1,3 +1,0 @@
-        MODE_NONE,
-        MODE_ONE2MUL,
-        MODE_MUL2ONE,

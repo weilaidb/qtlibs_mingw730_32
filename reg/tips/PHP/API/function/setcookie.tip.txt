@@ -1,1 +1,0 @@
-setcookie() 函数来设置 cookie。

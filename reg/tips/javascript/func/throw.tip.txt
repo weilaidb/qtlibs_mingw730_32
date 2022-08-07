@@ -1,2 +1,0 @@
-与原名相同，勿须处理！
-"File Exist!!" + dirDest + "," + fileNameDest

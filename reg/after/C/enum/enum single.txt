@@ -1,1 +1,0 @@
-enum {$NL$TB\1,$NL};

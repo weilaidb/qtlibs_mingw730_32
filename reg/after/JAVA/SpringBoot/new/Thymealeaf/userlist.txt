@@ -1,1 +1,0 @@
-<tr th:each="\1:${\2}">$NL$TB<th th:text="${\1.id}"></th>$NL$TB<th th:text="${\1.name}"></th>$NL$TB<th th:text="${\1.age}"></th>$NL$TB<th th:text="${\1.address}"></th>$NL</tr>

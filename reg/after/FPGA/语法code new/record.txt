@@ -1,1 +1,0 @@
-type \1 is record$NL    byte:std_logic_vector(7 downto 0);$NL    word:std_logic_vector(15 downto 0);$NLend record;$NLsignal \2:\1;$NL$NL\2.byte <=X"F0";$NL\2.word <='1'&O"77007";$NL

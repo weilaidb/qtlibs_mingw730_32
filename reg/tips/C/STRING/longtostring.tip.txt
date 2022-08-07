@@ -1,7 +1,0 @@
-char *longtostring(long inValue)
-{
-    static char numstring[32];
-    sprintf(numstring, "%lu", inValue );
-    return numstring;
-}
-

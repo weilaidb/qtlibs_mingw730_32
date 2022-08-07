@@ -1,2 +1,0 @@
-base/msgtips/
-base/define/

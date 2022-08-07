@@ -1,5 +1,0 @@
-QString desktop_path = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-                
- 
- 
-QDesktopServices::openUrl(QUrl(desktop_path));

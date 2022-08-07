@@ -1,1 +1,0 @@
-@SpringBootApplication$NLclass \1$NL$NLfun main(args: Array<String>) {$NL$TBprintln("Spring Boot 2.0极简教程")$NL$TBrunApplication<Demo0HelloWorldApplication>(*args)$NL}

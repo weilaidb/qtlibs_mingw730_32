@@ -1,1 +1,0 @@
-def \1(a, b): #计算平方数$NL    return a * b$NL$NL$NL$NLx = map(\1, [\2], [\3])$NLprint(list(x))

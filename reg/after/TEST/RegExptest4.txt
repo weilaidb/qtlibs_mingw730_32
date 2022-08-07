@@ -1,1 +1,0 @@
-$RANDOMDATA32(\1)

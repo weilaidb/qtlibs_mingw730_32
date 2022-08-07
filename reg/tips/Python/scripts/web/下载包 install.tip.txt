@@ -1,2 +1,0 @@
-vsearch
-https://github.com/torognes/vsearch/releases

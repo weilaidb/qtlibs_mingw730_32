@@ -1,1 +1,0 @@
-//IP、子网掩码、网关$NLnetsh interface ipv4 add address "\1" \2 \3 \4$NLnetsh interface ipv4 add address "\1" \2 \3$NL

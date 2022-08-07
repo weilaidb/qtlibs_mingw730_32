@@ -1,9 +1,0 @@
-<script src="../../js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("input[type='button']").click(function(){//为按钮绑定单击事件
-            var inputValue=$("#testInput").val();//获取文本输入框的值
-            alert(inputValue);
-        });
-    });
-</script>

@@ -1,2 +1,0 @@
-[查看缓存]
-getconf -a | grep CACHE

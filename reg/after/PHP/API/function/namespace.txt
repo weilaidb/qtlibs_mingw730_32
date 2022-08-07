@@ -1,1 +1,0 @@
-namespace \1 {$NL    const CONNECT_OK = 1;$NL    class Connection { /* ... */ }$NL    function connect() { /* ... */  }$NL}$NL$NLnamespace \2 {$NL    const CONNECT_OK = 1;$NL    class Connection { /* ... */ }$NL    function connect() { /* ... */  }$NL}$NL$NLnamespace { // 全局代码$NL$NL}$NL

@@ -1,1 +1,0 @@
-netsh interface ipv4 delete address "\1" \2$NL
