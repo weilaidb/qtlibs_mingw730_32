@@ -2058,6 +2058,7 @@ SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
+SoftWare/opengrok/md5sum
 SoftWare/vmware/16
 TEST/RegExptest
 TEST/RegExptest rm -f
