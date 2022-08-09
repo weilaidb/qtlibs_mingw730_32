@@ -1,0 +1,458 @@
+C++中operator关键字（重载操作符）
+operator是C++的关键字，它和运算符一起使用，表示一个运算符函数，理解时应将operator=整体上视为一个函数名。
+
+这是C+ +扩展运算符功能的方法，虽然样子古怪，但也可以理解：一方面要使运算符的使用方法与其原来一致，另一方面扩展其功能只能通过函数的方式（c++中，“功能”都是由函数实现的)。
+
+一、为什么使用操作符重载？
+对于系统的所有操作符，一般情况下，只支持基本数据类型和标准库中提供的class，对于用户自己定义的class，如果想支持基本操作，比如比较大小，判断是否相等，等等，则需要用户自己来定义关于这个操作符的具体实现。
+
+比如，判断两个人是否一样大，我们默认的规则是按照其年龄来比较，所以，在设计person 这个class的时候，我们需要考虑操作符==，而且，根据刚才的分析，比较的依据应该是age。那么为什么叫重载呢？这是因为，在编译器实现的时候，已经为我们提供了这个操作符的基本数据类型实现版本，但是现在他的操作数变成了用户定义的数据类型class，所以，需要用户自己来提供该参数版本的实现。
+
+二、如何声明一个重载的操作符？
+A: 操作符重载实现为类成员函数
+重载的操作符在类体中被声明，声明方式如同普通成员函数一样，只不过他的名字包含关键字operator，以及紧跟其后的一个c++预定义的操作符。
+可以用如下的方式来声明一个预定义的==操作符:
+
+class person{
+private:
+    int age;
+    public:
+    person(int a){
+       this->age=a;
+    }
+   inline bool operator == (const person &ps) const;
+};
+
+// 实现方式
+inline bool person::operator==(const person &ps) const
+{
+  if (this->age==ps.age)
+     return true;
+  return false;
+}
+
+// 调用方式
+#include
+using namespace std;
+int main()
+{
+  person p1(10);
+  person p2(20);
+  if(p1==p2){
+    cout<<”the age is equal!”<<endl;
+  }
+  return 0;
+}
+这里，因为operator == 是class person的一个成员函数，所以对象p1,p2都可以调用该函数，上面的if语句中，相当于p1调用函数 ==，把p2作为该函数的一个参数传递给该函数，从而实现了两个对象的比较。
+
+B:操作符重载实现为非类成员函数(全局函数)
+对于全局重载操作符，代表左操作数的参数必须被显式指定。例如：
+
+#include
+#include
+using namespace std;
+class person
+{
+public:
+int age;
+public:
+};
+
+bool operator==(person const &p1 ,person const & p2)
+//满足要求，做操作数的类型被显示指定
+{
+if(p1.age==p2.age)
+return true;
+return false;
+}
+int main()
+{
+person rose;
+person jack;
+rose.age=18;
+jack.age=23;
+if(rose==jack){
+  cout<<"ok"<<endl;
+}
+return 0;
+}
+C:如何决定把一个操作符重载为类成员函数还是全局名字空间的成员呢？
+
+①如果一个重载操作符是类成员，那么只有当与他一起使用的左操作数是该类的对象时，该操作符才会被调用。如果该操作符的左操作数必须是其他的类型，则操作符必须被重载为全局名字空间的成员。
+②C++要求赋值=，下标[]，调用()， 和成员指向-> 操作符必须被定义为类成员操作符。任何把这些操作符定义为名字空间成员的定义都会被标记为编译时刻错误。
+③如果有一个操作数是类类型如string类的情形那么对于对称操作符比如等于操作符最好定义为全局名字空间成员。
+
+D:重载操作符具有以下限制：
+
+（1） 只有C++预定义的操作符集中的操作符才可以被重载；
+
+
+
+（2）对于内置类型的操作符，它的预定义不能被改变，应不能为内置类型重载操作符，如，不能改变int型的操作符+的含义；
+
+（3） 也不能为内置的数据类型定义其它的操作符；
+
+（4） 只能重载类类型或枚举类型的操作符；
+
+（5） 重载操作符不能改变它们的操作符优先级；
+
+（6） 重载操作符不能改变操作数的个数；
+
+（7） 除了对( )操作符外，对其他重载操作符提供缺省实参都是非法的；
+
+E: 注意点:
+（1）后果载操操作符首先要确定它的返回值是左值，还是右值，如果是左值最返回引用，如果是右值那就直接返回值；
+
+（2） +号等这样的操作符没有对象可以容纳改变后值，对于这样的情况最好返回数值，否则只能要操作符体内创建临时对象用于容纳改变后的值，如果在堆中创建临时对象返回指针或者引用，在操作符函数体外还需要释放它，如果返回的对象而不是引用或者指针，那么效率是比较低的。如果返回的是数值，最好在该类的构造函数中增加对该类型数值的转换函数，如：返回值是int类型，那么最好有一个int类型作为参数的构造函数。
+
+（3）在增量运算符中，放上一个整数形参，就是后增量运行符，它是值返回，对于前增量没有形参，而且是引用返回，示例：
+
+class Test
+{
+    public:
+    Test(x=3){ m_value = x}
+    Test &operator ++();   //前增量
+    Test &operator ++(int);//后增量
+private:
+    Int m_value:
+};
+Test &Test::operator ++()
+{
+    m_value ++;    //先增量
+    return *this;  //返回当前对象
+}
+Test Test::operator ++(int)
+{
+    Test tmp(*this);  //创建临时对象
+    m_value ++;       //再增量
+    return temp;      //返回临时对象
+}
+（4）因为强制转换是针对基本数据类型的，所以对类类型的转换需自定义；
+
+（5） 转换运行符重载声明形式：operator 类型名();它没有返回类型，因为类型名就代表了它的返回类型，所以返回类型显得多余。
+
+（6）一般来说，转换运算符与转换构造函数（即带一个参数的构造函数）是互逆的，如有了构造函数Test(int)，那么最好有一个转换运算符int()。这样就不必提供对象参数重载运算符了，如Test a1(1);Test a2(2); Test a3; a3 = a1+a2；就不需要重载+号操作符了，因为对于a1+a2的运算，系统可能会先找有没有定义针对Test的+号操作符，如果没有，它就会找有没有针对Test类转换函数参数类型的+号操作符（因为可以将+号运行结果的类型通过转换函数转换为Test对象），因为Test类有个int类型的参数，对于int类型有+操作符，所以a1+a2真正执行的是Test(int(a1) + int(a2));即Test(3)；
+
+（7）对于转换运算符，还有一个需要注意的地方就是，如果A类中有以B为参数的转换函数（构造函数），那B中不能有A的转换运算符，不然就存在转换的二义性，如：
+
+class A{A(B&){…}}; class B{ operator A(){…}};
+那么以下语句就会有问题：
+
+B b; A(b);//A(b)有就可能是A的构造函数，也可以是B的转换运算符
+重载的意义
+在面向对象编程时，常常会建立一个类，例如建立一个矩形类，想判断其中两个对象（我声明的两个矩形）相等，则必须有长相等、宽相等；如果要写一个函数来进行比较，会不如我们常用的“==”运算符直观简单：
+
+class rectangle{
+private:
+	int length, width; 
+public:
+	rectangle(int l, int w){
+            length = l;
+	    width = w;
+	}
+	bool IsSame(const rectangle&);		//比较函数 
+	bool operator==(const rectangle&);	//重载"=="运算符 
+};
+ 
+bool rectangle::IsSame(const rectangle& a){
+	if(length==a.length&&width==a.width){
+	    return true;
+	}
+	else return false;
+}
+ 
+bool rectangle::operator==(const rectangle& a){
+	if(length==a.length&&width==a.width){
+	    return true;
+	}
+	else return false;
+}
+ 
+int main(){
+	rectangle A(5,5);
+	rectangle B(5,5);
+	if(A.IsSame(B)){
+	    cout<<"Same"<<endl;
+	}
+	if(A==B){				//符合语言习惯 更为直观 
+	    cout<<"Same~"<<endl;
+	}
+	return 0;
+}
+
+所以，这个使得“==”运算符能被用户定义的类使用的过程就是“重载”。
+
+重载的要求
+1．不能改变运算符的初始意义。
+2．不能改变运算符的参数数目。如重载运算符+时只用一个操作数是错误的。
+3．运算符函数不能包括缺省的参数。
+4．绝大部分C++运算符都可以重载，以下的例外： .   ::   .*   ?
+5．除赋值运算符外，其它运算符函数都可以由派生类继承。
+6．运算符重载不改变运算符的优先级和结合性，也不改变运算符的语法结构，即单目、双目运算符只能重载为单目、双目运算符。
+7．运算符的重载实际上是函数的重载。编译程序对运算符重载的选择，遵循函数重载的选择原则。当遇到不很明显的运算符时，编译程序将去寻找参数匹配的运算符函数。
+8．运算符重载可使程序更简洁，使表达式更直观，增强可读性。但使用不宜过多。
+9．重载运算符含义必须清楚
+
+重载的形式
+可以将操作符重载为 成员函数形式 和 友元函数形式。
+(1) 一般情况下，单目运算符最好重载为类的成员函数；双目运算符则最好重载为类的友元函数。
+(2) 以下双目运算符不能重载为类的友元函数：=、()、[]、->。
+(3) 类型转换函数只能定义为一个类的成员函数而不能定义为类的友元函数。
+(4) 若一个运算符的操作需要修改对象的状态，选择重载为成员函数较好。
+(5) 若运算符所需的操作数（尤其是第一个操作数）希望有隐式类型转换，则只能选用友元函数。
+(6) 当运算符函数是一个成员函数时，最左边的操作数（或者只有最左边的操作数）必须是运算符类的一　个类对象（或者是对该类对象的引用）。如果左边的操作数必须是一个不同类的对象，或者是一个内部　类型的对象，该运算符函数必须作为一个友元函数来实现。
+(7) 当需要重载运算符具有可交换性时，选择重载为友元函数。
+
+对此，我个人有一种自己的理解：
+考虑操作符重载为哪种形式时，可以从该操作符的“使用者”层面上来思考，
+比如常见的“=”、“+=”、“=”、“--”、“++”等，使用者都是“对象”，由“对象”来“使用”，所以定义为类的成员函数。（如上“==”的重载）
+其他操作符如“+”、“-”、“”、“/”、“%”的“使用者”应该是其两边的内容，所以定义为友元函数，赋予其访问私有成员的权利即可。
+
+举个栗子 Int 是一个模拟整形的类：
+
+bool operator ==(const Int&a) {
+	if (i == a.i) return true;
+	else return false;
+}
+void operator +=(const Int&a) {
+	i += a.i;
+}
+/*类成员*/
+
+/*友元函数*/
+friend double operator*(const double a, const Int& e) {
+	double c;
+	c = a * e.i;
+	return c;
+}
+friend double operator*(const Int& e, const double a) {
+	double c;
+	c = e.i * a;
+	return c;
+}
+friend int operator*(const int a, const Int& e) {
+	int c;
+	c = a * e.i;
+	return c;
+}
+friend int operator*(const Int& e, const int a) {
+	int c;
+	c = e.i*a;
+	return c;
+}
+friend int operator*(const Int& e, const Int& a) {
+	int c;
+	c = e.i*a.i;
+	return c;
+}
+
+输入输出流重载
+继续以此段代码为例，重载输入输出 ">>" "<<" ，详见代码：
+
+#include<iostream>
+using namespace std;
+ 
+class rectangle{
+private:
+	int length, width; 
+public:
+	rectangle(int l, int w){
+	    length = l;
+	    width = w;
+	}
+	friend istream &operator>>(istream &in, rectangle &a);//重载输入流
+	friend ostream &operator<<(ostream &os, rectangle &a);//重载输出流
+};
+ 
+istream &operator>>(istream &in, rectangle &a){
+	in >> a.length >> a.width;
+	return in;
+}
+ 
+ostream &operator<<(ostream &os, rectangle &a){
+	os << a.length << endl << a.width << endl;
+	return os;
+}
+	
+ 
+int main(){
+	rectangle A(5,5);
+	rectangle B(5,5);
+	
+	cin >> A;
+	cout << A;
+	cout << B;
+ 
+	return 0;
+}
+
+类型转换运算符重载函数
+这一点对于operator关键字的运用，除非查询时就输入这“生僻”的名称：“类型转换运算符重载函数“ 或者 ”类型转换函数“，否则并不容易查找到相关的资料…
+详见 http://en.cppreference.com/w/cpp/language/cast_operator
+简单地说，即是在类的内部声明
+operator 类型名( )
+{
+     实现转换的语句
+}
+如代码所示：
+
+#include<iostream>
+using namespace std;
+ 
+class rectangle{
+private:
+	int length, width; 
+public:
+	rectangle(int l, int w){
+	    length = l;
+            width = w;
+	}
+	operator int() const{
+	    return length*width;
+	}
+};
+ 
+istream &operator>>(istream &in, rectangle &a){
+	in >> a.length >> a.width;
+	return in;
+}
+ 
+ostream &operator<<(ostream &os, rectangle &a){
+	os << a.length << " " << a.width << endl;
+	return os;
+}
+	
+ 
+int main(){
+	rectangle A(5,5);
+	rectangle B(5,5);
+	
+	int area = A;
+	cout << area << endl;
+	
+	int area2;
+	area2 = area + B;
+	cout << area2 << endl;
+	
+	return 0;
+}
+
+operator重载的例子:
+#include <iostream>
+using namespace std;
+class A
+{
+public:
+    A(double _data = 0.0):data(_data){}
+    A& operator = (const A& rhs)
+    {
+        data = rhs.data;
+        return *this;
+    }
+     
+    friend A operator + (const A& lhs,const A& rhs);
+    friend A operator - (const A& lhs,const A& rhs);
+    friend A operator * (const A& lhs,const A& rhs);
+    friend A operator + (const A& lhs,double rhs);
+    friend A operator + (double lhs,const A& rhs);
+    friend A operator * (const A& lhs,double rhs);
+    friend A operator * (double lhs,const A& rhs);
+    friend A operator - (const A& lhs,double rhs);
+    friend A operator - (double lhs,const A& rhs);
+     
+     
+    friend ostream& operator << (ostream& fout,A& a);
+//  A& operator += (const A& rhs);
+//  A& operator -= (const A& rhs);
+//  A& operator *= (const A& rhs);  
+private:
+    double data;
+};
+ 
+A operator + (const A& lhs,const A& rhs)
+{
+    A res(0);
+    res.data = lhs.data + rhs.data;
+    return res;
+}
+A operator - (const A& lhs,const A& rhs)
+{
+    A res(0);
+    res.data = lhs.data - rhs.data;
+    return res;
+}
+A operator * (const A& lhs,const A& rhs)
+{
+    A res(0);
+    res.data = lhs.data * rhs.data;
+    return res;
+}
+ A operator + (const A& lhs,double rhs)
+ {
+    A res(0);
+    res.data = lhs.data + rhs;
+    return res;
+}
+ 
+A operator + (double lhs,const A& rhs)
+{
+    A res(0);
+    res.data = lhs + rhs.data;
+    return res;
+}
+A operator * (const A& lhs,double rhs)
+{
+    A res(0);
+    res.data = lhs.data * rhs;
+    return res;
+}
+A operator * (double lhs,const A& rhs)
+{
+    A res(0);
+    res.data = lhs * rhs.data;
+    return res;
+}
+A operator - (const A& lhs,double rhs)
+{
+    A res(0);
+    res.data = lhs.data - rhs;
+    return res; 
+}
+A operator - (double lhs,const A& rhs)
+{
+    A res(0);
+    res.data = lhs - rhs.data;
+    return res; 
+}
+     
+ostream& operator << (ostream& fout,A& a)
+{
+    fout << a.data ;
+    return fout;
+}
+int main(int argc, char* argv[])
+{
+    A a(2.3);
+    A b(1.2);
+    A d(3.4);
+    A c;
+    c = a + b + d;
+    c=a+b;
+    c=a+1.0;
+    c=a-b;
+    c=a-1.0;
+    c=a*b;
+    c=a*1.0;
+    cout << c << endl;
+     
+    c=1.0+2.0*a*a-3.0*a*b;
+    cout << c << endl;
+    return 0;
+}
+输出结果：
+
+
+
+更多参考 一 二 三 四
+
+标签: C++

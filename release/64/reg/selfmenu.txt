@@ -494,6 +494,10 @@ CXX/class/多态 继承 virtual Board array
 CXX/define/pub
 CXX/eg
 CXX/externc __cplusplus
+CXX/knowledge/C++中operator关键字（重载操作符）
+CXX/knowledge/eg
+CXX/knowledge/pragma once用法总结
+CXX/knowledge/如何理解左操作数必须为左值
 CXX/new class static instsance实例
 CXX/shared_ptr 智能指针
 CXX/shared_ptr 智能指针2
@@ -2311,6 +2315,7 @@ path路径/常用文件夹
 用户说明书/EC管理 dd-x.y-SNAPSHOT.jar
 用户说明书/代码集autocodesets weilaix.war
 用户说明书/代码集autocodesets weilaix.war Apache版本更新
+用户说明书/代码集autocodesets 菜单定义规范
 电脑/ThinkPad/T14/常见
 电脑/ThinkPad/T14/拆机
 电脑/ThinkPad/T14/拆机 加内存和硬盘安装系统
