@@ -1,0 +1,15 @@
+2022年8月9日 21:43:55
+
+company some people delete the yum softwre
+centos version is 8.3.2011
+
+1.将Yum删除了，导致所有的包都无法更新了
+2.yum是dnf-3的一个软链接
+3.主要是python(abi) is needed 无法解决掉，why?
+
+
+4.下载路径 
+搜索 centos 8.3.2011
+
+https://www.xitongzhijia.net/linux/202105/210987.html
+https://pan.baidu.com/s/1kzzK-6xb7V-1Zm0y7zxtcg

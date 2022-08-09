@@ -1641,6 +1641,8 @@ Makefile/条件判断/ifeq
 Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量
+OS/Centos/8.3.2011
+OS/Centos/8.3.2011 python(abi)
 OS/MACOS/VMware16安装MacOS Big Sur系统
 OS/MACOS/VMware虚拟机安装macos Big Sur 11.0.1 (20B29)镜像CDR/ISO下载
 OS/MACOS/macOS系统下载

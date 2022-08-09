@@ -1,0 +1,31 @@
+python(abi)
+
+应该是这个 ？
+
+
+platform-python-3.6.8-41.el8.x86_64.rpm
+Internal interpreter of the Python programming language
+
+https://pkgs.org/download/python(abi)
+
+
+
+
+centos6.3 x86-64 yum update时关于python(abi)的报错的解决办法。
+yum clean all
+rpm --rebuilddb
+/etc/yum.repo.d/目录下只使用Cent*.repo这几个源，其他的源不启用。
+yum update
+应该就可以了。
+
+/***************************/
+
+ 后来是另一个问题了。
+
+el6和el5的问题，明明资源库配置的是对的，用下载工具也能下载下来。就是用yum提示找不到文件，后来才发再是url,在yum 处理时发生了变化的。
+这就是问题的所在了。就想了，是不是把yum卸载了重新来一次就行了，但是卸载了一会竟没有卸载掉，到后来找到一个配置文件，不记得了，文件夹的名字是
+6，删除了之后。竟然可以用了。呵呵。
+
+/***************************/
+
+我的kvm已经报错了好几天，我一直没有修复成功。总要装一个虚拟机来玩才行，下载了virtaulbox，看了教程，结果一安装就报：什么amd的问题，我的cpu是intel的，但显卡是ati。难道就是因为这个原因不给我安装吗。没有办法只能去安装vmware了，下载了9.0的，一 开始还不知道下载哪个好，由其是那个莫名的扩展名，我真不知道是什么意思，是我英文不好。我是用axel 下载的。下载完毕后，切换到root用户，安装，还要注册吧，好吧，我百度一下，拿来一试，竟然能用。开心。接下来就很顺利了。
