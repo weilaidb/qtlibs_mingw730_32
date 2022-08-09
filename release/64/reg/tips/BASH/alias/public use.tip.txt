@@ -74,6 +74,8 @@ alias yumlistgrep="yum list | grep "
 alias yumlistinstalled="yum list installed "
 alias yumlistinstalledgrep="yum list installed | grep "
 alias yumcleanpackages="yum clean packages "
+alias yumcleanall="yum clean all "
+alias yummakecache="yum makecache "
 
 alias rpmi="rpm -i "
 alias rpme="rpm -e "

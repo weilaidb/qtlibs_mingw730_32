@@ -9,23 +9,173 @@ Internal interpreter of the Python programming language
 https://pkgs.org/download/python(abi)
 
 
+这个比较详细
+https://jingyan.baidu.com/article/48b558e3f0d06b7f39c09a66.html
 
 
-centos6.3 x86-64 yum update时关于python(abi)的报错的解决办法。
-yum clean all
-rpm --rebuilddb
-/etc/yum.repo.d/目录下只使用Cent*.repo这几个源，其他的源不启用。
-yum update
-应该就可以了。
 
-/***************************/
+centos7.2下yum和python重装问题及解决方法
+播报文章
+原创|浏览：6257|更新：2018-09-18 16:17
+centos7.2下yum和python重装问题及解决方法1centos7.2下yum和python重装问题及解决方法2centos7.2下yum和python重装问题及解决方法3centos7.2下yum和python重装问题及解决方法4centos7.2下yum和python重装问题及解决方法5centos7.2下yum和python重装问题及解决方法6centos7.2下yum和python重装问题及解决方法7
+分步阅读
+我在使用centos系统的时候，经常需要用到yum命令，可是当python的版本升级或安装了多个python版本时，就会导致No module named yum这样的错误。这个时候我从网上找资料，一般的解决方法都是全部删除python和yum，然后进行重装。的确，本人也是这么做的。可是过程没那么顺利，会出现python(abi) is needed等问题。
 
- 后来是另一个问题了。
+工具/原料
+centos7.2
+python2.7.5
+方法/步骤
+1
+一般按照网上找的资料，都是先删除python,和yum
 
-el6和el5的问题，明明资源库配置的是对的，用下载工具也能下载下来。就是用yum提示找不到文件，后来才发再是url,在yum 处理时发生了变化的。
-这就是问题的所在了。就想了，是不是把yum卸载了重新来一次就行了，但是卸载了一会竟没有卸载掉，到后来找到一个配置文件，不记得了，文件夹的名字是
-6，删除了之后。竟然可以用了。呵呵。
+卸载python
 
-/***************************/
+rpm -qa|grep python|xargs rpm -e --allmatches --nodeps
 
-我的kvm已经报错了好几天，我一直没有修复成功。总要装一个虚拟机来玩才行，下载了virtaulbox，看了教程，结果一安装就报：什么amd的问题，我的cpu是intel的，但显卡是ati。难道就是因为这个原因不给我安装吗。没有办法只能去安装vmware了，下载了9.0的，一 开始还不知道下载哪个好，由其是那个莫名的扩展名，我真不知道是什么意思，是我英文不好。我是用axel 下载的。下载完毕后，切换到root用户，安装，还要注册吧，好吧，我百度一下，拿来一试，竟然能用。开心。接下来就很顺利了。
+whereis python|xargs rm -fr
+
+卸载yum
+
+rpm -qa|grep yum|xargs rpm -e --allmatches --nodeps
+
+whereis yum|xargs rm -fr
+
+centos7.2下yum和python重装问题及解决方法
+2
+卸载干净后，
+
+然后从网上下载python2.6或2.7的安装包。
+
+Python-2.6.1.tgz或者Python-2.7.5.tar.xz
+
+centos7.2下yum和python重装问题及解决方法
+3
+然后执行解压
+
+tar xf Python-2.7.5.tar.xz
+
+编译
+
+cd  Python-2.7.5
+
+./configure
+
+make
+
+make install
+
+然后做下连接
+
+ln -sf /usr/bin/local/python /usr/bin/python
+
+查看python版本
+
+centos7.2下yum和python重装问题及解决方法
+centos7.2下yum和python重装问题及解决方法
+4
+然后安装yum
+
+按照网上找的资料，下载同一个版本的yum安装包
+
+yum-3.4.3-158.el7.centos.noarch.rpm
+
+yum-metadata-parser-1.1.4-10.el7.x86_64.rpm
+
+yum-plugin-fastestmirror-1.1.31-45.el7.noarch.rpm
+
+centos7.2下yum和python重装问题及解决方法
+5
+执行rpm -ivh *进行安装
+
+这个时候会出现下面的错误。
+
+rpm -ivh yum-metadata-parser-1.1.4-10.el7.x86_64.rpm
+
+rpm -qa|grep yum|xargs rpm -e --allmatches --nodeps
+
+error: Failed dependencies:
+
+        libpython2.7.so.1.0()(64bit) is needed by yum-metadata-parser-1.1.4-10.el7.x86_64
+
+        python(abi) = 2.7 is needed by yum-metadata-parser-1.1.4-10.el7.x86_64
+
+centos7.2下yum和python重装问题及解决方法
+6
+然后从网上找资料各种解决办法，有的说是版本高了，有的说是版本低了。
+
+有的说是需要先装python2.6。
+
+翻遍各种资料无解。
+
+经过各种尝试后，问题算是解决了。原因是python的安装有问题。
+
+不能采用下载源码编译的方式，这样各种库和包的依赖关系都找不到。
+
+而应该从官网下载rpm包来安装，我安装的是python2.7.5，对应如下
+
+dbus-python-devel-1.1.1-9.el7.x86_64.rpm
+
+python-iniparse-0.4-9.el7.noarch.rpm
+
+python-pycurl-7.19.0-19.el7.x86_64.rpm
+
+python-urlgrabber-3.10-8.el7.noarch.rpm
+
+python-libs-2.7.5-68.el7.x86_64.rpm
+
+rpm-python-4.11.3-32.el7.x86_64.rpm
+
+执行rpm -ivh python-*   rpm-python-*   
+
+还是出现
+
+error: Failed dependencies:
+
+        python(abi) = 2.7 is needed by python-iniparse-0.4-9.el7.noarch
+
+那么abi是什么呢？网上也没有答案，最后从pkgs上下载了abi的包解决。
+
+centos7.2下yum和python重装问题及解决方法
+centos7.2下yum和python重装问题及解决方法
+centos7.2下yum和python重装问题及解决方法
+7
+执行 rpm -ivh python-*   rpm-python-*         
+
+出现
+
+Preparing...                          ################################# [100%]
+
+Updating / installing...
+
+   1:python-libs-2.7.5-68.el7         ################################# [ 17%]
+
+   2:python-2.7.5-68.el7              ################################# [ 33%]
+
+   3:python-pycurl-7.19.0-19.el7      ################################# [ 50%]
+
+   4:python-urlgrabber-3.10-8.el7     ################################# [ 67%]
+
+   5:python-iniparse-0.4-9.el7        ################################# [ 83%]
+
+   6:rpm-python-4.11.3-32.el7         ################################# [100%]
+
+执行rpm -ivh yum-*
+
+Preparing...                          ################################# [100%]
+
+Updating / installing...
+
+   1:yum-metadata-parser-1.1.4-10.el7 ################################# [ 33%]
+
+   2:yum-plugin-fastestmirror-1.1.31-4################################# [ 67%]
+
+   3:yum-3.4.3-158.el7.centos         ################################# [100%]
+
+最后执行yum查看命令是否可用，效果看下图。
+
+centos7.2下yum和python重装问题及解决方法
+END
+注意事项
+不要采用源码编译安装的方式
+注意python版本的匹配，安装包用同一个版本的。
+经验内容仅供参考，如果您需解决具体问题(尤其法律、医学等领域)，建议您详细

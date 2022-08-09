@@ -1,0 +1,17 @@
+2022年8月9日 22:13:45
+本地重新安装了centos 8.3.2011后，一些版本信息如下：
+1.
+
+2.各软件版本信息
+[duoduo@bogon work]$ yum --version
+
+4.2.23
+  Installed: dnf-0:4.2.23-4.el8.noarch at Tue 09 Aug 2022 02:01:24 PM GMT
+  Built    : CentOS Buildsys <bugs@centos.org> at Tue 04 Aug 2020 06:52:03 PM GMT
+
+  Installed: rpm-0:4.14.3-4.el8.x86_64 at Tue 09 Aug 2022 01:58:40 PM GMT
+  Built    : CentOS Buildsys <bugs@centos.org> at Tue 21 Jul 2020 05:36:08 PM GMT
+[duoduo@bogon work]$ 
+[duoduo@bogon work]$ 
+[duoduo@bogon work]$ python3 --version
+Python 3.6.8

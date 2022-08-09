@@ -1,0 +1,4 @@
+[root@bogon yum.repos.d]# yum update 
+CentOS Linux 8 - AppStream                                                                 76  B/s |  38  B     00:00    
+Error: Failed to download metadata for repo 'appstream': Cannot prepare internal mirrorlist: No URLs in mirrorlist
+[root@bogon yum.repos.d]#

@@ -6,10 +6,29 @@ centos version is 8.3.2011
 1.将Yum删除了，导致所有的包都无法更新了
 2.yum是dnf-3的一个软链接
 3.主要是python(abi) is needed 无法解决掉，why?
+--python36-3.6.8-2.module_el8.3.0+562+e162826a.x86_64.rpm 
+这个？
+E:\software e\centos\CentOS-8.3.2011-x86_64-dvd1\AppStream\Packages\python36-3.6.8-2.module_el8.3.0+562+e162826a.x86_64.rpm
 
+
+--python2
+E:\software e\centos\CentOS-8.3.2011-x86_64-dvd1\AppStream\Packages\python2-2.7.17-2.module_el8.3.0+478+7570e00c.x86_64.rpm
+
+-- python(abi)的下载路径为:
+https://pkgs.org/download/python(abi)
 
 4.下载路径 
 搜索 centos 8.3.2011
 
 https://www.xitongzhijia.net/linux/202105/210987.html
 https://pan.baidu.com/s/1kzzK-6xb7V-1Zm0y7zxtcg
+
+
+5.本地使用阿里云下载源
+https://mirrors.aliyun.com/repo/
+Centos-8.repo
+
+
+6.python(abi) is needed
+这个比较详细
+https://jingyan.baidu.com/article/48b558e3f0d06b7f39c09a66.html
