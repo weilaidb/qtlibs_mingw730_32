@@ -498,6 +498,7 @@ CXX/knowledge/C++中operator关键字（重载操作符）
 CXX/knowledge/eg
 CXX/knowledge/pragma once用法总结
 CXX/knowledge/如何理解左操作数必须为左值
+CXX/new class operator=
 CXX/new class static instsance实例
 CXX/shared_ptr 智能指针
 CXX/shared_ptr 智能指针2
