@@ -1656,6 +1656,7 @@ OS/Centos/8.3.2011 备份
 OS/Centos/8.3.2011 安装后版本
 OS/Centos/8.3.2011 用户名密码
 OS/Centos/8.3.2011 缺失yum安装顺序
+OS/Centos/8.3.2011 缺失yum安装顺序 脚本
 OS/MACOS/VMware16安装MacOS Big Sur系统
 OS/MACOS/VMware虚拟机安装macos Big Sur 11.0.1 (20B29)镜像CDR/ISO下载
 OS/MACOS/macOS系统下载

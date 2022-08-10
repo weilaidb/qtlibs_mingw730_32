@@ -1,5 +1,7 @@
 yumcleanall;yum clean all
 yummakecache;yum makecache
+rpmremovenoeps;rpm -e  --nodeps 
+
 
 cdpythonscript;cd ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/Python/scripts
 gitgcclean;git reflog expire --expire=now --all && git gc --prune=now
