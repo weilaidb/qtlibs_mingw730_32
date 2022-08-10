@@ -1,1 +1,0 @@
-if [ \1 ];$NLthen$NL\2$NLfi

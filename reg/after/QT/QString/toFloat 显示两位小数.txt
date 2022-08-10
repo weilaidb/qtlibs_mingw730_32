@@ -1,1 +1,0 @@
-QString \1;$NL$NL$NL\1 = QString::number(\2,'f',2);$NL\1 = QString::asprintf("%.2f",\2);$NL\1 = \1.setNum(\2,'f',2);$NL\1 = \1.sprintf("%.2f",\2);

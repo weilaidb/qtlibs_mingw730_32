@@ -1,2 +1,0 @@
-acBuf;count
-pNode->m_Buf;DLOG_CHAR_CONTENT_MAX

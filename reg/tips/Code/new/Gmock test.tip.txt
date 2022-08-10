@@ -1,3 +1,0 @@
-SoundexEncoding;RetainsSoleLetterOfOneLetterWord
-StringPub;TestIt
-AnCVectorExtPub;Eg1

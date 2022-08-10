@@ -1,1 +1,0 @@
-Dim SwitchKey$NLSwitchKey=crt.Screen.WaitForStrings("cisco","huawei","H3C",5)$NLSelect case SwitchKey$NL    case 1$NL        MsgBox "思科设备"$NL    case 2$NL        MsgBox "华为设备"$NL    case 3$NL        MsgBox "华三设备"$NL    case else$NL        MsgBox "未知设备"$NLEnd Select

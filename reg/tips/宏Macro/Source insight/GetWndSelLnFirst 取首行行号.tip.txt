@@ -1,7 +1,0 @@
-hwnd = GetCurrentWnd()
-selection = GetWndSel(hwnd)
-LnFirst =GetWndSelLnFirst(hwnd)      //取首行行号
-LnLast =GetWndSelLnLast(hwnd)      //取末行行号
-hbuf = GetCurrentBuf()
-
-

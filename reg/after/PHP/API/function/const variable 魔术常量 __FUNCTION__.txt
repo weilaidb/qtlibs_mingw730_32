@@ -1,1 +1,0 @@
-function \1() {$NL    echo  '函数名为：' . __FUNCTION__ ;$NL    echo '<br>';$NL}$NL\1();

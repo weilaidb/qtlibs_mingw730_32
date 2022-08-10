@@ -1,1 +1,0 @@
-<!--\1-->$NL<div style="display: table-cell;">$NL	<button id="\2" class="layui-btn layui-btn-normal layui-btn-sm" style="margin-left: 15px">$NL		<i class="layui-icon"></i> \3$NL	</button>$NL</div>

@@ -1,1 +1,0 @@
-QObject::connect(ui->\1, SIGNAL(triggered()), this, SLOT(proc_\1()));$NL$NLQObject::connect(ui->\1, SIGNAL(triggered(bool)), this, SLOT(proc_\1(bool)));$NL

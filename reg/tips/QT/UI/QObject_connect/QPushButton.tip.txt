@@ -1,1 +1,0 @@
-pushButton_left_clear

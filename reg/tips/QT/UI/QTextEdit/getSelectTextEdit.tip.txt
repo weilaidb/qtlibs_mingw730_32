@@ -1,4 +1,0 @@
-QString CUIPub::getSelectTextEdit(QTextEdit *pEdit)
-{
-    return pEdit->textCursor().selectedText();
-}

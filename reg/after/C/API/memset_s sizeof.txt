@@ -1,1 +1,0 @@
-memset_s(\1, sizeof(\1), 0, sizeof(\1));

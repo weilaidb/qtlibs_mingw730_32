@@ -1,1 +1,0 @@
-<html xmlns:th="http://www.thymeleaf.org">$NL<link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>$NL<head>$NL$TB<meta charset="UTF-8">$NL$TB<title>\1</title>$NL</head>$NL<body>$NL<br/>$NL[(${errorinfo})]!$NL</body>$NL</html>

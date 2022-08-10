@@ -1,2 +1,0 @@
-[打开文件路径]
-/try/ajax/ajax_info.txt

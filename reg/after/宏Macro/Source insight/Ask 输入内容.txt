@@ -1,1 +1,0 @@
-sz = Ask("\1")$NL    if (sz != "")$NL        IfdefSz(sz);

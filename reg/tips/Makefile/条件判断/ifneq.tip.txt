@@ -1,7 +1,0 @@
-第二个条件关键字是“ifneq”。语法是： 
-ifneq (<arg1>;, <arg2>;) 
-ifneq '<arg1>;' '<arg2>;' 
-ifneq "<arg1>;" "<arg2>;" 
-ifneq "<arg1>;" '<arg2>;' 
-ifneq '<arg1>;' "<arg2>;" 
-其比较参数“arg1”和“arg2”的值是否相同，如果不同，则为真。和“ifeq”类似。 

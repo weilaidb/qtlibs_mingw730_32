@@ -1,4 +1,0 @@
-ZYNQ 芯片的总体框图
-PS: 处理系统 （Processing System) , 就是与 FPGA 无关的 ARM 的 SOC 的部分。
-PL: 可编程逻辑 (Progarmmable Logic), 就是 FPGA 部分。
-PL 部分是与 7 系列一样的，在 DS190 文档中可以看到对应的 7 系列产品。

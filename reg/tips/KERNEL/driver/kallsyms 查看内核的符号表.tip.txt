@@ -1,1 +1,0 @@
-cat /proc/kallsyms  查看内核的符号表

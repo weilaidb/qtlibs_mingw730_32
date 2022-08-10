@@ -1,5 +1,0 @@
-[显示内容ID;input组件name;请求路径(不带首字母/)]
-txtCurrentTime2;curtime2;getcurtime2
-
-txtCurrentTime;curtime;getcurtime
-txtHint;inputcontent;ajaxtest

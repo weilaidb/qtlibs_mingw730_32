@@ -1,1 +1,0 @@
-printk(KERN_EMERGE "\1:%p\n", \1);

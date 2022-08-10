@@ -1,5 +1,0 @@
-1．QSet
-QSet是基于散列表的集合模板类，它存储数据的顺序是不定的，查找值的速度非常快。QSet<T> 内部就是用QHash实现的。
-定义QSet<T>容器和输入数据的实例代码如下：QSet<QString> set;
-set << "dog" << "cat" << "tiger";
-测试一个值是否包含于这个集合，用contains()函数，示例如下：if (!set.contains("cat"))

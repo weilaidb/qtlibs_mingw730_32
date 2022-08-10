@@ -1,1 +1,0 @@
-function \1()$NL{$NL$TBloadXMLDoc("\2",function()$NL$TB{$NL$TB$TBif (xmlhttp.readyState==4 && xmlhttp.status==200)$NL$TB$TB{$NL$TB$TB$TBdocument.getElementById("myDiv").innerHTML=xmlhttp.responseText;$NL$TB$TB}$NL$TB});$NL}

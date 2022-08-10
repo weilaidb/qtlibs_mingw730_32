@@ -1,1 +1,0 @@
-#include <algorithm>$NL#include <string>$NL$NL#include "gmock/gmock.h"$NL$NLusing namespace std;$NLusing namespace testing;$NL$NLclass An\1: public Test {$NLpublic:$NL   \1 actor;$NL};$NL$NLTEST_F(An\1, \2) {$NL$NL   //ASSERT_THAT(address, IsEmpty());$NL   //ASSERT_TRUE(address == IsEmpty());$NL   //ASSERT_FALSE(address == IsEmpty());$NL}$NL$NL=============

@@ -1,4 +1,0 @@
-[root@weilaidb docker_eg]# docker ps
-Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
-CONTAINER ID  IMAGE                           COMMAND               CREATED        STATUS            PORTS   NAMES
-840333ec1823  docker.io/library/ubuntu:15.10  /bin/sh -c while ...  2 minutes ago  Up 2 minutes ago          priceless_cannon

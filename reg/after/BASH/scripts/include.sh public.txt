@@ -1,1 +1,0 @@
-#!/bin/sh$NL#filename:$NL#function:$NL#$NL#$NL$NLPUBSCRIPT=~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/scripts/public.sh.tip.txt$NL$NLsource $PUBSCRIPT$NL$NLsource \1

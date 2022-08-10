@@ -1,5 +1,0 @@
-QString CUIPub::getClipBoardText()
-{
-    QClipboard *clipboard = QApplication::clipboard();
-    return  clipboard->text();
-}

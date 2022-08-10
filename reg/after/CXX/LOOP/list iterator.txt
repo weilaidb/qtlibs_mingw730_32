@@ -1,1 +1,0 @@
-#include <string>$NL$NLusing namespace std;$NL$NL$NLstring \1;$NLstring::iterator iter;$NLcout<<"\1.begin()--- \1.end(), size:"<< \1.size() << endl;$NLfor (iter = \1.begin(); iter != \1.end(); ++iter)$NL{$NL    cout << *iter << " ";$NL}$NL$NLcout << endl;$NL

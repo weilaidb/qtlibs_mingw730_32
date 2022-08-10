@@ -1,1 +1,0 @@
-$\1=array("Volvo","BMW","Toyota");$NL$arrlength=count($\1);$NL $NLfor($x=0;$x<$arrlength;$x++)$NL{$NL    echo $\1[$x];$NL    echo "<br>";$NL}

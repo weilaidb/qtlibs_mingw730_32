@@ -1,7 +1,0 @@
-layui-nav layui-bg-green;
-layui-bg-cyan;
-layui-bg-molv;
-layui-bg-blue;
-layui-bg-cyan;
-水平导航支持的其它背景主题有：layui-bg-cyan（藏青）、layui-bg-molv（墨绿）、layui-bg-blue（艳蓝）
-垂直导航支持的其它背景主题有：layui-bg-cyan（藏青）

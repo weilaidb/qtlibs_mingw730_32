@@ -1,1 +1,0 @@
-$\1=array(\2);$NL $NLforeach($\1 as $x=>$x_value)$NL{$NL    echo "Key=" . $x . ", Value=" . $x_value;$NL    echo "<br>";$NL}

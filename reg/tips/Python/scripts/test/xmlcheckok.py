@@ -1,1 +1,0 @@
-../xmlcheckok.py.tip.txt

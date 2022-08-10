@@ -1,1 +1,0 @@
-QList<\1> \2;$NL\2 << "A" << "B" << "C" << "D";$NL$NLQList<\1>::reverse_iterator i;$NLfor (i = list.rbegin(); i != \2.rend(); ++i)$NL   *i = i->toLower();$NL}

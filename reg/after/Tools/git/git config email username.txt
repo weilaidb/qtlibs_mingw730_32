@@ -1,1 +1,0 @@
-git config --global user.email "\1"$NLgit config --global user.name "\2"

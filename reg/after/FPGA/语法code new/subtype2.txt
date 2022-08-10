@@ -1,1 +1,0 @@
---语法如下:$NLsubtype \1 is \2 \3;$NL

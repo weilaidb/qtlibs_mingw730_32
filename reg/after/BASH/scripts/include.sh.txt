@@ -1,1 +1,0 @@
-#!/bin/sh$NL#filename:$NL#function:$NL#$NL#$NL$NL$NLsource \1

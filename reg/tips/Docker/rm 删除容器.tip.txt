@@ -1,3 +1,0 @@
-docker.bintray.io/jfrog/artifactory-jcr
-
-1e560fca3906

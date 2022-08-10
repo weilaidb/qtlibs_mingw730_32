@@ -1,5 +1,0 @@
-IDEA-Project-New-Custom
-国内的:
-https://start.aliyun.com/
-默认是:
-https://start.spring.io/

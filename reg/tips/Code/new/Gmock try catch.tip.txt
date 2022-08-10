@@ -1,7 +1,0 @@
-try{
-
-}
-catch(const InvalidUserException& expected)
-{
-
-}

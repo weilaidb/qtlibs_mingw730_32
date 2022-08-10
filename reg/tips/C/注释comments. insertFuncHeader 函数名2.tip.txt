@@ -1,1 +1,0 @@
-init_dynload;win32 dynamic Dll directory

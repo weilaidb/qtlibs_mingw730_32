@@ -1,1 +1,0 @@
-#region 本程序中用到的API函数$NL[DllImport("\1")]$NLpublic static extern \2;//\3$NL$NL

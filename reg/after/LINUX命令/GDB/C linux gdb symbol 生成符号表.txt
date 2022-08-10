@@ -1,1 +1,0 @@
-objcopy --only-keep-debug \1 \1Symbol.debug

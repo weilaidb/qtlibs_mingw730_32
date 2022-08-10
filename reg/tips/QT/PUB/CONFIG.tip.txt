@@ -1,4 +1,0 @@
-core gui
-sql
-network
-multimedia

@@ -1,9 +1,0 @@
-第二章 内存管理
-本章思考题1．在系统启动时，ARM Linux内核如何知道系统中有多大的内存空间？2．在32bit Linux内核中，用户空间和内核空间的比例通常是3:1，可以修改成2:2吗？3．物理内存页面如何添加到伙伴系统中，是一页一页添加，还是以2的几次幂来加入呢？4．内核的一级页表存放在什么地方？内核空间的二级页表又存放在什么地方？5．用户进程的一级页表存放在什么地方？二级页表又存放在什么地方？6．在ARM32系统中，页表是如何映射的？在ARM64系统中，页表又是如何映射的？7．请简述Linux内核在理想情况下页面分配器（page allocator）是如何分配出连续物理页面的。8．在页面分配器中，如何从分配掩码（gfp_mask）中确定可以从哪些zone中分配内存？
-
-
-9．页面分配器是按照什么方向来扫描zone的？10．为用户进程分配物理内存，分配掩码应该选用GFP_KERNEL，还是GFP_HIGHUSER_MOVABLE呢？11．slab分配器是如何分配和释放小内存块的？12．slab分配器中有一个着色的概念（cache color），着色有什么作用？13．slab分配器中的slab对象有没有根据Per-CPU做一些优化？14．slab增长并导致大量不用的空闲对象，该如何解决？15．请问kmalloc、vmalloc和malloc之间有什么区别以及实现上的差异？16．使用用户态的API函数malloc（）分配内存时，会马上为其分配物理内存吗？17．假设不考虑libc的因素，malloc分配100Byte，那么实际上内核是为其分配100Byte吗？18．假设两个用户进程打印的malloc（）分配的虚拟地址是一样的，那么在内核中这两块虚拟内存是否打架了呢？19．vm_normal_page（）函数返回的是什么样页面的struct page数据结构？为什么内存管理代码中需要这个函数？20．请简述get_user_page（）函数的作用和实现流程。21．请简述follow_page（）函数的作用的实现流程。22．请简述私有映射和共享映射的区别。23．为什么第二次调用mmap时，Linux内核没有捕捉到地址重叠并返回失败呢？
-#strace捕捉某个app调用mmap的情况
-mmap（0x20000000, 819200, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0） = 0x20000000
-…
-mmap（0x20000000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0） = 0x2000000024．struct page数据结构中的_count和_mapcount有什么区别？25．匿名页面和page cache页面有什么区别？26．struct page数据结构中有一个锁，请问trylock_page（）和lock_

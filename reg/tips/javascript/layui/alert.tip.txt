@@ -1,4 +1,0 @@
-result.msg
-count
-id
-selectstate

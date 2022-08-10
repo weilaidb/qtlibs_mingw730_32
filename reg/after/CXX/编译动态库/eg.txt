@@ -1,1 +1,0 @@
-gcc \1.c  -fPIC -shared -o lib\1.so$NLg++ \1.cpp  -fPIC -shared -o lib\1.so

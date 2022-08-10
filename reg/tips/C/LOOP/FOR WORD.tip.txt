@@ -1,2 +1,0 @@
-WORD16 wLp = 0;Count;
-WORD16 wLp = 0;wLen;

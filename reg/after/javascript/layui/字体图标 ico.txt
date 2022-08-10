@@ -1,1 +1,0 @@
-<i class="layui-icon \1" style="font-size: 30px; color: #1E9FFF;"></i>

@@ -1,3 +1,0 @@
-BYTE;g_aucArryTest
-WORD16;g_awArryTest
-WORD32;g_adwArryTest

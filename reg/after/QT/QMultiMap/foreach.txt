@@ -1,1 +1,0 @@
-QMultiMap<QString, int> \2;$NL...$NLforeach (const QString &\1, \2.uniqueKeys()) {$NL   foreach (int i, \2.values(\1))$NL      qDebug() << \1 << ':' << i;$NL}

@@ -1,4 +1,0 @@
-<frameset cols="20%,80%">
-  <frame src="frame-left.jsp" name="frame_left" id="frame_left"/>
-  <frame src="blank.jsp" name="frame_right" id="frame_right"/>
-</frameset>

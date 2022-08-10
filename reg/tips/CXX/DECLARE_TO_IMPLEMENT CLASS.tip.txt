@@ -1,1 +1,0 @@
-CMainWindow  ;void proc_textEditChanged();

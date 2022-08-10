@@ -1,1 +1,0 @@
-<html>$NL<body>$NL $NL<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">$NL\1: <input type="text" name="\3">$NL<input type="submit">$NL</form>$NL $NL<?php $NL$\2 = $_POST['\3']; $NLecho $\2; $NL?>$NL $NL</body>$NL</html>

@@ -1,1 +1,0 @@
-#include <QTime>$NL$NL$NLint \1 = 0;$NLint \2 = 0;$NLQTime \3;$NL$NL\1 = \3.currentTime().second();$NL$NL$NL\2 = \3.currentTime().second();$NLif(\2 - \1 > m_runtime)$NL{$NL    //do something$NL}$NL$NL

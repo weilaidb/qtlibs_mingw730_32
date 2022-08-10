@@ -1,1 +1,0 @@
-cout << "No:" << setw(\1)  << \2  << endl;

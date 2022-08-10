@@ -1,1 +1,0 @@
-if (argc < \1)$NL    return usage(\2);

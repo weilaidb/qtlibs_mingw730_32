@@ -1,1 +1,0 @@
-txt1;Hello world!;txt2;What a nice day!

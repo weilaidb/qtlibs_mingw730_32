@@ -1,7 +1,0 @@
-AnChild;Hello
-AnCStringPub;length
-
-AnCStringPub;replaceStringWithSome
-AnCStringPub;findposStringWithSome
-AnCVectorPub;printVecReturnSize
-AnCVectorPub;SomeInfo

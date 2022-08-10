@@ -1,2 +1,0 @@
-ubuntu:15.10
-ubuntu:20.04

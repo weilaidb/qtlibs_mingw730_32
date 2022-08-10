@@ -1,5 +1,0 @@
-ubuntu:13.10
-ubuntu:16.04
-ubuntu:20.04
-centos:centos7
-centos:centos8

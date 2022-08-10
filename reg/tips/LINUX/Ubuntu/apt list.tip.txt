@@ -1,2 +1,0 @@
-#可更新的列表
-apt list --upgradable

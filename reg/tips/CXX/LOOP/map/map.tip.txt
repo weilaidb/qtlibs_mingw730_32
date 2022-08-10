@@ -1,1 +1,0 @@
-std::map<int , std::string> MAP_INI_STRING; mapPerson;

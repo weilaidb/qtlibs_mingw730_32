@@ -1,1 +1,0 @@
-$\1="\2";$NLswitch ($\1)$NL{$NLcase "\2":$NL    echo "你喜欢的颜色是红色!";$NL    break;$NLcase "\3":$NL    echo "你喜欢的颜色是蓝色!";$NL    break;$NLcase "\4":$NL    echo "你喜欢的颜色是绿色!";$NL    break;$NLdefault:$NL    echo "你喜欢的颜色不是 红, 蓝, 或绿色!";$NL}

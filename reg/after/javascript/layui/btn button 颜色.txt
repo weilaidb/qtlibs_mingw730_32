@@ -1,1 +1,0 @@
-<button type="button" class="\2">\1</button>

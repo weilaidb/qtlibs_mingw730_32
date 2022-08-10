@@ -1,2 +1,0 @@
-[类名;映射名]
-UserListController;userlist

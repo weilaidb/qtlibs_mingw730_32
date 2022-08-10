@@ -1,1 +1,0 @@
-<!-- 程序继承的父类 -->$NL<parent>$NL$TB<groupId>org.springframework.boot</groupId>$NL$TB<artifactId>spring-boot-starter-parent</artifactId>$NL$TB<version>\1</version>$NL$TB<relativePath/> <!-- lookup parent from repository -->$NL</parent>
