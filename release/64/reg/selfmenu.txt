@@ -1090,6 +1090,7 @@ JAVA/基本语句/List String
 JAVA/基本语句/List String Sort
 JAVA/基本语句/List String Sort Uniq
 JAVA/基本语句/List String []互转
+JAVA/基本语句/List集合的各种排序
 JAVA/基本语句/String类常用方法
 JAVA/基本语句/main
 JAVA/基本语句/反射

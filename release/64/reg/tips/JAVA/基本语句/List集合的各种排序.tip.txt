@@ -1,0 +1,342 @@
+List集合的各种排序
+
+yuanfang0907
+
+于 2019-02-15 17:56:39 发布
+
+93533
+ 收藏 329
+分类专栏： List集合排序处理
+版权
+
+List集合排序处理
+专栏收录该内容
+1 篇文章1 订阅
+订阅专栏
+在Java编程中，经常要对List集合进行排序，因此对List排序的各种情况进行总结，希望对各位读者有所帮助。
+
+1.单属性变量List排序
+          1.1按照变量属性升序，降序排序
+
+/**
+ * 单属性变量list 自身属性升序, 降序排序
+ */
+private void singleVariableSort1(){
+ 
+    List<Integer> list = Arrays.asList(10,1,6,4,8,7,9,3,2,5);
+ 
+    System.out.println("原始数据：");
+    list.forEach(n ->{System.out.print(n+", ");});
+ 
+    System.out.println("");
+    System.out.println("升序排列：");
+    Collections.sort(list); // 升序排列
+    list.forEach(n ->{System.out.print(n+", ");});
+ 
+    System.out.println("");
+    System.out.println("降序排列：");
+    Collections.reverse(list); // 倒序排列
+    list.forEach(n ->{System.out.print(n+", ");});
+}
+
+
+          1.2按照自定义的顺序排序
+
+/**
+ * 单属性变量list 自定义顺序排序
+ */
+private void singleVariableSort2(){
+ 
+    List<String> list = Arrays.asList("北京","上海","北京","广州","广州","上海","北京","上海");
+ 
+    List<String> sortRule = Arrays.asList("北京","上海","广州");
+ 
+    System.out.println("原始数据：");
+    list.forEach(n ->{System.out.print(n+", ");});
+ 
+    System.out.println("");
+    System.out.println("排序规则：");
+    sortRule.forEach(n ->{System.out.print(n+", ");});
+ 
+    System.out.println("");
+    System.out.println("正序排列：");
+    Collections.sort(list, new Comparator<String>()
+    {
+        public int compare(String a1, String a2)
+        {
+                int io1 = sortRule.indexOf(a1);
+                int io2 = sortRule.indexOf(a2);
+                return io1 - io2;
+        }
+    });
+ 
+    list.forEach(n ->{System.out.print(n+", ");});
+ 
+    System.out.println("");
+    System.out.println("倒序排列：");
+    Collections.sort(list, new Comparator<String>()
+    {
+        public int compare(String a1, String a2)
+        {
+            int io1 = sortRule.indexOf(a1);
+            int io2 = sortRule.indexOf(a2);
+            return io2 - io1;
+        }
+    });
+ 
+    list.forEach(n ->{System.out.print(n+", ");});
+}
+
+
+2.对象List排序
+          2.1按照对象单属性升序，降序排序
+
+/**
+ * 对象单属性升序，降序排序
+ */
+private void entitySort1(){
+ 
+    //Student 的 list 集合
+    List<Student> students = new ArrayList<>();
+    students.add(new Student("张三",90,180,"电气学院","北京"));
+    students.add(new Student("李四",80,165,"计算机学院","上海"));
+    students.add(new Student("王五",91,170,"财经学院","上海"));
+    students.add(new Student("赵明",80,182,"计算机学院","北京"));
+    students.add(new Student("钱海",75,181,"计算机学院","广州"));
+    students.add(new Student("孙理",82,172,"财经学院","上海"));
+    students.add(new Student("周伟",90,168,"电气学院","广州"));
+    students.add(new Student("郑亮",80,178,"财经学院","广州"));
+ 
+    System.out.println("原始数据：");
+    students.forEach(s ->{
+      System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+ s.getCollege()+""+s.getAddress());});
+ 
+    System.out.println("按照分数升序排序：");
+    students.sort(comparing(Student::getScore));
+    students.forEach(s ->{ 
+     System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+ s.getCollege()+""+s.getAddress());}); 
+ 
+    System.out.println("按照分数降序排序：");
+    students.sort(comparing(Student::getScore).reversed());
+    students.forEach(s ->{
+      System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+s.getCollege()+""+s.getAddress());});
+}
+
+
+          2.2按照对象多属性升序，降序排序
+
+/**
+ * 对象多属性升序，降序排序
+ */
+private void entitySort2(){
+ 
+    //Student 的 list 集合
+    List<Student> students = new ArrayList<>();
+    students.add(new Student("张三",90,180,"电气学院","北京"));
+    students.add(new Student("李四",80,165,"计算机学院","上海"));
+    students.add(new Student("王五",91,170,"财经学院","上海"));
+    students.add(new Student("赵明",80,182,"计算机学院","北京"));
+    students.add(new Student("钱海",75,181,"计算机学院","广州"));
+    students.add(new Student("孙理",82,172,"财经学院","上海"));
+    students.add(new Student("周伟",90,168,"电气学院","广州"));
+    students.add(new Student("郑亮",80,178,"财经学院","广州"));
+ 
+    System.out.println("原始数据：");
+    students.forEach(s ->{
+      System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+s.getCollege()+""+s.getAddress());});
+ 
+    System.out.println("按照分数降序排序,当分数相同时, 按照身高升序排序");
+    students.sort(comparing(Student::getScore).reversed().thenComparing(Student::getHeight));
+    students.forEach(s ->{
+      System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+s.getCollege()+""+s.getAddress());});
+ 
+    System.out.println("按照分数降序排序,当分数相同时, 按照身高降序排序");
+    Collections.sort(students, new Comparator<Student>()
+    {
+        public int compare(Student student1, Student student2)
+        {
+            if(student1.getScore().equals(student2.getScore())){
+                return student2.getHeight() - student1.getHeight();
+            }else{
+                return student2.getScore() - student1.getScore();
+            }
+        }
+    });
+ 
+    students.forEach(s ->{
+      System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+s.getCollege()+""+s.getAddress());});
+}
+
+
+          2.3按照对象自定义单属性的顺序排序
+
+/**
+ * 对象自定义单属性的顺序排序
+ */
+private void entitySort3(){
+ 
+    //Student 的 list 集合
+    List<Student> students = new ArrayList<>();
+    students.add(new Student("张三",90,180,"电气学院","北京"));
+    students.add(new Student("李四",80,165,"计算机学院","上海"));
+    students.add(new Student("王五",91,170,"财经学院","上海"));
+    students.add(new Student("赵明",80,182,"计算机学院","北京"));
+    students.add(new Student("钱海",75,181,"计算机学院","广州"));
+    students.add(new Student("孙理",82,172,"财经学院","上海"));
+    students.add(new Student("周伟",90,168,"电气学院","广州"));
+    students.add(new Student("郑亮",80,178,"财经学院","广州"));
+ 
+    System.out.println("原始数据：");
+    students.forEach(s ->{
+      System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+s.getCollege()+""+s.getAddress());});
+ 
+    System.out.println("自定义按照地区（北京,上海,广州）排序：");
+    List<String> addressOrder = Arrays.asList("北京","上海","广州");
+    Collections.sort(students, new Comparator<Student>()
+    {
+        public int compare(Student student1, Student student2)
+        {
+                int io1 = addressOrder.indexOf(student1.getAddress());
+                int io2 = addressOrder.indexOf(student2.getAddress());
+                return io1 - io2;
+        }
+    });
+ 
+    students.forEach( s ->{
+       System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+s.getCollege()+""+s.getAddress());});
+}
+
+
+          2.4按照对象自定义多属性的顺序排序
+
+ 
+
+/**
+ * 对象自定义多属性的顺序排序
+ */
+private void entitySort4(){
+ 
+    //Student 的 list 集合
+    List<Student> students = new ArrayList<>();
+    students.add(new Student("张三",90,180,"电气学院","北京"));
+    students.add(new Student("李四",80,165,"计算机学院","上海"));
+    students.add(new Student("王五",91,170,"财经学院","上海"));
+    students.add(new Student("赵明",80,182,"计算机学院","北京"));
+    students.add(new Student("钱海",75,181,"计算机学院","广州"));
+    students.add(new Student("孙理",82,172,"财经学院","上海"));
+    students.add(new Student("周伟",90,168,"电气学院","广州"));
+    students.add(new Student("郑亮",80,178,"财经学院","广州"));
+ 
+    System.out.println("原始数据：");
+    students.forEach(s ->{
+       System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+s.getCollege()+""+s.getAddress());});
+ 
+    System.out.println("先按照学院（电气学院,计算机学院,财经学院）排序， 当学院相同时,按照地区（北京,上海,广州）排序");
+    List<String> collegeOrder = Arrays.asList("电气学院","计算机学院","财经学院");
+    List<String> addressOrder = Arrays.asList("北京","上海","广州");
+    Collections.sort(students, new Comparator<Student>()
+    {
+        public int compare(Student student1, Student student2)
+        {
+            if(student1.getCollege().equals(student2.getCollege())){
+                int io1 = addressOrder.indexOf(student1.getAddress());
+                int io2 = addressOrder.indexOf(student2.getAddress());
+                return io1 - io2;
+            }else{
+                int io1 = collegeOrder.indexOf(student1.getCollege());
+                int io2 = collegeOrder.indexOf(student2.getCollege());
+                return io1 - io2;
+            }
+        }
+    });
+ 
+    students.forEach( s ->{
+       System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+s.getCollege()+""+s.getAddress());});
+}
+
+
+          2.5按照对象属性自定义混合排序
+
+/**
+ * 对象属性自定义混合排序
+ */
+private void entitySort5(){
+ 
+    //Student 的 list 集合
+    List<Student> students = new ArrayList<>();
+    students.add(new Student("张三",90,180,"电气学院","北京"));
+    students.add(new Student("李四",80,165,"计算机学院","上海"));
+    students.add(new Student("王五",91,170,"财经学院","上海"));
+    students.add(new Student("赵明",80,182,"计算机学院","北京"));
+    students.add(new Student("钱海",75,181,"计算机学院","广州"));
+    students.add(new Student("孙理",82,172,"财经学院","上海"));
+    students.add(new Student("周伟",90,168,"电气学院","广州"));
+    students.add(new Student("郑亮",80,178,"财经学院","广州"));
+ 
+    System.out.println("原始数据：");
+    students.forEach(s ->{
+      System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+s.getCollege()+""+s.getAddress());});
+ 
+    //先按照分数从高到低排序,当分数相同时,然后按照地区（北京,上海,广州）排序
+    List<String> addressOrder = Arrays.asList("北京","上海","广州");
+    Collections.sort(students, new Comparator<Student>()
+    {
+        public int compare(Student student1, Student student2)
+        {
+            if(student1.getScore().equals(student2.getScore())){
+                int io1 = addressOrder.indexOf(student1.getAddress());
+                int io2 = addressOrder.indexOf(student2.getAddress());
+                return io1 - io2;
+            }else{
+                return student2.getScore() - student1.getScore();
+            }
+        }
+    });
+ 
+    System.out.println("");
+    System.out.println("先按照分数从高到低排序,当分数相同时,然后按照地区（北京,上海,广州）排序：");
+    students.forEach( s ->{
+      System.out.println(s.getName()+" "+ s.getScore()+" "+s.getHeight()+" "+s.getCollege()+""+s.getAddress());}); 
+}
+
+
+          2.6按照对象单属性升序，降序排序(float类型)
+
+/**
+ * 对象单属性升序，降序排序(float类型)
+ */
+private void entitySort6(){
+ 
+   //Shop 的 list 集合
+   List<Shop> shops = new ArrayList<>();
+   shops.add(new Shop("华润万家", 20200921, (float) 10000.25));
+   shops.add(new Shop("华润万家", 20200922, (float) 20000.26));
+   shops.add(new Shop("华润万家", 20200923, (float) 9999.37));
+   shops.add(new Shop("华润万家", 20200924, (float) 12587.86));
+   shops.add(new Shop("华润万家", 20200925, (float) 15798.65));
+ 
+   System.out.println("原始数据：");
+   shops.forEach(s ->{
+      System.out.println(s.getName() + " " + s.getDate() + " " + s.getIncome() );
+   });
+ 
+   System.out.println("按照收入升序排序：");
+   shops.sort(comparing(Shop::getIncome));
+   shops.forEach(s ->{
+      System.out.println(s.getName() + " " + s.getDate() + " " + s.getIncome());
+   });
+ 
+   System.out.println("按照收入降序排序：");
+   shops.sort(comparing(Shop::getIncome).reversed());
+   shops.forEach(s ->{
+      System.out.println(s.getName() + " " + s.getDate() + " " + s.getIncome());
+   });
+ 
+ 
+}
+
+
+ 
+————————————————
+版权声明：本文为CSDN博主「yuanfang0907」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/yuanfang0907/article/details/87362492
