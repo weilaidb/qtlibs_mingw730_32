@@ -1,0 +1,246 @@
+https://github.com/oracle/opengrok/wiki/How-to-setup-OpenGrok
+
+!!!!!!!!!需要python 3.6及以上
+
+How to setup OpenGrok
+Adam Hornáček edited this page on 26 Jul 2021 · 71 revisions
+ Pages 41
+Find a page…
+Home
+Authorization
+Authorization based on HTTP Basic Authentication
+Authorization framework internals
+Authorization plugins
+Comparison with Similar Tools
+Cookies
+Debugging
+Developer intro
+Discussions
+Docker
+Features
+File downloads
+How to build OpenGrok from source
+How to setup OpenGrok
+Requirements
+Resource requirements
+Downloading the distribution tar ball and setting up directory structure
+Logging
+Check permisions
+Creating the index
+Step.0 - Setting up the sources / input data
+Step.1 - Install management tools (optional)
+Step.2 - Deploy the web application
+Step.3 - Indexing
+Step.4 - setting up periodic reindex and data synchronization
+Clone this wiki locally
+https://github.com/oracle/opengrok.wiki.git
+OpenGrok can be installed and used under different use cases. Advanced usage depends on your knowledge of running java applications and command line options. Note, that you need to create the index no matter what is your use case. Without indexes Opengrok will be simply useless.
+
+Requirements
+You need the following:
+
+Java 11 or higher
+OpenGrok '''binaries''' from https://github.com/OpenGrok/OpenGrok/releases (.tar.gz file with binaries, not the source code tarball !)
+https://github.com/universal-ctags for analysis
+avoid Exuberant ctags, they are not maintained anymore and OpenGrok does not run with it
+when on Linux distribution avoid using the ctags package from snap since it employs security restrictions and fails during indexing
+using ctags from Chocolatey on Windows works fine
+A servlet container like GlassFish or Tomcat 10.0 or later
+should be using at the same version of Java as specified above or later
+If history is needed, appropriate SCM binaries (in some cases also local CVS/Subversion repository) must be present on the system (e.g. Subversion or Mercurial or SCCS or ... )
+Git version 2.6 or higher for GIT repositories (see PR #1314 for more info)
+a recent browser for clients
+Python 3.6 and greater if you use the Python tools for repository synchronization
+Note that it might be necessary to tune the install, e.g. bump Java heap for both the indexing process and the application server (based on indexed data, bigger deployments will need more - see https://github.com/oracle/opengrok/wiki/Tuning-for-large-code-bases)
+
+After unpacking the binaries to your target directory, the index needs to be created and the web application deployed.
+
+See https://github.com/OpenGrok/platform for OS specific integration.
+
+Resource requirements
+It is expected that the indexer is usually run with 8 GB JVM heap. For the web app more memory will be required.
+
+See https://github.com/oracle/opengrok/wiki/Tuning-for-large-code-bases for details.
+
+Downloading the distribution tar ball and setting up directory structure
+First, download the latest version from https://github.com/oracle/opengrok/releases
+
+To make everything tidy, we will store everything under the /opengrok directory. We will prepare the ground like so:
+
+mkdir /opengrok/{src,data,dist,etc,log}
+Unpack (assumes GNU tar) the release tarball as follows:
+
+tar -C /opengrok/dist --strip-components=1 -xzf opengrok-X.Y.Z.tar.gz
+Logging
+Copy the logging configuration:
+
+cp /opengrok/dist/doc/logging.properties /opengrok/etc
+The stock logging configuration should be customized, in this case we would like to store all logs under the /opengrok/logs directory so the contents of the file will look like this:
+
+handlers= java.util.logging.FileHandler, java.util.logging.ConsoleHandler
+
+java.util.logging.FileHandler.pattern = /opengrok/log/opengrok%g.%u.log
+java.util.logging.FileHandler.append = false
+java.util.logging.FileHandler.limit = 0
+java.util.logging.FileHandler.count = 30
+java.util.logging.FileHandler.level = ALL
+java.util.logging.FileHandler.formatter = org.opengrok.indexer.logger.formatter.SimpleFileLogFormatter
+
+java.util.logging.ConsoleHandler.level = WARNING
+java.util.logging.ConsoleHandler.formatter = org.opengrok.indexer.logger.formatter.SimpleFileLogFormatter
+
+org.opengrok.level = FINE
+The idea in this file is that console will only receive log messages with level WARNING or higher while log files will include everything, in this case log messages with FINE or higher.
+
+This file will be passed to the Java program used to run the indexer using the standard -Djava.util.logging.config.file command line option - see below for how to run the indexer.
+
+Check permisions
+Now is is also good time to ensure the web application and indexer can read from and write to certain directories. The indexer will need to write to the data root (/opengrok/{data,log} in this case) and the web application will need to be able to read from source root, configuration, data root (/opengrok/{src,etc,data} in this case).
+
+In general, this could be a problem if the indexer and web app run under different users and the files are created in a way so that the users cannot access files reciprocally.
+
+Also, the web application also has to be able to write to the suggester directory under the data root (/opengrok/data/suggester in this case), otherwise the suggester will not work.
+
+Creating the index
+The data to be indexed should be stored in a directory called source root. Each subdirectory under this directory is called project (projects can be disabled but let's leave this detail aside for now) and usually contains checkout of a repository (or it's branch, version, ...) sources. Each project can have multiple repositories.
+
+The indexer will process any input data - be it source code checkouts, plain files, binaries, etc.
+
+The concept of projects was introduced to effectively replace the need for multiple web applications with opengrok .war file (see below) and leave you with one indexer and one web application serving more source code repositories - projects.
+
+That said, OpenGrok can be run in project-less setup where all the input data is always searched at once.
+
+
+
+The index data will be created under directory called data root.
+
+Step.0 - Setting up the sources / input data
+Input data should be available locally for OpenGrok to work efficiently since indexing is pretty I/O intensive. No changes are required to your source tree. If the code is under CVS or SVN, OpenGrok requires the '''checked out source''' tree under source root.
+
+The source root directory needs to be created first. We did that above.
+
+The indexer assumes the input data is stored in the UTF-8 encoding (ASCII works therefore too).
+
+For example, to add 2 sample code checkouts using the default source root on Unix system:
+
+cd /opengrok/src
+
+# use one of the training modules at GitHub as an example small app.      
+git clone https://github.com/githubtraining/hellogitworld.git
+
+# use OpenGrok as an example large app
+git clone https://github.com/OpenGrok/OpenGrok
+These 2 directories will be treated as projects if the indexer is run with projects enabled (the -P option), otherwise the data will be treated as a whole.
+
+Step.1 - Install management tools (optional)
+This step is optional, the python package contains wrappers for OpenGrok's indexer and other commands.
+
+Install the Python package into Python virtual environment. In shell, you can install the package simply by:
+
+# This is assuming you have extracted the OpenGrok release tarball already and you are using bash:
+$ cd tools
+$ python3 -m venv env
+$ . ./env/bin/activate
+$ pip install opengrok-tools.tar.gz
+Then you can use defined commands. You can of course run the plain java yourself, without these wrappers. The tools are mainly useful for parallel repository synchronization and indexing and also in case when managing multiple OpenGrok instances with diverse Java installations.
+
+Step.2 - Deploy the web application
+Install web application container of your choice (e.g. Tomcat, Glassfish).
+
+The web application is distributed in the form of WAR archive file called source.war by default. The WAR file is part of the release archive; it is located under the lib directory. To deploy the application, it means to copy the .war file to the location where the application container will detect it and deploy the web application. The container application will usually detect the new file (even if previous version of the web application is already running), unpack the archive and start the web application. Usually, it is not necessary to unpack the archive by hand. It depends on the container server how quickly it will discover the new archive; usually it takes just a couple of seconds. The destination directory varies per application server. For example for Tomcat 8 it might be something like /var/tomcat8/webapps however this could vary based on operating system as well. So, if you copy the archive to say /var/tomcat8/webapps/source.war, the application server will extract the contents of the archive to the /var/tomcat8/webapps/source/ directory.
+
+Once started, the web application will be served on http://ADDRESS:PORT/source/ where ADDRESS and PORT depend on the configuration of your application server. For instance, it could be http://localhost:8080/source. The source part of the URI matches the name of the WAR file, so if you want your application to be available on http://localhost:8080/FooBar/ , copy the file into the destination directory as FooBar.war.
+
+After the initial startup (i.e. before the indexer is run for the first time) the web application will display an error saying that it cannot read the configuration file. This is expected since the configuration file is yet to be generated by the indexer.
+
+After application server unpacks the War file, it will search for the WEB-INF/web.xml file. For example, deployed default War archive in Tomcat 8 on a Unix system might have the file present as /var/tomcat8/webapps/source/WEB-INF/web.xml. Inside this XML file there is an parameter called CONFIGURATION. Inside the XML file it might look like this:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <display-name>OpenGrok</display-name>
+    <description>A wicked fast source browser</description>
+    <context-param>
+        <description>Full path to the configuration file where OpenGrok can read its configuration</description>
+        <param-name>CONFIGURATION</param-name>
+        <param-value>/opengrok/etc/configuration.xml</param-value>
+    </context-param>
+...
+This is where the web application will read the configuration from. The default value is /opengrok/etc/configuration.xml (notice that in the above example non-default path was used). This configuration file is created by the indexer when using the -W option and the web application reads the file on startup - this is a way how to make the configuration persistent.
+
+If you happen to be using the Python tools distributed with OpenGrok, you can use the opengrok-deploy script to perform the copying of the War file while optionally changing the CONFIGURATION value if the configuration file is stored in non-default location. In this case it is (the default is /var/opengrok/etc/configuration.xml), so we can run it like so:
+
+opengrok-deploy -c /opengrok/etc/configuration.xml \
+    /opengrok/dist/lib/source.war /var/lib/tomcat8/webapps
+Note that the web application needs to be able to access the files under both data and source root, so make sure file level permissions are set appropriately (this is even more true when running under SELinux or such).
+
+Another thing to keep in mind is that the web application needs to be able to run source code management commands (such as git) in order to display history related views (e.g. making diffs of changes, displaying annotations etc.), basically in the same way as the indexer when it generates history cache. Therefore, permissions and/or environment variables need to be set for the application server.
+
+Do not change anything under the deployed/unpacked WAR archive except the WEB-INF/web.xml file as it can break your deployment in strange ways.
+
+See https://github.com/oracle/opengrok/wiki/Webapp-configuration for more configuration options of the web application.
+
+Also see https://github.com/oracle/opengrok/wiki/Security
+
+Step.3 - Indexing
+This step consists of these operations:
+
+create index
+let the indexer generate the configuration file
+notify the web application that new index is available
+For the indexing step, the directories that store the output data need to be created first, we did that above.
+
+The initial indexing can take a lot of time - for large code bases (meaning both amount of source code and history) it can take many hours. Subsequent indexing will be much faster as it is incremental.
+
+To run the indexer you will need the opengrok.jar file that is found in the release tar.gz file plus all the libraries found therein.
+
+The indexer can be run either using opengrok.jar directly (assuming Universtal ctags binary is installed to /usr/local/bin/ctags):
+
+java \
+    -Djava.util.logging.config.file=/opengrok/etc/logging.properties \
+    -jar /opengrok/dist/lib/opengrok.jar \
+    -c /usr/local/bin/ctags \
+    -s /opengrok/src -d /opengrok/data -H -P -S -G \
+    -W /opengrok/etc/configuration.xml -U http://localhost:8080/source
+or using the opengrok-indexer wrapper like so:
+
+opengrok-indexer \
+    -J=-Djava.util.logging.config.file=/opengrok/etc/logging.properties \
+    -a /opengrok/dist/lib/opengrok.jar -- \
+    -c /usr/local/bin/ctags \
+    -s /opengrok/src -d /opengrok/data -H -P -S -G \
+    -W /opengrok/etc/configuration.xml -U http://localhost:8080/source
+Notice how the indexer arguments in both commands are the same. The opengrok-indexer script will merely find the Java executable and run it.
+
+At the end of the indexing the indexer automatically attempts to upload newly generated configuration to the web application. Until this is done, the web application will display the old state. The indexer needs to know where to upload the configuration to - this is what the -U option is there for. The URI supplied by this option needs to match the location where the web application was deployed to, e.g. for War file called source.war the URI will be http://localhost:PORT_NUMBER/source.
+
+The above will use /opengrok/src as source root, /opengrok/data as data root. The configuration will be written to /opengrok/etc/configuration.xml and sent to the web application (via the URL passed to the -U option) at the end of the indexing. The location of the configuration file needs to match the configuration location in the web.xml file (see the Deploy section above).
+
+Run the command with -h to get more information about the options, i.e.:
+
+java -jar /opengrok/dist/lib/opengrok.jar -h
+or when using the Python scripts:
+
+opengrok-indexer -a /opengrok/dist/lib/opengrok.jar -- -h
+Optionally use --detailed together with -h to get extra detailed help, including examples.
+
+It is assumed that any SCM commands are reachable in one of the components of the PATH environment variable (e.g. the git command for Git repositories). Likewise, this should be maintained in the environment of the user which runs the web server instance.
+
+You should now be able to point your browser to http://YOUR_WEBAPP_SERVER:WEBAPPSRV_PORT/source to work with your fresh installation.
+
+In some setups, it might be desirable to run the indexing (and especially mirroring) of each project in parallel in order to speed up the overall progress. See https://github.com/oracle/opengrok/wiki/Per-project-management-and-workflow on how this can be done.
+
+See https://github.com/oracle/opengrok/wiki/Indexer-configuration for more indexer configuration options.
+
+Step.4 - setting up periodic reindex and data synchronization
+The index needs to be kept consistent with the data being indexed. Also, the data needs to be kept in sync with their origin. Therefore, there has to be periodic process that syncs the data and runs reindex. On Unix this is normally done by setting up a crontab entry.
+
+Ideally, the time window between the data being changed on disk and reindex done should be kept to minimum otherwise strange artifacts may appear when searching/browsing.
+
+For syncing repository data see https://github.com/oracle/opengrok/wiki/Repository-synchronization
+
+Also see https://github.com/oracle/opengrok/wiki/Indexing-lifecycle

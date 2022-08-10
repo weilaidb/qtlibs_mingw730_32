@@ -1,0 +1,1 @@
+\1& \1::operator=(const \1& rhs)$NL{$NL$TBif (this == &rhs) return *this;$NL$NL$TB//mTitle = rhs.mTitle;$NL$TB//mAuthor = rhs.mAuthor;$NL$TB//mYear = rhs.mYear;$NL$TB//mClassification = rhs.mClassification;$NL$TB//mType = rhs.mType;$NL$NL$TBreturn *this;$NL}

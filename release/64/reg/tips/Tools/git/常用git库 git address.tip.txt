@@ -15,6 +15,9 @@ https://gitee.com/openharmony/distributedschedule_services_samgr_lite.git
 https://github.com/universal-ctags/ctags.git
 https://github.com/paulsapps/gmock-1.7.0.git
 https://github.com/sqlite/sqlite/
+git@github.com:microsoft/vscode.git
+git://git.busybox.net/busybox
+https://git.busybox.net/busybox
 
 #仿真
 https://gitlab.com/qemu-project/qemu.git

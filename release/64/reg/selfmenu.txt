@@ -494,6 +494,11 @@ CXX/class/多态 继承 virtual Board array
 CXX/define/pub
 CXX/eg
 CXX/externc __cplusplus
+CXX/knowledge/C++中operator关键字（重载操作符）
+CXX/knowledge/eg
+CXX/knowledge/pragma once用法总结
+CXX/knowledge/如何理解左操作数必须为左值
+CXX/new class operator=
 CXX/new class static instsance实例
 CXX/shared_ptr 智能指针
 CXX/shared_ptr 智能指针2
@@ -1485,6 +1490,7 @@ LINUX/qemu/arm sh
 LINUX/telnetd
 LINUX/uboot
 LINUX/命令行/Centos 7 搭建samba
+LINUX/命令行/Centos version
 LINUX/命令行/Linux 忘记密码解决方法
 LINUX/命令行/Linux 系统目录结构
 LINUX/命令行/SELinux配置文件
@@ -1510,11 +1516,14 @@ LINUX/命令行/mpstat help
 LINUX/命令行/mpstat 查看CPU 实时系统监控工具
 LINUX/命令行/mpstat 查看CPU 实时系统监控工具 2
 LINUX/命令行/nano
+LINUX/命令行/net/route default默认路由
 LINUX/命令行/nm
 LINUX/命令行/nohup
 LINUX/命令行/pkill
 LINUX/命令行/realpath
 LINUX/命令行/realpath help
+LINUX/命令行/samba/passwd
+LINUX/命令行/samba/连接不上
 LINUX/命令行/save write 提升权限 w
 LINUX/命令行/sed
 LINUX/命令行/setenforce
@@ -1535,6 +1544,8 @@ LINUX/命令行/software/rpm uninstall
 LINUX/命令行/software/rpm包安装、卸载和升级
 LINUX/命令行/software/rpm命令查询软件包
 LINUX/命令行/software/samba smb.conf
+LINUX/命令行/software/samba smb.conf 101.201.79.164
+LINUX/命令行/software/vsftpd 安装与配置
 LINUX/命令行/software/yum
 LINUX/命令行/software/yum CentOS安装mysql
 LINUX/命令行/software/yum install
@@ -1546,6 +1557,7 @@ LINUX/命令行/software/如何在阿里云服务器安装Mysql数据库
 LINUX/命令行/strace and ltrace
 LINUX/命令行/strace ifconfig
 LINUX/命令行/tar
+LINUX/命令行/tar 追加
 LINUX/命令行/tee
 LINUX/命令行/terminal快捷键 shortcut
 LINUX/命令行/ubuntu terminal快捷键 shortcut
@@ -1637,6 +1649,15 @@ Makefile/条件判断/ifeq
 Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量
+OS/Centos/8.3.2011
+OS/Centos/8.3.2011 problem/samba Unit smb.service not found
+OS/Centos/8.3.2011 python(abi)
+OS/Centos/8.3.2011 yum update 源
+OS/Centos/8.3.2011 备份
+OS/Centos/8.3.2011 安装后版本
+OS/Centos/8.3.2011 用户名密码
+OS/Centos/8.3.2011 缺失yum安装顺序
+OS/Centos/8.3.2011 缺失yum安装顺序 脚本
 OS/MACOS/VMware16安装MacOS Big Sur系统
 OS/MACOS/VMware虚拟机安装macos Big Sur 11.0.1 (20B29)镜像CDR/ISO下载
 OS/MACOS/macOS系统下载
@@ -2059,6 +2080,7 @@ SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
+SoftWare/opengrok/md5sum
 SoftWare/vmware/16
 TEST/RegExptest
 TEST/RegExptest rm -f
@@ -2134,6 +2156,7 @@ Tools/双拼输入法快捷键
 Tools/双拼输入法快捷键 小鹤双拼
 Tools/双拼输入法快捷键 打字练习
 Tools/查看代码工具/OpenGrok/help
+Tools/查看代码工具/OpenGrok/help Requirements安装要求
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12
@@ -2310,6 +2333,7 @@ path路径/常用文件夹
 用户说明书/EC管理 dd-x.y-SNAPSHOT.jar
 用户说明书/代码集autocodesets weilaix.war
 用户说明书/代码集autocodesets weilaix.war Apache版本更新
+用户说明书/代码集autocodesets 菜单定义规范
 电脑/ThinkPad/T14/常见
 电脑/ThinkPad/T14/拆机
 电脑/ThinkPad/T14/拆机 加内存和硬盘安装系统

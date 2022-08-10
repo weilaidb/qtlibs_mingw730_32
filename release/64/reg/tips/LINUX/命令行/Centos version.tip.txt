@@ -1,0 +1,23 @@
+cat /etc/redhat-release 
+hostnamectl 
+uname -a
+
+
+
+[duoduo@bogon ~]$ cat /etc/redhat-release 
+CentOS Linux release 8.3.2011
+
+[duoduo@bogon ~]$ hostnamectl 
+   Static hostname: localhost.localdomain
+Transient hostname: bogon
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: de8f19f0e1354ce5b7ffd1c32e09c2cd
+           Boot ID: 116e1c23856e4ca292597be9f7c0651d
+    Virtualization: vmware
+  Operating System: CentOS Linux 8
+       CPE OS Name: cpe:/o:centos:centos:8
+            Kernel: Linux 4.18.0-240.el8.x86_64
+      Architecture: x86-64
+[duoduo@bogon ~]$ uname -a
+Linux bogon 4.18.0-240.el8.x86_64 #1 SMP Fri Sep 25 19:48:47 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux

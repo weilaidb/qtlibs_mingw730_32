@@ -1,0 +1,138 @@
+[root@bogon duoduo]# service smb restart
+Redirecting to /bin/systemctl restart smb.service
+Failed to restart smb.service: Unit smb.service not found.
+[root@bogon duoduo]#
+
+
+===没有安装好，重新安装一下。
+
+
+Linux启动某个服务报错：Failed to start xxx.service: Unit not found
+
+bboy枫亭
+
+于 2021-06-04 17:36:28 发布
+
+10881
+ 收藏 13
+分类专栏： Linux 文章标签： linux
+版权
+
+Linux
+专栏收录该内容
+28 篇文章1 订阅
+订阅专栏
+首先看一下服务列表里有没有这个服务
+systemctl list-unit-files --type=service
+1
+有的话执行 systemctl daemon-reload 即可，没有的话说明东西没装好。
+————————————————
+版权声明：本文为CSDN博主「bboy枫亭」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_44285445/article/details/117568528
+
+
+
+
+[root@bogon duoduo]# systemctl list-unit-files --type=service| grep smb
+[root@bogon duoduo]# yum install samba
+Last metadata expiration check: 0:11:16 ago on Tue 09 Aug 2022 07:32:51 AM PDT.
+Dependencies resolved.
+================================================================================================================================================
+ Package                                  Architecture                 Version                                 Repository                  Size
+================================================================================================================================================
+Installing:
+ samba                                    x86_64                       4.14.5-7.el8_5                          base                       848 k
+Upgrading:
+ libsmbclient                             x86_64                       4.14.5-7.el8_5                          base                       148 k
+ libwbclient                              x86_64                       4.14.5-7.el8_5                          base                       121 k
+ samba-client                             x86_64                       4.14.5-7.el8_5                          base                       701 k
+ samba-client-libs                        x86_64                       4.14.5-7.el8_5                          base                       5.4 M
+ samba-common                             noarch                       4.14.5-7.el8_5                          base                       221 k
+ samba-common-libs                        x86_64                       4.14.5-7.el8_5                          base                       173 k
+Installing dependencies:
+ samba-common-tools                       x86_64                       4.14.5-7.el8_5                          base                       500 k
+ samba-libs                               x86_64                       4.14.5-7.el8_5                          base                       169 k
+
+Transaction Summary
+================================================================================================================================================
+Install  3 Packages
+Upgrade  6 Packages
+
+Total download size: 8.2 M
+Is this ok [y/N]: y
+Downloading Packages:
+(1/9): samba-libs-4.14.5-7.el8_5.x86_64.rpm                                                                     682 kB/s | 169 kB     00:00    
+(2/9): samba-common-tools-4.14.5-7.el8_5.x86_64.rpm                                                             1.7 MB/s | 500 kB     00:00    
+(3/9): samba-4.14.5-7.el8_5.x86_64.rpm                                                                          2.6 MB/s | 848 kB     00:00    
+(4/9): libsmbclient-4.14.5-7.el8_5.x86_64.rpm                                                                   1.1 MB/s | 148 kB     00:00    
+(5/9): libwbclient-4.14.5-7.el8_5.x86_64.rpm                                                                    828 kB/s | 121 kB     00:00    
+(6/9): samba-client-4.14.5-7.el8_5.x86_64.rpm                                                                   3.3 MB/s | 701 kB     00:00    
+(7/9): samba-common-4.14.5-7.el8_5.noarch.rpm                                                                   1.2 MB/s | 221 kB     00:00    
+(8/9): samba-common-libs-4.14.5-7.el8_5.x86_64.rpm                                                              780 kB/s | 173 kB     00:00    
+(9/9): samba-client-libs-4.14.5-7.el8_5.x86_64.rpm                                                              7.8 MB/s | 5.4 MB     00:00    
+------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                           7.6 MB/s | 8.2 MB     00:01     
+warning: /var/cache/dnf/base-be643a1e920f6036/packages/samba-4.14.5-7.el8_5.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID 8483c65d: NOKEY
+CentOS-8 - Base - mirrors.aliyun.com                                                                             21 kB/s | 1.6 kB     00:00    
+Importing GPG key 0x8483C65D:
+ Userid     : "CentOS (CentOS Official Signing Key) <security@centos.org>"
+ Fingerprint: 99DB 70FA E1D7 CE22 7FB6 4882 05B5 55B3 8483 C65D
+ From       : http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-Official
+Is this ok [y/N]: y
+Key imported successfully
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                        1/1 
+  Running scriptlet: samba-common-4.14.5-7.el8_5.noarch                                                                                    1/15 
+  Upgrading        : samba-common-4.14.5-7.el8_5.noarch                                                                                    1/15 
+  Running scriptlet: samba-common-4.14.5-7.el8_5.noarch                                                                                    1/15 
+  Upgrading        : samba-client-libs-4.14.5-7.el8_5.x86_64                                                                               2/15 
+  Upgrading        : libwbclient-4.14.5-7.el8_5.x86_64                                                                                     3/15 
+  Upgrading        : samba-common-libs-4.14.5-7.el8_5.x86_64                                                                               4/15 
+  Installing       : samba-libs-4.14.5-7.el8_5.x86_64                                                                                      5/15 
+  Installing       : samba-common-tools-4.14.5-7.el8_5.x86_64                                                                              6/15 
+  Upgrading        : libsmbclient-4.14.5-7.el8_5.x86_64                                                                                    7/15 
+  Upgrading        : samba-client-4.14.5-7.el8_5.x86_64                                                                                    8/15 
+  Running scriptlet: samba-client-4.14.5-7.el8_5.x86_64                                                                                    8/15 
+  Installing       : samba-4.14.5-7.el8_5.x86_64                                                                                           9/15 
+  Running scriptlet: samba-4.14.5-7.el8_5.x86_64                                                                                           9/15 
+  Running scriptlet: samba-client-4.12.3-12.el8.3.x86_64                                                                                  10/15 
+  Cleanup          : samba-client-4.12.3-12.el8.3.x86_64                                                                                  10/15 
+  Running scriptlet: samba-client-4.12.3-12.el8.3.x86_64                                                                                  10/15 
+  Cleanup          : libsmbclient-4.12.3-12.el8.3.x86_64                                                                                  11/15 
+  Cleanup          : samba-client-libs-4.12.3-12.el8.3.x86_64                                                                             12/15 
+  Cleanup          : samba-common-libs-4.12.3-12.el8.3.x86_64                                                                             13/15 
+  Running scriptlet: libwbclient-4.12.3-12.el8.3.x86_64                                                                                   14/15 
+  Cleanup          : libwbclient-4.12.3-12.el8.3.x86_64                                                                                   14/15 
+  Cleanup          : samba-common-4.12.3-12.el8.3.noarch                                                                                  15/15 
+  Running scriptlet: libwbclient-4.14.5-7.el8_5.x86_64                                                                                    15/15 
+  Running scriptlet: samba-common-4.12.3-12.el8.3.noarch                                                                                  15/15 
+  Verifying        : samba-4.14.5-7.el8_5.x86_64                                                                                           1/15 
+  Verifying        : samba-common-tools-4.14.5-7.el8_5.x86_64                                                                              2/15 
+  Verifying        : samba-libs-4.14.5-7.el8_5.x86_64                                                                                      3/15 
+  Verifying        : libsmbclient-4.14.5-7.el8_5.x86_64                                                                                    4/15 
+  Verifying        : libsmbclient-4.12.3-12.el8.3.x86_64                                                                                   5/15 
+  Verifying        : libwbclient-4.14.5-7.el8_5.x86_64                                                                                     6/15 
+  Verifying        : libwbclient-4.12.3-12.el8.3.x86_64                                                                                    7/15 
+  Verifying        : samba-client-4.14.5-7.el8_5.x86_64                                                                                    8/15 
+  Verifying        : samba-client-4.12.3-12.el8.3.x86_64                                                                                   9/15 
+  Verifying        : samba-client-libs-4.14.5-7.el8_5.x86_64                                                                              10/15 
+  Verifying        : samba-client-libs-4.12.3-12.el8.3.x86_64                                                                             11/15 
+  Verifying        : samba-common-4.14.5-7.el8_5.noarch                                                                                   12/15 
+  Verifying        : samba-common-4.12.3-12.el8.3.noarch                                                                                  13/15 
+  Verifying        : samba-common-libs-4.14.5-7.el8_5.x86_64                                                                              14/15 
+  Verifying        : samba-common-libs-4.12.3-12.el8.3.x86_64                                                                             15/15 
+Installed products updated.
+
+Upgraded:
+  libsmbclient-4.14.5-7.el8_5.x86_64               libwbclient-4.14.5-7.el8_5.x86_64           samba-client-4.14.5-7.el8_5.x86_64              
+  samba-client-libs-4.14.5-7.el8_5.x86_64          samba-common-4.14.5-7.el8_5.noarch          samba-common-libs-4.14.5-7.el8_5.x86_64         
+
+Installed:
+  samba-4.14.5-7.el8_5.x86_64              samba-common-tools-4.14.5-7.el8_5.x86_64              samba-libs-4.14.5-7.el8_5.x86_64             
+
+Complete!
+[root@bogon duoduo]#

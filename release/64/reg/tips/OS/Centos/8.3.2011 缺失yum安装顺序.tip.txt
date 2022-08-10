@@ -1,0 +1,160 @@
+1.安装CDROM原盘
+
+/dev/sr1 on /run/media/duoduo/CentOS-8-3-2011-x86_64-dvd type iso9660 (ro,nosuid,nodev,relatime,nojoliet,check=s,map=n,blocksize=2048,uid=1000,gid=1000,dmode=500,fmode=400,uhelper=udisks2)
+
+
+Python 2.7.18
+Python 3.6.8
+
+cd /run/media/duoduo/CentOS-8-3-2011-x86_64-dvd
+cd BaseOS/Packages
+
+2.卸载python3
+rpm -qa | grep python3 | xargs -n1 rpm -e --nodeps
+
+3.
+ls *.rpm | xargs -n1 rpm -ivh 
+ls *python*.rpm | xargs -n1 rpm -ivh 
+
+
+4.
+[root@bogon work]# python2
+bash: python2: command not found...
+
+
+Install package 'python2' to provide command 'python2'? [N/y] y
+
+
+ * Waiting in queue... 
+ * Loading list of packages.... 
+The following packages have to be installed:
+ python2-2.7.18-7.module_el8.5.0+894+1c54b371.x86_64    An interpreted, interactive, object-oriented programming language
+ python2-libs-2.7.18-7.module_el8.5.0+894+1c54b371.x86_64       Runtime libraries for Python 2
+ python2-pip-9.0.3-18.module_el8.5.0+743+cd2f5d28.noarch        A tool for installing and managing Python 2 packages
+ python2-pip-wheel-9.0.3-18.module_el8.5.0+743+cd2f5d28.noarch  The pip wheel
+ python2-setuptools-39.0.1-13.module_el8.5.0+743+cd2f5d28.noarch        Easily build and distribute Python packages
+ python2-setuptools-wheel-39.0.1-13.module_el8.5.0+743+cd2f5d28.noarch  The setuptools wheel
+The following packages have to be updated:
+ chkconfig-1.19.1-1.el8.x86_64  A system tool for maintaining the /etc/rc*.d hierarchy
+ ntsysv-1.19.1-1.el8.x86_64     A tool to set the stop/start of system services in a runlevel
+Proceed with changes? [N/y] y
+
+
+ * Waiting in queue... 
+ * Waiting for authentication... 
+ * Waiting in queue... 
+ * Loading list of packages.... 
+
+
+
+
+
+
+
+
+[root@bogon work]# python2
+Python 2.7.18 (default, Aug 25 2021, 15:50:49) 
+[GCC 8.5.0 20210514 (Red Hat 8.5.0-3)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+
+
+
+
+
+
+
+[root@bogon duoduo]# rpm -qa | grep python3
+python3-pip-wheel-9.0.3-18.el8.noarch
+python3-linux-procfs-0.6.2-2.el8.noarch
+python3-gobject-3.28.3-2.el8.x86_64
+python3-firewall-0.8.2-2.el8.noarch
+python3-pysocks-1.6.8-3.el8.noarch
+python3-setuptools-39.2.0-6.el8.noarch
+python3-langtable-0.0.51-4.el8.noarch
+python3-libstoragemgmt-clibs-1.8.3-2.el8.x86_64
+python3-audit-3.0-0.17.20191104git1c2f876.el8.x86_64
+python3-rpm-4.14.3-4.el8.x86_64
+python3-setools-4.3.0-2.el8.x86_64
+python3-speechd-0.8.8-6.el8.x86_64
+python3-ethtool-0.14-3.el8.x86_64
+python3-brlapi-0.6.7-28.el8.x86_64
+python3-bind-9.11.20-5.el8.noarch
+python3-sssdconfig-2.3.0-9.el8.noarch
+python3-pid-2.1.1-7.el8.noarch
+python3-libdnf-0.48.0-5.el8.x86_64
+python3-augeas-0.5.0-12.el8.noarch
+python3-simpleline-1.1.1-2.el8.noarch
+python3-dateutil-2.6.1-6.el8.noarch
+python3-systemd-234-8.el8.x86_64
+python3-dmidecode-3.12.2-15.el8.x86_64
+python3-pyparted-3.11.0-13.el8.x86_64
+python3-iniparse-0.4-31.el8.noarch
+python3-pyyaml-3.12-12.el8.x86_64
+python3-libs-3.6.8-31.el8.x86_64
+python3-policycoreutils-2.9-9.el8.noarch
+python3-slip-dbus-0.6.4-11.el8.noarch
+python3-pydbus-0.6.0-5.el8.noarch
+python3-cups-1.9.72-21.el8.0.1.x86_64
+python3-chardet-3.0.4-7.el8.noarch
+python3-dnf-4.2.23-4.el8.noarch
+python3-productmd-1.11-3.el8.noarch
+python3-abrt-2.10.9-20.el8.x86_64
+python3-dnf-plugins-core-4.0.17-5.el8.noarch
+python3-ply-3.9-8.el8.noarch
+python3-requests-2.20.0-2.1.el8_1.noarch
+python3-requests-ftp-0.3.1-11.el8.noarch
+python36-3.6.8-2.module_el8.3.0+562+e162826a.x86_64
+python3-configshell-1.1.28-1.el8.noarch
+python3-ntplib-0.3.3-10.el8.noarch
+python3-enchant-2.0.0-3.el8.noarch
+python3-pwquality-1.4.0-9.el8.x86_64
+python3-kmod-0.9-20.el8.x86_64
+python3-pycurl-7.43.0.2-4.el8.x86_64
+python3-gobject-base-3.28.3-2.el8.x86_64
+python3-libxml2-2.9.7-8.el8.x86_64
+python3-syspurpose-1.27.16-1.el8.x86_64
+python3-blockdev-2.24-1.el8.x86_64
+python3-libstoragemgmt-1.8.3-2.el8.noarch
+python3-inotify-0.9.6-13.el8.noarch
+python3-pyxdg-0.25-16.el8.noarch
+python3-subscription-manager-rhsm-1.27.16-1.el8.x86_64
+python3-gpg-1.13.1-3.el8.x86_64
+python3-configobj-5.0.6-11.el8.noarch
+python3-libcomps-0.1.11-4.el8.x86_64
+python3-meh-gui-0.47.2-1.el8.noarch
+python3-cairo-1.16.3-6.el8.x86_64
+python3-perf-4.18.0-240.el8.x86_64
+python3-urllib3-1.24.2-4.el8.noarch
+python3-requests-file-1.4.3-5.el8.noarch
+python3-pip-9.0.3-18.el8.noarch
+python3-urwid-1.3.1-4.el8.x86_64
+python3-humanize-0.5.1-13.el8.noarch
+python3-louis-2.6.2-21.el8.noarch
+python3-rtslib-2.1.73-2.el8.noarch
+python3-unbound-1.7.3-14.el8.x86_64
+python3-libsemanage-2.9-3.el8.x86_64
+python3-six-1.11.0-8.el8.noarch
+python3-idna-2.5-5.el8.noarch
+python3-meh-0.47.2-1.el8.noarch
+python3-abrt-addon-2.10.9-20.el8.x86_64
+python3-dbus-1.2.4-15.el8.x86_64
+python3-pyatspi-2.26.0-6.el8.noarch
+python3-kickstart-3.16.11-1.el8.noarch
+python3-decorator-4.2.1-2.el8.noarch
+python3-blivet-3.2.2-6.el8.noarch
+python3-pytz-2017.2-9.el8.noarch
+python3-hawkey-0.48.0-5.el8.x86_64
+python3-ordered-set-2.0.2-4.el8.noarch
+python3-librepo-1.12.0-2.el8.x86_64
+python3-slip-0.6.4-11.el8.noarch
+python3-setuptools-wheel-39.2.0-6.el8.noarch
+python3-dasbus-1.2-2.el8.noarch
+python3-bytesize-1.4-3.el8.x86_64
+python3-libreport-2.9.5-15.el8.x86_64
+python3-libselinux-2.9-3.el8.x86_64
+libpeas-loader-python3-1.22.0-6.el8.x86_64
+python3-nftables-0.9.3-16.el8.x86_64
+python3-pyparsing-2.1.10-7.el8.noarch
+python3-schedutils-0.6-6.el8.x86_64
+python3-pyudev-0.21.0-7.el8.noarch
