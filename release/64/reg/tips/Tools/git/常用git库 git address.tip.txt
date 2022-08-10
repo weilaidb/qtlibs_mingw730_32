@@ -96,6 +96,7 @@ git@github.com:weilaidb/jsp.git
 git@gitee.com:weilaidb/cxxcodesets.git
 git@github.com:weilaidb/gmock-1.7.0.git
 git@github.com:weilaidb/codetools.git
+git@github.com:weilaidb/execCmd.git
 
 #CXX Gmock库
 git@github.com:weilaidb/codesetsmore.git
