@@ -2333,6 +2333,7 @@ path路径/常用文件夹
 用户说明书/代码集autocodesets weilaix.war
 用户说明书/代码集autocodesets weilaix.war Apache版本更新
 用户说明书/代码集autocodesets 菜单定义规范
+用户说明书/超级记事本 weilaix.war
 电脑/ThinkPad/T14/常见
 电脑/ThinkPad/T14/拆机
 电脑/ThinkPad/T14/拆机 加内存和硬盘安装系统
