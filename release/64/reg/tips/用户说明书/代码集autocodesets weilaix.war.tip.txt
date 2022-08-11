@@ -27,7 +27,11 @@ reg\setting\standmenuflag.txt
 4.常用项 行首添加 <ignore> 时表示忽略显示
 
 
-
+5.“网址”按钮为http或https网页快捷访问
+格式有两种:
+1)直接网址，显示实际网址
+2)【显示内容】https?://xxxx
+--【此中为显示的内容】，网址隐藏
 
 注意事项:
 1.public.sh应该为public.sh.tip.txt的引用
