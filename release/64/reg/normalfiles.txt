@@ -15,7 +15,9 @@ http://localhost:8080/weilai/sql/bselectdb.jsp
 https://docs.python.org/3.8/
 https://github.com/weilaidb
 https://github.com/weilaidb/linux_driver
+【CSDN】https://www.csdn.net/
 【下载视频】C:\Users\dell\dwhelper
+【吾爱破解】https://www.52pojie.cn/
 【在线代码管理系统】http://101.201.79.164:8081/weilaix/file/index.jsp
 【在线新华字典】http://xh.5156edu.com/index.php
 【在线看代码】http://101.201.79.164:8081/source/
