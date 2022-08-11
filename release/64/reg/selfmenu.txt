@@ -2093,7 +2093,9 @@ TEST/RegExptest3
 TEST/RegExptest4
 TEST/RegExptest5
 Tools/Astyle格式化代码
+Tools/CLion 快捷键
 Tools/CMD快捷键
+Tools/Cscope & CTags 快捷键
 Tools/Dreamweaver（DW）常用快捷键
 Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
