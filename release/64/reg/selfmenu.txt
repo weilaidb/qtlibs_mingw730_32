@@ -961,9 +961,11 @@ JAVA/RegExp/Pattern
 JAVA/RegExp/Pattern $H2D替换
 JAVA/SpringBoot/Annotation
 JAVA/SpringBoot/Annotation JDK的元Annotation（修饰注解的注解）
+JAVA/SpringBoot/CLion 激活码
 JAVA/SpringBoot/Debug/Resource not found
 JAVA/SpringBoot/JSONObject/new
 JAVA/SpringBoot/Java EE分层架构
+JAVA/SpringBoot/JetBrains CLion 激活码 hosts屏蔽
 JAVA/SpringBoot/JetBrains 激活码
 JAVA/SpringBoot/MyBatis
 JAVA/SpringBoot/Spring Boot开发基础
@@ -2091,7 +2093,9 @@ TEST/RegExptest3
 TEST/RegExptest4
 TEST/RegExptest5
 Tools/Astyle格式化代码
+Tools/CLion 快捷键
 Tools/CMD快捷键
+Tools/Cscope & CTags 快捷键
 Tools/Dreamweaver（DW）常用快捷键
 Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror

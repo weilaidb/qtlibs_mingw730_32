@@ -1,0 +1,11 @@
+修改hosts文件
+添加下面一行到hosts文件，目的是屏蔽掉JetBrains系列软件对激活码的验证
+
+0.0.0.0 account.jetbrains.com
+0.0.0.0 www.jetbrains.com
+
+注：hosts文件路径，Windows在C:\Windows\System32\drivers\etc\hosts，Linux在 /etc/hosts。Win下需要管理员权限打开。如果遇到权限问题，可将hosts文件先复制出来修改后再覆盖原来的即可。
+
+
+
+在hosts文件最后单独一行加进去即可
