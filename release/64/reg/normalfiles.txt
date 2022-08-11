@@ -21,3 +21,6 @@ https://github.com/weilaidb/linux_driver
 【在线代码管理系统】http://101.201.79.164:8081/weilaix/file/index.jsp
 【在线新华字典】http://xh.5156edu.com/index.php
 【在线看代码】http://101.201.79.164:8081/source/
+【邮箱126】https://mail.126.com/
+【邮箱163】https://mail.163.com/
+【邮箱yeah】https://www.yeah.net/
