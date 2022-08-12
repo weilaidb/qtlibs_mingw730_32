@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+</head>
+<body>
+
+<em>强调文本</em><br>
+<strong>加粗文本</strong><br>
+<dfn>定义项目</dfn><br>
+<code>一段电脑代码 print("Hello World")</code><br>
+<samp>计算机样本</samp><br>
+<kbd>键盘输入</kbd><br>
+<var>变量</var>
+
+</body>
+</html>
