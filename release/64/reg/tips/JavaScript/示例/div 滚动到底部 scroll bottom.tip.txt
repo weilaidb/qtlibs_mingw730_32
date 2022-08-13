@@ -1,0 +1,33 @@
+<script>
+    /*滚动条到底部*/
+    function to_footer() {
+        var div = document.getElementById('myDiv');
+        div.scrollTop = div.scrollHeight;
+    }
+
+    function AddOneItem()
+    {
+        var orgHtml = document.getElementById("myDiv").innerHTML;
+        orgHtml = orgHtml.concat( "【】\n" );
+        // orgHtml =orgHtml +  "【】\n" ;
+        document.getElementById("myDiv").innerHTML = orgHtml;
+        to_footer();
+    }
+</script>
+
+
+
+
+
+
+
+<font size="3">
+    <form action="savenormalfiles.jsp" method="post" name="form">
+        <input type="hidden" value="<%=topdir%>" name="topdir">
+        <input type="submit" value="保存" name="submit">
+        <input type="button" id="btn_refresh" onclick="Refresh()" value="刷新"/>
+        <input type="button" id="btn_addoneitem" onclick="AddOneItem()" value="添加一条"/>
+        显示Normal内容:<br>
+        <textarea name="menuNormalfiles" class="textarea_showmenu" id="myDiv"><c:out value="<%=menuNormalfiles%>" escapeXml="true"></c:out></textarea>
+    </form>
+</font>
