@@ -1,1 +1,1 @@
-static const size_t \1{\2};
+\2 \3(\1 letter) const {$NL  const std::unordered_map<\1,\2> encodings {$NL$TB$TB {'b', "1"}, {'f', "1"}, {'p', "1"}, {'v', "1"},$NL$TB$TB {'c', "2"}, {'g', "2"}, {'j', "2"}, {'k', "2"}, {'q', "2"},$NL$TB$TB$TB$TB$TB {'s', "2"}, {'x', "2"}, {'z', "2"},$NL$TB$TB {'d', "3"}, {'t', "3"},$NL$TB$TB {'l', "4"},$NL$TB$TB {'m', "5"}, {'n', "5"},$NL$TB$TB {'r', "6"}$NL  };$NL  auto it = encodings.find(letter);$NL  return it == encodings.end() ? "" : it->second;$NL}

@@ -1,2 +1,2 @@
-[变量名;初始化值]
-char,std::string
+[key类型;val类型;函数名]
+char;std::string;encodedDigit

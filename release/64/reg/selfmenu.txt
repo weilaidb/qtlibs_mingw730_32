@@ -459,6 +459,7 @@ CXX/INCLUDE/FILTER
 CXX/INCLUDE/GENERATE
 CXX/INCLUDE/常用头文件 header
 CXX/INCLUDE/常用头文件 header2
+CXX/INCLUDE/常用头文件 header3
 CXX/LOOP/list DBList
 CXX/LOOP/list iterator
 CXX/LOOP/list reverse_iterator
@@ -466,6 +467,7 @@ CXX/LOOP/map/C++ map用法
 CXX/LOOP/map/map
 CXX/LOOP/map/map class
 CXX/LOOP/map/map class customkey
+CXX/LOOP/string
 CXX/LOOP/vector
 CXX/LOOP/vector for
 CXX/MAIN
@@ -483,13 +485,20 @@ CXX/String/back
 CXX/String/back2
 CXX/String/front
 CXX/String/front2
+CXX/String/head
+CXX/String/lower
 CXX/String/pub
 CXX/String/string
 CXX/String/string 填充
 CXX/String/substr
+CXX/String/substr 一个参数
+CXX/String/tail
 CXX/String/toupper
+CXX/String/upper
+CXX/String/upperFront
 CXX/array/char string
 CXX/base/const size_t
+CXX/base/const string
 CXX/cin.getline
 CXX/class/多态 继承
 CXX/class/多态 继承 virtual
@@ -502,6 +511,9 @@ CXX/externc __cplusplus
 CXX/knowledge/C++中operator关键字（重载操作符）
 CXX/knowledge/eg
 CXX/knowledge/pragma once用法总结
+CXX/knowledge/string C++string类的常用方法
+CXX/knowledge/string startsWith endswith
+CXX/knowledge/unordered_map C++ STL unordered_map容器用法详解
 CXX/knowledge/如何理解左操作数必须为左值
 CXX/new class operator=
 CXX/new class static instsance实例
@@ -529,6 +541,7 @@ Code/new/Gmock test SetUp
 Code/new/Gmock test TearDown
 Code/new/Gmock try catch
 Code/new/Gmock/TEST_F
+Code/new/Gmock/TEST_F DISABLED_ 禁止统计
 Code/new/Gmock/TEST_F name Eq
 Code/new/Gmock/TEST_F name1
 Code/new/Gmock/TEST_F name2
@@ -2408,6 +2421,7 @@ path路径/常用文件夹
 设计/软件设计/TDD new/suits t2
 设计/软件设计/TDD new/suits telnet
 设计/软件设计/eg
+设计/软件设计/开发理念
 设计/软件设计/语言设计的美妙
 设计/软件调试/eg
 设计/软件调试/联调过程中常见问题

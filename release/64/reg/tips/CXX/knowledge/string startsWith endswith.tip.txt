@@ -1,0 +1,44 @@
+c++ string startsWith endswith
+
+freesonWANG
+
+于 2018-06-14 21:02:39 发布
+
+19962
+ 收藏 6
+分类专栏： 入门
+版权
+
+入门
+专栏收录该内容
+49 篇文章0 订阅
+订阅专栏
+模拟一下
+
+#include<string>
+#include<iostream>
+using namespace std;
+
+int startsWith(string s, string sub){
+        return s.find(sub)==0?1:0;
+}
+
+int endsWith(string s,string sub){
+        return s.rfind(sub)==(s.length()-sub.length())?1:0;
+}
+
+int main(){
+        string str = "helloWorld";
+        string preStr = "he";
+        string sufStr = "rld";
+        if(startsWith(str,preStr)){
+                cout<<str + " starts with "+preStr<<endl;
+        }
+        if(endsWith(str,sufStr)){
+                cout<<str+" ends with "+sufStr<<endl;
+        }
+        return 0;
+}
+————————————————
+版权声明：本文为CSDN博主「freesonWANG」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/freesonwang/article/details/80698265

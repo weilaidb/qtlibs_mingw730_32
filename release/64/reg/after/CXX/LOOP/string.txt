@@ -1,0 +1,1 @@
+std::string encodedDigits(const std::string& \2) const {$NL  if (\2.empty()) return "";$NL$NL  std::string encoding;$NL  for (auto \1: \2) encoding += encodedDigit(\1);$NL  return encoding;$NL}

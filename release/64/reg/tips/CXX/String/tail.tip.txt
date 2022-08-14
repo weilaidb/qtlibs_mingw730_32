@@ -1,0 +1,3 @@
+std::string tail(const std::string& word) const {
+  return word.substr(1);
+}
