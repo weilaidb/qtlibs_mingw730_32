@@ -2114,6 +2114,8 @@ Tools/UML/StartUML
 Tools/UML/常用软件
 Tools/UML/教程
 Tools/UML/文字
+Tools/VIM常用快捷键
+Tools/VIM常用快捷键 ctags
 Tools/VS Visual Studio快捷键
 Tools/VSCode快捷键
 Tools/VSCode快捷键2
@@ -2153,6 +2155,10 @@ Tools/git/删除文件不删除本地 delete2
 Tools/git/常用git库 git address
 Tools/hex to dec 十六进制转十进制
 Tools/ico生成在线工具
+Tools/knowledge/ctags 解析多目录
+Tools/knowledge/ctags 解析多目录new/eg
+Tools/knowledge/ctags指定tag文件生成位置
+Tools/knowledge/ctags排除多个目录
 Tools/package 0xdot 添加0x和逗号
 Tools/package 0xdot 自带0x 添加逗号
 Tools/powershell快捷键

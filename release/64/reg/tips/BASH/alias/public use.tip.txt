@@ -165,4 +165,8 @@ alias psauxgrep="ps aux | grep "
 alias kill9="kill -9 "
 
 alias cmakebuildmy="mkdir mybuild && cd mybuild && cmake .. && make && cd .."
-alias cmakebuildmyforce="rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .."
+alias cmakebuildmyforce="rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. || cd .."
+
+
+#VIM
+alias cctagscscope="ctags -R && cscope -Rkb "

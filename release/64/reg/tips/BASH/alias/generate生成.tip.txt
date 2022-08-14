@@ -1,3 +1,6 @@
+cctagscscope;ctags -R && cscope -Rkb
+
+
 yumcleanall;yum clean all
 yummakecache;yum makecache
 rpmremovenoeps;rpm -e  --nodeps 
