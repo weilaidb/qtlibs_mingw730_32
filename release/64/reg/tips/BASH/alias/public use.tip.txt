@@ -163,3 +163,5 @@ alias statussmb="systemctl status smbd "
 alias psaux="ps aux "
 alias psauxgrep="ps aux | grep "
 alias kill9="kill -9 "
+
+alias cmakebuildmy="mkdir mybuild && cd mybuild && cmake .. && make && cd .."

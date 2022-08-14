@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -21,6 +22,7 @@ BASH/exec
 BASH/exitcode
 BASH/gitinfo
 BASH/hello
+BASH/knowledge/Bash中命令连接符的用法——一次执行多个命令
 BASH/new file
 BASH/printf
 BASH/printf string 1
@@ -420,6 +422,7 @@ C/enum/enum single withname typedef
 C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
 C/know/sigaction
+C/knowledge/Centos下安装boost（笨蛋版）
 C/new/DEFINE/ifndef
 C/new/__attribute__/TEXT
 C/new/__attribute__/__align__

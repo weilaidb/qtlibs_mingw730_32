@@ -6,7 +6,6 @@ alias cdworkgitqtlibs='cd ~/work/git/qtlibs_mingw730_32'
 alias cdtest="cd ~/test "
 alias cdworkcode="cd ~/work/code "
 alias cdworkcodecode="cd ~/work/code/code "
-alias cmakebuildmy="mkdir mybuild && cd mybuild && cmake .. && make "
 alias makegtest="make && ./test "
 
 

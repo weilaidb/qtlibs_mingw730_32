@@ -1,0 +1,62 @@
+Centos下安装boost（笨蛋版）
+
+亚洲最强植物人
+
+于 2021-11-24 23:22:29 发布
+
+861
+ 收藏 3
+分类专栏： boost 文章标签： centos linux boost
+版权
+
+boost
+专栏收录该内容
+1 篇文章0 订阅
+订阅专栏
+1.在服务器下载boost包
+
+Boost C++ Libraries - Browse Files at SourceForge.net
+
+可以在该网站中找一个使用人数比较多的tar包，然后在终端下载。
+
+我用的是boost_1_75_0，在终端输入：
+
+sudo wget https://sourceforge.net/projects/boost/files/boost/1.75.0/boost_1_75_0.tar.gz
+2.对tar包进行解压缩
+
+tar -zxvf boost_1_75_0.tar.gz
+3.cd到解压后的boost_1_75_0文件夹中
+
+发现当前文件夹下有一个名为：bootstrap.sh的文件。对他进行编译：
+
+./bootstrap.sh
+4.在运行完成之后发现当前目录下会出现一个叫b2的文件。对他进行编译：
+
+./b2 install --prefix=/opt/boost/
+其中prefix这部分的意思是将完事的文件放在/opt/boost/目录下
+
+5.install结束后在usr/include下mkdir boost。把install后的/opt/boost/include/boost这整个文件夹copy到/usr/include下：
+
+cp -r /opt/boost/include/boost /usr/include/
+然后整个编译引入结束了。
+
+可以编写代码进行测试。提供一个测试代码：
+
+#include <iostream>
+#include <boost/timer.hpp>
+using namespace std;
+ 
+int main()
+{
+	boost::timer t;
+	cout << "max timespan:"<<t.elapsed_max()/3600<<"h"<<endl;
+ 
+	cout << "min tmiespan:"<<t.elapsed_min()<<"s"<<endl;
+ 
+	cout<<"now time elapsed:"<<t.elapsed()<<"s"<<endl;
+	return 0;
+}
+至此可以开始boost之旅了！其他的问题遇到再说...
+————————————————
+版权声明：本文为CSDN博主「亚洲最强植物人」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/yy13136769189/article/details/121527410
