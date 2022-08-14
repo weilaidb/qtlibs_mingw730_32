@@ -483,9 +483,11 @@ CXX/STL/set2
 CXX/STL/unordered_map
 CXX/String/back
 CXX/String/back2
+CXX/String/eg
 CXX/String/front
 CXX/String/front2
 CXX/String/head
+CXX/String/isVowel
 CXX/String/lower
 CXX/String/pub
 CXX/String/string
@@ -517,6 +519,10 @@ CXX/knowledge/unordered_map C++ STL unordered_map容器用法详解
 CXX/knowledge/如何理解左操作数必须为左值
 CXX/new class operator=
 CXX/new class static instsance实例
+CXX/new/charutil header
+CXX/new/charutil source
+CXX/new/stringutil header
+CXX/new/stringutil source
 CXX/shared_ptr 智能指针
 CXX/shared_ptr 智能指针2
 CXX/static_cast char

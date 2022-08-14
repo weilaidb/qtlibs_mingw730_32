@@ -1,0 +1,4 @@
+bool isVowel(char letter) const {
+  return
+	 std::string("aeiouy").find(lower(letter)) != std::string::npos;
+}
