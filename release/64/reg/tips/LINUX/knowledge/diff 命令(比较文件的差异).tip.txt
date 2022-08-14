@@ -1,0 +1,128 @@
+Linux diff 命令
+文章目录
+Linux diff 命令
+简介
+常用参数
+输出结果解释
+实例
+实例1：比较两个文件
+实例2：并排格式输出
+简介
+Linux diff 命令用于比较文件的差异。
+
+diff 以逐行的方式，比较文本文件的异同处。如果指定要比较目录，则 diff 会比较目录中相同文件名的文件，但不会比较其中子目录。
+
+参考文章：https://www.runoob.com/linux/linux-comm-diff.html
+
+常用参数
+" -b " 忽略空格
+" -B " 忽略空行
+" -i " 忽略大小写
+" -c " 显示文件所有内容并标示不同
+" -r " 对比目录
+" -u " 合并输出
+输出结果解释
+diff 比较结果的含义，diff 描述两个文件不同的方式是告诉我们怎么样改变第一个文件之后与第二个文件匹配。
+a = add
+c = change
+d = delete
+带 < 的部分表示左边文件内容
+中间的 - - - 则是两个文件内容的分隔符号。
+带 > 的部分表示右边文件内容
+实例
+自定义两个比较文件
+[root@ shell_practice]# cat > file << EOF
+> linux
+> haha
+> redhat
+> centos
+> EOF
+[root@ shell_practice]# cat > file1 << EOF
+> linux ubuntu
+> redhat
+> EOF
+[root@ shell_practice]#
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+实例1：比较两个文件
+" 1,2c1 " , 第一个文件 (file) 的第 1,2 行，做出修改才能与第二个文件 (file1) 第 1 行相匹配。
+" 4d2 " , 第一个文件 (file) 的第 4 行 删除才能与第二个文件 (file1) 第 2 行相匹配。
+带 < 的部分表示左边文件(file) 第 1,2 行内容
+中间的 - - - 则是两个文件内容的分隔符号。
+带 > 的部分表示右边文件(file1) 第 1 行内容
+[root@ shell_practice]# diff file file1 
+1,2c1
+< linux
+< haha
+---
+> linux ubuntu
+4d2
+< centos
+[root@ shell_practice]#
+1
+2
+3
+4
+5
+6
+7
+8
+9
+“ 1c1 ” , 第一个文件(file1) 的 第 1 行 ，做出修改才能与第二个文件 (file) 第 1,2 行相匹配。
+” 2a4 “ ， 第一个文件(file1) 的 第 2 行 添加内容才能与第二个文件 (file) 第 4 行相匹配。
+带 < 的部分表示左边文件(file1) 第 1 行内容
+中间的 - - - 则是两个文件内容的分隔符号。
+带 > 的部分表示右边文件(file) 第 1,2 行内容
+[root@ shell_practice]# diff file1 file
+1c1,2
+< linux ubuntu
+---
+> linux
+> haha
+2a4
+> centos
+[root@ shell_practice]#
+1
+2
+3
+4
+5
+6
+7
+8
+9
+实例2：并排格式输出
+" -y " 参数，令对比结果并排格式输出
+" | "表示前后2个文件内容有不同
+" < "表示后面文件比前面文件少了1行内容
+" > "表示后面文件比前面文件多了1行内容
+[root@ shell_practice]# diff file file1 -y
+linux                                    | linux ubuntu
+haha                                     <
+redhat                                     redhat
+centos                                   <
+[root@ shell_practice]# 
+1
+2
+3
+4
+5
+6
+[root@ shell_practice]# diff file1 file -y
+linux ubuntu                             | linux
+                                         > haha
+redhat                                     redhat
+                                         > centos
+[root@ shell_practice]#
+————————————————
+版权声明：本文为CSDN博主「猫&amp;九」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_47714288/article/details/121612424

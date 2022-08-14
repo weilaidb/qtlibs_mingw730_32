@@ -171,5 +171,10 @@ alias cmakebuildmyforce="rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake 
 alias mybuildtest="./mybuild/test "
 alias mybuildall="rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. && ./mybuild/test  || cd .."
 
+#other
+alias diffdir="diff -urNa "
+
+
+
 #VIM
 alias cctagscscope="ctags -R && cscope -Rkb "

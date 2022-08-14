@@ -485,8 +485,11 @@ CXX/String/front
 CXX/String/front2
 CXX/String/pub
 CXX/String/string
+CXX/String/string 填充
 CXX/String/substr
 CXX/String/toupper
+CXX/array/char string
+CXX/base/const size_t
 CXX/cin.getline
 CXX/class/多态 继承
 CXX/class/多态 继承 virtual
@@ -1478,6 +1481,8 @@ LINUX/help/ps
 LINUX/help/systemtap
 LINUX/help/top
 LINUX/help/vmstat
+LINUX/knowledge/diff 命令(比较文件的差异)
+LINUX/knowledge/diff 文件夹
 LINUX/man/chrt
 LINUX/man/chrt --fifo
 LINUX/man/chrt -m

@@ -1,0 +1,2 @@
+[变量名;初始化值]
+char,std::string

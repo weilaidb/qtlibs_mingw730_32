@@ -1,3 +1,4 @@
+diffdir;diff -urNa
 cctagscscope;ctags -R && cscope -Rkb
 mybuildtest;./mybuild/test
 
