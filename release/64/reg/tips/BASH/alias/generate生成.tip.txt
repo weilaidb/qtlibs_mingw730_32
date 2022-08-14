@@ -1,5 +1,5 @@
 cctagscscope;ctags -R && cscope -Rkb
-
+mybuildtest;./mybuild/test
 
 yumcleanall;yum clean all
 yummakecache;yum makecache
