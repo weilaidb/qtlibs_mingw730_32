@@ -1,0 +1,365 @@
+gmock学习02---编写自己的Matcher与如何让编译器识别被mock的重载函数
+本文目的
+
+gmock框架中自带Matcher只针对c++内置类型，如string，int，float等等，有时候无法满足项目要求，所以需要编写自己的Matcher对象。本文介绍如何使用gmock提供的Matcher宏快速编写自己的Matcher对象。
+
+在测试重载的mock函数时，需要对Matcher做特别的封装，否则编译在查找重载函数时会出现歧义。
+
+ 
+
+ 
+
+待测的对象
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+/*
+ * 文件Base.h
+ *
+ *  Created on: 2011-10-1
+ *      Author: bourneli
+ */
+ 
+#ifndef BASE_H_
+#define BASE_H_
+ 
+#include <iostream>
+#include <string>
+using namespace std;
+ 
+class Param
+{
+public:
+    int n1;
+    double f1;
+};
+ 
+class Dependence
+{
+public:
+ 
+    virtual ~Dependence(){}
+ 
+    virtual void show() const
+    {
+        cout << "I am a dependence of Foo" << endl;
+    }
+ 
+    virtual void show(const string& sSth) const
+    {
+        cout << "show: " << sSth << endl;
+    }
+ 
+    virtual void show(const Param& oParam) const
+    {
+        cout << oParam.n1 << endl;
+        cout << oParam.f1 << endl;
+    }
+};
+ 
+/*
+ * 调用mock的对象
+ */
+class Foo
+{
+public:
+ 
+    void showVoid(const Dependence& oDep)const
+    {
+        oDep.show();
+    }
+ 
+    void showString(const Dependence& oDep, const string& sSth)const
+    {
+        oDep.show(sSth);
+    }
+ 
+    void showParam(const Dependence& oDep, const Param& oParam)const
+    {
+        oDep.show(oParam);
+    }
+ 
+};
+ 
+#endif /* BASE_H_ */
+类Dependece有三个重载函数:
+
+void show(void)
+void show(const string&)
+void show(const Param&)
+需要编写Dependence的Mock对象，用于测试类Foo，类Foo也分别有三个方法调用类Dependence不同的重载方法：
+
+void showVoid(const Dependence&) --- 调用Dependence::show(void)
+void showString(const Dependence&, const string&) --- 调用Dependence::show(const string&)
+void showParam(const Dependence&, const Param&) --- 调用Dependence::show(const Param&)
+还有一个类Param，这是一个自定义类，需要自己编写Param的Matcher对象。在这里，匹配逻辑为：如果两个Param对象的n1属性相同，那么就匹配。
+
+ 
+
+编写自己的Matcher
+
+编写自己的Matcher对象在gmock1.4后变得很容易，gmock框架为我们做了大部分的事情，看看如下的代码：
+
+1
+2
+3
+4
+5
+6
+// custom matcher
+MATCHER_P(ParamObjMatcher, oParam, "")
+{
+    const Param& op = (const Param&)arg;
+    return op.n1 == oParam.n1;
+}
+只用了两行代码，就完成了自定义Matcher。MATCHER_P中的P代表参数，MATCHER_P其实应该写成“MATCHER_P1”，表示该matcher的构造函数只接受一个参数，同样的还有“MATCHER_P2、MATCHER_P3,..., MATCHER_P10”。宏的第一个参数代表该Matcher的类名，第二个参数代表Matcher的构造函数中的第一个参数，最后一个空内容的字符代表失败时输出信息，为空那么gmock会默认为你填写相关信息。arg是这个宏中的一个参数，代表被匹配的对象，在这里也就是“cosnt Param&”。Dependence类的mock对象如下，详细信息可以参见文章《gmock学习01---Linux配置gmock》。
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+/*
+ * 文件Dependence_mock.h
+ *
+ *  Created on: 2011-10-1
+ *      Author: bourneli
+ */
+ 
+#ifndef DEPENDENCE_MOCK_H_
+#define DEPENDENCE_MOCK_H_
+ 
+#include <string>
+#include "gmock/gmock.h"
+#include "Base.h"
+ 
+// mock class
+class DependenceMock: public Dependence
+{
+public:
+    MOCK_CONST_METHOD0(show, void());
+    MOCK_CONST_METHOD1(show, void(const string&));
+    MOCK_CONST_METHOD1(show, void(const Param&));
+};
+ 
+// custom matcher
+MATCHER_P(ParamObjMatcher, oParam, "")
+{
+    const Param& op = (const Param&)arg;
+    return op.n1 == oParam.n1;
+}
+ 
+#endif /* DEPENDENCE_MOCK_H_ */
+ 
+
+编写测试用例
+
+mock的相关工作完成后，可以编写测试用例，首先看看测试用例的源代码，如下：
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+/*
+ * 文件DependenceUT.cpp
+ *
+ *  Created on: 2011-10-1
+ *      Author: bourneli
+ */
+ 
+#include "gtest/gtest.h"
+#include "gmock/gmock.h"
+#include "Dependence_mock.h"
+#include "Base.h"
+ 
+using ::testing::MatchesRegex;
+using ::testing::Matcher; 
+ 
+TEST(DependenceTestSuite, ShowVoidTestCase)
+{
+    DependenceMock oMock;
+    EXPECT_CALL(oMock, show());
+ 
+    Foo oFoo;
+    oFoo.showVoid(oMock);
+}
+ 
+TEST(DependenceTestSuite, ShowStringTestCase)
+{
+    DependenceMock oMock;
+    EXPECT_CALL(oMock, show(Matcher<const string&> // 注意这里
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+         (MatchesRegex(".*error.*"))));
+ 
+    Foo oFoo;
+    oFoo.showString(oMock, "error happened in log");
+}
+ 
+TEST(DependenceTestSuite, ShowParamTestCase)
+{
+    DependenceMock oMock;
+ 
+    Param op;
+    op.n1 = 1;
+    op.f1 = 0.1;
+    EXPECT_CALL(oMock, show(Matcher<const Param&>   // 注意这里
+         (ParamObjMatcher(op))));
+ 
+    Foo oFoo;
+    op.f1 = 0.2; // 没有任何影响，因为只比较n1
+    oFoo.showParam(oMock, op);
+}
+上面特别需要注意的地方是标有“注意这里”注释的代码，意义在于标记出该Matcher对象对应的类，这样编译器就可以根据类找到特定的重载函数。比如，MatchesRegex这个Matcher对象被Matcher<const string&>封装后，编译器就知道是调用void show(const string&)这个重载函数，同理对应我们的自定义Matcher ParamObjMatcher。这里还有一个小技巧，你可以在自定义Matcher中使用GTEST的相关断言，这样可以方便的验证自定义对象中的值。
+
+ 
+
+ 
+
+结论
+
+使用宏MATCHER_P快速编写自己的Matcher对象。
+使用Matcher<T>指定Matcher对象对应的类型，告知编译器如何在重载函数查找特定的函数。
+在自定义Matcher中使用gtest断言，可以方便验证mock函数的输入否和期望。
+ 
+
+相关资料
+
+Selecting Between Overloaded Functions http://code.google.com/p/googlemock/wiki/CookBook#Selecting_Between_Overloaded_Functions
+GMock Build-In Matchers http://code.google.com/p/googlemock/wiki/CheatSheet#Matchers
+声明：如有转载本博文章，请注明出处。您的支持是我的动力！文章部分内容来自互联网，本人不负任何法律责任。
