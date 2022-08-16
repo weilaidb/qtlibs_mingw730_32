@@ -460,6 +460,7 @@ CXX/INCLUDE/GENERATE
 CXX/INCLUDE/常用头文件 header
 CXX/INCLUDE/常用头文件 header2
 CXX/INCLUDE/常用头文件 header3
+CXX/LIST/log
 CXX/LOOP/list DBList
 CXX/LOOP/list iterator
 CXX/LOOP/list reverse_iterator
@@ -498,6 +499,7 @@ CXX/String/tail
 CXX/String/toupper
 CXX/String/upper
 CXX/String/upperFront
+CXX/Vector/log
 CXX/array/char string
 CXX/base/const size_t
 CXX/base/const string
@@ -510,9 +512,13 @@ CXX/class/多态 继承 virtual Board array
 CXX/define/pub
 CXX/eg
 CXX/externc __cplusplus
+CXX/knowledge/C++ cout格式化输出
 CXX/knowledge/C++中operator关键字（重载操作符）
+CXX/knowledge/Int转String
+CXX/knowledge/String转Int
 CXX/knowledge/eg
 CXX/knowledge/pragma once用法总结
+CXX/knowledge/setw cout格式化输出
 CXX/knowledge/string C++string类的常用方法
 CXX/knowledge/string startsWith endswith
 CXX/knowledge/unordered_map C++ STL unordered_map容器用法详解
