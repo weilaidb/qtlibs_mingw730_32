@@ -1,0 +1,15 @@
+$ free
+              total        used        free      shared  buff/cache   available
+Mem:        3668456      883048      315436        2372     2469972     2495328
+Swap:             0           0           0
+
+free默认是显示KB
+free -m
+free -g
+
+total       :总的内存
+used        :使用内存
+free        :空闲内存
+shared      :共享内存
+buff/cache  :为快设备做缓存(block设备)/page cache(缓存打开的文件，提高文件访问的速度)
+available   :要回收的内存，约等于free + buff/cache，其中是<，有些 buff/cache不可回收

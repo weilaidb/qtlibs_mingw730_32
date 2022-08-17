@@ -1,0 +1,333 @@
+pmap命令详解
+
+竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。
+
+于 2020-03-20 09:34:05 发布
+
+6065
+ 收藏 3
+分类专栏： 测试工具
+版权
+
+测试工具
+专栏收录该内容
+2 篇文章0 订阅
+订阅专栏
+简介：
+pmap - report memory map of a process(查看进程的内存映像信息)pmap命令用于报告进程的内存映射关系，是Linux调试及运维一个很好的工具。
+用法
+pmap [ -x | -d ] [ -q ] pids…
+pmap -V
+选项含义
+-x extended Show the extended format. 显示扩展格式
+-XX show everything the kernel provides 显示内核提供的一切信息
+-d device Show the device format. 显示设备格式
+-q quiet Do not display some header/footer lines. 不显示头尾行
+-V show version Displays version of program. 显示版本
+扩展格式和设备格式域：
+Address: start address of map 映像起始地址
+Kbytes: size of map in kilobytes 映像大小
+RSS: resident set size in kilobytes 驻留集大小
+Dirty: dirty pages (both shared and private) in kilobytes 脏页大小
+Mode: permissions on map 映像权限: r=read, w=write, x=execute, s=shared, p=private (copy on write)
+Mapping: file backing the map , or ‘[ anon ]’ for allocated memory, or ‘[ stack ]’ for the program stack. 映像支持文件,[anon]为已分配内存 [stack]为程序堆栈
+Offset: offset into the file 文件偏移
+Device: device name (major:minor) 设备名
+
+查看进程1 的地址
+[root@master ~]# pmap -d 1
+1:   /usr/lib/systemd/systemd --switched-root --system --deserialize 22
+Address           Kbytes Mode  Offset           Device    Mapping
+00007fd5d7abc000      16 r-x-- 0000000000000000 0fd:00000 libuuid.so.1.3.0
+00007fd5d7ac0000    2044 ----- 0000000000004000 0fd:00000 libuuid.so.1.3.0
+00007fd5d7cbf000       4 r---- 0000000000003000 0fd:00000 libuuid.so.1.3.0
+00007fd5d7cc0000       4 rw--- 0000000000004000 0fd:00000 libuuid.so.1.3.0
+00007fd5d7cc1000     224 r-x-- 0000000000000000 0fd:00000 libblkid.so.1.1.0
+00007fd5d7cf9000    2048 ----- 0000000000038000 0fd:00000 libblkid.so.1.1.0
+00007fd5d7ef9000      12 r---- 0000000000038000 0fd:00000 libblkid.so.1.1.0
+00007fd5d7efc000       4 rw--- 000000000003b000 0fd:00000 libblkid.so.1.1.0
+00007fd5d7efd000       4 rw--- 0000000000000000 000:00000   [ anon ]
+00007fd5d7efe000      84 r-x-- 0000000000000000 0fd:00000 libz.so.1.2.7
+00007fd5d7f13000    2044 ----- 0000000000015000 0fd:00000 libz.so.1.2.7
+00007fd5d8112000       4 r---- 0000000000014000 0fd:00000 libz.so.1.2.7
+00007fd5d8113000       4 rw--- 0000000000015000 0fd:00000 libz.so.1.2.7
+00007fd5d8114000     144 r-x-- 0000000000000000 0fd:00000 liblzma.so.5.0.99
+00007fd5d8138000    2044 ----- 0000000000024000 0fd:00000 liblzma.so.5.0.99
+00007fd5d8337000       4 r---- 0000000000023000 0fd:00000 liblzma.so.5.0.99
+00007fd5d8338000       4 rw--- 0000000000024000 0fd:00000 liblzma.so.5.0.99
+00007fd5d8339000      16 r-x-- 0000000000000000 0fd:00000 libcap-ng.so.0.0.0
+00007fd5d833d000    2048 ----- 0000000000004000 0fd:00000 libcap-ng.so.0.0.0
+00007fd5d853d000       4 r---- 0000000000004000 0fd:00000 libcap-ng.so.0.0.0
+00007fd5d853e000       4 rw--- 0000000000005000 0fd:00000 libcap-ng.so.0.0.0
+00007fd5d853f000      16 r-x-- 0000000000000000 0fd:00000 libattr.so.1.1.0
+00007fd5d8543000    2044 ----- 0000000000004000 0fd:00000 libattr.so.1.1.0
+00007fd5d8742000       4 r---- 0000000000003000 0fd:00000 libattr.so.1.1.0
+00007fd5d8743000       4 rw--- 0000000000004000 0fd:00000 libattr.so.1.1.0
+00007fd5d8744000       8 r-x-- 0000000000000000 0fd:00000 libdl-2.17.so
+00007fd5d8746000    2048 ----- 0000000000002000 0fd:00000 libdl-2.17.so
+00007fd5d8946000       4 r---- 0000000000002000 0fd:00000 libdl-2.17.so
+00007fd5d8947000       4 rw--- 0000000000003000 0fd:00000 libdl-2.17.so
+00007fd5d8948000     384 r-x-- 0000000000000000 0fd:00000 libpcre.so.1.2.0
+00007fd5d89a8000    2044 ----- 0000000000060000 0fd:00000 libpcre.so.1.2.0
+00007fd5d8ba7000       4 r---- 000000000005f000 0fd:00000 libpcre.so.1.2.0
+00007fd5d8ba8000       4 rw--- 0000000000060000 0fd:00000 libpcre.so.1.2.0
+00007fd5d8ba9000    1800 r-x-- 0000000000000000 0fd:00000 libc-2.17.so
+00007fd5d8d6b000    2048 ----- 00000000001c2000 0fd:00000 libc-2.17.so
+00007fd5d8f6b000      16 r---- 00000000001c2000 0fd:00000 libc-2.17.so
+00007fd5d8f6f000       8 rw--- 00000000001c6000 0fd:00000 libc-2.17.so
+00007fd5d8f71000      20 rw--- 0000000000000000 000:00000   [ anon ]
+00007fd5d8f76000      92 r-x-- 0000000000000000 0fd:00000 libpthread-2.17.so
+00007fd5d8f8d000    2044 ----- 0000000000017000 0fd:00000 libpthread-2.17.so
+00007fd5d918c000       4 r---- 0000000000016000 0fd:00000 libpthread-2.17.so
+00007fd5d918d000       4 rw--- 0000000000017000 0fd:00000 libpthread-2.17.so
+00007fd5d918e000      16 rw--- 0000000000000000 000:00000   [ anon ]
+00007fd5d9192000      84 r-x-- 0000000000000000 0fd:00000 libgcc_s-4.8.5-20150702.so.1
+00007fd5d91a7000    2044 ----- 0000000000015000 0fd:00000 libgcc_s-4.8.5-20150702.so.1
+00007fd5d93a6000       4 r---- 0000000000014000 0fd:00000 libgcc_s-4.8.5-20150702.so.1
+00007fd5d93a7000       4 rw--- 0000000000015000 0fd:00000 libgcc_s-4.8.5-20150702.so.1
+00007fd5d93a8000      28 r-x-- 0000000000000000 0fd:00000 librt-2.17.so
+00007fd5d93af000    2044 ----- 0000000000007000 0fd:00000 librt-2.17.so
+00007fd5d95ae000       4 r---- 0000000000006000 0fd:00000 librt-2.17.so
+00007fd5d95af000       4 rw--- 0000000000007000 0fd:00000 librt-2.17.so
+00007fd5d95b0000     244 r-x-- 0000000000000000 0fd:00000 libmount.so.1.1.0
+00007fd5d95ed000    2044 ----- 000000000003d000 0fd:00000 libmount.so.1.1.0
+00007fd5d97ec000       4 r---- 000000000003c000 0fd:00000 libmount.so.1.1.0
+00007fd5d97ed000       4 rw--- 000000000003d000 0fd:00000 libmount.so.1.1.0
+00007fd5d97ee000       4 rw--- 0000000000000000 000:00000   [ anon ]
+00007fd5d97ef000      84 r-x-- 0000000000000000 0fd:00000 libkmod.so.2.2.10
+00007fd5d9804000    2044 ----- 0000000000015000 0fd:00000 libkmod.so.2.2.10
+00007fd5d9a03000       4 r---- 0000000000014000 0fd:00000 libkmod.so.2.2.10
+00007fd5d9a04000       4 rw--- 0000000000015000 0fd:00000 libkmod.so.2.2.10
+00007fd5d9a05000     120 r-x-- 0000000000000000 0fd:00000 libaudit.so.1.0.0
+00007fd5d9a23000    2044 ----- 000000000001e000 0fd:00000 libaudit.so.1.0.0
+00007fd5d9c22000       4 r---- 000000000001d000 0fd:00000 libaudit.so.1.0.0
+00007fd5d9c23000       4 rw--- 000000000001e000 0fd:00000 libaudit.so.1.0.0
+00007fd5d9c24000      40 rw--- 0000000000000000 000:00000   [ anon ]
+00007fd5d9c2e000      52 r-x-- 0000000000000000 0fd:00000 libpam.so.0.83.1
+00007fd5d9c3b000    2048 ----- 000000000000d000 0fd:00000 libpam.so.0.83.1
+00007fd5d9e3b000       4 r---- 000000000000d000 0fd:00000 libpam.so.0.83.1
+00007fd5d9e3c000       4 rw--- 000000000000e000 0fd:00000 libpam.so.0.83.1
+00007fd5d9e3d000      16 r-x-- 0000000000000000 0fd:00000 libcap.so.2.22
+00007fd5d9e41000    2044 ----- 0000000000004000 0fd:00000 libcap.so.2.22
+00007fd5da040000       4 r---- 0000000000003000 0fd:00000 libcap.so.2.22
+00007fd5da041000       4 rw--- 0000000000004000 0fd:00000 libcap.so.2.22
+00007fd5da042000     144 r-x-- 0000000000000000 0fd:00000 libselinux.so.1
+00007fd5da066000    2044 ----- 0000000000024000 0fd:00000 libselinux.so.1
+00007fd5da265000       4 r---- 0000000000023000 0fd:00000 libselinux.so.1
+00007fd5da266000       4 rw--- 0000000000024000 0fd:00000 libselinux.so.1
+00007fd5da267000       8 rw--- 0000000000000000 000:00000   [ anon ]
+00007fd5da269000     136 r-x-- 0000000000000000 0fd:00000 ld-2.17.so
+00007fd5da479000      40 rw--- 0000000000000000 000:00000   [ anon ]
+00007fd5da488000       8 rw--- 0000000000000000 000:00000   [ anon ]
+00007fd5da48a000       4 r---- 0000000000021000 0fd:00000 ld-2.17.so
+00007fd5da48b000       4 rw--- 0000000000022000 0fd:00000 ld-2.17.so
+00007fd5da48c000       4 rw--- 0000000000000000 000:00000   [ anon ]
+00007fd5da48d000    1420 r-x-- 0000000000000000 0fd:00000 systemd
+00007fd5da7ef000     140 r---- 0000000000162000 0fd:00000 systemd
+00007fd5da812000       4 rw--- 0000000000185000 0fd:00000 systemd
+00007fd5db8ff000     892 rw--- 0000000000000000 000:00000   [ anon ]
+00007ffea366a000     132 rw--- 0000000000000000 000:00000   [ stack ]
+00007ffea36b3000       8 r-x-- 0000000000000000 000:00000   [ anon ]
+ffffffffff600000       4 r-x-- 0000000000000000 000:00000   [ anon ]
+mapped: 43424K    writeable/private: 1252K    shared: 0K
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+mapped 表示该进程映射的虚拟地址空间大小，也就是该进程预先分配的虚拟内存大小，即ps出的vsz
+
+writeable/private 表示进程所占用的私有地址空间大小，也就是该进程实际使用的内存大小
+
+shared 表示进程和其他进程共享的内存大小
+
+查看进程1的扩展地址
+[root@master ~]# pmap -x 1
+1:   /usr/lib/systemd/systemd --switched-root --system --deserialize 22
+Address           Kbytes     RSS   Dirty Mode  Mapping
+00007fd5d7abc000      16       8       0 r-x-- libuuid.so.1.3.0
+00007fd5d7ac0000    2044       0       0 ----- libuuid.so.1.3.0
+00007fd5d7cbf000       4       4       4 r---- libuuid.so.1.3.0
+00007fd5d7cc0000       4       4       4 rw--- libuuid.so.1.3.0
+00007fd5d7cc1000     224      36       0 r-x-- libblkid.so.1.1.0
+00007fd5d7cf9000    2048       0       0 ----- libblkid.so.1.1.0
+00007fd5d7ef9000      12      12      12 r---- libblkid.so.1.1.0
+00007fd5d7efc000       4       4       4 rw--- libblkid.so.1.1.0
+00007fd5d7efd000       4       0       0 rw---   [ anon ]
+00007fd5d7efe000      84      12       0 r-x-- libz.so.1.2.7
+00007fd5d7f13000    2044       0       0 ----- libz.so.1.2.7
+00007fd5d8112000       4       4       4 r---- libz.so.1.2.7
+00007fd5d8113000       4       4       4 rw--- libz.so.1.2.7
+00007fd5d8114000     144      16       0 r-x-- liblzma.so.5.0.99
+00007fd5d8138000    2044       0       0 ----- liblzma.so.5.0.99
+00007fd5d8337000       4       4       4 r---- liblzma.so.5.0.99
+00007fd5d8338000       4       4       4 rw--- liblzma.so.5.0.99
+00007fd5d8339000      16       8       0 r-x-- libcap-ng.so.0.0.0
+00007fd5d833d000    2048       0       0 ----- libcap-ng.so.0.0.0
+00007fd5d853d000       4       4       4 r---- libcap-ng.so.0.0.0
+00007fd5d853e000       4       4       4 rw--- libcap-ng.so.0.0.0
+00007fd5d853f000      16       8       0 r-x-- libattr.so.1.1.0
+00007fd5d8543000    2044       0       0 ----- libattr.so.1.1.0
+00007fd5d8742000       4       4       4 r---- libattr.so.1.1.0
+00007fd5d8743000       4       4       4 rw--- libattr.so.1.1.0
+00007fd5d8744000       8       8       0 r-x-- libdl-2.17.so
+00007fd5d8746000    2048       0       0 ----- libdl-2.17.so
+00007fd5d8946000       4       4       4 r---- libdl-2.17.so
+00007fd5d8947000       4       4       4 rw--- libdl-2.17.so
+00007fd5d8948000     384       8       0 r-x-- libpcre.so.1.2.0
+00007fd5d89a8000    2044       0       0 ----- libpcre.so.1.2.0
+00007fd5d8ba7000       4       4       4 r---- libpcre.so.1.2.0
+00007fd5d8ba8000       4       4       4 rw--- libpcre.so.1.2.0
+00007fd5d8ba9000    1800     716       0 r-x-- libc-2.17.so
+00007fd5d8d6b000    2048       0       0 ----- libc-2.17.so
+00007fd5d8f6b000      16      16      16 r---- libc-2.17.so
+00007fd5d8f6f000       8       8       8 rw--- libc-2.17.so
+00007fd5d8f71000      20      12      12 rw---   [ anon ]
+00007fd5d8f76000      92      60       0 r-x-- libpthread-2.17.so
+00007fd5d8f8d000    2044       0       0 ----- libpthread-2.17.so
+00007fd5d918c000       4       4       4 r---- libpthread-2.17.so
+00007fd5d918d000       4       4       4 rw--- libpthread-2.17.so
+00007fd5d918e000      16       4       4 rw---   [ anon ]
+00007fd5d9192000      84      12       0 r-x-- libgcc_s-4.8.5-20150702.so.1
+00007fd5d91a7000    2044       0       0 ----- libgcc_s-4.8.5-20150702.so.1
+00007fd5d93a6000       4       4       4 r---- libgcc_s-4.8.5-20150702.so.1
+00007fd5d93a7000       4       4       4 rw--- libgcc_s-4.8.5-20150702.so.1
+00007fd5d93a8000      28      16       0 r-x-- librt-2.17.so
+00007fd5d93af000    2044       0       0 ----- librt-2.17.so
+00007fd5d95ae000       4       4       4 r---- librt-2.17.so
+00007fd5d95af000       4       4       4 rw--- librt-2.17.so
+00007fd5d95b0000     244     112       0 r-x-- libmount.so.1.1.0
+00007fd5d95ed000    2044       0       0 ----- libmount.so.1.1.0
+00007fd5d97ec000       4       4       4 r---- libmount.so.1.1.0
+00007fd5d97ed000       4       4       4 rw--- libmount.so.1.1.0
+00007fd5d97ee000       4       4       4 rw---   [ anon ]
+00007fd5d97ef000      84      68       0 r-x-- libkmod.so.2.2.10
+00007fd5d9804000    2044       0       0 ----- libkmod.so.2.2.10
+00007fd5d9a03000       4       4       4 r---- libkmod.so.2.2.10
+00007fd5d9a04000       4       4       4 rw--- libkmod.so.2.2.10
+00007fd5d9a05000     120      40       0 r-x-- libaudit.so.1.0.0
+00007fd5d9a23000    2044       0       0 ----- libaudit.so.1.0.0
+00007fd5d9c22000       4       4       4 r---- libaudit.so.1.0.0
+00007fd5d9c23000       4       4       4 rw--- libaudit.so.1.0.0
+00007fd5d9c24000      40       4       4 rw---   [ anon ]
+00007fd5d9c2e000      52      12       0 r-x-- libpam.so.0.83.1
+00007fd5d9c3b000    2048       0       0 ----- libpam.so.0.83.1
+00007fd5d9e3b000       4       4       4 r---- libpam.so.0.83.1
+00007fd5d9e3c000       4       4       4 rw--- libpam.so.0.83.1
+00007fd5d9e3d000      16       8       0 r-x-- libcap.so.2.22
+00007fd5d9e41000    2044       0       0 ----- libcap.so.2.22
+00007fd5da040000       4       4       4 r---- libcap.so.2.22
+00007fd5da041000       4       4       4 rw--- libcap.so.2.22
+00007fd5da042000     144      68       0 r-x-- libselinux.so.1
+00007fd5da066000    2044       0       0 ----- libselinux.so.1
+00007fd5da265000       4       4       4 r---- libselinux.so.1
+00007fd5da266000       4       4       4 rw--- libselinux.so.1
+00007fd5da267000       8       8       8 rw---   [ anon ]
+00007fd5da269000     136     112       0 r-x-- ld-2.17.so
+00007fd5da479000      40      40      40 rw---   [ anon ]
+00007fd5da488000       8       8       8 rw---   [ anon ]
+00007fd5da48a000       4       4       4 r---- ld-2.17.so
+00007fd5da48b000       4       4       4 rw--- ld-2.17.so
+00007fd5da48c000       4       4       4 rw---   [ anon ]
+00007fd5da48d000    1420    1196       0 r-x-- systemd
+00007fd5da7ef000     140     132     132 r---- systemd
+00007fd5da812000       4       4       4 rw--- systemd
+00007fd5db8ff000     892     844     844 rw---   [ anon ]
+00007ffea366a000     132      52      52 rw---   [ stack ]
+00007ffea36b3000       8       4       0 r-x--   [ anon ]
+ffffffffff600000       4       0       0 r-x--   [ anon ]
+---------------- ------- ------- -------
+total kB           43424    3820    1292
+————————————————
+版权声明：本文为CSDN博主「竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_21127151/article/details/104982882

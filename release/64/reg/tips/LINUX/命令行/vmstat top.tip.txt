@@ -1,0 +1,85 @@
+$ top
+top - 22:30:34 up 1 day, 14:32,  2 users,  load average: 1.00, 1.00, 1.00
+Tasks: 148 total,   1 running, 147 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   3582.5 total,    308.3 free,    861.7 used,   2412.5 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   2437.5 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                          
+      1 root      20   0 1038364  12148   9124 S   0.0   0.3   0:25.93 systemd                                                          
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.03 kthreadd                                                         
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp                                                           
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par_gp                                                       
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri                                      
+      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_percpu_wq                                                     
+      9 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_rude_                                                  
+     10 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_trace                                                  
+     11 root      20   0       0      0      0 S   0.0   0.0   0:00.52 ksoftirqd/0                                                      
+     12 root      20   0       0      0      0 I   0.0   0.0   0:13.20 rcu_sched                                                        
+     13 root      rt   0       0      0      0 S   0.0   0.0   0:00.01 migration/0                                                      
+     14 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0                                                          
+     15 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1                                                          
+     16 root      rt   0       0      0      0 S   0.0   0.0   0:00.07 migration/1                                                      
+     17 root      20   0       0      0      0 S   0.0   0.0   0:00.49 ksoftirqd/1                                                      
+     19 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/1:0H-events_highpri                                      
+     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kdevtmpfs                                                        
+     22 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 netns                                                            
+     23 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kauditd                                                          
+     26 root      20   0       0      0      0 S   0.0   0.0   0:00.03 khungtaskd                                                       
+     27 root      20   0       0      0      0 S   0.0   0.0   0:00.00 oom_reaper                                                       
+     28 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 writeback                                                        
+     29 root      20   0       0      0      0 S   0.0   0.0   0:00.80 kcompactd0                                                       
+     30 root      25   5       0      0      0 S   0.0   0.0   0:00.00 ksmd                                                             
+     31 root      39  19       0      0      0 S   0.0   0.0   0:00.94 khugepaged                                                       
+     32 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 memcg_wmark                                                      
+     46 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 cryptd                                                           
+     81 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kintegrityd                                                      
+     82 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kblockd                                                          
+     83 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 blkcg_punt_bio                                                   
+     84 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 tpm_dev_wq                                                       
+[root@weilaidb] ~/work/git/cheater
+
+
+top - 22:30:34 up 1 day, 14:32,  2 users,  load average: 1.00, 1.00, 1.00
+Tasks: 
+148 total,     :
+1 running,     :
+147 sleeping,  : 
+0 stopped,     :
+0 zombie       :僵尸进程
+
+%Cpu(s):  
+0.0 us,   ：用户空间CPU占比
+0.0 sy,   ：内核空间CPU占比
+0.0 ni,   ：用户进程空间通过改变优先级CPU占比
+100.0 id, ：空闲占比
+0.0 wa,   ：等待输入输出CPU占比
+0.0 hi,   ：hardware irq中断
+0.0 si,   ：software irq中断
+0.0 st    :
+--
+
+MiB Mem :   3582.5 total,    308.3 free,    861.7 used,   2412.5 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   2437.5 avail Mem 
+
+
+
+PID    :进程ID
+USER   :用户
+PR     :优先级
+NI     :NICE值，默认为0，值越小优先级越高
+VIRT   :进程使用的虚拟内存，单位KB
+RES    :进程使用的，没有被换出去的物理内存大小
+SHR    :共享内存大小
+S      :进程状态，T被跟踪，Z僵尸进程，S睡眠，R正在运行，SR睡眠+运行？，D不可中断睡眠
+%CPU   :CPU占比
+%MEM   :内存占比
+TIME+  :运行时间
+COMMAND:命令
+
+大写M 占用内存大小排序
+大写P 占用CPU大小排序
+大写T 占用时间小排序
+小写m 切换内存显示柱状
+1     所有CPU的状态
+f     可显示的项，*号是默认加进去的，按空格键添加
