@@ -1605,6 +1605,7 @@ LINUX/命令行/terminal快捷键 shortcut
 LINUX/命令行/ubuntu terminal快捷键 shortcut
 LINUX/命令行/version
 LINUX/命令行/vmstat
+LINUX/命令行/vmstat eg
 LINUX/命令行/vmstat help
 LINUX/命令行/wget
 LINUX/命令行/屏蔽主机的ping命令

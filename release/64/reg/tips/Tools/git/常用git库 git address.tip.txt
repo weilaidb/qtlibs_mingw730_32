@@ -21,7 +21,7 @@ https://git.busybox.net/busybox
 git@github.com:vgough/rlog.git
 wget https://sourceforge.net/projects/boost/files/boost/1.75.0/boost_1_75_0.tar.gz
 git@github.com:weilaidb/tdd.git
-
+git@github.com:weilaidb/cheater.git
 
 #仿真
 https://gitlab.com/qemu-project/qemu.git
