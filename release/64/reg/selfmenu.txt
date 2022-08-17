@@ -2123,6 +2123,8 @@ SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
 SoftWare/opengrok/md5sum
 SoftWare/vmware/16
+TEST/RegExp/添加引号和末尾逗号
+TEST/RegExp/添加引号和末尾逗号-加一空行
 TEST/RegExptest
 TEST/RegExptest rm -f
 TEST/RegExptest1
@@ -2149,6 +2151,10 @@ Tools/UML/文字
 Tools/VIM常用快捷键
 Tools/VIM常用快捷键 ctags
 Tools/VS Visual Studio快捷键
+Tools/VSCode/模板/cmain
+Tools/VSCode/模板/cxxmain
+Tools/VSCode/模板/header
+Tools/VSCode/模板/头文件#ifndef #define #endif
 Tools/VSCode快捷键
 Tools/VSCode快捷键2
 Tools/Vivado中常用的快捷键

@@ -1,0 +1,38 @@
+VSCode 自动生成头文件的#ifndef #define #endif
+官方说明文档
+
+使用用户代码片段, 并非你创建头文件就给你把模板创建好, 不过用户模板也麻烦不到那里去
+
+首先打开命令面板, MacOS是Shift cmd p, 其它应该是Shift Ctrl p.
+输入snippets, 找到 (就是用户代码片段)
+
+就是这一个, 点进去, 然后选择全局代码片段
+
+名字随便输入, 这个不要紧, 我用的是这个
+.然后进入到一个json文件, 大概长这样
+————————————————
+版权声明：本文为CSDN博主「Static H」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_45461426/article/details/105936955
+
+
+
+
+
+=======c_cpp_header
+{
+	"C C++ Header": {
+		"scope": "c, cpp",
+		"prefix": "header",
+		"description": "Add #ifndef, #define and #endif",
+
+		"body": [
+			"#ifndef ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+			"#define ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+			"",
+			"$0",
+			"",
+			"#endif // ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H"
+		]
+	}
+
+}
