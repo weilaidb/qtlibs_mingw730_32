@@ -461,6 +461,7 @@ CXX/INCLUDE/常用头文件 header
 CXX/INCLUDE/常用头文件 header2
 CXX/INCLUDE/常用头文件 header3
 CXX/LIST/log
+CXX/LIST/log 头文件
 CXX/LOOP/list DBList
 CXX/LOOP/list iterator
 CXX/LOOP/list reverse_iterator
@@ -2151,6 +2152,7 @@ Tools/UML/文字
 Tools/VIM常用快捷键
 Tools/VIM常用快捷键 ctags
 Tools/VS Visual Studio快捷键
+Tools/VSCode/know/资深工程师 VSCode C/C++ 必备开发插件
 Tools/VSCode/模板/00snippet 中可以使用的一些变量
 Tools/VSCode/模板/cmain
 Tools/VSCode/模板/cxxmain

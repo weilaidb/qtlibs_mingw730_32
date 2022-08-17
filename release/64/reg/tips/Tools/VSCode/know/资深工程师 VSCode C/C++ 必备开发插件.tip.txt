@@ -1,0 +1,205 @@
+热门频道
+
+首页
+
+
+博客
+
+
+研修院
+
+
+VIP
+
+
+APP
+
+
+问答
+
+
+下载
+
+
+社区
+
+推荐频道
+
+活动
+
+
+招聘
+
+
+专题
+
+打开CSDN APP
+Copyright © 1999-2020, CSDN.NET, All Rights Reserved
+
+
+c++
+打开App
+
+
+资深工程师 VSCode C/C++ 必备开发插件 原创
+2022-05-18 14:40:22
+ 1点赞
+
+大橙子疯 
+
+码龄8年
+
+关注
+1、前言
+俗话说“工欲善其事，必先利其器”，下面介绍几个VSCode提高开发效率的插件，资深工程师必备。
+
+2、基础插件
+2.1、Chinese(Simplified)
+vscode 编辑器汉化包，安装完成后重启即可。
+
+
+
+2.2、C/C++ Extension Pack
+C/C++扩展包，下载直接安装，它包含了 vscode 编写 C/C++ 工程需要的插件（C/C++、C/C++ Themes、CMake、CMake Tools和Better C++ Syntax等），和以前比不需要一个个找了。
+
+
+
+2.3、Bracket Pair Colorizer
+可以让括号具有颜色的小功能插件，各个成对儿的括号都会以不同的颜色进行区别。
+
+
+
+2.4、highlight-words
+字符高亮插件
+
+
+
+
+
+3、Git 插件
+3.1、GitLens
+gitlens插件可以直接在光标处显示代码编写人以及时间；方便共同开发时候git做版本控制时候的相关代码管理。
+
+
+
+
+
+3.2、git-commit-plugin
+一款自动生成规范git提交信息的插件
+
+提供了符合规范的提交格式，基于Angular 团队的 Angular Team Commit Specification。规范的 commit 信息首先提供了更多的历史信息，方便快速浏览。其次，可以过滤某些 commit（比如文档改动），便于快速查找信息。重点在于前端团队必备的git提交规范啊！！！不规范的提交后期维护项目真的很头疼，给个不规范的例子
+
+
+
+3.3、Git Graph
+可视化的版本分支演变图。
+
+
+
+4、远程开发插件
+4.1、Remote - SSH
+Remote-SSH扩展允许您使用任何带有SSH服务器的远程机器作为开发环境。这可以大大简化各种情况下的开发和故障排除（通常代码和编译环境在 Linux 服务器上，正常工作在Windows系统上，通过该插件能提高代码开发效率，不再需要通过samba共享目录到 Windows 上，再通过其他软件打开）。
+
+
+
+打开CSDN，阅读体验更佳
+
+参与评论 请先 登录 后发表或查看评论
+用VSCode开发C++项目_B&W+R&X的博客_vscode创建c++项目
+只不过这个记事本可以安装插件,可以和命令行程序结合起来使用,使得它可以进行开发。那么在进行相应语言开发时自然少不了一顿相关配置操作。废话不多说,上步骤 准备工作 一、下载编译器 我这里使用的是mingw编译器。可参考VSCODE官方文档在...
+vscode C++开发环境配置教程(教你如何用vscode写C++)
+用了一段时间的cb,Devc++,但一直感觉cb的高亮太差,而Devc++使用体验差(尤其是代码补全功能),换过vs2017,但是由于其太大了,卡顿十分明显,所以最终选择了vscode这款轻量级编译器。由于自己在配置c++开发环境时遇到了不少问题,因此特地写...
+vscode c/c++扩展插件
+vscode c/c++扩展插件，支持跳转，补全，dbg
+VSCODE C/C++ 插件离线包
+VSCODE C/C++ 插件离线包 v0.8.1，放在 %USERPROFILE%\.vscode\extensions 中即可。
+手把手教你使用VSCode搭建C/C++开发环境_gaearon的博客...
+本文教你使用GCC+ VSCode搭载C/C++开发环境。 GCC下载地址 资源准备 由于GCC是国外开发的,这里直接给出我的GCC压缩包。 下载完之后直接解压就行 建议解压到文件夹,方便配置环境变量。 开始配置 ...
+VSCode 搭建 C++ 开发环境_YJer的博客_vscode搭建c++环境
+二、下载安装 VSCode 我此前已经安装好了 VSCode 了,下载安装过程非常简单,有需要的小伙伴也可以参考一下我的文章: WSL嵌入式开发系列教程 4 —— 安装VS code 特别指出的是,安装好 VSCode 后,我们还需要安装 C/C++ 这个插件。
+VScode配置C/C++环境--常用的5个插件
+1）首先安装vscode https://code.visualstudio.com/Download 2）下载mingW，https://sourceforge.net/projects/mingw-w64/files/ 打开mingw官网，往下拉，选择MinGW-W64 GCC-8.1.0版本的x86_64-posix-seh文件下载，解压到指定的文件夹下，并对mingw内的bin文件夹配置环境变量； 3）ctrl+shit+x,下载一些插件 Chinese (Simplified) Lan.
+浏览器打开
+最新发布 VSCode插件推荐（C/C++环境）
+包含了C/C++工程需要的插件（C/C++、C/C++Themes、CMake、CMakeTools和BetterC++Syntax等）
+浏览器打开
+
+把VSCode 打造成 C++ 开发利器_过客猫2022的博客-CSDN...
+4.1 安装 C++开发相关插件(必装) 主要功能:C++语法识别、智能补全、代码跳转、调用依赖识别等,注意,下文中描述如果没有指明是需要单独手动下载的话,一般来说都是指通过 VSCode 侧边栏上的扩展按钮来安装插件。
+...常用的5个插件_ifreewolf99的博客_vscode 插件c++
+以上5个插件基本就可以完成C/C++的开发,当然也有其他插件可以使用,但太多的插件会影响vscode运行的速度。 4)debug C/C++代码 先点击最左侧调试按钮,点击运行和调试,选择环境里选择C++(GDB/LLDB) ...
+使用VScode运行C/C++，你可能要安装这些插件
+文章目录1 前言2 插件介绍3 参考资料 1 前言   VScode是一款很好用的代码编辑器，本身很小，但是却可以通过扩展不同的插件，来实现很不错的功能，下边就大致介绍一些使用起来比较好用的插件。 2 插件介绍 【C/C++】：这个肯定是编译C/C++程序必不可少的 【C/C++ Snippets】：就是C/C++的重用代码块 【C/C++ Advanced Lint】：C/C++静态检测 ...
+浏览器打开
+
+vscode c/c++ 实用插件
+
+vscode C++开发环境搭建_求知者先的博客_vscode 开发c++
+使用vscode开发C++,一般至少需要以下操作: 1、C/C++插件安装(vscode软件内安装) 插件功能:为vscode提供编程语言支持,其他语言也有对应的插件。 2、C++ Intellisense插件安装(vscode软件内安装) 插件功能:C++代码自动补全、实时错误检查、代码...
+VSCode必备插件-C++等_泠山的博客_vscode的c++插件
+VSCode必备插件-C++等1. C/C++ for Visual Studio Code二级目录三级目录Reference:[生产力]VSCode必备插件-C/C++开发1. C/C++ for Visual Studio Code来自微软官方的 C/C++ 插件,必备的插件,如果不安装,代码无法跳转,也没有自动补全...
+vscode C/C++ 插件推荐
+vscode c/c++ 插件推荐 ， 看个人爱好
+浏览器打开
+VSCODE C/C++常用插件，以及编译调试脚本
+vscode编译和调试文件配置
+浏览器打开
+VSCode必备插件-C++等
+来自微软官方的C/C++插件，必备的插件，如果不安装，代码无法跳转，也没有自动补全。git版本控制，重要性不必多说，这个插件可以实现操作的GUI化，非常方便。以github页面风格显示markdown文档。该功能已内置VScode内，可见。高亮显示TODO内容。......
+浏览器打开
+
+VSCode 安装 C++ 插件
+VSCode 安装 C++ 插件 背景 因为不知道什么原因，vscode 无法连接到“插件市场”。所以本文介绍其它方式安装 C++ 插件。 步骤 下载插件 打开 vscode 官网，点击上方的 “Extensions” 进入“插件市场”。也可以通过这个链接直接跳转：https://marketplace.visualstudio.com/VSCode 可以找到 C/C++ 插件，图标长这个样子的，直接点进去。 进入 C/C++ 插件的主页后，向下查找可以找到 “Offline installatio
+浏览器打开
+
+vscode c++插件_我常用的 VSCode C/C++ 插件！
+我平常用 vscode 码字，经常使用一些 C/C++ 插件，这里整理下分享给大家，不过插件开启太多会造成 vscode 卡顿，所以如果内存不太够，建议关掉一些不必要的插件。一、主题和图标以下这些主题都还不错：Atom One Dark ThemeMaterial ThemeMonokai ProOne Dark ProOne Dark Theme(我用这个)One Monokai Th...
+浏览器打开
+热门推荐 整理：Visual Studio Code (vscode) 配置C、C++环境/编写运行C、C++（主要Windows、简要Linux）
+现在是2019.7.21，由于这阵一直在忙，今天我用最新的VSCode（Version 1.36.1） 和最新的Cpp插件（version 0.24.0）按照本文的安装步骤从零开始试了一下，由于vscode版本和cpp插件版本更新确实变化了很多，2019年7月21日更新的我会用这个颜色（粉色？）标示出来，供大家参考进行配置。也可以参考官方文档：https://code.visualstudio.c...
+浏览器打开
+
+VScode 插件推荐与C/C++配置
+以下是我经常用到的VScode插件。由于插件本身具有详细的配置和介绍，不对插件本身的安装配置进行说明，仅仅支出这些插件的主要功能。具体使用强烈推荐看一下安装插件后的说明，大多数的问题和设置都可以找到，不要因为是英文就直接上网搜索。 vscode配置同步# settings sync 目前settings sync的提示已经很智能，首次使用的时候会提示登录github，授权登录即可。登录github，在右上角点击加号，点击New gist（需要某些上网技巧，否则无法打开网页） 之...
+浏览器打开
+
+vscode C++开发环境配置教程(教你如何用vscode写C++)
+Update: 　　2020.6.26 　　大家在安装TDM-GCC别忘了勾选gbd64文件，感谢这位朋友提出的错误 　　 　　链接已更新 　　个人邮箱：qhmrbhll@qq.com，有问题请私信我，最好附上截图。 　　　用了一段时间的cb，Devc++，但一直感觉cb的高亮太差，而Devc++使用体验差（尤其是代码补全功能），换过vs2017，但是由于其太大了，卡顿十分明显，所以最终选择了vscode这款轻量级编译器。由于自己在配置c++开发环境时遇到了不少问题，因此特地写了这篇博文，希望能
+浏览器打开
+
+【工具配置篇】从0开始的VSCode配置C++环境及插件推荐 （新手小白级教程）
+目录一. Windows下配置C++环境1. 先决条件 一. Windows下配置C++环境 1. 先决条件 要成功完成本教程，您必须执行以下步骤： （1）安装 Visual Studio Code. （2）安装VS Code的C/C++ 扩展。您可以通过在扩展视图 ( Ctrl+Shift+X ) 中搜索“c++”来安装 C/C++ 扩展. ......
+浏览器打开
+
+vscode常用插件-c/c++开发
+
+VsCode 常用C/C++插件大全
+插件名称 作用 C/C++ 必要的 C/C++ Snippets C/C++重用代码块 C/C++ Advanced Lint C/C++静态检测 Code Runne 代码运行 Include AutoComplete 自动头文件包含 Rainbow Brackets 彩虹花括号，有助于阅读代码 One Dark Pro VSCode 的主题 GBKtoUTF8 将 GBK 转换为 UTF8 ARM 中文环境 vscode-icons VSCode 图...
+浏览器打开
+
+C++ 插件机制的实现原理、过程、及使用
+什么是插件机制 插件是你想开发一个成功的动态系统所需要的一种方式。基于插件的扩展性是当前扩展，进化一个系统的最具有实践意义的安全方式。插件使得第三方开发人员可以为系统做增值工作，也可以使其他开发人员增加新的功能而不破坏现有的核心功能。插件能够促进将关注点分开，保证隐藏实现细节，将测试独立开来，并最具有实践意义。 比如强大的Eclipse的平台实际上就是一个所有功能都由插件提供的骨架。Eclipse IDE自身（包括UI和Java开发环境）仅仅是一系列挂在核心框架上的插件。 插件机制仍需要考虑的一些问题
+浏览器打开
+
+[生产力]VSCode必备插件-C/C++开发
+本文会不断的整理工作期间用到的 VSCode 小插件，提升工作效率
+浏览器打开
+
+VSCode C/C++ 开发环境配置-插件篇
+VSCode C/C++ 开发环境配置-插件篇说明常用插件阅读代码编写代码其他结语 说明 VSCode是一个非常便捷的代码编辑工具，该软件一个很大的优势就是有着丰富的插件资源。这里为了方便日常的代码阅读及编写，梳理常用的插件，均亲测可用。 常用插件 阅读代码 - Rainbow Brackets 以不同的颜色区分多级括号，避免看花眼~ - compareit 文件比较工具，支持和剪切板及特定文件比较 - ARM 汇编语句高亮显示 - highlight-words 默认是边框高亮，个人比较喜欢背景高亮
+浏览器打开
+vscode插件c++开发
+vscode
+c++
+写评论
+
+评论
+
+14
+
+1
+
+踩
+
+分享
+APP内打开
