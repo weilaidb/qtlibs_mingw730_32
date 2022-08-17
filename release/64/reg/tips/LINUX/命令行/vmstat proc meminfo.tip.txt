@@ -1,0 +1,57 @@
+[root@weilaidb] /proc/sys
+$ 
+[root@weilaidb] /proc/sys
+$ cat /proc/meminfo 
+MemTotal:        3668456 kB
+MemFree:          224072 kB
+MemAvailable:    1125004 kB
+Buffers:           63852 kB
+Cached:          1017644 kB
+SwapCached:            0 kB
+Active:           389156 kB
+Inactive:        2910528 kB
+Active(anon):        476 kB
+Inactive(anon):  2220080 kB
+Active(file):     388680 kB
+Inactive(file):   690448 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:               292 kB
+Writeback:             0 kB
+AnonPages:       2216688 kB
+Mapped:           233824 kB
+Shmem:              2368 kB
+KReclaimable:      50096 kB
+Slab:              82336 kB
+SReclaimable:      50096 kB
+SUnreclaim:        32240 kB
+KernelStack:        9216 kB
+PageTables:        13116 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     1834228 kB
+Committed_AS:    4609828 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:       18584 kB
+VmallocChunk:          0 kB
+Percpu:             1456 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:   1312768 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:      121528 kB
+DirectMap2M:     2875392 kB
+DirectMap1G:     1048576 kB
+[root@weilaidb] /proc/sys
+$

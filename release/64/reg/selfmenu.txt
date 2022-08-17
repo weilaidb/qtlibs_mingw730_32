@@ -1614,6 +1614,8 @@ LINUX/命令行/vmstat free help
 LINUX/命令行/vmstat help
 LINUX/命令行/vmstat pmap help
 LINUX/命令行/vmstat pmap命令详解
+LINUX/命令行/vmstat proc meminfo
+LINUX/命令行/vmstat proc sys
 LINUX/命令行/vmstat slabtop
 LINUX/命令行/vmstat slabtop help
 LINUX/命令行/vmstat top

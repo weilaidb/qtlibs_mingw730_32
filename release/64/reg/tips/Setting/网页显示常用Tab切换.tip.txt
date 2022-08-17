@@ -20,3 +20,4 @@ Tools/Cscope & CTags 快捷键;Tools/Cscope & CTags 快捷键
 用户说明书/代码集autocodesets 菜单定义规范;用户说明书/代码集autocodesets 菜单定义规范
 CXX/Cout para 1;CXX/Cout para 1
 CXX/INCLUDE/常用头文件 header3;CXX/INCLUDE/常用头文件 header3
+脚本/VBS/SecureCrt/每行保存日志;脚本/VBS/SecureCrt/每行保存日志
