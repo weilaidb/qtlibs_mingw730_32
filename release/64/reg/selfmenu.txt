@@ -1606,6 +1606,8 @@ LINUX/命令行/ubuntu terminal快捷键 shortcut
 LINUX/命令行/version
 LINUX/命令行/vmstat
 LINUX/命令行/vmstat Linux vmstat命令详解：监控系统资源
+LINUX/命令行/vmstat dmesg
+LINUX/命令行/vmstat dmesg help
 LINUX/命令行/vmstat eg
 LINUX/命令行/vmstat free
 LINUX/命令行/vmstat free help
