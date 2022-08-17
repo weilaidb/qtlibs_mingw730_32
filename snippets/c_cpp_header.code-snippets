@@ -1,0 +1,17 @@
+{
+	"C C++ Header": {
+		"scope": "c, cpp",
+		"prefix": "header",
+		"description": "Add #ifndef, #define and #endif",
+
+		"body": [
+			"#ifndef ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+			"#define ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+			"",
+			"$0",
+			"",
+			"#endif // ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H"
+		]
+	}
+
+}
