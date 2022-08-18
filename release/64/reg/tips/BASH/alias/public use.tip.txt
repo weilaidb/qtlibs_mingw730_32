@@ -17,6 +17,7 @@ alias gitsubmoduleupdate="git submodule update "
 alias gitsubmoduleupdateremote="git submodule update --remote "
 alias gitremotev="git remote -v "
 alias gitgcclean="git reflog expire --expire=now --all && git gc --prune=now "
+alias gitsubmoduleinit="git submodule update --init --recursive "
 
 alias gitdiff="git diff "
 alias gitdiffcached="git diff --cached"

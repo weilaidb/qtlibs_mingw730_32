@@ -1,3 +1,5 @@
+gitsubmodule;git submodule update --init --recursive
+
 diffdir;diff -urNa
 cctagscscope;ctags -R && cscope -Rkb
 mybuildtest;./mybuild/test

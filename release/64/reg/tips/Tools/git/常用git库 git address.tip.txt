@@ -169,3 +169,14 @@ https://pragprog.com/titles/lotdd/modern-c-programming-with-test-driven-developm
 #操作系统
 https://elementary.io/zh_CN/
 https://cn.ubuntu.com/
+
+
+
+
+#VIM
+git@github.com:flyfeifan/Vundle.git 
+git@github.com:ycm-core/YouCompleteMe.git
+
+git clone git@github.com:flyfeifan/Vundle.git ~/.vim/bundle/Vundle.vim
+
+git clone git@github.com:ycm-core/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe.vim

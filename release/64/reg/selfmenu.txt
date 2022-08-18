@@ -2177,6 +2177,7 @@ Tools/VSCode/模板/insertfilesource
 Tools/VSCode/模板/头文件#ifndef #define #endif
 Tools/VSCode快捷键
 Tools/VSCode快捷键2
+Tools/Vim .Vimrc
 Tools/Vim 7款优秀Vim插件帮你打造完美IDE
 Tools/Vim 实用插件推荐（2017）
 Tools/Vivado中常用的快捷键
