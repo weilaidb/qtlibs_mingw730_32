@@ -8,6 +8,16 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 wget https://archive.fastgit.org/vim/vim/archive/refs/tags/v8.1.2270.zip
 
 
+----------使用这个编译
+./configure --enable-pythoninterp=yes --enable-cscope --enable-fontset --with-python3-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu --enable-python3interp=yes --with-python3-command=python3.6
+make
+make install
+ 
+cp /usr/local/bin/vim /usr/bin/vim
+
+
+
+
 
 #将bundle/Vundle.vim 下载一下，再vim :PluginInstall
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -45,3 +55,9 @@ Plugin 'Lokaltog/vim-powerline'
 call vundle#end()
 "开启文件类型自动检测，编写代码时自动换行对齐"
 filetype plugin indent on
+
+
+
+==========================
+
+再vim :PluginInstall

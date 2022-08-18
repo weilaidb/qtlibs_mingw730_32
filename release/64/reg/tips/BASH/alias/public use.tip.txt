@@ -1,3 +1,38 @@
+alias dush="du -sh "
+alias dus="du -s "
+
+alias pythoninstallpy="/usr/bin/python install.py "
+alias pythonsetupinstall="/usr/bin/python setup.py install "
+
+alias dmesgdT="dmesg -dT "
+
+alias dmesgT=" dmesg -T "
+
+alias dmesgd="dmesg -d "
+
+alias dmesgh="dmesg -h "
+
+alias dmesgc="dmesg -c "
+
+alias freem="free -m "
+
+alias freeg="free -g "
+
+alias freehelp="free --help "
+
+alias vmstathelp="vmstat --help "
+
+alias pmaphelp="pmap --help "
+
+alias catprocmeminfo="cat /proc/meminfo "
+
+alias unamea="uname -a "
+
+alias slabtophelp="slabtop -h "
+
+alias tophelp="top -h "
+
+
 alias sr="sourcerootbash"
 alias sourcerootbash="source ~/.bashrc"
 alias killyum="sudo rm -f /var/run/yum.pid"

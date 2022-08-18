@@ -2164,7 +2164,7 @@ Tools/UML/StartUML
 Tools/UML/常用软件
 Tools/UML/教程
 Tools/UML/文字
-Tools/VIM 编译 vim-8.1.2279
+Tools/VIM 编译 vim-8.1.2270
 Tools/VIM常用快捷键
 Tools/VIM常用快捷键 ctags
 Tools/VS Visual Studio快捷键
@@ -2179,7 +2179,9 @@ Tools/VSCode/模板/头文件#ifndef #define #endif
 Tools/VSCode快捷键
 Tools/VSCode快捷键2
 Tools/Vim .Vimrc
+Tools/Vim .Vimrc 插件安装说明
 Tools/Vim 7款优秀Vim插件帮你打造完美IDE
+Tools/Vim vim 插件管理器 Vundle 安装与配置
 Tools/Vim 实用插件推荐（2017）
 Tools/Vivado中常用的快捷键
 Tools/WORD快捷键

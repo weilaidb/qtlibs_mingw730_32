@@ -1,4 +1,29 @@
-gitsubmodule;git submodule update --init --recursive
+dmesgdT;dmesg -dT
+dmesgT; dmesg -T
+dmesgd;dmesg -d
+dmesgh;dmesg -h
+dmesgc;dmesg -c
+freem;free -m
+freeg;free -g
+freehelp;free --help
+vmstathelp;vmstat --help
+pmaphelp;pmap --help
+catprocmeminfo;cat /proc/meminfo 
+unamea;uname -a
+slabtophelp;slabtop -h
+tophelp;top -h
+
+
+
+
+
+dush;du -sh
+dus;du -s
+gitsubmoduleinit;git submodule update --init --recursive
+
+pythoninstallpy;/usr/bin/python install.py
+pythonsetupinstall;/usr/bin/python setup.py install
+
 
 diffdir;diff -urNa
 cctagscscope;ctags -R && cscope -Rkb
