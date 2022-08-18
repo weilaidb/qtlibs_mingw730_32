@@ -1,1 +1,37 @@
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
+修改 ~/.vim/autoload/plug.vim 里的 github.com. 为 hub.fastgit.xyz ，修改 raw.http://githubusercontent.com 为 raw.fastgit.org 。
+
+
+
+$ cat ~/.vimrc
+"===设置Vundle核心插件==="
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"安装的插件列表"
+"核心插件，用于安装其他所有插件"
+Plugin 'VundleVim/Vundle.vim'
+"美化状态栏"
+Plugin 'powerline/powerline'
+"类似IDE的补全插件"
+Plugin 'ycm-core/YouCompleteMe'
+"添加一个树形目录"
+Plugin 'preservim/nerdtree'
+"缩进指示线"
+Plugin 'Yggdroot/indentLine'
+"自动格式化代码"
+Plugin 'tell-k/vim-autopep8'
+"括号和引号自动补全"
+Plugin 'jiangmiao/auto-pairs'
+"多行注释"
+Plugin 'preservim/nerdcommenter'
+"实时语法检查"
+Plugin 'vim-syntastic/syntastic'
+"美化状态栏"
+Plugin 'Lokaltog/vim-powerline'
+call vundle#end()
+"开启文件类型自动检测，编写代码时自动换行对齐"
+filetype plugin indent on

@@ -51,7 +51,7 @@ https://gitee.com/mirrors/linux_old1.git
 https://gitee.com/mirrors/linux.git
 https://gitee.com/caicry/FFmpeg.Mirrors
 https://mirrors.tuna.tsinghua.edu.cn/kernel/v5.x/linux-5.10.15.tar.xz
-
+https://hub.fastgit.xyz/vim/vim/tags?after=v8.1.2280
 
 
 C++库
@@ -176,6 +176,10 @@ https://cn.ubuntu.com/
 #VIM
 git@github.com:flyfeifan/Vundle.git 
 git@github.com:ycm-core/YouCompleteMe.git
+
+https://hub.fastgit.xyz/junegunn/vim-plug
+
+
 
 git clone git@github.com:flyfeifan/Vundle.git ~/.vim/bundle/Vundle.vim
 

@@ -1,0 +1,67 @@
+下载代码
+https://hub.fastgit.xyz/vim/vim/releases/tag/v8.1.2270
+
+
+
+[root@weilaidb] ~/soft/vim-8.1.2270
+$ ./configure --with-features=huge --enable-multibyte --enable-luainterp --enable-rubyinterp --enable-pythoninterp --enable-python3interp --enable-perlinterp --enable-cscope --enable-tclinterp --enable-gui=gtk3 --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu --with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu  --with-tlib=ncurses --with-gnome
+
+
+make VIMRUNTIMEDIR=/usr/share/vim/vim812270
+sudo make install
+
+
+
+
+----------使用这个编译
+./configure --enable-pythoninterp=yes --enable-cscope --enable-fontset --with-python3-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu --enable-python3interp=yes --with-python3-command=python3.6
+make
+make install
+ 
+cp /usr/local/bin/vim /usr/bin/vim
+
+
+
+
+
+====================编译总量
+
+checking --with-tlib argument... ncurses
+checking for linking with ncurses library... OK
+checking for tgetent()... configure: error: NOT FOUND!
+      You need to install a terminal library; for example ncurses.
+      Or specify the name of the library with --with-tlib.
+
+
+
+
+                                                                                                                                    
+~                                                                                                                                                                  
+The ycmd server SHUT DOWN (restart with ':YcmRestartServer'). YCM core library ...ed to compile YCM before using it. Follow the instructions in the documentation.
+
+
+
+[root@weilaidb] ~
+$ vim .
+YouCompleteMe unavailable: requires Vim compiled with Python (3.6.0+) support.
+Press ENTER or type command to continue
+
+
+
+
+
+
+2279的编译错误
+
+
+gcc -c -I. -Ilibvterm/include -Iproto -DHAVE_CONFIG_H     -g -O2 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1        -DINLINE="" -DVSNPRINTF=vim_vsnprintf -DIS_COMBINING_FUNCTION=utf_iscomposing_uint -DWCWIDTH_FUNCTION=utf_uint2cells -o objects/vterm_vterm.o libvterm/src/vterm.c
+/usr/bin/perl -e 'unless ( $] >= 5.005 ) { for (qw(na defgv errgv)) { print "#define PL_$_ $_\n" }}' > auto/if_perl.c
+/usr/bin/perl  -prototypes -typemap \
+    /usr/share/perl5/ExtUtils/typemap if_perl.xs >> auto/if_perl.c
+Unrecognized switch: -rototypes  (-h will show valid options).
+make[1]: *** [Makefile:3001: auto/if_perl.c] Error 29
+make[1]: *** Waiting for unfinished jobs....
+make[1]: Leaving directory '/root/soft/vim-8.1.2279/src'
+make: *** [Makefile:29: first] Error 2
+[root@weilaidb] ~/soft/vim-8.1.2279
+$

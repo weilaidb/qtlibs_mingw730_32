@@ -2164,6 +2164,7 @@ Tools/UML/StartUML
 Tools/UML/常用软件
 Tools/UML/教程
 Tools/UML/文字
+Tools/VIM 编译 vim-8.1.2279
 Tools/VIM常用快捷键
 Tools/VIM常用快捷键 ctags
 Tools/VS Visual Studio快捷键
