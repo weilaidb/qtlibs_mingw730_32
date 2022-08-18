@@ -13,6 +13,15 @@ make install
 cp /usr/local/bin/vim /usr/bin/vim
 
 
+----------使用这个编译 3.8
+./configure --enable-pythoninterp=yes --enable-cscope --enable-fontset --with-python3-config-dir=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu/ --enable-python3interp=yes --with-python3-command=python3.8
+make -j8
+make install
+ 
+cp /usr/local/bin/vim /usr/bin/vim
+
+
+
 
 
 

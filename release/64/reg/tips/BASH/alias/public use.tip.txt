@@ -31,6 +31,9 @@ alias unamea="uname -a "
 alias slabtophelp="slabtop -h "
 
 alias tophelp="top -h "
+alias vimhelp="vim --help "
+
+alias vimgreppython="vim --version|grep python "
 
 
 alias sr="sourcerootbash"
