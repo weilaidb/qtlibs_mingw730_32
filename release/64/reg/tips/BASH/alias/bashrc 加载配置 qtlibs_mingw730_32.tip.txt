@@ -1,0 +1,12 @@
+下载代码
+cd ~/work/git/
+git clone git@github.com:weilaidb/qtlibs_mingw730_32.git
+
+
+
+在~/.bashrc中追加
+
+dos2unix ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
+source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
+dos2unix ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt > /dev/null 2>&1
+source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt > /dev/null 2>&1

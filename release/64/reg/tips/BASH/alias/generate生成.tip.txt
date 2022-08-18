@@ -12,7 +12,8 @@ catprocmeminfo;cat /proc/meminfo
 unamea;uname -a
 slabtophelp;slabtop -h
 tophelp;top -h
-
+vimhelp;vim --help
+vimgreppython;vim --version|grep python
 
 
 

@@ -4,7 +4,7 @@ Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
 BASH/alias/bashrc deploy script
-BASH/alias/bashrc 加载配置
+BASH/alias/bashrc 加载配置 qtlibs_mingw730_32
 BASH/alias/bashrc 加载配置 ubuntu20.04
 BASH/alias/generate生成
 BASH/alias/public use
@@ -2179,10 +2179,14 @@ Tools/VSCode/模板/头文件#ifndef #define #endif
 Tools/VSCode快捷键
 Tools/VSCode快捷键2
 Tools/Vim .Vimrc
+Tools/Vim .Vimrc 插件NerdTree
 Tools/Vim .Vimrc 插件安装说明
+Tools/Vim .Vimrc 插件安装说明 vim-plug
 Tools/Vim 7款优秀Vim插件帮你打造完美IDE
+Tools/Vim PlugInstall
 Tools/Vim vim 插件管理器 Vundle 安装与配置
 Tools/Vim 实用插件推荐（2017）
+Tools/Vim 神级编辑器 Vim 使用-插件篇
 Tools/Vivado中常用的快捷键
 Tools/WORD快捷键
 Tools/dec to hex 十进制转十六进制
