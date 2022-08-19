@@ -77,3 +77,14 @@ set number
 set ignorecase smartcase
 "自动识别文件编码，解决中文乱码
 set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936
+"括号自动补全
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap { {}<Esc>i
+inoremap " ""<Esc>i
+"逗号的映射
+"有了上面括号补全的映射，那在扩好了编辑完后需要跳出括号，应该输入<Esc>, l, a，但我们可以将这个功能映射为，，来实现，首先在编码时连续的两个逗号不会出现（目前我没有遇到），其次，平时输入逗号时，后面都会有一个紧跟的空格。所以对普通的输入不会造成影响。
+imap ,, <Esc>la
+"按TAB产生4个空格
+set ts=4  "(注：ts是tabstop的缩写，设TAB宽4个空格)
+set expandtab
