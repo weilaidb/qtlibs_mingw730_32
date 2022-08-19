@@ -54,3 +54,10 @@ let g:NERDTreeNodeDelimiter="\u00a0"
 " 按F3即可显示或隐藏NerdTree区域了。
 map <F3> :NERDTreeMirror<CR>
 map <F3> :NERDTreeToggle<CR>
+
+
+
+
+
+"================默认配置 
+set number

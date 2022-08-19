@@ -3,3 +3,16 @@
 
 解决办法：
 在~/.vimrc中增加阴影部分内容
+
+
+2.securecrt无颜色 
+解决办法：
+Session Options
+Terminal
+Appearance
+Current Color scheme
+自定义
+backgroud color
+R:  204  G: 232 B: 207
+foreground color
+黑色

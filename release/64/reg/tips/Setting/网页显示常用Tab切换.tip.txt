@@ -23,3 +23,4 @@ CXX/INCLUDE/常用头文件 header3;CXX/INCLUDE/常用头文件 header3
 脚本/VBS/SecureCrt/每行保存日志;脚本/VBS/SecureCrt/每行保存日志
 Tools/Vim .Vimrc 插件NerdTree;Tools/Vim .Vimrc 插件NerdTree
 Tools/Vim .Vimrc 插件/NerdTree;Tools/Vim .Vimrc 插件/NerdTree
+Tools/Vim .Vimrc 插件安装常见问题;Tools/Vim .Vimrc 插件安装常见问题
