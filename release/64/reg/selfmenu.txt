@@ -2179,7 +2179,9 @@ Tools/VSCode/模板/头文件#ifndef #define #endif
 Tools/VSCode快捷键
 Tools/VSCode快捷键2
 Tools/Vim .Vimrc
-Tools/Vim .Vimrc 插件NerdTree
+Tools/Vim .Vimrc 插件/NerdTree
+Tools/Vim .Vimrc 插件/Vim插件之属性目录NERDTree
+Tools/Vim .Vimrc 插件安装常见问题
 Tools/Vim .Vimrc 插件安装说明
 Tools/Vim .Vimrc 插件安装说明 vim-plug
 Tools/Vim 7款优秀Vim插件帮你打造完美IDE

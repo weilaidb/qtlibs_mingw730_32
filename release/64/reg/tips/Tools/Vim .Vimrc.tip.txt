@@ -45,3 +45,12 @@ Plugin 'Lokaltog/vim-powerline'
 call vundle#end()
 "开启文件类型自动检测，编写代码时自动换行对齐"
 filetype plugin indent on
+
+
+" ===============================设置NerdTree
+"NerdTree文件前有^G字符的解决办法"
+let g:NERDTreeNodeDelimiter="\u00a0"
+" 设置NerdTree
+" 按F3即可显示或隐藏NerdTree区域了。
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>

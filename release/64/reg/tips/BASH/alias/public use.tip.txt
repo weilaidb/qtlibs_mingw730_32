@@ -34,7 +34,9 @@ alias tophelp="top -h "
 alias vimhelp="vim --help "
 
 alias vimgreppython="vim --version|grep python "
+alias vim.="vim . "
 
+alias vim..="vim.. "
 
 alias sr="sourcerootbash"
 alias sourcerootbash="source ~/.bashrc"

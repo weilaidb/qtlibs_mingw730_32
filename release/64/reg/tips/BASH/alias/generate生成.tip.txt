@@ -14,7 +14,8 @@ slabtophelp;slabtop -h
 tophelp;top -h
 vimhelp;vim --help
 vimgreppython;vim --version|grep python
-
+vim.;vim .
+vim..;vim..
 
 
 
