@@ -2184,11 +2184,15 @@ Tools/Vim .Vimrc 插件/Vim插件之属性目录NERDTree
 Tools/Vim .Vimrc 插件安装常见问题
 Tools/Vim .Vimrc 插件安装说明
 Tools/Vim .Vimrc 插件安装说明 vim-plug
+Tools/Vim .Vimrc.bak
+Tools/Vim .Vimrc2
 Tools/Vim 7款优秀Vim插件帮你打造完美IDE
+Tools/Vim Map Key映射快捷键
 Tools/Vim PlugInstall
 Tools/Vim vim 插件管理器 Vundle 安装与配置
 Tools/Vim 实用插件推荐（2017）
 Tools/Vim 神级编辑器 Vim 使用-插件篇
+Tools/Vim/know/vim 多行行首插入
 Tools/Vivado中常用的快捷键
 Tools/WORD快捷键
 Tools/dec to hex 十进制转十六进制
