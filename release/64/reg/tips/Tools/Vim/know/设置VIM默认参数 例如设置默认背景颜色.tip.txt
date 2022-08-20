@@ -1,0 +1,64 @@
+设置VIM默认参数 例如设置默认背景颜色
+Posted on 2016-11-17 16:47  Kir  阅读(16262)  评论(0)  编辑  收藏  举报
+因个人喜好问题，本人使用vim的时候喜欢将背景颜色设为dark。
+
+但是每次打开一个vim的时候都要重新设置一次，感觉非常麻烦。
+
+总要输入[Esc] :set bg=dark很不方便
+
+粗暴的办法是直接进入/etc/文件夹修改配置文件，方法如下，但是不推荐使用这种方法，
+
+因为/etc/文件夹下的文件需要root权限才能修改，而且一旦修改错了整个系统容易出现问题
+
+方法一：
+
+CentOS为例，其配置文件路径为 /etc/vimrc (/etc/vim/vimrc不同版本，可能不一样)
+
+首先获得root权限
+
+su
+
+输入root密码
+
+然后打开文件
+
+vi /etc/vimrc
+
+查找文件中是否已经有 set bg 的设置
+
+/bg
+
+发现并没有，默认情况背景设置为light
+
+添加背景设置命令（记得添加注释）：
+
+set bg=dark 　　　　" set background color as dark. It can also be changed as light
+
+退出编辑
+
+:wq
+
+ 
+
+方法二：
+
+在当前用户的主目录下创建vim的环境设置文件，将需要设置的参数写入
+
+[holmes@KirCentOS ~]$ vi  ~/.vimrc
+
+set nohlsearch 　　　　　　  " 非高亮度反白
+set autoindent 　　　　  　　" 自动缩排
+set ruler 　　　　　　　　　  " 可显示最后一行的状态
+set showmode 　　     　　  " 左下角哪一行的状态
+set nu 　　　　　　　　　　  " 可以在每一行最前面显示行号
+set bg=dark 　　　　　　     " 背景设置为黑色
+syntax on 　　　　　　　　  " 进行语法检验，颜色显示
+
+#中文语言支持设置参数：
+
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936 
+set termencoding=utf-8　　
+set encoding=utf-8
+
+分类: Linux, vi/vim
+标签: vi

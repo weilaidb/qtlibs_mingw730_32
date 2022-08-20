@@ -1,3 +1,46 @@
+"================keymap 按键映射
+" 按F3即可显示或隐藏NerdTree区域了。
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>
+"设置shift+w切换标签页
+map <S-W> gt
+
+map <C-/> 0i//
+
+map <C-Q> <ESC>0xx
+
+map <C-D> <ESC>yyp
+
+map <C-L> <ESC>dd
+
+map <C-CR> <ESC>o<CR><ESC>
+
+map <C-7> <ESC>o<CR><CR><CR><ESC>
+
+map <C-8> <ESC>O/**<CR>**<CR>**/<ESC>
+
+map <F8> <S-*>
+
+
+"map <C-Up> ddkP
+noremap <C-Up> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
+
+noremap <C-Down> ddp
+"窗口之间跳转
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+
+
+
+
+
+
+
+
+
 "===设置Vundle核心插件==="
 
 filetype off
@@ -39,41 +82,10 @@ filetype plugin indent on
 
 
 
-
-
 " ===============================设置NerdTree
 "NerdTree文件前有^G字符的解决办法"
 let g:NERDTreeNodeDelimiter="\u00a0"
 " 设置NerdTree
-" 按F3即可显示或隐藏NerdTree区域了。
-map <F3> :NERDTreeMirror<CR>
-map <F3> :NERDTreeToggle<CR>
-"设置shift+w切换标签页
-map <S-W> gt
-
-map <C-/> 0i//
-
-map <C-Q> <ESC>0xx
-
-map <C-D> <ESC>yyp
-
-map <C-L> <ESC>dd
-
-map <C-CR> <ESC>o<ESC>
-
-map <C-7> <ESC>o<CR><CR><CR><ESC>
-
-map <C-8> <ESC>O/**<CR>**<CR>**/<ESC>
-
-map <F8> <S-*>
-
-
-map <C-Up> ddkP
-
-
-map <C-Down> ddjP
-
-
 
 "autocmd vimenter * NERDTree  "自动开启Nerdtree
 "let g:NERDTreeWinSize = 45"设定 NERDTree 视窗大小
@@ -95,14 +107,41 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
 
+" ============================ theme and status line ============================
+
+" theme
+set background=dark
+colorscheme desert
+
+" set mark column color
+hi! link SignColumn   LineNr
+hi! link ShowMarksHLl DiffAdd
+hi! link ShowMarksHLu DiffChange
+
+" status line
+set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+set laststatus=2   " Always show the status line - use 2 lines for the status bar
+
+
+
+
 
 "================默认配置 
 "显示行号
 set number
 "忽略大小写
 set ignorecase smartcase
-"自动识别文件编码，解决中文乱码
-set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936
+
+"中文语言支持设置参数：自动识别文件编码，解决中文乱码
+set termencoding=utf-8　　
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+
+
+set termencoding=utf-8
+set ffs=unix,dos,mac
+set formatoptions+=m
+set formatoptions+=B
 "括号自动补全
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
@@ -116,3 +155,22 @@ set ts=4  "(注：ts是tabstop的缩写，设TAB宽4个空格)
 set expandtab
 "Vim backspace键只能删除到行首，无法跳到上一行继续删除
 set backspace=2
+" 显示光标位置
+set cursorcolumn
+set cursorline
+
+
+" 非高亮度反白
+set nohlsearch
+" 自动缩排
+set autoindent
+" 可显示最后一行的状态
+set ruler
+" 左下角哪一行的状态
+set showmode
+" 可以在每一行最前面显示行号
+set nu
+" 背景设置为黑色
+set bg=dark
+" 进行语法检验，颜色显示
+syntax on

@@ -1,0 +1,361 @@
+关于vi：在Vim中上下移动整个行
+ 2019-09-24 
+vivim
+Move entire line up and down in Vim
+在Notepad ++中，我可以使用Ctrl + Shift + Up / Down上下移动当前行。 在Vim中有与此类似的命令吗？ 我浏览了无休止的指南，但一无所获。
+
+如果没有，我如何将操作绑定到该组合键？
+
+编辑：Mykola的答案适用于所有行，除了缓冲区开头和结尾处的行。 向上移动第一行或向下移动最底行会删除该行，而向上移动最底行会在最初跳两个空格，就像典当一样！ 谁能提供任何改进？
+
+ 相关讨论
+我别无选择，只能实施脚本解决方案。 我希望它是干净的并且可以满足您的需求。
+对于未来的孩子：vim.wikia.com/wiki/Moving_lines_up_or_down
+我不确定为什么需要脚本，因此Wikia文章示例可以正常工作。 Ive在简化版下面发布，因为具有3种不同映射模式的Wikias示例可能相当艰巨(并且不是真正必要。如果仅使用块选择映射，则只需记住块选择(Shift V)并使用这些快捷方式即可。 (请参见下面的答案)。
+关于该主题的屏幕录像：vimcasts.org/e/26
+也在vi SE上
+如果我想与上面的一行交换一行，我通常会执行以下操作
+
+1
+ddkP
+说明
+
+dd将删除该行并将其添加到默认寄存器。
+k将向上移动一条线(j将向下移动一条线)
+P将粘贴在当前行上方
+ 相关讨论
+而且它始终可用。 :-)
+和ddp向下移动一行(删除行并粘贴到当前行下方)
+要移动多行，例如说4，4 dd，然后移动到例如2行，然后是:2，然后粘贴到P。
+@Guru应该是4dd而不是4 dd吗？
+@Guru是的，为什么要空格？
+@ Leng，@ Patrick，我的意思是说按4和dd。那里没有空间。
+同意@BrianSilberbauer，简单易记。
+ddp是上乘的。较短，只需要用户先移至右行。嘿，您可以使用kddp进行操作，而不必按Shift键，仍然可以避免麻烦！
+和ddjp向下移动当前行 +1行。和ddkp向上移动当前行行。
+这是亨利·福特快马的经典案例
+对我来说足够了，只需移动k或j，而无需在.vimrc文件上进行设置
+它说"不是编辑器命令：ddp"
+假设光标在您要移动的线上。
+
+上下移动：
+:m移动
+
+:m +1-下移1行
+
+:m -2-向上移动1行
+
+(请注意，您可以根据需要向上或向下移动几行来用任何数字替换+1，即+2可以将其向下移动2行，-3可以将其向上移动2行)
+
+移至特定行
+
+:set number-显示数字行(易于查看将其移动到的位置)
+
+:m 3-将行移动到第三行之后(将3替换为您想要的任何行)
+
+移动多行：
+
+V(即Shift-V)并上下移动路线，以在VIM中选择多行
+
+选择后，点击：并运行上面的命令，m +1等
+
+ 相关讨论
+对我来说：m -2只向上移动一行。
+我把这种方法放在我的vimrc中，但是后来我无法使用..重复命令。有人知道为什么吗？
+非常好！不如Notepad ++中的解决方案舒适，但仍然-真实且可行。
+Hermann，对不起，我的错别字/错误，您是对的，：m -2会将它向上移动一行。我改了也很抱歉回复很晚(不确定.vimrc部分)
+使用命令进行移动是可行的，如果您想将其用于绑定(如OP要求的Notepad ++中的绑定)，则需要在.vimrc中输入以下内容：noremap :m -2 noremap :m +1
+当我尝试此操作时，我在命令开始时以:<,>结尾，然后事情没有按预期进行(即使我确实删除了这些部分)。
+@AlistairMacDonald获取:<,>，它必须表示您正在可视模式下选择行。尝试使用此答案中提到的技术移动时，请确保您处于命令模式。
+
+将以下内容添加到您的.vimrc中以完成工作
+
+1
+2
+noremap <c-s-up> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
+noremap <c-s-down> ddp
+该行的消失看起来像是Vim错误。我放了一个hack来避免它。可能有一些更准确的解决方案。
+
+更新
+
+仅使用Vim组合存在许多无法解释的困难。这些是缺少行和多余的行跳跃。
+
+因此，这里是脚本解决方案，可以放在.vimrc或?/ .vim / plugin / swap_lines.vim内
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+function! s:swap_lines(n1, n2)
+    let line1 = getline(a:n1)
+    let line2 = getline(a:n2)
+    call setline(a:n1, line2)
+    call setline(a:n2, line1)
+endfunction
+
+function! s:swap_up()
+    let n = line('.')
+    if n == 1
+        return
+    endif
+
+    call s:swap_lines(n, n - 1)
+    exec n - 1
+endfunction
+
+function! s:swap_down()
+    let n = line('.')
+    if n == line('$')
+        return
+    endif
+
+    call s:swap_lines(n, n + 1)
+    exec n + 1
+endfunction
+
+noremap <silent> <c-s-up> :call <SID>swap_up()<CR>
+noremap <silent> <c-s-down> :call <SID>swap_down()<CR>
+ 相关讨论
+谢谢-几乎是正确的，但是在最后一行移动时存在问题-不适当地详细说明问题。
+我还在玩。请耐心等待。
+必须更改为和，因为我的设置似乎存在冲突，但是答案很不错！非常感谢
+当您能够进行自定义时，同时看到"标准"方式和更好的方式实际上很高兴。感谢您的两个答案！
+谢谢，非常适合git rebase --interactive。必须绑定到和。 c-s-up / down无效。
+如果有人想要其他快捷方式：c用于控制，A用于替代，我使用就像在eclipse中使用的那样。
+消失的行不是Vim错误！而是由于在文档的最后一行执行ddkP。在3行文件中自己尝试。为避免此类问题，请使用Vim Wiki上给出的更简单的:m映射。
+我将最后几行更改为和，但是当我尝试在tmux中以可视方式在vim中运行这些键时，选择消失，光标向上移动；而不移动选定的行。
+必须使用才能工作
+向上移动一行：ddkP
+
+向下移动一行：ddp
+
+ 相关讨论
+在vimrc中使用此命令不允许使用重复命令。
+@HermannIngjaldsson，我想如果您希望能够使用.进行重复操作，则可以将命令包装在函数中。
+是的..，如果您需要移动更多行，可以使用V而不是dd。
+这为我工作：
+
+http://vim.wikia.com/wiki/Moving_lines_up_or_down_in_a_file
+
+顺便说一句，如果您想使用ALT + some_key并且您的终端(urxvt这样做)拒绝遵守，则应在.vimrc中输入以下内容：
+
+1
+2
+3
+4
+5
+6
+7
+" For moving lines (^] is a special character; use <M-k> and <M-j> if it works)
+nnoremap ^]k mz:m-2<CR>`z==
+inoremap ^]j <Esc>:m+<CR>==gi
+inoremap ^]k <Esc>:m-2<CR>==gi
+vnoremap ^]j :m'>+<CR>gv=`<my`>mzgv`yo`z
+nnoremap ^]j mz:m+<CR>`z==
+vnoremap ^]k :m'<-2<CR>gv=`>my`<mzgv`yo`z
+其中^]是代表ALT键的单个字符。
+要输入该字符，请在Vim中使用C + v，Esc(在Windows上为C + q，Esc)。
+
+ 相关讨论
+很好，使用Vims内置命令移动一条线。面对撤消或错误时，它更有可能表现良好。
+为什么不以C-v Esc(linux)输入Esc。 Windows全面将C-v 替换为C-q ，但是具有在插入/命令模式下输入任何特殊键的相同方法
+@sehe：谢谢，当时我还不知道。香港专业教育学院更新了答案。
+我是Vim的新手，我知道您的答案是一段时间以前的，但是如果您不介意的话，我还有几个问题：1. nnoremap，inoremap和vnoremap有什么区别？我以为只能将map用于一般用途？ 2. 是什么？ 3.我想映射option + up向上移动一条线，而option + down向下移动一条线，您能帮我吗？
+@RafaelRinaldi，[niv]noremap是常规|插入|可视模式的重映射。 是Carriage Return(Enter键)。
+@sehe，和^]之间有区别吗？
+@vp_arth没有了
+请注意，Escape是^ [，而不是^]-我提交了对其进行修复的修改，但有些注释仍引用^]。 (如果不确定，可以通过键入cat来检查特殊键输出哪些转义符。)
+将以下内容添加到?/ .vimrc文件中(确保您没有n，m的映射)
+
+1
+2
+nmap n :m +1<CR>
+nmap m :m -2<CR>
+现在按n键将向下移动一行，而m将向上移动一行。
+
+
+在命令模式下，将光标定位在要向下移动的行上，然后
+
+1
+ddp
+说明：
+dd删除当前行到常规缓冲区
+p将其放到光标位置之后，或者在整行的情况下在其后一行。
+
+在许多文档中，关于命令p和P都有一些混淆。
+实际上，p粘贴AFTER光标和P AT光标。
+
+只需将此代码添加到.vimrc(或.gvimrc)
+
+1
+2
+3
+4
+5
+6
+nnoremap <A-j> :m+<CR>==
+nnoremap <A-k> :m-2<CR>==
+inoremap <A-j> <Esc>:m+<CR>==gi
+inoremap <A-k> <Esc>:m-2<CR>==gi
+vnoremap <A-j> :m'>+<CR>gv=gv
+vnoremap <A-k> :m-2<CR>gv=gv
+ 相关讨论
+按照vim.wikia.com/wiki/的说明进行全面了解。
+在Mac上，不起作用，我不知道为什么。 Ive替换为 ，并且使用Ctrl键效果很好。
+一个简单的解决方案是在您的.vimrc中放入以下行：
+
+1
+2
+nmap <C-UP> :m-2<CR>  
+nmap <C-DOWN> :m+1<CR>
+正是您在这个很棒的插件中寻找的东西：https://github.com/vim-scripts/upAndDown
+
+ 相关讨论
+它支持多行，这也很好。
+键代表什么？
+我将以下内容放在.vimrc文件的末尾：
+
+1
+2
+noremap H ddkkp
+noremap N ddp
+因此，现在" H"和" N"分别将当前行向上和向下移动。
+
+ 相关讨论
+H和N实际上是有用的命令(H将光标移至屏幕的顶部和开头，N移动至上一个搜索结果)，因此，Id建议使用其他键
+我懂了。我也重新配置了它们。要转到屏幕顶部，请按a，然后再向上。在我的书中，"永远"意味着一路走来。要搜索以前的结果，请按f，然后按向左。 F然后代表find。但是对于那些没有那样的人，那么是的。
+
+当您在vim中命中命令:help move时，结果如下：
+
+:[range]m[ove] {address} *:m* *:mo* *:move* *E134*
+Move the lines given by [range] to below the line
+given by {address}.
+
+例如：将当前行向下移动一行=> :m+1。
+
+例如：将编号100的行移到编号80 => :100 m 80的行下方。
+
+例如：将编号100的行移到编号200 => :100 m 200的行下方。
+
+例如：将编号为200的行移到[100，120]以内的行=> :100,120 m 200。
+
+对我来说，ddkkp做到了这一点(而不是使用大写字母P的ddkP，它也可以工作)。
+
+这是MacVim的简化版本，使用Wikia文章示例(请参见gun的评论中的链接)。
+
+1
+2
+3
+" Move selection up/down (add =gv to reindent after move)
+:vmap <D-S-Up> :m-2<CR>gv
+:vmap <D-S-Down> :m'>+<CR>gv
+我仅使用块选择变量，因为仅需Shift-V选择当前行，并可选地向上/向下光标选择更多行。
+
+根据上面的快捷方式，按Cmd-Shift-Up / Down将向上/向下移动块选择。" D"是MacVim中的Command键，对于Windows，请尝试" C"(Control)或" A"(Alt)(例如，为Control Alt f)。
+
+Wikia文章在其中添加了" = gv"，其作用是根据周围的文本来调整移动后块的缩进。这很令人困惑，因此我将其删除，并添加了用于快速缩进所选内容的快捷方式。
+
+1
+2
+3
+" Indent selection left/right (Cmd Shift Left/Right is used for Tab switching)
+:vmap <D-A-Left> <gv
+:vmap <D-A-Right> >gv
+请注意，使用<<和>>也可以进行相同的操作，但是选择会丢失，因此上述这些快捷方式允许多次缩进，并且由于保留了选择，因此仍然可以移动该块。
+
+我的MacVim配置为使用Cmd-Shift-左/右切换选项卡，因此我使用Cmd-Alt-左/右。
+
+这是MacVim的Tab切换(将.gvimrc和上面的其余内容一起放入)：
+
+1
+2
+:macm Window.Select\ Previous\ Tab key=<D-S-Left>
+:macm Window.Select\ Next\ Tab key=<D-S-Right>
+如果只移动一行，则：m。+ 1或：m.-2可以。这是我的多行脚本。在可视模式下，向上/向下移动将包含视觉选择的行向上/向下移动一行。在插入模式或普通模式下，如果未指定计数前缀，则按Alt-up / Alt-down将移动当前行。如果有计数前缀，Alt-up / Alt-down会将从当前行开始的许多行向上/向下移动一行。
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+function! MoveLines(offset) range
+    let l:col = virtcol('.')
+    let l:offset = str2nr(a:offset)
+    exe 'silent! :' . a:firstline . ',' . a:lastline . 'm'
+        \ . (l:offset > 0 ? a:lastline + l:offset : a:firstline + l:offset)
+    exe 'normal ' . l:col . '|'
+endf
+
+imap <silent> <M-up> <C-O>:call MoveLines('-2')<CR>
+imap <silent> <M-down> <C-O>:call MoveLines('+1')<CR>
+nmap <silent> <M-up> :call MoveLines('-2')<CR>
+nmap <silent> <M-down> :call MoveLines('+1')<CR>
+vmap <silent> <M-up> :call MoveLines('-2')<CR>gv
+vmap <silent> <M-down> :call MoveLines('+1')<CR>gv
+如果要在与特定搜索匹配的多行上执行此操作：
+
+上：:g/Your query/ normal ddp或:g/Your query/ m -1
+向下:g/Your query/ normal ddp或:g/Your query/ m +1
+这是适用于我的机器的解决方案
+：运行VIM 8.1的MacBook Pro
+
+这些命令不会删除缓冲区顶部或底部的行。
+
+使用Alt-J和Alt-K输出的实际符号可以解决它们的键码在我的环境中无法正确映射的问题。
+
+将此文件放入旧的.vimrc文件中，看看是否适合您。
+
+1
+2
+3
+4
+5
+6
+7
+8
+" Maps Alt-J and Alt-K to macros for moving lines up and down
+" Works for modes: Normal, Insert and Visual
+nnoremap ? :m .+1<CR>==
+nnoremap ? :m .-2<CR>==
+inoremap ? <Esc>:m .+1<CR>==gi
+inoremap ? <Esc>:m .-2<CR>==gi
+vnoremap ? :m '>+1<CR>gv=gv
+vnoremap ? :m '<-2<CR>gv=gv
+vim插件unimpaired.vim [e和] e
+
+ 相关讨论
+这似乎有些矫kill过正，我不认为您真的需要一个完整的插件。 vimrc中的2行完全符合OP的要求
