@@ -1,13 +1,27 @@
 "================keymap 按键映射
+"<Leader>
+let mapleader = ","
+
+
+"普通模式下按 F2 快速打开(或关闭)显示行号。
+nnoremap <F2> :set nu! nu?<CR>
+
 " 按F3即可显示或隐藏NerdTree区域了。
 map <F3> :NERDTreeMirror<CR>
 map <F3> :NERDTreeToggle<CR>
+" 按F5重新加载.vimrc
+map <F5> :source $MYVIMRC<CR>
+"选中文字高亮与取消高亮，前提是安装Plugin 'lfv89/vim-interestingwords'
+map <F8> <Leader>k
+map <F9> <Leader>K
+
+
 "设置shift+w切换标签页
 map <S-W> gt
 
-map <C-/> 0i//
+map <C-k/> 0i//
 
-map <C-Q> <ESC>0xx
+map <C-Q> xx
 
 map <C-D> <ESC>yyp
 
@@ -15,18 +29,16 @@ map <C-L> <ESC>dd
 
 map <C-CR> <ESC>o<CR><ESC>
 
-map <C-7> <ESC>o<CR><CR><CR><ESC>
+map <C-k7> <ESC>o<CR><CR><CR><ESC>
 
-map <C-8> <ESC>O/**<CR>**<CR>**/<ESC>
-
-map <F8> <S-*>
+map <C-k8> <ESC>O/**<CR>**<CR>**/<ESC>
 
 
-"map <C-Up> ddkP
+"上移一行
 noremap <C-Up> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
-
+"下移一行
 noremap <C-Down> ddp
-"窗口之间跳转
+"快速跳转window窗口
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -73,6 +85,8 @@ Plugin 'Lokaltog/vim-powerline'
 "===============美化插件
 "Plugin 'ryanoasis/vim-devicons'
 
+"高亮单词
+Plugin 'lfv89/vim-interestingwords'
 
 
 call vundle#end()
