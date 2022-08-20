@@ -1,4 +1,19 @@
 " 设置NerdTree
-<F3>;NERDTreeMirror
-<F3>;NERDTreeToggle
-C-w;gt
+<F3>;:NERDTreeMirror<CR>
+<F3>;:NERDTreeToggle<CR>
+"设置shift+w切换标签页,与ctrl+切换窗口冲突
+<S-W>;gt
+
+"类source insight快捷键定义
+<C-/>;<ESC>0i//
+<C-Q>;<ESC>0xx
+<C-D>;<ESC>yyp
+<C-L>;<ESC>dd
+<C-CR>;<ESC>o<ESC>
+<C-7>;<ESC>o<CR><CR><CR><ESC>
+<C-8>;<ESC>O/**<CR>**<CR>**/<ESC>
+<F8>;<S-*>
+"上移一行
+<C-Up>;ddkP
+"下移一行
+<C-Down>;ddjP

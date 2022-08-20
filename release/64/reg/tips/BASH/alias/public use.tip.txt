@@ -37,6 +37,7 @@ alias vimgreppython="vim --version|grep python "
 alias vim.="vim . "
 
 alias vim..="vim.. "
+alias catvimrc="cat ~/.vimrc "
 
 alias sr="sourcerootbash"
 alias sourcerootbash="source ~/.bashrc"

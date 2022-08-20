@@ -1,3 +1,11 @@
+vimhelp;vim --help
+vimgreppython;vim --version|grep python
+vim.;vim .
+vim..;vim..
+catvimrc;cat ~/.vimrc
+
+
+
 dmesgdT;dmesg -dT
 dmesgT; dmesg -T
 dmesgd;dmesg -d
@@ -12,11 +20,6 @@ catprocmeminfo;cat /proc/meminfo
 unamea;uname -a
 slabtophelp;slabtop -h
 tophelp;top -h
-vimhelp;vim --help
-vimgreppython;vim --version|grep python
-vim.;vim .
-vim..;vim..
-
 
 
 dush;du -sh

@@ -48,6 +48,32 @@ let g:NERDTreeNodeDelimiter="\u00a0"
 " 按F3即可显示或隐藏NerdTree区域了。
 map <F3> :NERDTreeMirror<CR>
 map <F3> :NERDTreeToggle<CR>
+"设置shift+w切换标签页
+map <S-W> gt
+
+map <C-/> 0i//
+
+map <C-Q> <ESC>0xx
+
+map <C-D> <ESC>yyp
+
+map <C-L> <ESC>dd
+
+map <C-CR> <ESC>o<ESC>
+
+map <C-7> <ESC>o<CR><CR><CR><ESC>
+
+map <C-8> <ESC>O/**<CR>**<CR>**/<ESC>
+
+map <F8> <S-*>
+
+
+map <C-Up> ddkP
+
+
+map <C-Down> ddjP
+
+
 
 "autocmd vimenter * NERDTree  "自动开启Nerdtree
 "let g:NERDTreeWinSize = 45"设定 NERDTree 视窗大小
