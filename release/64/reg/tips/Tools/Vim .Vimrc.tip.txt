@@ -88,3 +88,5 @@ imap ,, <Esc>la
 "按TAB产生4个空格
 set ts=4  "(注：ts是tabstop的缩写，设TAB宽4个空格)
 set expandtab
+"Vim backspace键只能删除到行首，无法跳到上一行继续删除
+set backspace=2

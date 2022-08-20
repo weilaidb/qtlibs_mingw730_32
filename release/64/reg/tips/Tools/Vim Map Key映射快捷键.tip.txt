@@ -1,3 +1,4 @@
 " 设置NerdTree
 <F3>;NERDTreeMirror
 <F3>;NERDTreeToggle
+C-w;gt

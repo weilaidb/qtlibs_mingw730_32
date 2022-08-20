@@ -2188,6 +2188,7 @@ Tools/Vim .Vimrc.bak
 Tools/Vim .Vimrc2
 Tools/Vim 7款优秀Vim插件帮你打造完美IDE
 Tools/Vim Map Key映射快捷键
+Tools/Vim Map Key映射快捷键 inoremap命令
 Tools/Vim PlugInstall
 Tools/Vim vim 插件管理器 Vundle 安装与配置
 Tools/Vim 实用插件推荐（2017）
