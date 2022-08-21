@@ -22,8 +22,8 @@ map <S-W> gt
 map <C-k/> 0i//
 
 map <C-Q> xx
-
-map <C-D> <ESC>yyp
+"复制一行
+"map <C-D> <ESC>yyp
 
 map <C-L> <ESC>dd
 
