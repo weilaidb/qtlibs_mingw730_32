@@ -24,3 +24,5 @@ CXX/INCLUDE/常用头文件 header3;CXX/INCLUDE/常用头文件 header3
 Tools/Vim .Vimrc 插件NerdTree;Tools/Vim .Vimrc 插件NerdTree
 Tools/Vim .Vimrc 插件/NerdTree;Tools/Vim .Vimrc 插件/NerdTree
 Tools/Vim .Vimrc 插件安装常见问题;Tools/Vim .Vimrc 插件安装常见问题
+Tools/Vim .Vimrc;Tools/Vim .Vimrc
+BASH/alias/bashrc 加载配置 qtlibs_mingw730_32;BASH/alias/bashrc 加载配置 qtlibs_mingw730_32

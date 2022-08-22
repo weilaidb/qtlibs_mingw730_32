@@ -1,0 +1,128 @@
+git中子模块/子仓库的使用
+
+罗伯特祥
+
+已于 2022-05-09 09:48:37 修改
+
+748
+ 收藏 3
+分类专栏： # ▶ Git 文章标签： git 子模块 子库
+版权
+
+▶ Git
+专栏收录该内容
+12 篇文章2 订阅
+订阅专栏
+文章目录
+0. 常用git指令
+1. git 创建submodule
+2. 拉取submodule
+3. submodule的更新
+4. 删除 submodule
+0. 常用git指令
+# 拉取项目
+git clone [地址]    
+
+# 查看远仓分支
+git branch -r 
+
+# 切换分支
+git checkout [分支名称]         
+
+# 查看状态
+git status
+
+# 提交代码
+git commit -m "delete submodule xxxxx"
+
+# push代码到云端
+git push origin master
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+1. git 创建submodule
+git submodule add  [子模块地址]
+
+git commit -m "add submodule xxx"
+1
+2
+3
+此时，.git文件下将会多出一些描述信息。
+
+2. 拉取submodule
+git submodule init
+git submodule update
+
+# 或者
+git submodule update --init --recursive 
+1
+2
+3
+4
+5
+如果直接拉取主库，子库的文件夹下将会为空，如果想在拉取主库的同时也拉取子库，则可在clone时添加参数标签--recurse-submodules：
+
+git clone [主库地址] --recurse-submodules
+1
+3. submodule的更新
+子库相对于主库是独立的，因此可单独执行更新操作，如下：
+
+cd submodule_folder
+git pull origin master
+1
+2
+如果子库太多，一个一个操作太费人，则可用：
+
+git submodule foreach 'git pull origin master'
+1
+将所有子库切换至某一指定分支
+
+git submodule foreach 'git checkout xxxxxxx'
+1
+4. 删除 submodule
+# 卸载子模块
+git submodule deinit [submodule_folder]
+# 如果想移除子库的本地修改,可使用--force标签
+git submodule deinit [submodule_folder] --force
+
+
+# 删除文件夹
+git rm [submodule_folder]
+
+# 提交代码
+git commit -m "delete submodule xxxxx"
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+参考文献：
+
+https://www.cnblogs.com/fuyuanling/p/11081208.html
+https://www.cnblogs.com/lizhanzhe/p/10837843.html
+https://blog.51cto.com/diveinedu/1610719
+https://zhuanlan.zhihu.com/p/87053283
+https://blog.justwe.site/post/git-submodule/
+————————————————
+版权声明：本文为CSDN博主「罗伯特祥」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_43455581/article/details/120174578

@@ -1,3 +1,5 @@
+gitpushsetupstream;git push --set-upstream origin 
+
 vimhelp;vim --help
 vimgreppython;vim --version|grep python
 vim.;vim .
