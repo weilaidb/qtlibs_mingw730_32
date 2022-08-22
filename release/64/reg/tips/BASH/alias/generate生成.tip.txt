@@ -3,7 +3,7 @@ vimgreppython;vim --version|grep python
 vim.;vim .
 vim..;vim..
 catvimrc;cat ~/.vimrc
-
+tarvimrc;tar -cvzf ~/vim.tar.gz ~/.vimrc ~/.vim
 
 
 dmesgdT;dmesg -dT

@@ -38,6 +38,7 @@ alias vim.="vim . "
 
 alias vim..="vim.. "
 alias catvimrc="cat ~/.vimrc "
+alias tarvimrc="tar -cvzf ~/vim.tar.gz ~/.vimrc ~/.vim "
 
 alias sr="sourcerootbash"
 alias sourcerootbash="source ~/.bashrc"

@@ -88,6 +88,8 @@ Plugin 'Lokaltog/vim-powerline'
 "高亮单词
 Plugin 'lfv89/vim-interestingwords'
 
+"安装CtrlP插件，文件模糊搜索
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 "开启文件类型自动检测，编写代码时自动换行对齐"
