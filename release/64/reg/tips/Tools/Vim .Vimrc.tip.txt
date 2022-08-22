@@ -20,8 +20,8 @@ map <F9> <Leader>K
 map <S-W> gt
 
 map <C-k/> 0i//
-
-map <C-Q> xx
+"关闭窗口
+map <S-Q> :q<CR>
 "复制一行
 "map <C-D> <ESC>yyp
 
