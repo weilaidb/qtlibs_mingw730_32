@@ -2193,6 +2193,10 @@ Tools/Vim PlugInstall
 Tools/Vim vim 插件管理器 Vundle 安装与配置
 Tools/Vim 实用插件推荐（2017）
 Tools/Vim 神级编辑器 Vim 使用-插件篇
+Tools/Vim/know/Vim 插件 ctrlp-funky 可以模糊搜索文件内容的方法名
+Tools/Vim/know/Vim 插件 ctrlp.vim 模糊搜索文件
+Tools/Vim/know/cscope跳转不好使
+Tools/Vim/know/tag not found
 Tools/Vim/know/vim 多行行首插入
 Tools/Vim/know/使用 Vim 将文本中的多列对齐
 Tools/Vim/know/列模式

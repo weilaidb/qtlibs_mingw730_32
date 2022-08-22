@@ -1,0 +1,47 @@
+http://cscope.sourceforge.net/cscope_maps.vim
+
+1.生成索引
+2.键盘映射，参考上面链接
+
+vim写代码查函数定义及引用
+
+黑色之光_duan
+
+于 2020-06-13 11:18:31 发布
+
+2753
+ 收藏 6
+文章标签： vim
+版权
+喜欢用vim编辑代码的同学，常遇到这两个问题：
+
+①这个函数在什么地方定义的？
+
+②这个函数在什么地方引用（调用）过？
+
+1.安装cscope和ctags
+我使用的是Debian系统，按照下面方式安装。其他系统请百度。
+
+apt-get install cscope
+apt-get install exuberant-ctags
+2.建立索引
+find `pwd` -name  '*.[chS]' -print > cscope.file && cscope -Rbkq
+ctags -R
+在当前目录下会生成几个索引文件：tags, cscope.file, cscope.in.out, cscope.out, cscope.po.out，好奇的同学可以打开看看。
+
+建立索引后，这几个索引文件只会在执行命令的目录中保存，不会像.svn一样深入各个子目录的角落中。注意，索引是按照当前工程目录结构关系进行建立的，如果源文件有变动，cscope只能傻傻的跳到之前认为的地方。所以如果代码变化了，索引也需要更新。更新索引，就删除这几个文件，然后再执行上面的命令。
+
+3.跳转到定义
+例如代码中有func(para1);使用vim将光标移动到符号func处，按ctrl+]，可跳转到函数func定义的地方。同理，有宏、结构体、变量。如未跳转，可按F7更新索引。如果定义有多处，会列出列表，输入1、2、3...让你选。
+
+4.查找函数引用
+[ ! -d ~/.vim/plugin ] && mkdir -p ~/.vim/plugin
+下载http://cscope.sourceforge.net/cscope_maps.vim文件，保存到~/.vim/plugin/cscope_maps.vim
+
+例如代码中有func(para1);使用vim将光标移动到符号func处，按ctrl+\，再按s，可展示所有引用func的地方。如果引用有多处，会列出列表，输入1、2、3...让你选。
+
+5.返回
+使用ctrl+]或ctrl+\方式跳转后，想要返回跳转前的位置，可使用ctrl+t，即可返回。
+————————————————
+版权声明：本文为CSDN博主「黑色之光_duan」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/microsko/article/details/106729188

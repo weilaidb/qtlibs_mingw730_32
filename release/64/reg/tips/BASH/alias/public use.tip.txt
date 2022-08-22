@@ -220,4 +220,4 @@ alias diffdir="diff -urNa "
 
 
 #VIM
-alias cctagscscope="ctags -R && cscope -Rkb "
+alias ctagscscope="ctags -R && cscope -Rkb "
