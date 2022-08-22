@@ -33,7 +33,10 @@ pythonsetupinstall;/usr/bin/python setup.py install
 
 
 diffdir;diff -urNa
-cctagscscope;ctags -R && cscope -Rkb
+cctagscscope0;ctags -R && cscope -Rkb
+cctagscscope;find `pwd` -name "*.[ch]" -o -name "*.cpp" > cscope.files  && cscope -Rkb
+
+
 mybuildtest;./mybuild/test
 
 yumcleanall;yum clean all

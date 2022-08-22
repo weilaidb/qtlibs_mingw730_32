@@ -49,15 +49,6 @@ map <C-I> :PluginInstall
 
 
 
-"Generate tags and cscope.out from FileList.txt (c, cpp, h, hpp)
-nmap <C-@> :!find -name "*.c" -o -name "*.cpp" -o -name "*.h" -o -name "*.hpp" > FileList.txt<CR>
-                       \ :!ctags -L -< FileList.txt<CR>
-                       \ :!cscope -bkq -i FileList.txt<CR>
-
-
-
-
-
 
 "===设置Vundle核心插件==="
 
