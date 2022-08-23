@@ -1515,6 +1515,8 @@ LINUX/help/top
 LINUX/help/vmstat
 LINUX/knowledge/diff 命令(比较文件的差异)
 LINUX/knowledge/diff 文件夹
+LINUX/knowledge/writev
+LINUX/knowledge/writev函数
 LINUX/man/chrt
 LINUX/man/chrt --fifo
 LINUX/man/chrt -m

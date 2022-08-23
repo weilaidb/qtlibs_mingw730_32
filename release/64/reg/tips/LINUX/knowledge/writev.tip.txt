@@ -1,0 +1,167 @@
+writev
+
+linuxheik
+
+于 2017-07-26 10:32:11 发布
+
+7054
+ 收藏 11
+分类专栏： glibc linux BLCR
+
+glibc
+同时被 3 个专栏收录
+30 篇文章1 订阅
+订阅专栏
+
+linux
+7 篇文章0 订阅
+订阅专栏
+
+BLCR
+10 篇文章0 订阅
+订阅专栏
+谈谈writev的问题
+codesun
+October 17, 2016
+Linux
+IO, POSIX, Linux
+POSIX提供了一个比write函数更加高级的writev，在很多场景下，它相对于write有一定的优势。
+
+APUE一书将writev的介绍放在了Advanced I/O部分，个人拙见，它和write应该是属于同层次的IO，谈不上Advanced。
+
+最近，我在重写HTTP解析器的时候用到了writev，发现它并不如想象中的方便，甚至相当坑，有必要记录一下，或许对大家有所帮助。
+
+使用场景
+为什么说writev并不比write高级？抛开具体的实现，它和write只不过是应用场景不同，严格而言，不应该用Advanced加以区分。APUE对于writev的描述也就2页，老套路：函数原型、参数介绍、性能测试，实在看不出所谓的Advanced体现在哪里。
+
+大体而言，write面向的是连续内存块，writev面向的是分散的数据块，两个函数的最终结果都是将内容写入连续的空间。
+
+假设我们需要将N个key-value组合dump到文件中。
+
+key1 = val1
+key2 = val2
+...
+keyN = valN
+已知每个pair的空间是单独分配的，那么在这个场景下，如果想要使用write完成任务，有如下2种做法：
+
+分配一块大空间，将每个pair复制到其中，然后write
+分别write每个pair
+在数据量不是太大的情况下，方案1比方案2要高效，应为syscall的开销是很可观的，当每个pair的数据都比较大时，首选方案2。怎么判断这里的临界值？对于磁盘IO，考虑pagesize，这个临界值很可能是N*pagesize(N>=1)，当然我没有具体考证。
+
+这个时候，我们就会期望能够有一个函数可以做到：
+
+一次syscall
+无拷贝
+显然，它就是writev了，其函数原型如下：
+
+writev(int fd, struct iovect* iov, int iovcnt);
+ 
+struct iovec {
+    void* iov_base;
+    size_t iov_len;
+};
+iov_base就是每个pair的基址，iov_len则是长度，不用包含“\0”。
+
+APUE中指出writev的固有开销比write大，因此对于小内存的写而言，很可能也没有copy+write高效，具体参考APUE(en) P.522。另外，iovcnt不应超过IOV_MAX，Linux上的IOV_MAX=1024，且iov_len的总和不应溢出，虽然超过限制的情况很少出现，但应该考虑到。
+
+除此之外，另一种比较高效的做法是，分配一大块内存，想办法让所有的pair连续，这样就不需要考虑write了，但是很多情况下你可能根本无法预先获知总长度，例如从socket中读取的数据，为了能够容纳所有的数据，就不得不分配适当大的数据，当不够用的时候再realloc。
+
+如此一来，会造成空间利用率稍低的问题，且realloc很可能带来潜在的内存拷贝开销。
+
+writev的实现
+在Linux2.2之前，由于IOV_MAX过于小，glibc会提供一个wrapper function，代码如下：
+
+/* Write data pointed by the buffers described by VECTOR, which
+   is a vector of COUNT 'struct iovec's, to file descriptor FD.
+   The data is written in the order specified.
+   Operates just like 'write' (see <unistd.h>) except that the data
+   are taken from VECTOR instead of a contiguous buffer.  */
+ssize_t __writev (int fd, const struct iovec *vector, int count) {
+  /* Find the total number of bytes to be written.  */
+  size_t bytes = 0;
+  for (int i = 0; i < count; ++i) {
+      /* Check for ssize_t overflow.  */
+      if (SSIZE_MAX - bytes < vector[i].iov_len) {
+          __set_errno (EINVAL);
+          return -1;
+      }
+      bytes += vector[i].iov_len;
+  }
+ 
+  /* Allocate a temporary buffer to hold the data.  We should normally
+     use alloca since it's faster and does not require synchronization
+     with other threads.  But we cannot if the amount of memory
+     required is too large.  */
+  char *buffer;
+  char *malloced_buffer __attribute__ ((__cleanup__ (ifree))) = NULL;
+  if (__libc_use_alloca (bytes))
+      buffer = (char *) __alloca (bytes);
+  else {
+      malloced_buffer = buffer = (char *) malloc (bytes);
+      if (buffer == NULL)
+    /* XXX I don't know whether it is acceptable to try writing
+       the data in chunks.  Probably not so we just fail here.  */
+          return -1;
+  }
+ 
+  /* Copy the data into BUFFER.  */
+  size_t to_copy = bytes;
+  char *bp = buffer;
+  for (int i = 0; i < count; ++i) {
+      size_t copy = MIN (vector[i].iov_len, to_copy);
+      bp = __mempcpy ((void *) bp, (void *) vector[i].iov_base, copy);
+      to_copy -= copy;
+      if (to_copy == 0) break;
+  }
+  ssize_t bytes_written = __write (fd, buffer, bytes);
+  return bytes_written;
+}
+weak_alias (__writev, writev)
+大致流程就是：
+
+计算总长度
+分配空间(栈/堆)
+拷贝数据
+使用write
+这么做完全是权宜之计，并没有体现writev的优点，如果没有一次写完，那么就需要多次复制。
+
+内核中的实现则是有点类似分别对内存块write，只不过由于已经位于内核空间，自然没有什么syscall的开销了，也能使用更加直接的方式，比如直接写buf，代码在fs/read_write.c，感兴趣的读者可以挖掘下。
+
+writev的问题
+writev的出发点是好的，并且看起来似乎也比较美好，因此很受推崇。
+
+通过这两天的使用情况来看，我个人认为writev在设计上可能存在一定的问题，产生这些问题的具体场景为socket IO，令人遗憾的是，尽管很多人推崇writev，但是google相关内容，资料却少得可怜。。。
+
+对于socket IO而言，write经常不能够一次写完，好在它会返回已经写了多少字节，如果继续写，此时就会阻塞；对于非阻塞socket而言，write会在buf不可写时返回的EAGAIN，那么在下一次write时，便可通过之前返回的值重新确定基址和长度。
+
+manual中对于writev的相关描述为：和write类似。也就是说，它也会返回已经写入的长度或者EAGAIN(errno)。千万不可天真地认为，每次传同样的iovec就能解决问题，writev并不会为你做任何事情，重新处理iovec是调用者的任务。
+
+问题是，这个返回值“实用性”并不高，因为参数传入的是iovec数组，计量单位是iovcnt，而不是字节数，用户依旧需要通过遍历iovec来计算新的基址，另外写入数据的“结束点”可能位于一个iovec的中间某个位置，因此需要调整临界iovec的io_base和io_len。
+
+可以通过如下代码确认：
+
+while (iov_iter_count(iter)) { 
+    struct iovec iovec = iov_iter_iovec(iter); 
+    ssize_t nr;
+    nr = fn(filp, iovec.iov_base, iovec.iov_len, ppos); 
+ 
+    if (nr < 0) { 
+        if (!ret) 
+            ret = nr; 
+        break;   
+    }                    
+    ret += nr;                     
+    if (nr != iovec.iov_len)       
+        break;                             
+    iov_iter_advance(iter, nr);                      
+} 
+个人认为这个设计和write并不是一个风格，write使用很方便，writev却很繁琐，难道仅从参数和返回的类型就能确定一套API的风格了？
+
+个人认为下述方案或许更好：
+
+返回已经写入了多少个iovec，并通过参数返回部分写入的iovec的字节数
+提供offset参数，供指定写入的开始位置
+在do_loop_readv_writev中可以直接加入相关逻辑，对于do_iter_readv_writev或许会麻烦点，但是在回调中应该不难解决问题。好吧，说再多也只是纸上谈兵。相信这并不是实现者的问题，而是POSIX在制定接口时就欠缺考虑。
+
+总结
+对于磁盘IO，可以放心使用writev，对于socket，尤其是非阻塞socket，还是尽可能避免的好，实现连续的内存块反而可以简化实现。
