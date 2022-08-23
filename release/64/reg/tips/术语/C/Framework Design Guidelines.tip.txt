@@ -1,0 +1,4 @@
+https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/?redirectedfrom=MSDN
+
+
+https://github.com/dotnet/coreclr/blob/master/Documentation/botr/garbage-collection.md

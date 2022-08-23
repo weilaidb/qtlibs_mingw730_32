@@ -2158,6 +2158,7 @@ Tools/Astyle格式化代码
 Tools/CLion 快捷键
 Tools/CMD快捷键
 Tools/Cscope & CTags 快捷键
+Tools/Cscope用法
 Tools/Dreamweaver（DW）常用快捷键
 Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
@@ -2376,6 +2377,8 @@ path路径/常用文件夹
 工作/祝福语句 巧姐
 工作/祝福语句 康哥
 工作/祝福语句 龙哥
+术语/C/Framework Design Guidelines
+术语/C/什么是 CLR ？
 术语/C/宏和内联函数的区别
 术语/C/宏和内联函数的区别2
 术语/Linux/FIB Forward Information Base
