@@ -61,6 +61,9 @@ alias gitremotev="git remote -v "
 alias gitgcclean="git reflog expire --expire=now --all && git gc --prune=now "
 alias gitsubmoduleinit="git submodule update --init --recursive "
 alias gitpushsetupstream="git push --set-upstream origin "
+alias vimrccopy="cd ~/work/git.bak/jsp_exe.vim && rm -rf vim && cp -af ~/.vim . && mv .vim vim && find . -name .git && cd vim/ && find . -name .git  | xargs -n1 rm -rf && cd .. && echo done ~~ "
+
+alias findgitlist="find . -name .git "
 
 
 alias gitdiff="git diff "

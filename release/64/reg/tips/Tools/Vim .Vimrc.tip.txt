@@ -50,6 +50,7 @@ map <C-I> :PluginInstall
 
 
 
+
 "===设置Vundle核心插件==="
 
 filetype off
@@ -93,6 +94,18 @@ Plugin 'kien/ctrlp.vim'
 "ctrlp-funky 可以模糊搜索文件内容的方法名
 Plugin 'tacahiroy/ctrlp-funky'
 
+"A super simple function navigator for fzf, porting from ctrlp-funky.It is a very useful plugin when ctags is not exist or lsp is not support(vim版本需要在8.2以上)
+"Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plugin 'tracyone/fzf-funky',{'on': 'FzfFunky'}
+
+"格式化代码
+Plugin 'rhysd/vim-clang-format'
+
+Plugin 'Shougo/vimproc.vim'
+
+Plugin 'kana/vim-operator-user'
+
+
 
 
 call vundle#end()
@@ -127,6 +140,32 @@ let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_extensions = ['funky']
 
 
+" ===============================插件FzfFunky ctrlp-funky 的美化版本
+"nnoremap <Leader>fu :FzfFunky<Cr>
+" narrow the list down with a word under cursor
+"nnoremap <Leader>fU :execute 'FzfFunky ' . "expand('<cword>')<Cr>
+
+
+
+
+"===============================插件代码格式化
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+
+autocmd FileType c ClangFormatAutoEnable
+
+
 
 " ===============================设置NerdTree
 "NerdTree文件前有^G字符的解决办法"
@@ -155,9 +194,10 @@ let NERDTreeDirArrows = 1
 
 " ============================ theme and status line ============================
 
-" theme
+" theme, 使用colorscheme + space + tab就可以设置，If we continue pressing the Tab key, we can run through all the default color schemes. It normally includes a wide range of colors, including dark blue, default, red, desert, evening, elf lord, and more. 即在vim中:colorscheme ,按tab键
 set background=dark
-colorscheme desert
+"colorscheme desert
+colorscheme evening
 
 " set mark column color
 hi! link SignColumn   LineNr
@@ -374,7 +414,9 @@ set cursorline
 
 
 " 非高亮度反白
-set nohlsearch
+"set nohlsearch
+"设置搜索结果高亮显示
+set hlsearch
 " 自动缩排
 set autoindent
 " 可显示最后一行的状态
@@ -395,3 +437,7 @@ syntax on
 "ctags not found
 set tags=tags;
 set autochdir
+
+
+"字体大小
+set guifont=Courier_new:h18:b:cDEFAULT

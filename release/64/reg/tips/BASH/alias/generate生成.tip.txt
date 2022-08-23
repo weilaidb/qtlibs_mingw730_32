@@ -1,4 +1,8 @@
 gitpushsetupstream;git push --set-upstream origin 
+vimrccopy;cd ~/work/git.bak/jsp_exe.vim && rm -rf vim && cp -af ~/.vim . && mv .vim vim && find . -name .git && cd vim/ && find . -name .git  | xargs -n1 rm -rf && cd .. && echo done ~~
+findgitlist;find . -name .git
+
+
 
 vimhelp;vim --help
 vimgreppython;vim --version|grep python
@@ -33,8 +37,8 @@ pythonsetupinstall;/usr/bin/python setup.py install
 
 
 diffdir;diff -urNa
-cctagscscope0;ctags -R && cscope -Rkb
-cctagscscope;find `pwd` -name "*.[ch]" -o -name "*.cpp" > cscope.files  && cscope -Rkb
+ctagscscope0;ctags -R && cscope -Rkb
+ctagscscope;find `pwd` -name "*.[ch]" -o -name "*.cpp" > cscope.files  && cscope -Rkb
 
 
 mybuildtest;./mybuild/test
