@@ -121,6 +121,7 @@ BAT/NETSTAT
 BAT/RMDIR
 BAT/TCP STATUS状态
 BAT/new/zipwar.bat
+BAT/new/zipwar.bat 2
 BAT/网络network/AF/AF_INET
 BAT/网络network/AF/AF_UNIX
 BAT/网络network/AF/AF_UNIX和AF_INET
@@ -871,6 +872,8 @@ JAVA/JSP/JQuery/Navigator container
 JAVA/JSP/JQuery/Navigator main.js
 JAVA/JSP/JS/clear by id
 JAVA/JSP/JS/style eg1
+JAVA/JSP/JS/插入一条 insert one item
+JAVA/JSP/JS/插入一条 insert one item 2
 JAVA/JSP/JavaBean/getProperty
 JAVA/JSP/JavaBean/parseInt Long Float Double
 JAVA/JSP/JavaBean/setProperty
@@ -1450,6 +1453,7 @@ KERNEL/module/函数及宏说明
 KERNEL/module/模板
 KERNEL/module/模板 helloworld
 KERNEL/module/模板 here
+KERNEL/new/dup2
 KERNEL/new/kmalloc kfree
 KERNEL/new/list_head
 KERNEL/大小写/tolower toupper
