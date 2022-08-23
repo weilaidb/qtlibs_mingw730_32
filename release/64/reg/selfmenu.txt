@@ -2211,6 +2211,7 @@ Tools/Vim/know/重映射 Vim 的 Leader 键
 Tools/Vivado中常用的快捷键
 Tools/WORD快捷键
 Tools/dec to hex 十进制转十六进制
+Tools/git/.gitignore
 Tools/git/git clone -i 指定文件
 Tools/git/git compare beyondcompare base local remote
 Tools/git/git config

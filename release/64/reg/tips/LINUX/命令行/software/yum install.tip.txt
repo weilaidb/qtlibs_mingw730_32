@@ -1,3 +1,9 @@
+the_silver_searcher
+clang
+git-clang-format
+
+
+
 exuberant-ctags
 tomcat8
 
