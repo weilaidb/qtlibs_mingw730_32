@@ -222,6 +222,6 @@ alias diffdir="diff -urNa "
 
 
 #VIM
-alias cctagscscope0="ctags -R && cscope -Rkb "
+alias ctagscscope0="ctags -R && cscope -Rkb "
 
-alias cctagscscope="find `pwd` -name "*.[ch]" -o -name "*.cpp" > cscope.files  && cscope -Rkb "
+alias ctagscscope="find `pwd` -name "*.[ch]" -o -name "*.cpp" > cscope.files  && cscope -Rkb "
