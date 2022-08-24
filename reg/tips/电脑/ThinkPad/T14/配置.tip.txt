@@ -1,0 +1,287 @@
+--------[ 鲁大师 ]--------------------------------------------------------------------------------
+
+  软件:             鲁大师 5.1021.1300.108
+  时间:             2022-08-13 08:06:47
+  网站:             http://www.ludashi.com
+
+--------[ 概览 ]----------------------------------------------------------------------------------
+
+  电脑型号            联想 ThinkPad T14 Gen 2i 笔记本电脑
+  操作系统            Windows 10 专业版 64位 ( DirectX 12 )
+
+  处理器              11th Gen Intel Core i7-1165G7 @ 2.80GHz 四核
+  主板                联想 20W0A00JCD ( LPC Controller/eSPI Controller - A082 )
+  主显卡              英特尔 Iris Xe Graphics ( 128 MB / 联想 )
+  内存                40 GB ( DDR4 3200MHz )
+  主硬盘              金士顿 SNVS2000G ( 2 TB / 固态硬盘 )
+  显示器              联想 LEN40A9 ( 14 英寸  )
+  声卡                英特尔 英特尔智音技术音频控制器
+  网卡                英特尔 Wi-Fi 6 AX201 160MHz
+
+--------[ 主板 ]----------------------------------------------------------------------------------
+
+  主板型号            联想 20W0A00JCD
+  芯片组              LPC Controller/eSPI Controller - A082
+  序列号              L1HF1AE014J
+  主板版本            SDK0L77769 WIN
+  BIOS版本            联想 N34ET46W (1.46 )  /  BIOS程序发布日期: 12/01/2021
+  BIOS的大小          16384 KB
+
+
+--------[ 处理器 ]--------------------------------------------------------------------------------
+
+  处理器              11th Gen Intel Core i7-1165G7 @ 2.80GHz 四核
+  速度                2.80 GHz (100 MHz x 28.0)
+  处理器数量          核心数: 4 / 线程数: 8
+  插槽/插座           U3E1
+  一级数据缓存        4 x 48 KB, 12-Way, 64 byte lines
+  一级代码缓存        4 x 32 KB, 8-Way, 64 byte lines
+  二级缓存            4 x 1 MB, 20-Way, 64 byte lines
+  三级缓存            12 MB, 12-Way, 64 byte lines
+  特征                MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, HTT, EM64T, EIST, Turbo Boost
+
+--------[ 硬盘 ]----------------------------------------------------------------------------------
+
+  产品                金士顿  SNVS2000G (固态硬盘)
+  大小                2 TB
+  硬盘已使用          共 528 次，累计 808 小时
+  固件                S8442105
+  接口                NVM Express
+  特征                S.M.A.R.T
+
+  产品                SDXC card
+  大小                62 GB
+  固件                100
+  特征                S.M.A.R.T
+
+--------[ 内存 ]----------------------------------------------------------------------------------
+
+  Controller0-ChannelA  DDR4 3200MHz 8GB
+  序列号              00000000
+  模块位宽:           64 bits
+
+  Controller1-ChannelA-DIMM0  DDR4 3200MHz 32GB
+  序列号              023DA246
+  模块位宽:           64 bits
+
+--------[ 显卡 ]----------------------------------------------------------------------------------
+
+  主显卡              英特尔 Iris Xe Graphics
+  显存                128 MB
+  制造商              联想
+  制造商              Intel
+  驱动版本            30.0.100.9955
+  驱动日期            20211007
+
+--------[ 显示器 ]--------------------------------------------------------------------------------
+
+  产品                联想 LEN40A9
+  厂商                联想
+  固件程序日期        2020 年 (非显示器制造日期)
+  屏幕尺寸            14 英寸 (309 毫米 x 173 毫米)
+  显示比例            宽屏 16 : 9
+  分辨率              1920 x 1080 (缩放比例:125%) 32 位真彩色
+  Gamma               2.20
+  电源管理            Standby, Suspend, Active-Off
+  最大分辨率          1920 x 1080
+
+--------[ 其他设备 ]------------------------------------------------------------------------------
+
+
+  无线网卡            英特尔 Wi-Fi 6 AX201 160MHz
+
+  网卡                英特尔 Ethernet Connection  I219-V
+  制造商              联想
+
+  声卡                英特尔 英特尔智音技术音频控制器
+
+  键盘                HID 标准键盘
+  键盘                HID 标准键盘
+  键盘                PS/2 标准键盘
+  鼠标                Synaptics 指点杆
+  鼠标                HID-compliant 鼠标
+  鼠标                HID-compliant 鼠标
+
+  摄像头              Integrated Camera
+
+--------[ PCI设备 ]-------------------------------------------------------------------------------
+
+  设备                PCI 标准主机 CPU 桥
+  设备ID              9A14
+  制造商              Intel
+  制造商ID            8086
+  类别                Bridge / PCI to HOST
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+  设备                未知(0401h)
+  设备ID              0401
+  制造商              未知(0002h)
+  制造商ID            0002
+  类别                Unknown / 
+  子系统制造商        Ncipher
+  子系统ID            02000100
+
+  设备                PCI 设备
+  设备ID              0000
+  制造商              Allied Telesyn
+  制造商ID            0010
+  类别                 / 
+  子系统ID            00000000
+
+  设备                Iris Xe Graphics
+  设备ID              9A49
+  制造商              Intel
+  制造商ID            8086
+  类别                Display / VGA
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+  设备                Dynamic Tuning Processor Participant
+  设备ID              9A03
+  制造商              Intel
+  制造商ID            8086
+  类别                Data Aquisition & Signal Processing / Other
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+  设备                PCI Express 根端口
+  设备ID              9A09
+  制造商              Intel
+  制造商ID            8086
+  类别                Bridge / PCI to PCI
+  子系统ID            00000000
+
+  设备                符合 USB xHCI 的主机控制器
+  设备ID              A0ED
+  制造商              Intel
+  制造商ID            8086
+  类别                Serial / USB (UHCI)
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+  设备                PCI 标准 RAM 控制器
+  设备ID              A0EF
+  制造商              Intel
+  制造商ID            8086
+  类别                Memory / RAM
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+  设备                Wi-Fi 6 AX201 160MHz
+  设备ID              A0F0
+  制造商              Intel
+  制造商ID            8086
+  类别                Network / Other
+  子系统制造商        Intel
+  子系统ID            00708086
+
+  设备                Management Engine Interface
+  设备ID              A0E0
+  制造商              Intel
+  制造商ID            8086
+  类别                Simple Communication / Other
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+  设备                PCI Express Root Port #1 - A0B8
+  设备ID              A0B8
+  制造商              Intel
+  制造商ID            8086
+  类别                Bridge / PCI to PCI
+  子系统ID            00000000
+
+  设备                PCI Express Root Port #8 - A0BF
+  设备ID              A0BF
+  制造商              Intel
+  制造商ID            8086
+  类别                Bridge / PCI to PCI
+  子系统ID            00000000
+
+  设备                LPC Controller/eSPI Controller  - A082
+  设备ID              A082
+  制造商              Intel
+  制造商ID            8086
+  类别                Bridge / PCI to ISA
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+  设备                英特尔智音技术音频控制器
+  设备ID              A0C8
+  制造商              Intel
+  制造商ID            8086
+  类别                Multimedia / Hi-definition Audio
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+  设备                SMBus - A0A3
+  设备ID              A0A3
+  制造商              Intel
+  制造商ID            8086
+  类别                Serial / SMBus Controller
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+  设备                SPI  Controller - A0A4
+  设备ID              A0A4
+  制造商              Intel
+  制造商ID            8086
+  类别                Serial / Other
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+  设备                Ethernet Connection  I219-V
+  设备ID              15FC
+  制造商              Intel
+  制造商ID            8086
+  类别                Network / Ethernet
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+  设备                标准 NVM Express 控制器
+  设备ID              500F
+  制造商              Kingston
+  制造商ID            2646
+  类别                Storage / 
+  子系统制造商        Kingston
+  子系统ID            500F2646
+
+  设备                Genesys Logic PCIE card reader device
+  设备ID              9750
+  制造商              Genesys Logic
+  制造商ID            17A0
+  类别                System / SD Host Controller (With DMA)
+  子系统制造商        Lenovo
+  子系统ID            22C917AA
+
+--------[ USB设备 ]-------------------------------------------------------------------------------
+
+  制造商ID            06CB
+  产品ID              00BD
+  类别                255 / 16 / 255
+  设备                 
+  版本                USB 2.0
+
+  制造商ID            04F2
+  产品ID              B6D0
+  类别                239 / 2 / 1
+  设备                 
+
+  制造商ID            8087
+  产品ID              0026
+  类别                224 / 1 / 1
+  设备                 
+
+  制造商ID            30FA
+  产品ID              0400
+  类别                0 / 0 / 0
+  设备                ? USB OPTICAL MOUSE
+  Serial              ?
+  版本                USB 1.1
+
+--------[ 传感器 ]--------------------------------------------------------------------------------
+
+  CPU温度             49℃
+  CPU核心             49℃
+  CPU封装             49℃
+  硬盘温度            46℃

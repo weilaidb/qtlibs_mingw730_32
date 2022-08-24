@@ -1,0 +1,81 @@
+#!/bin/bash
+#!/bin/sh
+#filename:opengrok.run.ext.sh
+#function:代码查看器，索引内容，扩展
+#支持opengrok版本、路径传递，索引路径传递，Http端口
+#
+set -e
+
+##处理带空格的文件名
+MY_SAVEIFS=$IFS
+#IFS=$(echo -en "\n\b")
+IFS=$'\n'
+
+#convert dos 2 unix
+dos2unix $0 >/dev/null 2>&1
+source ./public.sh
+
+usage(){
+    echo "Usage:./eg.sh opengrokVersion indexdir httpport ctagspath"
+    exit 1
+}
+
+# 显示帮助
+[ $# -lt 4 ] && usage
+echo "->start..."
+
+#######用户定义
+#######用户定义
+#######用户定义
+VERSION=$1
+OPENGROK_INDEX_EXT=$2
+HTTP_PORT=$3
+CTAGSPATH=$4
+
+checkstringzeroquit $VERSION
+checkdirnoexistquit $OPENGROK_INDEX_EXT
+checkstringzeroquit $HTTP_PORT
+checkfilenoexistquit $CTAGSPATH
+
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+SOFT_PATH=~/soft
+WORK_PATH=~/work
+OPENGROK_VER=$VERSION
+OPENGROK_NAME=opengrok-$OPENGROK_VER
+TOMCAT_PATH=~/soft/tomcat/apache-tomcat-9.0.64
+
+
+export CLASS_PATH=$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar
+export PATH=$JAVA_HOME/bin:$PATH
+JAVA_BIN=/usr/bin/java
+# CTAGS_BIN=/usr/bin/ctags
+CTAGS_BIN=$CTAGSPATH
+TOMCAT_BIN_PATH=$TOMCAT_PATH/bin/
+TOMCAT_WEBAPP_PATH=$TOMCAT_PATH/webapps
+OPENGROK_ROOT=$SOFT_PATH/$OPENGROK_NAME
+OPENGROK_TAR_PATH=$OPENGROK_ROOT/opengrok-$OPENGROK_VER.tar.gz
+OPENGROK_LOG_PROPERTY=$OPENGROK_ROOT/etc/logging.properties
+OPENGROK_JAR=$OPENGROK_ROOT/lib/opengrok.jar
+OPENGROK_INDEX=$WORK_PATH/git
+OPENGROK_ETC=$OPENGROK_ROOT/etc
+OPENGROK_GENERATE_XML=$OPENGROK_ETC/configuration.xml
+OPENGROK_DATA=$OPENGROK_ROOT/data
+OPENGROK_WAR_NAME=source.war
+OPENGROK_WAR=$OPENGROK_ROOT/lib/$OPENGROK_WAR_NAME
+
+rm -rf $OPENGROK_ETC
+mkdir $OPENGROK_ETC
+
+echo "begin paring..." $OPENGROK_INDEX_EXT
+#$JAVA_BIN -Xmx16G -Xms8G
+
+time $JAVA_BIN \
+-Djava.util.logging.config.file=$OPENGROK_LOG_PROPERTY \
+-jar $OPENGROK_JAR \
+-c $CTAGS_BIN \
+-s $OPENGROK_INDEX_EXT \
+-d $OPENGROK_DATA \
+-H -P -S -G \
+-W $OPENGROK_GENERATE_XML \
+-U http://localhost:$HTTP_PORT/source

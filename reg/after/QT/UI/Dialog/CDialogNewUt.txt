@@ -1,0 +1,1 @@
+\1 *\2 = new \1();$NL$NLif(CStringPub::strSimLen(dir_cur_loaded))$NL{$NL	QString newPath = dir_cur_loaded + getUtNamePrefix() + CSignPub::signDot();$NL	\2->setPath(newPath);$NL}$NL$NLif(QDialog::Rejected == \2->exec())$NL{$NL	return;$NL}$NL$NLdebugApp() << \2->getPath();

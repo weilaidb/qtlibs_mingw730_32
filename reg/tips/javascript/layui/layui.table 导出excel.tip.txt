@@ -1,0 +1,195 @@
+<!--行工具按钮-->
+<script type="text/html" id="ec_lineBar">
+    <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+</script>
+
+<script>
+    layui.use(['table', 'layer', 'form', 'laypage', 'excel'], function () {
+        var table = layui.table;
+        var form = layui.form;
+        // var excel = layui.excel;
+        var exportData;
+
+        var ins1 = table.render({
+            elem: '#ec_table'
+            , id: 'ecReload'
+            , even: true //开启隔行背景
+            , url: '/ec/ECList'
+            , request: {
+                pageName: 'pageNum',
+                limitName: 'pageSize'
+            }
+            // , toolbar: '#ec_headerBar'
+            , title:
+                '故障详情表'
+            , page:
+                true //开启分页
+            , limit: 50
+            , limits: [1, 5, 10, 20, 50, 100, 200, 500]
+            , cols:
+                [[{field: 'id', title: '编号', width: 60, align: 'center'}
+                    , {
+                        field: 'type', title: '类 型', width: '10%', align: 'left', templet: function (d) {
+                            if (d.type == 1) {
+                                return '<span style="color: red;">严重</span>'
+                            } else if (d.type == 2) {
+                                return '<span style="color: blue;">一般</span>'
+                            }else if (d.type == 3){
+                                return '<span style="color: grey;">轻微</span>'
+                            }else {
+                                return '<span style="color: yellow;">其它</span>'
+                            }
+                        }
+                    }
+                    , {field: 'title', title: '故障名称', width: '20%', align: 'left'}
+
+                    , {field: 'desc', title: '描 述', width: '30%', align: 'left'}
+                    , {field: 'author', title: '提交人员', width: '9.5%', align: 'left'}
+                    , {
+                        field: 'status', title: '状 态', width: '7.5%', align: 'left', templet: function (d) {
+                            if (d.status == 0) {
+                                return '<span style="color: purple;">未解决</span>'
+                            }else if (d.status == 1) {
+                                return '<span style="color: purple;">已分析</span>'
+                            }else if (d.status == 2) {
+                                return '<span style="color: blue;">解决中</span>'
+                            }else if (d.status == 3) {
+                                return '<span style="color: green;">已解决</span>'
+                            } else {
+                                return '<span style="color: #00FF00;">其它</span>'
+                            }
+                        }
+                    }
+                    , {field: 'remark1', title: '说 明', align: 'left'}
+                    , {field: 'remark2', title: '备 注', align: 'left'}
+                    , {
+                        fixed: 'right',
+                        title: '操作',
+                        toolbar: '#ec_lineBar',
+                        width: 160,
+                        align: 'center'
+                    }
+                ]],
+                done: function (res, curr, count) {
+                    exportData=res.data;
+                }
+        });
+
+        $("#refresh").click(function () {
+            // 执行一个表格重载即实现刷新功能
+            table.reload('ecReload', {
+                where: '',
+                contentType: 'application/x-www-form-urlencoded',
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                },
+                url: '/ec/ECList',
+                method: 'get'
+            });
+        });
+
+        $("#add").click(function () {
+            var data = {};
+            data.action = 'addEC';
+            data.request_type = 'post';
+
+            // 调用打开弹层的工具方法
+            open_form("#open_div", data, '添加故障', '880px', '582px');
+        });
+
+        $("#download").click(function () {
+            alert("download2");
+            table.exportFile(ins1.config.id,exportData, 'xls');
+        });
+
+        $("#testcase").click(function() {
+            window.open("testcase.html");
+        });
+
+        table.on('tool(ec_bar)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            var id = data.id;
+
+            switch (layEvent) {
+                case 'edit':
+                    // 根据编辑行为为form隐藏项赋值
+                    data.action = 'updateEC';
+                    data.request_type = 'post';
+                    open_form("#open_div", data, '编辑用例', '980px', '582px');
+                    break;
+                case 'del':
+                    layer.confirm('真的删除该行么', function (index) {
+                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                        //向服务端发送删除指令
+                        $.ajax({
+                            type: "get",  //数据提交方式(post/get)
+                            url: "/ec/deleteEC?id=" + id,  //提交到的url
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",//返回的数据类型格式
+                            success: function (result) {
+                                layer.msg(result.msg, {icon: 1, time: 1000});
+                            }, error: function (e) {
+                                console.log(e, 'error');
+                                layer.msg("查询商品异常，请联系管理员！", {icon: 1, time: 1000});
+                            }
+                        });
+                        layer.close(index);
+                    });
+                    break;
+            }
+        });
+
+        form.on('submit(update_submit)', function (data) {
+            var uri = data.field.action;
+            var type = data.field.request_type;
+            console.log(data);
+            $.ajax({
+                type: type,
+                url: '/ec/' + uri,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data.field),
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == "0") {
+                        table.reload('ecReload', {
+                            contentType: 'application/x-www-form-urlencoded',
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            },
+                            url: '/ec/ECList',
+                            method: 'get'
+                        });
+                        layer.msg('修改成功', {icon: 1, time: 1000});
+                    } else {  //失败
+                        layer.alert(result.msg, {icon: 2}, function () {
+                            layer.close(index);
+                        });
+                    }
+                }
+            });
+            layer.close(index);//关闭弹出层
+            return false;
+        });
+
+        // 监听搜索按钮提交事件
+        form.on('submit(search)', function (data) {
+            var formData = data.field;
+            var count = checkForm("search_form");
+            if (count !== 0) {
+                //数据表格重载
+                tableReload('ecReload', formData, "application/json; charset=utf-8", '/ec/searchEC', 'post');
+            } else {
+                parent.layer.msg('请先选择查询条件！', {icon: 2, time: 1500});
+            }
+            return false;
+        });
+
+
+    });
+</script>
+</body>
+<!--放在head处不成功，why?-->
+<!--    下载excel-->
+<script src="js/libs/base/exportexcel.js"></script>

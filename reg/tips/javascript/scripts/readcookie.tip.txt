@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Read Cookie</title>
+    <script>
+        function readCookie() {
+            var cookieString = decodeURI(document.cookie);
+            var cookieArray = cookieString.split(";");
+            for (var i = 0; i < cookieArray.length; i++) {
+                var cookieNum = cookieArray[i].split("=");
+                var cookieName = cookieNum[0];
+                var cookieValue = cookieNum[1];
+                alert("Cookie名称为:" + cookieName + "Cookie值为:" + cookieValue);
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+<td width="39%"><input type="image" src="4.gif" width="65" height="20" onClick="readCookie();"></td>
+
+
+</body>
+</html>

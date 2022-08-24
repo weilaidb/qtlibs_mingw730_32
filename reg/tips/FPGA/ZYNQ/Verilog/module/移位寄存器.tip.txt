@@ -1,0 +1,47 @@
+4.6.5 移位寄存器
+移位寄存器是指在每个时钟脉冲来时，向左或向右移动一位，由于 D 触发器的特性，数据
+输出同步于时钟边沿，其结构如下，每个时钟来临，每个 D 触发器的输出 q 等于前一个 D 触
+发器输出的值，从而实现移位的功能。
+代码实现： 激励文件：
+module top(d, rst, clk, q) ;
+input d ;
+input rst ;
+input clk ;
+output reg [7:0] q ;
+always @(posedge clk or negedge
+rst)
+begin
+ if (rst == 1'b0)
+ q <= 0 ;
+ else
+ q <= {q[6:0], d} ; //向左移位
+ //q <= {d, q[7:1]} ; //向右移位
+end
+endmodule
+`timescale 1 ns/1 ns 
+module top_tb() ;
+reg d ;
+reg rst ;
+reg clk ;
+wire [7:0] q ;
+initial
+begin
+ d = 0 ;
+ clk = 0 ;
+ forever
+ begin 
+ #({$random}%100)
+ d = ~d ;
+ end
+end
+initial
+begin
+ rst = 0 ;
+ #200 rst = 1 ;
+end
+always #10 clk = ~clk ;
+top 
+t0(.d(d),.rst(rst),.clk(clk),.q(q))
+;
+endmodule
+仿真结果如下，可以看到复位之后，每个 clk 上升沿左移一位

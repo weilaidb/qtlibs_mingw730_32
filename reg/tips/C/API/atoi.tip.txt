@@ -1,0 +1,1 @@
+ncomp;argv[1]

@@ -1,0 +1,53 @@
+原始;layui-btn layui-btn-primary
+默认;layui-btn
+百搭;layui-btn layui-btn-normal
+暖色;layui-btn layui-btn-warm
+警告;layui-btn layui-btn-danger
+禁用;layui-btn layui-btn-disabled
+
+
+主色;layui-btn layui-btn-primary layui-border-green
+百搭;layui-btn layui-btn-primary layui-border-blue
+暖色;layui-btn layui-btn-primary layui-border-orange
+警告;layui-btn layui-btn-primary layui-border-red
+深色;layui-btn layui-btn-primary layui-border-black
+
+
+大型;layui-btn layui-btn-lg
+默认;layui-btn
+小型;layui-btn layui-btn-sm
+迷你;layui-btn layui-btn-xs
+
+
+大型百搭;layui-btn layui-btn-lg layui-btn-normal
+正常暖色;layui-btn layui-btn-warm
+小型警告;layui-btn layui-btn-sm layui-btn-danger
+迷你禁用;layui-btn layui-btn-xs layui-btn-disabled
+
+
+流体按钮（最大化适应）;layui-btn layui-btn-fluid
+
+
+##圆角
+
+原始;layui-btn layui-btn-radius layui-btn-primary
+默认;layui-btn layui-btn-radius
+百搭;layui-btn layui-btn-radius layui-btn-normal
+暖色;layui-btn layui-btn-radius layui-btn-warm
+警告;layui-btn layui-btn-radius layui-btn-danger
+禁用;layui-btn layui-btn-radius layui-btn-disabled
+
+
+
+大型百搭;layui-btn layui-btn-lg layui-btn-radius layui-btn-normal
+小型警告;layui-btn layui-btn-sm layui-btn-radius layui-btn-danger
+迷你禁用;layui-btn layui-btn-xs layui-btn-radius layui-btn-disabled
+
+##图标
+<button type="button" class="layui-btn">
+  <i class="layui-icon layui-icon-down layui-font-12"></i> 按钮
+</button>
+ 
+<button type="button" class="layui-btn layui-btn-sm layui-btn-primary">
+  <i class="layui-icon layui-icon-left"></i>
+</button>

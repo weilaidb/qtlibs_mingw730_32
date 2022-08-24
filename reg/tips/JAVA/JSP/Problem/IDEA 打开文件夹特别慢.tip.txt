@@ -1,0 +1,38 @@
+fsnotifier64.exe
+
+
+https://www.cnblogs.com/wbyixx/p/14078126.html
+
+
+
+Aloys Wang博客园首页自定义链接管理
+IDEA 打开文件或文件夹很慢的一个原因，Open File or Project is really slow （fsnotifier64.exe 被扫描（杀毒软件之类的））
+FLowUs邀请链接：https://flowus.cn/login?code=AXNU63
+FlowUs邀请码：AXNU63
+
+最近我的Jetbrains系列的软件打开目录之类的都很慢，他们都装在C盘
+但是AndroidStudio打开目录很快，装的是D盘，很疑惑
+
+今天终于找到原因了，有一个 fsnotifier64.exe 程序是 IDEA等软件用来访问文件系统的，
+当启动的时候如果被杀毒软件或者 Windows Defender 扫描，就会很慢
+
+比如我使用的是火绒，又因为软件安装在C盘，所以就会扫描这个文件，将其加入排除项就不会再扫描了
+
+
+以后还是别安装杀毒软件了吧，用完了就卸载，要用再安装 =。=
+
+官方也有人提问过：
+https://intellij-support.jetbrains.com/hc/en-us/community/posts/360003304839-Open-File-or-Project-is-really-slow
+
+
+关闭 Windows Defender 的方法：https://www.cnblogs.com/wbyixx/p/14095435.html
+
+ 0 0
+« 上一篇： 修改 idea 缓存保存的位置
+» 下一篇： Failed to bind properties under 'spring.datasource' to javax.sql.DataSource
+posted @ 2020-12-03 10:29  wbytts  阅读(1623)  评论(1)  编辑  收藏  举报
+登录后才能查看或发表评论，立即 登录 或者 逛逛 博客园首页
+【推荐】腾讯云多款云产品1折起，买云服务器送免费机器
+
+Copyright © 2022 wbytts
+Powered by .NET 6 on Kubernetes & Theme silence in awescnb.

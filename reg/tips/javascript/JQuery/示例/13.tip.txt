@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Input</title>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // $("input:button").bind("click", function () {
+            //     alert("您单击了按钮");
+            //     $("input:button").unbind("click");
+            // });
+            $("input:button").one("click", function () {
+                alert($("input:text").val());
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+<input type="text" id="testInput" name="test" value=""/>
+<input type="button" value="输入的值为"/>
+
+
+
+</body>
+</html>

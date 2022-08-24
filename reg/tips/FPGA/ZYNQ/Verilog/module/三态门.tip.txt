@@ -1,0 +1,58 @@
+4.5.11 三态门
+在 FPGA 使用中，经常会用到双向 IO，需要用到三态门，如 bio = en? din: 1’bz ;其中 en 为
+使能信号，用于打开关闭三态门，下面的 RTL 图即是实现了双向 IO，可参考代码。激励文件实
+现两个双向 IO 的对接。
+module top(en, din, dout, bio) ;
+input din ;
+input en ;
+output dout ;
+inout bio ;
+assign bio = en? din : 1'bz ;
+assign dout = bio ;
+ 
+endmodule
+`timescale 1 ns/1 ns 
+module top_tb() ;
+reg en0 ;
+reg din0 ;
+wire dout0 ;
+reg en1 ;
+reg din1 ;
+wire dout1 ;
+wire bio ;
+initial
+begin
+ din0 = 0 ;
+ din1 = 0 ;
+ forever
+ begin 
+ #({$random}%100)
+ din0 = ~din0 ;
+ #({$random}%100) 
+din1 = ~din1 ;
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 79 / 285
+ end
+end
+initial
+begin
+ en0 = 0 ;
+ en1 = 1 ;
+ #100000 
+ en0 = 1 ;
+ en1 = 0 ; 
+end
+top 
+t0(.en(en0),.din(din0),.dout(dout0),
+.bi
+o(bio)) ;
+top 
+t1(.en(en1),.din(din1),.dout(dout1),
+.bi
+o(bio)) ;
+endmodule
+激励文件结构如下图
+仿真结果如下，en0 为 0，en1 为 1 时，1 通道打开，双向 IO bio 就等于 1 通道的 din1，1
+通道向外发送数据，0 通道接收数据，dout0 等于 bio；当 en0 为 1，en1 为 0 时，0 通道打
+开，双向 IO bio 就等于 0 通道的 din0，0 通道向外发送数据，1 通道接收数据，dout1 等于 bio

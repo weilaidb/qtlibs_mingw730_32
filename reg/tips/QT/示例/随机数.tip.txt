@@ -1,0 +1,13 @@
+Qt产生随机数（两种方法）
+第一种方法
+
+#include <QTime>  
+QTime time;  
+time= QTime::currentTime();  
+qsrand(time.msec()+time.second()*1000);  
+int n = qrand() % 5;    //产生5以内的随机数  
+第二种方法
+
+#include <ctime>  
+qsrand(time(NULL));  
+int n = qrand() % 5;    //产生5以内的随机数

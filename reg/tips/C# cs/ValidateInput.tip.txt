@@ -1,0 +1,32 @@
+///<summary>
+///验证用户输入
+///</summary>
+///<returns>bool类型，表示验证结果</returns>
+private bool ValidateInput()
+{
+    if (txtNickName.Text.Trim() == "" || txtNickName.Text.Length > 20)//判断昵称是否为空
+    {
+        MessageBox.Show("昵称输入有误！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        txtNickName.Focus();
+        return false;
+    }
+    if (txtAge.Text.Trim() == "")//判断年龄是否为空
+    {
+        MessageBox.Show("请输入年龄！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        txtAge.Focus();
+        return false;
+    }
+    if (cboxSex.Text.Trim() == "")//判断性别是否为空
+    {
+        MessageBox.Show("请输入选择性别！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        cboxSex.Focus();
+        return false;
+    }
+    if (txtNewPwd.Text.Trim() != txtNewPwdAgain.Text.Trim())  //两次输入的密码是否一致
+    {
+        MessageBox.Show("两次输入的密码不一致！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        txtNewPwdAgain.Focus();
+        return false;
+    }
+    return true;
+}

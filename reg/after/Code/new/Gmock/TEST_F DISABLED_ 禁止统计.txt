@@ -1,0 +1,1 @@
+TEST_F(\1, DISABLED_\2) {	$NL   ASSERT_THAT(soundex.encode("A#"), Eq("A000"));$NL}

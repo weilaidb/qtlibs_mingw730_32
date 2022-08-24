@@ -1,0 +1,205 @@
+VIM中ctags的简单使用教程
+
+Jeremy_ku
+
+于 2017-06-08 19:34:51 发布
+
+27594
+ 收藏 16
+分类专栏： 程序员工具利器 Linux 文章标签： vim ctags linux 工具
+版权
+
+程序员工具利器
+同时被 2 个专栏收录
+8 篇文章0 订阅
+订阅专栏
+
+Linux
+10 篇文章0 订阅
+订阅专栏
+关于ctags的安装及配置等，请参考 Vim:打造Linux程序员的编辑利器(ctags+cscope+taglist+code_complete)。
+
+
+下面是关于ctags的几个常用快捷键。
+
+注意：
+使用ctags时，需要在tags文件所在的目录打开vim。否则会提示类似“E433：No tags file”出错信息。(tags文件，即在代码根目录下运行诸如ctags -R -f xx_tagFileName ./命令时生成的代码标记索引文件。)
+
+若在其他目录时打开vim使用ctags，需要在vim中设置tags变量，变量值为tags文件路径。例如：
+    :set tags=....../tags_glibc
+1
+2
+-f xx_tagFileName：指定生成的标签文件名，默认文件名是tags。 xx_tagFileName指定为 - 的话，输出到标准输出。
+-o xx_tagFileName : (字母o)该选项等同于上面的“-f ”选项。
+
+在vim命令模式下，可以输入:help ctags来查看ctags的帮助文档。
+
+打开进入vim后，在vim编辑器内,
+在命令模式下输入 :ta pattern 就可以 找到符合pattern的字符位置。（相当于search功能）
+
+Ctrl + ]	找到光标所在位置的标签定义的地方。
+Ctrl + T	回到跳转之前的标签处。
+Ctrl + O	(是字母o，不是数字0) 退回原来的地方。
+[I	查找全局标识符. Vim会列出它所找出的匹配行，不仅在当前文件内查找，还会在所有的包含文件中查找。
+[i	从当前文件起始位置开始查找第一处包含光标所指关键字的位置。
+]i	类似上面的[i，但这里是从光标当前位置开始往下搜索。
+[{	转到上一个位于第一列的”{“。（前提是 “{” 和 “}” 都在第一列。）
+]}	转到下一个位于第一列的”}”。
+在括号内移动, “[(” 和 “])” 命令”[}” 和 “]}” 类似，只不过它们适用于 () 对而不是 {} 对。
+
+
+
+{	转到上一个空行。
+}	转到下一个空行。
+
+
+gd	转到当前光标所指的局部变量的定义(只在当前函数内查找)。
+gD	在当前文件中查找并跳转到光标处单词被首次使用的地方。
+*	转到当前光标所指的单词下一次出现的地方。
+#	转到当前光标所指的单词上一次出现的地方。
+
+
+[/	移动到一个注释的开始；(这只对 /* - */ 注释有效。)
+]/	移动到注释的结尾。(这只对 /* - */ 注释有效。)
+
+
+打开一个预览窗口,
+来显示函数 “write_char” 的页面内容，使用ptag命令：
+
+    :ptag write_char
+1
+Vim 会打开一个窗口，跳转到 “write_char” 标签，然后它会回到原来的位置。
+
+
+W
+使用CTRL+WW命令可以在两个窗口间切换，选其中一个窗口作为当前窗口。
+
+
+用下面的命令关闭预览窗口：
+
+    :pclose
+1
+
+
+
+Note:
+http://blog.csdn.net/garfieldswimming/article/details/8727481
+
+在一个源码根目录下，运行如下命令建立索引时 出错了：
+
+$ ctags -R .
+ctags: skipping ***: it is not a regular file.
+1
+2
+碰到类似这个问题的，其原因可能是因为你运行的ctags 不是 Exuberant Ctags, 而是 GNU Emacsetags,
+
+可通过如下命令查看：
+
+$ctags --version 
+
+ctags (GNU Emacs 23.1)
+Copyright (C) 2009 Free Software Foundation, Inc.
+This program is distributed under the terms in ETAGS.README
+1
+2
+3
+4
+5
+当你运行man ctags命令时，可以看到-R选项的描述为：
+
+   -R, --no-regex
+          Don't  do  any more regexp matching on the following files.  May
+          be freely intermixed with filenames and the --regex option.
+1
+2
+3
+You could probably generate the tags recursively using shell magic, but you may run into problems down the road if you’re expecting Exuberant Ctags. So the best solution is probably to install the ctags you want instead:
+sudo apt-get install exuberant-ctags
+
+所以，可以通过如下命令安装ctags:
+
+$ sudo apt-get install exuberant-ctags
+1
+另一种可能是
+
+It occurs if you have elvis-tools installed . Remove them with something like
+你可能安装了elvis-tools，那尝试卸载掉elvis-tools后再安装exuberant-ctags
+
+$ sudo apt-get remove elvis-tools 
+
+and then install exuberant-ctags by
+
+$ sudo apt-get install exuberant-ctags
+1
+2
+3
+4
+5
+
+
+taglist的配置与使用
+taglist是依赖于ctags的，所以用taglist前需先安装好ctags。
+
+在/etc/vim/vim73/vimrc中对taglist的配置如下(vim配置文件使用双引号作为注释)：
+
+"""""""""" Taglist (ctags)""""""""""""""""
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+
+let Tlist_Show_One_File = 1  "不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Exit_OnlyWindow = 1  "如果taglist窗口是最后一个窗口，则退出vim
+
+"let Tlist_Auto_Open=1    "在启动VIM后，自动打开taglist窗口
+
+"let Tlist_Use_SingleClick= 1    " 缺省情况下，在双击一个tag时，才会跳到该tag定义的位置
+
+"let Tlist_Process_File_Always=1  "taglist始终解析文件中的tag，不管taglist窗口有没有打开
+
+"let Tlist_File_Fold_Auto_Close=1 "同时显示多个文件中的tag时，可使taglist只显示当前文件tag，其它文件的tag都被折叠起来
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+如果没有设置为vim启动时自动打开taglist，可以
+
+使用 “:TlistToggle” 在打开和关闭间切换
+
+使用 “:TlistOpen” 打开taglist窗口，用“:TlistClose”关闭taglist窗口。
+
+使用 “ctrl+w+w” 在正常编辑区域和tags区域中切换
+定位指定内容
+在tags区域中，把光标移动到变量、函数名称上，然后敲回车(或者是双击某个tag)，就会自动在正常编辑区域中定位到指定内容了。
+在taglist窗口中，可以使用下面的快捷键 ：
+< CR >	跳到光标下tag所定义的位置，用鼠标双击此tag功能也一样
+o	在一个新打开的窗口中显示光标下tag
+< Space>	（空格）显示光标下的tag的原型定义
+u	更新taglist窗口中的tag
+s	更改排序方式，在按名字排序和按出现顺序排序间切换
+x	taglist窗口放大和缩小，方便查看较长的tag
++	打开一个折叠，同zo
+-	将tag折叠起来，同zc
+*	打开所有的折叠，同zR
+=	将所有tag折叠起来，同zM
+[[	跳到前一个文件
+]]	跳到后一个文件
+q	关闭taglist窗口
+< F1>	显示帮助
+
+
+Reference:
+ctags百度百科(简单用法)
+ctags使用详解
+Ubuntu下创建vim+Taglist+cscope+ctags组合编辑器
+
+文章知识点与官方知识档案匹配，可进一步学习相关知
+————————————————
+版权声明：本文为CSDN博主「Jeremy_ku」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/haifeng_gu/article/details/72934188

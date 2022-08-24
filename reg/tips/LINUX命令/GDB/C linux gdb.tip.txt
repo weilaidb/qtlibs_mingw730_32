@@ -1,0 +1,210 @@
+进入layou asm模式(《Debugging with gdb》的解释为：Display the assembly window only.)：
+
+
+另：提供一种简单的方法来调试Release文件，这种方法的缺点在于你必须有ELF文件的源代码。
+1、objcopy --only-keep-debug projectD projectsymbol.dbg #生成符号表；
+2、gdb -q --symbol=projectsymbol.dbg -exec=projectR #加载符号表；
+3、跟平常调试带debug段的elf一样了。
+
+
+
+gdb -q --symbol=main.debbg -exec=main
+
+
+linux gdb 导出到文件怎么打开,GDB基本命令从打开文件到调试结束的教程
+GDB基本命令从打开文件到调试结束的教程
+
+事前准备
+
+1　gcc -g -o 将原文件编译成可以让gdb调试的目标文件
+
+2　gdb 打开要调试的目标文件
+
+3　set args 　设置参数
+
+或者run的时候用run 来实现
+
+4　show args 参看参数
+
+5　show environment 查看environment
+
+5　unset env 清除所有环境变量
+
+6　set environment 来设置一个环境变量VAR1
+
+设置/删除断点
+
+1　info sources 或　list 　来查看文件，要不然都不知道应该在哪里设置断点
+
+2　查看断点　info breakpoints
+
+3　break
+
+4 tbreak 设置临时断点，到达后被自动删除
+
+5　enable
+
+enable delete
+
+enable once
+
+6　disable
+
+7　delete breakpoints 　删除断点
+
+或单用delete而不加任何参数来删除所有断点
+
+->断点进阶
+
+1　break test.c:5　设置断点到指定文件
+
+2　break 在内存某一个位置出暂停
+
+3　break if 　来设置条件断点
+
+4　condition 　对已存在的断点附上条件
+
+5　command 可以在第n个断点出设置命令
+
+开始调试
+
+0　run　程序开始执行
+
+1　step or s 单步执行
+
+2　next or n非进入式单步执行，就是说，当调用其他函数时，不进入那个函数内部
+
+3　finish　一直运行到函数返回
+
+4　until 运行到函数某一行
+
+5　continue or cont 执行到下一个断点或程序结束
+
+6　return　　改变程序流程，直接结束当前函数，并将指定值返回
+
+设置变量
+
+set
+
+1　set i = 5　改变程序中一个变量的值
+
+2　set $i =5 来设置一个pdb环境里自己的变量，该变量独立于程序，也就是说只有gdb认识
+
+获取程序信息
+
+1　监视变量
+
+print /fmt 打印信息
+
+fmt格式，有以下几种
+
+------------------------------
+
+x 　十六进制
+
+------------------------------
+
+d 　十进制
+
+------------------------------
+
+u 无符号数
+
+------------------------------
+
+o 八进制
+
+------------------------------
+
+t 二进制
+
+------------------------------
+
+a 十六进制打印
+
+------------------------------
+
+c 字符格式
+
+------------------------------
+
+f 浮点数
+
+------------------------------
+
+2　追踪变量
+
+watch 　 追踪被赋值动作 eg. i = 4;
+
+rwatch 　 追踪读动作 eg. b = i;
+
+awatch 　 追踪所有动作
+
+del watchpoint .
+
+info display
+
+display
+
+show display
+
+del display
+
+3 　监视内存
+
+x /
+
+Address可以是内存地址或是指针，比如0x8799f000，p，&var
+
+fmt 由三部分组成　NFU,N表示要查看的长度，U为格式，其中有分为bhwg，分别表示以字节，半字，字，双字
+
+来显示。
+
+eg.
+
+(gdb) x argv[0]
+
+0xbfffff61: 0x6d6f682f
+
+(gdb) x /10cb argv[0]
+
+0xbfffff61: 47 '/' 104 'h' 111 'o' 109 'm' 101 'e' 47 '/' 67 'C' 104 'h'
+
+0xbfffff69: 97 'a' 114 'r'
+
+(gdb) x /10tb
+
+12
+
+0xbfffff6b: 01101100 01100101 01110011 00101111
+
+01110111 01101111 01110010 01101011
+
+0xbfffff73: 01110000 01101100
+
+(gdb) x /10th
+
+0xbfffff7f:
+
+0110101101101111 0111010000101111 0110000100000000
+
+01100010000000110001100000000 0110010000000000 0110010100000000 0110011000000000
+
+0xbfffff8f: 0110011100000000 0101011000000000
+
+(gdb)
+
+4　查看总的frame信息
+
+backtrace 或者　bt
+
+说明：frame是函数调用时候所产生的堆栈，存储函数被调用的信息
+
+5　选择要查看的frame
+
+frame
+
+
+
+
+

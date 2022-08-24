@@ -1,0 +1,1 @@
+https://github.com/weilaidb/sourceinsight/blob/master/Projects/Base/diy_utils.em

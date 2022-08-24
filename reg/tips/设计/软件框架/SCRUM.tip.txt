@@ -1,0 +1,59 @@
+https://www.scrumcn.com/agile/scrum-knowledge-library/%e4%bb%80%e4%b9%88%e6%98%afscrum.html
+
+
+什么是SCRUM
+Scrum 是用于开发、交付和持续支持复杂产品的一个框架，是一个增量的、迭代的开发过程。在这个框架中，整个开发过程由若干个短的迭代周期组成，一个短的迭代周期称为一个Sprint，每个Sprint的建议长度是一至四周。在Scrum中，使用产品Backlog来管理产品的需求，产品backlog是一个按照商业价值排序的需求列表，列表条目的体现形式通常为用户故事。Scrum团队总是先开发对客户具有较高价值的需求。在Sprint中，Scrum团队从产品Backlog中挑选最高优先级的需求进行开发。挑选的需求在Sprint计划会议上经过讨论、分析和估算得到相应的任务列表，我们称它为Sprint backlog。在每个迭代结束时，Scrum团队将递交潜在可交付的产品增量。 Scrum起源于软件开发项目，但它适用于任何复杂的或是创新性的项目。Scrum 目前已被用于开发软件、硬件、嵌入式软件、交互功能网络、自动驾驶、学校、政府、市场、管理组织运营，以及几乎我们（作为个体和群体）日常生活中所使用的一切。
+
+Scrum流程如下图：
+
+ScrumCN_Scrum_Process_710
+
+Scrum的历史
+1986年，竹内弘高和野中郁次郎阐述了一种新的整体性的方法 ，该方法能够提高商业新产品开发的速度和灵活性：
+他们将这种新的整体性方法与橄榄球相比较，前者各阶段相互重叠，并且由一个跨职能团队在不同的阶段完成整个过程，而团队“作为一个整体前进，把球传来传去”。
+他们对来自汽车，照片机器，计算机和打印机等产业的案例进行了研究。
+1991年，DeGrace和Stahl在《Wicked Problems, Righteous Solutions》一书中将这种方法称为scrum，在竹内弘高和野中郁次郎的文章中提到的橄榄球术语。
+1990年代初，Ken Schwaber在其公司使用了一种方法Advanced Development Methods（先进开发方法），这种方法后来发展为Scrum。
+1993，Jeff Sutherland 在Easel公司开发了一种类似的方法，并首次称之为Scrum。
+1995年，在奥斯汀举办的OOPSLA ’95上，Jeff Sutherland 和Ken Schwaber联合发表了论文首次提出了Scrum概念。Ken Schwaber和Jeff Sutherland 在接下的几年里合作，将上述的文章，他们的经验，以及业界的最佳实践融合起来，形成我们现在所知的Scrum。
+2001年，Ken Schwaber与Mike Beedle合著了《敏捷软件开发-使用Scrum过程》一书，介绍了Scrum方法。
+2001年，Jeff Sutherland和Ken Schwaber参与了犹他州的17人聚会，参与发布了《敏捷宣言和十二原则》。
+2002年，Ken Schwaber和Mike Cohn创办了Scrum Alliance。
+SCRUM框架
+Scrum框架包括3个角色、3个工件、5个事件、5个价值：
+
+3个角色
+产品负责人（Product Owner）：
+Scrum Master
+开发团队
+3个工件
+产品Backlog（Product Backlog）
+SprintBacklog
+产品增量（Increment）
+5个事件
+Sprint（Sprint本身是一个事件，包括了如下4个事件）
+Sprint计划会议（Sprint Planning Meeting）
+每日站会（Daily Scrum Meeting）
+Sprint评审会议（Sprint Review Meeting）
+Sprint回顾会议（Sprint Retrospective Meeting）
+5个价值
+承诺 – 愿意对目标做出承诺
+专注– 把你的心思和能力都用到你承诺的工作上去
+开放– Scrum 把项目中的一切开放给每个人看
+尊重– 每个人都有他独特的背景和经验
+勇气– 有勇气做出承诺，履行承诺，接受别人的尊重
+SCRUM理论基础
+Scrum以经验性过程控制理论（经验主义）做为理论基础的过程。经验主义主张知识源于经验, 以及基于已知的东西做决定。Scrum 采用迭代、增量的方法来优化可预见性并控制风险。
+
+Scrum 的三大支柱支撑起每个经验性过程控制的实现:透明性、检验和适应。Scrum的三大支柱如下：
+
+第一：透明性（Transparency）
+透明度是指，在软件开发过程的各个环节保持高度的可见性，影响交付成果的各个方面对于参与交付的所有人、管理生产结果的人保持透明。管理生产成果的人不仅要能够看到过程的这些方面，而且必须理解他们看到的内容。也就是说，当某个人在检验一个过程，并确信某一个任务已经完成时，这个完成必须等同于他们对完成的定义。
+
+第二：检验（Inspection）
+开发过程中的各方面必须做到足够频繁地检验，确保能够及时发现过程中的重大偏差。在确定检验频率时，需要考虑到检验会引起所有过程发生变化。当规定的检验频率超出了过程检验所能容许的程度，那么就会出现问题。幸运的是，软件开发并不会出现这种情况。另一个因素就是检验工作成果人员的技能水平和积极性。
+
+第三：适应（Adaptation）
+如果检验人员检验的时候发现过程中的一个或多个方面不满足验收标准，并且最终产品是不合格的，那么便需要对过程或是材料进行调整。调整工作必须尽快实施，以减少进一步的偏差。
+
+Scrum中通过三个活动进行检验和适应：每日例会检验Sprint目标的进展，做出调整，从而优化次日的工作价值；Sprint评审和计划会议检验发布目标的进展，做出调整，从而优化下一个Sprint的工作价值；Sprint回顾会议是用来回顾已经完成的Sprint，并且确定做出什么样的改善可以使接下来的Sprint更加高效、更加令人满意，并且工作更快乐。

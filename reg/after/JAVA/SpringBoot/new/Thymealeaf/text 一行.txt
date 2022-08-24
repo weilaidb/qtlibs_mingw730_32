@@ -1,0 +1,1 @@
+<span th:text="${\1}" th:remove="tag"></span>

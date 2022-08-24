@@ -1,0 +1,7 @@
+为了使用套接字缓冲区，内核创建了两个后备高速缓存 (lookaside cache) ，它们分别是 
+skbuff_head_cache 和 skbuff_fclone_cache，协议栈中所使用到的所有的 sk_buff 结构都是从这两个后备高 
+速缓存中分配出来的。两者的区别在于 skbuff_head_cache 在创建时指定的单位内存区域的大小是 
+sizeof(struct sk_buff)，可以容纳任意数目的 struct sk_buff，而 skbuff_fclone_cache 在创建时指定的单位内 
+存区域大小是 2*sizeof(struct sk_buff)+sizeof(atomic_t)，它的最小区域单位是一对 strcut sk_buff 和一个引 
+用计数，这一对 sk_buff 是克隆的，即它们指向同一个数据缓冲区，引用计数值是 0,1 或 2，表示这一对 
+中有几个 sk_buff 已被使用。 

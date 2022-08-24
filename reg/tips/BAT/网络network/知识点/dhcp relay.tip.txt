@@ -1,0 +1,21 @@
+DHCP Relay 
+DHCPRelay（DHCPR）DHCP中继（也叫做DHCP中继代理）是一个小程序，其可以实现在不同子网和物理网段之间处理和转发dhcp信息的功能。
+如果DHCP客户机与DHCP服务器在同一个物理网段，则客户机可以正确地获得动态分配的ip地址。如果不在同一个物理网段，则需要DHCP Relay Agent(中继代理)。
+
+DHCP relay 原理编辑
+1 当dhcp client 启动并进行dhcp 初始化时，它会在本地网络广播配置请求报文。
+2 如果本地网络存在dhcp server，则可以直接进行dhcp 配置，不需要dhcp relay。
+3 如果本地网络没有dhcp server，则与本地网络相连的具有dhcprelay 功能的网络设备收到该广播报文后，将进行适当处理并转发给指定的其它网络上的dhcp server。
+4 dhcp server 根据dhcp client 提供的信息进行相应的配置，并通过dhcp relay 将配置信息发送给dhcp client，完成对dhcp client 的动态配置。
+事实上，从开始到最终完成配置，需要多个这样的交互过程。
+1 dhcp relay设备修改dhcp消息中的相应字段，把dhcp的广播包改成单播包，并负责在服务器与客户机之间转换。
+2 netcore路由器（2x05）可以作为dhcp relay 代理。
+
+选择路由器2811
+点击文件夹-2811
+
+Router(config)#int g0/1
+Router(config-if)#ip helper-address 192.168.1.1
+
+192.168.1.1 为dhcp的静态ip地址
+

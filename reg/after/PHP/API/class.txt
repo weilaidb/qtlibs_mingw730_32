@@ -1,0 +1,1 @@
+<?php$NLclass \1$NL{$NL  var $color;$NL  function __construct($color="green") {$NL    $this->color = $color;$NL  }$NL  function what_color() {$NL    return $this->color;$NL  }$NL}$NL?>

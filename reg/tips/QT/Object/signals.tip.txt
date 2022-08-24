@@ -1,0 +1,16 @@
+3．自定义信号及其使用
+在自己设计的类里也可以自定义信号，信号就是在类定义里声明的一个函数，但是这个函数无需实现，只需发射（emit）。
+例如，在下面的自定义类QPerson的signals部分定义一个信号ageChanged(int )。class QPerson : public QObject
+{    Q_OBJECT
+private:
+   int  m_age=10;
+public:
+   void    incAge();
+signals:
+   void    ageChanged( int  value);
+}
+信号函数必须是无返回值的函数，但是可以有输入参数。信号函数无需实现，只需在某些条件下发射信号。例如，在incAge()函数中发射信号，其代码如下。void QPerson::incAge()
+{  m_age++;
+   emit ageChanged(m_age);//发射信号
+}
+在incAge()函数里，当私有变量m_age变化后，发射信号ageChanged(int)，表示年龄发生了变化。至于是否有与此信号相关联的槽函数，信号发射者并不管。如果在使用QPerson类对象的程序中为此信号关联了槽函数，在incAge()函数里发射此信号时，就会执行相关联的槽函数。至于是否立即执行槽函数，发射信号的线程是否等待槽函数执行完之后再执行后面的代码，与connect()函数设置信号与槽关联时设置的连接类型以及信号与槽是否在同一个线程有关。

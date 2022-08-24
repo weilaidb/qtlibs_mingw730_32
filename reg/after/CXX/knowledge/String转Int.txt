@@ -1,0 +1,1 @@
+stoi(\1)$NLstol(\1)$NLstoll(\1)$NL$NLcout << "string-->int:" << stoi(\1) << endl;

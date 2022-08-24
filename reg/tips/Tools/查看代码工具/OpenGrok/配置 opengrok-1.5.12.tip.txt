@@ -1,0 +1,56 @@
+#================================opengrok-1.5.12
+#================================opengrok-1.5.12
+#================================opengrok-1.5.12
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+SOFT_PATH=~/soft
+WORK_PATH=~/work
+OPENGROK_VER=1.5.12
+OPENGROK_NAME=opengrok-$OPENGROK_VER
+TOMCAT_PATH=~/soft/web_notebook_online/apache-tomcat-9.0.54
+
+
+export CLASS_PATH=$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar
+export PATH=$JAVA_HOME/bin:$PATH
+JAVA_BIN=/usr/bin/java
+CTAGS_BIN=/snap/bin/ctags
+TOMCAT_BIN_PATH=$TOMCAT_PATH/bin/
+TOMCAT_WEBAPP_PATH=$TOMCAT_PATH/webapps
+OPENGROK_ROOT=$SOFT_PATH/$OPENGROK_NAME
+OPENGROK_TAR_PATH=$OPENGROK_ROOT/opengrok-$OPENGROK_VER.tar.gz
+OPENGROK_LOG_PROPERTY=$OPENGROK_ROOT/etc/logging.properties
+OPENGROK_JAR=$OPENGROK_ROOT/lib/opengrok.jar
+OPENGROK_INDEX=$WORK_PATH/git
+OPENGROK_ETC=$OPENGROK_ROOT/etc
+OPENGROK_GENERATE_XML=$OPENGROK_ETC/configuration.xml
+OPENGROK_DATA=$OPENGROK_ROOT/data
+OPENGROK_WAR_NAME=source.war
+OPENGROK_WAR=$OPENGROK_ROOT/lib/$OPENGROK_WAR_NAME
+
+mkdir $OPENGROK_ETC
+
+echo "begin paring..."
+$JAVA_BIN \
+-Djava.util.logging.config.file=$OPENGROK_LOG_PROPERTY \
+-jar $OPENGROK_JAR \
+-c $CTAGS_BIN \
+-s $OPENGROK_INDEX \
+-d $OPENGROK_DATA \
+-H -P -S -G \
+-W $OPENGROK_GENERATE_XML \
+-U http://localhost:8080/source
+
+
+
+#工具:
+#drwxrwxr-x  8 duoduo duoduo      4096 Mar  3 23:22 ./
+#drwxr-xr-x 27 duoduo duoduo      4096 Mar  3 22:48 ../
+#drwxrwxr-x  9 duoduo duoduo      4096 Mar  3 22:55 apache-tomcat-8.5.63/
+#-rw-rw-r--  1 duoduo duoduo  10515248 Mar  3 22:54 apache-tomcat-8.5.63.tar.gz
+#drwxrwxr-x 24 duoduo duoduo      4096 Mar  3 23:27 ctags/
+#drwxrwxr-x 11 duoduo duoduo      4096 Mar  3 23:11 enca-1.9/
+#-rw-rw-r--  1 duoduo duoduo    671051 Mar  3 23:10 enca-1.9.tar.gz
+#drwxrwxr-x  8 duoduo duoduo      4096 Mar  3 22:47 jdk-11.0.1/
+#-rw-rw-r--  1 duoduo duoduo 179758537 Mar  3 22:47 jdk-11.0.1_linux-x64_bin.tar.gz
+#drwxrwxr-x  8 duoduo duoduo      4096 Mar  3 23:47 opengrok-1.5.12/
+#-rw-rw-r--  1 duoduo duoduo  72425331 Mar  3 23:16 opengrok-1.5.12.tar.gz
+#drwxrwxr-x  2 duoduo duoduo      4096 Jan 29  2020 Xilinx/

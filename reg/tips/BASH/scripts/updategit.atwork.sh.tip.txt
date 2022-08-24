@@ -1,0 +1,47 @@
+#!/bin/sh
+
+errorexit()
+{
+        errorcode=${1}
+        shift
+        echo $@
+        exit ${errorcode}
+}
+
+usage()
+{
+        scriptname=`basename ${0}`
+        echo "USAGE ${scriptname} directory"
+}
+
+
+update_git_directory()
+{
+        to_proc_dir=$1
+
+        if [ -z ${to_proc_dir} ] ; then
+                usage
+                errorexit 0 "toproc must be specified"
+        fi
+
+        cd "${to_proc_dir}"
+        echo =======procing ${to_proc_dir}
+
+        git_file=.git.responsity
+
+        find . -name .git | sed 's/\.git//g' > $git_file
+        # pwd
+        while read LINE
+        do
+                echo 
+                echo procing responsity [$LINE]
+                cd $LINE
+                git config pull.rebase false
+                # pwd
+                git pull 
+                cd -
+        done < $git_file
+
+}
+
+update_git_directory $1

@@ -1,0 +1,18 @@
+jsp+ajax中的url使用的相对路径，不是绝对路径。
+1.比如文件abc.txt在web路径下
+2.web/test/ajax/test.jsp是要读取abc.txt，则url需要写为
+../../abc.txt
+
+3.和WebServlet定义的.java文件位置无法，只和urlPatterns有关。
+@WebServlet(name = "Testservlet", urlPatterns = {"/testservlet"})
+public class Testservlet extends HttpServlet {
+
+4.比如示例
+src/bean/a/b/c/d/Testservlet.java
+web/js/test.js
+web/ajax/index.jsp
+
+----
+index.jsp中引用web/js/test.js，如果想访问/testservlet，则url须写为
+
+url: "../testservlet?name="+$("[name=name]").val()+"&pwd="+$("[name=pwd]").val()+"&date="+new Date().getTime(),

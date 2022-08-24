@@ -1,0 +1,49 @@
+Bash 重定向
+当一个命令执行时，通常从“标准输入”读取输入，在默认情况下，该“标准输入”为您的终端。以此类比，当一个命令将其输出写入到“标准输出”中，在默认情况下，该“标准输出”同为您的终端。重定向就是将发送目标：终端，更改成指定的文件。
+输出重定向
+由于>或>>会将输出从终端重定向到指定文件，因此均不会在终端打印输出。>和>>的功能区别，如下所示：
+>会以命令中的写入内容覆盖原文件内容。如果指定的文件不存在，那么它将会创建一个以指定文件名命名的新文件，并执行写入操作。
+示例：
+#!/bin/bash
+writefile=WriteFile.txt
+$ echo "编程狮：www.w3cschool.cn" > $writefile
+#使用 cat 命令打印文件内容
+$ cat $writefile
+执行后得到以下结果：
+编程狮：www.w3cschool.cn
+>>会将命令中的写入内容附加到原文件内容末尾。如果指定的文件不存在，那么它将会创建一个以指定文件名命名的新文件，并执行写入操作。
+示例：
+#!/bin/bash
+writefile=WriteFile.txt
+$ echo "编程狮：www.w3cschool.cn" > $writefile
+$ echo "编程狮：www.w3cschool.cn" >> $writefile
+#使用 cat 命令打印文件内容
+cat $writefile
+执行后得到以下结果：
+编程狮：www.w3cschool.cn
+编程狮：www.w3cschool.cn
+输入重定向
+与输出重定向一样，但是符号方向相反。语法展示如下：
+command < file
+接下来使用 wc命令读取文件行数配合演示示例。 示例：
+$ wc -l < WriteFile.txt
+注：
+此处不会输出文件名， <仅知道从“标准输入”读取的内容。
+深入理解
+您需要理解以下三个文件概念：
+stdin：标准输入文件，其文件描述符为0，默认由此读取数据。
+stdout：标准输出文件，其文件描述符为1，默认向它输出数据。
+stderr：标准错误文件，其文件描述符为2，默认向它写入错误信息。
+#默认情况下
+command > file
+#将 stdout 重定向到 file
+command < file
+#将 stdin 重定向到 file
+如果想要 stderr重定向到 file ，如下示例：
+$ command 'stderr' > file
+#或（注意二者的区别）
+$ command 'stderr' >> file
+注：
+'stderr'指代标准错误文件，非命令，请不要盲目复制使用。
+如果希望对stdin和stdout都进行重定向，将 file1 作为command 的输入，并将 command 的处理结果输出到 flie2 。
+command < file1 > file2

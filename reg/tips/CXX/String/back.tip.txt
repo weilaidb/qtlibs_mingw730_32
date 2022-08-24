@@ -1,0 +1,94 @@
+C++ std::string::back()用法及代码示例
+
+ 
+此函数返回对字符串最后一个字符的直接引用。这只能用于非空字符串。
+这可以用来访问字符串的最后一个字符，也可以在字符串的末尾附加一个字符。追加字符后，字符串的长度保持不变，字符串的最后一个字符被新的替换
+
+用法
+
+string str ("GeeksforGeeks");
+
+Accessing last character
+char end_char = str.back();
+
+Appending character at end of string
+str.back() = '#';
+参数：该函数不带参数
+
+
+返回值：对字符串中最后一个字符的引用
+
+异常：如果字符串为空，则显示未定义的行为。
+
+以下示例说明了上述方法的用法：
+
+程序1:
+
+// C++ program to demonstrate 
+// the use of the above method 
+  
+#include <iostream> 
+  
+// for std::string::back 
+#include <string> 
+  
+using namespace std; 
+  
+int main() 
+{ 
+    string str("GeeksforGeeks"); 
+  
+    // Accessing last character of string 
+    char end_char = str.back(); 
+  
+    cout << "Last character of string = "
+         << end_char << endl; 
+  
+    // Appending a character to 
+    // the end of string 
+    str.back() = '#'; 
+  
+    cout << "New string = " << str << endl; 
+  
+    return 0; 
+}
+输出：
+Last character of string = s
+New string = GeeksforGeek#
+程序2:当字符串为空时，它将显示未定义的行为。
+
+// C++ program to demonstrate 
+// the use of the above method 
+  
+#include <iostream> 
+  
+// for std::string::front 
+#include <string> 
+  
+using namespace std; 
+  
+int main() 
+{ 
+    string str(""); // Empty string 
+  
+    // trying to access last character 
+    // of an empty string 
+    char end_char = str.back(); 
+  
+    cout << "Last character of string = "
+         << end_char << endl; 
+  
+    // Appending a character to 
+    // the end of an empty string 
+    str.back() = '#'; 
+  
+    cout << "New string = " << str << endl; 
+  
+    return 0; 
+}
+输出：
+Last character of string =  
+New string =  ÉGÃ          @      ·ùþ?aPé£Îý          @     ?k¯Ã  ÿÿÿÿÿÿÿXé£Îý  ÿÿÿ   
+@             Ï?¨Õ,Ä @     Pé£Îý                  Ï??Á±?ðÏ?Ø%Bð                        3ÇGÃ  ¸ÂEÃ :µ#                              @     Pé£Îý  I@     Hé£Îý                ªÿ£Îý                  !        P·Îý         ÿû?                         d              @ @            8                                 ÀFÃ                             @            é             é      
+       é             é                            ©ê£Îý         Ñÿ£Îý         ¹ê£Îý                           ¾·ùþ?aDdCâ?gCx86_64
+参考： std::string::back()

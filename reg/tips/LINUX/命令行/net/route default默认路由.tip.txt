@@ -1,0 +1,2 @@
+增 加默认路由
+route add default gw 192.168.0.1

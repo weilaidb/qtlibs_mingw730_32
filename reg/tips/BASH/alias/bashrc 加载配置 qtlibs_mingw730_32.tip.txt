@@ -1,0 +1,16 @@
+1.下载代码
+cd ~/work/git/
+git clone git@github.com:weilaidb/qtlibs_mingw730_32.git
+
+
+2.
+在~/.bashrc中追加
+
+dos2unix ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
+source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
+dos2unix ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt > /dev/null 2>&1
+source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt > /dev/null 2>&1
+
+
+3.软链接.vimrc,拷贝jsp_exe分支中vimrc中的vim到~/.vim
+ln -s ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/Tools/Vim\ .Vimrc.tip.txt .vimrc

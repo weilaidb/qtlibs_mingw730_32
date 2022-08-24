@@ -1,0 +1,1 @@
+$\1=array(\2);$NLforeach ($\1 as $value)$NL{$NL    echo $value . "<br>";$NL}

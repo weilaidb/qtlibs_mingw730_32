@@ -1,0 +1,39 @@
+组合逻辑
+本节主要介绍组合逻辑，组合逻辑电路的特点是任意时刻的输出仅仅取决于输入信号，输
+入信号变化，输出立即变化，不依赖于时钟。
+4.5.1 与门
+在 verilog 中以“&”表示按位与，如 c=a&b，真值表如下，在 a 和 b 都等于 1 时结果才为
+1，RTL 表示如右图
+ 
+代码实现如下： 激励文件如下：
+module top(a, b, c) ;
+input a ;
+input b ;
+output c ;
+assign c = a & b ;
+endmodule
+`timescale 1 ns/1 ns 
+module top_tb() ;
+reg a ;
+reg b ;
+wire c ;
+initial
+begin
+ a = 0 ;
+ b = 0 ;
+ forever
+ begin 
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 70 / 285
+ #({$random}%100)
+ a = ~a ;
+ #({$random}%100) 
+ b = ~b ; 
+ end
+end
+top t0(.a(a), .b(b),.c(c)) ;
+endmodule
+仿真结果如下：
+如果 a 和 b 的位宽大于 1，例如定义 input [3:0] a, input [3:0]b，那么 a&b 则指 a 与 b 的对
+应位相与。如 a[0]&b[0],a[1]&b[1]。

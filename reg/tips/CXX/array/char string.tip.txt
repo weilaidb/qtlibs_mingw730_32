@@ -1,0 +1,2 @@
+[key类型;val类型;函数名]
+char;std::string;encodedDigit

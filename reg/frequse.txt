@@ -1,0 +1,31 @@
+Algorithm 算法/从中间某处排序字符串
+Algorithm 算法/大数进制转换
+AutoTest/python/telnet
+AutoTest/python/telnet read_until
+AutoTest/python/telnet test
+BASH/alias/bashrc 加载配置
+BASH/alias/bashrc 加载配置 ubuntu20.04
+BASH/alias/generate生成
+BASH/alias/public use
+BASH/alias/public use @ubuntu20.04
+BASH/alias/public use @web
+BASH/awk
+BASH/replace nums in file or 提取数字自增1
+C/GETSET/GETTER
+C/GETSET/GETTER_AND_SETTER
+C/GETSET/GETTER_AND_SETTER GLOBAL ARRAY
+C/GETSET/GETTER_AND_SETTER unsigned int
+C/eg
+CXX/More/虚函数 eg
+CXX/More/虚函数 eg2
+CXX/eg
+FPGA/语法code new/reg
+JAVA/JSP/form/select eg
+JAVA/JSP/mysql/prepareStatement select eg
+JAVA/SpringBoot/application.yml eg
+JavaScript/JQuery/code/event/eg
+JavaScript/JQuery/eg
+JavaScript/func/PyScript/eg
+JavaScript/func/RegExp 正则表达式的语法
+JavaScript/func/eg
+Setting/网页显示常用Tab切换

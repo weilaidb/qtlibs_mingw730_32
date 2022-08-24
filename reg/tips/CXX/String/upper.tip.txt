@@ -1,0 +1,3 @@
+char upper(char c) const {
+  return std::toupper(static_cast<unsigned char>(c));
+}

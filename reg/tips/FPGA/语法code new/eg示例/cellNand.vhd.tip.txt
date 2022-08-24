@@ -1,0 +1,52 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity cellNand is
+port(
+    a:in std_logic_vector(3 downto 0);
+    b:in std_logic_vector(3 downto 0);
+    nc1:out std_logic_vector(3 downto 0);
+    nc2:out std_logic_vector(3 downto 0);
+);
+end cellNand;
+
+architecture Behavioral of cellNand is 
+
+COMPONENT cellAnd
+    generic(
+    WIDTH:integer:=8
+);
+port(
+    a:in std_logic_vector(WIDTH-1 downto 0);
+    b:in std_logic_vector(WIDTH-1 downto 0);
+    c:out std_logic_vector(WIDTH-1 downto 0);
+);
+end COMPONENT;
+
+signal c:std_logic_vector(3 downto 0);
+signal tmp:std_logic_vector(3 downto 0);
+
+begin
+    
+m0:cellAnd
+GENERIC MAP(
+    WIDTH=>4
+)
+PORT MAP(
+    a=>a,
+    b=>b,
+    c=>c
+);
+
+process(a,b)
+begin
+    tmp <=a and b;
+    nc1 <=not tmp;
+end process;
+
+nc2<=not c;
+
+end Behavioral;
+

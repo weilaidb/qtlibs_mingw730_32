@@ -1,0 +1,17 @@
+onblur 事件
+DOM 事件 FocusEvent
+实例
+当用户离开输入字段时执行 JavaScript：
+
+<input type="text" onblur="myFunction()">
+亲自试一试
+页面下方有更多 TIY 实例。
+
+定义和用法
+onblur 事件发生在对象失去焦点时。
+
+onblur 事件最常与表单验证代码一起使用（例如，当用户离开表单字段时）。
+
+提示： onblur 事件与 onfocus 事件相反。
+
+提示： onblur 事件类似于 onfocusout 事件。主要区别在于 onblur 事件不会冒泡。因此，如果您想找出元素或其子元素是否失去焦点，可以使用 onfocusout 事件。但是，您可以通过使用 onblur 事件的 addEventListener() 方法的 useCapture 参数（可选）来实现这一点。

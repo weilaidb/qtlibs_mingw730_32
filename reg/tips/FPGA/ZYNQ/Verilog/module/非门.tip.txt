@@ -1,0 +1,25 @@
+4.5.3 非门
+在 verilog 中以“~”表示按位取反，如 b=~a，真值表如下，b 等于 a 的相反数。
+ 
+代码实现如下： 激励文件如下：
+module top(a, b) ;
+input a ;
+output b ;
+assign b = ~a ;
+endmodule
+`timescale 1 ns/1 ns 
+module top_tb() ;
+reg a ;
+wire b ;
+initial
+begin
+ a = 0 ; 
+ forever
+ begin 
+ #({$random}%100)
+ a = ~a ; 
+ end
+end
+top t0(.a(a), .b(b)) ;
+endmodule
+仿真结果如如下：

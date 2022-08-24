@@ -1,0 +1,9 @@
+Qt API包含很多返回值为QList或QStringList的函数，要遍历这些返回的容器，必须先复制。由于Qt使用了隐式共享，这样的复制并无多大开销。例如下面的代码是正确的。const QList<int> sizes = splitter->sizes();
+QList<int>::const_iterator i;
+for (i = sizes.begin(); i != sizes.end(); ++i)
+   ...提示　
+隐式共享（Implicit Sharing）是对象的管理方法。一个对象被隐式共享，只是传递该对象的一个指针给使用者，而不实际复制对象数据，只有在使用者修改数据时，才实质复制共享对象给使用者。如在上面的代码中，splitter->sizes()返回的是一个QList<int>列表对象sizes，但是实际上代码并不将splitter->sizes()表示的列表内容完全复制给变量sizes，只是传递给它一个指针。只有当sizes发生数据修改时，才会将共享对象的数据复制给sizes，这样避免了不必要的复制，减少了资源占用。
+而下面的代码是错误的。QList<int>::const_iterator i;
+for (i = splitter->sizes().begin(); i != splitter->sizes().end(); ++i)
+   ...
+对于STL类型的迭代器，隐式共享还涉及另外一个问题，即当有一个迭代器在操作一个容器变量时，不要去复制这个容器变量。

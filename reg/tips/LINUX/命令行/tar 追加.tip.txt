@@ -1,0 +1,30 @@
+linux tar包 追加
+
+whatday
+
+于 2020-12-22 16:00:34 发布
+
+4822
+ 收藏 14
+版权
+tar -cvf 可以追加
+
+tar -zcvf 不能追加
+
+如果tar.gz文件是如此生成：
+
+#tar -zcvf test.tar.gz  a.txt
+即tar.gz是压缩（-z）和归档（-c）文件，则无法给它追加文件；
+
+
+如果 tar.gz 文件是如此生成：
+
+#tar -cvf test.tar.gz  a.txt
+则可使用来追加文件：
+
+#tar -rvf test.tar.gz b.txt
+查看归档内容：
+
+#tar -tf  test.tar.gz
+a.txt
+b.txt

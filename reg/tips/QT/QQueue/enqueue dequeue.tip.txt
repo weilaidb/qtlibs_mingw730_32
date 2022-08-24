@@ -1,0 +1,8 @@
+5．QQueue
+QQueue<T>是提供类似于队列先入先出（FIFO）操作的容器类。enqueue()和dequeue()是主要操作函数。例如：QQueue<int> queue;
+queue.enqueue(10);
+queue.enqueue(20);
+queue.enqueue(30);
+while (!queue.isEmpty())
+   cout << queue.dequeue() << endl;
+程序会依次输出10，20，30。

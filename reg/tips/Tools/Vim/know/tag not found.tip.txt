@@ -1,0 +1,48 @@
+vim ctags: tag not found
+
+Xminyang
+
+于 2018-03-31 21:58:49 发布
+
+7392
+ 收藏 4
+分类专栏： Linux Vim 文章标签： vim ctags tag not found
+版权
+
+Linux
+同时被 2 个专栏收录
+35 篇文章0 订阅
+订阅专栏
+
+Vim
+6 篇文章0 订阅
+订阅专栏
+问题
+明明已经安装了ctags，但却遇到vim ctags: tag not found的情况时，可通过修改vim的配置文件得以解决。
+
+解决方案
+vim配置文件的存放位置 ~/.vimrc 或 /etc/vimrc
+1、 打开上述并增添内容为：
+
+set tags=./tags,tags;$HOME
+1
+或
+
+set tags=tags;
+set autochdir
+1
+2
+2、退出并保存后，然后执行:
+
+# source ~/.vimrc
+1
+或
+
+# source /etc/vimrc
+1
+3、最后，更新tags文件：
+
+# ctags -R
+————————————————
+版权声明：本文为CSDN博主「Xminyang」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/Xminyang/article/details/79773730

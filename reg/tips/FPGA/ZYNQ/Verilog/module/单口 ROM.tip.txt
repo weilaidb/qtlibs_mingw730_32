@@ -1,0 +1,53 @@
+4.6.9 单口 ROM
+ROM 是用来存储数据的，可以按照下列代码形式初始化 ROM，但这种方法处理大容量的
+ROM 就比较麻烦，建议用 FPGA 自带的 ROM IP 核实现，并添加初始化文件。
+代码实现 激励文件
+module top
+(
+ input [3:0] addr,
+ input clk,
+ output reg [7:0] q 
+);
+always @(posedge clk)
+begin
+ case(addr)
+ 4'd0 : q <= 8'd15 ;
+ 4'd1 : q <= 8'd24 ;
+ 4'd2 : q <= 8'd100 ;
+ 4'd3 : q <= 8'd78 ;
+ 4'd4 : q <= 8'd98 ;
+ 4'd5 : q <= 8'd105 ;
+ 4'd6 : q <= 8'd86 ;
+ 4'd7 : q <= 8'd254 ;
+ 4'd8 : q <= 8'd76 ;
+ 4'd9 : q <= 8'd35 ;
+ 4'd10 : q <= 8'd120 ;
+ 4'd11 : q <= 8'd85 ;
+ 4'd12 : q <= 8'd37 ;
+ 4'd13 : q <= 8'd19 ;
+ 4'd14 : q <= 8'd22 ;
+ 4'd15 : q <= 8'd67 ;
+ default: q <= 8'd0 ;
+ endcase
+end 
+endmodule
+`timescale 1 ns/1 ns 
+module top_tb() ;
+reg [3:0] addr ;
+reg clk ;
+wire [7:0] q ;
+initial
+begin
+ addr = 0 ;
+ clk = 0 ;
+end
+always #10 clk = ~clk ;
+always @(posedge clk)
+begin
+ addr <= addr + 1'b1 ;
+end
+top t0(.addr(addr),
+ .clk(clk),
+ .q(q)) ;
+endmodule
+仿真结果如下

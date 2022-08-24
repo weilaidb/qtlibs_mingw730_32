@@ -1,0 +1,18 @@
+Usage(){
+    cat <<EOF
+
+Usage:
+    $0 [tenant]
+    
+    $0                   (Run database table check_table_data_config all tenants)
+    $0 mycommunity_agile (Run database table check_table_data_config of mycommunity_agile,if not exists,it will not run)
+    $0 -h                (Display this document)
+
+EOF
+    exit 1
+}
+
+
+# 显示帮助
+[ "$1" = "-h" ] && Usage
+echo "not end"

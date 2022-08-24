@@ -1,0 +1,57 @@
+vim-如何使用旺盛的ctags排除多个目录？
+我已经看过并尝试使用旺盛的ctags，但我想做的事却没有运气。 我在Mac上尝试在项目中工作，但我想排除.git，node_modules，test等目录。当我尝试使用ctags -R --exclude=[.git, node_modules, test]这样的项目时，我什么也没有得到。 我真的只需要在我的核心目录中运行它。 关于如何实现此目标的任何想法？
+
+vim ctags exuberant-ctagspertrai1 asked 2020-07-04T19:26:17Z
+3个解决方案
+63 votes
+ctags -R --exclude=.git --exclude=node_modules --exclude=test选项不包含文件列表。 根据ctags的手册页，“可以根据需要指定多次此选项。” 因此，就像这样：
+
+ctags -R --exclude=.git --exclude=node_modules --exclude=test
+
+aalazz answered 2020-07-04T19:26:31Z
+35 votes
+阅读《奇妙手册》应该始终是解决问题的任何第一步。
+
+从.ctagsignore：
+
+--exclude=[pattern]
+  Add  pattern to a list of excluded files and directories. This option may
+  be specified as many times as desired. For each file name  considered  by
+  both the complete path (e.g. some/path/base.ext) and the base name  (e.g.
+  base.ext)  of  the  file, thus allowing patterns which match a given file
+  name irrespective of its path, or match only a specific path.  If  appro-
+  priate  support is available from the runtime library of your C compiler,
+  then pattern may contain the usual shell wildcards (not  regular  expres-
+  sions)  common  on Unix (be sure to quote the option parameter to protect
+  the wildcards from being expanded by the shell  before  being  passed  to
+  ctags;  also be aware that wildcards can match the slash character, '/').
+  You can determine if shell wildcards are available on  your  platform  by
+  examining  the output of the --version option, which will include "+wild-
+  cards" in the  compiled  feature  list;  otherwise,  pattern  is  matched
+  against file names using a simple textual comparison.
+
+  If  pattern begins with the character '@', then the rest of the string is
+  interpreted as a file name from which to read exclusion patterns, one per
+  line.  If  pattern  is  empty,  the list of excluded patterns is cleared.
+  Note that at program startup, the default exclude list contains "EIFGEN",
+  "SCCS",  "RCS", and "CVS", which are names of directories for which it is
+  generally not desirable to descend while processing the --recurse option.
+从前两个句子中可以得到：
+
+$ ctags -R --exclude=dir1 --exclude=dir2 --exclude=dir3 .
+这可能有点冗长，但这就是别名和映射等的用途。 或者，您可以从第二段中获得此信息：
+
+$ ctags -R --exclude=@.ctagsignore .
+.ctagsignore中包含以下内容：
+
+dir1
+dir2
+dir3
+可以排除三个目录而无需输入太多内容。
+
+romainl answered 2020-07-04T19:27:13Z
+11 votes
+您可以使用大括号将逗号分隔的列表封装起来，以使用一个2952003983231157157248选项处理倍数：
+
+ctags -R --exclude={folder1,folder2,folder3}
+这似乎仅适用于发出命令的根目录中的文件夹。 排除嵌套文件夹需要单独的--exclude选项。

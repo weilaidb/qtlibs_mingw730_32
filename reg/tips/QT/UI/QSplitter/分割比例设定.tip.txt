@@ -1,0 +1,9 @@
+QSplitter *spliter = new QSplitter(Qt::Horizontal,this);
+spliter->addWidget(A);
+spliter->addWidget(B);
+
+spliter->setStretchFactor(0,3);
+
+spliter->setStretchFactor(1,7);
+
+即可把A、B以3：7的比例分割

@@ -1,0 +1,4 @@
+skb_clone 和 skb_copy 的区别：前者基本在 skbuff_fclone_cache 中分配内存，除非 
+一定要对一个不是可以被克隆的对象进行克隆，那么才会在 skbuff_head_cache 中分配内存，而且只是 
+sk_buff{}结构的复制，没有涉及到真正数据区（data）的复制；后者必定在 skbuff_head_cache 中进行， 
+不仅复制 sk_buff{}，而且复制了数据区。 

@@ -1,0 +1,1 @@
+git rm -r --cached \1$NLgit commit -m 'Remove ignored directory "\1"'$NLgit push origin master

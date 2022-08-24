@@ -1,0 +1,25 @@
+Idea SpringBoot项目页面、Js修改不生效的问题
+
+剑神花哥哥
+
+于 2018-07-25 10:04:53 发布
+
+13767
+ 收藏 4
+文章标签： Idea SpringBoot
+版权
+设置idea配置
+
+
+
+
+在按快捷键：Ctrl+Shift+Alt+/
+
+
+
+
+
+勾上之后重启一下idea，就ok啦！
+————————————————
+版权声明：本文为CSDN博主「剑神花哥哥」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/MakeLoveWith/article/details/81197033

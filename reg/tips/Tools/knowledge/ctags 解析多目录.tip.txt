@@ -1,0 +1,5 @@
+ctags对部分目录生成tags
+最近在研究Tiny6410上的uboot移植，看uboot源码时，生成tags文件用的是最粗暴的方法：“ctags -R *”，由于某些函数在各个平台下都有实现，导致在用“g+]”跳转到该函数的定义时，总是会列出相当多不相关的索引，而我只想看6410上该函数的实现。怎样对部分目录生成tags文件呢？
+思考良久，用如下命令可以满足我的要求，但此方法比较笨拙，以后得知巧妙的方法再更改此博文。
+ctags * -R board/samsung/ common/ cpu/s3c64xx/ CVS/ disk/ drivers/ dtt/ examples/ fs/ include/ lib_arm/ lib_generic/ nand_spl/ net/ post/ tools/ rtc/
+注：当某函数有多处定义时，"ctrl+]"默认跳转到第一处索引处，而"g+]" 可以列出该函数的所有索引。

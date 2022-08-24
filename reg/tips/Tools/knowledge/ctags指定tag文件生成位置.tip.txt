@@ -1,0 +1,17 @@
+ctags指定tag文件生成位置抢沙发
+分类：Linux　标签：ctags、vim　8,592人浏览
+
+ctags默认在当前路径下生成tags文件，有时候并不想将tag文件保存到当前路径下，需要保存到一个指定的位置，这时候就需要ctag的-f选项了。
+
+ctags -f /pathto/tags -R *
+pathto换成你自己的路径就可以了，之后在.vimrc中指定tags的路径即可。
+
+为了方便起见，我们定义一个快捷键F2来执行生成tag，.vimrc文件中的具体设置如下：
+
+set tags=/pathto/tags
+map :!ctags -f /pathto/tags -R *<CR>
+好了，解决了ctags指定生成tag文件位置的问题，下一步就是要测试一下了。如果发现ctrl+]跳转的时候不起作用，那么请看下面的修改。
+
+set tags=/pathto/tags
+map :!ctags --tag-relative=yes -f /pathto/tags -R *<CR>
+转载请注明：知识蚂蚁 » ctags指定tag文件生成位置

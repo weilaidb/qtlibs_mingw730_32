@@ -1,0 +1,11 @@
+3.6.8 6.8 用户 LED
+AX7010 开发板上，PS 部分的 BANK500 IO 上连接了 2 个 LED 发光二极管，用户可以使用这
+两个 LED 灯来调试程序。当 BANK500 IO 电压为高时，LED 灯熄灭，当 BANK500 IO 电压为低
+时，LED 会被点亮。ZYNQ BANK500 IO 和 LED 灯连接的示意图如图 6-14 所示：
+图 6-14 Zynq-7000 和 LED 灯连接示意图
+图 6-15 为 PS 的 LED 灯实物图
+图 6-15 PS 的 LED 灯实物图
+PS LED 灯的引脚分配
+信号名称 ZYNQ 引脚名 ZYNQ 引脚号 备注
+MIO0_LED PS_MIO0_500 E6 PS LED1灯
+MIO13_LED PS_MIO13_500 E8 PS LED2灯

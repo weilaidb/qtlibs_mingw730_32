@@ -1,0 +1,50 @@
+PS Hello Word:
+创建工程
+D:/workspace/zynq7010/ps_hello/
+
+
+1.选择型号
+AX7020开发板选择xc7z020clg400-2
+AX7010开发板选择xc7z020clg400-1
+
+本板选择:
+Family:Zync-7000
+Package:clg400
+Speed:-1
+
+2.IP Integrator
+点击+号添加 zynq
+
+
+
+3.DDR Configuration,Memory Part:
+AX7020开发板选择MT41J256M16 RE-125
+AX7010开发板选择MT41J128M16 HA-125
+
+
+4.导出，生成.xsa文件 
+File -Export --Hardware
+
+
+ D:/workspace/zynq7010/ps_hello/design_1_wrapper.xsa
+
+
+
+5.tools/Vitis
+2019之前的工程是SDK开发的, 在2019上没有launch sdk这个选项, 而是在tools/Vitis下
+
+6.导出硬件工程之后，需要手动拷贝, new applicatoin project
+https://blog.csdn.net/qq_40011737/article/details/121213825
+
+7. Bulid Project 
+
+8.Run As -- 烧写
+
+
+9.工程右键 -- Create Boot Image -- 生成 BOOT.bin
+D:/workspace/test_ps_helloworld_system/_ide/bootimage/BOOT.bin
+
+
+其它:
+.芯片初始化流程
+ug821-zynq-7000-swdev.pdf

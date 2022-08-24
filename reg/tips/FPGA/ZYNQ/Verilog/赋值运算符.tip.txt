@@ -1,0 +1,45 @@
+4.4.2 赋值运算符
+“=”阻塞赋值，”<=”非阻塞赋值。阻塞赋值为执行完一条赋值语句，再执行下一条，可理解
+为顺序执行，而且赋值是立即执行；非阻塞赋值可理解为并行执行，不考虑顺序，在 always
+块语句执行完成后，才进行赋值。如下面的阻塞赋值：
+代码如下： 激励文件如下
+module top(din,a,b,c,clk); `timescale 1 ns/1 ns 
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 67 / 285
+input din;
+input clk;
+output reg a,b,c;
+always @(posedge clk) 
+begin
+ a = din;
+ b = a;
+ c = b;
+end
+endmodule
+module top_tb() ;
+reg din ;
+reg clk ;
+wire a,b,c ;
+initial
+begin
+ din = 0 ;
+ clk = 0 ;
+ forever
+ begin 
+ #({$random}%100)
+ din = ~din ;
+ end
+end
+always #10 clk = ~clk ;
+top 
+t0(.din(din),.a(a),.b(b),.c(c),.clk(clk)) ;
+endmodule
+可以从仿真结果看到，在 clk 的上升沿，a 的值等于 din，并立即赋给 b，b 的值赋给 c。
+如果改为非阻塞赋值，仿真结果如下，在 clk 上升沿，a 的值没有立即赋值给 b，b 为 a 原
+来的值，同样，c 为 b 原来的值
+可以从两者的 RTL 图看出明显不同：
+ 
+阻塞赋值 RTL 图 非阻塞赋值 RTL 图
+一般情况下，在时序逻辑电路中使用非阻塞赋值，可避免仿真时出现竞争冒险现象；在组
+合逻辑中使用阻塞赋值，执行赋值语句后立即改变；在 assign 语句中必须用阻塞赋值。

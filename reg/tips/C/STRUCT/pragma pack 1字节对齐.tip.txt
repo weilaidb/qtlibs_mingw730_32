@@ -1,0 +1,8 @@
+typedef struct T_DLogMod{
+    unsigned char m_ucIndex;  /* 模块索引 */
+    unsigned char m_ucUsed;   /* 是否被使用 */
+    T_DLogNode m_Sets[DLOG_SETS_MAX]; /* 支持数量 */
+    char m_ModName[DLOG_MODNAME_MAX]; /* 模块名 */
+    pthread_mutex_t m_Mutex; /* 锁 */
+}T_DLogMod, *P_DLogMod ;
+

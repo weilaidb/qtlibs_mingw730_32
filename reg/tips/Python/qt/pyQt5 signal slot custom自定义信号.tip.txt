@@ -1,0 +1,2 @@
+cleartextResultSignal;clearTextEditResult
+textResultSignal;appendTextEditResult

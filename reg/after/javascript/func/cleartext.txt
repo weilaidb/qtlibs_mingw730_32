@@ -1,0 +1,1 @@
+//clear不能行$NLfunction \1(){$NL$TB// form1.name2 = "";$NL$TB// $("#name2").val("");$NL$TBdocument.getElementById('name2').value = "";$NL$TB// alert("clear")$NL}

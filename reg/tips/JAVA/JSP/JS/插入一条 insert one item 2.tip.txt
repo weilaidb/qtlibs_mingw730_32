@@ -1,0 +1,2 @@
+[id名;函数名]
+fileaf;InsertSeperatorAfterContent

@@ -1,0 +1,20 @@
+{
+	"Print to conaole":{
+		"prefix": "cxxmain",    //在新建立的页面中输入C++就会有智能提示，Tab就自动生成好了
+		"body": [
+			"#include <iostream>",
+			"#include <cmath>",     //这个头文件可以删除，我为了使用方便就加了
+			"", //空行
+			"using namespace std;", //标准命名空间
+			"",
+			"int main()",   //main()函数
+			"{",
+			"   $0",    //最终光标会在这里等待输入
+			"   system(\"pause\");",    //标准C++的等待用户动作
+			"   return 0;", //结束
+			"}",
+			"",
+		],
+		"description": "A cpp main template."   //用户输入后智能提示的内容（你可以用中文写“生成C++模板”）
+	}
+	}

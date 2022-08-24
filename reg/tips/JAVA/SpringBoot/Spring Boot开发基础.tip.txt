@@ -1,0 +1,28 @@
+EmbeddedServletContainerAutoConfiguration会进行Tomcat的配置，由TomcatEmbeddedServlet Container进行启动。
+
+如果使用IDEA集成开发环境，则为了防止控制台输出的中文显示为乱码，可以通过Help→Edit Custom VM OPtions菜单添加-Dfile.encoding = UTF-8参数，然后重启IDEA。另外，可以设置项目的默认编码为UTF-8。
+
+
+IDEA的配置信息默认保存在C盘，如果需要修改配置信息所在的路径，可以修改文件idea.properties。具体配置如下：
+
+     idea.config.path=E:/soft/.IdeaIC/config
+     idea.system.path=E:/soft/.IdeaIC/system
+C:\Users\weilaidb\.IntelliJIdea2019.3
+
+
+
+大部分用Maven构建的项目只需要执行如下一条命令：
+
+     #mvn clean install
+可以在PowerShell下使用scoop命令安装Maven：
+
+     >scoop install maven
+在项目的根目录中放置pom.xml，在src/main/java目录中放置项目的运行代码，在src/test/java目录中放置项目的测试代码。
+使用maven archetype来创建项目的结构（采用Maven构建的项目一般包括一个pom.xml文件）。
+
+
+
+如果使用Maven Surefire插件的默认配置，它会运行从测试类中找到的所有测试方法。测试类的名称具有如下特点：
+以字符串Test开头或结尾。
+以字符串Tests结尾。
+以字符串TestCase结尾。

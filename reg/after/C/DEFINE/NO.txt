@@ -1,0 +1,1 @@
+#ifdef \1$NL#undef \1$NL#endif$NL#define \1 0

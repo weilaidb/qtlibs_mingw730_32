@@ -1,0 +1,74 @@
+Vivado中常用的快捷键
+
+1) 点击 Project Manager 下的 Add Sources 图标（或者使用快捷键 Alt+A）
+
+
+yundanfengqing_nuc
+
+于 2021-04-06 18:16:50 发布
+
+2191
+ 收藏 12
+版权
+主要包括F4键、Ctrl+Q键、Ctrl+E键、F6键、F1键。
+
+（1）F4键
+
+F4键应该是Vivado中最常用、最重要的快捷键。其功能在于，一旦选中某个对象（可以是Cell、Net、Pin、Path等），按下F4键，就会在chematic视图中显示该对象。例如，在通过report_timing_summary生成时序报告后，选中一条时序路径，按下F4键就会显示该路径的具体电路，如下图所示。 
+
+图片
+
+选中按下F4，就会显示下图：
+
+图片
+
+类似地，在通过Find命令找到目标对象后，选中目标对象，按下F4，就会显示该目标对象的具体电路，如图2所示。
+
+图片
+
+选中，按下F4：
+
+图片
+
+图2 
+
+另 外 ， 在 由 report_methodology 生 成 的 UFDM 报 告 中 ， 对于一些warning或者Bad Practice，报告会给出具体的相关对象，按下F4键，也会显示该对象的Schematic视图。这样做的好处在于，可以很方便地找到出现问题的逻辑单元。
+
+（2）Ctrl+Q键
+
+Ctrl+Q键用于显示或者隐藏导航栏（Flow Navigator），如下图所示，在需要以更大视图显示其他窗口时是很方便的。
+
+
+
+（3）Ctrl+E键
+
+Ctrl+E键用于显示Cell Properties窗口，如下图所示。Cell Properties窗口显示了对象的很多属性。 
+
+图片
+
+（4）F6键
+
+打开DCP文件，按下F6键，可显示设计层次，如下图所示。在设计层次中，选中某个模块，按下F4键，同样可以显示该模块的Schematic视图。
+
+图片
+
+ 
+
+图片
+
+（5）F1键
+
+F1键比较在WIN系统下比较常见，主要功能是弹出帮助菜单。在某个对话框中，按下F1键，会显示帮助信息。 
+
+ 
+
+总结一下：
+
+F4键：一旦选中某个对象（可以是Cell、Net、Pin、Path等），按下F4键，就会在chematic视图中显示该对象。
+Ctrl+Q键：用于显示或者隐藏导航栏（Flow Navigator）；
+
+Ctrl+E键：用于显示Cell Properties窗口；
+
+F6键：显示设计层次；
+
+F1键：显示帮助信息

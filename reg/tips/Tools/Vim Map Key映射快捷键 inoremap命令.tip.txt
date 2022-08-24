@@ -1,0 +1,11 @@
+vim：inoremap命令
+inoremap命令用于映射按键。
+i代表是在插入模式（insert）下有效
+nore表示不递归no recursion，例如：inoremap Y y和inoremap y Y并不会出现无限循环。
+map映射
+举个例子，将Shift+Enter用来跳出括号。
+inoremap <s-cr> <ESC>la
+本映射利用了vim中，由编辑模式进入插入模式会向前跳一个位置的特点，来实现。有不懂的可以自己试一下，观察一下。
+如果键入{，自动补全后面，并格式化。
+inoremap { {<CR>}<ESC>kA<CR>
+分类: vim使用

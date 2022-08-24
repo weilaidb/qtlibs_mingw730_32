@@ -1,0 +1,195 @@
+gcc选项-g与-rdynamic的异同
+摘自http://www.tuicool.com/articles/EvIzUn
+
+gcc选项-g与-rdynamic的异同
+gcc 的 -g ，应该没有人不知道它是一个调试选项，因此在一般需要进行程序调试的场景下，我们都会加上该选项，并且根据调试工具的不同，还能直接选择更有针对性的说明，比如 -ggdb 。-g是一个编译选项，即在源代码编译的过程中起作用，让gcc把更多调试信息（也就包括符号信息）收集起来并将存放到最终的可执行文件内。 
+相比-g选项， -rdynamic 却是一个 连接选项 ，它将指示连接器把所有符号（而不仅仅只是程序已使用到的外部符号）都添加到动态符号表（即.dynsym表）里，以便那些通过 dlopen() 或 backtrace() （这一系列函数使用.dynsym表内符号）这样的函数使用。
+
+看示例：
+
+[root@www c]# cat t.c
+#include <stdio.h>
+void bar() {}
+void baz() {}
+void foo() {}
+int main() { foo(); printf("test"); return 0; }
+对于上面的示例代码，普通和加-g编译：
+
+[root@www c]# uname -a
+Linux www.t1.com 2.6.38.8 #2 SMP Wed Nov 2 07:52:53 CST 2011 x86_64 x86_64 x86_64 GNU/Linux
+[root@www c]# gcc -O0 -o t t.c
+[root@www c]# gcc -O0 -g -o t.g t.c
+[root@www c]# readelf -a t > t.elf
+[root@www c]# readelf -a t.g > t.g.elf
+[root@www c]# ls -lh *.elf t t.g
+-rwxr-xr-x. 1 root root 6.6K Jul 24 06:50 t
+-rw-r--r--. 1 root root  15K Jul 24 06:51 t.elf
+-rwxr-xr-x. 1 root root 7.9K Jul 24 06:50 t.g
+-rw-r--r--. 1 root root  16K Jul 24 06:51 t.g.elf
+加-g编译后，因为包含了debug信息，因此生成的可执行文件偏大（程序本身非常小，所以增加的调试信息不多）。 
+看-g编译的符号表：
+
+[root@www c]# readelf -s t
+
+Symbol table '.dynsym' contains 4 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND
+     1: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND printf@GLIBC_2.2.5 (2)
+     2: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+     3: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.2.5 (2)
+
+Symbol table '.symtab' contains 67 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+...
+    48: 00000000004003e0     0 FUNC    GLOBAL DEFAULT   13 _start
+    49: 00000000004004c4     6 FUNC    GLOBAL DEFAULT   13 bar
+...
+    53: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND putchar@@GLIBC_2.2.5
+    54: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@@GLIBC_
+    55: 00000000004005e8     4 OBJECT  GLOBAL DEFAULT   15 _IO_stdin_used
+    56: 00000000004004d0     6 FUNC    GLOBAL DEFAULT   13 foo
+...
+    64: 00000000004004d6    31 FUNC    GLOBAL DEFAULT   13 main
+    65: 0000000000400390     0 FUNC    GLOBAL DEFAULT   11 _init
+    66: 00000000004004ca     6 FUNC    GLOBAL DEFAULT   13 baz
+注意.dynsym表，只有该程序用到的几个外部动态符号存在。 
+加-rdynamic选项编译，readelf查看：
+
+[root@www c]# gcc -O0 -rdynamic -o t.rd t.c
+[root@www c]# readelf -s t.rd 
+
+Symbol table '.dynsym' contains 20 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND
+     1: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND printf@GLIBC_2.2.5 (2)
+     2: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+     3: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _Jv_RegisterClasses
+     4: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.2.5 (2)
+     5: 0000000000400724     6 FUNC    GLOBAL DEFAULT   13 bar
+     6: 0000000000400730     6 FUNC    GLOBAL DEFAULT   13 foo
+     7: 0000000000600b68     0 NOTYPE  GLOBAL DEFAULT   24 __data_start
+     8: 0000000000600b80     0 NOTYPE  GLOBAL DEFAULT  ABS _end
+     9: 0000000000600b6c     0 NOTYPE  GLOBAL DEFAULT  ABS _edata
+    10: 0000000000600b68     0 NOTYPE  WEAK   DEFAULT   24 data_start
+    11: 0000000000400640     0 FUNC    GLOBAL DEFAULT   13 _start
+    12: 0000000000400848     4 OBJECT  GLOBAL DEFAULT   15 _IO_stdin_used
+    13: 0000000000400770   137 FUNC    GLOBAL DEFAULT   13 __libc_csu_init
+    14: 0000000000600b6c     0 NOTYPE  GLOBAL DEFAULT  ABS __bss_start
+    15: 0000000000400736    39 FUNC    GLOBAL DEFAULT   13 main
+    16: 00000000004005f0     0 FUNC    GLOBAL DEFAULT   11 _init
+    17: 0000000000400760     2 FUNC    GLOBAL DEFAULT   13 __libc_csu_fini
+    18: 0000000000400838     0 FUNC    GLOBAL DEFAULT   14 _fini
+    19: 000000000040072a     6 FUNC    GLOBAL DEFAULT   13 baz
+
+Symbol table '.symtab' contains 67 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+...
+    50: 0000000000400640     0 FUNC    GLOBAL DEFAULT   13 _start
+    51: 0000000000400724     6 FUNC    GLOBAL DEFAULT   13 bar
+...
+    55: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND putchar@@GLIBC_2.2.5
+    56: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@@GLIBC_
+    57: 0000000000400848     4 OBJECT  GLOBAL DEFAULT   15 _IO_stdin_used
+    58: 0000000000400730     6 FUNC    GLOBAL DEFAULT   13 foo
+...
+    64: 0000000000400736    31 FUNC    GLOBAL DEFAULT   13 main
+    65: 00000000004005f0     0 FUNC    GLOBAL DEFAULT   11 _init
+    66: 000000000040072a     6 FUNC    GLOBAL DEFAULT   13 baz
+[root@www c]#
+可以看到添加-rdynamic选项后，.dynsym表就包含了所有的符号，不仅是已使用到的外部动态符号，还包括本程序内定义的符号，比如bar、foo、baz等。 
+.dynsym表里的数据并不能被strip掉：
+
+[root@www c]# strip t.rd
+[root@www c]# readelf -s t.rd
+
+Symbol table '.dynsym' contains 20 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND
+     1: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND printf@GLIBC_2.2.5 (2)
+     2: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+     3: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _Jv_RegisterClasses
+     4: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.2.5 (2)
+     5: 0000000000400724     6 FUNC    GLOBAL DEFAULT   13 bar
+     6: 0000000000400730     6 FUNC    GLOBAL DEFAULT   13 foo
+     7: 0000000000600b68     0 NOTYPE  GLOBAL DEFAULT   24 __data_start
+     8: 0000000000600b80     0 NOTYPE  GLOBAL DEFAULT  ABS _end
+     9: 0000000000600b6c     0 NOTYPE  GLOBAL DEFAULT  ABS _edata
+    10: 0000000000600b68     0 NOTYPE  WEAK   DEFAULT   24 data_start
+    11: 0000000000400640     0 FUNC    GLOBAL DEFAULT   13 _start
+    12: 0000000000400848     4 OBJECT  GLOBAL DEFAULT   15 _IO_stdin_used
+    13: 0000000000400770   137 FUNC    GLOBAL DEFAULT   13 __libc_csu_init
+    14: 0000000000600b6c     0 NOTYPE  GLOBAL DEFAULT  ABS __bss_start
+    15: 0000000000400736    39 FUNC    GLOBAL DEFAULT   13 main
+    16: 00000000004005f0     0 FUNC    GLOBAL DEFAULT   11 _init
+    17: 0000000000400760     2 FUNC    GLOBAL DEFAULT   13 __libc_csu_fini
+    18: 0000000000400838     0 FUNC    GLOBAL DEFAULT   14 _fini
+    19: 000000000040072a     6 FUNC    GLOBAL DEFAULT   13 baz
+简单总结一下-g选项与-rdynamic选项的差别： 
+1，-g选项新添加的是调试信息（一系列.debug_xxx段），被相关调试工具，比如gdb使用，可以被strip掉。
+
+2，-rdynamic选项新添加的是动态连接符号信息，用于动态连接功能，比如dlopen()系列函数、backtrace()系列函数使用，不能被strip掉，即强制strip将导致程序无法执行：
+
+[root@www c]# ./t.rd
+test[root@www c]# strip -R .dynsym t.rd
+[root@www c]# ./t.rd
+./t.rd: relocation error: ./t.rd: symbol , version GLIBC_2.2.5 not defined in file libc.so.6 with link time reference
+[root@www c]#
+3，.symtab表在程序加载时会被加载器 丢弃 ，gdb等调试工具由于可以直接访问到磁盘上的二进制程序文件：
+
+[root@www c]# gdb t.g -q
+Reading symbols from /home/work/dladdr/c/t.g...done.
+(gdb)
+因此可以使用所有的调试信息，这包括.symtab表；而backtrace()系列函数作为程序执行的逻辑功能，无法去读取磁盘上的二进制程序文件，因此只能使用.dynsym表。 
+其它几个工具可以动态指定查看，比如nm、objdump：
+
+[root@www c]# nm t.rd
+nm: t.rd: no symbols
+[root@www c]# nm -D t.rd
+0000000000400848 R _IO_stdin_used
+                 w _Jv_RegisterClasses
+0000000000600b6c A __bss_start
+0000000000600b68 D __data_start
+                 w __gmon_start__
+0000000000400760 T __libc_csu_fini
+0000000000400770 T __libc_csu_init
+                 U __libc_start_main
+0000000000600b6c A _edata
+0000000000600b80 A _end
+0000000000400838 T _fini
+00000000004005f0 T _init
+0000000000400640 T _start
+0000000000400724 T bar
+000000000040072a T baz
+0000000000600b68 W data_start
+0000000000400730 T foo
+0000000000400736 T main
+                 U printf
+[root@www c]#
+[root@www c]# objdump -T t.rd
+
+t.rd:     file format elf64-x86-64
+
+DYNAMIC SYMBOL TABLE:
+0000000000000000      DF *UND*	0000000000000000  GLIBC_2.2.5 printf
+0000000000000000  w   D  *UND*	0000000000000000              __gmon_start__
+0000000000000000  w   D  *UND*	0000000000000000              _Jv_RegisterClasses
+0000000000000000      DF *UND*	0000000000000000  GLIBC_2.2.5 __libc_start_main
+0000000000400724 g    DF .text	0000000000000006  Base        bar
+0000000000400730 g    DF .text	0000000000000006  Base        foo
+0000000000600b68 g    D  .data	0000000000000000  Base        __data_start
+0000000000600b80 g    D  *ABS*	0000000000000000  Base        _end
+0000000000600b6c g    D  *ABS*	0000000000000000  Base        _edata
+0000000000600b68  w   D  .data	0000000000000000  Base        data_start
+0000000000400640 g    DF .text	0000000000000000  Base        _start
+0000000000400848 g    DO .rodata	0000000000000004  Base        _IO_stdin_used
+0000000000400770 g    DF .text	0000000000000089  Base        __libc_csu_init
+0000000000600b6c g    D  *ABS*	0000000000000000  Base        __bss_start
+0000000000400736 g    DF .text	0000000000000027  Base        main
+00000000004005f0 g    DF .init	0000000000000000  Base        _init
+0000000000400760 g    DF .text	0000000000000002  Base        __libc_csu_fini
+0000000000400838 g    DF .fini	0000000000000000  Base        _fini
+000000000040072a g    DF .text	0000000000000006  Base        baz
+4，-rdynamic选项不产生任何调试信息，因此在一般情况下，新增的附加信息比-g选项要少得多。除非是完全的静态连接，否则即便是没有加-rdynamic选项，程序使用到的外部动态符号，比如前面示例里的printf，也会被自动加入到.dynsym表。
+
+完全参考： 
+http://stackoverflow.com/questions/8623884/gcc-debug-symbols-g-flag-vs-linkers-rdynamic-option

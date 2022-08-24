@@ -1,0 +1,12 @@
+功能                        快捷键     解释
+Switch Header/Source         F4       同名头文件和源文件切换
+Follow Symbol Under Cursor   F2       跟踪光标下的符号
+Build                        Ctrl+B   编译当前项目
+Starting Debugging           F5       开始调试
+Step Over                    F10      调试状态下单步略过，即执行当前行程序语句
+Step Into                    F11      调试状态下跟踪进入，即如果当前行里有函数，就跟踪进入函数体
+
+
+
+
+

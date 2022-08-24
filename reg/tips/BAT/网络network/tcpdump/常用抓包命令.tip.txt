@@ -1,0 +1,11 @@
+tcpdump -n -p -s 1500 -xxx -vvv  host 172.20.95.157 and \(tcp or udp or icmp\) -c 10
+tcpdump -n -p -s 1500 -xxx -vvv  host 172.20.95.157 and \(udp or icmp\) -c 10
+tcpdump -n -p -s 1500 -xxx -vvv  host 172.20.95.157 and \(icmp\) -c 10
+
+
+
+选项:
+-n 告诉tcpdump不要把IP地址转换成主机名
+-s 1500 指使tcpdump 收集分组直到长度达到1500字节
+-vvv 表明是详细打印输出
+-p 避免把默认网络接口设置成混杂模式

@@ -1,0 +1,3 @@
+char lower(char c) const {
+  return std::tolower(static_cast<unsigned char>(c));
+}

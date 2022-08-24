@@ -1,0 +1,2 @@
+[sougou input ]
+sogoupinyin_4.0.0.1605_amd64.deb

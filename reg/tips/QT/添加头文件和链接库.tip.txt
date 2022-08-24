@@ -1,0 +1,1 @@
+module/gmock_170/build-libmock-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/;mock

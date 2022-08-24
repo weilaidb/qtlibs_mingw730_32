@@ -1,0 +1,177 @@
+[root@weilaidb] ~/test/leftvalue
+$ cat main.c 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/fcntl.h>
+
+int main(int argc, char **argv)
+{
+    printf("hello world\n");
+int a=1,b=2;
+
+a<b?a:b=10;
+    return 0;
+}
+
+[root@weilaidb] ~/test/leftvalue
+$ make 
+mkdir -p ./tmp
+ [CC]    (tmp/./main.o)
+ gcc -w -fPIC -g -x c -pipe   -pipe -O0 -g -Wall -W -D_REENTRANT   -Iinclude -Iinclude/freetype  -c main.c -o tmp/./main.o
+main.c: In function ‘main’:
+main.c:14:8: error: lvalue required as left operand of assignment
+   14 | a<b?a:b=10;
+      |        ^
+make: *** [Makefile:190: tmp/./main.o] Error 1
+[root@weilaidb] ~/test/leftvalue
+$ 
+
+
+
+
+
+如何理解左操作数必须为左值
+
+_Hebrew
+
+于 2016-10-27 01:18:54 发布
+
+26392
+ 收藏 12
+分类专栏： C／C++ 文章标签： C C++
+版权
+
+C／C++
+专栏收录该内容
+7 篇文章0 订阅
+订阅专栏
+声明：本博文用于学习总结及工作心得
+
+在C语言中经常会遇到一个问题就是做操作数必须为左值，看一下代码：
+
+int a=1,b=2;
+
+a<b?a:b=10;
+
+在C++编译器环境下，能正常运行，没有错误，但是在C编译器下却会报错:
+
+error C2106 “＝”：做操作数必须为左值
+
+
+什么是左值？
+
+首先需要明白什么是表达式:
+
+表达式由一个或多个操作数通过操作符组合而成。最简单的表达式仅包含一个字面值常量或变量。较复杂的表达式则由操作符以及一个或多个操作数构成。
+
+什么是左值： 
+
+不严谨的说法是，左值右值的区分在于位于等号的那一侧，左侧的是左值，通常是一个变量，右侧的是右值，可以是一个变量，或者是一个表达式。
+
+C++ 中存在两种表达式：左值可以出现在赋值语句的左边或右边。右值只能出现在赋值的右边，不能出现在赋值语句的左边。 
+
+a<b?a:b 是一个表达式，返回的是a的值或者b的值，并不是一个变量，常数不是变量（变量：一段连续内存空间的别名），所以10不能赋值给一个常数（常数是恒定不变的，一切常数、字符和字符串都是右值），没有存储结果的空间，也就不能赋值；
+
+将代码修改一下：
+
+
+＊( a < b ? &a : &b ) = 10;  这样表达式返回的是一个*(a的地址或者b的地址) 相当于*p；再通过*取地址，操作地址所指向的内存空间进行间接赋值
+
+左值在编译时可知，左值表示存储结果的地方，所以简单理解，左值就是必须有存储结果的地方，有内存空间；至于C++可以运行成功是因为C++编译器已经优化过，表达事返回的并不是a的内容(b的内容) ，而是一个变量 ；
+
+特别是操作符重载时，进行链式编程时：
+
+自定义类型AA
+
+class AA
+
+{
+private :
+
+int a,b;
+
+public:
+
+AA(int a,int b)
+
+{
+this->a = a;
+
+this->b = b;
+
+}
+
+friend void operator <<(ostream &out, AA &a1);
+
+};
+
+AA a1( 1, 2);
+
+cout << a1 ；
+
+cout << a1 << endl;
+
+重载函数为:
+
+void operator <<(ostream &out, AA &a1 )
+
+{
+cout<< a1.a << a1.b;
+
+return;
+
+}
+
+这里的做操作是cout 
+
+这时候 运行 cout << a1 ;没有错误
+
+运行下面一句 cout << a1 << endl; 编译器报错: 左操作数必须为左值
+
+首先 cout << a1 返回 void ；void << endl; void 不能充当做操作数，而且必须要ostream 类型的对象做参数；所以需要返回一个对象的引用(函数返回值当左值时，必须返回一个对象的应用 )
+
+所以需要讲函数返回值修改为 ostream& 
+
+ostream& operator <<(ostream &out, AA &a1 )
+
+{
+cout<< "我是cout << 重载函数" << endl;
+cout<< a1.a << "," << a1.b;
+
+return;
+
+}
+
+记得类中声明友员函数的地方，也需要修改函数返回值；修改后：
+class AA
+
+{
+private :
+
+int a,b;
+
+public:
+
+AA(int a,int b)
+
+{
+this->a = a;
+
+this->b = b;
+
+}
+
+friend ostream& operator <<(ostream &out, AA &a1);
+
+};
+
+运行后返回
+我是cout << 重载函数
+1,2
+————————————————
+版权声明：本文为CSDN博主「_Hebrew」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_33571718/article/details/52940309

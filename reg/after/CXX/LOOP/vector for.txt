@@ -1,0 +1,1 @@
+#include <iostream>$NL#include <vector>$NLusing namespace std;$NL$NLvector<\1> \2;$NL$NL$NL$NLfor (\1& t : \2) {$NL    t.join();$NL}

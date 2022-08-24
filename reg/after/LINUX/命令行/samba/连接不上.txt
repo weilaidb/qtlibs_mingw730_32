@@ -1,0 +1,1 @@
+smbpasswd -a \1$NLservice smb restart$NLiptables -F$NLsetenforce 0$NL#路径权限问题？？$NLchown -R \1.\1 \1/

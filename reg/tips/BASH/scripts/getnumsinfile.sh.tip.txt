@@ -1,0 +1,22 @@
+#!/bin/sh
+
+EXPRESS="version=\"2.2.0.12\""
+NUM1=`echo $EXPRESS | awk -F "\"" '{print $2}' |awk -F. '{print $1}'`
+NUM2=`echo $EXPRESS | awk -F "\"" '{print $2}' |awk -F. '{print $2}'`
+NUM3=`echo $EXPRESS | awk -F "\"" '{print $2}' |awk -F. '{print $3}'`
+NUM4=`echo $EXPRESS | awk -F "\"" '{print $2}' |awk -F. '{print $4}'`
+
+echo "NUM1:$NUM1"
+echo "NUM2:$NUM2"
+echo "NUM3:$NUM3"
+echo "NUM4:$NUM4"
+
+NUM4=$(($NUM4+1))
+
+
+#使用'单引号无法使用$TOREPLACE的内容，Why?
+TOREPLACE="\"$NUM1.$NUM2.$NUM3.$NUM4\""
+echo "TOREPLACE:$TOREPLACE"
+
+#使用'单引号无法使用$TOREPLACE的内容，Why?
+echo $EXPRESS | sed "s/version=.*/version=$TOREPLACE/g"

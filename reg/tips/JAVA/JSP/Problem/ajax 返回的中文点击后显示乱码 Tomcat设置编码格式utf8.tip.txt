@@ -1,0 +1,383 @@
+https://www.cnblogs.com/jpfss/p/12111562.html#:~:text=%E5%88%A9%E7%94%A8request.setCharacterEncoding,%28%22UTF-8%22%29%3B%E6%9D%A5%E8%AE%BE%E7%BD%AETomcat%E6%8E%A5%E6%94%B6%E8%AF%B7%E6%B1%82%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F%EF%BC%8C%E5%8F%AA%E5%AF%B9POST%E6%96%B9%E5%BC%8F%E6%8F%90%E4%BA%A4%E7%9A%84%E6%95%B0%E6%8D%AE%E6%9C%89%E6%95%88%EF%BC%8C%E5%AF%B9GET%E6%96%B9%E5%BC%8F%E6%8F%90%E4%BA%A4%E7%9A%84%E6%95%B0%E6%8D%AE%E6%97%A0%E6%95%88%21%20%E8%A6%81%E8%AE%BE%E7%BD%AEGET%E7%9A%84%E7%BC%96%E7%A0%81%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9server.xml%E6%96%87%E4%BB%B6%E4%B8%AD%EF%BC%8C%E7%9B%B8%E5%BA%94%E7%9A%84%E7%AB%AF%E5%8F%A3%E7%9A%84Connector%E7%9A%84%E5%B1%9E%E6%80%A7%EF%BC%9AURIEncoding%3D%22UTF-8%22%EF%BC%8C%E8%BF%99%E6%A0%B7%EF%BC%8CGET%E6%96%B9%E5%BC%8F%E6%8F%90%E4%BA%A4%E7%9A%84%E6%95%B0%E6%8D%AE%E6%89%8D%E4%BC%9A%E8%A2%AB%E6%AD%A3%E7%A1%AE%E8%A7%A3%E7%A0%81%E3%80%82
+
+
+
+博客园Logo
+首页
+新闻
+博问
+专区
+闪存
+班级
+代码改变世界
+搜索
+注册
+登录
+返回主页星朝
+博客园首页新随笔联系订阅管理随笔 - 5076  文章 - 44  评论 - 496  阅读 - 2324万
+Tomcat设置编码格式utf8
+利用request.setCharacterEncoding("UTF-8");来设置Tomcat接收请求的编码格式，只对POST方式提交的数据有效，对GET方式提交的数据无效!
+
+
+要设置GET的编码，可以修改server.xml文件中，相应的端口的Connector的属性：URIEncoding="UTF-8"，这样，GET方式提交的数据才会被正确解码。
+
+  <Connector port="8080" protocol="HTTP/1.1" 
+               connectionTimeout="20000" 
+               redirectPort="8443" URIEncoding="UTF-8" />
+
+ 
+
+ 
+
+tomcat8以后默认编码格式是utf-8；7之前的都是iso8859-1
+
+ 
+
+如果默认情况下，tomcat使用的的编码方式：iso8859-1
+
+ 
+
+修改tomcat下的conf/server.xml文件
+
+找到如下代码：    
+<Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443" />
+这段代码规定了Tomcat监听HTTP请求的端口号等信息。
+
+可以在这里添加一个属性：URIEncoding，将该属性值设置为UTF-8，即可让Tomcat（默认ISO-8859-1编码）以UTF-8的编码处理get请求。
+
+修改完成后：
+
+<Connector port="8080"  protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443" URIEncoding="UTF-8" />
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+form提交数据中文乱码问题总结
+  一：form在前台以post方式提交数据：
+
+    浏览器将数据(假设为“中国”）发送给服务器的时候，将数据变成0101的二进制数据（假设为98 99）时必然要查码表，浏览器以哪个码表打开网页，浏览器就以哪个码表提交数据。数据到达服务器后，数据（98 99）要封装到request中，在servlet中调用Request的getParameter方法返回的是字符串（“中国”），方法内部拿到数字后要转成字符，一定要查码表，由于request的设计者是外国人，所以默认查的是他们常用的ISO8859-1，这就是请求数据产生乱码的根源。
+
+复制代码
+复制代码
+复制代码
+复制代码
+package com.yyz.request;
+import java.io.IOException;
+
+import java.io.PrintWriter;
+
+
+import javax.servlet.ServletException;
+
+import javax.servlet.http.HttpServlet;
+
+import javax.servlet.http.HttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
+
+//以post方式提交表单
+
+public class RequestDemo extends HttpServlet {
+
+
+public void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+     //请求数据的中文乱码问题
+    request.setCharacterEncoding("UTF-8");//客户端网页我们控制为UTF-8
+    String username = request.getParameter("username");
+    //获取数据正常，输出数据时可以查阅不同码表
+    response.setCharacterEncoding("gb2312");//通知服务器发送数据时查阅的码表
+    response.setContentType("text/html;charset=gb2312");//通知浏览器以何种码表打开
+    PrintWriter out = response.getWriter();
+    out.write(username);
+
+}
+
+
+public void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    doGet(request,response);
+
+}
+
+
+}
+
+复制代码
+复制代码
+复制代码
+复制代码
+二：form在前台以get方式提交数据： 
+
+   get方式提交的数据依然是浏览器用什么码表打开就用什么码表发送。不同的是，以get方式提交数据时，request设置编码无效。即使设置了UTF-8还是会去查ISO8859-1。得到（？ ？），要解决这个问题，需要拿着（？？）反向查ISO8859-1，拿到（98 99）后，再去查正确码表。
+
+复制代码
+复制代码
+复制代码
+复制代码
+ 1 package com.yyz.request;
+ 2 
+ 3 import java.io.IOException;
+ 4 import java.io.PrintWriter;
+ 5 
+ 6 import javax.servlet.ServletException;
+ 7 import javax.servlet.http.HttpServlet;
+ 8 import javax.servlet.http.HttpServletRequest;
+ 9 import javax.servlet.http.HttpServletResponse;
+10 //以get方式提交表单
+11 public class RequestDemo extends HttpServlet {
+12 
+13     public void doGet(HttpServletRequest request, HttpServletResponse response)
+14             throws ServletException, IOException {
+15          //请求数据的中文乱码问题
+16         request.setCharacterEncoding("UTF-8");//以get方式提交数据时，request设置编码无效。即使设置了UTF-8还是会去查ISO8859-1
+17         String username = request.getParameter("username");
+18        System.out.println(username);
+19         byte source [] = username.getBytes("iso8859-1");
+20         username = new String (source,"UTF-8");
+21         System.out.println(username);
+22         
+23 }  
+24 
+25     public void doPost(HttpServletRequest request, HttpServletResponse response)
+26             throws ServletException, IOException {
+27         doGet(request,response);
+28 }
+29 
+30 }
+复制代码
+复制代码
+复制代码
+复制代码
+三：提交数据中文乱码问题总结：
+
+1.如果提交方式为post，想不乱码，只需要设置request对象的编码即可。
+
+      注意：客户机数据是以哪种方式提交的，request就应该设成什么编码。
+
+2.如果提交方式为get，设置request对象的编码是无效的，想不乱码，只能手工转换。
+
+     String data = "???????";//乱码字符串
+     byte source [] = data.getBytes("iso8859-1");//得到客户机提交的原始数据
+     data = new String (data.getBytes("iso8859-1"),"UTF-8");//解决乱码
+
+     //等同于
+
+    data = new String (source,"UTF-8");
+
+3.get方式的乱码，还可以通过更改服务器配置的方式实现。更改Tomact的conf目录下的server.xml文件。
+
+      3.1    这种方式并不推荐，因为更改了服务器且并不灵活。
+
+      3.2这么设置后，request的setCharacterEncoding设置什么编码，连接器就用什么编码，虽然比上一种更改灵活，但依然会导致我们的应用程序牢牢依赖于服务器，也不被推荐。
+
+四：最后的最后，提一个小细节：URL地址后面如果跟了中文数据，一定要经过URL编码。表单提交的参数有中文数据，浏览器会自动帮我们编码，但如果是通过链接直接带中文参数，浏览器是不会帮我们编码的，这时想通过上述第二种方式解决中文乱码问题就时灵时不灵了，应该通过URLEncoding.encode(,"UTF-8")先编码。
+
+ 
+
+ 
+
+新配置一个spring的MVC项目，发现对Get请求的中文参数出现了乱码：
+
+
+
+查看了SpingMVC中关于编码的配置(在web.xml中），如下
+
+ 
+
+<filter>  
+    <filter-name>encodingFilter</filter-name>  
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+    <init-param>  
+        <param-name>encoding</param-name>  
+        <param-value>utf-8</param-value>  
+    </init-param>  
+    <init-param>  
+        <param-name>forceEncoding</param-name>  
+        <param-value>true</param-value>  
+    </init-param>  
+</filter>  
+  
+<filter-mapping>  
+    <filter-name>encodingFilter</filter-name>  
+    <servlet-name>appkit</servlet-name>  
+</filter-mapping>  
+
+
+
+ 
+
+应该不是Spring的问题，应该是Tomcat的问题，然后去修改Tomcat的配置文件server.xml，添加URIEncoding="UTF-8"
+
+ 
+
+ 
+
+<Connector port="8080" protocol="HTTP/1.1"  
+           connectionTimeout="20000"  
+           redirectPort="8443"  
+           URIEncoding="UTF-8"/>  
+然后就好了
+
+ 
+
+
+
+原文地址:https://www.cnblogs.com/panxuejun/p/6837677.html
+
+分类: 运维, 工作总结, 开发经验
+标签: java经验集锦, 通用实践, Tomcat
+好文要顶 关注我 收藏该文  
+星朝
+粉丝 - 1584 关注 - 2
++加关注
+00
+« 上一篇： Tomcat控制台中文乱码解决办法
+» 下一篇： URIEncoding与useBodyEncodingForURI 在tomcat中文乱码处理上的区别
+posted @ 2019-12-28 14:20  星朝  阅读(1889)  评论(0)  编辑  收藏  举报
+刷新评论刷新页面返回顶部
+登录后才能查看或发表评论，立即 登录 或者 逛逛 博客园首页
+【推荐】腾讯云多款云产品1折起，买云服务器送免费机器
+编辑推荐：
+· ASP.NET Core 6框架揭秘实例演示[31]：路由高阶用法
+· 使用前端技术实现静态图片局部流动效果
+· 前端构建效率优化之路
+· .NET性能优化-使用SourceGenerator-Logger记录日志
+· 记一次 Linux server 偶发 CPU 飙升问题的跟进与解决
+最新新闻：
+· 下一代数据中心安全：Web3之基础架构
+· 星巴克将在下个月宣布基于 Web3 的积分奖励计划
+· 独家：快手组织架构再调整，原商业化负责人马宏彬转任国际化负责人
+· 一日一香蕉，癌症远离我？
+· 用AI声控玩原神，动动嘴皮即可打怪，代码教程已开源
+» 更多新闻...
+历史上的今天：
+2018-12-28 JSP 基础之 JSTL <c:forEach>用法
+2018-12-28 JSP中多条件判断
+2018-12-28 怎么不让控制台system.out.println()打印
+2018-12-28 MySql Order By 多个字段 排序规则
+2018-12-28 修复STS4 server中没有Tomcat的问题(必看,官方推荐,包教包会,国内首发)
+2017-12-28 Windows(x86,64bit)升级MySQL 5.7.17免安装版的详细教程
+2017-12-28 如何在同一台机器上安装多个MySQL的实例（转）
+昵称： 星朝
+园龄： 5年5个月
+粉丝： 1584
+关注： 2
++加关注
+<	2022年8月	>
+日	一	二	三	四	五	六
+31	1	2	3	4	5	6
+7	8	9	10	11	12	13
+14	15	16	17	18	19	20
+21	22	23	24	25	26	27
+28	29	30	31	1	2	3
+4	5	6	7	8	9	10
+搜索
+ 
+ 
+常用链接
+我的随笔
+我的评论
+我的参与
+最新评论
+我的标签
+我的标签
+java经验集锦(3676)
+通用实践(3524)
+SQL(786)
+Mysql(715)
+DB(698)
+JDK(576)
+SpringBoot(549)
+高并发(537)
+性能优化(488)
+Spring(485)
+更多
+随笔分类
+J2EE(40)
+J2se(97)
+JVM(26)
+Markdown(2)
+Maven(5)
+Office办公(2)
+OpenCMS(4)
+Python(25)
+Security(25)
+Spring(15)
+SpringMVC(67)
+SQL(614)
+Struts2(1)
+WebServer(4)
+Web前端(73)
+更多
+随笔档案
+2020年4月(1)
+2020年1月(43)
+2019年12月(175)
+2019年11月(130)
+2019年10月(95)
+2019年9月(226)
+2019年8月(209)
+2019年7月(271)
+2019年6月(395)
+2019年5月(408)
+2019年4月(113)
+2019年3月(21)
+2019年2月(84)
+2019年1月(141)
+2018年12月(127)
+更多
+文章分类
+JVM(4)
+Markdown(4)
+SQL(5)
+开源项目(4)
+人工智能(9)
+算法(2)
+阅读排行榜
+1. js判断对象是否为空对象的几种方法(397934)
+2. JSON字符串转换为Map(261251)
+3. 树的前序遍历、中序遍历、后序遍历详解(195909)
+4. Java泛型详解：<T>和Class<T>的使用。泛型类，泛型方法的详细使用实例(184261)
+5. Spring中@Async用法总结(171231)
+评论排行榜
+1. Java泛型详解：<T>和Class<T>的使用。泛型类，泛型方法的详细使用实例(18)
+2. 树的前序遍历、中序遍历、后序遍历详解(11)
+3. Shiro权限管理框架详解(10)
+4. Mybatis Update操作返回值问题(7)
+5. Java性能分析神器-JProfiler详解（转）(6)
+推荐排行榜
+1. Java泛型详解：<T>和Class<T>的使用。泛型类，泛型方法的详细使用实例(29)
+2. Shiro权限管理框架详解(26)
+3. js判断对象是否为空对象的几种方法(24)
+4. Spring中@Async用法总结(21)
+5. Java性能分析神器-JProfiler详解（转）(17)
+最新评论
+1. Re:spring-session（一）揭秘
+写的好啊
+
+--tuhooo
+2. Re:There is no PasswordEncoder mapped for the id "null"的解决办法
+@Configuration @EnableWebSecurity public class UserDetailServiceImpl implements UserDetailsService {...
+--安安安happy
+3. Re:There is no PasswordEncoder mapped for the id "null"的解决办法
+@Configuration @EnableWebSecurity public class UserDetailServiceImpl implements UserDetailsService {...
+--安安安happy
+4. Re:SpringBoot传递单一参数时@RequestParam和@RequestBody的区
+感谢分享！我也遇到了这样的问题，特意注册个号过来评论下。
+
+--克里斯先生
+5. Re:判断Bigdecimal类型是否等于0的方法
+/** * demo01() * @return * 》bigDecimal = 0 * 》true * */ public static void demo01 () { BigDecimal bi...
+--爱文(Iven)
+Copyright © 2022 星朝
+Powered by .NET 6 on Kubernetes

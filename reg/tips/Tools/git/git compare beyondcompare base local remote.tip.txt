@@ -1,0 +1,22 @@
+git概念篇（remote，base,local)的含义
+
+weixin_30900589 2015-06-16 10:17:00  896  收藏 2
+文章标签： git
+版权
+在上一篇解决冲突的时候，我们观察到当我们点击编辑冲突的时候，会出现三个文件，文件结尾分别时remote，local,base,、
+
+这三个参数是什么意思呢？
+
+
+
+local:指的本地要提交，要合并的状态。
+
+base:指的是local和remote共同的节点。
+
+remote:指的是我们从服务器将上一次提交拉到本地对应的状态。
+
+
+
+ 
+
+转载于:https://www.cnblogs.com/freedream123/p/4580056.html

@@ -1,0 +1,42 @@
+本节示例工程源代码位于
+https://github.com/KotlinSpringBoot/demo0_hello_world
+
+git Clone:
+https://github.com/KotlinSpringBoot/demo0_hello_world.git
+
+
+
+目录文件简单说明如下：
+·build.gradle——Gradle工程项目配置文件。
+·src/main/java——项目Java源代码目录。
+·src/main/kotlin——项目Kotlin源代码目录。
+·src/main/resources——项目资源文件目录。
+·src/test/java——测试Java源代码目录。
+·src/test/kotlin——测试Kotlin源代码目录。
+·src/test/resources——测试资源文件目录。
+
+
+例如，Spring通过使用约定好的注解来标注Spring应用中各层中的Bean类：
+·@Component——标注一个普通的Spring Bean类。
+·@Controller——标注一个控制器组件类。
+·@Service——标注一个业务逻辑组件类。
+·@Repository——标注一个DAO组件类。
+
+
+
+==》创建spring boot示例
+.1 创建Spring Boot项目
+本节我们使用IDEA集成开发环境来快速创建实现一个Spring Boot版本的Hello World项目。
+基本的JDK运行环境、Gradle环境配置就不在这里赘述。如果是初次进入Java企业级应用的开发者，可以先把基本的开发环境配置好。
+首先打开IDEA，依次点击File→New→Project，然后，我们进入New Project界面，如图2-1所示。
+选择Spring Initializr，Project SDK设置为JDK1.8，采用Spring官方的Initializr服务URL https://start.spring.io/点击Next进入Project Metadata设置界面，如图2-2所示。如图中设置项目元数据。其中：
+·Type：选择Gradle Project表示我们创建的是一个基于Gradle构建的项目。
+·Language：选择Kotlin表示我们采用Kotlin编程语言。
+·Packag：表示项目的主包路径是com.easy.Spring Boot.demo0_hello_world。
+点击Next进入Spring Initializr初始化项目界面，如图2-3所示。
+选择Spring Boot版本为2.0.0．M7，选择“Web”启动器依赖（即Full-stack web development with Tomcat and Spring
+
+MVC）。点击Next进入项目名称、存放路径等信息的配置，如图2-4所示。
+
+
+-->样板工程中，Demo0HelloWorldApplication是Spring Boot项目的入口类

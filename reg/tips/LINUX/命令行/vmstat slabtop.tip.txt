@@ -1,0 +1,37 @@
+Active / Total Objects (% used)    : 1040235 / 1059575 (98.2%)
+ Active / Total Slabs (% used)      : 41055 / 41055 (100.0%)
+ Active / Total Caches (% used)     : 100 / 145 (69.0%)
+ Active / Total Size (% used)       : 327906.88K / 330955.60K (99.1%)
+ Minimum / Average / Maximum Object : 0.01K / 0.31K / 8.00K
+
+  OBJS ACTIVE  USE OBJ SIZE  SLABS OBJ/SLAB CACHE SIZE NAME 
+264978 264507  99%    0.19K  12618       21     50472K dentry
+195567 193439  98%    0.05K   2679       73     10716K Acpi-Parse
+174642 174642 100%    0.10K   4478       39     17912K buffer_head
+163956 163950  99%    1.16K  12612       13    201792K ext4_inode_cache
+ 39270  30421  77%    0.04K    385      102      1540K ext4_extent_status
+ 26368  25431  96%    0.12K    824       32      3296K kernfs_node_cache
+ 25285  24806  98%    0.59K   1945       13     15560K inode_cache
+ 18018  18018 100%    0.57K   1287       14     10296K radix_tree_node
+ 17850  17661  98%    0.23K   1050       17      4200K vm_area_struct
+ 12608  11232  89%    0.06K    197       64       788K kmalloc-rcl-64
+ 12544  11762  93%    0.03K     98      128       392K kmalloc-32
+ 12480  12066  96%    0.06K    195       64       780K anon_vma_chain
+ 10368   9824  94%    0.06K    162       64       648K kmalloc-64
+  9618   9618 100%    0.09K    229       42       916K kmalloc-rcl-96
+  7084   6948  98%    0.09K    154       46       616K anon_vma
+  6912   6912 100%    0.02K     27      256       108K kmalloc-16
+  6144   6144 100%    0.02K     24      256        96K lsm_file_cache
+  4608   4608 100%    0.01K      9      512        36K kmalloc-8
+  4590   4590 100%    0.05K     54       85       216K ftrace_event_field
+  4416   4168  94%    0.06K     69       64       276K vmap_area
+  3696   3068  83%    0.66K    308       12      2464K proc_inode_cache
+  3634   3634 100%    0.09K     79       46       316K trace_event_file
+  3200   2688  84%    0.03K     25      128       100K ext4_pending_reservation
+  2920   2647  90%    0.05K     40       73       160K mbcache
+  2768   2452  88%    0.25K    173       16       692K filp
+  2040   2040 100%    0.08K     40       51       160K task_delay_info
+  1638   1638 100%    0.09K     39       42       156K kmalloc-96
+  1470   1427  97%    0.19K     70       21       280K kmalloc-192
+  1456   1221  83%    1.00K     91       16      1456K kmalloc-1k
+  1408   1408 100%    0.03K     11      128        44K avc_xperms_data

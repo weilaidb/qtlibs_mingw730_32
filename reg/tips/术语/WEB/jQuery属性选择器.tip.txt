@@ -1,0 +1,43 @@
+19.4.5　属性选择器
+属性选择器就是通过元素的属性作为过滤条件进行筛选对象。jQuery提供的属性选择器如表19.5所示。
+
+
+19.4.6　表单选择器
+表单选择器是匹配经常在表单内出现的元素。但是匹配的元素不一定在表单中。jQuery提供的表单选择器如表19.6所示。
+【例19.14】匹配表单中相应的元素并实现不同的操作。
+实例位置：光盘\MR\源码\第19章\19.14
+Step 1　创建一个名称为index.html的文件，在该文件的＜head＞标记中应用下面的语句引入jQuery库。
+＜script type="text/javascript" src="JS/jquery-1.6.1.min.js"＞＜/script＞
+Step 2　在页面的＜body＞标记中添加一个表单，并在该表单中添加复选框、单选按钮、图像域、文件域、密码域、文本框、普通按钮、重置按钮、提交按钮、隐藏域等input元素，关键代码如下：
+
+
+
+＜form＞
+复选框：＜input type="checkbox"/＞
+单选按钮：＜input type="radio"/＞
+图像域：＜input type="image"/＞＜br＞
+文件域：＜input type="file"/＞＜br＞
+密码域：＜input type="password" width="150px"/＞＜br＞
+文本框：＜input type="text" width="150px"/＞＜br＞
+按钮：＜input type="button" value="按钮"/＞＜br＞
+重置：＜input type="reset" value=""/＞＜br＞
+提交：＜input type="submit" value=""＞＜br＞
+隐藏域：＜input type="hidden" value="这是隐藏的元素"＞
+＜div id="testDiv"＞＜font color="blue"＞隐藏域的值：＜/font＞＜/div＞
+＜/form＞
+Step 3　在引入jQuery库的代码下方编写jQuery代码，实现匹配表单中的各个表单元素，并实现不同的操作，具体代码如下：
+＜script type="text/javascript"＞
+$(document).ready(function(){
+$(":checkbox").attr("checked","checked");//选中复选框
+$(":radio").attr("checked","true");//选中单选按钮
+$(":image").attr("src","images/fish1.jpg");//设置图片路径
+$(":file").hide();//隐藏文件域
+$(":password").val("123");//设置密码域的值
+$(":text").val("文本框");//设置文本框的值
+$(":button").attr("disabled","disabled");//设置按钮不可用
+$(":reset").val("重置按钮");//设置重置按钮的值
+$(":submit").val("提交按钮");//设置提交按钮的值
+$("#testDiv").append($("input:hidden:eq(1)").val());//显示隐藏域的值
+});
+＜/script＞
+运行本实例，将显示如图19.33所示的页面。

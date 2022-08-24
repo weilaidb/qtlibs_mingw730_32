@@ -1,0 +1,1 @@
+<script>$NL$TBfunction ClearTextArea() {$NL$TB$TBdocument.getElementById("\1").value = "";$NL$TB}$NL$TBfunction LoadTextArea(str) {$NL$TB$TBdocument.getElementById("\1").value = str;$NL$TB}$NL</script>

@@ -1,0 +1,2 @@
+[command signal]
+echo 'xxoo';HUP INT QUIT TSTP

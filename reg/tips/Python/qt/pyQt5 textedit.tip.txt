@@ -1,0 +1,2 @@
+textEdit_cmdlist
+textEdit_result

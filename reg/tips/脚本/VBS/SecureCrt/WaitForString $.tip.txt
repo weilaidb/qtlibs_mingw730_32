@@ -1,0 +1,12 @@
+cdsoftwebapachewebapps
+mdy=`date +%m-%d-%Y`
+mv weilaix.war ~/weilaix.war.old.$mdy
+mv ~/weilaix.war .
+tomcatstart
+
+
+
+date
+ls -lh
+pwd
+tree -L 1

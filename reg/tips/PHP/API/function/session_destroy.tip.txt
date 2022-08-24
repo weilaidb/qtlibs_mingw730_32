@@ -1,0 +1,1 @@
+session 可以由 session_destroy()函数销毁，也可使用使用 $_SESSION = array() 清空 $_SESSION 数组。

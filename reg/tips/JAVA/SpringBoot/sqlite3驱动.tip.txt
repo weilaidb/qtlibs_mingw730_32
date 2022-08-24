@@ -1,0 +1,703 @@
+Spring-Boot快速集成Sqlite数据库(动态创建，动态切换)
+
+置顶
+雨developer
+
+于 2020-11-21 15:07:14 发布
+
+3010
+ 收藏 8
+分类专栏： 动态数据源 Spring-Boot 文章标签： sqlite java spring boot
+版权
+
+动态数据源
+同时被 2 个专栏收录
+2 篇文章0 订阅
+订阅专栏
+
+Spring-Boot
+15 篇文章0 订阅
+订阅专栏
+Spring-Boot快速集成Sqlite数据库(动态创建，动态切换)
+首先分析集成sqlite，然后需要完成的需求
+
+动态创建sqlite数据
+动态连接sqlite数据库
+操作sqlite数据库
+相比较传统的数据，使用mybaits集成，需要变更是数据库驱动driver，这个需要引入sqlite的依赖
+
+	<dependencies>
+	   <!--mybaits-->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+		<!-- sqlite3驱动包 -->
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.27.2.1</version>
+		</dependency>
+	</dependencies>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+配置初始sqlite数据库
+# database configuration
+blog.sqlite.url: jdbc:sqlite:E:/git_space/BlogSqlite/sqlite/pro.db
+1
+2
+这里配置的是初始的数据库,文件不用创建，项目启动时会自动创建并初始化数据的表
+
+@MapperScan(basePackages = {"club.dlblog.sqlite.mapper"},
+        sqlSessionFactoryRef = "sqlSessionFactory")
+@Configuration
+public class SqliteConfig {
+
+    //数据源url
+    @Value("${blog.sqlite.url}")
+    private String dataSourceUrl;
+
+    /**
+     * 配置sqlite数据源
+     * @return
+     */
+    @Bean(name = "sqliteDataSource")
+    public DataSource sqliteDataSource(){
+        //尝试创建sqlite文件-不存在时创建
+        SqliteUtils.initSqliteFile(SqliteUtils.getFilePath(dataSourceUrl));
+        //创建数据源
+        DataSource dataSource  = SqliteBuilder.create().url(dataSourceUrl).build();
+        try {
+            //尝试初始化数据库-表不存在时创建
+            SqliteUtils.initProDb(dataSource.getConnection());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dataSource;
+    }
+
+
+    /**
+     * session工厂
+     */
+    @Bean(name = "sqlSessionFactory")
+    public SqlSessionFactory sqlSessionFactory(
+            @Qualifier("dynamicDataSource") DynamicDataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
+        sessionFactoryBean.setDataSource(dataSource);
+        sessionFactoryBean.setMapperLocations(
+                new PathMatchingResourcePatternResolver().
+                        getResources("classpath:mapper/**/*.xml"));
+        return sessionFactoryBean.getObject();
+
+    }
+
+    /**
+     * session模板
+     * @param sqlSessionFactory
+     * @return
+     */
+    @Bean(name = "sqlSessionTemplate")
+    public SqlSessionTemplate ComSqlSessionTemplate(
+            @Qualifier("sqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
+        return new SqlSessionTemplate(sqlSessionFactory);
+    }
+
+    /**
+     * 动态数据源
+     * @param dataSource
+     * @return
+     */
+    @Bean(name = "dynamicDataSource")
+    public DynamicDataSource dynamicDataSource(@Qualifier("sqliteDataSource") DataSource dataSource){
+        return  new DynamicDataSource(dataSource);
+    }
+
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+在这里需要做两步操作，尝试创建文件，文件不存在时，则去创建文件
+
+    //创建sqlite文件
+    public static void initSqliteFile(String filePath){
+        File file = new File(filePath);
+
+        File dir = file.getParentFile();
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
+        if(!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+尝试初始化数据库，当表不存在时初始化数据
+
+    /**
+     * 初始化项目db
+     * @param connection
+     */
+    public static void initProDb(Connection connection){
+        //判断数据表是否存在
+        boolean hasPro = false;
+        try {
+            hasPro = true;
+            //测试数据表是否存在
+            connection.prepareStatement("select * from pro").execute();
+        }catch (SQLException e){
+            //不存在
+            logger.debug("table pro is not exist");
+            hasPro = false;
+        }
+        //不存在时创建db
+        if(!hasPro) {
+            logger.debug(">>>start init pro db");
+            File file = null;
+            try {
+                //读取初始化数据sql
+                file = ResourceUtils.getFile("classpath:sql/init.sql");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            //获取sql
+            String sql = "";
+            FileInputStream fis = null;
+            InputStreamReader isr = null;
+            try {
+                fis = new FileInputStream(file);
+                isr = new InputStreamReader(fis, "UTF-8");
+                BufferedReader bf = new BufferedReader(isr);
+                String content = "";
+                StringBuilder sb = new StringBuilder();
+                while (content != null) {
+                    content = bf.readLine();
+                    if (content == null) {
+                        break;
+                    }
+                    sb.append(content.trim());
+                }
+                sql = sb.toString();
+            } catch (FileNotFoundException | UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    isr.close();
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            //分割sql
+            String[] sqls = sql.split(";");
+
+            try {
+                for (String str : sqls) {
+                    //开始初始化数据库
+                    connection.setAutoCommit(false);
+                    connection.prepareStatement(str).execute();
+                }
+                //提交sql
+                connection.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            logger.debug("finish init pro db>>>");
+        }else {
+            logger.debug("pro db is exist");
+        }
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+构建sqlite数据源其实只需要url和驱动类
+
+下面时创建sqlite数据源的方式
+
+public DataSource build(){
+        //url不为空
+        if (url!=null&&url!=""){
+            return DataSourceBuilder.create().
+                    url(url).driverClassName(JDBC.class.getName()).build();
+        }
+        //文件路径不为空
+        if(filePath!=null&&filePath!=""){
+            StringBuilder stringBuilder =  new StringBuilder();
+            stringBuilder.append("jdbc:sqlite:").append(filePath);
+            return DataSourceBuilder.create().
+                    url(stringBuilder.toString()).driverClassName(JDBC.class.getName()).build();
+        }
+        return DataSourceBuilder.create().build();
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+创建动态sqlite数据源
+参照我的上一篇的动态数据源的集成方式
+动态数据源创建方式
+
+/**
+ * 动态数据源配置
+ * @author machenike
+ */
+
+public class DynamicDataSource extends AbstractRoutingDataSource {
+
+
+    private volatile static DynamicDataSource dynamicDataSource;
+
+    /**
+     * 数据源存储用map
+     */
+    private  final Map<Object,Object> dataSourceMap = new ConcurrentHashMap<>();
+
+
+    /**
+     * 当前线程数据源key
+     */
+    private final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
+
+
+    @Override
+    protected Object determineCurrentLookupKey() {
+        //弹出当前数据源key
+        return contextHolder.get();
+    }
+
+    /**
+     * 动态数据源构造方法
+     * @param defaultDataSource
+     */
+    public DynamicDataSource(DataSource defaultDataSource) {
+        //存入主数据源
+        dataSourceMap.put("master",defaultDataSource);
+        //设定目标数据源map
+        setTargetDataSources(dataSourceMap);
+        //设定默认数据源
+        setDefaultTargetDataSource(defaultDataSource);
+        dynamicDataSource = this;
+
+    }
+
+
+    /**
+     * 判断当前数据源是否存在
+     *
+     * @param dataBaseKey
+     * @return
+     */
+    public static boolean isExistDataSource(String dataBaseKey) {
+        if (dynamicDataSource != null) {
+            return dynamicDataSource.getDataSourceMap().containsKey(dataBaseKey);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 切换数据源
+     *
+     * @param key
+     */
+    public static void setDataSourceKey(String key) {
+        if (dynamicDataSource != null) {
+            dynamicDataSource.getContextHolder().set(key);
+            dynamicDataSource.afterPropertiesSet();
+        }
+    }
+
+    /**
+     * 获取当前数据源
+     *
+     * @return
+     */
+    public static String getDataSourceKey() {
+        if (dynamicDataSource != null) {
+            return dynamicDataSource.getContextHolder().get();
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 切换到默认数据源
+     */
+    public static void clearDataSourceKey() {
+        if (dynamicDataSource != null) {
+            dynamicDataSource.getContextHolder().remove();
+        }
+    }
+
+    /**
+     * 根据数据源key设置数据源
+     *
+     * @param datatBase
+     * @return
+     */
+    public static void addDataSource(String datatBase, DataSource dataSource) {
+        if (dynamicDataSource == null) {
+            return;
+        }
+        // 没有数据源时添加数据源,有数据源直接使用
+        if (!isExistDataSource(datatBase)) {
+            // 新增数据源
+            dynamicDataSource.getDataSourceMap().put(datatBase, dataSource);
+        }
+        // 切换数据源
+        checkoutDataSource(datatBase);
+    }
+
+    /**
+     * 切换数据源
+     *
+     * @param databaseKey
+     */
+    public static void checkoutDataSource(String databaseKey) {
+        if (dynamicDataSource != null) {
+            // 切换数据源
+            setDataSourceKey(databaseKey);
+            dynamicDataSource.afterPropertiesSet();
+        }
+    }
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+整个流程
+
+项目启动时尝试去链接本地的sqlite数据库
+当文件不存在创建文件
+当数据表不存在创建表
+同时将主数据源放入动态数据源中
+启动完主数据库完成链接绑定mapper
+后续创建数据源的步骤
+
+创建sqlite文件
+初始化数据库
+创建新的数据源放入动态数据
+通过动态数据源来切换数据库
+全部源码的链接
+https://github.com/DavidLei08/BlogSqlite
+
+文章知识点与官方知识档案匹配，可进一步学习相
+————————————————
+版权声明：本文为CSDN博主「雨developer」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_42271561/article/details/109897497

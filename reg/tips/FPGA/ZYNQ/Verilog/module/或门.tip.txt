@@ -1,0 +1,35 @@
+4.5.2 或门
+在 verilog 中以“|”表示按位或，如 c = a|b , 真值表如下，在 a 和 b 都为 0 时结果才为
+0。
+ 
+代码实现如下： 激励文件如下
+module top(a, b, c) ;
+input a ;
+input b ;
+output c ;
+assign c = a | b ;
+endmodule
+`timescale 1 ns/1 ns 
+module top_tb() ;
+reg a ;
+reg b ;
+wire c ;
+initial
+begin
+ a = 0 ;
+ b = 0 ;
+ forever
+ begin 
+ #({$random}%100)
+ a = ~a ;
+ #({$random}%100) 
+ b = ~b ; 
+ end
+end
+ 
+ZYNQ 开发平台基础教程
+http://www.alinx.com.cn 71 / 285
+top t0(.a(a), .b(b),.c(c)) ;
+endmodule
+仿真结果如下：
+同理，位宽大于 1，则是按位或。

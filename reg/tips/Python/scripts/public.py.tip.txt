@@ -1,0 +1,202 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#filename:public.py
+#function:公共的函数文件
+#
+
+import os
+import sys
+import re
+import atexit
+import csv
+from xml.sax.handler import ContentHandler
+from xml.sax import make_parser
+ 
+###################退出操作，结合atexit.register()使用
+def end(flag):
+    print('结束')
+    
+###################打印操作
+###################打印操作
+###################打印操作
+def lenlntips(tips="", str=""):
+    print("%s , len:%d" % (tips, len(str)))
+    
+def lenln(str=""):
+    print("len:%d" % len(str))
+
+def printlntips(tips, str, tipsenter=True):
+    if False == tipsenter:
+        print("%s:%s" %(tips, str))
+    else:
+        print("%s:\n%s" %(tips, str))
+    
+    
+def println(str=""):
+    print(str)
+
+def entertips():
+    print(sys._getframe().f_lineno)     # 获取当前行号(行数)
+    
+    
+###################文件操作
+###################文件操作
+###################文件操作
+def checkfilenoexistquit(filename):
+    try:
+        f = open(filename)
+        f.close()
+    except FileNotFoundError:
+        print ("File [%s] is not found." % filename)
+        exit(0)
+    except PermissionError:
+        print ("You don't have permission to access this file[%s]." % filename)
+        exit(0)
+
+def checkdirnoexistquit(dirname):
+    if os.path.isdir(dirname):
+        pass
+    else:
+        print ("Dir [%s] is not found." % dirname)
+        exit(0)
+
+
+def fileread(filename):
+    with open(filename, 'r') as f:
+        # print(f.read())
+        result = f.read()
+        f.close()
+        return result
+
+
+def filewrite(filename, content):
+    with open(filename, 'w') as f:
+        # print(f.read())
+        f.write(content)
+        f.close()
+        return 0
+
+
+def filedelete(filename):
+    if(os.path.isfile(filename)):
+        os.remove(filename)
+
+###################字符操作
+###################字符操作
+###################字符操作
+def concat(s1,s2):
+    return s1 + s2
+
+
+def splitstr(str, sign):
+    list = str.split(sign)
+    return list
+
+def splitstrbyenter(str):
+    return splitstr(str,"\n")
+
+
+def splitstrbysignnoempty(str, sign):
+    list =  splitstr(str,sign)
+    newlist = []
+    for str in list:
+        if str.strip() == "":
+            continue
+        newlist.append(str)
+    
+    return newlist
+
+def splitstrbyenternoempty(str):
+    return splitstrbysignnoempty(str,"\n")
+
+#默认模糊匹配,match=True精确匹配
+def findstrinlist(findstr, list, match=False):
+    newlist = []
+    for str in list:
+        if False == match:
+            if findstr in str:
+                newlist.append(str)
+        else:
+            if findstr.strip() == str.strip():
+                newlist.append(str)
+        
+        
+    return newlist
+
+#替换后，默认模糊匹配,match=True精确匹配
+def findstrinlist_replace(findstr, list, replacestr, toreplacestr,match=False):
+    newlist = []
+    for str in list:
+        if False == match:
+            if findstr in replacestrreg(str, replacestr, toreplacestr):
+                newlist.append(str)
+        else:
+            if findstr.strip() == replacestrreg(str, replacestr, toreplacestr).strip():
+                newlist.append(str)
+        
+    return newlist
+
+
+def replacestr(str, replacestr,toreplacestr=""):
+    return str.replace(replacestr, toreplacestr)
+
+#正则字符串替换
+def replacestrreg(str, replacestr,toreplacestr=""):
+    return re.sub(replacestr, toreplacestr, str)
+
+#列表和元素替换后并排序
+def replacelistreg(list, replacestr, toreplacestr=""):
+    newlist = []
+    for str in list:
+        newstr = replacestrreg(str, replacestr,toreplacestr).strip()
+        # printlntips("new str", newstr)
+        if newstr not in newlist:
+            newlist.append(newstr)
+            
+    return newlist
+
+#删除空格等符号
+def stripstr(str):
+    return str.strip()
+
+#判断是否为数字
+def isdigtal(str):
+    return str.isdigit()
+
+
+
+###################CSV读写
+###################CSV读写
+###################CSV读写
+def csvshowfile(filename):
+    with open(filename, encoding='utf-8')as f:
+        reader = csv.reader(f)
+        headers = next(reader)
+        print(headers)
+        for row in reader:
+            print(row)
+
+
+def csvread(filename):
+    lists = []
+    rows = 0
+    with open(filename, encoding='utf-8')as f:
+        reader  = csv.reader(f)
+        for row in reader:
+            # print(row)
+            lists.append(row)
+            rows += 1
+            
+    return lists,rows
+
+
+
+
+
+###################XML读写
+###################XML读写
+###################XML读写
+def xmlParseFile(fileName):
+    parser = make_parser()
+    parser.setContentHandler(ContentHandler())
+    parser.parse(fileName)

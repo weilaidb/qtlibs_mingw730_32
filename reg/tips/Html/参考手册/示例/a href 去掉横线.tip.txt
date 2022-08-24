@@ -1,0 +1,25 @@
+在HTML中我们经常会使用a标签跳转链接，但是会发现a标签下面出现一个横线特别难看，给大家一种删除a标签下面横线的方法。
+删除a标签下面横线使用： text-decoration: none;
+
+
+代码示例
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		a{
+			text-decoration: none;
+		}
+	</style>
+	<body>
+		<a href="#">百度</a>
+		<a href="#">天猫</a>
+		<a href="#">淘宝</a>
+	</body>
+</html>
+————————————————
+版权声明：本文为CSDN博主「风叶翩翩」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_45743799/article/details/103221589

@@ -1,0 +1,1 @@
+var target_url=fmt.Sprintf(\1,\2)$NLfmt.Println(target_url)

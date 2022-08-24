@@ -1,0 +1,323 @@
+linux之dup和dup2函数解析
+
+o倚楼听风雨o
+
+于 2017-05-03 11:27:06 发布
+
+58518
+ 收藏 127
+分类专栏： 产品开发 文章标签： dup dup2
+
+产品开发
+专栏收录该内容
+2 篇文章0 订阅
+订阅专栏
+　　本文转载，原文地址：http://blog.csdn.net/fulinus/article/details/9669177#comments
+
+1、文件描述符在内核中数据结构
+　　在具体说dup/dup2之前，我认为有必要先了解一下文件描述符在内核中的形态。一个进程在此存在期间，会有一些文件被打开，从而会返回一些文件描述符，从shell中运行一个进程，默认会有3个文件描述符存在(0、１、2)，0与进程的标准输入相关联，１与进程的标准输出相关联，2与进程的标准错误输出相关联，一个进程当前有哪些打开的文件描述符可以通过/proc/进程ID/fd目录查看。　
+　　下图可以清楚的说明问题（图片来源于百度百科）：
+　　这里写图片描述
+　　文件表中包含：文件状态标志、当前文件偏移量、v节点指针，这些不是本文讨论的重点，我们只需要知道每个打开的文件描述符(fd标志)在进程表中都有自己的文件表项，由文件指针指向。
+
+2、dup/dup2函数
+　　APUE和man文档都用一句话简明的说出了这两个函数的作用：复制一个现存的文件描述符。
+
+#include <unistd.h>
+int dup(int oldfd);
+int dup2(int oldfd, int newfd);
+1
+2
+3
+　　当调用dup函数时，内核在进程中创建一个新的文件描述符，此描述符是当前可用文件描述符的最小数值，这个文件描述符指向oldfd所拥有的文件表项。
+　　dup2和dup的区别就是可以用newfd参数指定新描述符的数值，如果newfd已经打开，则先将其关闭。如果newfd等于oldfd，则dup2返回newfd, 而不关闭它。dup2函数返回的新文件描述符同样与参数oldfd共享同一文件表项。
+　　APUE用另外一个种方法说明了这个问题：
+　　实际上，调用dup(oldfd)等效于，fcntl(oldfd, F_DUPFD, 0)
+　　而调用dup2(oldfd, newfd)等效于，close(oldfd)；fcntl(oldfd, F_DUPFD, newfd)；
+
+3、CGI中dup2
+　　写过CGI程序的人都清楚，当浏览器使用post方法提交表单数据时，CGI读数据是从标准输入stdin，写数据是写到标准输出stdout(C语言利用printf函数)。按照我们正常的理解，printf的输出应该在终端显示，原来CGI程序使用dup2函数将STDOUT_FINLENO(这个宏在unitstd.h定义，为１)这个文件描述符重定向到了连接套接字：dup2(connfd, STDOUT_FILENO)。
+　　如第一节所说，一个进程默认的文件描述符１(STDOUT_FILENO)是和标准输出stdout相关联的，对于内核而言，所有打开的文件都通过文件描述符引用，而内核并不知道流的存在(比如stdin、stdout)，所以printf函数输出到stdout的数据最后都写到了文件描述符１里面。至于文件描述符0、１、2与标准输入、标准输出、标准错误输出相关联，这只是shell以及很多应用程序的惯例，而与内核无关。
+　　用下面的流图可以说明问题(ps: 虽然不是流图关系，但是还是有助于理解)：
+　　printf －> stdout －> STDOUT_FILENO(1) －> 终端(tty)
+　　printf最后的输出到了终端设备，文件描述符１指向当前的终端可以这么理解：
+　　STDOUT_FILENO = open(“/dev/tty”, O_RDWR);
+　　使用dup2之后STDOUT_FILENO不再指向终端设备，而是指向connfd, 所以printf的输出最后写到了connfd。是不是很优美？
+
+4、如何在CGI程序的fork子进程中还原STDOUT_FILENO
+ISDN开发文档及源代码
+rar
+
+0星
+超过10%的资源
+7.01MB
+
+下载
+　　如果你能看到这里，感谢你的耐心，我知道很多人可能感觉有点复杂，其实复杂的问题就是一个个小问题的集合。所以弄清楚每个小问题就OK了，第三节中说道，STDOUT_FILENO被重定向到了connfd套接字，有时候我们可能想在CGI程序中调用后台脚本执行，而这些脚本中难免会有一些输入输出，我们知道fork之后，子进程继承了父进程的所有文件描述符，所以这些脚本的输入输出并不会如我们愿输出到终端设备，而是和connfd想关联了，这个显然会扰乱网页的输出。那么如何恢复STDOUT_FILENO和终端关联呢？
+　　方法１：在dup2之前保存原有的文件描述符，然后恢复。
+　　代码实现如下：
+　　savefd = dup(STDOUT_FILENO);　／savefd此时指向终端/
+　　dup2(connfd, STDOUT_FILENO);
+　　…..
+　　dup2(savefd, STDOUT_FILENO);
+　　很遗憾CGI程序无法使用这种方法，因为dup2这些不是在CGI程序中完成的，而是在web server中实现的，修改web server并不是个好主意。
+　　方法2: 追本溯源，打开当前终端恢复STDOUT_FILENO。
+　　分析第三节的流图，STDOUT_FILENO是如何和终端关联的？我们重头做一遍不就行了，代码实现如下：
+　　ttyfd = open(“/dev/tty”, O_RDWR);
+　　dup2(ttyfd, STDOUT_FILENO);
+　　close(ttyfd);
+　　/dev/tty是程序运行所在的终端，这个应该通过一种方法获得。实践证明这种方法是可行的，但是个人总感觉有些不妥，不知道为什么，可能一些潜在的问题还没出现。
+
+5、实例
+　　dup函数实例：
+
+[lingyun@localhost dup]$ cat dup.c 
+/*********************************************************************************
+ *      Copyright:  (C) 2013 fulinux<fulinux@sina.com> 
+ *                  All rights reserved.
+ *
+ *       Filename:  dup.c
+ *    Description:  This file 
+ *                 
+ *        Version:  1.0.0(07/31/2013~)
+ *         Author:  fulinux <fulinux@sina.com>
+ *      ChangeLog:  1, Release initial version on "07/31/2013 04:00:06 PM"
+ *                 
+ ********************************************************************************/
+
+
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+
+int main(int argc, char* argv[])
+{
+    int fd = open("hello", O_CREAT|O_RDWR|O_TRUNC, S_IRUSR|S_IWUSR);
+    if(fd < 0)
+    {
+        printf("Open Error!!\n");
+        return 0;
+    }
+
+
+    int nfd = dup(fd);
+    if(nfd < 0)
+    {
+        printf("Error!!\n");
+        return 0;
+    }
+
+
+    char buf[1000];
+    int n;
+
+
+    while((n = read(STDIN_FILENO, buf,1000)) > 0)
+    {
+        if(write(nfd, buf, n) != n)
+        {
+            printf("Write Error!!\n");
+            return 0;
+        }
+    }
+    return 0;
+
+
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+　　上面代码中，nfd 拷贝了 fd，所以 write ( nfd, buf, n ) 这语句写到 nfd 所代表的文件时也就是写到 fd 所代表的文件。程序执行完后可以在相应的目录的hello文件中看到输出。
+
+[lingyun@localhost dup]$ gcc dup.c 
+[lingyun@localhost dup]$ ls
+a.out  dup.c
+[lingyun@localhost dup]$ ./a.out 
+hello world
+^C
+[lingyun@localhost dup]$ ls
+a.out  dup.c  hello
+[lingyun@localhost dup]$ cat hello 
+hello world
+[lingyun@localhost dup]$ 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+dup2函数实例：
+
+[lingyun@localhost dup2]$ cat dup2.c 
+/*********************************************************************************
+ *      Copyright:  (C) 2013 fulinux<fulinux@sina.com> 
+ *                  All rights reserved.
+ *
+ *       Filename:  dup2.c
+ *    Description:  This file 
+ *                 
+ *        Version:  1.0.0(07/31/2013~)
+ *         Author:  fulinux <fulinux@sina.com>
+ *      ChangeLog:  1, Release initial version on "07/31/2013 08:22:19 PM"
+ *                 
+ ********************************************************************************/
+
+
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+
+int main(int argc, char* argv[])
+{
+    int fd = open("hello.file", O_CREAT|O_RDWR|O_TRUNC,S_IRUSR|S_IWUSR);
+    if(fd < 0)
+    {
+        printf("Open Error!!\n");
+        return 0;
+    }
+
+
+    int nfd = dup2(fd, STDOUT_FILENO);
+    if(nfd < 0)
+    {
+        printf("Error!!\n");
+        return 0;
+    }
+
+
+    char buf[5];
+    int n;
+
+
+    while((n = read(STDIN_FILENO, buf, 5)) > 0)
+        if(write(STDOUT_FILENO, buf, n) != n)
+        {
+            printf("Write Error!!\n");
+            return 0;
+        }
+    return 0;
+}
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+　　上面的例子使用dup2将标准输出重定向为hello.file文件，如下所示：
+
+[lingyun@localhost dup2]$ ls
+dup2.c
+[lingyun@localhost dup2]$ gcc dup2.c 
+[lingyun@localhost dup2]$ ./a.out 
+hello world
+^C
+[lingyun@localhost dup2]$ cat hello.file 
+hello world
+[lingyun@localhost dup2]$

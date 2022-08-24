@@ -1,0 +1,117 @@
+文件类
+File(String filename)                          -- filename为文件名字或绝对路径
+File(String directoryPath, String filename)    -- directoryPath是文件路径， filename是文件名字
+File(File f, String filename)                  -- f是指定成一个目录的文件，filename是文件名字，如果f = new File("c:/mybook"), filename="A.txt"
+
+获取文件属性
+public String getName()                        -- 获取文件名字
+public boolean canRead()                       -- 判断文件是否可读
+public boolean canWrite()                      -- 判断文件是否可写
+public boolean exists()                        -- 判断文件是否存在
+public long length()                           -- 获取文件的长度(单位是字节)
+public String getAbsolutePath()                -- 获取文件的绝对路径
+public String getParent()                      -- 获取文件的父目录 
+public boolean isFile()                        -- 判断文件是否是一个正常文件，而不是一个目录
+public boolean isDirectory()                   -- 判断文件是否是一个目录 
+public boolean isHidden()                      -- 判断文件是否是隐藏文件
+public long lastModified()                     -- 获取文件最后修改的时间（时间从1970年午夜至文件最后修改时刻的毫秒数。
+
+创建目录
+public boolean mkdir()                         -- 创建一个目录，成功为true,否则为false（如果目录已经存在返回false）。
+
+删除文件和目录 
+public boolean delete()                        -- 删除当前对象代表的文件或目录。如果是目录，必须是空目录，删除成功返回true。
+
+字节流读写文件
+InputStream     -- 字节输入流类
+OutputStream    -- 字节输出流类
+Reader          -- 字符输入流类
+Writer          -- 字节输出流类
+
+InputStream类常用方法
+int read()                              -- 从源中读取单个字节的数据，该方法返回字节值(0~255之间的一个整数)。如果未读出字节返回 -1 。
+int read(byte b[])                      -- 从源中读取b.length个字节到字节数组b中，返回实际读取的字节数目。如果到达文件的末尾，则返回 -1。
+int read(byte b[], int off, int len)    -- 从源中试图读取len个字节到字节数组b中，并返回实际读取的字节数目。如果到达文件的末尾，则返回 -1。参数off指定从字节数组的某个位置开始存放读取的数据。
+void close()                            -- 关闭输入流。
+long skip(long numBytes)                -- 跳过 numBytes 个字节，并返回实际跳过的字节数目。
+
+OutputStream类常用方法
+void write()                            -- 向输出流写入单个字节。
+void write(byte b[])                    -- 向输出流写入一个字节数组。
+void write(byte b[], int off, int len)  -- 从给定的字节数组中起始于偏移量off处取len个字节写入到输出流。
+void close()                            -- 关闭输出流。
+
+
+FileInputStream 类
+FileInputStream(String name)
+FileInputStream(File file)
+
+FileOutputStream 类
+FileOutputStream(String name)
+FileOutputStream(File file)
+
+BufferedInputStream 类
+BufferedOutputStream 类
+
+
+字符流读写文件
+字节流不能直接操作Unicode字符，由于汉字大文件中占用两个字节，如果使用字节流，读取不当会出现乱码现象，采用字符流就可以避免这个现象。在Unicode字符中，一个汉字被看作一个字符。
+Reader 类常用方法
+int read()                             -- 从源中读取一个字符，返回一个整数(0~65536之间的一个整数，Unicode字符值)。如果未读出字符返回-1 。
+int read(char b[])                     -- 从源中读取b.length个字符到字符数组b中，返回实际读取的字节数目。如果到达文件的末尾，则返回 -1。
+int read(char b[], int off, int len)   -- 从源中读取len个字符并存放到字符数组b中，返回实际读取的字节数目。如果到达文件的末尾，则返回 -1。
+void close()                           -- 关闭输入流。
+long skip(long numBytes)               -- 跳过 numBytes 个字节，并返回实际跳过的字节数目。
+
+Writer 类常用方法
+void write(int n)                         -- 向输出流写入一个字符。
+void write(char b[])                      -- 向输出流写入一个字节数组。
+void write(char b[], int off, int length) -- 从给定的字节数组中起始于偏移量off处取len个字节写入到输出流。
+void close()                              -- 关闭输出流。
+
+
+FileReader 类
+FileReader(String name)
+FileReader(File file)
+
+FileWriter 类
+FileWriter(String name)
+FileWriter(File file)
+
+
+BufferedReader 类
+String readLine()
+
+BufferedWriter 类
+void write(String s, int off, int length)
+newLine()
+
+RandomAccessFile 类
+既可作为源也可作为目的地。
+RandomAccessFile(String name,String mode) -- 参数name是一个文件名，给出创建流的源(也是流的目的地)。参数mode取"r"(只读)或"rw"(可读写),决定创建的流对文件的访问权利。
+RandomAccessFile(File file,String mode)   -- 参数file是一个File对象，给出创建的流的源（也是流的目的地）。参数mode意义同上。
+getFilePointer()                          -- 获取当前流在文件中的读/写的位置。
+length()                                  -- 获取文件的长度。
+readByte()                                -- 从文件中读取一个字节。
+readDouble()                              -- 从文件中读取一个双精度浮点值(8个字节)。
+readInt()                                 -- 从文件中读取一个int值(4个字节)。
+readLine()                                -- 从文件中读取一个文本行。
+readUTF()                                 -- 从文件中读取一个UTF字符串。
+seek(long a)                              -- 定位当前流在文件中的读/写的位置。
+write(byte b[])                           -- 写b.length个字节到文件。
+writeDouble(double v)                     -- 向文件写入一个双精度浮点值。
+writeInt(int v)                           -- 向文件写入一个int值。
+writeUTF(String s)                        -- 向文件写入一个UTF字符串。
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,103 @@
+ajax 返回的中文点击后显示乱码
+
+1.java文件中有些是GBK编码的
+--全部转换为UTF-8编码
+
+D:\code\hello-java-ee3_-ext\HelloJavaEE4\src\weilaidb\sql\JspAdapter.java
+文件中存储的标题名中文，如果此文件编码为GBK，则在index.jsp编码为UTF-8的文件中，显示就是出现乱码，
+将JspAdapter.java改为UTF-8编码后，主页显示正常。
+
+
+2.jsp文件统一头部加utf-8
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
+
+3.参考 《JAVA/SpringBoot/new/PropertySource 中文乱码》
+
+
+4.添加了这个打印就好了，why ?????
+
+System.out.println("findtext utf8:" + new String(findtext.getBytes("UTF-8"), "ISO-8859-1"));
+System.out.println("findtext utf8:" + new String(findtext.getBytes("UTF-8"), "GBK"));
+System.out.println("findtext utf8:" + new String(findtext.getBytes("UTF-8"), "unicode"));
+System.out.println("findtext utf8:" + new String(findtext.getBytes("UTF-8"), "UTF-8"));
+
+System.out.println("findtext gbk:" + new String(findtext.getBytes("GBK"), "ISO-8859-1"));
+System.out.println("findtext gbk:" + new String(findtext.getBytes("GBK"), "GBK"));
+System.out.println("findtext gbk:" + new String(findtext.getBytes("GBK"), "unicode"));
+System.out.println("findtext gbk:" + new String(findtext.getBytes("GBK"), "UTF-8"));
+
+System.out.println("findtext unicode:" + new String(findtext.getBytes("unicode"), "ISO-8859-1"));
+System.out.println("findtext unicode:" + new String(findtext.getBytes("unicode"), "GBK"));
+System.out.println("findtext unicode:" + new String(findtext.getBytes("unicode"), "unicode"));
+System.out.println("findtext unicode:" + new String(findtext.getBytes("unicode"), "UTF-8"));
+
+System.out.println("findtext iso:" + new String(findtext.getBytes("ISO-8859-1"), "ISO-8859-1"));
+System.out.println("findtext iso:" + new String(findtext.getBytes("ISO-8859-1"), "GBK"));
+System.out.println("findtext iso:" + new String(findtext.getBytes("ISO-8859-1"), "unicode"));
+System.out.println("findtext iso:" + new String(findtext.getBytes("ISO-8859-1"), "UTF-8"));
+
+-- 感觉不是这块的问题
+
+
+
+
+5. JSP中添加了下面代码和一个打印(第4条），就好了，好奇怪的事情！！！
+
+    /*浏览器提交的数据在提交给服务器之前设置编码方式为UTF-8*/
+    request.setCharacterEncoding("UTF-8");
+
+---是这条生效了，但是如果都修改页面，工作量较大，不如第6条
+
+//    System.out.println("findtext utf8:" + new String(findtext.getBytes("UTF-8"), "UTF-8"));
+
+
+
+6.参考
+Tomcat设置编码格式utf8
+
+https://www.cnblogs.com/jpfss/p/12111562.html#:~:text=%E5%88%A9%E7%94%A8request.setCharacterEncoding,%28%22UTF-8%22%29%3B%E6%9D%A5%E8%AE%BE%E7%BD%AETomcat%E6%8E%A5%E6%94%B6%E8%AF%B7%E6%B1%82%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F%EF%BC%8C%E5%8F%AA%E5%AF%B9POST%E6%96%B9%E5%BC%8F%E6%8F%90%E4%BA%A4%E7%9A%84%E6%95%B0%E6%8D%AE%E6%9C%89%E6%95%88%EF%BC%8C%E5%AF%B9GET%E6%96%B9%E5%BC%8F%E6%8F%90%E4%BA%A4%E7%9A%84%E6%95%B0%E6%8D%AE%E6%97%A0%E6%95%88%21%20%E8%A6%81%E8%AE%BE%E7%BD%AEGET%E7%9A%84%E7%BC%96%E7%A0%81%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9server.xml%E6%96%87%E4%BB%B6%E4%B8%AD%EF%BC%8C%E7%9B%B8%E5%BA%94%E7%9A%84%E7%AB%AF%E5%8F%A3%E7%9A%84Connector%E7%9A%84%E5%B1%9E%E6%80%A7%EF%BC%9AURIEncoding%3D%22UTF-8%22%EF%BC%8C%E8%BF%99%E6%A0%B7%EF%BC%8CGET%E6%96%B9%E5%BC%8F%E6%8F%90%E4%BA%A4%E7%9A%84%E6%95%B0%E6%8D%AE%E6%89%8D%E4%BC%9A%E8%A2%AB%E6%AD%A3%E7%A1%AE%E8%A7%A3%E7%A0%81%E3%80%82
+
+
+7.依次往每个JSP添加一下吧，
+在<body>里面添加 ！！！
+在<body>里面添加 ！！！
+在<body>里面添加 ！！！
+
+<%
+    /*浏览器提交的数据在提交给服务器之前设置编码方式为UTF-8*/
+    request.setCharacterEncoding("UTF-8");
+%>
+
+
+
+
+idea支持正则替换
+
+<body>
+
+替换为
+
+<body>
+<%
+    /*浏览器提交的数据在提交给服务器之前设置编码方式为UTF-8*/
+    request.setCharacterEncoding("UTF-8");
+%>
+
+
+
+
+
+==========扩展,组替换的标识为$开头
+
+idea支持正则替换
+
+<body(.+)>
+
+替换为
+
+<body$1>
+<%
+    /*浏览器提交的数据在提交给服务器之前设置编码方式为UTF-8*/
+    request.setCharacterEncoding("UTF-8");
+%>

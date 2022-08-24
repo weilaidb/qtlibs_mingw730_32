@@ -1,0 +1,8 @@
+QStringList args = QCoreApplication::arguments();
+showArgs(args);
+bool newGame = true;
+if (args.length() > 1)
+    newGame = (args[1].toLower() != QStringLiteral("load"));
+bool json = true;
+if (args.length() > 2)
+    json = (args[2].toLower() != QStringLiteral("binary"));

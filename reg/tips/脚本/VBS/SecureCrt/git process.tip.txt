@@ -1,0 +1,18 @@
+#$language = "VBScript"
+#$interface = "1.0"
+
+crt.Screen.Synchronous = True
+
+' This automatically generated script may need to be
+' edited in order to work correctly.
+
+Sub Main
+    crt.Screen.Send "date" & chr(13)
+    crt.Screen.Send "cd ~/work/git/linux_driver" & chr(13)
+    crt.Screen.WaitForString "$"
+
+    crt.Screen.Send "git pull --rebase" & chr(13)
+    crt.Screen.WaitForString "$"
+
+
+End Sub

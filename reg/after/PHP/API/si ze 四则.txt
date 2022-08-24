@@ -1,0 +1,1 @@
+$\1=10; $NL$\2=6;$NLecho ($\1 + $\2); // 输出$NLecho '<br>';  // 换行$NL $NLecho ($\1 - $\2); // 输出$NLecho '<br>';  // 换行$NL $NLecho ($\1 * $\2); // 输出$NLecho '<br>';  // 换行$NL $NLecho ($\1 / $\2); // 输出$NLecho '<br>';  // 换行$NL $NLecho ($\1 % $\2); // 输出$NLecho '<br>';  // 换行$NL $NLecho -$\1;

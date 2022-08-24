@@ -1,0 +1,1 @@
+QLinkedList<QString> \2;$NL...$NLQString \1;$NLforeach (\1, \2)$NL   qDebug() << \1;

@@ -1,0 +1,10 @@
+sk_buff.pkt_type 是指该数据包的类型，定义如下：
+表格 2-1 宏 值 说明
+PACKET_HOST 0 该报文的目的地是本机
+PACKET_BROADCAST 1 广播数据包，该报文的目的地是所有主机
+PACKET_MULTICAST 2 组播数据包
+PACKET_OTHERHOST 3 到其他主机的数据包，在 VLAN 接口接收数据时有重要的
+作用
+PACKET_OUTGOING 4 它不是“发送到外部主机的报文”，而是指接收的类型，这
+种类型用在 AF_PACKET 的套接字上，这是 Linux 的扩展
+PACKET_LOOPBACK 5 MC/BRD 的 loopback 帧（用户层不可见）

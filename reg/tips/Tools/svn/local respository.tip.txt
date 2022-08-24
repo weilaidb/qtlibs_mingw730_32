@@ -1,0 +1,11 @@
+Repository type: FSFS
+
+Repository name: pupil
+
+Repository URL: https://weilaix/svn/pupil
+
+Configured repository permissions:
+- duoduo (Read / Write)
+
+duoduo
+duoduo

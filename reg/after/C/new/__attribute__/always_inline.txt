@@ -1,0 +1,1 @@
+//使代码直接作为函数的一部分，不会跳转到函数去执行$NL#ifndef $UP(\1)$NL#define $UP(\1)   __attribute__((section(always_inline))) $NL#endif$NL$NL#ifndef $UP(\1)$NL#define $UP(\1)   /* __attribute__((section(always_inline))) */$NL#endif

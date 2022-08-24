@@ -1,0 +1,1 @@
+tar -cvzf centos.8.3.2011.necessary.base.tar.gz /usr/ /lib* /etc

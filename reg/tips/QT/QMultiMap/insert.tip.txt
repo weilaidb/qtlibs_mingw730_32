@@ -1,0 +1,12 @@
+3．QMultiMap
+QMultiMap是QMap的子类，是用于处理多值映射的便利类。
+多值映射就是一个键可以对应多个值。QMap正常情况下不允许多值映射，除非使用QMap::insertMulti()添加键值对。
+QMultiMap是QMap的子类，所以QMap的大多数函数在QMultiMap都是可用的，但是有几个特殊的，QMultiMap::insert()等效于QMap::insertMulti()，QMultiMap::replace()等效于QMap::insert()。
+QMultiMap使用示例如下：QMultiMap<QString, int> map1, map2, map3;
+map1.insert("plenty", 100);
+map1.insert("plenty", 2000);   // map1.size() == 2
+map2.insert("plenty", 5000);   // map2.size() == 1
+map3 = map1 + map2;            // map3.size() == 3
+QMultiMap不提供“[ ]”操作符，使用value()函数访问最新插入的键的单个值。如果要获取一个键对应的所有值，使用values()函数，返回值是QList<T>类型。QList<int> values = map.values("plenty");
+for (int i = 0; i < values.size(); ++i)
+   cout << values.at(i) << endl;

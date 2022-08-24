@@ -1,0 +1,48 @@
+Sessiion Potions
+
+1. 日志文件名：
+
+专门新建了一个“C:\Log”的文件夹用于存放日志文件
+
+
+
+输入：C:\Log\%S\%Y%M%D-%h%m%s.log，每个不同的Session会自动创建一个文件夹，
+
+并以“年月日-时分秒.log”为文件名存储。
+
+D:\log\session-%S-%H-%Y%M%D-%h%m%s.log
+
+
+
+l 在连接时自动加入：  [%Y%M%D_%h:%m:%s]
+l 在每行自动加入：    [%h:%m:%s:%t]
+
+
+l “Start log upon connect”：在每次连接时开始日志
+
+l “Start new log at midnight”：在午夜启用新日志
+
+l 以下选项2选1，由于我选择的是按照时间来作为日志名称，所以下面2个可以任选
+
+“Append to file”：追加到文件
+
+“Overwrite file”：覆盖文件
+
+其中：
+
+%H：主机名
+
+%S：session名
+
+%Y：年 %M：月%D：日
+
+%h：时 %m：分%s：秒 %t：毫秒
+
+
+
+3. 设置保存：
+
+选择“Change ALL Sessions(no undo)”修改设置保存至全部sessions
+
+
+

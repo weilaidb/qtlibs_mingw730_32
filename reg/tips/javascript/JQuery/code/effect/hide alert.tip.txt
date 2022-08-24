@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<style>
+div{
+width: 130px;
+height: 50px;
+padding: 15px;
+margin: 15px;
+background-color: green;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+  $(".hidebtn").click(function(){
+    $("div").hide(1000,"linear",function(){
+      alert("Hide() 方法已完成!");
+    });
+  });
+});
+</script>
+</head>
+<body>
+	
+<div>隐藏及设置回调函数</div>
+<button class="hidebtn">隐藏</button>
+	
+</body>
+</html>

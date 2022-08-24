@@ -1,0 +1,1 @@
+try:$NL$TB\1$NLexcept Exception as e:$NL$TBprint("exception:%s" %e)$NL$TBprint(type(e.__str__()))$NL$TB$TBreturn e

@@ -1,0 +1,37 @@
+-代码管理系统-(war)  或代码集(exe)
+=====用户说明书
+
+1.在文件中配置的路径
+D:\mydb\autocodesets\config.txt 定义实际的文件路径：
+D:\code\qtlibs_mingw730_32\release\64\reg
+--linux定义的路径为（软链接）:
+[root@weilaidb] ~/soft/web_notebook_online/apache-tomcat-9.0.58/bin
+$ cat D\:/mydb/autocodesets/config.txt 
+work/config/reg/
+实际指定的路径为:
+[root@weilaidb] ~/soft/web_notebook_online/apache-tomcat-9.0.58/bin/work/config
+$ ll
+total 0
+lrwxrwxrwx 1 root root 49 Jul 31 21:51 reg -> /root/work/git/qtlibs_mingw730_32/release/64/reg/
+
+2.日记本等数据库
+D:\mydb\sqlite_mysql\config.txt 定义实际的文件路径:
+a）如果不定义，在D:\下会生成alldb
+b）在此文件中定义实际引用的库路径，比如
+D:\mydb\sqlite_mysql\
+同时将数据库mldn拷贝过来，默认用户和密码为admin
+
+3.如下路径创建文件时，复制节点时，只在标准菜单中创建。
+reg\setting\standmenuflag.txt
+
+4.常用项 行首添加 <ignore> 时表示忽略显示
+
+
+5.“网址”按钮为http或https网页快捷访问
+格式有两种:
+1)直接网址，显示实际网址
+2)【显示内容】https?://xxxx
+--【此中为显示的内容】，网址隐藏
+
+注意事项:
+1.public.sh应该为public.sh.tip.txt的引用

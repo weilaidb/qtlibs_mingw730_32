@@ -1,0 +1,9 @@
+Maven home directory:
+Bundled (Maven 3)
+D:\application\work\apache-maven-3.6.3\respository
+
+User settings file:
+C:\Users\weilaidb\.m3\settings.xml
+
+Local repository:
+C:\Users\weilaidb\.m3\repository

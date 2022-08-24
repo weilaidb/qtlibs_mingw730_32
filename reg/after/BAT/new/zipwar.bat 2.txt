@@ -1,0 +1,1 @@
+@echo off$NLecho current path ：%~f0$NLREM pause$NLcd /d %~dp0$NL@echo off$NL$NL7z.exe a \1 \2$NL$NL=====================>>>

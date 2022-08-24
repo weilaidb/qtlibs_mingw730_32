@@ -1,0 +1,2 @@
+[基类;继承类1;继承类2]
+CBrdBasex;CBrdM2NCPQ;CBrdM4NCPM

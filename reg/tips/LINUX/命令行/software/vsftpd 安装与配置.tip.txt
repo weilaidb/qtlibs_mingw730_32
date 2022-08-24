@@ -1,0 +1,411 @@
+vsftpd
+
+vsftpd的安装和使用
+
+Aaron_Run
+
+于 2019-04-08 00:08:46 发布
+
+66130
+ 收藏 266
+分类专栏： vsftpd 文章标签： Linux上vsftpd的安装和使用 vsftpd的安装配置
+版权
+
+vsftpd
+专栏收录该内容
+4 篇文章1 订阅
+订阅专栏
+目录
+
+1、vsftpd的简介... 2
+
+2、特点... 2
+
+3、安装... 2
+
+4、创建虚拟用户... 2
+
+5、vsftpd服务器的配置... 4
+
+6、vsftpd配置文件说明... 7
+
+7、防火墙的配置... 8
+
+8、vsftpd的验证... 9
+
+9、vsftpd的常用命令... 10
+
+10、反复需要验证ftp身份问题解决... 10
+
+1、vsftpd的简介
+vsftpd是“very secure TTP daemon”的缩写，是一个完全免费的、开放源代码的ftp服务器软件
+
+2、特点
+vsftpd是一款在Linux发行版中最受推崇的ftp服务器程序，小巧轻快，安全易用，支持虚拟用户，支持带宽限制等功能
+
+3、安装
+检查Linux系统是否安装了vsftpd的命令：rpm -qa|grep vsftpd
+
+卸载vsftpd的命令yum remove vsftpd
+
+执行yum -y install vsftpd
+
+[root@localhost ~]# yum -y install vsftpd
+
+
+
+使用whereis vsftpd 查看安装路径
+
+[root@localhost ~]#whereis vsftpd
+
+
+
+注：
+
+（1）是否使用sudo权限执行，请根据具体环境决定
+
+（2）yum安装vsftpd的默认配置文件在/etc/vsftpd/vsftpd.conf
+
+4、创建虚拟用户
+（1）选择在根目录或用户目录下创建ftp文件目录：mkdir ftpfile,如/ftpfile,
+
+[root@localhost ~]# cd /
+
+[root@localhost /]# mkdir ftpfile
+
+[root@localhost /]# ls
+
+
+
+通过ftp上传时就会传到这个文件夹下
+
+（2）添加匿名用户：useradd ftpuser -d /ftpfile/ -s /sbin/nologin      #添加用户没有登录机器的权限,只有上传ftpfile有权限.
+
+[root@localhost ftpfile]# useradd ftpuser -d /ftpfile/ -s /sbin/nologin
+
+
+
+（3）修改ftpfile权限：chown -R ftpuser.ftpuser /ftpfile/ #把创建的用户和创建的文件夹的权限对应上。-R表示遍历，把用户或者用户组赋予到/ftpfile这个文件夹的权限上
+
+[root@localhost ftpfile]# chown -R ftpuser.ftpuser /ftpfile/
+
+
+
+查看该文件目录的权限
+
+
+
+此时的用户名和用户组的权限都为ftpuser
+
+（4）重设ftpuser密码：passwd ftpuser 123456（这里设置的密码为123456）
+
+[root@localhost /]# passwd ftpuser
+
+
+
+（5）在vsftpd文件目录下创建测试文件zxr.txt
+
+[root@localhost /]# cd ftpfile/
+
+ [root@localhost ftpfile]# touch zxr.txt
+
+[root@localhost ftpfile]# ls
+
+zxr.txt
+
+[root@localhost ftpfile]# vi zxr.txt
+
+
+
+5、vsftpd服务器的配置
+（1）vsftpd.conf文件
+
+查看ftp服务器的安装路径
+
+[root@localhost ftpfile]# whereis vsftpd
+
+
+
+进入/etc/vsftpd/目录下
+
+[root@localhost ftpfile]# cd /etc/vsftpd/
+
+
+
+编辑vsftpd.conf文件，把创建的用户配置上
+
+修改客户端登录，提示的欢迎信息（vi打开文件输入/然后将banner输入，再点击enter键，能快速找到banner信息）
+
+
+
+需要将注释取消掉，改为自己想要的提示信息
+
+
+
+还需要添加一些重要的属性节点
+
+local_root=/ftpfile                      #把本地账户指向创建的ftpfile文件夹
+
+anon_root=/ftpfile            #添加匿名账户访问ftpfile目录
+
+use_localtime=YES            #ftp服务器用到的是本地的时间
+
+
+
+查找chroot_list节点
+
+
+
+#chroot_local_user=YES                    #这个节点为是否锁定创建的/ftpfile为根目录,不解除注释，默认为chroot_local_user=NO，锁定创建的/ftpfile为根目录，如果解除后设置为chroot_local_user=YES，那么就没有锁定创建的/ftpfile为根目录，在命令行是可以访问到/ftpfile的上级目录，也就是系统的根目录，这是绝对不安全的。所以这个节点不用解除注释，或者解除更改为chroot_local_user=NO。
+
+编辑该节点，解除
+
+chroot_list_enable=YES
+
+chroot_list_file=/etc/vsftpd/chroot_list
+
+添加节点
+
+allow_writeable_chroot=YES                     #加上这行解决了无法登陆的问题
+
+两条命令的注释，将新建的用户添上。
+
+
+
+查找节点anonymous_enable
+
+
+
+将该节点改为anonymous_enable=NO，不允许匿名用户登录
+
+
+
+在该文件的末尾添加传输接口的范围，最大接口61001，最大接口62000，限定严格的设置防火墙。
+
+
+
+添加范围
+
+pasv_min_port=61001
+
+pasv_max_port=62000
+
+
+
+编辑完成保存退出。
+
+（2）配置chroot_list文件
+
+该文件目录的节点在上一步配置vsftpd.conf文件中已解除注释。
+
+进入到/etc/vsftpd/目录下创建文件chroot_list
+
+[root@localhost vsftpd]# cd /etc/vsftpd/
+
+[root@localhost vsftpd]# vi chroot_list                    
+
+#用编辑器打开文件时，如果没有这个文件，会默认自动创建一个该文件。
+
+
+
+将用户添加进入该新建的chroot_list文件中
+
+
+
+保存退出。
+
+（5）编辑文件/etc/selinux/config文件
+
+[root@localhost vsftpd]# vi /etc/selinux/config
+
+
+
+修改为SELINUX=disabled，如果不改的话，匿名账户无法创建文件文件或者文件目录
+
+
+
+:wq保存退出
+
+注：如果在验证的时候碰到550拒绝访问请执行：
+
+sudo setsebool -P ftp_home_dir 1
+
+然后重启Linux服务器，执行reboot命令。
+
+6、vsftpd配置文件说明
+sudo vi /etc/vsftpd/vsftpd.conf
+
+vsftpd.conf文件的配置文件的添加或更新配置
+
+本项目要用到的配置项：
+
+1）local_root=/ftpfile(当本地用户登入时，将被更换到定义的目录下，默认值为各用户的家目录)
+
+2）anon_root=/ftpfile(使用匿名登入时，所登入的目录)
+
+3）use_localtime=YES(默认是GMT时间，改成使用本机系统时间)
+
+4）anonymous_enable=NO(不允许匿名用户登录)
+
+5）local_enable=YES(允许本地用户登录)
+
+6）write_enable=YES(本地用户可以在自己家目录中进行读写操作)
+
+7）local_umask=022(本地用户新增档案时的umask值)
+
+8）dirmessage_enable=YES(如果启动这个选项，那么使用者第一次进入一个目录时，会检查该目录下是否有.message这个档案，如果有，则会出现此档案的内容，通常这个档案会放置欢迎话语，或是对该目录的说明。默认值为开启)
+
+9）xferlog_enable=YES(是否启用上传/下载日志记录。如果启用，则上传与下载的信息将被完整纪录在xferlog_file 所定义的档案中。预设为开启。)
+
+10）connect_from_port_20=YES(指定FTP使用20端口进行数据传输，默认值为YES)
+
+11）xferlog_std_format=YES(如果启用，则日志文件将会写成xferlog的标准格式)
+
+12）ftpd_banner=Welcome to mmall FTP Server(这里用来定义欢迎话语的字符串)
+
+13）chroot_local_user=NO(用于指定用户列表文件中的用户是否允许切换到上级目录)
+
+14）chroot_list_enable=YES(设置是否启用chroot_list_file配置项指定的用户列表文件)
+
+15）chroot_list_file=/etc/vsftpd/chroot_list(用于指定用户列表文件)
+
+16）listen=YES(设置vsftpd服务器是否以standalone模式运行，以standalone模式运行是一种较好的方式，此时listen必须设置为YES，此为默认值。建议不要更改，有很多与服务器运行相关的配置命令，需要在此模式下才有效，若设置为NO，则vsftpd不是以独立的服务运行，要受到xinetd服务的管控，功能上会受到限制)
+
+17）pam_service_name=vsftpd(虚拟用户使用PAM认证方式，这里是设置PAM使用的名称，默认即可，与/etc/pam.d/vsftpd对应) userlist_enable=YES(是否启用vsftpd.user_list文件，黑名单,白名单都可以
+
+18)pasv_min_port=61001(被动模式使用端口范围最小值)
+
+19)pasv_max_port=62000(被动模式使用端口范围最大值)
+
+20)pasv_enable=YES(pasv_enable=YES/NO（YES）
+
+若设置为YES，则使用PASV工作模式；若设置为NO，则使用PORT模式。默认值为YES，即使用PASV工作模式。
+
+   FTP协议有两种工作方式：PORT方式和PASV方式，中文意思为主动式和被动式。
+
+   一、PORT（主动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请求，服务器接受连接，建立一条命令链路。
+
+  当需要传送数据时，客户端在命令链路上用 PORT命令告诉服务器：“我打开了****端口，你过来连接我”。于是服务器从20端口向客户端的****端口发送连接请求，建立一条数据链路来传送数据。
+
+   二、PASV（被动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请求，服务器接受连接，建立一条命令链路。
+
+  当需要传送数据时，服务器在命令链路上用 PASV命令告诉客户端：“我打开了****端口，你过来连接我”。于是客户端向服务器的****端口发送连接请求，建立一条数据链路来传送数据。
+
+  从上面可以看出，两种方式的命令链路连接方法是一样的，而数据链路的建立方法就完全不同。而FTP的复杂性就在于此。
+
+)
+
+7、防火墙的配置
+防火墙的配置（这里采用的是centos6，用的还是Iptables文件设置防火墙）
+
+（1）编辑防火墙文件
+
+sudo vi /etc/sysconfig/iptables
+
+（2）添加防火墙规则到配置文件中
+
+-A INPUT -p TCP --dport 61001:62000 -j ACCEPT
+
+-A OUTPUT -p TCP --sport 61001:62000 -j ACCEPT
+
+-A INPUT -p TCP --dport 20 -j ACCEPT
+
+-A OUTPUT -p TCP --sport 20 -j ACCEPT
+
+-A INPUT -p TCP --dport 21 -j ACCEPT
+
+-A OUTPUT -p TCP --sport 21 -j ACCEPT
+
+（3）:wq保存退出
+
+（4）sudo service iptables restart 执行命令重启防火墙
+
+8、vsftpd的验证
+（1）执行sudo service vsftpd restart
+
+[root@localhost vsftpd]# service vsftpd restart
+
+
+
+注：第一次启动时Shutting down vsftpd是failed不用理会，因为这是重启命令，保证Starting vsftpd for vsftpd是OK即代表vsftpd服务成功。、
+
+service vsftpd stop            #表示关闭vsftpd
+
+（2）执行ifconfig查看运行vsftpd服务器的ip地址
+
+
+
+（3）打开浏览器访问：ftp://192.168.244.128/
+
+
+
+（4）输入之前创建的ftp匿名用户账号和密码
+
+例如：用户名：ftpuser,密码：123456
+
+（5）看到如图界面代表访问成功
+
+
+
+或者通过ftp客户端软件
+
+例如：cuteftp、filezilla、viperftp、flashftp、leapftp等进行连接ftp服务器，进行上传文件、下载验证
+
+9、vsftpd的常用命令
+（1）启动：sudo service vsftpd start
+
+（2）关闭：sudo service vsftpd stop
+
+（3）重启：sudo service vsftpd restart
+
+10、反复需要验证ftp身份问题解决
+在安装vsftpd的时候如果在浏览器中一直提示需要身份验证，此时在命令行行登录会报530 Login incorrect错误。
+
+在vsftpd的配置文件目录/etc/vsftpd下中的vsftpd.conf文件中会配置有pam_service_name=vsftpd指定pam下的文件在该文件中内容如下：
+
+
+
+其中可能导致登录不成功（反复需要身份验证）的问题主要在于以下两个配置
+
+问题配置一
+
+
+
+在/etc/vsftpd/ftpusers这个文件中的用户是禁止登录的用户，先检查需要登录的账户是否在该文件中，如果在，就将该账户注释或者从该文件中去除
+
+问题配置二：
+
+
+
+该配置是允许用户的shell为 /etc/shells文件内的shell命令时，才能够成功
+
+
+
+此处多留意有的系统里面的shells中的bash会多一些，比如
+
+
+
+所以就需要查看当前系统shells文件中的内容与创建ftp用户的时候，为了禁止ssh登录，跟上的命令在shells中是否存在；
+
+比如：我当前的shells文件内容为
+
+
+
+但是我在创建ftp用户的时候的命令为
+
+[root@localhost ~]# useradd ftpuser -d /ftpfile/ -s /sbin/nologin
+
+所以此时创建用户后-s /sbin/nologin并不是有效的。
+
+这时的解决方案为修改/etc/pam.d/vsftpd文件中的
+
+auth   required   pam_shells.so
+
+修改为auth    required     pam_nologin.so
+
+最后重启vsftpd
+
+[root@localhost ~]# service vsftpd restart
+————————————————
+版权声明：本文为CSDN博主「Aaron_Run」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_36938617/article/details/89077845

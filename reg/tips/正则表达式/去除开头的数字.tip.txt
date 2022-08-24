@@ -1,0 +1,6 @@
+1 void MainWindow::actNewWindow()
+2 {
+3     QLabel *label = new QLabel;
+4     m_mdiArea->addSubWindow(label);
+5     label->show();
+6 }

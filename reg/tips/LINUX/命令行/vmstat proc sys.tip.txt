@@ -1,0 +1,25 @@
+/proc/sys 给驱动使用
+
+$ uname -a
+Linux weilaidb 5.10.60-9.al8.x86_64 #1 SMP Mon Sep 6 21:30:37 CST 2021 x86_64 x86_64 x86_64 GNU/Linux
+[root@weilaidb] ~/soft/web_notebook_online/apache-tomcat-9.0.58/bin
+$ cd /proc/
+[root@weilaidb] /proc
+$ ls
+1    115   1376  1456  17    1831  2367  28   335  561  597  790  903              crypto         iomem        locks         schedstat      tty
+10   1164  1379  1496  1776  1866  2546  29   336  562  598  8    904              devices        ioports      mdstat        scsi           uptime
+104  12    1381  15    178   19    2551  3    337  571  599  81   905              diskstats      irq          meminfo       self           version
+105  1225  1382  1519  1780  1917  26    30   4    572  6    82   acpi             dma            kallsyms     memsli        slabinfo       vmallocinfo
+106  1231  1388  1527  1783  1918  2661  303  443  573  600  83   async_load_calc  driver         kcore        misc          softirqs       vmstat
+108  1290  1394  1537  1790  2     2690  31   46   576  601  84   buddyinfo        dynamic_debug  keys         modules       stat           zoneinfo
+109  13    14    1540  1792  2026  27    316  464  577  650  85   bus              execdomains    key-users    mounts        swaps
+11   131   1400  1541  1793  21    2711  317  470  581  740  86   cgroups          fault_events   kmsg         mtrr          sys
+111  136   1411  1542  1794  22    2721  318  484  584  745  87   cmdline          fb             kpagecgroup  net           sysrq-trigger
+112  1364  1422  1543  1795  23    2725  319  526  585  746  88   consoles         filesystems    kpagecount   pagetypeinfo  sysvipc
+113  1366  1423  1544  18    2340  2726  32   554  592  753  890  cpuinfo          fs             kpageflags   partitions    thread-self
+114  137   1451  16    1830  2357  2728  320  556  595  780  9    cpusli           interrupts     loadavg      sched_debug   timer_list
+[root@weilaidb] /proc
+$ cd sys
+[root@weilaidb] /proc/sys
+$ ls
+abi  crypto  debug  dev  fs  kernel  net  sunrpc  user  vm

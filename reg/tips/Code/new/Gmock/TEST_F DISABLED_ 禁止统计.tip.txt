@@ -1,0 +1,2 @@
+[第一个参数;第二个禁止的]
+SoundexEncoding;IgnoresNonAlphabetics

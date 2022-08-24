@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cookie</title>
+	<script >
+		function testRadio(){
+			var charactergroup=document.forms[0].elements["sex"];
+			for(var i=0;i<charactergroup.length;i++){
+				if(charactergroup[i].checked==true){
+					document.cookie=encodeURI("sex="+charactergroup[i].value);
+				}
+			}
+		}
+		function writeCookie(){
+			document.cookie=encodeURI("username="+document.form1.username.value);
+			document.cookie=encodeURI("password="+document.form1.password1.value);
+			testRadio();
+		}
+
+	</script>
+
+</head>
+<table width="800" height="689" border="0" align="center">
+<form action="method="post" name="form1">
+<tr>
+<td background="博客用户注册.jpg">
+<table width="800" height="451" border="0">
+<tr>
+<td width="113" rowspan="3">＆nbsp;</td>
+<td width="491" height="140">＆nbsp;</td>
+<td width="182" rowspan="3">＆nbsp;</td>
+</tr>
+<tr>
+<td height="175" valign="top"><table width="100%"border="0">
+<tr>
+<td width="30%"class="zi"><div align="right">用户名：</div></td>
+<td width="70%"align="center">
+<div align="left">
+<input name="username" type="text" size="40">
+</div></td></tr>
+<tr>
+<td class="zi"><div align="right">密码：</div></td>
+<td>
+<div align="left">
+<input name="password1" type="password" size="20" oncopy="return false" oncut="return false" onpaste="return false" style="font-family:Wingdings">
+</div></td></tr>
+<tr>
+<td class="zi"><div align="right">重复密码：</div></td>
+<td>
+<div align="left">
+<input name="password2" type="password" size="20" oncopy="return false" oncut="return false" onpaste="return false" style="font-family:Wingdings">
+</div></td></tr>
+<tr>
+<td class="zi"><div align="right">姓名：</div></td>
+<td>
+<div align="left">
+<input name="realname" type="text" size="40">
+</div></td></tr>
+<tr>
+
+<td class="zi"><div align="right">性别：</div></td>
+<td>
+<div align="left">
+<input type="radio" name="radiobutton" value="radiobutton" checked>
+<span class="zi">男</span>
+<input type="radio" name="radiobutton" value="radiobutton">
+<span class="zi">女</span>
+</div></td></tr>
+<tr>
+<td class="zi"><div align="right">QQ号码：</div></td>
+<td>
+<div align="left">
+<input name="qqnum" type="text" size="40">
+</div></td></tr>
+<tr>
+<td class="zi"><div align="right">主页：</div></td>
+<td>
+<div align="left">
+<input name="zy" type="text" size="40">
+</div></td></tr>
+<tr>
+<td class="zi"><div align="right">兴趣：</div></td>
+<td>
+<div align="left">
+<input name="xq" type="text" size="40">
+</div></td></tr>
+<tr>
+<td class="zi"><div align="right">Email：</div></td>
+<td>
+<div align="left">
+<input name="mail" type="text" size="40">
+</div></td></tr>
+</table></td>
+</tr>
+<tr>
+<td valign="top"><table width="100%"border="0">
+<tr>
+<td width="33%">＆nbsp;</td>
+<td width="14%"><input type="image" src="1.gif" width="51" height="20" onClick="return writeCookie();"></td>
+<td width="14%"><input type="image" src="2.gif" width="51" height="20" onClick="javascript:reset();"></td>
+<td width="22%"><input type="image" src="3.gif" width="51" height="20" onClick="javascript:window.close();"></td>
+
+<td width="17%">＆nbsp;</td>
+</tr>
+</table></td>
+</tr>
+</table></td>
+</tr>
+</form>
+</table>
+
+<body>
+</body>
+</html>

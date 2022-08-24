@@ -1,0 +1,68 @@
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
+修改 ~/.vim/autoload/plug.vim 里的 github.com. 为 hub.fastgit.xyz ，修改 raw.http://githubusercontent.com 为 raw.fastgit.org 。
+
+
+#更新VIM版本
+wget https://archive.fastgit.org/vim/vim/archive/refs/tags/v8.1.2270.zip
+
+
+
+#将bundle/Vundle.vim 下载一下，再vim :PluginInstall
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://hub.fastgit.xyz/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+
+
+$ cat ~/.vimrc
+"===设置Vundle核心插件==="
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"安装的插件列表"
+"核心插件，用于安装其他所有插件"
+Plugin 'VundleVim/Vundle.vim'
+"美化状态栏"
+Plugin 'powerline/powerline'
+"类似IDE的补全插件"
+Plugin 'ycm-core/YouCompleteMe'
+"添加一个树形目录"
+Plugin 'preservim/nerdtree'
+"缩进指示线"
+Plugin 'Yggdroot/indentLine'
+"自动格式化代码"
+Plugin 'tell-k/vim-autopep8'
+"括号和引号自动补全"
+Plugin 'jiangmiao/auto-pairs'
+"多行注释"
+Plugin 'preservim/nerdcommenter'
+"实时语法检查"
+Plugin 'vim-syntastic/syntastic'
+"美化状态栏"
+Plugin 'Lokaltog/vim-powerline'
+call vundle#end()
+"开启文件类型自动检测，编写代码时自动换行对齐"
+filetype plugin indent on
+
+
+" ===============================设置NerdTree
+"NerdTree文件前有^G字符的解决办法"
+let g:NERDTreeNodeDelimiter="\u00a0"
+" 设置NerdTree
+" 按F3即可显示或隐藏NerdTree区域了。
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>
+
+
+
+
+
+"================默认配置 
+"显示行号
+set number
+"忽略大小写
+set ignorecase smartcase
+"自动识别文件编码，解决中文乱码
+set encoding=utf-8 fileencodings=ucs-bom,utf-8,cp936

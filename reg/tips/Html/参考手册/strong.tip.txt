@@ -1,0 +1,6 @@
+HTML <strong> 标签
+
+实例
+对文档中的文本进行格式化：
+
+<strong>加粗文本</strong>

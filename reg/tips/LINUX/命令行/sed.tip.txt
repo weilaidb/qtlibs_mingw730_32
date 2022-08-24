@@ -1,0 +1,2 @@
+-O2;-O0;configure
+-O0;-O2;configure

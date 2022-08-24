@@ -1,0 +1,11 @@
+-超级记事本-(war) 
+=====用户说明书
+发送命令=====>>
+1.发送命令格式配置，需要结合execCmd软件。
+https://github.com/weilaidb/execCmd
+execCmd/select/linux_cmdserver/main.cpp
+2.linux系统，下载execCmd后，执行make,或者后台运行，使用默认端口9999。 
+/root/work/git/execCmd/select/linux_cmdserver
+
+3.写入数据格式，IP地址+空格+命令，创建成功后，点击发送
+101.201.79.164 ls

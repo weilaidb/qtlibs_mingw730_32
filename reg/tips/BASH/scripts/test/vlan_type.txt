@@ -1,0 +1,3 @@
+vlan1:xk,bfpga,cfpga
+vlan2:bfpga,cfpga,eth1
+vlan3:bfpga,cfpga,eth2

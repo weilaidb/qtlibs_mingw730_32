@@ -1,0 +1,97 @@
+Bash 函数
+函数可以有效减少您重复编写程序段的工作量，可随时重复调用。
+函数声明
+首选常用格式，以函数名称开头。
+function_name() {
+commands
+}
+以 Function 开头，后接函数名。
+function function_name() {
+commands
+}
+两种格式的单行压缩，请仔细对照。
+function_name() {commands;}
+function function_name() {commands;}
+注：
+请仔细观察空格，严格遵守语法格式。
+commands是函数主体，即命令集。
+使用单行压缩函数时，;必须跟随函数主体中的最后一个命令。
+您最好始终保持功能性名称的描述性，以方便您在封装完毕之后调用。
+示例：
+#!/bin/bash
+W3Cschool(){
+ echo "Welcome to W3Cschool"
+}
+W3Cschool
+执行后得到以下结果：
+Welcome to W3Cschool
+变量作用域
+在 Bash 中，在默认情况下所有变量都定义为全局变量，即使在函数内部声明也是如此。
+您可以使用local关键字在函数内部声明局部变量，该变量只能够在该函数内部使用。同其他编程语言一样，这意味着您可以声明相同名称的全局变量。
+#!/bin/bash
+str1="abc"
+str2="bcd"
+fun(){
+    local str1="123"
+    str2="234"
+    echo "Inside function:str1_value is ${str1},str2_value is ${str2}."
+}
+echo "Before executing function:str1_value is ${str1},str2_value is ${str2}."
+fun
+echo "After executing function:str1_value is ${str1},str2_value is ${str2}."
+执行后得到以下结果：
+Inside function:str1_value is abc,str2_value is bcd.
+Before executing function:str1_value is 123,str2_value is 234.
+After executing function:str1_value is abc,str2_value is 234.
+注：
+由执行结果得出。
+在变量名相同的情况下，局部变量的优先级在函数内部高于全局变量。可以理解为就近原则。
+全局变量可以在函数内部更改它的值。
+返回值
+在 Bash 函数中，其返回值是执行的最后一个语句的状态。1-255（十进制）范围内表示失败，除此之外表示成功。
+您可以使用return语句指定返回状态，并将其分配给$?。该语句会终止函数的调用。如下所示：
+#!/bin/bash
+fun(){
+    echo "result"
+    return 66
+}
+fun
+echo $?
+执行后得到以下结果：
+result
+66
+若您想要从函数中返回任意实际的值，最简单的选择是将函数的执行结果分配给一个全局变量，如下所示：
+#!/bin/bash
+fun(){
+    fun_result="value"
+}
+fun
+echo $fun_result
+执行后得到以下结果：
+value
+还有一个更好的选择是将值发送到 stdout 再打印输出，如下所示：
+#!/bin/bash
+fun(){
+    local fun_result="value"
+    echo "$fun_result"
+}
+fun
+echo $fun_result
+执行后得到以下结果：
+value
+注：
+利用 $()机制将函数执行结果分配给变量fun_result，以此保存函数的执行结果。
+参数传递
+若您想要将任意数量的参数传递给 Bash 函数，只需要将它们放在调用的函数名后面，以空格分隔，以" "将参数转义。
+注：
+参数传递的顺序位为 $1、$2···$n，在传参时应严谨的根据需要排序以达到您所期望的效果。
+$#保存传递给函数的函数的位置参数或数量。
+$*或 $@保存传递给参数的所有位置参数或参数。
+示例：
+#!/bin/bash
+fun(){
+    echo "Welcome to $1"
+}
+fun "W3Cschool"
+执行后得到以下结果：
+Welcome to W3Cschool

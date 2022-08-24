@@ -1,0 +1,10 @@
+EXPORT_SYMBOL
+
+示例:
+void __raw_spin_lock_init(raw_spinlock_t *lock, const char *name,
+			  struct lock_class_key *key, short inner)
+{
+
+}
+
+EXPORT_SYMBOL(__raw_spin_lock_init);

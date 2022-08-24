@@ -1,0 +1,102 @@
+如果是Java Web项目的开发，通常还需要配置SpringMVC的上下文spring-mvc.xml这个XML。SpringMVC的上下文配置文件主要是：
+org.springframework.web.servlet.DispatcherServlet
+这个DispatcherServlet类在初始化过程中使用。DispatcherServlet提供Spring Web MVC的集中访问点，负责职责的分派，而且与Spring IoC容器无缝集成，从而可以获得Spring的所有好处。我们需要在spring-mvc.xml中配置默认的注解映射的支持、自动扫描包路径、视图模板引擎等等一系列配置，完整的spring-mvc.xml配置文件内容参考示例工程源代码。
+
+在Web应用中的web.xml中通常还需要配置DispatcherServlet，在应用程序目录中的classpath：spring-mvc.xml配置springMVC的配置文件位置。一个配置实例如下：
+　　<!—— 配置springmvc ——>
+　　<servlet>
+　　　　<servlet-name>springMVC</servlet-name>
+　　　　<servlet-class>org.springframework.web.servlet.DispatcherServlet</
+　　　　　　servlet-class>
+　　　　<init-param>
+　　　　　　<param-name>contextConfigLocation</param-name>
+　　　　　　<param-value>classpath:spring-mvc.xml</param-value>
+　　　　</init-param>
+　　　　<load-on-startup>1</load-on-startup>
+　　</servlet>
+　<servlet-mapping>
+　　　　<servlet-name>springMVC</servlet-name>
+　　　　<url-pattern>/</url-pattern>
+　　</servlet-mapping>
+这样，Spring Web MVC框架将加载“classpath：spring-mvc.xml”来进行初始化上下文而不是约定的默认文件路径“/WEB-INF/[servlet名字]-servlet.xml”。
+
+
+
+=====文件
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+    <!-- 默认的注解映射的支持 -->
+    <mvc:annotation-driven/>
+
+    <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
+    <context:component-scan base-package="com.easy.springboot.controller"/>
+
+    <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
+    <bean id="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="velocityConfigurer"
+          class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath">
+            <value>/vm</value>
+        </property>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop><!-- 指定模板引擎进行模板处理的编码 -->
+                <prop key="output.encoding">UTF-8</prop><!-- 指定输出流的编码 -->
+                <prop key="contentType">text/html;charset=UTF-8</prop><!-- contentType -->
+                <prop key="file.resource.loader.cache">false</prop>
+                <prop key="file.resource.loader.modificationCheckInterval">1</prop>
+                <prop key="velocimacro.library.autoreload">true</prop>
+                <prop key="runtime.log.logsystem.class">org.apache.velocity.runtime.log.SimpleLog4JLogSystem
+                </prop>
+                <prop key="runtime.log.error.stacktrace">true</prop>
+                <prop key="runtime.log.warn.stacktrace">true</prop>
+                <prop key="runtime.log.info.stacktrace">false</prop>
+                <prop key="runtime.log.invalid.reference">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+        <property name="suffix" value=".vm"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="allowSessionOverride" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="layoutUrl" value="/layout/layout.vm"/>
+        <property name="dateToolAttribute" value="date"/>
+        <property name="toolboxConfigLocation" value="/WEB-INF/velocity-tools.xml"/>
+    </bean>
+
+    <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 默认编码 -->
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- 文件大小最大值 -->
+        <property name="maxUploadSize" value="10485760000"/>
+        <!-- 内存中的最大值 -->
+        <property name="maxInMemorySize" value="40960"/>
+    </bean>
+
+</beans>

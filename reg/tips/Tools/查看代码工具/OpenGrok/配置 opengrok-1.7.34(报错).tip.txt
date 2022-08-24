@@ -1,0 +1,12 @@
+$ cd ~/work/git/qtlibs_mingw730_32/script.ln && ./opengrok.run.ext.sh 1.7.34 ~/work/git/ 8080 /usr/bin/ctags
+->start...
+begin paring... /home/weilaidb/work/git/
+Couldn't notify the webapp on http://localhost:8080/source: HTTP 404 Not Found.
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+
+软件配置:
+1.apache-tomcat-9.0.64
+2.opengrok-1.7.34.tar.gz
+3.java-11

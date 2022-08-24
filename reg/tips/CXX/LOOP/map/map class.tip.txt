@@ -1,0 +1,5 @@
+[迭代器;变量名;类名]
+std::map<float , std::string> MAP_FLOAT_STRING; mapFloat;CMapFloatTest
+
+[迭代器;变量名;类名]
+std::map<int , std::string> MAP_INI_STRING; mapPerson;CMapPub

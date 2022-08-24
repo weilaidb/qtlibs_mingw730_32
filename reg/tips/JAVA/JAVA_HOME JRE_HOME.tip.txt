@@ -1,0 +1,24 @@
+JAVA_HOME 
+D:\Program Files\Java\jdk1.8.0_291
+
+
+JRE_HOME 
+D:\Program Files\Java\jre1.8.0_291
+
+变量名: CLASSPATH
+变量值: .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
+
+
+添加Path变量
+此变量系统已存在，直接编辑即可
+变量值: %JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
+
+
+set JAVA_HOME=D:\Program Files\Java\jdk1.8.0_291
+set JRE_HOME=D:\Program Files\Java\jre1.8.0_291
+
+
+JAVA17生成JRE,在JDK
+D:\Program Files\Java\jdk-17
+bin\jlink.exe --module-path jmods --add-modules java.desktop --output jre
+

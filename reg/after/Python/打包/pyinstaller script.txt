@@ -1,0 +1,1 @@
+pyinstaller -D -w \1
