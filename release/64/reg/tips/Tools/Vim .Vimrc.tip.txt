@@ -105,6 +105,16 @@ Plugin 'Shougo/vimproc.vim'
 
 Plugin 'kana/vim-operator-user'
 
+"Grep的引擎
+Plugin 'dkprice/vim-easygrep'
+
+
+"状态栏增强插件，可以让你的Vim状态栏非常的美观
+Plugin 'vim-airline/vim-airline'
+
+"利用winmanager将nerdtree和taglist放到同一个”侧边栏”中，nerdtree在上方，taglist在下方
+Plugin 'vim-scripts/winmanager--Fox'
+
 
 
 
@@ -166,6 +176,25 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 autocmd FileType c ClangFormatAutoEnable
 
 
+"===============================插件winmanager
+""""""""""""""""""""""""""""""" 
+
+"" winManager setting 
+
+""""""""""""""""""""""""""""""" 
+"设置界面分割 
+"let g:winManagerWindowLayout ="BufExplorer,FileExplorer|TagList" 
+let g:winManagerWindowLayout="TagList|FileExplorer,BufExplorer
+
+"设置winmanager的宽度，默认为25 
+let g:winManagerWidth = 30  
+
+"定义打开关闭winmanager按键 
+
+nmap <silent> <F10>:WMToggle<cr>
+
+
+
 
 " ===============================设置NerdTree
 "NerdTree文件前有^G字符的解决办法"
@@ -197,6 +226,7 @@ let NERDTreeDirArrows = 1
 " theme, 使用colorscheme + space + tab就可以设置，If we continue pressing the Tab key, we can run through all the default color schemes. It normally includes a wide range of colors, including dark blue, default, red, desert, evening, elf lord, and more. 即在vim中:colorscheme ,按tab键
 set background=dark
 "colorscheme desert
+"colorscheme default
 colorscheme evening
 
 " set mark column color

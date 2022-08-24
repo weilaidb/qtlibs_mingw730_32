@@ -1,3 +1,9 @@
 rhysd/vim-clang-format
 Shougo/vimproc.vim
 kana/vim-operator-user
+
+
+vim-airline/vim-airline
+dkprice/vim-easygrep
+vim-scripts/winmanager--Fox
+preservim/nerdcommenter
