@@ -143,7 +143,11 @@ filetype plugin indent on
 
 
 
-
+" ===============================插件 vim-man
+"<leader>b新建水平窗口打开man
+map <leader>b <Plug>(Man)
+"<leader>v新建竖直窗口打开man
+map <leader>v <Plug>(Vman)
 
 
 
