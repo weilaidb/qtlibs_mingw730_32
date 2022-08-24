@@ -7,3 +7,9 @@ vim-airline/vim-airline
 dkprice/vim-easygrep
 vim-scripts/winmanager--Fox
 preservim/nerdcommenter
+
+vim-scripts/taglist.vim
+vim-scripts/winmanager
+jlanzarotta/bufexplorer
+preservim/nerdtree
+jistr/vim-nerdtree-tabs

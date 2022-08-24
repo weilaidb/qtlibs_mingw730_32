@@ -113,7 +113,22 @@ Plugin 'dkprice/vim-easygrep'
 Plugin 'vim-airline/vim-airline'
 
 "利用winmanager将nerdtree和taglist放到同一个”侧边栏”中，nerdtree在上方，taglist在下方
-Plugin 'vim-scripts/winmanager--Fox'
+"Plugin 'vim-scripts/winmanager--Fox'
+
+
+
+
+
+Plugin 'vim-scripts/taglist.vim'
+
+Plugin 'vim-scripts/winmanager'
+
+Plugin 'jlanzarotta/bufexplorer'
+
+"Plugin 'preservim/nerdtree'
+
+Plugin 'jistr/vim-nerdtree-tabs'
+
 
 
 
@@ -178,23 +193,19 @@ autocmd FileType c ClangFormatAutoEnable
 
 "===============================插件winmanager
 """"""""""""""""""""""""""""""" 
-
 "" winManager setting 
-
 """"""""""""""""""""""""""""""" 
 "设置界面分割 
-"let g:winManagerWindowLayout ="BufExplorer,FileExplorer|TagList" 
-let g:winManagerWindowLayout="TagList|FileExplorer,BufExplorer
+let g:winManagerWindowLayout ="BufExplorer,FileExplorer|TagList" 
+"let g:winManagerWindowLayout="TagList|FileExplorer,BufExplorer"
 
 "设置winmanager的宽度，默认为25 
 let g:winManagerWidth = 30  
 
 "定义打开关闭winmanager按键 
 
-nmap <silent> <F10>:WMToggle<cr>
-
-
-
+"nmap <silent> <F10>:WMToggle<cr>
+nmap wm :WMToggle<cr>
 
 " ===============================设置NerdTree
 "NerdTree文件前有^G字符的解决办法"
