@@ -129,13 +129,38 @@ Plugin 'jlanzarotta/bufexplorer'
 
 Plugin 'jistr/vim-nerdtree-tabs'
 
+"翻译插件
+Plugin 'voldikss/vim-translator'
 
-
+"Man 帮助
+Plugin 'vim-utils/vim-man'
 
 
 call vundle#end()
 "开启文件类型自动检测，编写代码时自动换行对齐"
 filetype plugin indent on
+
+
+
+
+
+
+
+
+" ===============================插件 voldikss/vim-translator 翻译
+""" Configuration example
+" Echo translation in the cmdline
+nmap <silent> <Leader>t <Plug>Translate
+vmap <silent> <Leader>t <Plug>TranslateV
+" Display translation in a window
+nmap <silent> <Leader>w <Plug>TranslateW
+vmap <silent> <Leader>w <Plug>TranslateWV
+" Replace the text with translation
+nmap <silent> <Leader>r <Plug>TranslateR
+vmap <silent> <Leader>r <Plug>TranslateRV
+" Translate the text in clipboard
+nmap <silent> <Leader>x <Plug>TranslateX
+
 
 
 " ===============================插件 ctrlp.vim 模糊搜索文件
@@ -204,8 +229,8 @@ let g:winManagerWidth = 30
 
 "定义打开关闭winmanager按键 
 
-"nmap <silent> <F10>:WMToggle<cr>
-nmap wm :WMToggle<cr>
+nmap <silent><F10> :WMToggle<cr>
+"nmap wm :WMToggle<cr>
 
 " ===============================设置NerdTree
 "NerdTree文件前有^G字符的解决办法"
@@ -238,7 +263,9 @@ let NERDTreeDirArrows = 1
 set background=dark
 "colorscheme desert
 "colorscheme default
-colorscheme evening
+"这个也不错
+"colorscheme evening
+colorscheme morning
 
 " set mark column color
 hi! link SignColumn   LineNr
