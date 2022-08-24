@@ -18,3 +18,6 @@ jistr/vim-nerdtree-tabs
 voldikss/vim-translator
 
 vim-utils/vim-man
+
+
+junegunn/vim-easy-align

@@ -135,11 +135,26 @@ Plugin 'voldikss/vim-translator'
 "Man 帮助
 Plugin 'vim-utils/vim-man'
 
+"EasyAlign 是一款用来做字符对齐的插件，简直是强迫症患者的福音。
+Plugin 'junegunn/vim-easy-align'
+
+
+
 
 call vundle#end()
 "开启文件类型自动检测，编写代码时自动换行对齐"
 filetype plugin indent on
 
+
+
+
+
+" ===============================插件 vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 
 
