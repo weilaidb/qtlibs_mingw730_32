@@ -423,6 +423,7 @@ C/enum/enum single withname typedef
 C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
 C/know/sigaction
+C/know/面试常问的 16 个 C 语言问题，你能答上来几个？
 C/knowledge/Centos下安装boost（笨蛋版）
 C/new/DEFINE/ifndef
 C/new/__attribute__/TEXT
@@ -2243,6 +2244,7 @@ Tools/git/git reset toDays 回退到某一天
 Tools/git/git server
 Tools/git/gitclone下载失败方法
 Tools/git/know/git中子模块/子仓库的使用 submodule
+Tools/git/know/如何在 Linux 上设置私有 Git 服务器
 Tools/git/order
 Tools/git/problems/git dangling commit
 Tools/git/tig blame filename

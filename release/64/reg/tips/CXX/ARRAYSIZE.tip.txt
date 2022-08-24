@@ -1,3 +1,2 @@
-#ifndef ARRAYSIZE
+#undef ARRAYSIZE
 #define ARRAYSIZE(A) (static_cast<unsigned int>(sizeof(A)/sizeof((A)[0])))
-#endif
