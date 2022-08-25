@@ -469,6 +469,16 @@ endif
 "================默认配置 
 "显示行号
 set number
+set nu ru ai si ts=4 sw=4
+"按TAB产生4个空格
+set ts=4  "(注：ts是tabstop的缩写，设TAB宽4个空格)
+set expandtab
+"Vim backspace键只能删除到行首，无法跳到上一行继续删除
+set backspace=2
+" 显示光标位置
+set cursorcolumn
+set cursorline
+
 "忽略大小写
 set ignorecase smartcase
 
@@ -490,14 +500,7 @@ inoremap " ""<Esc>i
 "逗号的映射
 "有了上面括号补全的映射，那在扩好了编辑完后需要跳出括号，应该输入<Esc>, l, a，但我们可以将这个功能映射为，，来实现，首先在编码时连续的两个逗号不会出现（目前我没有遇到），其次，平时输入逗号时，后面都会有一个紧跟的空格。所以对普通的输入不会造成影响。
 imap ,, <Esc>la
-"按TAB产生4个空格
-set ts=4  "(注：ts是tabstop的缩写，设TAB宽4个空格)
-set expandtab
-"Vim backspace键只能删除到行首，无法跳到上一行继续删除
-set backspace=2
-" 显示光标位置
-set cursorcolumn
-set cursorline
+
 
 
 " 非高亮度反白

@@ -18,3 +18,48 @@ See Also
 free(3), malloc(3), printf(3)
 Referenced By
 talloc(3)
+
+
+
+
+======================================================eg
+$ cat main.cpp 
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdarg.h>
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/fcntl.h>
+
+void printwarning(const char *fmt, ...)
+{
+    char *p = NULL;
+    va_list aptr;
+    int ret;
+
+    va_start(aptr, fmt);
+    ret = vasprintf(&p,fmt, aptr);
+    va_end(aptr);
+    if(-1 == ret)
+    {
+        return;
+    }
+
+    if(NULL != p)
+    {
+        printf("%s\n", p);
+        free(p);
+    }
+}
+
+
+
+int main(int argc, char **argv)
+{
+    printf("hello world\n");
+    printwarning("%s","I love China");
+    return 0;
+}

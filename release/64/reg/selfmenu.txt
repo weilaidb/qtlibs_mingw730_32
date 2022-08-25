@@ -2204,6 +2204,7 @@ Tools/Vim Map Key映射快捷键 inoremap命令
 Tools/Vim PlugInstall
 Tools/Vim vim 插件管理器 Vundle 安装与配置
 Tools/Vim 实用插件推荐（2017）
+Tools/Vim 格式化
 Tools/Vim 神级编辑器 Vim 使用-插件篇
 Tools/Vim/know/Vim 插件 ctrlp-funky 可以模糊搜索文件内容的方法名
 Tools/Vim/know/Vim 插件 ctrlp.vim 模糊搜索文件
