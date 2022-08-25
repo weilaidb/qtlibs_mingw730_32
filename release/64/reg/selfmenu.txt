@@ -2193,6 +2193,8 @@ Tools/Vim .Vimrc 插件/NerdTree
 Tools/Vim .Vimrc 插件/Nerdtree的基本操作
 Tools/Vim .Vimrc 插件/Vim插件之属性目录NERDTree
 Tools/Vim .Vimrc 插件/junegunn vim-easy-align
+Tools/Vim .Vimrc 插件/snippets generate
+Tools/Vim .Vimrc 插件/vim-snippets ultisnips
 Tools/Vim .Vimrc 插件安装常见问题
 Tools/Vim .Vimrc 插件安装说明
 Tools/Vim .Vimrc 插件安装说明 vim-plug

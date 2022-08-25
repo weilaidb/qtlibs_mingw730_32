@@ -1,0 +1,9 @@
+Python:
+以下提示按tab键会出来
+#!
+#!2
+class
+
+C:
+~/.vim/bundle/vim-snippets/snippets
+$ cat c.snippets

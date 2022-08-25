@@ -47,33 +47,6 @@ map <C-l> <C-W>l
 "安装插件
 map <C-I> :PluginInstall
 
-" ========自定义字典 代码片段 begin
-autocmd FileType * set dictionary+=~/.vim/dict/template.dict
-" 文档形式代码片段 代码片段维护成本低，可读性高
-inoremap `12 <ESC>yiw :call AutoCode()<CR> ggvG$y:q<CR> bdwi<C-R>=FormatTpl()<CR> <ESC>:s/#tpl#nn#tpl#/\r/g<CR>A<ESC>x
-
-" 解析关键词 返回代码文件路径
-func AutoCode()
-  let word = @0
-  let index = stridx(word, '_')
-  let type = word[0: index - 1]
-  let name = word[index + 1: strlen(word)]
-  execute ':split ~/.vim/dict/code-template/'.type.'/'.name.'.vim'
-endfunc
-
-" 格式化代码模版（这里要是有像js里一样eval、new Function，那就不用每一个处理了）
-func! FormatTpl()
-  let html = @0
-  let path = substitute(expand('%:p'), '/Users/liujing/Documents/dev/', '', 'g')
-  let html = substitute(html, '{{tpl#=Year}}', strftime('%Y'), 'g')
-  let html = substitute(html, '{{tpl#=CreatedTime}}', strftime('%c'), 'g')
-  let html = substitute(html, '{{tpl#=FileName}}', path, 'g')
-
-  " 解决寄存器粘贴时，换行前会多出空格问题
-  return substitute(html, '\n', '#tpl#nn#tpl#', 'g')
-endfunc
-" ========自定义字典 代码片段 end
-
 
 
 "=============================================安装插件==============================
@@ -92,7 +65,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 "美化状态栏"
 Plugin 'powerline/powerline'
-"类似IDE的补全插件"
+"类似IDE的补全插件(如果使用片段则需要把此插件临时注掉)" 
 Plugin 'ycm-core/YouCompleteMe'
 "添加一个树形目录"
 Plugin 'preservim/nerdtree'
