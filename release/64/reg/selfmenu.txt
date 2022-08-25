@@ -286,6 +286,7 @@ C/API/syscall
 C/API/syscalls
 C/API/usage
 C/API/usage void
+C/API/vasprintf
 C/ARRAY/format
 C/ARRAY/format basetype
 C/ARRAY/format diag
