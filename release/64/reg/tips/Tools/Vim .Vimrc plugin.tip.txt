@@ -21,3 +21,7 @@ vim-utils/vim-man
 
 
 junegunn/vim-easy-align
+
+
+SirVer/ultisnips
+honza/vim-snippets
