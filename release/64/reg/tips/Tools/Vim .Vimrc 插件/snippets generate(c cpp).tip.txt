@@ -6,19 +6,42 @@
 wel@welcome to china@welcome to china$NLhaha!!
 
 C和C++
+====头文件
 cheader@;c headers@#include <stdio.h>$NL#include <stdlib.h>$NL#include <unistd.h>$NL#include <string.h>$NL#include <sys/types.h>$NL#include <sys/time.h>$NL#include <sys/fcntl.h>$NL#include <assert.h>$NL#include <stdarg.h>$NL
 
 cppheader@c++ headers@#include <iostream>$NL#include <string>$NL#include <vector>$NL#include <map>$NL#include <iomanip>$NLusing namespace std;$NL
 
-
+=====打印
 printff@print float@printf("%f\n",$1);
 printfui@print unsigned int@printf("%u\n",$1);
 printfi@print int@printf("%d\n",$1);
 printfint@print int@printf("%d\n",$1);
 printfld@print long@printf("%ld\n",$1);
-printfldd@print long long@printf("%ld\n",$1);
+printflld@print long long@printf("%lld\n",$1);
 printflu@print unsigned long@printf("%lu\n",$1);
-printflu@print unsigned long long@printf("%luu\n",$1);
+printfllu@print unsigned long long@printf("%llu\n",$1);
+
+
+=====宏
+definemax@define max@#undef MAX$NL#define MAX(a,b) ((a)>(b)?(a):(b))
+definemin@define min@#undef MIN$NL#define MIN(a,b) ((a)<(b)?(a):(b))
+defineentertips@define ENTERTIPS@/*文件、 函数 、 行 */$NL#undef ENTERTIPS$NL#define ENTERTIPS fprintf(stdout, "%s:%s:%d\n", __FILE__, __FUNCTION__ , __LINE__ );
+definearraysize@define ARRAY_SIZE@#undef ARRAY_SIZE$NL#define ARRAY_SIZE(arr) ((unsigned)(sizeof(arr) / sizeof((arr)[0])))
+
+
+=====条件
+switchcase@condition of switch case@$NLswitch ( $1 )$NL{$NLcase $2:$NL    break;$NLdefault:$NL    break;$NL}
+
+
+=====函数
+funcv@function return void@void $1() $NL{$NL$NL}
+funci@function return int@int $1() $NL{$NL$NL    return 0;$NL}
+funcui@function return unsigned int@unsigned int $1() $NL{$NL$NL    return 0;$NL}
+funchello@function print helloworld!!!@int helloworld() $NL{$NL$NL        printf("hello world!!\n");$NL    return 0;$NL}
+funchelloworld@function print helloworld!!!@int helloworld() $NL{$NL$NL        printf("hello world!!\n");$NL    return 0;$NL}
+
+
+
 
 
 

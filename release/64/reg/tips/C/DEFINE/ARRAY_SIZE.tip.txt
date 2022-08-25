@@ -1,0 +1,2 @@
+#undef ARRAY_SIZE
+#define ARRAY_SIZE(arr) ((unsigned)(sizeof(arr) / sizeof((arr)[0])))

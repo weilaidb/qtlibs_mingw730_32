@@ -8,3 +8,6 @@
 #define ENTERTIPS fprintf(stdout, "%s:%s:%d\n", __FILE__, __FUNCTION__ , __LINE__ );
 #endif
 
+/*文件、 函数 、 行 */
+#undef ENTERTIPS
+#define ENTERTIPS fprintf(stdout, "%s:%s:%d\n", __FILE__, __FUNCTION__ , __LINE__ );

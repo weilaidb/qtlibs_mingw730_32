@@ -14,3 +14,25 @@ source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\
 
 3.软链接.vimrc,拷贝jsp_exe分支中vimrc中的vim到~/.vim
 ln -s ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/Tools/Vim\ .Vimrc.tip.txt .vimrc
+
+别的机器上需要软链接.vim
+
+4.软链接代码片段(根路径)
+cpp.snippets
+c.snippets
+
+ln -s ~/work/git/qtlibs_mingw730_32/release/64/reg reg
+
+cd ~/.vim/bundle/vim-snippets/UltiSnips
+mv c.snippets c.snippets.bak
+mv cpp.snippets cpp.snippets.bak
+ln -s ~/reg/tips/Tools/Vim\ .Vimrc\ 插件/snippets/UltiSnips/c.snippets.tip.txt c.snippets
+ln -s ~/reg/tips/Tools/Vim\ .Vimrc\ 插件/snippets/UltiSnips/cpp.snippets.tip.txt cpp.snippets
+
+
+
+
+
+
+
+end
