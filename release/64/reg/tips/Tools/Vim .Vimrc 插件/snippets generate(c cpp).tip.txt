@@ -1,0 +1,38 @@
+[关键字;提示;实际内容]
+编辑插件
+:UltiSnipsEdit
+
+
+wel@welcome to china@welcome to china$NLhaha!!
+
+C和C++
+cheader@;c headers@#include <stdio.h>$NL#include <stdlib.h>$NL#include <unistd.h>$NL#include <string.h>$NL#include <sys/types.h>$NL#include <sys/time.h>$NL#include <sys/fcntl.h>$NL#include <assert.h>$NL#include <stdarg.h>$NL
+
+cppheader@c++ headers@#include <iostream>$NL#include <string>$NL#include <vector>$NL#include <map>$NL#include <iomanip>$NLusing namespace std;$NL
+
+
+printff@print float@printf("%f\n",$1);
+printfui@print unsigned int@printf("%u\n",$1);
+printfi@print int@printf("%d\n",$1);
+printfint@print int@printf("%d\n",$1);
+printfld@print long@printf("%ld\n",$1);
+printfldd@print long long@printf("%ld\n",$1);
+printflu@print unsigned long@printf("%lu\n",$1);
+printflu@print unsigned long long@printf("%luu\n",$1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+end

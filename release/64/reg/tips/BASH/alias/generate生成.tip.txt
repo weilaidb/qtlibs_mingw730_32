@@ -1,3 +1,90 @@
+catsnippetada;cat ~/.vim/bundle/vim-snippets/UltiSnips/ada.snippets | grep ^snippet
+catsnippetall;cat ~/.vim/bundle/vim-snippets/UltiSnips/all.snippets | grep ^snippet
+catsnippetbib;cat ~/.vim/bundle/vim-snippets/UltiSnips/bib.snippets | grep ^snippet
+catsnippetbindzone;cat ~/.vim/bundle/vim-snippets/UltiSnips/bindzone.snippets | grep ^snippet
+catsnippetblade;cat ~/.vim/bundle/vim-snippets/UltiSnips/blade.snippets | grep ^snippet
+catsnippetcoffee-jasmine;cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee-jasmine.snippets | grep ^snippet
+catsnippetcoffee-react;cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee-react.snippets | grep ^snippet
+catsnippetcoffee;cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee.snippets | grep ^snippet
+catsnippetcpp;cat ~/.vim/bundle/vim-snippets/UltiSnips/cpp.snippets | grep ^snippet
+catsnippetcrystal;cat ~/.vim/bundle/vim-snippets/UltiSnips/crystal.snippets | grep ^snippet
+catsnippetc;cat ~/.vim/bundle/vim-snippets/UltiSnips/c.snippets | grep ^snippet
+catsnippetcs;cat ~/.vim/bundle/vim-snippets/UltiSnips/cs.snippets | grep ^snippet
+catsnippetcss;cat ~/.vim/bundle/vim-snippets/UltiSnips/css.snippets | grep ^snippet
+catsnippetcuda;cat ~/.vim/bundle/vim-snippets/UltiSnips/cuda.snippets | grep ^snippet
+catsnippetdjango;cat ~/.vim/bundle/vim-snippets/UltiSnips/django.snippets | grep ^snippet
+catsnippetd;cat ~/.vim/bundle/vim-snippets/UltiSnips/d.snippets | grep ^snippet
+catsnippeteelixir;cat ~/.vim/bundle/vim-snippets/UltiSnips/eelixir.snippets | grep ^snippet
+catsnippetejs;cat ~/.vim/bundle/vim-snippets/UltiSnips/ejs.snippets | grep ^snippet
+catsnippetelm;cat ~/.vim/bundle/vim-snippets/UltiSnips/elm.snippets | grep ^snippet
+catsnippeterlang;cat ~/.vim/bundle/vim-snippets/UltiSnips/erlang.snippets | grep ^snippet
+catsnippeteruby;cat ~/.vim/bundle/vim-snippets/UltiSnips/eruby.snippets | grep ^snippet
+catsnippetgitcommit;cat ~/.vim/bundle/vim-snippets/UltiSnips/gitcommit.snippets | grep ^snippet
+catsnippetgo;cat ~/.vim/bundle/vim-snippets/UltiSnips/go.snippets | grep ^snippet
+catsnippethaskell;cat ~/.vim/bundle/vim-snippets/UltiSnips/haskell.snippets | grep ^snippet
+catsnippethelp;cat ~/.vim/bundle/vim-snippets/UltiSnips/help.snippets | grep ^snippet
+catsnippethtmldjango;cat ~/.vim/bundle/vim-snippets/UltiSnips/htmldjango.snippets | grep ^snippet
+catsnippethtmljinja;cat ~/.vim/bundle/vim-snippets/UltiSnips/htmljinja.snippets | grep ^snippet
+catsnippethtml_minimal;cat ~/.vim/bundle/vim-snippets/UltiSnips/html_minimal.snippets | grep ^snippet
+catsnippethtml;cat ~/.vim/bundle/vim-snippets/UltiSnips/html.snippets | grep ^snippet
+catsnippetjavascript-angular;cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-angular.snippets | grep ^snippet
+catsnippetjavascript-ember;cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-ember.snippets | grep ^snippet
+catsnippetjavascript-jasmine-arrow;cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-jasmine-arrow.snippets | grep ^snippet
+catsnippetjavascript-jsdoc;cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-jsdoc.snippets | grep ^snippet
+catsnippetjavascript-node;cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-node.snippets | grep ^snippet
+catsnippetjavascript_react;cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript_react.snippets | grep ^snippet
+catsnippetjavascript;cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript.snippets | grep ^snippet
+catsnippetjava;cat ~/.vim/bundle/vim-snippets/UltiSnips/java.snippets | grep ^snippet
+catsnippetjinja2;cat ~/.vim/bundle/vim-snippets/UltiSnips/jinja2.snippets | grep ^snippet
+catsnippetjson;cat ~/.vim/bundle/vim-snippets/UltiSnips/json.snippets | grep ^snippet
+catsnippetjulia;cat ~/.vim/bundle/vim-snippets/UltiSnips/julia.snippets | grep ^snippet
+catsnippetledger;cat ~/.vim/bundle/vim-snippets/UltiSnips/ledger.snippets | grep ^snippet
+catsnippetlhaskell;cat ~/.vim/bundle/vim-snippets/UltiSnips/lhaskell.snippets | grep ^snippet
+catsnippetlua;cat ~/.vim/bundle/vim-snippets/UltiSnips/lua.snippets | grep ^snippet
+catsnippetmako;cat ~/.vim/bundle/vim-snippets/UltiSnips/mako.snippets | grep ^snippet
+catsnippetmarkdown;cat ~/.vim/bundle/vim-snippets/UltiSnips/markdown.snippets | grep ^snippet
+catsnippetmatlab;cat ~/.vim/bundle/vim-snippets/UltiSnips/matlab.snippets | grep ^snippet
+catsnippetobjc;cat ~/.vim/bundle/vim-snippets/UltiSnips/objc.snippets | grep ^snippet
+catsnippetocaml;cat ~/.vim/bundle/vim-snippets/UltiSnips/ocaml.snippets | grep ^snippet
+catsnippetoctave;cat ~/.vim/bundle/vim-snippets/UltiSnips/octave.snippets | grep ^snippet
+catsnippetpandoc;cat ~/.vim/bundle/vim-snippets/UltiSnips/pandoc.snippets | grep ^snippet
+catsnippetperl;cat ~/.vim/bundle/vim-snippets/UltiSnips/perl.snippets | grep ^snippet
+catsnippetphp-laravel;cat ~/.vim/bundle/vim-snippets/UltiSnips/php-laravel.snippets | grep ^snippet
+catsnippetphp-phpspec;cat ~/.vim/bundle/vim-snippets/UltiSnips/php-phpspec.snippets | grep ^snippet
+catsnippetphp;cat ~/.vim/bundle/vim-snippets/UltiSnips/php.snippets | grep ^snippet
+catsnippetphp-symfony2;cat ~/.vim/bundle/vim-snippets/UltiSnips/php-symfony2.snippets | grep ^snippet
+catsnippetplsql;cat ~/.vim/bundle/vim-snippets/UltiSnips/plsql.snippets | grep ^snippet
+catsnippetproto;cat ~/.vim/bundle/vim-snippets/UltiSnips/proto.snippets | grep ^snippet
+catsnippetpuppet;cat ~/.vim/bundle/vim-snippets/UltiSnips/puppet.snippets | grep ^snippet
+catsnippetpython;cat ~/.vim/bundle/vim-snippets/UltiSnips/python.snippets | grep ^snippet
+catsnippetrails;cat ~/.vim/bundle/vim-snippets/UltiSnips/rails.snippets | grep ^snippet
+catsnippetrnoweb;cat ~/.vim/bundle/vim-snippets/UltiSnips/rnoweb.snippets | grep ^snippet
+catsnippetrobot;cat ~/.vim/bundle/vim-snippets/UltiSnips/robot.snippets | grep ^snippet
+catsnippetr;cat ~/.vim/bundle/vim-snippets/UltiSnips/r.snippets | grep ^snippet
+catsnippetrst;cat ~/.vim/bundle/vim-snippets/UltiSnips/rst.snippets | grep ^snippet
+catsnippetruby;cat ~/.vim/bundle/vim-snippets/UltiSnips/ruby.snippets | grep ^snippet
+catsnippetrust;cat ~/.vim/bundle/vim-snippets/UltiSnips/rust.snippets | grep ^snippet
+catsnippetsh;cat ~/.vim/bundle/vim-snippets/UltiSnips/sh.snippets | grep ^snippet
+catsnippetsnippets;cat ~/.vim/bundle/vim-snippets/UltiSnips/snippets.snippets | grep ^snippet
+catsnippetsoy;cat ~/.vim/bundle/vim-snippets/UltiSnips/soy.snippets | grep ^snippet
+catsnippetsupercollider;cat ~/.vim/bundle/vim-snippets/UltiSnips/supercollider.snippets | grep ^snippet
+catsnippetsvelte;cat ~/.vim/bundle/vim-snippets/UltiSnips/svelte.snippets | grep ^snippet
+catsnippettcl;cat ~/.vim/bundle/vim-snippets/UltiSnips/tcl.snippets | grep ^snippet
+catsnippettexmath;cat ~/.vim/bundle/vim-snippets/UltiSnips/texmath.snippets | grep ^snippet
+catsnippettex;cat ~/.vim/bundle/vim-snippets/UltiSnips/tex.snippets | grep ^snippet
+catsnippettypescript_react;cat ~/.vim/bundle/vim-snippets/UltiSnips/typescript_react.snippets | grep ^snippet
+catsnippettypescript;cat ~/.vim/bundle/vim-snippets/UltiSnips/typescript.snippets | grep ^snippet
+catsnippetvim;cat ~/.vim/bundle/vim-snippets/UltiSnips/vim.snippets | grep ^snippet
+catsnippetvue;cat ~/.vim/bundle/vim-snippets/UltiSnips/vue.snippets | grep ^snippet
+catsnippetxhtml;cat ~/.vim/bundle/vim-snippets/UltiSnips/xhtml.snippets | grep ^snippet
+catsnippetxml;cat ~/.vim/bundle/vim-snippets/UltiSnips/xml.snippets | grep ^snippet
+catsnippetzsh;cat ~/.vim/bundle/vim-snippets/UltiSnips/zsh.snippets | grep ^snippet
+
+
+
+
+
+
 gitpushsetupstream;git push --set-upstream origin 
 vimrccopy;cd ~/work/git.bak/jsp_exe.vim && rm -rf vim && cp -af ~/.vim . && mv .vim vim && find . -name .git && cd vim/ && find . -name .git  | xargs -n1 rm -rf && cd .. && echo done ~~
 findgitlist;find . -name .git
@@ -9,8 +96,10 @@ vimgreppython;vim --version|grep python
 vim.;vim .
 vim..;vim..
 catvimrc;cat ~/.vimrc
+cdvim;cd ~/.vim
+vimvimrc;vim ~/.vimrc
 tarvimrc;tar -cvzf ~/vim.tar.gz ~/.vimrc ~/.vim
-
+catsnippetcpp;cat ~/.vim/bundle/vim-snippets/UltiSnips/cpp.snippets | grep ^snippet
 
 dmesgdT;dmesg -dT
 dmesgT; dmesg -T
@@ -79,6 +168,7 @@ cdfdir;cd `dirname
 
 
 cdworkgittdd;cd ~/work/git/tdd
+cdworkgittest;cd ~/work/git/test
 cdworkcodecode;cd ~/work/code/code
 cdworkcode;cd ~/work/code
 makedefconfigarchx86;make defconfig ARCH=x86
