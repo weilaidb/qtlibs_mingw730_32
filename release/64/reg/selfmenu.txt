@@ -2194,6 +2194,7 @@ Tools/Vim .Vimrc 插件/NerdTree
 Tools/Vim .Vimrc 插件/Nerdtree的基本操作
 Tools/Vim .Vimrc 插件/Vim插件之属性目录NERDTree
 Tools/Vim .Vimrc 插件/junegunn vim-easy-align
+Tools/Vim .Vimrc 插件/know/snippets clang format 官方文档自定义参数介绍（中英文）
 Tools/Vim .Vimrc 插件/know/vim snippets 介绍
 Tools/Vim .Vimrc 插件/know/vim snippets 头文件
 Tools/Vim .Vimrc 插件/know/vim snippets 文件名
