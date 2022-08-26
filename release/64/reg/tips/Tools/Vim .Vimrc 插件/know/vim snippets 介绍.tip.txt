@@ -1,0 +1,235 @@
+vim snippets 介绍
+
+pipu
+0.419
+2019.07.08 17:42:57
+字数 2,322
+阅读 4,150
+Snippets vim 使用
+Snippets 就是一些代码模板，能用通过输入特定的关键词和热键(一般设定为Tab)来触发。它可以节省很多的时间，因为有些代码在编写过程中都是重复的。Vim 本身不支持Snippet功能，我现在使用UltiSnips并且把它和YouCompleteMe结合来使用，当然还有别的引擎和可以完成类似功能，如SnipMate, Neosnippet, Xptemplate
+
+安装
+使用v-plug来管理vim插件
+在 ~/.vimrc中加入
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+执行 : PlugInstall 安装两个插件,设置快捷键
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+vim-snippets 介绍
+vim-snippets 是在github上的一个包含了各种各样编程语言代码snippets文件的仓库。它是由社区维护的
+
+其中： snippets/* 文件夹中的snippets是使用snipMate格式，UltiSnips/*是UltiSnips格式的
+
+这时在vim-snippets中提供的snippets模板都可以使用了，当然你也可以自定义snippets更好的适应个人的编程习惯。
+
+自定制snippet
+snippet 加载方式
+UltiSnips 中加载snippets文件方式是在相应的文件夹中找snippets文件，其中相应的文件夹是有两个参数来决定的
+
+g:UltiSnipsSnippetDirectories 配置搜索snippets文件的文件夹
+g:UltiSnipsSnippetsDir 定义自己的snippets文件放置的位置
+比如你将你的snippets文件放在~/.vim/mycoolsnippets中，这时你的g:UltiSnipsSnippetDirectories配置应该是
+   let g:UltiSnipsSnippetDirectories=["UltiSnips", "mycoolsnippets"]
+
+snippets 文件对应文件类型
+snippets文件与文件类型的对应是通过文件的命名来完成的。
+
+如果一个当前文档类型是ft，那么ft.snippets,ft_.snippets,ft/都会被使用,下面是具体例子
+
+snippet filename	filetype
+ruby.snippets	ruby
+perl.snippets	perl
+c.snippets	c
+c_my.snippets	c
+c/a	c
+c/b.snippets	c
+all.snippets	all
+all/a.snippets	all
+基本语法
+使用#来注释
+extends 关键字来组合snippet文件，比如在cpp.snippets第一行加入
+```
+    extends c
+```
+那么在UltiSnipes激活cpp类型snippets文件的时候，会同时搜索c类型的snippets并激活
+priority 关键字 来定义当前特性的权重
+一行以snnipet开始来表示snippet代码的开始，一行以endsnippet开始来标记结束,snippet 代码就是在两行之间下面是一个Unix中sh文件类型的if语句的snippet
+```
+snippet if "if ... then (if)"
+if ${2:[[ ${1:condition} ]]}; then
+        ${0:#statements}
+fi
+endsnippet
+```
+第一行的采用下面的书写格式：
+
+snippet triigger_word [ "description" [options]]
+
+触发的单词（triigger_word）,是必须的参数，描述（description）和 选项(options) 是可选的参数
+triigger_word 是用来触发代码块的单词或字符串表达式,通常来讲是一个单词但是如果你想包含空格，可以使用引号来包裹，例如
+
+snnippet "tab trigger"
+
+description 是描述该snippet的作用，用来和别的相同的名称（triigger_word）作区分
+
+选项
+options 来控制snippet的表现,是一些单个字符的组合使用
+
+b Beginning of line 若果代码块中有这个选项，只有在触发关键字是改行第一个单词的情况下触发。换句话说，在该触发词之前只有空格。默认是在任何位置都能触发的。
+i In-word expansion 字内扩展 - 默认情况下，片段在该行第一个单词或者前面是一个或多个空格是触发。一个含有此选项snippet,会忽略前面的字母。换句话说，snippet可以再单词中间触发,会忽略前面的字母。换句话说，snippet可以再单词中间触发。
+w Word boundry 使用此选项，片段会在触发关键字匹匹配特定单词开头边界，和匹配特定单词结束边界是展开。换言之，触发关键字的前面和后面必须是分单词字符。单词字符是有‘iskeyword’设置的。
+r Reggular expression 触发关键字是python正则表达式。必须用引号包裹（或其他字符）
+t Do not expand tabs 忽略片段中的tab字符，默认情况下，代码片段在插入的时候回根据vim现有的关于tab的设置对代码片段中含有的tag字符进行正确的配置。如果含有次选项，snippet会忽略代码中的tab字符，原样添加
+s 在跳转下一个tab停止位时，删除在行尾出光标前的空白字符。
+m 删除代码片段右侧的空格
+e 自定义代码上下文
+A 代码片段会自动触发
+结束行只有一个 ‘endsnippet’关键字
+转义字符
+在代码片段定义中，‘`’,'{','$'和'\'有特殊意义，如果想插入需要用‘\’进行转义
+
+普通文本片段
+创建 ‘~/.vim/UltiSnips/all.snippets’,文件，添加如下snippet代码
+
+snippet bye "My mail signature"
+Good bye, Sir. Hope to talk to you soon.
+- Arthur, King of Britain
+endsnippet
+
+UltiSnips 会检测到你在写入一个.snippets文件，所有的变化会被激活。这是你在某个文件中输入‘bye’，按下tab键，‘bye’就会被代码替代。
+
+观察模式替换
+在Snippets中包含一个特殊的替换字符 ${VISUAl}。用来替换选中的文字。
+
+在观察模式下选中一些文字，按下触发（g:UltiSnipsExpandTrigger）键，这是选中的文字会被删除，进入插入模式，输入触发关键字，触发代码模版，这时就能看到选择的文字在里面.
+
+snippet t
+<tag>${VISUAl: inside text/should/is/g}</tag>
+endsnippet
+在文件中写入
+
+this should be coo
+
+在观察模式选中 should，输入tab，然后输入t，tab，结果：
+
+this <tag>is</tag> be coo
+
+如果直接在输入模式下，t,tab 结果:
+
+<tag>inside text</tag>
+
+插值法
+shell代码
+Snippets中可以包含shell代码，插入的语法很简单， 将代码包含在反引号中‘`’,UltiSnips执行shell脚本是先创建一个临时脚本然后执行改脚本.shell代码将会被标准输出替代，所有shell代码语法都支持。比如，释伴行， !/usr/bin/perl,这样就可以用来使用perl程序了
+
+例子,插入当前日期:
+
+snippet today
+Today is the `date +%d.%m.%y`.
+endsnippet
+结果：
+
+Today is the 15.07.09.
+
+vim脚本
+你也可以使用Vim 脚本（通常称为Viml）。语法类似于shell脚本， 为了作区分在代码前加'!v'。
+
+python
+pythonr 插入到目前为止是最强大的。语法类似于Vim脚本，代码前是'!p'。
+
+下面的变量会自动在puthon代码中创建
+
+fn 当前文件名
+path 当前文件完整路径
+t 替换的值，t[1] 就是 ${1}的文本
+snip UltiSnips.TextObjects. SnippetsUtil 对象实例.
+context 上下文环境结果
+match 只有在正则模式下。 返回正则匹配的结果
+'snip' 对象提供了一下方法
+
+snip.mkline(line="",indent=None) 返回已准备号放入结果的行。
+snip.shift(amount=1) 被mkline用来在右侧升级默认的缩进等级，通过‘amout’倍数'shiftwidth'
+snip.unshift(amount=1) 被mkline用来在左侧升级默认的缩进等级，通过‘amout’倍数'shiftwidth'
+snip.reset_indet 重设缩进
+snip.opt(va,default) 查询变量var是否已经有值，如果有值那么返回，没有值返回default
+'snip' 还提供了一些属性
+
+snip.rv 设置返回值，替代片段定义时的python块
+snip.c 当前文本的位置，在出入完成后会被设置成空，可以做非空校验，保证代码只执行一次
+snip.v 和${VISUAL}替换相关的属性 包含该snip.v.mode 模式（v,V,^V） snip.v.text 选中的文本
+snip.fn 文件名
+snip.basename 不包含扩展名的文件名
+snip.ft 文件类型
+snip.p 最后选择的替换内容.
+例子： 下面的代码会克隆第一个tabstop但是会在右边以大写字母展示
+
+snippet wow
+${1:Text}`!p snip.rv = (75-2*len(t[1]))*' '+t[1].upper()`
+endsnippet
+
+结果：
+
+Hello World                                                     HELLO WORLD
+全局 Snippets
+全局Snippets是一种重复使用代码的一种方式。只有python支持，使用关键字‘global’创建。
+这些重复使用的代码可以放在一个外部一个python模块中，然后被引入。通过这种方式我们可以很方便的将全局的方法放入'~/.vim/pythonx’中，例如可以命名为'my_snippets_helper.py’
+
+tabstop（触发中继） 和 placeholders
+Snipts 是用来快速想文档中插入重复使用的文本。一般该文本会由不同的部分组成固定的结构。Tabstops(触发中继)用来简化变化部分的修改。通过Tanstop你可以很容易的在变化的内容上放置光标，进入内容输入，或者调到下一个输入内容处，知道所有内容输入完成。
+
+tabstop的语法是一个''符后接一个数字，tabstop最开始的数字是1，以此类推。‘0’是一个特殊字符，它总是代表了最后一个tabstop,无论有多少tabstop被定义，如果没有定义‘0’，那么在代码的最后回本定义成'0'
+
+下面是个例子
+
+snippet letter
+Dear $1,
+$0
+Yours sincerely,
+$2
+endsnippet
+
+输入：
+letter<tab>Ben<c-j>Paul<c-j>Thanks for suggesting UltiSnips!->
+
+结果：
+
+Dear Ben,
+Thanks for suggesting UltiSnips!
+Yours sincerely,
+Paul
+
+一般来说给tabstop设置默认值会很好有用。语法是‘${1:value}’
+
+下面的代码是shell脚本中‘case’语句的代码片段
+
+snippet case
+case ${1:word} in
+    ${2:pattern} ) $0;;
+esac
+endsnippet
+
+输入
+
+case<tab>$option<c-j>-v<c-j>verbose=true
+
+输出：
+
+case<tab>$option<c-j>-v<c-j>verbose=true
+case $option in
+    -v ) verbose=true;;
+esac
+
+有的时候嵌套的tabstop也会很有帮助吗，可以正常写入嵌套的tabstop代码。
+
+镜像
+竟像是tabstop的重复。
+
+参考链接
+vim-snippets
+UltiSnips

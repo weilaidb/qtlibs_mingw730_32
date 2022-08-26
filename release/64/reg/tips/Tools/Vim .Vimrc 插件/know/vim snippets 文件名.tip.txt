@@ -1,0 +1,6 @@
+${1:`!p
+if not snip.c:
+	import random, string
+	snip.rv = snip.fn
+else:
+	snip.rv = snip.c`}
