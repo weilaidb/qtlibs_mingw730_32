@@ -1,0 +1,154 @@
+首页
+下载APP
+会员
+IT技术
+搜索
+一份自己满意的ClangFormat配置
+
+kenny肉桂
+
+一份自己满意的ClangFormat配置
+
+kenny肉桂
+0.156
+2016.08.18 14:32:24
+字数 153
+阅读 11,091
+对于一个团队来说,有共同的代码格式规范是非常重要的.但是,却不能保证每个细节,使用代码格式化工具可以极大的提高效率.下面是自己积累出来的一份配置,每一行都有注释,可以自己比对:
+
+#基于那个配置文件
+BasedOnStyle: LLVM
+#指针的*的挨着哪边
+PointerAlignment: Right
+#缩进宽度
+IndentWidth: 4
+# 连续的空行保留几行
+MaxEmptyLinesToKeep: 1
+# 在 @property 后面添加空格, \@property (readonly) 而不是 \@property(readonly).
+ObjCSpaceAfterProperty: true
+# OC block后面的缩进
+ObjCBlockIndentWidth: 4
+# 是否允许短方法单行
+AllowShortFunctionsOnASingleLine: true
+# 是否允许短if单行 If true, if (a) return; 可以放到同一行
+AllowShortIfStatementsOnASingleLine: true
+#注释对齐
+AlignTrailingComments: true
+# 换行的时候对齐操作符
+#AlignOperands: true
+# 中括号两边空格 [] 
+SpacesInSquareBrackets: true
+# 小括号两边添加空格
+SpacesInParentheses : true
+#多行声明语句按照=对齐
+AlignConsecutiveDeclarations: true
+#连续的赋值语句以 = 为中心对齐
+AlignConsecutiveAssignments: true
+#等号两边的空格
+SpaceBeforeAssignmentOperators: true
+# 容器类的空格 例如 OC的字典
+SpacesInContainerLiterals: true
+#缩进
+IndentWrappedFunctionNames: true
+#在block从空行开始
+KeepEmptyLinesAtTheStartOfBlocks: true
+#在构造函数初始化时按逗号断行，并以冒号对齐
+BreakConstructorInitializersBeforeComma: true
+#函数参数换行
+AllowAllParametersOfDeclarationOnNextLine: true
+#括号后添加空格
+SpaceAfterCStyleCast: true
+#tab键盘的宽度
+TabWidth: 4
+UseTab: Never
+**## ****使用方法**** **
+
+安装Clang-Format Xcode插件, 地址
+在用户根目录下创建 .clang-format文件,将上面配置拷贝进去
+在Xocde中的选中以下菜单即可:
+QQ20160818-1@2x.png
+可以设置在保存文件的时候自动格式化,也可以自己配置
+QQ20160818-2@2x.png
+更多精彩内容，就在简书APP
+"小礼物走一走，来简书关注我"
+还没有人赞赏，支持一下
+  
+kenny肉桂
+若不能及时回复，请加好友讨论： 2360286796
+总资产5共写了1.2W字获得164个赞共60个粉丝
+写下你的评论...
+全部评论
+1
+
+程序手艺人
+2楼 2018.03.28 11:32
+很详细的解释　
+推荐阅读
+更多精彩内容
+Spring Cloud
+Spring Cloud为开发人员提供了快速构建分布式系统中一些常见模式的工具（例如配置管理，服务发现，断路器，智...
+
+卡卡罗2017
+阅读 130,007
+评论 18
+赞 137
+
+iOS WebSocket长链接（Swift）
+WebSocket-Swift Starscream的使用 WebSocket 是 HTML5 一种新的协议。它实...
+
+挣奶粉的打工人
+阅读 19,359
+评论 8
+赞 176
+玩手机不如学一会儿英语
+
+英孚英语广告广告
+如果他没死，说不定也流落在某个建筑工地
+放空的时候，我就会想村里那些人，那些死去的人。邻居家胖胖的阿姨，临死前儿子正大学期末考试，硬撑着没有通知。她没见他...
+
+齐婴宁
+阅读 1,328
+评论 10
+赞 9
+
+海鸥·乔纳森
+1. 决定做一只平凡的海鸥，他感觉好受多了，现在再也没有他学习的压力呢，再也不必长寿挑战和失败，只需要停止思考，穿...
+
+跳舞的小雪人
+阅读 213
+评论 0
+赞 1
+鱼与渔，快与慢
+"授人以鱼，授人以渔" "慢即是快，快即是慢" 有着自己清晰的定位，相信你一定活得更轻松。 例如面对婚姻的另一半或...
+
+自己是自己最好的医生
+阅读 128
+评论 3
+赞 1
+
+
+
+kenny肉桂
+总资产5
+Nginx access_log日志条件过滤(IP地址/请求状态)
+阅读 1,375
+Reat Native调用OC本地方法, 代理方法不执行
+阅读 677
+热门故事
+超A女霸总在线撩夫
+我把老板当金库，老板把我当老婆
+男神学长求放过，你的节操掉了
+情深见于微
+推荐阅读
+iOS 将图片打包成bundle
+阅读 219
+Vuex的使用
+阅读 209
+使用Babel对ES6模块化代码进行转换
+阅读 255
+VSCode插件推荐-使用NPM-scripts实现侧边栏查看scripts脚本并一键执行
+阅读 433
+使用vue-cli创建纯前端项目
+阅读 254
+
+写下你的评论...

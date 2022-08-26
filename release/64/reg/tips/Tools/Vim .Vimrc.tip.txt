@@ -252,12 +252,15 @@ let g:ctrlp_extensions = ['funky']
 "===============================插件代码格式化
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
+            \ "ColumnLimit" : 120,
+            \ "UseTab" : "Never",
+            \ "TabWidth" : 4,
+            \ "BreakBeforeBraces": "Allman",
+            \ "IndentCaseLabels": "false",
             \ "AllowShortIfStatementsOnASingleLine" : "false",
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "AlignConsecutiveAssignments" : "true",
             \ "AllowShortBlocksOnASingleLine" : "false",
-            \ "AlignEscapedNewlinesLeft" : "true",
-            \ "AllowShortFunctionsOnASingleLine" : "Inline",
             \ "Standard" : "C++11"}
 
 " map to <Leader>cf in C++ code

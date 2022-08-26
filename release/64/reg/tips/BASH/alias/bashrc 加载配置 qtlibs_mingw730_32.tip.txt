@@ -30,6 +30,9 @@ ln -s ~/reg/tips/Tools/Vim\ .Vimrc\ 插件/snippets/UltiSnips/c.snippets.tip.txt
 ln -s ~/reg/tips/Tools/Vim\ .Vimrc\ 插件/snippets/UltiSnips/cpp.snippets.tip.txt cpp.snippets
 
 
+5.格式化软链接
+ln -s 'work/git/qtlibs_mingw730_32/release/64/reg/tips/Tools/Vim .Vimrc .clang-format.tip.txt' .clang-format
+
 
 
 
