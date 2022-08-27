@@ -1912,11 +1912,14 @@ Python/API/thread2
 Python/API/thread3
 Python/API/thread4
 Python/API/占位符 format
+Python/API/占位符 format str
+Python/Dict/list value
 Python/Lambda/test
 Python/List/deepcopy 深拷贝
 Python/List/for
 Python/List/for2
 Python/List/list append list
+Python/List/list append list(var)
 Python/Map/para1 test
 Python/Map/para2 multiplier_func
 Python/Map/para2 square
@@ -1925,7 +1928,9 @@ Python/PYTHONPATH
 Python/Print
 Python/Print 2 to 3
 Python/Print 注释
+Python/Regex/split
 Python/WEB/简介
+Python/common/id
 Python/from_xxx_import_all
 Python/gc
 Python/header

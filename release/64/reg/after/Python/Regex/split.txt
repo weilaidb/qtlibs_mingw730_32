@@ -1,0 +1,1 @@
+import re$NL$NLnewlist = re.split("\2",\1)
