@@ -1911,9 +1911,12 @@ Python/API/thread
 Python/API/thread2
 Python/API/thread3
 Python/API/thread4
+Python/API/占位符 format
 Python/Lambda/test
+Python/List/deepcopy 深拷贝
 Python/List/for
 Python/List/for2
+Python/List/list append list
 Python/Map/para1 test
 Python/Map/para2 multiplier_func
 Python/Map/para2 square
