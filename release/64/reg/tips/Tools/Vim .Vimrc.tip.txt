@@ -66,7 +66,7 @@ Plugin 'VundleVim/Vundle.vim'
 "美化状态栏"
 Plugin 'powerline/powerline'
 "类似IDE的补全插件(如果使用片段则需要把此插件临时注掉)" 
-"Plugin 'ycm-core/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 "添加一个树形目录"
 Plugin 'preservim/nerdtree'
 "缩进指示线"
@@ -172,7 +172,8 @@ filetype plugin indent on
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
 " - https://github.com/nvim-lua/completion-nvim
-let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
