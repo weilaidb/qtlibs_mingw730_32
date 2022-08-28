@@ -10,7 +10,9 @@ nnoremap <F2> :set nu! nu?<CR>
 map <F3> :NERDTreeMirror<CR>
 map <F3> :NERDTreeToggle<CR>
 " 按F5重新加载.vimrc
-map <F5> :source $MYVIMRC<CR>
+map <F5> :source $MYVIMRC
+" 按F6重新加载配置
+map <F6> :vs ~/.vimrc
 "选中文字高亮与取消高亮，前提是安装Plugin 'lfv89/vim-interestingwords'
 map <F8> <Leader>k
 map <F9> <Leader>K

@@ -169,6 +169,8 @@ cdfdir;cd `dirname
 
 cdworkgittdd;cd ~/work/git/tdd
 cdworkgittest;cd ~/work/git/test
+cdworkgitpython;cd ~/work/git/test/python
+
 cdworkcodecode;cd ~/work/code/code
 cdworkcode;cd ~/work/code
 makedefconfigarchx86;make defconfig ARCH=x86

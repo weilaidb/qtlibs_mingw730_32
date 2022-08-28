@@ -42,8 +42,26 @@ funchelloworld@function print helloworld!!!@int helloworld() $NL{$NL$NL    print
 
 
 
+=====插入特殊符号
+插入*号
+signxh@insert * sign multiline@/**$NL**$NL**/
 
 
+=====for loop for array
+
+
+=====基本类型
+basetype@typedef base type@typedef char CHAR;$NLtypedef unsigned char BYTE;$NLtypedef char INT8;$NLtypedef short INT16;$NLtypedef int INT32;$NLtypedef long long INT64;$NLtypedef unsigned char UINT8;$NLtypedef unsigned short UINT16;$NLtypedef unsigned int UINT32;$NLtypedef unsigned long long UINT64;$NLtypedef unsigned short WORD;$NLtypedef unsigned short WORD16;$NLtypedef unsigned int   WORD32;$NLtypedef unsigned long long WORD64;
+
+
+=====变量
+vari@define var int@int ${1:i} = 0;
+varui@define var unsigned int@unsigned int ${1:i} = 0;
+varf@define var float@float ${1:i} = 0.0;
+vard@define var double@double ${1:i} = 0.0;
+varc@define var char@char ${1:i} = 0;
+varpc@define var char pointer@char *${1:i} = NULL;
+varpuc@define var unsigned char pointer@unsigned char *${1:i} = NULL;
 
 
 
