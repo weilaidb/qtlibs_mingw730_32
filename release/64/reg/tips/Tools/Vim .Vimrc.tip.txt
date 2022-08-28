@@ -511,6 +511,10 @@ endif
 "================默认配置 
 "显示行号
 set number
+" 标尺
+set ruler
+set rulerformat=%15(%c%V\ %p%%%)
+
 set nu ru ai si ts=4 sw=4
 "按TAB产生4个空格
 set ts=4  "(注：ts是tabstop的缩写，设TAB宽4个空格)
