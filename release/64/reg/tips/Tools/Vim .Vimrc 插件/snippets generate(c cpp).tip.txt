@@ -11,35 +11,6 @@ cheader@;c headers@#include <stdio.h>$NL#include <stdlib.h>$NL#include <unistd.h
 
 cppheader@c++ headers@#include <iostream>$NL#include <string>$NL#include <vector>$NL#include <map>$NL#include <iomanip>$NLusing namespace std;$NL
 
-=====打印
-printff@print float@printf("%f\n",$1);
-printfui@print unsigned int@printf("%u\n",$1);
-printfi@print int@printf("%d\n",$1);
-printfint@print int@printf("%d\n",$1);
-printfld@print long@printf("%ld\n",$1);
-printflld@print long long@printf("%lld\n",$1);
-printflu@print unsigned long@printf("%lu\n",$1);
-printfllu@print unsigned long long@printf("%llu\n",$1);
-
-
-=====宏
-definemax@define max@#undef MAX$NL#define MAX(a,b) ((a)>(b)?(a):(b))
-definemin@define min@#undef MIN$NL#define MIN(a,b) ((a)<(b)?(a):(b))
-defineentertips@define ENTERTIPS@/*文件、 函数 、 行 */$NL#undef ENTERTIPS$NL#define ENTERTIPS fprintf(stdout, "%s:%s:%d\n", __FILE__, __FUNCTION__ , __LINE__ );
-definearraysize@define ARRAY_SIZE@#undef ARRAY_SIZE$NL#define ARRAY_SIZE(arr) ((unsigned)(sizeof(arr) / sizeof((arr)[0])))
-
-
-=====条件
-switchcase@condition of switch case@$NLswitch ( $1 )$NL{$NLcase $2:$NL    break;$NLdefault:$NL    break;$NL}
-
-
-=====函数
-funcv@function return void@void $1() $NL{$NL$NL}
-funci@function return int@int $1() $NL{$NL$NL    return 0;$NL}
-funcui@function return unsigned int@unsigned int $1() $NL{$NL$NL    return 0;$NL}
-funchello@function print helloworld!!!@int helloworld() $NL{$NL$NL        printf("hello world!!\n");$NL    return 0;$NL}
-funchelloworld@function print helloworld!!!@int helloworld() $NL{$NL$NL    printf("hello world!!\n");$NL    return 0;$NL}
-
 
 
 =====插入特殊符号
@@ -47,12 +18,19 @@ funchelloworld@function print helloworld!!!@int helloworld() $NL{$NL$NL    print
 signxh@insert * sign multiline@/**$NL**$NL**/
 
 
-=====for loop for array
+
+=====宏
+definemax@define max@#undef MAX$NL#define MAX(a,b) ((a)>(b)?(a):(b))
+definemin@define min@#undef MIN$NL#define MIN(a,b) ((a)<(b)?(a):(b))
+defineentertips@define ENTERTIPS@/*文件、 函数 、 行 */$NL#undef ENTERTIPS$NL#define ENTERTIPS fprintf(stdout, "%s:%s:%d\n", __FILE__, __FUNCTION__ , __LINE__ );
+definearraysize@define ARRAY_SIZE@#undef ARRAY_SIZE$NL#define ARRAY_SIZE(arr) ((unsigned)(sizeof(arr) / sizeof((arr)[0])))
+if0@mark if 0@$NL#if 0$NL#endif$NL
 
 
 =====基本类型
 basetype@typedef base type@typedef char CHAR;$NLtypedef unsigned char BYTE;$NLtypedef char INT8;$NLtypedef short INT16;$NLtypedef int INT32;$NLtypedef long long INT64;$NLtypedef unsigned char UINT8;$NLtypedef unsigned short UINT16;$NLtypedef unsigned int UINT32;$NLtypedef unsigned long long UINT64;$NLtypedef unsigned short WORD;$NLtypedef unsigned short WORD16;$NLtypedef unsigned int   WORD32;$NLtypedef unsigned long long WORD64;
 
+st2@typedef struct T_xx{}T_xx, *P_xx@struct T_${1:`!p snip.rv = (snip.basename or "name")`}$NL{$NL$TB${0:/* data */}$NL}T_${1:`!p snip.rv = (snip.basename or "name")`}, *P_${1:`!p snip.rv = (snip.basename or "name")`};
 
 =====变量
 vari@define var int@int ${1:i} = 0;
@@ -63,6 +41,35 @@ varc@define var char@char ${1:i} = 0;
 varpc@define var char pointer@char *${1:i} = NULL;
 varpuc@define var unsigned char pointer@unsigned char *${1:i} = NULL;
 
+
+
+=====条件
+switchcase@condition of switch case@$NLswitch ( $1 )$NL{$NLcase $2:$NL    break;$NLdefault:$NL    break;$NL}
+
+
+
+
+=====函数
+funcv@function return void@void $1() $NL{$NL$NL}
+funci@function return int@int $1() $NL{$NL$NL    return 0;$NL}
+funcui@function return unsigned int@unsigned int $1() $NL{$NL$NL    return 0;$NL}
+funchello@function print helloworld!!!@int helloworld() $NL{$NL$NL        printf("hello world!!\n");$NL    return 0;$NL}
+funchelloworld@function print helloworld!!!@int helloworld() $NL{$NL$NL    printf("hello world!!\n");$NL    return 0;$NL}
+
+
+=====打印
+helloworld@print hello world@printf("hello,world!!\n");
+printff@print float@printf("%f\n",$1);
+printfui@print unsigned int@printf("%u\n",$1);
+printfi@print int@printf("%d\n",$1);
+printfint@print int@printf("%d\n",$1);
+printfld@print long@printf("%ld\n",$1);
+printflld@print long long@printf("%lld\n",$1);
+printflu@print unsigned long@printf("%lu\n",$1);
+printfllu@print unsigned long long@printf("%llu\n",$1);
+
+
+=====for loop for array
 
 
 =====注释

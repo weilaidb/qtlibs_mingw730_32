@@ -1,0 +1,128 @@
+首页
+下载APP
+会员
+IT技术
+搜索
+MSVC编译器中的_MSC_VER如何使用？
+
+程序员加油站
+
+MSVC编译器中的_MSC_VER如何使用？
+
+程序员加油站
+0.357
+2019.08.18 18:02:52
+字数 378
+阅读 1,936
+_MSC_VER 是MSVC编译器的内置宏，定义了编译器的版本。在程序中加入_MSC_VER宏可以根据编译器版本让编译器有选择性地编译一段程序。
+
+区分windows和linux
+Linux和Windows是两大编程平台，这两个系统的C++程序不一定能够兼容，在linux平台下能够运行的程序不一定能在windows下运行，在windows平台下的C++程序不一定能在Linux下运行，因此如果希望写出来的程序对于两个平台兼容，那么就需要在写代码的时候进行手动控制。
+
+#ifdef _MSC_VER
+    // To do
+#else if
+    // To do
+#endif
+区分MSVC版本
+_MSC_VER 这个名称中：
+
+MS      Microsoft 的简写。
+C       MSC 就是 Microsoft 的 C 编译器。
+VER     Version 的简写。
+因此_MSC_VER的意思就是：Microsoft 的 C 编译器的版本。
+
+微软不同时期，编译器有不同的版本：
+
+MSC    1.0   _MSC_VER == 100
+MSC    2.0   _MSC_VER == 200
+MSC    3.0   _MSC_VER == 300
+MSC    4.0   _MSC_VER == 400
+MSC    5.0   _MSC_VER == 500
+MSC    6.0   _MSC_VER == 600
+MSC    7.0   _MSC_VER == 700
+MSVC++ 1.0   _MSC_VER == 800
+MSVC++ 2.0   _MSC_VER == 900
+MSVC++ 4.0   _MSC_VER == 1000 (Developer Studio 4.0)
+MSVC++ 4.2   _MSC_VER == 1020 (Developer Studio 4.2)
+MSVC++ 5.0   _MSC_VER == 1100 (Visual Studio 97 version 5.0)
+MSVC++ 6.0   _MSC_VER == 1200 (Visual Studio 6.0 version 6.0)
+MSVC++ 7.0   _MSC_VER == 1300 (Visual Studio .NET 2002 version 7.0)
+MSVC++ 7.1   _MSC_VER == 1310 (Visual Studio .NET 2003 version 7.1)
+MSVC++ 8.0   _MSC_VER == 1400 (Visual Studio 2005 version 8.0)
+MSVC++ 9.0   _MSC_VER == 1500 (Visual Studio 2008 version 9.0)
+MSVC++ 10.0  _MSC_VER == 1600 (Visual Studio 2010 version 10.0)
+MSVC++ 11.0  _MSC_VER == 1700 (Visual Studio 2012 version 11.0)
+MSVC++ 12.0  _MSC_VER == 1800 (Visual Studio 2013 version 12.0)
+MSVC++ 14.0  _MSC_VER == 1900 (Visual Studio 2015 version 14.0)
+MSVC++ 14.1  _MSC_VER == 1910 (Visual Studio 2017 version 15.0)
+MSVC++ 14.11 _MSC_VER == 1911 (Visual Studio 2017 version 15.3)
+MSVC++ 14.12 _MSC_VER == 1912 (Visual Studio 2017 version 15.5)
+MSVC++ 14.13 _MSC_VER == 1913 (Visual Studio 2017 version 15.6)
+MSVC++ 14.14 _MSC_VER == 1914 (Visual Studio 2017 version 15.7)
+MSVC++ 14.15 _MSC_VER == 1915 (Visual Studio 2017 version 15.8)
+MSVC++ 14.16 _MSC_VER == 1916 (Visual Studio 2017 version 15.9)
+MSVC++ 14.2  _MSC_VER == 1920 (Visual Studio 2019 Version 16.0)
+MSVC++ 14.21 _MSC_VER == 1921 (Visual Studio 2019 Version 16.1)
+MSVC++ 14.22 _MSC_VER == 1922 (Visual Studio 2019 Version 16.2)
+例如： MSVC++ 14.0 表示 Visual C++ 的版本为 14.0，后面括号中的 Visual Studio 2015，表明该 VC++ 包含在微软开发工具 Visual Studio 2015 中。
+
+在程序中加入_MSC_VER宏可以根据编译器版本让编译器有选择性地编译一段程序，例如一个版本编译器生成的 lib 文件可能不被另一个版本的编译器使用，那么在写程序的时候，通过if语句选择使用多个版本编译器产生的 lib 文件。
+
+#if _MSC_VER >= 1400 // for vc8, or vc9 
+    #ifdef _DEBUG 
+        #pragma comment(lib, "SomeLib-vc8-d.lib") 
+    #else if 
+        #pragma comment(lib, "SomeLib-vc8-r.lib") 
+    #endif 
+#else if _MSC_VER >= 1310 // for vc71 
+    #ifdef _DEBUG 
+        #pragma comment(lib, "SomeLib-vc71-d.lib") 
+    #else if 
+        #pragma comment(lib, "SomeLib-vc71-r.lib") 
+    #endif 
+#else if _MSC_VER >=1200 // for vc6
+    #ifdef _DEBUG 
+        #pragma comment(lib, "SomeLib-vc6-d.lib") 
+    #else if 
+        #pragma comment(lib, "SomeLib-vc6-r.lib") 
+    #endif 
+#endif
+参考：
+
+https://blog.csdn.net/seve0520/article/details/79454449
+
+https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B
+
+更多精彩内容，就在简书APP
+"小礼物走一走，来简书关注我"
+  
+  
+程序员加油站
+总资产5共写了1069字获得23个赞共3个粉丝
+
+
+程序员加油站
+总资产5
+Visual Studio 全屏显示代码
+阅读 716
+C++中使用sleep让程序挂起一段时间[windows/unix]
+阅读 699
+热门故事
+超A女霸总在线撩夫
+我把老板当金库，老板把我当老婆
+男神学长求放过，你的节操掉了
+情深见于微
+推荐阅读
+vue 全局引入公共的scss
+阅读 416
+python3.10编译安装
+阅读 348
+go使用build tags实现条件编译
+阅读 69
+Shell 变量
+阅读 61
+java环境配置
+阅读 105
+
+写下你的评论...

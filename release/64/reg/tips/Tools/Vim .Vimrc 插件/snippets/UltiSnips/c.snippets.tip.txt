@@ -46,57 +46,11 @@ endsnippet
 #=======================================>>>>>>>>>>>
 
 
-snippet printff "print float" b  
-printf("%f\n",$1);                  
-endsnippet
 
-
-#=======================================>>>>>>>>>>>
-
-snippet printfui "print unsigned int" b  
-printf("%u\n",$1);                  
-endsnippet
-
-
-#=======================================>>>>>>>>>>>
-
-snippet printfi "print int" b  
-printf("%d\n",$1);                  
-endsnippet
-
-
-#=======================================>>>>>>>>>>>
-
-snippet printfint "print int" b  
-printf("%d\n",$1);                  
-endsnippet
-
-
-#=======================================>>>>>>>>>>>
-
-snippet printfld "print long" b  
-printf("%ld\n",$1);                  
-endsnippet
-
-
-#=======================================>>>>>>>>>>>
-
-snippet printflld "print long long" b  
-printf("%lld\n",$1);                  
-endsnippet
-
-
-#=======================================>>>>>>>>>>>
-
-snippet printflu "print unsigned long" b  
-printf("%lu\n",$1);                  
-endsnippet
-
-
-#=======================================>>>>>>>>>>>
-
-snippet printfllu "print unsigned long long" b  
-printf("%llu\n",$1);                  
+snippet signxh "insert * sign multiline" b  
+/**
+**
+**/                  
 endsnippet
 
 
@@ -131,6 +85,97 @@ endsnippet
 snippet definearraysize "define ARRAY_SIZE" b  
 #undef ARRAY_SIZE
 #define ARRAY_SIZE(arr) ((unsigned)(sizeof(arr) / sizeof((arr)[0])))                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet if0 "mark if 0" b  
+
+#if 0
+#endif
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+snippet basetype "typedef base type" b  
+typedef char CHAR;
+typedef unsigned char BYTE;
+typedef char INT8;
+typedef short INT16;
+typedef int INT32;
+typedef long long INT64;
+typedef unsigned char UINT8;
+typedef unsigned short UINT16;
+typedef unsigned int UINT32;
+typedef unsigned long long UINT64;
+typedef unsigned short WORD;
+typedef unsigned short WORD16;
+typedef unsigned int   WORD32;
+typedef unsigned long long WORD64;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet st2 "typedef struct T_xx{}T_xx, *P_xx" b  
+struct T_${1:`!p snip.rv = (snip.basename or "name")`}
+{
+    ${0:/* data */}
+}T_${1:`!p snip.rv = (snip.basename or "name")`}, *P_${1:`!p snip.rv = (snip.basename or "name")`};                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+snippet vari "define var int" b  
+int ${1:i} = 0;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet varui "define var unsigned int" b  
+unsigned int ${1:i} = 0;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet varf "define var float" b  
+float ${1:i} = 0.0;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet vard "define var double" b  
+double ${1:i} = 0.0;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet varc "define var char" b  
+char ${1:i} = 0;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet varpc "define var char pointer" b  
+char *${1:i} = NULL;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet varpuc "define var unsigned char pointer" b  
+unsigned char *${1:i} = NULL;                  
 endsnippet
 
 
@@ -209,87 +254,69 @@ endsnippet
 #=======================================>>>>>>>>>>>
 
 
-
-snippet signxh "insert * sign multiline" b  
-/**
-**
-**/                  
+snippet helloworld "print hello world" b  
+printf("hello,world!!\n");                  
 endsnippet
 
 
 #=======================================>>>>>>>>>>>
 
-
-
-snippet basetype "typedef base type" b  
-typedef char CHAR;
-typedef unsigned char BYTE;
-typedef char INT8;
-typedef short INT16;
-typedef int INT32;
-typedef long long INT64;
-typedef unsigned char UINT8;
-typedef unsigned short UINT16;
-typedef unsigned int UINT32;
-typedef unsigned long long UINT64;
-typedef unsigned short WORD;
-typedef unsigned short WORD16;
-typedef unsigned int   WORD32;
-typedef unsigned long long WORD64;                  
+snippet printff "print float" b  
+printf("%f\n",$1);                  
 endsnippet
 
 
 #=======================================>>>>>>>>>>>
 
-
-snippet vari "define var int" b  
-int ${1:i} = 0;                  
+snippet printfui "print unsigned int" b  
+printf("%u\n",$1);                  
 endsnippet
 
 
 #=======================================>>>>>>>>>>>
 
-snippet varui "define var unsigned int" b  
-unsigned int ${1:i} = 0;                  
+snippet printfi "print int" b  
+printf("%d\n",$1);                  
 endsnippet
 
 
 #=======================================>>>>>>>>>>>
 
-snippet varf "define var float" b  
-float ${1:i} = 0.0;                  
+snippet printfint "print int" b  
+printf("%d\n",$1);                  
 endsnippet
 
 
 #=======================================>>>>>>>>>>>
 
-snippet vard "define var double" b  
-double ${1:i} = 0.0;                  
+snippet printfld "print long" b  
+printf("%ld\n",$1);                  
 endsnippet
 
 
 #=======================================>>>>>>>>>>>
 
-snippet varc "define var char" b  
-char ${1:i} = 0;                  
+snippet printflld "print long long" b  
+printf("%lld\n",$1);                  
 endsnippet
 
 
 #=======================================>>>>>>>>>>>
 
-snippet varpc "define var char pointer" b  
-char *${1:i} = NULL;                  
+snippet printflu "print unsigned long" b  
+printf("%lu\n",$1);                  
 endsnippet
 
 
 #=======================================>>>>>>>>>>>
 
-snippet varpuc "define var unsigned char pointer" b  
-unsigned char *${1:i} = NULL;                  
+snippet printfllu "print unsigned long long" b  
+printf("%llu\n",$1);                  
 endsnippet
 
 
 #=======================================>>>>>>>>>>>
+
 
 
 snippet commentheader "comments for header" b  
@@ -466,6 +493,38 @@ endsnippet
 
 
 #=======================================>>>>>>>>>>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

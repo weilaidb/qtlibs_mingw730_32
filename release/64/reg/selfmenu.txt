@@ -517,6 +517,9 @@ CXX/class/多态 继承 virtual Board array
 CXX/define/pub
 CXX/eg
 CXX/externc __cplusplus
+CXX/know/C++ explicit 关键字
+CXX/know/_MSC_VER
+CXX/know/eg
 CXX/knowledge/C++ cout格式化输出
 CXX/knowledge/C++中operator关键字（重载操作符）
 CXX/knowledge/Int转String
