@@ -25,3 +25,9 @@ junegunn/vim-easy-align
 
 SirVer/ultisnips
 honza/vim-snippets
+
+
+itchyny/calendar.vim
+jlanzarotta/colorSchemeExplorer
+tpope/vim-dispatch
+dbeniamine/vim-compile

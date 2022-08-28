@@ -147,12 +147,17 @@ Plugin 'SirVer/ultisnips'
 
 Plugin 'honza/vim-snippets'
 
+"日历
+Plugin 'itchyny/calendar.vim'
 
+"配色方案
+Plugin 'jlanzarotta/colorSchemeExplorer'
 
+"编译
+Plugin 'tpope/vim-dispatch'
 
-
-
-
+"编译
+Plugin 'dbeniamine/vim-compile'
 
 
 call vundle#end()
@@ -163,6 +168,16 @@ filetype plugin indent on
 "===================================插件定义列表=============================
 "===================================插件定义列表=============================
 "===================================插件定义列表=============================
+
+" ===============================插件 calendar.vim
+"map cal :Calendar<cr>
+
+
+
+" ===============================插件 colorSchemeExplorer
+"Color Scheme Explorer plugin for Vim
+"By default the command to involke the Color Scheme Explorer is ':ColorSchemeExplorer''
+
 
 
 " Track the engine.
@@ -577,3 +592,16 @@ set autochdir
 
 "字体大小
 set guifont=Courier_new:h18:b:cDEFAULT
+
+
+
+
+"================自定义函数
+" 返回当前时间
+func! GetTimeInfo()
+    "return strftime('%Y-%m-%d %A %H:%M:%S')
+    return strftime('%Y-%m-%d %H:%M:%S')
+endfunction
+
+" 插入模式按 Ctrl + D(ate) 插入当前时间
+imap <C-d> <C-r>=GetTimeInfo()<cr>

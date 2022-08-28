@@ -2238,6 +2238,7 @@ Tools/Vim/know/tag not found
 Tools/Vim/know/vim 多行行首插入
 Tools/Vim/know/使用 Vim 将文本中的多列对齐
 Tools/Vim/know/列模式
+Tools/Vim/know/删除多行
 Tools/Vim/know/在 Vim 中查找文件(通过递归目录搜索)
 Tools/Vim/know/在Vim中上下移动整个行
 Tools/Vim/know/设置VIM默认参数 例如设置默认背景颜色
