@@ -69,7 +69,19 @@ printflu@print unsigned long@printf("%lu\n",$1);
 printfllu@print unsigned long long@printf("%llu\n",$1);
 
 
+
+
 =====for loop for array
+
+
+
+
+=====测试gtest
+gtestmain@gtest main@#include "gmock/gmock.h"$NLint main(int argc, char** argv) {$NL$TBtesting::InitGoogleMock(&argc, argv);$NL$TBreturn RUN_ALL_TESTS();$NL}     
+gtestheader@gtest header@#include "gmock/gmock.h"$NLusing namespace ::testing; 
+gtestclass@gtest class parent is Test@#include "gmock/gmock.h"$NLusing namespace ::testing;$NL$NL$NLclass A${1:RetweetCollection}: public Test {    $NLpublic:    $NL$1 ${2:collection};    $NL};    $NLTEST_F(A$1, ${3:IsEmptyWhenCreated}) {    $NLASSERT_TRUE(1);    $NL//   ASSERT_TRUE($2.isEmpty());    $NL}  
+
+
 
 
 =====注释

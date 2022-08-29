@@ -160,6 +160,10 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'dbeniamine/vim-compile'
 
 
+
+
+
+
 call vundle#end()
 "开启文件类型自动检测，编写代码时自动换行对齐"
 filetype plugin indent on
