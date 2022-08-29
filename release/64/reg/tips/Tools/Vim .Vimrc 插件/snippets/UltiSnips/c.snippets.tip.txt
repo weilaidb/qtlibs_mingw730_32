@@ -344,25 +344,19 @@ endsnippet
 #=======================================>>>>>>>>>>>
 
 snippet gtestclass "gtest class parent is Test" b  
-#include "gmock/gmock.h"
-using namespace ::testing;
+class A${1:RetweetCollection}: public Test {
+public:
+    $1 ${2:collection};
+};
 
-
-class A${1:RetweetCollection}: public Test {    
-public:    
-$1 ${2:collection};    
-};    
-TEST_F(A$1, ${3:IsEmptyWhenCreated}) {    
-ASSERT_TRUE(1);    
-//   ASSERT_TRUE($2.isEmpty());    
-}                  
+TEST_F(A$1, ${3:IsEmptyWhenCreated}) {
+    ASSERT_TRUE(1);
+//   ASSERT_TRUE($2.isEmpty());
+}
+$0
 endsnippet
-
-
 #=======================================>>>>>>>>>>>
-
-
-snippet commentheader "comments for header" b  
+snippet commentheader "comments for header" b
 /***************************************************************************
 ** 版权所有:  WeiLai Copyright (c) 2020-2030
 ** 文件名称:  ${1:`!p
@@ -371,7 +365,6 @@ if not snip.c:
 	snip.rv = snip.fn
 else:
 	snip.rv = snip.c`}
-    
 ** 当前版本:  v1.0
 ** 作    者:
 ** 完成日期: `date +%Y-%m-%d`
@@ -391,72 +384,30 @@ else:
 	snip.rv = snip.c`}
 #define $2
 /*****************************头文件****************************************/
-
 /*****************************宏定义****************************************/
-
 /*****************************结构体或类型定义*******************************/
-
-
 /*****************************全局变量****************************************/
-
-
 /*****************************本地变量****************************************/
-
-
 /*****************************函数或类声明****************************************/
-
-
 /*****************************函数或类实现****************************************/
-
-
-
-
-
-
-
-
 /*****************************by extern "C"****************************************/
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 /*****************************头文件****************************************/
-
-
 /*****************************宏定义****************************************/
-
-
 /*****************************结构体或类型定义*******************************/
-
-
 /*****************************全局变量****************************************/
-
-
 /*****************************本地变量****************************************/
-
-
 /*****************************函数或类声明****************************************/
-
-
 /*****************************函数或类实现****************************************/
-
-
 #ifdef __cplusplus
 }
 #endif
-
-
-
-
-
 #endif /* $2 */
-                  
 endsnippet
-
-
 #=======================================>>>>>>>>>>>
-
-snippet commentsource "comments for source" b  
+snippet commentsource "comments for source" b
 /***************************************************************************
 ** 版权所有:  WeiLai Copyright (c) 2020-2030  ******************************
 ** 文件名称:  ${1:`!p
@@ -474,968 +425,29 @@ else:
 ** 修改人  :
 ** 修改内容:
 ***************************************************************************/
-
-
 /*****************************头文件****************************************/
-
 /*****************************宏定义****************************************/
-
 /*****************************结构体或类型定义*******************************/
-
-
 /*****************************全局变量****************************************/
-
-
 /*****************************本地变量****************************************/
-
-
 /*****************************函数或类声明****************************************/
-
-
 /*****************************函数或类实现****************************************/
-
-
-
-
-
-
-
-
 /*****************************by extern "C"****************************************/
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 /*****************************头文件****************************************/
-
-
 /*****************************宏定义****************************************/
-
-
 /*****************************结构体或类型定义*******************************/
-
-
 /*****************************全局变量****************************************/
-
-
 /*****************************本地变量****************************************/
-
-
 /*****************************函数或类声明****************************************/
-
-
 /*****************************函数或类实现****************************************/
-
-
 #ifdef __cplusplus
 }
 #endif
-
-                  
 endsnippet
-
-
 #=======================================>>>>>>>>>>>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
@@ -1448,66 +460,39 @@ def printf_expand_args(snip):
 	This will look how many placeholders printf has and adds the separated commas
 	at the end.
 	"""
-	
 	# now add so many "," as much as the amount of placeholders
 	amount_placeholders = snip.tabstops[1].current_text.count("%")
-
 	output = ""
-
 	# Add the amount of tabstops
 	for placeholder_index in range(3, amount_placeholders + 3):
 		output += f", ${placeholder_index}"
-	
 	# convert them into tabstops
 	snip.expand_anon(output)
-
 endglobal
-
 # ==============
-# Snippets 
+# Snippets
 # ==============
 priority -50
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 snippet def "#define ..."
 #define $1
 endsnippet
-
 snippet #ifndef "#ifndef ... #define ... #endif"
 #ifndef ${1/([A-Za-z0-9_]+).*/$1/}
 #define ${1:SYMBOL} ${2:value}
 #endif /* ifndef $1 */
 endsnippet
-
 snippet #if "#if #endif" b
 #if ${1:0}
 ${VISUAL}$0
 #endif
 endsnippet
-
 snippet mark "#pragma mark (mark)"
 #if 0
 ${1:#pragma mark -
 }#pragma mark $2
 #endif
-
 $0
 endsnippet
-
 snippet main "main() (main)"
 int main(int argc, char *argv[])
 {
@@ -1515,29 +500,24 @@ int main(int argc, char *argv[])
 	return 0;
 }
 endsnippet
-
 snippet for "for loop (for)"
 for (${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
 	${VISUAL}$0
 }
 endsnippet
-
 snippet fori "for int loop (fori)"
 for (${4:int} ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
 	${VISUAL}$0
 }
 endsnippet
-
 snippet fora "for-loop" b
 for (${1:var}; ${2:condition}; `!p
 if len(t[1]) > 0:
 	snip.rv = t[1].split('=')[0].split()[-1]
 `++) {
-	
 	$0
 } /* for ($1; $2; `!p if len(t[1]) > 0: snip.rv = t[1].split('=')[0].split()[-1]`++) */
 endsnippet
-
 snippet once "Include header once only guard"
 #ifndef ${1:`!p
 if not snip.c:
@@ -1548,44 +528,35 @@ if not snip.c:
 else:
 	snip.rv = snip.c`}
 #define $1
-
 ${VISUAL}$0
-
 #endif /* end of include guard: $1 */
 endsnippet
-
 snippet fprintf "fprintf ..."
 fprintf(${1:stderr}, "${2:%s}\n"${2/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\);)/}
 endsnippet
-
 snippet eli "else if .. (eli)"
 else if (${1:/* condition */}) {
 	${VISUAL}$0
 }
 endsnippet
-
 post_jump "printf_expand_args(snip)"
 snippet "printf" "printf with auto-expand args" wr
 printf("$1\n"$2);
 endsnippet
-
 snippet st "struct"
 struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`} {
 	${0:/* data */}
 };
 endsnippet
-
 snippet fun "function" b
 ${1:void} ${2:function_name}($3)
 {
 	${VISUAL}$0
 }
 endsnippet
-
 snippet fund "function declaration" b
 ${1:void} ${2:function_name}($3);
 endsnippet
-
 global !p
 def split_line(text):
 	import textwrap
@@ -1596,33 +567,29 @@ def split_line(text):
 	snip_line = snip.tabstops[4].end[0]
 	snip.buffer.append(output, snip_line + 1)
 	del snip.buffer[snip_line]
-
 def get_args(arglist):
 	args = [arg.strip() for arg in arglist.split(',') if arg]
 	return args
 endglobal
-
 post_jump "if snip.tabstop == 0 : split_line(snip.tabstops[4].current_text)"
 snippet head "File Header" b
 /******************************************************************************
 * File:             `!p snip.rv = fn`
 *
-* Author:           ${2}  
-* Created:          `date +%m/%d/%y` 
+* Author:           ${2}
+* Created:          `date +%m/%d/%y`
 * Description:      ${4:${VISUAL}}
 *****************************************************************************/
 ${0}
 endsnippet
-
 post_jump "if snip.tabstop == 0 : split_line(snip.tabstops[4].current_text)"
-snippet func "Function Header" 
+snippet func "Function Header"
 /******************************************************************************
 * Function:         $1
 * Description:      ${4:${VISUAL}}
-* Where:`!p 
+* Where:`!p
 snip.rv = ""
 snip >> 2
-
 args = get_args(t[2])
 if args:
 	for arg in args:

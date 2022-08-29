@@ -195,8 +195,8 @@ filetype plugin indent on
 " - https://github.com/nvim-lua/completion-nvim
 "let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsExpandTrigger="<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<s-f>"
+let g:UltiSnipsJumpBackwardTrigger="<s-b>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
