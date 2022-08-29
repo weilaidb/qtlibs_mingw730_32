@@ -1,0 +1,33 @@
+string rlog::_format_msg( const char *format, ... )
+{
+    char msgBuf[64];
+    va_list args;
+    va_start( args, format );
+
+    int ncpy = vsnprintf( msgBuf, sizeof(msgBuf), format, args );
+
+    va_end( args );
+
+    std::string result;
+    if(ncpy < (int)sizeof(msgBuf))
+    {
+	if(ncpy > 0)
+	    result = msgBuf;
+	else
+	    result = "RLOG internal formatting error";
+    } else
+    {
+	// buffer wasn't large ehough, allocate a temporary
+	int len = ncpy + 1;
+	char *buf = new char[len];
+
+	va_start( args, format );
+	vsnprintf( buf, len, format, args );
+	va_end( args );
+
+	result = buf;
+	delete[] buf;
+    }
+
+    return result;
+}

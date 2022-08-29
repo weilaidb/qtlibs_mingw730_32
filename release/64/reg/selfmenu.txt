@@ -458,6 +458,7 @@ CXX/Cout_in/cout size
 CXX/DECLARE_TO_IMPLEMENT
 CXX/DECLARE_TO_IMPLEMENT CLASS
 CXX/DECLARE_TO_IMPLEMENT static
+CXX/Format/Log _format_msg
 CXX/GetStrOfData
 CXX/INCLUDE/FILTER
 CXX/INCLUDE/GENERATE
@@ -484,6 +485,8 @@ CXX/More/变量类型判断variable type2
 CXX/More/虚函数
 CXX/More/虚函数 eg
 CXX/More/虚函数 eg2
+CXX/Mutex/Lock lock.h
+CXX/Mutex/Lock mutex.h
 CXX/STL/set
 CXX/STL/set2
 CXX/STL/unordered_map
