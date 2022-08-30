@@ -31,3 +31,6 @@ itchyny/calendar.vim
 jlanzarotta/colorSchemeExplorer
 tpope/vim-dispatch
 dbeniamine/vim-compile
+
+vim-scripts/a.vim
+Alternate Files quickly (.c --> .h etc)

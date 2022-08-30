@@ -12,6 +12,8 @@ alias cdworkgitqtlibs='cd ~/work/git/qtlibs_mingw730_32'
 alias cdworkgittdd="cd ~/work/git/tdd "
 alias cdworkgittest="cd ~/work/git/test "
 alias cdworkgitpython="cd ~/work/git/test/python "
+alias cdworkgitbasecpp="cd ~/work/git/basecpp "
+
 
 alias tomcatstart='cdsoftwebapachebin && sh startup.sh'
 alias tomcatstop='cdsoftwebapachebin && sh shutdown.sh'

@@ -1683,6 +1683,7 @@ Makefile/parameter/-s--slient
 Makefile/parameter/-w--print-directory
 Makefile/shell exec multiline
 Makefile/testtarget
+Makefile/v1.5
 Makefile/var/readme
 Makefile/wildcard
 Makefile/函数/call
@@ -2222,6 +2223,7 @@ Tools/Vim .Vimrc 插件/snippets 关键字 查看
 Tools/Vim .Vimrc 插件/snippets 关键字(cpp)
 Tools/Vim .Vimrc 插件/snippets/UltiSnips/c.snippets
 Tools/Vim .Vimrc 插件/snippets/UltiSnips/cpp.snippets
+Tools/Vim .Vimrc 插件/vim 源文件头文件快速切换插件 a.vim
 Tools/Vim .Vimrc 插件/vim-snippets ultisnips
 Tools/Vim .Vimrc 插件安装常见问题
 Tools/Vim .Vimrc 插件安装说明

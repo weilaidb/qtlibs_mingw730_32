@@ -7,7 +7,7 @@ catsnippetbib;cat ~/.vim/bundle/vim-snippets/UltiSnips/bib.snippets | grep ^snip
 catsnippetbindzone;cat ~/.vim/bundle/vim-snippets/UltiSnips/bindzone.snippets | grep ^snippet
 catsnippetblade;cat ~/.vim/bundle/vim-snippets/UltiSnips/blade.snippets | grep ^snippet
 catsnippetcoffee-jasmine;cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee-jasmine.snippets | grep ^snippet
-catsnippetcoffee-react;cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee-react.snippets | grep ^snippet
+catsnippetcoffee-react;cat ~/.vim/bundle/im-snippets/UltiSnips/coffee-react.snippets | grep ^snippet
 catsnippetcoffee;cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee.snippets | grep ^snippet
 catsnippetcpp;cat ~/.vim/bundle/vim-snippets/UltiSnips/cpp.snippets | grep ^snippet
 catsnippetcrystal;cat ~/.vim/bundle/vim-snippets/UltiSnips/crystal.snippets | grep ^snippet
@@ -97,6 +97,7 @@ findgitlist;find . -name .git
 vimhelp;vim --help
 vimgreppython;vim --version|grep python
 vim.;vim .
+vi.;vim.
 vim..;vim..
 catvimrc;cat ~/.vimrc
 cdvim;cd ~/.vim
@@ -173,6 +174,7 @@ cdfdir;cd `dirname
 cdworkgittdd;cd ~/work/git/tdd
 cdworkgittest;cd ~/work/git/test
 cdworkgitpython;cd ~/work/git/test/python
+cdworkgitbasecpp;cd ~/work/git/basecpp
 
 cdworkcodecode;cd ~/work/code/code
 cdworkcode;cd ~/work/code
