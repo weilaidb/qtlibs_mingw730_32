@@ -18,11 +18,16 @@ https://github.com/weilaidb/linux_driver
 【CSDN】https://www.csdn.net/
 【StackOverFlow】https://stackoverflow.com/
 【下载视频】C:\Users\dell\dwhelper
+【双拼练习】https://dazi.91xjr.com/typing/train/shuang.html
 【吾爱破解】https://www.52pojie.cn/
 【在线yaml转properties】https://www.toyaml.com/index.html
 【在线代码管理系统】http://101.201.79.164:8081/weilaix/file/index.jsp
 【在线新华字典】http://xh.5156edu.com/index.php
 【在线看代码】http://101.201.79.164:8081/source/
+【翻译-必应】https://cn.bing.com/translator/?ref=TThis&text=manuals&from=en&to=zh-Hans
+【翻译-有道】https://fanyi.youdao.com/
+【翻译-百度】https://fanyi.baidu.com/#auto/zh/
+【翻译-金山】https://www.iciba.com/
 【邮箱126】https://mail.126.com/
 【邮箱163】https://mail.163.com/
 【邮箱yeah】https://www.yeah.net/
