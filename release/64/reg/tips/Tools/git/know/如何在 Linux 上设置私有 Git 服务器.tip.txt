@@ -1,0 +1,106 @@
+如何在 Linux 上设置私有 Git 服务器
+聆听世界的鱼 Linux公社 2022-08-24 08:30 发表于浙江
+点击上方蓝字 ● 关注Linux公社     
+
+Git 是全球开发人员使用的开源版本控制系统。下面介绍如何创建自己的 Git Linux 服务器来托管项目。
+Git 服务器托管项目的存储库，其中包含源代码和其他核心文件。虽然在大多数情况下，您可以依赖 GitHub 等全球知名的 Git 托管服务，但在某些情况下，最好托管您的个人 Git 服务器以增加隐私、可定制性和安全性。
+让我们学习如何在 Linux 上设置私有 Git 服务器。
+设置 Git 服务器的先决条件
+在您开始设置您的私有 Git 服务器之前，您必须有权访问备用机器或订阅云提供商。这一点很重要，因为您将设置备用机器作为 Git 服务器，您将从本地机器连接到该服务器并执行 Git 操作。
+虽然没有明确定义的系统要求，但 1 GB 的 RAM 应该足以让 Git 服务器正常运行。此外，请确保您在机器上安装并运行了 Linux 发行版。
+第 1 步：在 Linux 服务器上下载并安装 Git
+图片
+不用说，作为预备步骤，您需要在 Linux 服务器上安装 Git。启动终端并使用 Linux 发行版的包管理器来安装 Git：
+在 Debian/Ubuntu 衍生产品上：
+sudo apt install git
+基于Arch的发行版：
+sudo pacman -S git
+在 CentOS/RHEL/Fedora 上：
+sudo dnf install git
+在您的系统上安装 Git 后，请继续执行以下步骤来配置您的 Linux 系统，以将您的 Git 存储库作为 Git 服务器托管。
+第 2 步：设置 Git 用户帐户
+图片
+通过 SSH、RDP 或任何其他远程访问协议连接到您的 Linux 服务器。或者，如果您使用备用计算机作为服务器，请将其打开并创建一个新用户帐户来处理您的存储库。
+ssh username@address
+sudo useradd git
+图片
+添加新用户后，使用su命令切换到该用户：
+su git
+创建专用git用户帐户是一种安全协议，可确保连接到您的 Git 服务器的客户端对机器上的资源的可见性和访问权限有限。这使您可以在多个团队成员将访问您的服务器的小组项目中安全地协作。
+第 3 步：创建 .ssh 目录并添加授权密钥
+创建一个.ssh目录对于存储公钥和其他基本数据是必要的，这些数据将决定谁可以访问这个 Git 服务器。首先，登录到您之前创建的 git 用户帐户，创建 .ssh 目录，并将访问权限限制为仅 git 用户：
+ssh git@address
+mkdir .ssh
+chmod 700 .ssh/
+touch .ssh/authorized_keys
+图片
+使用chmod命令保护目录访问权限，以确保除了您之外没有人可以对其进行更改。进入.ssh目录并使用touch命令创建一个新文件“authorized_keys” 。
+cd .ssh
+ssh-keygen -t rsa #如果您没有 id_rsa.pub 文件，请使用此命令
+cat id_rsa.pub
+图片
+图片
+您必须使用您希望授予对 Git 服务器访问权限的客户端的 SSH 公钥来更新此文件。暂停 SSH 会话并使用文本编辑器或cat 命令在本地计算机中打开.ssh/id_rsa.pub文件。该文件包含您的公共加密密钥，当将其写入authorized_keys 文件时，您将无需密码即可访问Git 服务器。
+cd .ssh
+vi authorized_keys
+复制公钥并启动到 Git 服务器的新 SSH 连接。进入.ssh目录，使用文本编辑器打开 authorized_keys 文件并粘贴公钥。保存更改并退出。
+从那时起，您应该能够在没有任何密码的情况下连接到服务器。对将连接到服务器的每台计算机重复此步骤。
+第 4 步：创建一个目录来存储您的所有存储库
+访问 Linux 服务器并创建一个目录或使用内置目录作为根目录。请记住，这是存储所有存储库的目录。为了更整洁地组织项目，这是一个很好的做法。
+mkdir directory_name
+创建目录后，继续本指南的最后一步以完成 Git 服务器的设置。
+第 5 步：通过添加新项目启动开发
+您现在实际上已经完成了 Git 服务器的设置。现在您只需要通过初始化存储库并将远程源添加到本地计算机来开始开发。使用cd命令进入父目录并创建一个.git项目目录：
+cd parent_directory
+mkdir new_project.git
+现在，初始化一个裸 git 存储库：
+git init --bare
+初始化存储库后，是时候在本地计算机上添加远程源了：
+git remote add origin name git@address:new_project.git
+这就是您在服务器端需要做的所有事情。现在任何经过身份验证的客户端都可以执行常规的 Git 操作，例如推送、拉取、合并、克隆等。要开始新项目，每次创建新项目时都必须重复此步骤。
+通过执行 git push 测试其功能：
+touch testfile
+git add testfile
+git commit -m "test file"
+git push name master
+git clone git@address:new_project.git
+您的文件将成功推送到远程源。要交叉检查推送操作是否有效，您可以克隆存储库，您应该在存储库中找到测试文件。
+Git 服务器的安全提示
+随着 Git 服务器的启动和运行，您必须密切注意它的安全状态，因为它是您的个人服务器，维护和保护它免受外部威胁是您的唯一责任。要采用的一些最佳安全实践是：
+禁用密码登录
+
+将默认 shell 更改为 git-shell。这限制了登录用户发出任何非 git 命令
+
+为 SSH 使用自定义端口
+
+禁用root用户登录
+
+定期备份数据
+您可以在 Linux 服务器上实施许多此类安全配置和安全措施，以保护其免受攻击者的侵害并防止未经授权的访问。
+
+来自：Linux迷
+链接：https://www.linuxmi.com/linux-private-git-server.html
+关注我们
+长按或扫描下面二维码关注 Linux公社
+
+
+图片
+关注 Linux公社，添加“ 星标 ”
+
+每天 获取 技术干货，让我们一起成长
+
+合作联系： root@linuxidc.net
+
+阅读原文
+阅读 2670
+写下你的留言
+精选留言
+
+夏杪君
+来自四川
+以前我也这样,现在用gogs
+
+吴艺俊
+来自广东
+gogs或者gitea不香吗
+已无更多数据

@@ -1,0 +1,72 @@
+list作为dict的value时，需要深拷贝，否则所有key对应的value值都是相同的，一个改了，另外一个也跟着改。
+
+
+输入
+1 2 3 4 5 6 1 8 9
+
+输出
+1                 8       9
+4                 5       6
+
+========================================>>>>
+#!/bin/python3
+import re
+import copy
+import os
+
+#打印开关
+printflag = 0
+
+def show(str):
+    global printflag
+    if(printflag):
+        print(str)
+
+def showresult(dict,oncemax):
+    for key in dict:
+        show(dict[key])
+        print("%-18s%-8s%s" %(dict[key][0], dict[key][1], dict[key][2]))
+
+def split_list_to_array(list, oncemax):
+    show("--before split list:")
+    show(list)
+    show(oncemax)
+    dict = {}
+    i = 0
+    keyindex = 0
+    templist = []
+
+    for item in list:
+        # show(item)
+        if(i%oncemax == 0):
+            templist.clear()
+            templist.append(item)
+        else:
+            templist.append(item)
+
+        i = i + 1
+        if(i % oncemax == 0):
+            show(templist)
+            #此处list需要深拷贝，否则作为dict的值时，修改list，会导致所有的value都是相同的
+            newlist = copy.deepcopy(templist)
+            dict[newlist[keyindex]] = newlist
+            templist.clear()
+
+    show("==last result:")
+    show(dict)
+    showresult(dict, 3)
+
+
+def main():
+    print("hello, world!!!")
+    test = input()
+    show(test)
+    splitlist = re.split("\s+",test)
+    show(splitlist)
+    split_list_to_array(splitlist, 3)
+
+
+
+
+if __name__ == '__main__':
+    main()

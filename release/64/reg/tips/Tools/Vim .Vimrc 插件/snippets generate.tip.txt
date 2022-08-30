@@ -1,0 +1,6 @@
+[关键字;提示;实际内容]
+编辑插件
+:UltiSnipsEdit
+
+
+wel;welcome to china;welcome to china$NLhaha!!

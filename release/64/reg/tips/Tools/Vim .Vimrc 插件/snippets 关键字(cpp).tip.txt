@@ -1,0 +1,16 @@
+$ cat ./bundle/vim-snippets/UltiSnips/cpp.snippets | grep ^snippet
+snippet main
+snippet forc "general for loop (for)"
+snippet beginend "$1.begin(), $1.end() (beginend)"
+snippet cl "class .. (class)"
+snippet ns "namespace .. (namespace)"
+snippet readfile "read file (readF)"
+snippet map "std::map (map)"
+snippet vector "std::vector (v)"
+snippet tp "template <typename ..> (template)"
+snippet cla "An entire .h generator" b
+snippet fnc "Basic c++ doxygen function template" b
+snippet boost_test "Boost test module" b
+snippet boost_suite "Boost test suite module" b
+snippet boost_test_fixture "Boost test module with fixture" b
+snippet boost_suite_fixture "Boost test suite with fixture" b

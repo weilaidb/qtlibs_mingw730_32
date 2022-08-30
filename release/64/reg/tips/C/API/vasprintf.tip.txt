@@ -1,0 +1,65 @@
+vasprintf(3) - Linux man page
+Name
+asprintf, vasprintf - print to allocated string
+Synopsis
+#define _GNU_SOURCE /* See feature_test_macros(7) */
+#include <stdio.h>
+int asprintf(char **strp, const char *fmt, ...);
+
+int vasprintf(char **strp, const char *fmt, va_list ap);
+
+Description
+The functions asprintf() and vasprintf() are analogs of sprintf(3) and vsprintf(3), except that they allocate a string large enough to hold the output including the terminating null byte, and return a pointer to it via the first argument. This pointer should be passed to free(3) to release the allocated storage when it is no longer needed.
+Return Value
+When successful, these functions return the number of bytes printed, just like sprintf(3). If memory allocation wasn't possible, or some other error occurs, these functions will return -1, and the contents of strp is undefined.
+Conforming to
+These functions are GNU extensions, not in C or POSIX. They are also available under *BSD. The FreeBSD implementation sets strp to NULL on error.
+See Also
+free(3), malloc(3), printf(3)
+Referenced By
+talloc(3)
+
+
+
+
+======================================================eg
+$ cat main.cpp 
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdarg.h>
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/fcntl.h>
+
+void printwarning(const char *fmt, ...)
+{
+    char *p = NULL;
+    va_list aptr;
+    int ret;
+
+    va_start(aptr, fmt);
+    ret = vasprintf(&p,fmt, aptr);
+    va_end(aptr);
+    if(-1 == ret)
+    {
+        return;
+    }
+
+    if(NULL != p)
+    {
+        printf("%s\n", p);
+        free(p);
+    }
+}
+
+
+
+int main(int argc, char **argv)
+{
+    printf("hello world\n");
+    printwarning("%s","I love China");
+    return 0;
+}

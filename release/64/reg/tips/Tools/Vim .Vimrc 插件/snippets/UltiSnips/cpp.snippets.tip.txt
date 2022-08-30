@@ -1,0 +1,755 @@
+priority -50
+
+extends c
+
+# We want to overwrite everything in parent ft.
+priority -49
+###########################################################################
+#			    Global functions 						  #
+###########################################################################
+
+global !p
+
+def write_docstring_args(arglist, snip):
+	args = str(arglist).split(',')
+
+	if len(args) > 1:
+		c = 0
+		for arg in args:
+			if c == 0:
+				snip.rv += arg
+				c = 1
+			else:
+				snip += '*       : %s' % arg.strip()
+	else:
+		snip.rv = args[0]
+
+
+endglobal
+###########################################################################
+#                            DIY Snippets                            #
+#                            DIY Snippets                            #
+#                            DIY Snippets                            #
+###########################################################################
+
+
+snippet wel "welcome to china" b  
+welcome to china
+haha!!                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+
+snippet cheader ";c headers" b  
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/fcntl.h>
+#include <assert.h>
+#include <stdarg.h>
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet cppheader "c++ headers" b  
+#include <iostream>
+#include <string>
+#include <vector>
+#include <map>
+#include <iomanip>
+using namespace std;
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+
+snippet signxh "insert * sign multiline" b  
+/**
+**
+**/                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+snippet definemax "define max" b  
+#undef MAX
+#define MAX(a,b) ((a)>(b)?(a):(b))                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet definemin "define min" b  
+#undef MIN
+#define MIN(a,b) ((a)<(b)?(a):(b))                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet defineentertips "define ENTERTIPS" b  
+/*文件、 函数 、 行 */
+#undef ENTERTIPS
+#define ENTERTIPS fprintf(stdout, "%s:%s:%d\n", __FILE__, __FUNCTION__ , __LINE__ );                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet definearraysize "define ARRAY_SIZE" b  
+#undef ARRAY_SIZE
+#define ARRAY_SIZE(arr) ((unsigned)(sizeof(arr) / sizeof((arr)[0])))                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet if0 "mark if 0" b  
+
+#if 0
+#endif
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+snippet basetype "typedef base type" b  
+typedef char CHAR;
+typedef unsigned char BYTE;
+typedef char INT8;
+typedef short INT16;
+typedef int INT32;
+typedef long long INT64;
+typedef unsigned char UINT8;
+typedef unsigned short UINT16;
+typedef unsigned int UINT32;
+typedef unsigned long long UINT64;
+typedef unsigned short WORD;
+typedef unsigned short WORD16;
+typedef unsigned int   WORD32;
+typedef unsigned long long WORD64;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet st2 "typedef struct T_xx{}T_xx, *P_xx" b  
+typedef struct T_${1:`!p snip.rv = (snip.basename or "name")`}
+{
+    ${0:/* data */}
+    int m_t1;
+
+}T_$1, *P_$1;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+snippet vari "define var int" b  
+int ${1:i} = 0;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet varui "define var unsigned int" b  
+unsigned int ${1:i} = 0;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet varf "define var float" b  
+float ${1:i} = 0.0;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet vard "define var double" b  
+double ${1:i} = 0.0;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet varc "define var char" b  
+char ${1:i} = 0;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet varpc "define var char pointer" b  
+char *${1:i} = NULL;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet varpuc "define var unsigned char pointer" b  
+unsigned char *${1:i} = NULL;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+snippet switchcase "condition of switch case" b  
+
+switch ( $1 )
+{
+case $2:
+    break;
+default:
+    break;
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+snippet funcv "function return void" b  
+void $1() 
+{
+
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet funci "function return int" b  
+int $1() 
+{
+
+    return 0;
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet funcui "function return unsigned int" b  
+unsigned int $1() 
+{
+
+    return 0;
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet funchello "function print helloworld!!!" b  
+int helloworld() 
+{
+
+        printf("hello world!!\n");
+    return 0;
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet funchelloworld "function print helloworld!!!" b  
+int helloworld() 
+{
+
+    printf("hello world!!\n");
+    return 0;
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+snippet helloworld "print hello world" b  
+printf("hello,world!!\n");                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet printff "print float" b  
+printf("%f\n",$1);                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet printfui "print unsigned int" b  
+printf("%u\n",$1);                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet printfi "print int" b  
+printf("%d\n",$1);                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet printfint "print int" b  
+printf("%d\n",$1);                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet printfld "print long" b  
+printf("%ld\n",$1);                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet printflld "print long long" b  
+printf("%lld\n",$1);                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet printflu "print unsigned long" b  
+printf("%lu\n",$1);                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet printfllu "print unsigned long long" b  
+printf("%llu\n",$1);                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+
+snippet gtestmain "gtest main" b  
+#include "gmock/gmock.h"
+int main(int argc, char** argv) {
+    testing::InitGoogleMock(&argc, argv);
+    return RUN_ALL_TESTS();
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet gtestheader "gtest header" b  
+#include "gmock/gmock.h"
+using namespace ::testing;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet gtestclass "gtest class parent is Test" b  
+#include "gmock/gmock.h"
+using namespace ::testing;
+
+
+class A${1:RetweetCollection}: public Test {    
+public:    
+$1 ${2:collection};    
+};    
+TEST_F(A$1, ${3:IsEmptyWhenCreated}) {    
+ASSERT_TRUE(1);    
+//   ASSERT_TRUE($2.isEmpty());    
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+snippet commentheader "comments for header" b  
+/***************************************************************************
+** 版权所有:  WeiLai Copyright (c) 2020-2030
+** 文件名称:  ${1:`!p
+if not snip.c:
+	import random, string
+	snip.rv = snip.fn
+else:
+	snip.rv = snip.c`}
+    
+** 当前版本:  v1.0
+** 作    者:
+** 完成日期: `date +%Y-%m-%d`
+** 修改记录:
+** 修改日期:
+** 版本号  :
+** 修改人  :
+** 修改内容:
+***************************************************************************/
+#ifndef ${2:`!p
+if not snip.c:
+	import random, string
+	name = re.sub(r'[^A-Za-z0-9]+','_', snip.basename ).upper()
+	rand = ''.join('H')
+	snip.rv = ('%s_%s' % (name,rand)).upper()
+else:
+	snip.rv = snip.c`}
+#define $2
+/*****************************头文件****************************************/
+
+/*****************************宏定义****************************************/
+
+/*****************************结构体或类型定义*******************************/
+
+
+/*****************************全局变量****************************************/
+
+
+/*****************************本地变量****************************************/
+
+
+/*****************************函数或类声明****************************************/
+
+
+/*****************************函数或类实现****************************************/
+
+
+
+
+
+
+
+
+/*****************************by extern "C"****************************************/
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+/*****************************头文件****************************************/
+
+
+/*****************************宏定义****************************************/
+
+
+/*****************************结构体或类型定义*******************************/
+
+
+/*****************************全局变量****************************************/
+
+
+/*****************************本地变量****************************************/
+
+
+/*****************************函数或类声明****************************************/
+
+
+/*****************************函数或类实现****************************************/
+
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+
+
+#endif /* $2 */
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet commentsource "comments for source" b  
+/***************************************************************************
+** 版权所有:  WeiLai Copyright (c) 2020-2030  ******************************
+** 文件名称:  ${1:`!p
+if not snip.c:
+	import random, string
+	snip.rv = snip.fn
+else:
+	snip.rv = snip.c`}
+** 当前版本:  v1.0
+** 作    者:
+** 完成日期: `date +%Y-%m-%d`
+** 修改记录:
+** 修改日期:
+** 版本号  :
+** 修改人  :
+** 修改内容:
+***************************************************************************/
+
+
+/*****************************头文件****************************************/
+
+/*****************************宏定义****************************************/
+
+/*****************************结构体或类型定义*******************************/
+
+
+/*****************************全局变量****************************************/
+
+
+/*****************************本地变量****************************************/
+
+
+/*****************************函数或类声明****************************************/
+
+
+/*****************************函数或类实现****************************************/
+
+
+
+
+
+
+
+
+/*****************************by extern "C"****************************************/
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+/*****************************头文件****************************************/
+
+
+/*****************************宏定义****************************************/
+
+
+/*****************************结构体或类型定义*******************************/
+
+
+/*****************************全局变量****************************************/
+
+
+/*****************************本地变量****************************************/
+
+
+/*****************************函数或类声明****************************************/
+
+
+/*****************************函数或类实现****************************************/
+
+
+#ifdef __cplusplus
+}
+#endif
+
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+snippet main
+int main(int argc, char *argv[])
+{
+	${0}
+	return 0;
+}
+endsnippet
+
+snippet forc "general for loop (for)"
+for (${6:auto} ${1:i} = ${2:v.begin()}; `!p import re; snip.rv = re.split("[^\w]",t[1])[-1]` ${4:!=} ${3:`!p m = re.search(r'^(?:(.*)(\.|->)begin\(\)|((?:std|boost)::)?begin\((.*)\))$', t[2]); snip.rv = (((m.group(3) if m.group(3) else "") + "end(" + m.group(4) + ")") if m.group(4) else (m.group(1) + m.group(2) + "end()")) if m else ""`}; ${5:++`!p snip.rv = t[1].split(" ")[-1]`}) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet beginend "$1.begin(), $1.end() (beginend)"
+${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()
+endsnippet
+
+snippet cl "class .. (class)"
+class ${1:`!p snip.rv = snip.basename or "name"`}
+{
+public:
+	${1/(\w+).*/$1/} (${2:arguments});
+	virtual ~${1/(\w+).*/$1/} ();
+
+private:
+	${0:/* data */}
+};
+endsnippet
+
+snippet ns "namespace .. (namespace)"
+namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`}
+{
+	${VISUAL}$0
+}${1/.+/ \/* /m}$1${1/.+/ *\/ /m}
+endsnippet
+
+snippet readfile "read file (readF)"
+std::vector<char> v;
+if (FILE *fp = fopen(${1:"filename"}, "r"))
+{
+	char buf[1024];
+	while(size_t len = fread(buf, 1, sizeof(buf), fp))
+		v.insert(v.end(), buf, buf + len);
+	fclose(fp);
+}
+endsnippet
+
+snippet map "std::map (map)"
+std::map<${1:key}, ${2:value}> map$0;
+endsnippet
+
+snippet vector "std::vector (v)"
+std::vector<${1:char}> v$0;
+endsnippet
+
+snippet tp "template <typename ..> (template)"
+template <typename ${1:_InputIter}>
+endsnippet
+
+snippet cla "An entire .h generator" b
+#ifndef ${2:`!v substitute(vim_snippets#Filename('$1_H','ClassName'),'.*','\U&\E','')`}
+#define $2
+
+class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\u&',''), '_\(\w\)', '\u\1', 'g')`}
+{
+private:
+	$3
+
+public:
+	$1();
+	virtual ~$1();
+};
+
+#endif /* $2 */
+endsnippet
+
+
+snippet fnc "Basic c++ doxygen function template" b
+/**
+* @brief: ${4:brief}
+*
+* @param: `!p write_docstring_args(t[3],snip)`
+*
+* @return: `!p snip.rv = t[1]`
+*/
+${1:ReturnType} ${2:FunctionName}(${3:param})
+{
+	${0:FunctionBody}
+}
+endsnippet
+
+snippet boost_test "Boost test module" b
+#define BOOST_TEST_MODULE ${1:TestModuleName}
+#include <boost/test/included/unit_test.hpp>
+
+BOOST_AUTO_TEST_CASE(${2:TestCaseName})
+{
+	${0:TestDefinition}
+}
+
+endsnippet
+
+snippet boost_suite "Boost test suite module" b
+#define BOOST_TEST_MODULE ${1:TestModuleName}
+#include <boost/test/included/unit_test.hpp>
+
+BOOST_AUTO_TEST_SUITE(${2:SuiteName})
+
+BOOST_AUTO_TEST_CASE(${3:TestCaseName})
+{
+	${0:TestDefinition}
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+
+endsnippet
+snippet boost_test_fixture "Boost test module with fixture" b
+#define BOOST_TEST_MODULE ${1:TestModuleName}
+#include <boost/test/included/unit_test.hpp>
+
+struct ${2:FixtureName} {
+	$2() {}
+	virtual ~$2() {}
+	/* define members here */
+};
+
+BOOST_FIXTURE_TEST_CASE(${3:SuiteName}, $2)
+{
+	${0:TestDefinition}
+}
+
+endsnippet
+
+snippet boost_suite_fixture "Boost test suite with fixture" b
+#define BOOST_TEST_MODULE ${1:TestModuleName}
+#include <boost/test/included/unit_test.hpp>
+
+struct ${2:FixtureName} {
+	$2() {}
+	virtual ~$2() {}
+	/* define members here */
+};
+
+BOOST_FIXTURE_TEST_SUITE(${3:SuiteName}, $2)
+
+BOOST_AUTO_TEST_CASE(${4:TestCaseName})
+{
+	${0:TestDefinition}
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+
+endsnippet
+# vim:ft=snippets:

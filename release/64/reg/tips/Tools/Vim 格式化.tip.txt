@@ -1,0 +1,138 @@
+[VIM] 格式化代码
+快速使用vim格式化代码
+
+在vim的编辑模式i下直接ESC退出道命令模式之后直接敲入如下命令：
+
+gg=G        将全部代码格式化
+
+nG=mG    将第n行到第m行的代码格式化
+
+注：如果ESC之后输入的是 ：gg=G 即前面加了个分号‘：’那么就会有不是编辑器命令的提示。
+
+ 
+
+快速说明
+
+格式化全文指令 gg=G
+
+自动缩进当前行指令 ==
+
+格式化当前光标接下来的8行 8=
+
+格式化选定的行 v 选中需要格式化的代码段 =
+
+备注： 
+
+gg   —— 到达文件最开始 
+
+=    —— 要求缩进 
+
+G     —— 直到文件尾 
+
+
+注释代码：(这个原理上就是使用VIM的正则替换)
+
+以C++和Python为例。 
+注释连续行： 
+指令格式 :起始行,终止行s/要替换的字符/替换为字符/g 
+如， 
+      C++源文件中注释掉10~20行，指令为： 
+:10,20s/^/////g
+Python源文件中注释掉10~20行，指令为： 
+:10,20s/^/#/g
+取消连续行注释： 
+指令格式同上。只是要替换字符与替换为字符要互换： 
+如， 
+      取消C++源文件中的10~20行的注释，指令为： 
+:10,20s/^//////g
+取消Python源文件中的10~20行的注释，指令为： 
+:10,20s/^#//g
+
+ 
+
+详细说明
+
+先看一段简单的tutorial。
+
+
+Fix Indentation and Tabs in VIM
+
+Thanks to the folks in #vim on freenode, here's a quick tutorial on how to fix the indentation and tabs in an xml file from within VIM…
+First find out what your current settings are by typing:
+:filetype
+
+Should return something like “filetype detection:ON plugin:OFF indent:OFF”
+1) :set filetype=xml
+2) :filetype indent on
+3) :e
+4) gg=G
+
+Basically what this is doing is setting the filetype to xml (so it can pickup the XML indenting rules (see :e $VIMRUNTIME/indent for a list of available languages )
+Then turn on indent, then reload it (:e).
+The last step is ‘gg=G '  which will acutally retab the entire file (gg is line 1, and G is last line ).
+You can find more info by reading vim help files:
+
+:he gg
+:he =
+:he G
+:he :filetype
+
+Note: Most commands in vim are run with by typing “:command , you can find help by typing “:help command ” or simply “:he cmd ”. HOWEVER, the main command to retab “gg=G” is NOT preceeded by a “:” .
+
+
+看完这段tutorial，我们遇到的问题基本就解决了。
+
+Vim格式化代码功能——gg=G
+
+
+常用的几个功能：
+
+(1) gg=G 是一个自动缩进的命令 (在命令状态下直接输入，不需要输入冒号)，gg是文件首，G是文件尾，所以 gg=G 是整理全部代码。
+(2) == 整理当行，加行数整理多行。
+(3) ={ 或者 =i{ 整理一个代码块。
+(4) mG=nG 当 m 不等于 n 的时候能完成从 m 行到 n 行的局部的缩进。例如，从80行缩进直到100行，你可以用 80G=100G，在命令状态下使用 :set nu 查看行号，一般更习惯将 se nu 直接写入Vim的配置文件，这样每次打开都会显示行号。
+(5) 在写代码前，设置自己的代码风格。在配置文件里添加命令：
+" 设置缩进和行号
+set nu ru ai si ts=4 sw=4
+(6) :set equalprg=indent
+意思是用indent程序处理等号命令，indent默认是gnu风格。
+建议不要改，代码风格应该自己主动养成，=适用于修改代码或者粘贴别处代码后整理缩进。
+这里又体现出不用indent的好处了，如果用indent，单纯格式化代码块会丢统一的行首缩进，而且选中的如果不是内部完整的代码块，会出错，把出错的输出贴到了代码里....弊端很多。
+
+
+1.12. 定宽文本排版
+
+在传统的 Unix 环境下，文本文件的定义是具有一定长度限制的文本行的组合 [19]。虽然 Vim 本身对行的长度没有任何实际的限制，但有一些工具有这样的限制。为了最大程度的兼容性，也为了在显示、打印等处理上比较方便，一般推荐在邮件和源代码中一 般不要超出 72 列（最多不超出 80 列）。Vim 在处理定宽的文本方面具有特殊的支持能力。下面是一个在 Vim 中把行宽（使用选项 textwidth）设为 40 后输入 Harry Potter and the Half-Blood Prince 的第一句话的结果：
+
+
+It was nearing midnight and the Prime Minister was sitting alone in his office, reading a long memo that was slipping through his brain without leaving the slightest trace of meaning behind.
+
+输入时我只使用了英文字母和空格，换行符都是 Vim 自动插入的。如果在某一行加入或删除了一些字符后行不就不齐了吗，该如何处理？很简单，把光标移到要重新格式化的文本开头，使用“gq”命令后面跟一个光 标移动命令确定重新格式化的范围。比如“gq}”（格式化一段），“gq5j”（格式化 5 行），“gqG”（格式化至文件末尾）。
+
+除了选项 textwidth 外，选项 formatoptions 确定了跟文本格式化有关的基本选项，常用的数值有：
+
+·         t：根据 textwidth 自动折行；
+
+·         c：在（程序源代码中的）注释中自动折行，插入合适的注释起始字符；
+
+·         r：插入模式下在注释中键入回车时，插入合适的注释起始字符；
+
+·         q：允许使用“gq”命令对注释进行格式化；
+
+·         n：识别编号列表，编号行的下一行的缩进由数字后的空白决定（与“2”冲突，需要“autoindent”）；
+
+·         2：使用一段的第二行的缩进来格式化文本；
+
+·         l：在当前行长度超过 textwidth 时，不自动重新格式化；
+
+·         m：在多字节字符处可以折行，对中文特别有效（否则只在空白字符处折行）；
+
+·         M：在拼接两行时（重新格式化，或者是手工使用“J”命令），如果前一行的结尾或后一行的开头是多字节字符，则不插入空格，非常适合中文
+
+上面提到的注释，可以是 C/C++ 中的“//”和“/*”，也可以是邮件中引用原文使用的“>”等字符（具体由 comments 选项控制；参见“:help 'comments'”）。Vim 在遇到这些字符时，能够相当智能地进行处理，足以完成日常编辑源代码和邮件的需要。在使用一些处理纯文本不够强大的邮件客户端时，我通常使用 Vim 编辑邮件（特别是英文邮件），然后把结果贴回到邮件编辑窗口中进行发送。
+
+Vim 中 formatoptions 的缺省值是“tcq”，一般我会在 .vimrc 文件中加入一行“set formatoptions+=mM”来确保 Vim 能在中文字符之间折行而不要求空格的存在，并且在大部分情况下可以正确地处理中文重新格式化。
+
+ 
+
+分类: software skills

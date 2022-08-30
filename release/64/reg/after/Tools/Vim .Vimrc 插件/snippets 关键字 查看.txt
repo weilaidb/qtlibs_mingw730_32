@@ -1,0 +1,1 @@
+catsnippet\1;cat ~/.vim/bundle/vim-snippets/UltiSnips/\1.snippets | grep ^snippet

@@ -1,0 +1,1526 @@
+博客园Logo
+首页
+新闻
+博问
+专区
+闪存
+班级
+代码改变世界
+搜索
+注册
+登录
+返回主页
+PaulpauL
+新随笔订阅管理随笔 - 106  文章 - 0  评论 - 9  阅读 - 18万
+clang format 官方文档自定义参数介绍（中英文）
+ 官方文档：http://clang.llvm.org/docs/ClangFormatStyleOptions.html
+
+中文
+
+ 
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+在代码中配置样式
+ 
+当使用 clang::format::reformat(...) 方法, 格式将被clang::format::FormatStyle 框架指定。
+ 
+配置格式化样式选项
+ 
+这一部分列出了被支持的选项。 每个操作都有指定类型。 枚举类型的可能的值，被C++枚举（一个预编译，例如：LS_Auto）和配置中的一个值（没有预编译：Auto）指定。
+ 
+BasedOnStyle (string)
+这个样式用于所有没有特殊指定配置的选项。
+ 
+这个选项仅在clang-format配置中支持(在-style='{...}' 和 .clang-format 文件里).
+ 
+可能的值有:
+ 
+LLVM：符合LLVM代码标准的样式
+Google：符合谷歌的c++样式指南的样式
+Chromium：符合Chromium样式指南的样式
+Mozilla：符合Mozilla样式指南的样式
+WebKit：符合WebKit的样式指南的样式
+AccessModifierOffset (int)
+访问修饰符的缩进或者向外伸展,例如 public:。
+AlignAfterOpenBracket (BracketAlignmentStyle)
+如果为真（true），在一个左圆括号后水平对齐参数
+这会应用在圆括号，尖括号和中（方）括号。
+可能的值有：
+BAS_Align (在配置中: Align) 在左圆括号后调整参数, 例如:
+someLongFunction(argument1,
+                 argument2);
+ 
+BAS_DontAlign (在配置中: DontAlign) 不调整, 换用 ContinuationIndentWidth, 例如:
+someLongFunction(argument1,
+    argument2);
+ 
+BAS_AlwaysBreak (在配置中: AlwaysBreak) 在左圆括号后总是换行, 如果参数不能适应单行, 例如:
+someLongFunction(
+    argument1, argument2);
+ 
+AlignConsecutiveAssignments (bool)
+如果为真（true），连续调整多行
+这将会调整连续行中的分配操作符。这将会导致像下面这样的格式：
+int aaaa = 12;
+int b    = 23;
+int ccc  = 23;
+ 
+AlignConsecutiveDeclarations (bool)
+如果为真（true）, 校准连续的声明。
+ 
+这将会校准连续多行的声明的名字。这将会导致像下面这样的格式：
+int         aaaa = 12;
+float       b = 23;
+std::string ccc = 23;
+ 
+AlignEscapedNewlinesLeft (bool)
+如果为真（true）, 校准被忽略的新行距左边尽可能远。或者把它们放到列的最右边
+ 
+AlignOperands (bool)
+如果为真（true）, 水平对齐二进制和三元表达式的操作数。
+具体来说，这将一个表达式的操作数对准一个需要被分割的多行的操作数, 例如:
+int aaa = bbbbbbbbbbbbbbb +
+          ccccccccccccccc;
+ 
+AlignTrailingComments (bool)
+如果为真（true）, 对齐注释。
+ 
+AllowAllParametersOfDeclarationOnNextLine (bool)
+即使BinPackParameters是假的，也允许将一个函数声明的所有参数移到下一行.
+ 
+AllowShortBlocksOnASingleLine (bool)
+允许将简单的语句块放到一个单行.
+例如, 这允许 将 语句 “if (a) { return; }” 放到一个单行.
+ 
+AllowShortCaseLabelsOnASingleLine (bool)
+如果为真（true）, 很短的情况下的标签将会被放到单独的行。
+ 
+AllowShortFunctionsOnASingleLine (ShortFunctionStyle)
+取决于值, 语句“int f() { return 0; }”可以被放到一个单行。
+可能的值有：
+SFS_None (在配置中： None) 从不合并方法或函数到单独的一行。
+SFS_Empty (在配置中： Empty) 仅合并空的函数。
+SFS_Inline (在配置中： Inline) 仅合并类中定义的方法或函数. 意味着 “empty”.
+SFS_All (在配置中： All) 合并所有的方法适应单行.
+ 
+AllowShortIfStatementsOnASingleLine (bool)
+如果为真（true）, 语句“if (a) return;” 能被放到单行。
+ 
+AllowShortLoopsOnASingleLine (bool)
+如果为真（true）, 语句“while (true) continue;” 能被放到单行。
+ 
+AlwaysBreakAfterDefinitionReturnType (DefinitionReturnTypeBreakingStyle)
+用于函数定义返回类型换行样式。这个选项是过时的并且被保留向后兼容。
+可能的值有：
+DRTBS_None (在配置中： None) 再返回类型后自动换行。PenaltyReturnTypeOnItsOwnLine 会被考虑到.
+DRTBS_All (在配置中： All) 总是在返回类型后换行。
+DRTBS_TopLevel (在配置中： TopLevel) 总是在返回类型的顶级函数后换行。
+ 
+AlwaysBreakAfterReturnType (ReturnTypeBreakingStyle)
+用于函数声明返回类型换行样式。
+可能的值有：
+ 
+RTBS_None (在配置中： None) 在返回类型后自动换行。“PenaltyReturnTypeOnItsOwnLine”会被考虑.
+RTBS_All (在配置中： All) 再返回类型后总是换行。
+RTBS_TopLevel (在配置中： TopLevel) 在方法的顶层的返回类型后总是换行。
+RTBS_AllDefinitions (在配置中： AllDefinitions) 在方法定义中的返回类型后总是换行。
+RTBS_TopLevelDefinitions (在配置中： TopLevelDefinitions) 在顶层定义的返回类型后总是换行。
+ 
+AlwaysBreakBeforeMultilineStrings (bool)
+如果为真（true）, 在多行字面量字符串前总是换行。
+这个标志意味着使在文件中有多行字符串的情况看起来更一致。因此，如果字符串被“ContinuationIndentWidth”空格导致换行，它将会在行首生效。
+ 
+AlwaysBreakTemplateDeclarations (bool)
+如果为真（true）, 在模板声明“template<...>”后总是换行
+ 
+BinPackArguments (bool)
+如果为假（false）， 函数调用的参数要么是在同一行上，要么将在同一行上有一行。
+ 
+BinPackParameters (bool)
+如果为假（false）， 函数声明或函数定义的参数将都在同一行上，或各有一行。
+ 
+BraceWrapping (BraceWrappingFlags)
+控制单独的大括号换行事件。
+如果“BreakBeforeBraces”设置为“BS_Custom”, 使用这个指定如何处理每个单独的括号的情况。否则，这是被忽略的。
+嵌套结构的标志:
+bool AfterClass 使类定义换行.
+bool AfterControlStatement 使控制语句(if/for/while/switch/..)换行。
+bool AfterEnum 使枚举定义换行。
+bool AfterFunction 使方法定义换行。
+bool AfterNamespace 使命名空间定义换行。
+bool AfterObjCDeclaration 使OC定义(@autoreleasepool, interfaces, ..)换行。
+bool AfterStruct 使结构定义换行。
+bool AfterUnion 使共同体定义换行。
+bool BeforeCatch 在catch之前换行。
+bool BeforeElse 在else之前换行。
+bool IndentBraces 缩进换行的大括号。
+ 
+BreakAfterJavaFieldAnnotations (bool)
+在JAVA文件中每个注释后换行。
+ 
+BreakBeforeBinaryOperators (BinaryOperatorStyle)
+使二进制操作符换行的方法。
+可能的值有：
+BOS_None (在配置中： None) 在操作符后换行。
+BOS_NonAssignment (在配置中： NonAssignment) 在操作符没有被指定前换行。
+BOS_All (在配置中： All) 在操作符前换行。
+ 
+BreakBeforeBraces (BraceBreakingStyle)
+用于大括号换行样式。
+可能的值有：
+BS_Attach (在配置中： Attach) 总是将大括号与上下文连在一起。
+BS_Linux (在配置中： Linux) 像Attach一样, 但是在一个方法、命名空间或一个类定义的大括号之前换行
+BS_Mozilla (在配置中： Mozilla) 像Attach一样, 但是在一个枚举、方法或记录定义前换行。
+BS_Stroustrup (在配置中： Stroustrup) 像Attach一样,但是在方法定义、catch、和else前换行
+BS_Allman (在配置中： Allman) 总是在大括号之前换行。
+BS_GNU (在配置中： GNU) 总是在括号前中断，并添加一个额外的级别的缩进到控件语句的括号中，而不是类、函数或其他定义的括号中。
+BS_WebKit (在配置中： WebKit) 像Attach一样, 但是在方法前换行。
+BS_Custom (在配置中： Custom) 在“BraceWrapping”里配置每一个单独的大括号。
+ 
+BreakBeforeTernaryOperators (bool)
+如果为真（true）, 三元运算符将被放置在换行后。
+ 
+BreakConstructorInitializersBeforeComma (bool)
+总是在逗号和对齐逗号跟冒号前把构造函数初始化式换行。
+ 
+BreakStringLiterals (bool)
+当格式化时，总是对字面量字符串换行。
+ColumnLimit (unsigned)
+限制列。
+列的限制为0意味着没有列限制。在这种情况下，clang-format将谨慎对待在声明中输入行的换行决定，除非与其他规则矛盾。
+ 
+CommentPragmas (std::string)
+一个固定的表达式，它描述了具有特殊意义的注释，不应该被分裂成行或以其他方式改变。
+ 
+ConstructorInitializerAllOnOneLineOrOnePerLine (bool)
+如果构造函数初始化器不适合在一行，把每个初始化放到单独的行。
+ 
+ConstructorInitializerIndentWidth (unsigned)
+使用构造函数初始化列表缩进的字符数。
+ 
+ContinuationIndentWidth (unsigned)
+新行缩进宽度。
+ 
+Cpp11BracedListStyle (bool)
+如果为真（true）,格式化大括号列表达到最适合c++11列表。
+ 
+重要区别：-没有空格内的大括号列表。-大括号关闭前没有换行。与延续缩进缩进，不与块缩进。
+从根本上讲，C++ 11大括号列表与函数调用格式化是一模一样的。如果大括号列表跟着一个名字（例如类型或变量名），clang-format的格式像是一个调用那个名字的函数的圆括号的“{}”。如果没有名称，则假定一个零长度的名称。
+ 
+DerivePointerAlignment (bool)
+如果为真（true）, 分析最常见的格式化文件中“&”和“\*”的对齐方式。pointeralignment则仅作为后备。
+ 
+DisableFormat (bool)
+完全禁止格式化。
+ 
+ExperimentalAutoDetectBinPacking (bool)
+如果为真（true）, clang-format检测函数调用和定义格式化为每行一个参数。
+每个调用都可以被包装，每行一个或不确定的。如果是不确定的，例如完全在一行，但需要做出一个决定，clang-format分析文件中是否有其他被包装的事例和相应的行动。
+注意：这是一个实验标志，可能会消失或被重命名。不要在配置文件中使用。你自己要为你的使用负责。
+ 
+ForEachMacros (std::vector<std::string>)
+一个宏，应解释为foreach循环而不是作为函数调用矢量。
+这些都是预期形式的宏：
+ 
+FOREACH(<variable-declaration>, ...)
+  <loop-body>
+在.clang-format 配置文件中, 这可以被设定为:
+ForEachMacros: ['RANGES_FOR', 'FOREACH']
+例如: BOOST_FOREACH.
+ 
+IncludeCategories (std::vector<IncludeCategory>)
+正则表达式表示不同的#include类别被用于#includes命令。
+这些正则表达式与一个包含（包括< >或“）的文件的文件名相匹配。属于第一匹配正则表达式的值被分配，并且#include首先根据增加类别数然后在每个类别按字母的顺序排序。
+ 
+如果正则表达式都不匹配，int_max分配类别。源文件的主要头引用自动获取类别0。因此，它通常是保持在#include开头（http://llvm.org/docs/CodingStandards.html#include-style）。然而，如果你有总是需要排在首位的头引用，你也可以分配负面的优先事项。
+为了在.clang-format文件中配置这个, 请使用:
+IncludeCategories:
+  - Regex:           '^"(llvm|llvm-c|clang|clang-c)/'
+    Priority:        2
+  - Regex:           '^(<|"(gtest|isl|json)/)'
+    Priority:        3
+  - Regex:           '.\*'
+    Priority:        1
+ 
+IncludeIsMainRegex (std::string)
+指定一个常用的可以在文件主要包括映射的正则表达式的表达式。
+在猜测是否#include是“main”include（指定类别0，见上文），使用这个正则表达式允许后缀的头引用源。部分匹配完成，所以说：-“”意思是任意后缀，-“$”的意思是没有后缀
+例如，如果配置”（_test）？$”，然后.h将被视为包括在a.cc和a_test.ccde中的“main”。
+ 
+IndentCaseLabels (bool)
+从switch语句缩进case标签一级。
+当错误时，使用相同的缩进级别作为切换语句。switch语句的语句体总是缩进一级以上的case标签。
+ 
+IndentWidth (unsigned)
+用于缩进的列数。
+ 
+IndentWrappedFunctionNames (bool)
+缩进如果函数定义或声明后包的类型。
+ 
+JavaScriptQuotes (JavaScriptQuoteStyle)
+JavaScriptQuoteStyle 使用JavaScript字符串。
+可能的值有：
+JSQS_Leave (在配置中： Leave) 留下字符串原本的括号
+JSQS_Single (在配置中： Single) 总是使用单括号
+JSQS_Double (在配置中： Double) 总是使用双括号.
+ 
+KeepEmptyLinesAtTheStartOfBlocks (bool)
+如果为真（true）, 保持块的起始空行。
+ 
+Language (LanguageKind)
+这种格式针对的是语言。
+可能的值有：
+LK_None (在配置中： None) 不使用
+LK_Cpp (在配置中： Cpp) 应该被用于C, C++, ObjectiveC, ObjectiveC++.
+LK_Java (在配置中： Java) 应该被用于Java.
+LK_JavaScript (在配置中： JavaScript) 应该被用于 JavaScript.
+LK_Proto (在配置中： Proto) 应该被用于 Protocol 缓冲 (https://developers.google.com/protocol-buffers/).
+LK_TableGen (在配置中： TableGen) 应该被用于 TableGen 代码.
+ 
+MacroBlockBegin (std::string)
+匹配宏指令的一个常用于开始一个块的表达式。
+ 
+MacroBlockEnd (std::string)
+匹配宏指令的一个常用于结束一个块的表达式。
+ 
+MaxEmptyLinesToKeep (unsigned)
+连续空行的最大数。
+ 
+NamespaceIndentation (NamespaceIndentationKind)
+用于命名空间的缩排。
+可能的值有：
+NI_None (在配置中： None) 在命名空间中不缩进。
+NI_Inner (在配置中： Inner) 仅在内部命名空间缩进(嵌套在其他命名空间)。
+NI_All (在配置中： All) 在所有的命名空间中缩进。
+ 
+ObjCBlockIndentWidth (unsigned)
+OC块中所拍的字符数。
+ 
+ObjCSpaceAfterProperty (bool)
+在OC中的@property后面添加一个空格。例如：使用“@property (readonly)”而不是“@property(readonly)”。
+ 
+ObjCSpaceBeforeProtocolList (bool)
+在OC协议列表前添加一个空格， 例如： 使用<Protocol>而不是<Protocol>。
+ 
+PenaltyBreakBeforeFirstCallParameter (unsigned)
+在调用小括号“（”后给一个方法调用换行的处罚。
+ 
+PenaltyBreakComment (unsigned)
+包含在一个注释中的每一个换行的处罚。
+ 
+PenaltyBreakFirstLessLess (unsigned)
+在第一个“<<”前的换行的处罚。
+ 
+PenaltyBreakString (unsigned)
+包含一个字面量的字符串中的每一个换行的处罚。
+ 
+PenaltyExcessCharacter (unsigned)
+每一个字符的列限制外的处罚。
+ 
+PenaltyReturnTypeOnItsOwnLine (unsigned)
+把一个方法返回类型放到函数的同一行。
+ 
+PointerAlignment (PointerAlignmentStyle)
+指针和引用的对其方式。
+可能的值有：
+PAS_Left (在配置中： Left) 指针左对齐。
+PAS_Right (在配置中： Right) 指针右对齐。
+PAS_Middle (在配置中： Middle) 指针中间对齐。
+ 
+ReflowComments (bool)
+如果为真（true）, clang-format 将会尝试将注释重新流布局。
+ 
+SortIncludes (bool)
+如果为真（true）, clang-format 将会分类#includes.
+ 
+SpaceAfterCStyleCast (bool)
+如果为真（true）, 可能在一个C样式描述后插入一个空格。
+ 
+SpaceAfterTemplateKeyword (bool)
+如果为真（true）, 在“template”关键字后插入一个空格。
+ 
+SpaceBeforeAssignmentOperators (bool)
+如果为假（false），移除分配操作符（=）前空格。
+ 
+SpaceBeforeParens (SpaceBeforeParensOptions)
+大括号之前定义空格的情况。
+可能的值有：
+SBPO_Never (在配置中： Never) 从不在圆括号之前加空格。
+SBPO_ControlStatements (在配置中： ControlStatements) 仅在控制声明关键词（for/if/while···）的圆括号前面加空格。
+SBPO_Always (在配置中： Always) 总在圆括号前面加空格, 除了语法规则禁止的（在方法中-像宏定义）或者 当其他样式规则定义过的(在一元运算符后,圆括号, 等等)
+ 
+SpaceInEmptyParentheses (bool)
+如果为真（true）, 可能会在“（）”中插入空格。
+ 
+SpacesBeforeTrailingComments (unsigned)
+单行注释前的空格数(// - comments)。
+这不会影响块注释(/* - comments)，因为它们通常会有不同的使用模式和一些特殊情况。
+ 
+SpacesInAngles (bool)
+如果为真（true）, 将会在模板对齐列的“<>”中间插入空格。
+ 
+SpacesInCStyleCastParentheses (bool)
+如果为真（true）, 将会在C样式描述中插入空格。
+ 
+SpacesInContainerLiterals (bool)
+如果为真（true）, 将会在字面量容器中插入空格(例如 OC和Javascript的数组和字典字面量)。
+ 
+SpacesInParentheses (bool)
+如果为真（true）, 将会在“(”之后和“)”之前插入空格。
+ 
+SpacesInSquareBrackets (bool)
+如果为真（true）,将会在“[”之后和“]”之前插入空格。
+ 
+Standard (LanguageStandard)
+用这个标准格式化：例如：在LS_Cpp03中使用 A<A<int> > 而不是 A<A<int>>
+可能的值有：
+LS_Cpp03 (在配置中： Cpp03) 使用Use C++03统一语法。
+LS_Cpp11 (在配置中： Cpp11) 使用C++11的特征(例如 A<A<int>>而不是A<A<int> >).
+LS_Auto (在配置中： Auto) 基于输入自动检查。
+TabWidth (unsigned)
+用于制表符停止的列数。
+ 
+UseTab (UseTabStyle)
+在结果文件中使用制表符字符的方式。
+可能的值有：
+UT_Never (在配置中： Never) 从不使用制表符。
+UT_ForIndentation (在配置中： ForIndentation) 仅缩排时使用制表符。
+UT_Always (在配置中： Always) 使用标签时，我们需要填补的空白，至少从一个制表位到下一个。
+　　
+
+英文
+
+ 
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+Configuring Style in Code
+ 
+When using clang::format::reformat(...) functions, the format is specified by supplying the clang::format::FormatStyle structure.
+ 
+Configurable Format Style Options
+ 
+This section lists the supported style options. Value type is specified for each option. For enumeration types possible values are specified both as a C++ enumeration member (with a prefix, e.g. LS_Auto), and as a value usable in the configuration (without a prefix: Auto).
+ 
+BasedOnStyle (string)
+The style used for all options not specifically set in the configuration.
+ 
+This option is supported only in the clang-format configuration (both within -style='{...}' and the .clang-format file).
+ 
+Possible values:
+ 
+LLVM A style complying with the LLVM coding standards
+Google A style complying with Google’s C++ style guide
+Chromium A style complying with Chromium’s style guide
+Mozilla A style complying with Mozilla’s style guide
+WebKit A style complying with WebKit’s style guide
+AccessModifierOffset (int)
+The extra indent or outdent of access modifiers, e.g. public:.
+AlignAfterOpenBracket (BracketAlignmentStyle)
+If true, horizontally aligns arguments after an open bracket.
+ 
+This applies to round brackets (parentheses), angle brackets and square brackets.
+ 
+Possible values:
+ 
+BAS_Align (in configuration: Align) Align parameters on the open bracket, e.g.:
+ 
+someLongFunction(argument1,
+                 argument2);
+BAS_DontAlign (in configuration: DontAlign) Don’t align, instead use ContinuationIndentWidth, e.g.:
+ 
+someLongFunction(argument1,
+    argument2);
+BAS_AlwaysBreak (in configuration: AlwaysBreak) Always break after an open bracket, if the parameters don’t fit on a single line, e.g.:
+ 
+someLongFunction(
+    argument1, argument2);
+AlignConsecutiveAssignments (bool)
+If true, aligns consecutive assignments.
+ 
+This will align the assignment operators of consecutive lines. This will result in formattings like
+ 
+int aaaa = 12;
+int b    = 23;
+int ccc  = 23;
+AlignConsecutiveDeclarations (bool)
+If true, aligns consecutive declarations.
+ 
+This will align the declaration names of consecutive lines. This will result in formattings like
+ 
+int         aaaa = 12;
+float       b = 23;
+std::string ccc = 23;
+AlignEscapedNewlinesLeft (bool)
+If true, aligns escaped newlines as far left as possible. Otherwise puts them into the right-most column.
+AlignOperands (bool)
+If true, horizontally align operands of binary and ternary expressions.
+ 
+Specifically, this aligns operands of a single expression that needs to be split over multiple lines, e.g.:
+ 
+int aaa = bbbbbbbbbbbbbbb +
+          ccccccccccccccc;
+AlignTrailingComments (bool)
+If true, aligns trailing comments.
+AllowAllParametersOfDeclarationOnNextLine (bool)
+Allow putting all parameters of a function declaration onto the next line even if BinPackParameters is false.
+AllowShortBlocksOnASingleLine (bool)
+Allows contracting simple braced statements to a single line.
+ 
+E.g., this allows if (a) { return; } to be put on a single line.
+AllowShortCaseLabelsOnASingleLine (bool)
+If true, short case labels will be contracted to a single line.
+AllowShortFunctionsOnASingleLine (ShortFunctionStyle)
+Dependent on the value, int f() { return 0; } can be put on a single line.
+ 
+Possible values:
+ 
+SFS_None (in configuration: None) Never merge functions into a single line.
+SFS_Empty (in configuration: Empty) Only merge empty functions.
+SFS_Inline (in configuration: Inline) Only merge functions defined inside a class. Implies “empty”.
+SFS_All (in configuration: All) Merge all functions fitting on a single line.
+AllowShortIfStatementsOnASingleLine (bool)
+If true, if (a) return; can be put on a single line.
+AllowShortLoopsOnASingleLine (bool)
+If true, while (true) continue; can be put on a single line.
+AlwaysBreakAfterDefinitionReturnType (DefinitionReturnTypeBreakingStyle)
+The function definition return type breaking style to use. This option is deprecated and is retained for backwards compatibility.
+ 
+Possible values:
+ 
+DRTBS_None (in configuration: None) Break after return type automatically. PenaltyReturnTypeOnItsOwnLine is taken into account.
+DRTBS_All (in configuration: All) Always break after the return type.
+DRTBS_TopLevel (in configuration: TopLevel) Always break after the return types of top-level functions.
+AlwaysBreakAfterReturnType (ReturnTypeBreakingStyle)
+The function declaration return type breaking style to use.
+ 
+Possible values:
+ 
+RTBS_None (in configuration: None) Break after return type automatically. PenaltyReturnTypeOnItsOwnLine is taken into account.
+RTBS_All (in configuration: All) Always break after the return type.
+RTBS_TopLevel (in configuration: TopLevel) Always break after the return types of top-level functions.
+RTBS_AllDefinitions (in configuration: AllDefinitions) Always break after the return type of function definitions.
+RTBS_TopLevelDefinitions (in configuration: TopLevelDefinitions) Always break after the return type of top-level definitions.
+AlwaysBreakBeforeMultilineStrings (bool)
+If true, always break before multiline string literals.
+ 
+This flag is mean to make cases where there are multiple multiline strings in a file look more consistent. Thus, it will only take effect if wrapping the string at that point leads to it being indented ContinuationIndentWidth spaces from the start of the line.
+AlwaysBreakTemplateDeclarations (bool)
+If true, always break after the template<...> of a template declaration.
+BinPackArguments (bool)
+If false, a function call’s arguments will either be all on the same line or will have one line each.
+BinPackParameters (bool)
+If false, a function declaration’s or function definition’s parameters will either all be on the same line or will have one line each.
+BraceWrapping (BraceWrappingFlags)
+Control of individual brace wrapping cases.
+ 
+If BreakBeforeBraces is set to BS_Custom, use this to specify how each individual brace case should be handled. Otherwise, this is ignored.
+ 
+Nested configuration flags:
+ 
+bool AfterClass Wrap class definitions.
+bool AfterControlStatement Wrap control statements (if/for/while/switch/..).
+bool AfterEnum Wrap enum definitions.
+bool AfterFunction Wrap function definitions.
+bool AfterNamespace Wrap namespace definitions.
+bool AfterObjCDeclaration Wrap ObjC definitions (@autoreleasepool, interfaces, ..).
+bool AfterStruct Wrap struct definitions.
+bool AfterUnion Wrap union definitions.
+bool BeforeCatch Wrap before catch.
+bool BeforeElse Wrap before else.
+bool IndentBraces Indent the wrapped braces themselves.
+BreakAfterJavaFieldAnnotations (bool)
+Break after each annotation on a field in Java files.
+BreakBeforeBinaryOperators (BinaryOperatorStyle)
+The way to wrap binary operators.
+ 
+Possible values:
+ 
+BOS_None (in configuration: None) Break after operators.
+BOS_NonAssignment (in configuration: NonAssignment) Break before operators that aren’t assignments.
+BOS_All (in configuration: All) Break before operators.
+BreakBeforeBraces (BraceBreakingStyle)
+The brace breaking style to use.
+ 
+Possible values:
+ 
+BS_Attach (in configuration: Attach) Always attach braces to surrounding context.
+BS_Linux (in configuration: Linux) Like Attach, but break before braces on function, namespace and class definitions.
+BS_Mozilla (in configuration: Mozilla) Like Attach, but break before braces on enum, function, and record definitions.
+BS_Stroustrup (in configuration: Stroustrup) Like Attach, but break before function definitions, catch, and else.
+BS_Allman (in configuration: Allman) Always break before braces.
+BS_GNU (in configuration: GNU) Always break before braces and add an extra level of indentation to braces of control statements, not to those of class, function or other definitions.
+BS_WebKit (in configuration: WebKit) Like Attach, but break before functions.
+BS_Custom (in configuration: Custom) Configure each individual brace in BraceWrapping.
+BreakBeforeTernaryOperators (bool)
+If true, ternary operators will be placed after line breaks.
+BreakConstructorInitializersBeforeComma (bool)
+Always break constructor initializers before commas and align the commas with the colon.
+BreakStringLiterals (bool)
+Allow breaking string literals when formatting.
+ColumnLimit (unsigned)
+The column limit.
+ 
+A column limit of 0 means that there is no column limit. In this case, clang-format will respect the input’s line breaking decisions within statements unless they contradict other rules.
+CommentPragmas (std::string)
+A regular expression that describes comments with special meaning, which should not be split into lines or otherwise changed.
+ConstructorInitializerAllOnOneLineOrOnePerLine (bool)
+If the constructor initializers don’t fit on a line, put each initializer on its own line.
+ConstructorInitializerIndentWidth (unsigned)
+The number of characters to use for indentation of constructor initializer lists.
+ContinuationIndentWidth (unsigned)
+Indent width for line continuations.
+Cpp11BracedListStyle (bool)
+If true, format braced lists as best suited for C++11 braced lists.
+ 
+Important differences: - No spaces inside the braced list. - No line break before the closing brace. - Indentation with the continuation indent, not with the block indent.
+ 
+Fundamentally, C++11 braced lists are formatted exactly like function calls would be formatted in their place. If the braced list follows a name (e.g. a type or variable name), clang-format formats as if the {} were the parentheses of a function call with that name. If there is no name, a zero-length name is assumed.
+DerivePointerAlignment (bool)
+If true, analyze the formatted file for the most common alignment of & and \*. PointerAlignment is then used only as fallback.
+DisableFormat (bool)
+Disables formatting completely.
+ExperimentalAutoDetectBinPacking (bool)
+If true, clang-format detects whether function calls and definitions are formatted with one parameter per line.
+ 
+Each call can be bin-packed, one-per-line or inconclusive. If it is inconclusive, e.g. completely on one line, but a decision needs to be made, clang-format analyzes whether there are other bin-packed cases in the input file and act accordingly.
+ 
+NOTE: This is an experimental flag, that might go away or be renamed. Do not use this in config files, etc. Use at your own risk.
+ForEachMacros (std::vector<std::string>)
+A vector of macros that should be interpreted as foreach loops instead of as function calls.
+ 
+These are expected to be macros of the form:
+ 
+FOREACH(<variable-declaration>, ...)
+  <loop-body>
+In the .clang-format configuration file, this can be configured like:
+ 
+ForEachMacros: ['RANGES_FOR', 'FOREACH']
+For example: BOOST_FOREACH.
+IncludeCategories (std::vector<IncludeCategory>)
+Regular expressions denoting the different #include categories used for ordering #includes.
+ 
+These regular expressions are matched against the filename of an include (including the <> or “”) in order. The value belonging to the first matching regular expression is assigned and #includes are sorted first according to increasing category number and then alphabetically within each category.
+ 
+If none of the regular expressions match, INT_MAX is assigned as category. The main header for a source file automatically gets category 0. so that it is generally kept at the beginning of the #includes (http://llvm.org/docs/CodingStandards.html#include-style). However, you can also assign negative priorities if you have certain headers that always need to be first.
+ 
+To configure this in the .clang-format file, use:
+ 
+IncludeCategories:
+  - Regex:           '^"(llvm|llvm-c|clang|clang-c)/'
+    Priority:        2
+  - Regex:           '^(<|"(gtest|isl|json)/)'
+    Priority:        3
+  - Regex:           '.\*'
+    Priority:        1
+IncludeIsMainRegex (std::string)
+Specify a regular expression of suffixes that are allowed in the file-to-main-include mapping.
+ 
+When guessing whether a #include is the “main” include (to assign category 0, see above), use this regex of allowed suffixes to the header stem. A partial match is done, so that: - “” means “arbitrary suffix” - “$” means “no suffix”
+ 
+For example, if configured to “(_test)?$”, then a header a.h would be seen as the “main” include in both a.cc and a_test.cc.
+IndentCaseLabels (bool)
+Indent case labels one level from the switch statement.
+ 
+When false, use the same indentation level as for the switch statement. Switch statement body is always indented one level more than case labels.
+IndentWidth (unsigned)
+The number of columns to use for indentation.
+IndentWrappedFunctionNames (bool)
+Indent if a function definition or declaration is wrapped after the type.
+JavaScriptQuotes (JavaScriptQuoteStyle)
+The JavaScriptQuoteStyle to use for JavaScript strings.
+ 
+Possible values:
+ 
+JSQS_Leave (in configuration: Leave) Leave string quotes as they are.
+JSQS_Single (in configuration: Single) Always use single quotes.
+JSQS_Double (in configuration: Double) Always use double quotes.
+KeepEmptyLinesAtTheStartOfBlocks (bool)
+If true, empty lines at the start of blocks are kept.
+Language (LanguageKind)
+Language, this format style is targeted at.
+ 
+Possible values:
+ 
+LK_None (in configuration: None) Do not use.
+LK_Cpp (in configuration: Cpp) Should be used for C, C++, ObjectiveC, ObjectiveC++.
+LK_Java (in configuration: Java) Should be used for Java.
+LK_JavaScript (in configuration: JavaScript) Should be used for JavaScript.
+LK_Proto (in configuration: Proto) Should be used for Protocol Buffers (https://developers.google.com/protocol-buffers/).
+LK_TableGen (in configuration: TableGen) Should be used for TableGen code.
+MacroBlockBegin (std::string)
+A regular expression matching macros that start a block.
+MacroBlockEnd (std::string)
+A regular expression matching macros that end a block.
+MaxEmptyLinesToKeep (unsigned)
+The maximum number of consecutive empty lines to keep.
+NamespaceIndentation (NamespaceIndentationKind)
+The indentation used for namespaces.
+ 
+Possible values:
+ 
+NI_None (in configuration: None) Don’t indent in namespaces.
+NI_Inner (in configuration: Inner) Indent only in inner namespaces (nested in other namespaces).
+NI_All (in configuration: All) Indent in all namespaces.
+ObjCBlockIndentWidth (unsigned)
+The number of characters to use for indentation of ObjC blocks.
+ObjCSpaceAfterProperty (bool)
+Add a space after @property in Objective-C, i.e. use @property (readonly) instead of @property(readonly).
+ObjCSpaceBeforeProtocolList (bool)
+Add a space in front of an Objective-C protocol list, i.e. use Foo <Protocol> instead of Foo<Protocol>.
+PenaltyBreakBeforeFirstCallParameter (unsigned)
+The penalty for breaking a function call after call(.
+PenaltyBreakComment (unsigned)
+The penalty for each line break introduced inside a comment.
+PenaltyBreakFirstLessLess (unsigned)
+The penalty for breaking before the first <<.
+PenaltyBreakString (unsigned)
+The penalty for each line break introduced inside a string literal.
+PenaltyExcessCharacter (unsigned)
+The penalty for each character outside of the column limit.
+PenaltyReturnTypeOnItsOwnLine (unsigned)
+Penalty for putting the return type of a function onto its own line.
+PointerAlignment (PointerAlignmentStyle)
+Pointer and reference alignment style.
+ 
+Possible values:
+ 
+PAS_Left (in configuration: Left) Align pointer to the left.
+PAS_Right (in configuration: Right) Align pointer to the right.
+PAS_Middle (in configuration: Middle) Align pointer in the middle.
+ReflowComments (bool)
+If true, clang-format will attempt to re-flow comments.
+SortIncludes (bool)
+If true, clang-format will sort #includes.
+SpaceAfterCStyleCast (bool)
+If true, a space may be inserted after C style casts.
+SpaceAfterTemplateKeyword (bool)
+If true, a space will be inserted after the ‘template’ keyword.
+SpaceBeforeAssignmentOperators (bool)
+If false, spaces will be removed before assignment operators.
+SpaceBeforeParens (SpaceBeforeParensOptions)
+Defines in which cases to put a space before opening parentheses.
+ 
+Possible values:
+ 
+SBPO_Never (in configuration: Never) Never put a space before opening parentheses.
+SBPO_ControlStatements (in configuration: ControlStatements) Put a space before opening parentheses only after control statement keywords (for/if/while...).
+SBPO_Always (in configuration: Always) Always put a space before opening parentheses, except when it’s prohibited by the syntax rules (in function-like macro definitions) or when determined by other style rules (after unary operators, opening parentheses, etc.)
+SpaceInEmptyParentheses (bool)
+If true, spaces may be inserted into ().
+SpacesBeforeTrailingComments (unsigned)
+The number of spaces before trailing line comments (// - comments).
+ 
+This does not affect trailing block comments (/* - comments) as those commonly have different usage patterns and a number of special cases.
+SpacesInAngles (bool)
+If true, spaces will be inserted after < and before > in template argument lists.
+SpacesInCStyleCastParentheses (bool)
+If true, spaces may be inserted into C style casts.
+SpacesInContainerLiterals (bool)
+If true, spaces are inserted inside container literals (e.g. ObjC and Javascript array and dict literals).
+SpacesInParentheses (bool)
+If true, spaces will be inserted after ( and before ).
+SpacesInSquareBrackets (bool)
+If true, spaces will be inserted after [ and before ].
+Standard (LanguageStandard)
+Format compatible with this standard, e.g. use A<A<int> > instead of A<A<int>> for LS_Cpp03.
+ 
+Possible values:
+ 
+LS_Cpp03 (in configuration: Cpp03) Use C++03-compatible syntax.
+LS_Cpp11 (in configuration: Cpp11) Use features of C++11 (e.g. A<A<int>> instead of A<A<int> >).
+LS_Auto (in configuration: Auto) Automatic detection based on the input.
+TabWidth (unsigned)
+The number of columns used for tab stops.
+UseTab (UseTabStyle)
+The way to use tab characters in the resulting file.
+ 
+Possible values:
+ 
+UT_Never (in configuration: Never) Never use tab.
+UT_ForIndentation (in configuration: ForIndentation) Use tabs only for indentation.
+UT_Always (in configuration: Always) Use tabs whenever we need to fill whitespace that spans at least from one tab stop to the next one.
+　　
+
+ 
+
+ 
+
+******
+
+后面的内容与标题无关 推广下个人开发的APP 觉得还不错的 自己自己偷偷用就行了
+
+密码口袋
+
+
+
+ 
+
+ 
+
+
+
+ 
+
+http://www.cnblogs.com/PaulpauL/ 版权声明：本文为博主原创文章，未经博主允许不得转载。
+标签: iOS, clangFormat, 代码格式化
+好文要顶 关注我 收藏该文  
+PaulpauL
+粉丝 - 3 关注 - 20
++加关注
+10
+« 上一篇： clang format 自定义样式常用参数说明
+» 下一篇： 类名与字符串的互转
+posted @ 2016-10-03 22:33  PaulpauL  阅读(18018)  评论(2)  编辑  收藏  举报
+刷新评论刷新页面返回顶部
+登录后才能查看或发表评论，立即 登录 或者 逛逛 博客园首页
+【推荐】MASA Framework 开启全新的.NET应用开发体验
+【推荐】下一步，敏捷！云可达科技SpecDD敏捷开发专区
+【推荐】腾讯云多款云产品1折起，买云服务器送免费机器
+
+编辑推荐：
+· 一个奇葩的线上问题，导致我排查了一天
+· 如何使用 .NET 6 的 IHostedService 和 BackgroundService？
+· 纯 CSS 实现拼图游戏
+· ASP.NET Core 6 框架揭秘实例演示：异常处理高阶用法
+· 彻底了解线程池的原理——40行从零开始自己写线程池
+最新新闻：
+· Oracle 首席执行官 Larry Ellison 陷入新官司：吹过的牛，变成了砸自己脚的石头
+· 蔚来独立调查结果出炉：灰熊报告相关指控均无事实依据
+· 腾讯给二创开了扇窗，但又没完全开
+· 47款App遭通报！涉零跑、宝沃等，被指强制、频繁、过度索取权限
+· 别被快手“骗”了
+» 更多新闻...
+常用链接
+我的随笔
+我的评论
+我的参与
+最新评论
+我的标签
+阅读排行榜
+1. 如何在MAC上使用SVN，简单几行命令搞定(24364)
+2. Eclipse运行错误：Failed to load the JNI shared library的解决办法(23088)
+3. clang format 官方文档自定义参数介绍（中英文）(18017)
+4. iOS10 的适配问题，你遇到了吗？导航栏标题和返回按钮神奇的消失了(7586)
+5. 驼峰命名与蛇形（下划线）命名的互转(6976)
+6. 安装好MySQL后就开始学习如何后台创建自己的数据库吧！(5655)
+7. 静态库引入引起的错误解决方案，ld: warning: ignoring file ”…/XXX.a”, file was built for archive which is not the architecture being linked (armv7): “…/XXX.a” Undefined symbols for architecture armv7: "_OBJC_CLASS_$(5627)
+8. Xcode 设置代码不自动换行(5244)
+9. 使用SVN时出现的文件缺失问题(4950)
+10. OC导入框架方式#import、@import的区别(4407)
+11. UIAlertViewController的使用(4372)
+12. Xcode8不能使用快捷键“command+/”注释代码的解决方法(3734)
+13. UIPageControl修改圆点大小，根据View大小自适应(3623)
+14. 如何通过包名打开手机里的APP(3588)
+15. FarBox的使用经历(3383)
+Copyright © 2022 PaulpauL
+Powered by .NET 6 on Kubernetes

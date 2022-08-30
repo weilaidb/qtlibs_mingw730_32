@@ -1,0 +1,97 @@
+#此处list需要深拷贝，否则作为lastlist的值时，修改list，会导致所有的value都是相同的
+
+输入
+1 2 3 4 5 6 1 8 9
+
+输出
+1                 8       9
+4                 5       6
+
+
+====================================================
+#!/bin/python3
+import re
+import copy
+import os
+
+
+
+#打印开关
+printflag = 0
+
+lastlist = []
+lastkeys = []
+
+def show(str):
+    global printflag
+    if(printflag):
+        print(str)
+
+def showresult(list,oncemax):
+    for i in range(len(lastlist)):
+        show(lastkeys[i])
+        show(lastlist[i])
+        print("%-18s%-8s%s" %(lastlist[i][0], lastlist[i][1], lastlist[i][2]))
+
+#链表深拷贝!!!插入并更新list相同key的内容
+#链表深拷贝!!!插入并更新list相同key的内容
+#链表深拷贝!!!插入并更新list相同key的内容
+def list_insert_list(key, list):
+    findflag = False
+    index = 0
+    newlist = copy.deepcopy(list)
+
+    for item in lastkeys:
+        if key == item:
+            findflag = True
+            lastlist[index] = newlist
+            index = index + 1
+
+    if False == findflag:
+        lastkeys.append(key)
+        lastlist.append(newlist)
+
+
+def split_list_to_array(list, oncemax):
+    show("--before split list:")
+    show(list)
+    show(oncemax)
+
+    i = 0
+    keyindex = 0
+    templist = []
+
+    for item in list:
+        # show(item)
+        if(i%oncemax == 0):
+            templist.clear()
+            templist.append(item)
+        else:
+            templist.append(item)
+
+        i = i + 1
+        if(i % oncemax == 0):
+            show(templist)
+            # 此处list需要深拷贝，否则作为lastlist的值时，修改list，会导致所有的value都是相同的
+            # newlist = copy.deepcopy(templist)
+            list_insert_list(templist[keyindex], templist)
+            templist.clear()
+
+    show("==last result:")
+    show(lastlist)
+    showresult(lastlist, 3)
+
+
+def main():
+    print("hello, world!!!")
+    test = input()
+    show(test)
+    splitlist = re.split("\s+",test)
+    show(splitlist)
+    split_list_to_array(splitlist, 3)
+
+
+
+
+if __name__ == '__main__':
+    main()

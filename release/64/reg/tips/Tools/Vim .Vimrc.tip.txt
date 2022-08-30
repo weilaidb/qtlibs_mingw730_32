@@ -1,0 +1,611 @@
+"================keymap 按键映射
+"<Leader>
+let mapleader = ","
+
+
+"普通模式下按 F2 快速打开(或关闭)显示行号。
+nnoremap <F2> :set nu! nu?<CR>
+
+" 按F3即可显示或隐藏NerdTree区域了。
+map <F3> :NERDTreeMirror<CR>
+map <F3> :NERDTreeToggle<CR>
+" 按F5重新加载.vimrc
+map <F5> :source $MYVIMRC
+" 按F6重新加载配置
+map <F6> :vs ~/.vimrc
+"选中文字高亮与取消高亮，前提是安装Plugin 'lfv89/vim-interestingwords'
+map <F8> <Leader>k
+map <F9> <Leader>K
+
+
+"设置shift+w切换标签页
+map <S-W> gt
+
+map <C-k/> 0i//
+"关闭窗口
+map <S-Q> :q<CR>
+"复制一行
+"map <C-D> <ESC>yyp
+
+map <C-L> <ESC>dd
+
+map <C-CR> <ESC>o<CR><ESC>
+
+map <C-k7> <ESC>o<CR><CR><CR><ESC>
+
+map <C-k8> <ESC>O/**<CR>**<CR>**/<ESC>
+
+
+"上移一行
+noremap <C-Up> :call feedkeys( line('.')==1 ? '' : 'ddkP' )<CR>
+"下移一行
+noremap <C-Down> ddp
+"快速跳转window窗口
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+"安装插件
+map <C-I> :PluginInstall
+
+
+
+"=============================================安装插件==============================
+"=============================================安装插件==============================
+"=============================================安装插件==============================
+
+"===设置Vundle核心插件==="
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"安装的插件列表"
+
+
+"核心插件，用于安装其他所有插件"
+Plugin 'VundleVim/Vundle.vim'
+"美化状态栏"
+Plugin 'powerline/powerline'
+"类似IDE的补全插件(如果使用片段则需要把此插件临时注掉)" 
+Plugin 'ycm-core/YouCompleteMe'
+"添加一个树形目录"
+Plugin 'preservim/nerdtree'
+"缩进指示线"
+Plugin 'Yggdroot/indentLine'
+"自动格式化代码"
+Plugin 'tell-k/vim-autopep8'
+"括号和引号自动补全"
+Plugin 'jiangmiao/auto-pairs'
+"多行注释"
+Plugin 'preservim/nerdcommenter'
+"实时语法检查"
+Plugin 'vim-syntastic/syntastic'
+"美化状态栏"
+Plugin 'Lokaltog/vim-powerline'
+
+"===============美化插件
+"Plugin 'ryanoasis/vim-devicons'
+
+"高亮单词
+Plugin 'lfv89/vim-interestingwords'
+
+"安装CtrlP插件，文件模糊搜索
+Plugin 'kien/ctrlp.vim'
+"CtrlP改进版
+"Plugin 'ctrlpvim/ctrlp.vim'
+
+"ctrlp-funky 可以模糊搜索文件内容的方法名
+Plugin 'tacahiroy/ctrlp-funky'
+
+"A super simple function navigator for fzf, porting from ctrlp-funky.It is a very useful plugin when ctags is not exist or lsp is not support(vim版本需要在8.2以上)
+"Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plugin 'tracyone/fzf-funky',{'on': 'FzfFunky'}
+
+"格式化代码
+Plugin 'rhysd/vim-clang-format'
+
+Plugin 'Shougo/vimproc.vim'
+
+Plugin 'kana/vim-operator-user'
+
+"Grep的引擎
+Plugin 'dkprice/vim-easygrep'
+
+
+"状态栏增强插件，可以让你的Vim状态栏非常的美观
+Plugin 'vim-airline/vim-airline'
+
+"利用winmanager将nerdtree和taglist放到同一个”侧边栏”中，nerdtree在上方，taglist在下方
+"Plugin 'vim-scripts/winmanager--Fox'
+
+
+
+
+
+Plugin 'vim-scripts/taglist.vim'
+
+Plugin 'vim-scripts/winmanager'
+
+Plugin 'jlanzarotta/bufexplorer'
+
+"Plugin 'preservim/nerdtree'
+
+Plugin 'jistr/vim-nerdtree-tabs'
+
+"翻译插件
+Plugin 'voldikss/vim-translator'
+
+"Man 帮助
+Plugin 'vim-utils/vim-man'
+
+"EasyAlign 是一款用来做字符对齐的插件，简直是强迫症患者的福音。
+Plugin 'junegunn/vim-easy-align'
+
+"代码片段
+Plugin 'SirVer/ultisnips'
+
+Plugin 'honza/vim-snippets'
+
+"日历
+Plugin 'itchyny/calendar.vim'
+
+"配色方案
+Plugin 'jlanzarotta/colorSchemeExplorer'
+
+"编译
+Plugin 'tpope/vim-dispatch'
+
+"编译
+Plugin 'dbeniamine/vim-compile'
+
+
+
+
+
+
+call vundle#end()
+"开启文件类型自动检测，编写代码时自动换行对齐"
+filetype plugin indent on
+
+
+"===================================插件定义列表=============================
+"===================================插件定义列表=============================
+"===================================插件定义列表=============================
+
+" ===============================插件 calendar.vim
+"map cal :Calendar<cr>
+
+
+
+" ===============================插件 colorSchemeExplorer
+"Color Scheme Explorer plugin for Vim
+"By default the command to involke the Color Scheme Explorer is ':ColorSchemeExplorer''
+
+
+
+" Track the engine.
+"Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+"Plugin 'honza/vim-snippets'
+
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+"let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<s-f>"
+let g:UltiSnipsJumpBackwardTrigger="<s-b>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+
+" ===============================插件 vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+
+
+" ===============================插件 vim-man
+"<leader>b新建水平窗口打开man
+map <leader>b <Plug>(Man)
+"<leader>v新建竖直窗口打开man
+map <leader>v <Plug>(Vman)
+
+
+
+" ===============================插件 voldikss/vim-translator 翻译
+""" Configuration example
+" Echo translation in the cmdline
+nmap <silent> <Leader>t <Plug>Translate
+vmap <silent> <Leader>t <Plug>TranslateV
+" Display translation in a window
+nmap <silent> <Leader>w <Plug>TranslateW
+vmap <silent> <Leader>w <Plug>TranslateWV
+" Replace the text with translation
+nmap <silent> <Leader>r <Plug>TranslateR
+vmap <silent> <Leader>r <Plug>TranslateRV
+" Translate the text in clipboard
+nmap <silent> <Leader>x <Plug>TranslateX
+
+
+
+" ===============================插件 ctrlp.vim 模糊搜索文件
+
+let g:ctrlp_map = '<leader>p'
+let g:ctrlp_cmd = 'CtrlP'
+map <leader>f :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+"set autochdir
+
+
+" ===============================插件 ctrlp-funky 可以模糊搜索文件内容的方法名
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+let g:ctrlp_funky_syntax_highlight = 1
+
+let g:ctrlp_extensions = ['funky']
+
+
+" ===============================插件FzfFunky ctrlp-funky 的美化版本
+"nnoremap <Leader>fu :FzfFunky<Cr>
+" narrow the list down with a word under cursor
+"nnoremap <Leader>fU :execute 'FzfFunky ' . "expand('<cword>')<Cr>
+
+
+
+
+"===============================插件代码格式化
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "ColumnLimit" : 120,
+            \ "UseTab" : "Never",
+            \ "TabWidth" : 4,
+            \ "BreakBeforeBraces": "Allman",
+            \ "IndentCaseLabels": "false",
+            \ "AllowShortIfStatementsOnASingleLine" : "false",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "AlignConsecutiveAssignments" : "true",
+            \ "AllowShortBlocksOnASingleLine" : "false",
+            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+
+autocmd FileType c ClangFormatAutoEnable
+
+
+"===============================插件winmanager
+""""""""""""""""""""""""""""""" 
+"" winManager setting 
+""""""""""""""""""""""""""""""" 
+"设置界面分割 
+let g:winManagerWindowLayout ="BufExplorer,FileExplorer|TagList" 
+"let g:winManagerWindowLayout="TagList|FileExplorer,BufExplorer"
+
+"设置winmanager的宽度，默认为25 
+let g:winManagerWidth = 30  
+
+"定义打开关闭winmanager按键 
+
+nmap <silent><F10> :WMToggle<cr>
+"nmap wm :WMToggle<cr>
+
+" ===============================设置NerdTree
+"NerdTree文件前有^G字符的解决办法"
+let g:NERDTreeNodeDelimiter="\u00a0"
+" 设置NerdTree
+
+"autocmd vimenter * NERDTree  "自动开启Nerdtree
+"let g:NERDTreeWinSize = 45"设定 NERDTree 视窗大小
+"开启/关闭nerdtree快捷键
+map <C-f> :NERDTreeToggle<CR>
+"let NERDTreeShowBookmarks=1  " 开启Nerdtree时自动显示Bookmarks
+"打开vim时如果没有文件自动打开NERDTree
+autocmd vimenter * if !argc()|NERDTree|endif
+"当NERDTree为剩下的唯一窗口时自动关闭
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"设置树的显示图标
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeIgnore = ['\.pyc$']  " 过滤所有.pyc文件不显示
+"let g:NERDTreeShowLineNumbers=1  " 是否显示行号
+let g:NERDTreeHidden=0     "不显示隐藏文件
+"Making it prettier
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+
+" ============================ theme and status line ============================
+
+" theme, 使用colorscheme + space + tab就可以设置，If we continue pressing the Tab key, we can run through all the default color schemes. It normally includes a wide range of colors, including dark blue, default, red, desert, evening, elf lord, and more. 即在vim中:colorscheme ,按tab键
+set background=dark
+"colorscheme desert
+"colorscheme default
+"这个也不错
+"colorscheme evening
+colorscheme morning
+
+" set mark column color
+hi! link SignColumn   LineNr
+hi! link ShowMarksHLl DiffAdd
+hi! link ShowMarksHLu DiffChange
+
+" status line
+set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+set laststatus=2   " Always show the status line - use 2 lines for the status bar
+
+
+"================CSCope 映射
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CSCOPE settings for vim           
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" This file contains some boilerplate settings for vim's cscope interface,
+" plus some keyboard mappings that I've found useful.
+"
+" USAGE: 
+" -- vim 6:     Stick this file in your ~/.vim/plugin directory (or in a
+"               'plugin' directory in some other directory that is in your
+"               'runtimepath'.
+"
+" -- vim 5:     Stick this file somewhere and 'source cscope.vim' it from
+"               your ~/.vimrc file (or cut and paste it into your .vimrc).
+"
+" NOTE: 
+" These key maps use multiple keystrokes (2 or 3 keys).  If you find that vim
+" keeps timing you out before you can complete them, try changing your timeout
+" settings, as explained below.
+"
+" Happy cscoping,
+"
+" Jason Duell       jduell@alumni.princeton.edu     2002/3/7
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" This tests to see if vim was configured with the '--enable-cscope' option
+" when it was compiled.  If it wasn't, time to recompile vim... 
+if has("cscope")
+
+    """"""""""""" Standard cscope/vim boilerplate
+
+    " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+    set cscopetag
+
+    " check cscope for definition of a symbol before checking ctags: set to 1
+    " if you want the reverse search order.
+    set csto=0
+
+    " add any cscope database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out  
+    " else add the database pointed to by environment variable 
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+
+    " show msg when any other cscope db added
+    set cscopeverbose  
+
+
+    """"""""""""" My cscope/vim key mappings
+    "
+    " The following maps all invoke one of the following cscope search types:
+    "
+    "   's'   symbol: find all references to the token under cursor
+    "   'g'   global: find global definition(s) of the token under cursor
+    "   'c'   calls:  find all calls to the function name under cursor
+    "   't'   text:   find all instances of the text under cursor
+    "   'e'   egrep:  egrep search for the word under cursor
+    "   'f'   file:   open the filename under cursor
+    "   'i'   includes: find files that include the filename under cursor
+    "   'd'   called: find functions that function under cursor calls
+    "
+    " Below are three sets of the maps: one set that just jumps to your
+    " search result, one that splits the existing vim window horizontally and
+    " diplays your search result in the new window, and one that does the same
+    " thing, but does a vertical split instead (vim 6 only).
+    "
+    " I've used CTRL-\ and CTRL-@ as the starting keys for these maps, as it's
+    " unlikely that you need their default mappings (CTRL-\'s default use is
+    " as part of CTRL-\ CTRL-N typemap, which basically just does the same
+    " thing as hitting 'escape': CTRL-@ doesn't seem to have any default use).
+    " If you don't like using 'CTRL-@' or CTRL-\, , you can change some or all
+    " of these maps to use other keys.  One likely candidate is 'CTRL-_'
+    " (which also maps to CTRL-/, which is easier to type).  By default it is
+    " used to switch between Hebrew and English keyboard mode.
+    "
+    " All of the maps involving the <cfile> macro use '^<cfile>$': this is so
+    " that searches over '#include <time.h>" return only references to
+    " 'time.h', and not 'sys/time.h', etc. (by default cscope will return all
+    " files that contain 'time.h' as part of their name).
+
+
+    " To do the first type of search, hit 'CTRL-\', followed by one of the
+    " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
+    " search will be displayed in the current window.  You can use CTRL-T to
+    " go back to where you were before the search.  
+    "
+
+    nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+    nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+
+
+    " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
+    " makes the vim window split horizontally, with search result displayed in
+    " the new window.
+    "
+    " (Note: earlier versions of vim may not have the :scs command, but it
+    " can be simulated roughly via:
+    "    nmap <C-@>s <C-W><C-S> :cs find s <C-R>=expand("<cword>")<CR><CR>	
+
+    nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
+    nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+    nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
+
+
+    " Hitting CTRL-space *twice* before the search type does a vertical 
+    " split instead of a horizontal one (vim 6 and up only)
+    "
+    " (Note: you may wish to put a 'set splitright' in your .vimrc
+    " if you prefer the new window on the right instead of the left
+
+    nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
+    nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+    nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+
+
+    """"""""""""" key map timeouts
+    "
+    " By default Vim will only wait 1 second for each keystroke in a mapping.
+    " You may find that too short with the above typemaps.  If so, you should
+    " either turn off mapping timeouts via 'notimeout'.
+    "
+    "set notimeout 
+    "
+    " Or, you can keep timeouts, by uncommenting the timeoutlen line below,
+    " with your own personal favorite value (in milliseconds):
+    "
+    "set timeoutlen=4000
+    "
+    " Either way, since mapping timeout settings by default also set the
+    " timeouts for multicharacter 'keys codes' (like <F1>), you should also
+    " set ttimeout and ttimeoutlen: otherwise, you will experience strange
+    " delays as vim waits for a keystroke after you hit ESC (it will be
+    " waiting to see if the ESC is actually part of a key code like <F1>).
+    "
+    "set ttimeout 
+    "
+    " personally, I find a tenth of a second to work well for key code
+    " timeouts. If you experience problems and have a slow terminal or network
+    " connection, set it higher.  If you don't set ttimeoutlen, the value for
+    " timeoutlent (default: 1000 = 1 second, which is sluggish) is used.
+    "
+    "set ttimeoutlen=100
+
+endif
+
+
+
+
+
+
+"================默认配置 
+"显示行号
+set number
+" 标尺
+set ruler
+set rulerformat=%15(%c%V\ %p%%%)
+
+set nu ru ai si ts=4 sw=4
+"按TAB产生4个空格
+set ts=4  "(注：ts是tabstop的缩写，设TAB宽4个空格)
+set expandtab
+"Vim backspace键只能删除到行首，无法跳到上一行继续删除
+set backspace=2
+" 显示光标位置
+set cursorcolumn
+set cursorline
+
+"忽略大小写
+set ignorecase smartcase
+
+"中文语言支持设置参数：自动识别文件编码，解决中文乱码
+set termencoding=utf-8　　
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+
+
+set termencoding=utf-8
+set ffs=unix,dos,mac
+set formatoptions+=m
+set formatoptions+=B
+"括号自动补全
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap { {}<Esc>i
+inoremap " ""<Esc>i
+"逗号的映射
+"有了上面括号补全的映射，那在扩好了编辑完后需要跳出括号，应该输入<Esc>, l, a，但我们可以将这个功能映射为，，来实现，首先在编码时连续的两个逗号不会出现（目前我没有遇到），其次，平时输入逗号时，后面都会有一个紧跟的空格。所以对普通的输入不会造成影响。
+imap ,, <Esc>la
+
+
+
+" 非高亮度反白
+"set nohlsearch
+"设置搜索结果高亮显示
+set hlsearch
+" 自动缩排
+set autoindent
+" 可显示最后一行的状态
+set ruler
+" 左下角哪一行的状态
+set showmode
+" 可以在每一行最前面显示行号
+set nu
+" 背景设置为黑色
+set bg=dark
+" 进行语法检验，颜色显示
+syntax on
+
+
+"工作目录随文件变
+"autocmd BufEnter * cd %:p:h
+
+"ctags not found
+set tags=tags;
+set autochdir
+
+
+"字体大小
+set guifont=Courier_new:h18:b:cDEFAULT
+
+
+
+
+"================自定义函数
+" 返回当前时间
+func! GetTimeInfo()
+    "return strftime('%Y-%m-%d %A %H:%M:%S')
+    return strftime('%Y-%m-%d %H:%M:%S')
+endfunction
+
+" 插入模式按 Ctrl + D(ate) 插入当前时间
+imap <C-d> <C-r>=GetTimeInfo()<cr>

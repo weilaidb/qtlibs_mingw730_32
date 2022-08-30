@@ -1,0 +1,400 @@
+alias rmswp="rm -f .*.swp && rm -f *.swp "
+
+
+alias dush="du -sh "
+alias dus="du -s "
+
+alias pythoninstallpy="/usr/bin/python install.py "
+alias pythonsetupinstall="/usr/bin/python setup.py install "
+
+alias dmesgdT="dmesg -dT "
+
+alias dmesgT=" dmesg -T "
+
+alias dmesgd="dmesg -d "
+
+alias dmesgh="dmesg -h "
+
+alias dmesgc="dmesg -c "
+
+alias freem="free -m "
+
+alias freeg="free -g "
+
+alias freehelp="free --help "
+
+alias vmstathelp="vmstat --help "
+
+alias pmaphelp="pmap --help "
+
+alias catprocmeminfo="cat /proc/meminfo "
+
+alias unamea="uname -a "
+
+alias slabtophelp="slabtop -h "
+
+alias tophelp="top -h "
+alias vimhelp="vim --help "
+
+alias vimgreppython="vim --version|grep python "
+alias vim.="vim . "
+
+alias vim..="vim.. "
+alias catvimrc="cat ~/.vimrc "
+alias vimvimrc="vim ~/.vimrc "
+alias tarvimrc="tar -cvzf ~/vim.tar.gz ~/.vimrc ~/.vim "
+alias cdvim="cd ~/.vim "
+
+
+alias sr="sourcerootbash"
+alias sourcerootbash="source ~/.bashrc"
+alias killyum="sudo rm -f /var/run/yum.pid"
+alias grepnri="grep -nri "
+alias explorer="nautilus --new-window "
+alias gitst="git status -u "
+alias gitci="git commit "
+alias gitcim="git commit -m "
+alias gitck="git checkout "
+alias gitpl="git pull "
+alias gitclean="git clean -df "
+alias gitpullprogress="git pull --progress -v --no-rebase "origin" "
+alias gitclone="git clone "
+alias gitclonerecursive="git clone --recursive "
+alias gitsubmoduleadd="git submodule add "
+alias gitsubmoduleupdate="git submodule update "
+alias gitsubmoduleupdateremote="git submodule update --remote "
+alias gitremotev="git remote -v "
+alias gitgcclean="git reflog expire --expire=now --all && git gc --prune=now "
+alias gitsubmoduleinit="git submodule update --init --recursive "
+alias gitpushsetupstream="git push --set-upstream origin "
+alias vimrccopy="cd ~/work/git.bak/jsp_exe.vim && rm -rf vim && cp -af ~/.vim . && mv .vim vim && find . -name .git && cd vim/ && find . -name .git  | xargs -n1 rm -rf && cd .. && echo done ~~ "
+
+alias findgitlist="find . -name .git "
+
+
+alias gitdiff="git diff "
+alias gitdiffcached="git diff --cached"
+alias gitciamend="git commit --amend"
+alias gitremote="git remote -v"
+alias gitbr="git branch -a"
+alias gitreset="git reset "
+alias gitresetcheckout="git reset && git checkout "
+alias gitresethead1="git reset HEAD~1"
+alias gitresethead2="git reset HEAD~2"
+alias gitresetheadn="git reset HEAD~"
+alias gitlog="git log "
+#merges的显示补丁diff
+alias gitlogpatchall="git log -p -m "
+alias gitlogpatchallsinceoneday="git log -p -m --since=1.day"
+alias gitlogpatchallsinceoneweek="git log -p -m --since=1.week"
+alias gitlogpatchallgraph="git log -p -m --graph --all "
+#只显示修改的文件，不显示commit id和commit message?
+alias gitlognameonly="git log --name-only --format='' "
+alias gitlogstring="git log -S '"
+alias gitloggrep="git log --grep='"
+alias gitlogcommitter="git log --committer'"
+alias gitlogauthor="git log --author='"
+alias gitlogstat="git log --stat "
+alias gitloggraphall="git log --graph --all "
+alias gitloggraphoneline="git log --graph --oneline "
+alias gitlogmergespatch="git log --merges -p"
+alias gitlognomergespatch="git log --no-merges -p"
+alias gitlognomergespatchsince1day="git log --no-merges -p --since=1.day"
+alias gitlognomergespatchsince2day="git log --no-merges -p --since=2.day"
+alias gitlognomergespatchsince1week="git log --no-merges -p --since=1.week"
+alias gitlognomergespatchsince2week="git log --no-merges -p --since=2.week"
+alias gitlognomergespatchsince1month="git log --no-merges -p --since=1.month"
+alias gitlognomergespatchsince2month="git log --no-merges -p --since=2.month"
+alias gitlognomergespatchsince1year="git log --no-merges -p --since=1.year"
+alias gitlognomergespatchsince2year="git log --no-merges -p --since=2.year"
+alias gitadd="git add -A "
+alias gitaddchangeauto1="sourcerootbash && git add . && gitci -m 'add changes for `gitst . | grep 'modified\|deleted\|new' | awk -F':' '{print $2}'`'"
+alias gitaddchangeauto2="git add . && gitci -m "add changes for `gitst . | grep 'modified\|deleted' | awk '{print $2}'`""
+alias gitaddchangeauto="sourcerootbash && gitaddchangeauto1"
+alias gitpushcurbranch="CURBR=`git branch| awk '{print $2}'` && git push origin $CURBR"
+#for  PATH and other define
+export PATH=$PATH:~/bin
+export PS1="[\u@\h] \w\n$ "
+alias killyum="sudo rm -f /var/run/yum.pid"
+alias explorer="nautilus --new-window "
+
+alias makelinuxX86="make clean && make defconfig && make && make modules"
+alias findlist="find | grep -v .git > findlist"
+alias findimage="find | grep Image"
+alias yuminstally="yum install -y "
+alias yumremove="yum remove "
+alias yumlist="yum list "
+alias yumlistgrep="yum list | grep "
+alias yumlistinstalled="yum list installed "
+alias yumlistinstalledgrep="yum list installed | grep "
+alias yumcleanpackages="yum clean packages "
+alias yumcleanall="yum clean all "
+alias yummakecache="yum makecache "
+
+alias rpmi="rpm -i "
+alias rpme="rpm -e "
+alias rpmenodeps="rpm -e --nodeps "
+alias rpmq="rpm -q "
+alias rpmqa="rpm -qa "
+alias rpmqagrep="rpm -qa | grep "
+
+
+alias lslt="ls -lt"
+alias lslh="ls -lh"
+alias llt="ls -lt"
+alias llh="ls -lh"
+alias cd..="cd .."
+alias cd....="cd ../.. "
+alias cd...="cd ../.. "
+alias cdfdir='cd `dirname '
+
+alias useraddhome="useradd -d /home "
+alias journalctlxe="journalctl -xe "
+alias aliasgrep="alias | grep "
+alias makedefconfigarchx86="make defconfig ARCH=x86 "
+alias makedefconfigarcharm="make defconfig ARCH=arm "
+alias makedefconfig="make defconfig "
+alias makemenuconfig="make menuconfig "
+
+alias makemenuconfigarcharm="make menuconfig ARCH=arm "
+alias makemenuconfigarchx86="make menuconfig ARCH=x86 "
+
+
+#java
+alias javassm="cd ~/soft/web_notebook_online/jar && java -jar ssm-0.0.1-SNAPSHOT.jar --server.port=9090 "
+alias javassmlastest="cd ~/soft/web_notebook_online/jar && nohup java -jar  `ls -lat *.jar | awk '{print $9}' | head -n 1` --server.port=9090 &"
+alias javajar="java -jar "
+alias javajarport="java --server.port=9090 -jar "
+
+
+
+
+
+#docker
+alias dockerimages="docker images "
+alias dockerps="docker ps -a"
+alias dockerrun="docker run -i -t "
+alias dockerexec="docker exec -it "
+alias dockerattach="docker attach "
+alias dockerinfo="docker info "
+alias dockerlogs="docker logs "
+alias dockerpull="docker pull "
+alias dockerstop="docker stop "
+alias dockerstart="docker start "
+alias dockertop="docker top "
+alias dockerversin="docker --version "
+#删除images,必须先删除container
+alias dockerrmi="docker rmi "
+#删除container
+alias dockerrm="docker rm "
+
+
+#python
+alias jupyternotebookroot="jupyter notebook --allow-root "
+alias jupyternotebookrootnohup="nohup jupyter notebook --allow-root > jupyter.log 2>&1 & "
+alias flaskrun0="flask run --host=0.0.0.0 "
+alias pipinstall3="pip3 install "
+alias pipinstall="pip install "
+alias pipuninstall="pip uninstall "
+alias websshstart="python3 manage.py runserver 0.0.0.0:8000 "
+
+
+#go
+alias gorun="go run "
+alias goversion="go version "
+alias gohelp="go help "
+alias goenv="go env "
+alias goenvauto="go env -w GO111MODULE=auto "
+alias gobuild="go build "
+
+
+#sysctl
+alias startsmb="systemctl start smbd "
+alias stopsmb="systemctl stop smbd "
+alias statussmb="systemctl status smbd "
+
+#process
+alias psaux="ps aux "
+alias psauxgrep="ps aux | grep "
+alias kill9="kill -9 "
+
+
+#cmake mybuild
+alias cmakebuildmy="mkdir mybuild && cd mybuild && cmake .. && make && cd .."
+alias cmakebuildmyforce="rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. || cd .."
+alias mybuildtest="./mybuild/test "
+alias mybuildall="rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. && ./mybuild/test  || cd .."
+
+#other
+alias diffdir="diff -urNa "
+
+
+
+#VIM
+alias ctagscscope0="ctags -R && cscope -Rkb "
+
+alias ctagscscope="find `pwd` -name "*.[ch]" -o -name "*.cpp" > cscope.files  && cscope -Rkb 
+
+"Vim snippets 代码片段
+
+alias catsnippetada="cat ~/.vim/bundle/vim-snippets/UltiSnips/ada.snippets | grep ^snippet "
+
+alias catsnippetall="cat ~/.vim/bundle/vim-snippets/UltiSnips/all.snippets | grep ^snippet "
+
+alias catsnippetbib="cat ~/.vim/bundle/vim-snippets/UltiSnips/bib.snippets | grep ^snippet "
+
+alias catsnippetbindzone="cat ~/.vim/bundle/vim-snippets/UltiSnips/bindzone.snippets | grep ^snippet "
+
+alias catsnippetblade="cat ~/.vim/bundle/vim-snippets/UltiSnips/blade.snippets | grep ^snippet "
+
+alias catsnippetcoffee-jasmine="cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee-jasmine.snippets | grep ^snippet "
+
+alias catsnippetcoffee-react="cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee-react.snippets | grep ^snippet "
+
+alias catsnippetcoffee="cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee.snippets | grep ^snippet "
+
+alias catsnippetcpp="cat ~/.vim/bundle/vim-snippets/UltiSnips/cpp.snippets | grep ^snippet "
+
+alias catsnippetcrystal="cat ~/.vim/bundle/vim-snippets/UltiSnips/crystal.snippets | grep ^snippet "
+
+alias catsnippetc="cat ~/.vim/bundle/vim-snippets/UltiSnips/c.snippets | grep ^snippet "
+
+alias catsnippetcs="cat ~/.vim/bundle/vim-snippets/UltiSnips/cs.snippets | grep ^snippet "
+
+alias catsnippetcss="cat ~/.vim/bundle/vim-snippets/UltiSnips/css.snippets | grep ^snippet "
+
+alias catsnippetcuda="cat ~/.vim/bundle/vim-snippets/UltiSnips/cuda.snippets | grep ^snippet "
+
+alias catsnippetdjango="cat ~/.vim/bundle/vim-snippets/UltiSnips/django.snippets | grep ^snippet "
+
+alias catsnippetd="cat ~/.vim/bundle/vim-snippets/UltiSnips/d.snippets | grep ^snippet "
+
+alias catsnippeteelixir="cat ~/.vim/bundle/vim-snippets/UltiSnips/eelixir.snippets | grep ^snippet "
+
+alias catsnippetejs="cat ~/.vim/bundle/vim-snippets/UltiSnips/ejs.snippets | grep ^snippet "
+
+alias catsnippetelm="cat ~/.vim/bundle/vim-snippets/UltiSnips/elm.snippets | grep ^snippet "
+
+alias catsnippeterlang="cat ~/.vim/bundle/vim-snippets/UltiSnips/erlang.snippets | grep ^snippet "
+
+alias catsnippeteruby="cat ~/.vim/bundle/vim-snippets/UltiSnips/eruby.snippets | grep ^snippet "
+
+alias catsnippetgitcommit="cat ~/.vim/bundle/vim-snippets/UltiSnips/gitcommit.snippets | grep ^snippet "
+
+alias catsnippetgo="cat ~/.vim/bundle/vim-snippets/UltiSnips/go.snippets | grep ^snippet "
+
+alias catsnippethaskell="cat ~/.vim/bundle/vim-snippets/UltiSnips/haskell.snippets | grep ^snippet "
+
+alias catsnippethelp="cat ~/.vim/bundle/vim-snippets/UltiSnips/help.snippets | grep ^snippet "
+
+alias catsnippethtmldjango="cat ~/.vim/bundle/vim-snippets/UltiSnips/htmldjango.snippets | grep ^snippet "
+
+alias catsnippethtmljinja="cat ~/.vim/bundle/vim-snippets/UltiSnips/htmljinja.snippets | grep ^snippet "
+
+alias catsnippethtml_minimal="cat ~/.vim/bundle/vim-snippets/UltiSnips/html_minimal.snippets | grep ^snippet "
+
+alias catsnippethtml="cat ~/.vim/bundle/vim-snippets/UltiSnips/html.snippets | grep ^snippet "
+
+alias catsnippetjavascript-angular="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-angular.snippets | grep ^snippet "
+
+alias catsnippetjavascript-ember="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-ember.snippets | grep ^snippet "
+
+alias catsnippetjavascript-jasmine-arrow="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-jasmine-arrow.snippets | grep ^snippet "
+
+alias catsnippetjavascript-jsdoc="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-jsdoc.snippets | grep ^snippet "
+
+alias catsnippetjavascript-node="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-node.snippets | grep ^snippet "
+
+alias catsnippetjavascript_react="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript_react.snippets | grep ^snippet "
+
+alias catsnippetjavascript="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript.snippets | grep ^snippet "
+
+alias catsnippetjava="cat ~/.vim/bundle/vim-snippets/UltiSnips/java.snippets | grep ^snippet "
+
+alias catsnippetjinja2="cat ~/.vim/bundle/vim-snippets/UltiSnips/jinja2.snippets | grep ^snippet "
+
+alias catsnippetjson="cat ~/.vim/bundle/vim-snippets/UltiSnips/json.snippets | grep ^snippet "
+
+alias catsnippetjulia="cat ~/.vim/bundle/vim-snippets/UltiSnips/julia.snippets | grep ^snippet "
+
+alias catsnippetledger="cat ~/.vim/bundle/vim-snippets/UltiSnips/ledger.snippets | grep ^snippet "
+
+alias catsnippetlhaskell="cat ~/.vim/bundle/vim-snippets/UltiSnips/lhaskell.snippets | grep ^snippet "
+
+alias catsnippetlua="cat ~/.vim/bundle/vim-snippets/UltiSnips/lua.snippets | grep ^snippet "
+
+alias catsnippetmako="cat ~/.vim/bundle/vim-snippets/UltiSnips/mako.snippets | grep ^snippet "
+
+alias catsnippetmarkdown="cat ~/.vim/bundle/vim-snippets/UltiSnips/markdown.snippets | grep ^snippet "
+
+alias catsnippetmatlab="cat ~/.vim/bundle/vim-snippets/UltiSnips/matlab.snippets | grep ^snippet "
+
+alias catsnippetobjc="cat ~/.vim/bundle/vim-snippets/UltiSnips/objc.snippets | grep ^snippet "
+
+alias catsnippetocaml="cat ~/.vim/bundle/vim-snippets/UltiSnips/ocaml.snippets | grep ^snippet "
+
+alias catsnippetoctave="cat ~/.vim/bundle/vim-snippets/UltiSnips/octave.snippets | grep ^snippet "
+
+alias catsnippetpandoc="cat ~/.vim/bundle/vim-snippets/UltiSnips/pandoc.snippets | grep ^snippet "
+
+alias catsnippetperl="cat ~/.vim/bundle/vim-snippets/UltiSnips/perl.snippets | grep ^snippet "
+
+alias catsnippetphp-laravel="cat ~/.vim/bundle/vim-snippets/UltiSnips/php-laravel.snippets | grep ^snippet "
+
+alias catsnippetphp-phpspec="cat ~/.vim/bundle/vim-snippets/UltiSnips/php-phpspec.snippets | grep ^snippet "
+
+alias catsnippetphp="cat ~/.vim/bundle/vim-snippets/UltiSnips/php.snippets | grep ^snippet "
+
+alias catsnippetphp-symfony2="cat ~/.vim/bundle/vim-snippets/UltiSnips/php-symfony2.snippets | grep ^snippet "
+
+alias catsnippetplsql="cat ~/.vim/bundle/vim-snippets/UltiSnips/plsql.snippets | grep ^snippet "
+
+alias catsnippetproto="cat ~/.vim/bundle/vim-snippets/UltiSnips/proto.snippets | grep ^snippet "
+
+alias catsnippetpuppet="cat ~/.vim/bundle/vim-snippets/UltiSnips/puppet.snippets | grep ^snippet "
+
+alias catsnippetpython="cat ~/.vim/bundle/vim-snippets/UltiSnips/python.snippets | grep ^snippet "
+
+alias catsnippetrails="cat ~/.vim/bundle/vim-snippets/UltiSnips/rails.snippets | grep ^snippet "
+
+alias catsnippetrnoweb="cat ~/.vim/bundle/vim-snippets/UltiSnips/rnoweb.snippets | grep ^snippet "
+
+alias catsnippetrobot="cat ~/.vim/bundle/vim-snippets/UltiSnips/robot.snippets | grep ^snippet "
+
+alias catsnippetr="cat ~/.vim/bundle/vim-snippets/UltiSnips/r.snippets | grep ^snippet "
+
+alias catsnippetrst="cat ~/.vim/bundle/vim-snippets/UltiSnips/rst.snippets | grep ^snippet "
+
+alias catsnippetruby="cat ~/.vim/bundle/vim-snippets/UltiSnips/ruby.snippets | grep ^snippet "
+
+alias catsnippetrust="cat ~/.vim/bundle/vim-snippets/UltiSnips/rust.snippets | grep ^snippet "
+
+alias catsnippetsh="cat ~/.vim/bundle/vim-snippets/UltiSnips/sh.snippets | grep ^snippet "
+
+alias catsnippetsnippets="cat ~/.vim/bundle/vim-snippets/UltiSnips/snippets.snippets | grep ^snippet "
+
+alias catsnippetsoy="cat ~/.vim/bundle/vim-snippets/UltiSnips/soy.snippets | grep ^snippet "
+
+alias catsnippetsupercollider="cat ~/.vim/bundle/vim-snippets/UltiSnips/supercollider.snippets | grep ^snippet "
+
+alias catsnippetsvelte="cat ~/.vim/bundle/vim-snippets/UltiSnips/svelte.snippets | grep ^snippet "
+
+alias catsnippettcl="cat ~/.vim/bundle/vim-snippets/UltiSnips/tcl.snippets | grep ^snippet "
+
+alias catsnippettexmath="cat ~/.vim/bundle/vim-snippets/UltiSnips/texmath.snippets | grep ^snippet "
+
+alias catsnippettex="cat ~/.vim/bundle/vim-snippets/UltiSnips/tex.snippets | grep ^snippet "
+
+alias catsnippettypescript_react="cat ~/.vim/bundle/vim-snippets/UltiSnips/typescript_react.snippets | grep ^snippet "
+
+alias catsnippettypescript="cat ~/.vim/bundle/vim-snippets/UltiSnips/typescript.snippets | grep ^snippet "
+
+alias catsnippetvim="cat ~/.vim/bundle/vim-snippets/UltiSnips/vim.snippets | grep ^snippet "
+
+alias catsnippetvue="cat ~/.vim/bundle/vim-snippets/UltiSnips/vue.snippets | grep ^snippet "
+
+alias catsnippetxhtml="cat ~/.vim/bundle/vim-snippets/UltiSnips/xhtml.snippets | grep ^snippet "
+
+alias catsnippetxml="cat ~/.vim/bundle/vim-snippets/UltiSnips/xml.snippets | grep ^snippet "
+
+alias catsnippetzsh="cat ~/.vim/bundle/vim-snippets/UltiSnips/zsh.snippets | grep ^snippet "
