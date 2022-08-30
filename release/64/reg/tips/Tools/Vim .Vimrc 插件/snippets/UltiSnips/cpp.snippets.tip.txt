@@ -32,7 +32,6 @@ endglobal
 #                            DIY Snippets                            #
 ###########################################################################
 
-
 snippet wel "welcome to china" b  
 welcome to china
 haha!!                  
@@ -276,6 +275,60 @@ int helloworld()
 
     printf("hello world!!\n");
     return 0;
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet getteri "function get variable,return int" b  
+int ${1:g_iTest} = 0;
+int ${2:getter}() 
+{
+    return $1;
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet getterui "function get variable,return unsigned int" b  
+unsigned int ${1:g_iTest} = 0;
+unsigned int ${2:getter}() 
+{
+    return $1;
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet setteri "function set variable,return int" b  
+int ${1:g_iTest} = 0;
+int ${2:setter}() 
+{
+    return $1;
+}
+
+int ${2:getter}() 
+{
+    return $1;
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet setterui "function set variable,return unsigned int" b  
+unsigned int ${1:g_iTest} = 0;
+unsigned int ${2:setter}() 
+{
+    return $1;
+}
+
+unsigned int ${2:getter}() 
+{
+    return $1;
 }                  
 endsnippet
 
@@ -560,6 +613,27 @@ endsnippet
 
 
 #=======================================>>>>>>>>>>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
