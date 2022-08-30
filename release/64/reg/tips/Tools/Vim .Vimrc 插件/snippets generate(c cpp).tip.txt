@@ -55,6 +55,11 @@ funci@function return int@int $1() $NL{$NL$NL    return 0;$NL}
 funcui@function return unsigned int@unsigned int $1() $NL{$NL$NL    return 0;$NL}
 funchello@function print helloworld!!!@int helloworld() $NL{$NL$NL        printf("hello world!!\n");$NL    return 0;$NL}
 funchelloworld@function print helloworld!!!@int helloworld() $NL{$NL$NL    printf("hello world!!\n");$NL    return 0;$NL}
+getteri@function get variable,return int@int ${1:g_iTest} = 0;$NLint ${2:getter}() $NL{$NL$TBreturn $1;$NL}
+getterui@function get variable,return unsigned int@unsigned int ${1:g_iTest} = 0;$NLunsigned int ${2:getter}() $NL{$NL$TBreturn $1;$NL}
+
+setteri@function set variable,return int@int ${1:g_iTest} = 0;$NLint ${2:setter}() $NL{$NL$TBreturn $1;$NL}$NL$NLint ${2:getter}() $NL{$NL$TBreturn $1;$NL}
+setterui@function set variable,return unsigned int@unsigned int ${1:g_iTest} = 0;$NLunsigned int ${2:setter}() $NL{$NL$TBreturn $1;$NL}$NL$NLunsigned int ${2:getter}() $NL{$NL$TBreturn $1;$NL}
 
 
 =====打印
