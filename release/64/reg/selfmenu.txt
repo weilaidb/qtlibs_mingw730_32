@@ -1532,6 +1532,8 @@ LINUX/man/chrt -m
 LINUX/man/chrt -p
 LINUX/man/systemtap
 LINUX/man/vmstat
+LINUX/man/自定义self 自己编写linux的man手册
+LINUX/man/自定义手册 self
 LINUX/qemu intr
 LINUX/qemu script/arm.sh
 LINUX/qemu script/build.sh

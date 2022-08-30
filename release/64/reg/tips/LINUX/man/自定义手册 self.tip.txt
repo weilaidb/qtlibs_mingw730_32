@@ -1,0 +1,98 @@
+man存放路径：
+
+命令manpath可以获得，可以ls /etc | grep man获取配置文件路径，centos获取到的是man_db.conf，如上以 /usr/share/man 路径为例。
+
+要想man手册友好，就要用groff标准编写，先列举groff的标准宏
+
+Macro         Description
+.B            Bold
+.BI           Bold, then italics (alternate)
+.BR           Bold, then roman (alternating)
+.DT           Set default tabs
+.HP           Begin a hanging indent
+.I            Italics
+.IB           Italics, then bold (alternating)
+.IP           Begin hanging tag. For options. Long tags use .TP.
+.IR           Italics, then roman (alternating)
+.LP           Begin paragraph
+.PD           Set distance between paragraphs
+.PP           Begin paragraph
+.RB           Roman, then bold (alternating)
+.RE           End relative indent (after .RS)
+.RI           Roman, then italics (alternating)
+.RS           Begin relative indent (use .RE to end indent)
+.SB           Small text, then bold (alternating)
+.SM           Small text. Used to show words in all caps.
+.SH           Section head
+.SS           Subheading within a .SH heading.
+.TH           Title heading. Used once at the beginning of the man page.
+.TP           Begin a hanging tag. Begins text on next line, not same line as tag.
+编辑文件时，换行不是真的换行，只会多出一个空格，所以要用Macro换行.TP .PP
+
+实例：
+
+.TH test "three corner" "middle bottom" "left bottom" "middle top"
+.SH section
+.TP
+this is a paragraph
+.PP
+this is a new paragraph
+this is not a new line
+.SH DESCRIPTION
+. this line will not display
+.TP
+.B \.B
+means a bold font
+.TP
+\fB\\fB...\\fR\fR
+the content in [\\fB \\fR] will show font as bold too .
+.TP
+.B \.TH
+title heading, append 5 param,
+.RS
+param 1 and 2 as a,b: a(b) will display at left top, right top, right bottom
+.RE
+.RS
+param 3 as c: c will display at middle bottom
+.RE
+.RS
+param 4 as d: d will diaplay at left bottom
+.RE
+.RS
+param 5 as e: e will display at middle top
+ 
+used once at the beginning of the man page
+.RE
+.TP
+.B \.SH
+section head such as the section DESCRIPTION,
+.SS subheading
+.TP
+.B \.SS
+subheading such as above
+.TP
+.B \.TP or \.PP
+if the paragraph start with \.TP, and the tags' length >= 7, the next content will display at next line
+.TP
+.B \.TP
+if the paragraph start with \.TP, and the tags' length < 7, the next content will append the tags
+.PP
+.B \.PP or \.TP
+if the paragraph start with \.PP, even if the tags' length >= 7, the next content will append at the tags
+.PP
+this is a new linw with PP
+.TP
+.I \.I
+means a italics font, \fB\-I\fR=\fIitalics\fR. \\fI...\\fR show as \fI...\fR
+.TP
+.SB \.SB
+.SB means small text,then bold
+.HP
+.B \.HP
+begin a hanging indent
+.HP
+a new lin with HP
+把如上内容写入到testcmd.1文件中，再执行如下命令
+
+gzip -c testcmd.1 > /usr/share/man/man1/testcmd.1.gz
+man testcmd
