@@ -1,1 +1,1 @@
-$NL
+$MODE_NL
