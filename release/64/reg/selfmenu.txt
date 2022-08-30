@@ -1664,6 +1664,9 @@ LINUX命令/Gmock/Qt编译
 LINUX命令/Gmock/简介
 LINUX命令/objcopy
 LINUX命令/readelf
+Makefile/CMake/eg
+Makefile/CMake/v1.0(gtest gmock)
+Makefile/CMake/v1.0(gtest gmock) 说明
 Makefile/PHONY
 Makefile/define
 Makefile/depend
