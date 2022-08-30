@@ -1,3 +1,7 @@
+vim-autoformat/vim-autoformat
+
+
+
 rhysd/vim-clang-format
 Shougo/vimproc.vim
 kana/vim-operator-user

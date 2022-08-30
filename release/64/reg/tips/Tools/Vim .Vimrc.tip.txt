@@ -75,6 +75,8 @@ Plugin 'preservim/nerdtree'
 Plugin 'Yggdroot/indentLine'
 "自动格式化代码"
 Plugin 'tell-k/vim-autopep8'
+Plugin 'vim-autoformat/vim-autoformat'
+
 "括号和引号自动补全"
 Plugin 'jiangmiao/auto-pairs'
 "多行注释"
@@ -322,6 +324,9 @@ autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
 autocmd FileType c ClangFormatAutoEnable
+
+"保存时自动格式化
+au BufWrite * :Autoformat
 
 
 "===============================插件winmanager
