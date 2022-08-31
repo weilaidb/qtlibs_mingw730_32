@@ -1,3 +1,8 @@
+vueinitwebpack;vue init webpack 
+vueinitwebpackmyproject;vue init webpack my-project
+cnpminstall;cnpm install 
+cnpmrundev;cnpm run dev
+
 rmswp;rm -f .*.swp && rm -f *.swp
 
 

@@ -104,7 +104,7 @@ git@github.com:weilaidb/execCmd.git
 #gitee,vimrc分支
 git@gitee.com:weilaidb/jsp_exe.git
 git@gitee.com:weilaidb/basecpp.git
-
+git@gitee.com:weilaidb/vue_eg.git
 
 #CXX Gmock库
 git@github.com:weilaidb/codesetsmore.git
