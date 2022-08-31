@@ -399,3 +399,15 @@ alias catsnippetxhtml="cat ~/.vim/bundle/vim-snippets/UltiSnips/xhtml.snippets |
 alias catsnippetxml="cat ~/.vim/bundle/vim-snippets/UltiSnips/xml.snippets | grep ^snippet "
 
 alias catsnippetzsh="cat ~/.vim/bundle/vim-snippets/UltiSnips/zsh.snippets | grep ^snippet "
+
+
+
+
+【vue】
+alias vueinitwebpack="vue init webpack "
+
+alias vueinitwebpackmyproject="vue init webpack my-project "
+
+alias cnpminstall="cnpm install "
+
+alias cnpmrundev="cnpm run dev "

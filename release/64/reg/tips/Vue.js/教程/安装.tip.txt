@@ -1,0 +1,115 @@
+Vue.js 安装
+1、独立版本
+我们可以在 Vue.js 的官网上直接下载 vue.min.js 并用 <script> 标签引入。
+
+下载 Vue.js
+
+2、使用 CDN 方法
+以下推荐国外比较稳定的两个 CDN，国内还没发现哪一家比较好，目前还是建议下载到本地。
+
+Staticfile CDN（国内） : https://cdn.staticfile.org/vue/2.2.2/vue.min.js
+
+unpkg：https://unpkg.com/vue@2.6.14/dist/vue.min.js。
+
+cdnjs : https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js
+
+Staticfile CDN（国内）
+<div id="app">
+  <p>{{ message }}</p>
+</div>
+
+尝试一下 »
+unpkg（推荐）
+<div id="app">
+  <p>{{ message }}</p>
+</div>
+
+尝试一下 »
+cdnjs
+<div id="app">
+  <p>{{ message }}</p>
+</div>
+
+尝试一下 »
+3、NPM 方法
+由于 npm 安装速度慢，本教程使用了淘宝的镜像及其命令 cnpm，安装使用介绍参照：使用淘宝 NPM 镜像。
+
+npm 版本需要大于 3.0，如果低于此版本需要升级它：
+
+# 查看版本
+$ npm -v
+2.3.0
+
+#升级 npm
+cnpm install npm -g
+
+
+# 升级或安装 cnpm
+npm install cnpm -g
+在用 Vue.js 构建大型应用时推荐使用 cnpm 安装：
+
+# 最新稳定版
+$ cnpm install vue
+命令行工具
+Vue.js 提供一个官方命令行工具，可用于快速搭建大型单页应用。
+
+# 全局安装 vue-cli
+$ cnpm install --global vue-cli
+# 创建一个基于 webpack 模板的新项目
+$ vue init webpack my-project
+# 这里需要进行一些配置，默认回车即可
+This will install Vue 2.x version of the template.
+
+For Vue 1.x use: vue init webpack#1.0 my-project
+
+? Project name my-project
+? Project description A Vue.js project
+? Author runoob <test@runoob.com>
+? Vue build standalone
+? Use ESLint to lint your code? Yes
+? Pick an ESLint preset Standard
+? Setup unit tests with Karma + Mocha? Yes
+? Setup e2e tests with Nightwatch? Yes
+
+   vue-cli · Generated "my-project".
+
+   To get started:
+   
+     cd my-project
+     npm install
+     npm run dev
+   
+   Documentation can be found at https://vuejs-templates.github.io/webpack
+进入项目，安装并运行：
+
+$ cd my-project
+$ cnpm install
+$ cnpm run dev
+ DONE  Compiled successfully in 4388ms
+
+> Listening at http://localhost:8080
+成功执行以上命令后访问 http://localhost:8080/，输出结果如下所示：
+
+
+
+注意：Vue.js 不支持 IE8 及其以下 IE 版本。
+
+Vue 项目打包
+打包 Vue 项目使用以下命令：
+
+npm run build
+执行完成后，会在 Vue 项目下生成一个 dist 目录，一般包含 index.html 文件及 static 目录，static 目录包含了静态文件 js、css 以及图片目录 images。
+
+
+
+如果直接双击 index.html 打开浏览器，页面可能是空白了，想要正常显示，可以修改 index.html 文件中 js、css 文件的路径。
+
+例如我们打开 dist/index.html 文件看到路径是绝对路径：
+
+<link href=/static/css/app.33da80d69744798940b135da93bc7b98.css rel=stylesheet>
+<script type=text/javascript src=/static/js/app.717bb358ddc19e181140.js></script>
+我们把 js、css 路径修改为相对路径：
+
+<link href=static/css/app.33da80d69744798940b135da93bc7b98.css rel=stylesheet>
+<script type=text/javascript src=static/js/app.717bb358ddc19e181140.js></script>
+这样直接双击 dist/index.html 文件就可以在浏览器中看到效果了。

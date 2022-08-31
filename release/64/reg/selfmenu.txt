@@ -2336,6 +2336,8 @@ UNITTEST/GTEST/make
 UNITTEST/GTEST/make compile problem编译问题
 VBScript/Excel new
 VBScript/eg
+Vue.js/教程/介绍
+Vue.js/教程/安装
 WeiLaiDb/Production/weilaix.war Version
 Windows/Fonts
 YAML/YAML 语法
