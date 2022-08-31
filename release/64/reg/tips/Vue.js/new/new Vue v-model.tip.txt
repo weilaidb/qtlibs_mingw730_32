@@ -1,0 +1,30 @@
+用户输入
+在 input 输入框中我们可以使用 v-model 指令来实现双向数据绑定：
+
+v-model 指令用来在 input、select、textarea、checkbox、radio 等表单控件元素上创建双向数据绑定，根据表单上的值，自动更新绑定的元素的值。
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+	
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Runoob!'
+  }
+})
+</script>
+</body>
+</html>

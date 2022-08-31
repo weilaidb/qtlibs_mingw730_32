@@ -1,7 +1,14 @@
+catiptables;cat /etc/sysconfig/iptables
+
 vueinitwebpack;vue init webpack 
 vueinitwebpackmyproject;vue init webpack my-project
 cnpminstall;cnpm install 
 cnpmrundev;cnpm run dev
+
+npmrunbuild;npm run build
+npminstall;npm install
+npmrundev;npm run dev
+npminstallrun;npminstall && npmrundev
 
 rmswp;rm -f .*.swp && rm -f *.swp
 
@@ -180,6 +187,7 @@ cdworkgittdd;cd ~/work/git/tdd
 cdworkgittest;cd ~/work/git/test
 cdworkgitpython;cd ~/work/git/test/python
 cdworkgitbasecpp;cd ~/work/git/basecpp
+cdworkgitvue;cd ~/work/git/vue_eg
 
 cdworkcodecode;cd ~/work/code/code
 cdworkcode;cd ~/work/code

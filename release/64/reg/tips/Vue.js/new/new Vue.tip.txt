@@ -1,0 +1,28 @@
+==========这个内容放在body中，看着是变量的引用。
+分别为:
+el:#id
+data:数据对象的三个属性site,url,alexa
+methods:方法，通过return返回函数值
+
+调用处:使用{{对象}}来引用其值，数据绑定
+
+<div id="vue_det">
+    <h1>site : {{site}}</h1>
+    <h1>url : {{url}}</h1>
+    <h1>{{details()}}</h1>
+</div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#vue_det',
+        data: {
+            site: "菜鸟教程",
+            url: "www.runoob.com",
+            alexa: "10000"
+        },
+        methods: {
+            details: function() {
+                return  this.site + " - 学的不仅是技术，更是梦想！";
+            }
+        }
+    })
+</script>
