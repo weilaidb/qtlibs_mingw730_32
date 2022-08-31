@@ -1,10 +1,14 @@
+alias catiptables="cat /etc/sysconfig/iptables "
+
+
 alias vueinitwebpack="vue init webpack "
-
 alias vueinitwebpackmyproject="vue init webpack my-project "
-
 alias cnpminstall="cnpm install "
-
 alias cnpmrundev="cnpm run dev "
+alias npmrunbuild="npm run build "
+alias npminstall="npm install "
+alias npmrundev="npm run dev "
+alias npminstallrun="npminstall && npmrundev "
 
 
 alias rmswp="rm -f .*.swp && rm -f *.swp "

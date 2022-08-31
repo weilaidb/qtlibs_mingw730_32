@@ -13,6 +13,7 @@ alias cdworkgittdd="cd ~/work/git/tdd "
 alias cdworkgittest="cd ~/work/git/test "
 alias cdworkgitpython="cd ~/work/git/test/python "
 alias cdworkgitbasecpp="cd ~/work/git/basecpp "
+alias cdworkgitvue="cd ~/work/git/vue_eg "
 
 
 alias tomcatstart='cdsoftwebapachebin && sh startup.sh'

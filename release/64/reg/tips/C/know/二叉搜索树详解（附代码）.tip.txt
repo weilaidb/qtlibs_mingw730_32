@@ -1,0 +1,713 @@
+二叉搜索树详解（附代码）
+
+张凯1
+
+于 2021-08-10 14:12:27 发布
+
+12328
+ 收藏 13
+分类专栏： 算法数据结构 # Java 文章标签： java BST
+版权
+
+算法数据结构
+6 篇文章0 订阅
+订阅专栏
+
+Java
+6 篇文章1 订阅
+订阅专栏
+今天讲一下二叉搜索树
+
+文章目录
+1. 定义
+2. BST数据结构的实现
+2.1. 数据结构定义
+2.2. 实现增删查询操作
+2.2.1. 添加元素
+2.2.2. 查找元素
+2.2.3. 删除元素
+3. 测试
+1. 定义
+这里我们引用百度百科的解释：
+
+二叉查找树（Binary Search Tree），（又：二叉搜索树，二叉排序树）它或者是一棵空树，或者是具有下列性质的二叉树：
+
+若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值；
+若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值；
+它的左、右子树也分别为二叉排序树。
+二叉搜索树作为一种经典的数据结构，它既有链表的快速插入与删除操作的特点，又有数组快速查找的优势；所以应用十分广泛，例如在文件系统和数据库系统一般会采用这种数据结构进行高效率的排序与检索操作。
+
+2. BST数据结构的实现
+这里采用Java语言实现。
+
+2.1. 数据结构定义
+BST结点类
+
+class BSTNode<T extends Comparable<T>> {
+        T data;
+        BSTNode<T> left;
+        BSTNode<T> right;
+
+        public BSTNode(T data) {
+            this.data = data;
+        }
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+BST实现类
+
+public class BST<T extends Comparable<T>> {
+  	/**
+     * BST的根结点
+     */
+    private BSTNode<T> root;
+
+	// put,remove find等方法
+}
+1
+2
+3
+4
+5
+6
+7
+8
+2.2. 实现增删查询操作
+2.2.1. 添加元素
+待添加元素值value，
+有两条规则：
+
+如果此时根结点为空，则new一个结点，赋值给根结点
+根结点不为空，则需要为当前元素找一个合适的位置（保证插入以后，整棵树还是BST），将其插入。
+
+代码如下：
+
+    /**
+     * 添加元素到BST
+     * @param value 待添加的元素
+     * @return 添加是否成功 成功--true，失败 false
+     */
+    public boolean put(T value) {
+        // 不允许null值
+        if (value != null) {
+
+            //根结点为空，则新加入的元素作为根
+            if (root == null) {
+                root = new BSTNode<>(value);
+            } else {
+                // 否则，找到一个合适的位置
+                // p记录当前结点的父结点
+                BSTNode<T> p = null, cur = root;
+                while (cur != null) {
+                    p = cur;
+                    // 如果有相同元素，则不插入
+                    if (cur.data.compareTo(value) == 0) return false;
+                    //如果value 小于当前元素 则cur跳到左子树 否则 跳到右子树
+                    if (value.compareTo(cur.data) < 0) cur = cur.left;
+                    else cur = cur.right;
+                }
+                //上面的while退出后，cur是null，p抓到cur的父结点
+                BSTNode<T> node = new BSTNode<>(value);
+                //如果value小于p的值，则挂在p的左子树，否则挂在右子树
+                if (value.compareTo(p.data) < 0) p.left = node;
+                else p.right = node;
+            }
+            return true;
+        }
+        return false;
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+2.2.2. 查找元素
+待添加元素值value，
+有两条规则：
+
+如果此时根结点为空，返回没找到
+根结点不为空，则判断根结点的值是否等于value，是则返回，否则如果根结点值大于value，则跑到根的左子树继续寻找，否则跑到右子树继续寻找。如果在中途没有返回，则返回没找到。
+
+代码如下：
+    /**
+     * 查找元素
+     * @param value 待查找的元素
+     * @return 找到返回true，否则false
+     */
+    public boolean find(T value) {
+        //根为空，直接返回没找到
+        if (root == null) return false;
+        //根给当前结点
+        BSTNode<T> cur = root;
+        //只要cur不为空，则一直寻找
+        while (cur != null) {
+            //如果相等，则找到返回
+            if (cur.data.compareTo(value) == 0) return true;
+            //如果value比当前结点小，则跑到左子树继续找，否则到右子树继续找
+            if (value.compareTo(cur.data) < 0) cur = cur.left;
+            else cur = cur.right;
+        }
+        //中途没返回，则没找到
+        return false;
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+2.2.3. 删除元素
+删除元素稍微麻烦一些，首先找到删除的结点，找不到则返回，啥都不做，如果找到，记为node，我们要保证删除了node结点以后，整棵树还是BST，如何保证呢？我们知道，BST的中序遍历结果是一个排序的序列，因此删除某个元素node时，如果：
+
+node的左右子树都是空，则直接删除，让指向它的父结点指向空即可；
+node左右子树至少一个不为空，我们需要找到在中序遍历中，node的前驱结点或后继节点来替代它的位置。
+如果node的左子树为空，那就使用node的右子树顶替node的位置
+否则，如果node的右子树为空，那就使用node的左子树顶替node的位置
+否则，即左右子树都不是空，我们可以在左子树上找一个“最右的结点”，或在右子树上找一个“最左”的结点，顶替node的位置
+
+代码如下：
+
+    /**
+     * 删除结点value
+     * @param value 待删除的结点
+     * @return 删除成功返回true，否则返回false
+     */
+    public boolean remove(T value) {
+        //根为空，啥也没有，删除个啥？ 直接返回
+        if (root == null) return false;
+
+        //下面的while循环主要目的是找出待删除的结点，同时找到它的父节点p
+        BSTNode<T> p = null, cur = root;
+        while (cur != null) {
+            //如果找到 则退出循环
+            if (cur.data.compareTo(value) == 0) break;
+
+            //否则，p抓住当时的cur，即为cur的父节点，cur根据情况 跳左还是跳右
+            p = cur;
+            if (value.compareTo(cur.data) < 0) cur = cur.left;
+            else cur = cur.right;
+        }
+
+        //这说明没找到待删除的结点，直接返回
+        if (cur == null) return false;
+
+        //如果左cur左子树为空，则使用其右子树顶替它，指向cur的父结点指向其右子树
+        if(cur.left==null){
+            // p是空 代表，cur是根结点，则直接替换根
+            if(p==null)root = cur.right;
+            else {// 否则 更新其父结点的指向
+                if(p.left==cur)p.left = cur.right;
+                else p.right = cur.right;
+            }
+        }else if(cur.right==null){ //如果左cur右子树为空，则使用其左子树顶替它，指向cur的父结点指向其左子树
+            if(p==null)root = cur.left;
+            else {
+                if(p.left==cur)p.left = cur.left;
+                else p.right = cur.left;
+            }
+        }else {
+            // cur左右子树都存在的情况，这里我使用找其右子树最左结点的方式
+            // next结点就是其右子树最左结点，parent是其父结点
+            BSTNode<T> parent = cur,next = cur.right;
+            //只要next的left不是null，则next就不是最左结点，next跳其左节点，继续
+            while (next.left!=null){
+                parent = next;//在next跳下一个之前，先抓一下，使得parent始终指向其父结点
+                next = next.left;
+            }
+
+            //把右子树最左结点和树的父节点断开，其父节点指向next的右子树，
+            if(next==parent.left)parent.left = next.right;
+
+            //next有可能是parent的右结点，即有可能cur.right根本就没有左子树，则cur.right本身就是要找的结点
+            else parent.right = next.right;
+            
+            //把右子树最左结点的值，赋值给要删除的结点即可完成替换。
+            cur.data = next.data;
+        }
+        return true;
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+
+
+3. 测试
+完整代码如下，测试程序已写好，大家有兴趣可以测试
+
+package com.victory.common.data_structure;
+
+import java.util.Scanner;
+
+/**
+ * 二叉搜索树
+ */
+public class BST<T extends Comparable<T>> {
+
+    /**
+     * BST的根结点
+     */
+    private BSTNode<T> root;
+
+    /**
+     * 添加元素到BST
+     * @param value 待添加的元素
+     * @return 添加是否成功 成功--true，失败 false
+     */
+    public boolean put(T value) {
+        // 不允许null值
+        if (value != null) {
+
+            //根结点为空，则新加入的元素作为根
+            if (root == null) {
+                root = new BSTNode<>(value);
+            } else {
+                // 否则，找到一个合适的位置
+                // p记录当前结点的父结点
+                BSTNode<T> p = null, cur = root;
+                while (cur != null) {
+                    p = cur;
+                    // 如果有相同元素，则不插入
+                    if (cur.data.compareTo(value) == 0) return false;
+                    //如果value 小于当前元素 则cur跳到左子树 否则 跳到右子树
+                    if (value.compareTo(cur.data) < 0) cur = cur.left;
+                    else cur = cur.right;
+                }
+                //上面的while退出后，cur是null，p抓到cur的父结点
+                BSTNode<T> node = new BSTNode<>(value);
+                //如果value小于p的值，则挂在p的左子树，否则挂在右子树
+                if (value.compareTo(p.data) < 0) p.left = node;
+                else p.right = node;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 查找元素
+     * @param value 待查找的元素
+     * @return 找到返回true，否则false
+     */
+    public boolean find(T value) {
+        //根为空，直接返回没找到
+        if (root == null) return false;
+        //根给当前结点
+        BSTNode<T> cur = root;
+        //只要cur不为空，则一直寻找
+        while (cur != null) {
+            //如果相等，则找到返回
+            if (cur.data.compareTo(value) == 0) return true;
+            //如果比当前结点小，则跑到左子树继续找，否则到右子树继续找
+            if (value.compareTo(cur.data) < 0) cur = cur.left;
+            else cur = cur.right;
+        }
+        //中途没返回，则没找到
+        return false;
+    }
+
+    /**
+     * 删除结点value
+     * @param value 待删除的结点
+     * @return 删除成功返回true，否则返回false
+     */
+    public boolean remove(T value) {
+        //根为空，啥也没有，删除个啥？ 直接返回
+        if (root == null) return false;
+
+        //下面的while循环主要目的是找出待删除的结点，同时找到它的父节点p
+        BSTNode<T> p = null, cur = root;
+        while (cur != null) {
+            //如果找到 则退出循环
+            if (cur.data.compareTo(value) == 0) break;
+
+            //否则，p抓住当时的cur，即为cur的父节点，cur根据情况 跳左还是跳右
+            p = cur;
+            if (value.compareTo(cur.data) < 0) cur = cur.left;
+            else cur = cur.right;
+        }
+
+        //这说明没找到待删除的结点，直接返回
+        if (cur == null) return false;
+
+        //如果左cur左子树为空，则使用其右子树顶替它，指向cur的父结点指向其右子树
+        if(cur.left==null){
+            // p是空 代表，cur是根结点，则直接替换根
+            if(p==null)root = cur.right;
+            else {// 否则 更新其父结点的指向
+                if(p.left==cur)p.left = cur.right;
+                else p.right = cur.right;
+            }
+        }else if(cur.right==null){ //如果左cur右子树为空，则使用其左子树顶替它，指向cur的父结点指向其左子树
+            if(p==null)root = cur.left;
+            else {
+                if(p.left==cur)p.left = cur.left;
+                else p.right = cur.left;
+            }
+        }else {
+            // cur左右子树都存在的情况，这里我使用找其右子树最左结点的方式
+            // next结点就是其右子树最左结点，parent是其父结点
+            BSTNode<T> parent = cur,next = cur.right;
+            //只要next的left不是null，则next就不是最左结点，next跳其左节点，继续
+            while (next.left!=null){
+                parent = next;//在next跳下一个之前，先抓一下，使得parent始终指向其父结点
+                next = next.left;
+            }
+
+            //把右子树最左结点和树的父节点断开，其父节点指向next的右子树，
+            if(next==parent.left)parent.left = next.right;
+
+            //next有可能是parent的右结点，即有可能cur.right根本就没有左子树，则cur.right本身就是要找的结点
+            else parent.right = next.right;
+
+            //把右子树最左结点的值，赋值给要删除的结点即可完成替换。
+            cur.data = next.data;
+        }
+        return true;
+    }
+
+    public void inOrder(){
+        inOrder(root);
+    }
+
+    private void inOrder(BSTNode<T> node){
+        if(node!=null){
+            inOrder(node.left);
+            System.out.print(" ");
+            System.out.print(node.data);
+            System.out.print(" ");
+            inOrder(node.right);
+        }
+    }
+
+    private static class BSTNode<T extends Comparable<T>> {
+        T data;
+        BSTNode<T> left;
+        BSTNode<T> right;
+
+        public BSTNode(T data) {
+            this.data = data;
+        }
+    }
+
+    public static void main(String[] args) {
+        BST<Integer> integerBST = new BST<>();
+        Scanner sc = new Scanner(System.in);
+        while (true){
+            String command = sc.next();
+            if("exit".equals(command))break;
+            if("put".equals(command)){
+                int n = sc.nextInt();
+                if(integerBST.put(n)) System.out.println(n+" 添加成功");
+                else System.out.println(n+" 添加失败");
+            }
+            if("find".equals(command)){
+                int n = sc.nextInt();
+                if(integerBST.find(n)) System.out.println(n+" 存在BST中");
+                else System.out.println(n+" 不存在BST中");
+            }
+            if("remove".equals(command)){
+                int n = sc.nextInt();
+                if(integerBST.remove(n)) System.out.println(n+" 删除成功");
+                else System.out.println(n+" 删除失败");
+            }
+            if("print".equals(command)){
+                integerBST.inOrder();
+            }
+        }
+    }
+
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+码字仓促，如发现有错误，请大家不吝赐教，觉得文章不错的话，给个支持吧 ^_^
+————————————————
+版权声明：本文为CSDN博主「张凯1」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_37684467/article/details/119549267
