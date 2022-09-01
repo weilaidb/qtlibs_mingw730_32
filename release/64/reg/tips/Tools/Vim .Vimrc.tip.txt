@@ -380,6 +380,7 @@ set background=dark
 "colorscheme evening
 colorscheme morning
 
+
 " set mark column color
 hi! link SignColumn   LineNr
 hi! link ShowMarksHLl DiffAdd
