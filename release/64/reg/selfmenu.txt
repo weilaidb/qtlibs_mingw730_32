@@ -605,6 +605,7 @@ DBMS/MySql/mysql 说明
 DBMS/MySql/mysql 问题列表
 DBMS/MySql/order by
 DBMS/MySql/order by eg
+DBMS/MySql/order 常用命令
 DBMS/MySql/prepareStatement
 DBMS/MySql/script/mldn.sql
 DBMS/MySql/setAutoCommit 事务
@@ -2386,6 +2387,7 @@ go/install/安装位置
 go/install/添加代理
 go/test/eg
 go/test/hello
+npm/install
 path路径/Android手机拷贝路径
 path路径/常用文件夹
 人格品行/五戒十善

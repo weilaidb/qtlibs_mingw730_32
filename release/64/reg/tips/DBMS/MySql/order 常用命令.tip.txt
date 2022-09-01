@@ -1,0 +1,2 @@
+#mysql 以root帐户登陆
+mysqld --user=root
