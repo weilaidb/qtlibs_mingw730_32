@@ -1,0 +1,1 @@
+<script>$NLexport default {$NL  name: '\1',$NL  data () {$NL$TBreturn {$NL$TB  msg: '\2'$NL$TB}$NL  }$NL}$NL</script>

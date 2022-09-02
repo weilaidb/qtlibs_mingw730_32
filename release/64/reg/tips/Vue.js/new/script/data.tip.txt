@@ -1,0 +1,2 @@
+[id;data数据]
+vue_det;site: "菜鸟教程", url: "www.runoob.com", alexa: 10000
