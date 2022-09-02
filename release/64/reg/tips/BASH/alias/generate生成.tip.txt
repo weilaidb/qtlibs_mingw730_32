@@ -1,3 +1,6 @@
+gitmergeabort;git merge --abort
+gitmerge;git merge
+
 gitadd.;git add -A .
 catiptables;cat /etc/sysconfig/iptables
 

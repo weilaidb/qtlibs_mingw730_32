@@ -14,6 +14,7 @@ alias cdworkgittest="cd ~/work/git/test "
 alias cdworkgitpython="cd ~/work/git/test/python "
 alias cdworkgitbasecpp="cd ~/work/git/basecpp "
 alias cdworkgitvue="cd ~/work/git/vue_eg "
+alias vimrccopy="cd ~/work/git.bak/jsp_exe.vim && rm -rf vim && cp -af ~/.vim . && mv .vim vim && find . -name .git && cd vim/ && find . -name .git  | xargs -n1 rm -rf && cd .. && echo done ~~ "
 
 
 alias tomcatstart='cdsoftwebapachebin && sh startup.sh'
