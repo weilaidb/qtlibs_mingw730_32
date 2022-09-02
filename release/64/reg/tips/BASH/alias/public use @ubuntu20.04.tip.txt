@@ -9,6 +9,7 @@ alias cdworkcodecode="cd ~/work/code/code "
 alias makegtest="make && ./test "
 
 
+
 alias cdqemu="cd ~/work/git/qemu_eg "
 alias cdbusybox="~/work/git/busybox2 "
 alias cdqemuarm="cd ~/work/git/qemu_eg/arm "
