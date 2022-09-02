@@ -1748,6 +1748,7 @@ OS/MACOS/黑苹果/安装教程
 OS/Ubuntu/EasyBcd
 OS/Ubuntu/硬盘安装
 OS/Ubuntu/硬盘安装后引导
+OS/WIN10/mcafee占用磁盘100%怎么办？mcafee占用磁盘的完美解决方法
 OS/WIN10/安装系统常见问题
 OS/WIN10/安装系统常见问题 the error code is 2503, 2502的解决办法
 OS/WIN10/打印机 m7605d
