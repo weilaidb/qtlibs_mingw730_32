@@ -2361,6 +2361,8 @@ Vue.js/new/new Vue 过滤器
 Vue.js/new/new Vue2
 Vue.js/new/new Vue3
 Vue.js/new/script HelloWorld
+Vue.js/new/script/data
+Vue.js/new/script/hello
 Vue.js/教程/介绍
 Vue.js/教程/安装
 Vue.js/教程/起步
