@@ -32,6 +32,7 @@ endglobal
 #                            DIY Snippets                            #
 ###########################################################################
 
+
 snippet wel "welcome to china" b  
 welcome to china
 haha!!                  
@@ -42,7 +43,7 @@ endsnippet
 
 
 
-snippet cheader ";c headers" b  
+snippet headerc ";c headers" b  
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -58,7 +59,7 @@ endsnippet
 
 #=======================================>>>>>>>>>>>
 
-snippet cppheader "c++ headers" b  
+snippet headercpp "c++ headers" b  
 #include <iostream>
 #include <string>
 #include <vector>
@@ -130,6 +131,7 @@ endsnippet
 snippet basetype "typedef base type" b  
 typedef char CHAR;
 typedef unsigned char BYTE;
+typedef unsigned char BOOLEAN;
 typedef char INT8;
 typedef short INT16;
 typedef int INT32;
@@ -412,7 +414,7 @@ endsnippet
 
 #=======================================>>>>>>>>>>>
 
-snippet gtestheader "gtest header" b  
+snippet headergtest "gtest header" b  
 #include "gmock/gmock.h"
 using namespace ::testing;                  
 endsnippet
@@ -439,7 +441,7 @@ endsnippet
 #=======================================>>>>>>>>>>>
 
 
-snippet commentheader "comments for header" b  
+snippet commenth "comments for header" b  
 /***************************************************************************
 ** 版权所有:  WeiLai Copyright (c) 2020-2030
 ** 文件名称:  ${1:`!p
@@ -533,7 +535,7 @@ endsnippet
 
 #=======================================>>>>>>>>>>>
 
-snippet commentsource "comments for source" b  
+snippet comments "comments for source" b  
 /***************************************************************************
 ** 版权所有:  WeiLai Copyright (c) 2020-2030  ******************************
 ** 文件名称:  ${1:`!p
@@ -613,6 +615,7 @@ endsnippet
 
 
 #=======================================>>>>>>>>>>>
+
 
 
 

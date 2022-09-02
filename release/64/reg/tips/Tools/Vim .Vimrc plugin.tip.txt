@@ -1,5 +1,5 @@
 vim-autoformat/vim-autoformat
-
+tenfyzhong/vim-gencode-cpp
 
 
 rhysd/vim-clang-format

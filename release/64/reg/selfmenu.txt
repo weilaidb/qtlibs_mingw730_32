@@ -491,6 +491,7 @@ CXX/Mutex/Lock mutex.h
 CXX/STL/set
 CXX/STL/set2
 CXX/STL/unordered_map
+CXX/STRUCT/operator lt
 CXX/String/back
 CXX/String/back2
 CXX/String/eg
