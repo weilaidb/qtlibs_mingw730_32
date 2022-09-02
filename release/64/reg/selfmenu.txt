@@ -522,6 +522,7 @@ CXX/class/多态 继承 virtual Board array
 CXX/define/pub
 CXX/eg
 CXX/externc __cplusplus
+CXX/know/C++ Standard Library headers
 CXX/know/C++ explicit 关键字
 CXX/know/_MSC_VER
 CXX/know/eg
