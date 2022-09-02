@@ -164,7 +164,8 @@ Plugin 'dbeniamine/vim-compile'
 "源文件和头文件切换
 Plugin 'vim-scripts/a.vim'
 
-
+"生成CPP声明或实现
+Plugin 'tenfyzhong/vim-gencode-cpp'
 
 
 
@@ -177,6 +178,12 @@ filetype plugin indent on
 "===================================插件定义列表=============================
 "===================================插件定义列表=============================
 
+"生成CPP声明或实现
+" ===============================插件 vim-gencode-cpp'
+"<leader>d 生成函数声明
+map <leader>d :GenDeclaration<CR>
+"<leader>g 生成函数实现
+map <leader>g :GenDefinition<CR>
 
 
 " ===============================插件 a.vim
@@ -199,6 +206,8 @@ filetype plugin indent on
 "
 "*<Leader>指Vim所定义的映射(map)前缀，在Vim配置文件中可过变量'mapleader'进行设置，缺省为'\'。
 
+"<leader>a 头/源文件切换命令
+map <leader>a :A<CR>
 
 
 
@@ -633,6 +642,11 @@ set autochdir
 "字体大小
 set guifont=Courier_new:h18:b:cDEFAULT
 
+"<leader>s 保存文件
+map <leader>s :w<CR>
+
+"<leader>q 退出
+map <leader>q :q<CR>
 
 
 

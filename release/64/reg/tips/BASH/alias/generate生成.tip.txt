@@ -1,3 +1,4 @@
+gitadd.;git add -A .
 catiptables;cat /etc/sysconfig/iptables
 
 vueinitwebpack;vue init webpack 

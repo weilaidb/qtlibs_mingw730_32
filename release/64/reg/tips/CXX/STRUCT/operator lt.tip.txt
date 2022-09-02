@@ -1,0 +1,2 @@
+[结构体名称,operator < 在C中无效]
+node

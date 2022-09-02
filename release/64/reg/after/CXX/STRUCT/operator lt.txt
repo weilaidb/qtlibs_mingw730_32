@@ -1,0 +1,1 @@
+typedef struct T_\1$NL{$NL$TBint  x;$NL$TBBOOLEAN operator<( const T_\1 b ) { return this->x < b.x; }$NL$TBBOOLEAN operator>( const T_\1 b ) { return this->x > b.x; }$NL $NL} T_\1, *P_\1;$NL $NLint main()$NL{$NL$TBT_\1 a, b;$NL$TBa.x = 2, b.x = 3;$NL$TBprintf( "%d", b > a );$TB$TB$TB$TB$TB$TB$TB$TB   $NL}

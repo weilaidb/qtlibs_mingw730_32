@@ -1,6 +1,7 @@
 typedef char CHAR;
 typedef unsigned char BYTE;
-
+typedef unsigned char BOOLEAN;
+typedef unsigned char BOOL;
 typedef char INT8;
 typedef short INT16;
 typedef int INT32;
@@ -15,4 +16,3 @@ typedef unsigned short WORD;
 typedef unsigned short WORD16;
 typedef unsigned int   WORD32;
 typedef unsigned long long WORD64;
-
