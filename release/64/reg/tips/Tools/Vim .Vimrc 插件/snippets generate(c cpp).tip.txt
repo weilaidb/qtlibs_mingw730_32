@@ -30,7 +30,13 @@ if0@mark if 0@$NL#if 0$NL#endif$NL
 =====基本类型
 basetype@typedef base type@typedef char CHAR;$NLtypedef unsigned char BYTE;$NLtypedef unsigned char BOOLEAN;$NLtypedef char INT8;$NLtypedef short INT16;$NLtypedef int INT32;$NLtypedef long long INT64;$NLtypedef unsigned char UINT8;$NLtypedef unsigned short UINT16;$NLtypedef unsigned int UINT32;$NLtypedef unsigned long long UINT64;$NLtypedef unsigned short WORD;$NLtypedef unsigned short WORD16;$NLtypedef unsigned int   WORD32;$NLtypedef unsigned long long WORD64;
 
+
+=====结构体struct
 st2@typedef struct T_xx{}T_xx, *P_xx@typedef struct T_${1:`!p snip.rv = (snip.basename or "name")`}$NL{$NL$TB${0:/* data */}$NL$TBint m_t1;$NL$NL}T_$1, *P_$1;
+
+stoper@typedef struct T_xx{}T_xx, *P_xx with operator <@typedef struct T_${1:`!p snip.rv = (snip.basename or "name")`}$NL{$NL    ${0:/* data */}$NL    int m_x;$NL    BOOLEAN operator<( const T_$1 b ) { return this->m_x < b.m_x; }$NL    BOOLEAN operator>( const T_$1 b ) { return this->m_x > b.m_x; }$NL}T_$1, *P_$1;$NL
+
+
 
 =====变量
 vari@define var int@int ${1:i} = 0;

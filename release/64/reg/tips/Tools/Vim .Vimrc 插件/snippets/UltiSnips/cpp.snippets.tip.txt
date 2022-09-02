@@ -149,6 +149,7 @@ endsnippet
 
 #=======================================>>>>>>>>>>>
 
+
 snippet st2 "typedef struct T_xx{}T_xx, *P_xx" b  
 typedef struct T_${1:`!p snip.rv = (snip.basename or "name")`}
 {
@@ -156,6 +157,20 @@ typedef struct T_${1:`!p snip.rv = (snip.basename or "name")`}
     int m_t1;
 
 }T_$1, *P_$1;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet stoper "typedef struct T_xx{}T_xx, *P_xx with operator <" b  
+typedef struct T_${1:`!p snip.rv = (snip.basename or "name")`}
+{
+    ${0:/* data */}
+    int m_x;
+    BOOLEAN operator<( const T_$1 b ) { return this->m_x < b.m_x; }
+    BOOLEAN operator>( const T_$1 b ) { return this->m_x > b.m_x; }
+}T_$1, *P_$1;
+                  
 endsnippet
 
 
@@ -212,7 +227,7 @@ endsnippet
 #=======================================>>>>>>>>>>>
 
 
-snippet switchcase "condition of switch case" b  
+snippet conditionswitch "condition of switch case" b  
 
 switch ( $1 )
 {
@@ -615,6 +630,79 @@ endsnippet
 
 
 #=======================================>>>>>>>>>>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
