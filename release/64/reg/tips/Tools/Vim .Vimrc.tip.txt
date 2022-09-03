@@ -167,6 +167,8 @@ Plugin 'vim-scripts/a.vim'
 "生成CPP声明或实现
 Plugin 'tenfyzhong/vim-gencode-cpp'
 
+"管理插件的插件
+Plugin 'tpope/vim-pathogen'
 
 
 call vundle#end()

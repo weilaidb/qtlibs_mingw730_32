@@ -51,9 +51,9 @@ alias vimhelp="vim --help "
 
 alias vimgreppython="vim --version|grep python "
 alias vim.="vim . "
-alias vi.="vim. "
+alias vi.=vim.
 
-alias vim..="vim.. "
+
 alias catvimrc="cat ~/.vimrc "
 alias vimvimrc="vim ~/.vimrc "
 alias tarvimrc="tar -cvzf ~/vim.tar.gz ~/.vimrc ~/.vim "

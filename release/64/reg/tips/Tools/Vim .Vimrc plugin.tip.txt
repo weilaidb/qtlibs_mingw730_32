@@ -1,3 +1,7 @@
+tpope/vim-pathogen
+
+
+
 vim-autoformat/vim-autoformat
 tenfyzhong/vim-gencode-cpp
 
