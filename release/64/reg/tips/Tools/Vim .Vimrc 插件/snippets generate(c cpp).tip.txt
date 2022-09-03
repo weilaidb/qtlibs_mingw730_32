@@ -6,6 +6,19 @@
 wel@welcome to china@welcome to china$NLhaha!!
 
 C和C++
+
+=====测试gtest
+gtestmakefile@gtest Cmakefiles@project(${1:chapterFirstExample})$NLcmake_minimum_required(VERSION 2.6)$NL$NLinclude_directories($ENV{GMOCK_HOME}/include $ENV{GMOCK_HOME}/gtest/include)$NLinclude_directories(./)$NLinclude_directories(./include)$NLlink_directories($ENV{GMOCK_HOME}/mybuild $ENV{GMOCK_HOME}/gtest/mybuild)$NLadd_definitions(-std=c++0x)$NLset(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall")$NL$NLset(sources $NL   main.cpp$NL   ${2:test.cpp}$NL   )$NLadd_executable(test ${sources})$NLtarget_link_libraries(test pthread)$NLtarget_link_libraries(test gmock)$NLtarget_link_libraries(test gtest)
+
+gtestmain@gtest main@#include "gmock/gmock.h"$NLint main(int argc, char** argv) {$NL$TBtesting::InitGoogleMock(&argc, argv);$NL$TBreturn RUN_ALL_TESTS();$NL}     
+headergtest@gtest header@#include "gmock/gmock.h"$NLusing namespace ::testing; 
+gtestclass@gtest class parent is Test@#include "gmock/gmock.h"$NLusing namespace ::testing;$NL$NL$NLclass A${1:RetweetCollection}: public Test {    $NLpublic:    $NL$1 ${2:collection};    $NL};    $NLTEST_F(A$1, ${3:IsEmptyWhenCreated}) {    $NLASSERT_TRUE(1);    $NL//   ASSERT_TRUE($2.isEmpty());    $NL}  
+gtestf@gtest TEST_F@TEST_F(${1:AnTest}, ${2:isEmpty})$NL{$NL    ASSERT_THAT(1, Eq(1));$NL}
+
+
+
+
+
 ====头文件
 headerc@;c headers@#include <stdio.h>$NL#include <stdlib.h>$NL#include <unistd.h>$NL#include <string.h>$NL#include <sys/types.h>$NL#include <sys/time.h>$NL#include <sys/fcntl.h>$NL#include <assert.h>$NL#include <stdarg.h>$NL
 
@@ -86,11 +99,6 @@ printfllu@print unsigned long long@printf("%llu\n",$1);
 
 
 
-
-=====测试gtest
-gtestmain@gtest main@#include "gmock/gmock.h"$NLint main(int argc, char** argv) {$NL$TBtesting::InitGoogleMock(&argc, argv);$NL$TBreturn RUN_ALL_TESTS();$NL}     
-headergtest@gtest header@#include "gmock/gmock.h"$NLusing namespace ::testing; 
-gtestclass@gtest class parent is Test@#include "gmock/gmock.h"$NLusing namespace ::testing;$NL$NL$NLclass A${1:RetweetCollection}: public Test {    $NLpublic:    $NL$1 ${2:collection};    $NL};    $NLTEST_F(A$1, ${3:IsEmptyWhenCreated}) {    $NLASSERT_TRUE(1);    $NL//   ASSERT_TRUE($2.isEmpty());    $NL}  
 
 
 

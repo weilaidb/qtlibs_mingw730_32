@@ -5,11 +5,39 @@
 ###########################################################################
 
 
+
+
+
 snippet wel "welcome to china" b  
 welcome to china
 haha!!                  
 endsnippet
 
+
+
+snippet gtestmakefile "gtest Cmakefiles" b  
+project(${1:chapterFirstExample})
+cmake_minimum_required(VERSION 2.6)
+
+include_directories($ENV{GMOCK_HOME}/include $ENV{GMOCK_HOME}/gtest/include)
+include_directories(./)
+include_directories(./include)
+link_directories($ENV{GMOCK_HOME}/mybuild $ENV{GMOCK_HOME}/gtest/mybuild)
+add_definitions(-std=c++0x)
+set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall")
+
+set(sources 
+   main.cpp
+   ${2:test.cpp}
+   )
+add_executable(test ${sources})
+target_link_libraries(test pthread)
+target_link_libraries(test gmock)
+target_link_libraries(test gtest)                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
 
 #=======================================>>>>>>>>>>>
 
@@ -121,6 +149,7 @@ endsnippet
 
 #=======================================>>>>>>>>>>>
 
+
 snippet st2 "typedef struct T_xx{}T_xx, *P_xx" b  
 typedef struct T_${1:`!p snip.rv = (snip.basename or "name")`}
 {
@@ -128,6 +157,20 @@ typedef struct T_${1:`!p snip.rv = (snip.basename or "name")`}
     int m_t1;
 
 }T_$1, *P_$1;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet stoper "typedef struct T_xx{}T_xx, *P_xx with operator <" b  
+typedef struct T_${1:`!p snip.rv = (snip.basename or "name")`}
+{
+    ${0:/* data */}
+    int m_x;
+    BOOLEAN operator<( const T_$1 b ) { return this->m_x < b.m_x; }
+    BOOLEAN operator>( const T_$1 b ) { return this->m_x > b.m_x; }
+}T_$1, *P_$1;
+                  
 endsnippet
 
 
@@ -184,7 +227,7 @@ endsnippet
 #=======================================>>>>>>>>>>>
 
 
-snippet switchcase "condition of switch case" b  
+snippet conditionswitch "condition of switch case" b  
 
 switch ( $1 )
 {
@@ -412,6 +455,16 @@ endsnippet
 
 #=======================================>>>>>>>>>>>
 
+snippet gtestf "gtest TEST_F" b  
+TEST_F(${1:AnTest}, ${2:isEmpty})
+{
+    ASSERT_THAT(1, Eq(1));
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
 
 snippet commenth "comments for header" b  
 /***************************************************************************
@@ -587,6 +640,7 @@ endsnippet
 
 
 #=======================================>>>>>>>>>>>
+
 
 
 
