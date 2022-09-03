@@ -20,6 +20,7 @@ ln -s ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/Tools/Vim\ .Vimrc.tip.tx
 4.软链接代码片段(根路径)
 cpp.snippets
 c.snippets
+cmake.snippets
 
 ln -s ~/work/git/qtlibs_mingw730_32/release/64/reg reg
 
@@ -30,11 +31,16 @@ ln -s ~/reg/tips/Tools/Vim\ .Vimrc\ 插件/snippets/UltiSnips/c.snippets.tip.txt
 ln -s ~/reg/tips/Tools/Vim\ .Vimrc\ 插件/snippets/UltiSnips/cpp.snippets.tip.txt cpp.snippets
 
 
+cd ~/.vim/bundle/vim-snippets/snippets
+ln -s ~/reg/tips/Tools/Vim\ .Vimrc\ 插件/snippets/UltiSnips/cmake.snippets.tip.txt cmake.snippets
+
 5.格式化软链接
 ln -s 'work/git/qtlibs_mingw730_32/release/64/reg/tips/Tools/Vim .Vimrc .clang-format.tip.txt' .clang-format
 
 
 
+6.bashrc也链接一下
+ln -s ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/.bashrc\(101.201.79.164\).tip.txt .bashrc
 
 
 

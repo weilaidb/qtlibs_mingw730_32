@@ -41,29 +41,172 @@ endsnippet
 
 
 
-snippet gtestmakefile "gtest Cmakefiles" b  
-project(${1:chapterFirstExample})
-cmake_minimum_required(VERSION 2.6)
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
 
-include_directories($ENV{GMOCK_HOME}/include $ENV{GMOCK_HOME}/gtest/include)
-include_directories(./)
-include_directories(./include)
-link_directories($ENV{GMOCK_HOME}/mybuild $ENV{GMOCK_HOME}/gtest/mybuild)
-add_definitions(-std=c++0x)
-set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall")
+snippet gtestclass8 "gtest class with SetUp and TearDown With 8 TEST_F" b  
+class An${1:Test}: public Test {
+public:
+    $1 ${2:obj};
+    void SetUp() {
+    
+    }
+    void TearDown() {
+    
+    }
+};
 
-set(sources 
-   main.cpp
-   ${2:test.cpp}
-   )
-add_executable(test ${sources})
-target_link_libraries(test pthread)
-target_link_libraries(test gmock)
-target_link_libraries(test gtest)                  
+TEST_F(An$1, ${3:T1})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+TEST_F(An$1, ${4:T2})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+TEST_F(An$1, ${5:T3})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+TEST_F(An$1, ${6:T4})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+TEST_F(An$1, ${7:T5})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+TEST_F(An$1, ${8:T6})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+TEST_F(An$1, ${9:T7})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+TEST_F(An$1, ${10:T8})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+                  
+endsnippet
+
+#=======================================>>>>>>>>>>>
+snippet gtestclass6 "gtest class with SetUp and TearDown" b  
+class An${1:Test}: public Test {
+public:
+    $1 ${2:obj};
+    void SetUp() {
+    
+    }
+    void TearDown() {
+    
+    }
+};
+
+TEST_F(An$1, ${3:Hello})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+TEST_F(An$1, ${4:T2})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+TEST_F(An$1, ${5:T3})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+TEST_F(An$1, ${6:T4})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}
+
+                  
+endsnippet
+#=======================================>>>>>>>>>>>
+
+
+snippet gtestclass2 "gtest class with SetUp and TearDown" b  
+class An${1:Test}: public Test {
+public:
+    $1 ${2:obj};
+    void SetUp() {
+    
+    }
+    void TearDown() {
+    
+    }
+};
+
+TEST_F(An$1, ${3:Hello})
+{
+
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+}                  
 endsnippet
 
 
-#=======================================>>>>>>>>>>>
 
 
 
@@ -457,10 +600,11 @@ endsnippet
 
 #=======================================>>>>>>>>>>>
 
-snippet headergtest "gtest header" b  
+snippet gtestheader "gtest header" b  
 #include "gmock/gmock.h"
 using namespace ::testing;                  
 endsnippet
+
 
 
 #=======================================>>>>>>>>>>>

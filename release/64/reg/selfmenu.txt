@@ -3,6 +3,7 @@ Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
+BASH/alias/.bashrc(101.201.79.164)
 BASH/alias/bashrc deploy script
 BASH/alias/bashrc 加载配置 qtlibs_mingw730_32
 BASH/alias/bashrc 加载配置 ubuntu20.04
@@ -2230,6 +2231,7 @@ Tools/Vim .Vimrc 插件/snippets generate(c cpp)
 Tools/Vim .Vimrc 插件/snippets 关键字 查看
 Tools/Vim .Vimrc 插件/snippets 关键字(cpp)
 Tools/Vim .Vimrc 插件/snippets/UltiSnips/c.snippets
+Tools/Vim .Vimrc 插件/snippets/UltiSnips/cmake.snippets
 Tools/Vim .Vimrc 插件/snippets/UltiSnips/cpp.snippets
 Tools/Vim .Vimrc 插件/vim 源文件头文件快速切换插件 a.vim
 Tools/Vim .Vimrc 插件/vim-snippets ultisnips
@@ -2383,6 +2385,7 @@ go/1/forloop
 go/1/forloop true
 go/1/forloop2
 go/1/关键字
+go/Beego/介绍
 go/eg
 go/env
 go/help
