@@ -1,0 +1,107 @@
+v-html 属性（超链接）
+先尝试一下文本渲染超链接代码
+
+在身体部分标签（p）中，用二层花括号包裹变量（code）
+code 变量内容为一个完整的 Html （超链接）标签代码
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{code}}</p>
+    </div>
+    <script>
+        new Vue({
+           el:"#box",
+           data:{
+               code:"<a href='https://www.baidu.com/'>百度一下</a>"
+            }
+        })
+    </script>
+</body>
+</html>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+我们可以发现渲染过来的仍然是文本，并未将文本翻译成标签显示出来
+
+
+然后我们尝试一种正确的方法（v-html 属性来渲染）
+
+v-html 属性使用在身体部分的标签中，目的是使该标签转化为 Vue 定义的另一个变量标签
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <div v-html="code"></div>
+    </div>
+    <script>
+        new Vue({
+           el:"#box",
+           data:{
+               code:"<a href='https://www.baidu.com/'>百度一下</a>"
+            }
+        })
+    </script>
+</body>
+</html>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+可以发现标签被完美的显示在了浏览器上
+————————————————
+版权声明：本文为CSDN博主「是我来晚了！」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_51927215/article/details/115841693

@@ -17,6 +17,7 @@ https://github.com/weilaidb
 https://github.com/weilaidb/linux_driver
 【CSDN】https://www.csdn.net/
 【StackOverFlow】https://stackoverflow.com/
+【VUE Demo】http://101.201.79.164:8080
 【下载视频】C:\Users\dell\dwhelper
 【双拼练习】https://dazi.91xjr.com/typing/train/shuang.html
 【吾爱破解】https://www.52pojie.cn/
