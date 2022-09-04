@@ -2353,6 +2353,7 @@ Vue.js/new/new Vue v-for 指令3
 Vue.js/new/new Vue v-for 指令4
 Vue.js/new/new Vue v-for 指令5
 Vue.js/new/new Vue v-for 指令6
+Vue.js/new/new Vue v-html 属性（超链接）
 Vue.js/new/new Vue v-html 指令用于输出 html 代码
 Vue.js/new/new Vue v-if
 Vue.js/new/new Vue v-if 2
