@@ -1,0 +1,96 @@
+js 操作select和option常见用法
+1、获取选中select的value和text,html
+
+<select id="mySelect">
+<option value="1">one</option>
+<option value="2">two</option>
+<option value="3">three</option>
+</select>
+通过以下script代码s来获取选中的value和text
+
+$("#mySelect").val(); //获取选中记录的value值
+$("#mySelect option:selected").text(); //获取选中记录的text值 
+2、运用new Option("文本","值")方法添加选项option
+
+var obj = document.getElementById("mySelect");
+obj.add(new Option("4","4")); 
+3、删除所有选项option
+
+var obj = document.getElementById("mySelect");
+obj.options.length = 0; 
+4、删除选中选项option
+
+var obj = document.getElementById("mySelect");
+var index = obj.selectedIndex;
+obj.options.remove(index);
+5、修改选中选项option
+
+var obj = document.getElementById("mySelect");
+var index = obj.selectedIndex;
+obj.options[index] = new Option("three",3); //更改对应的值
+obj.options[index].selected = true; //保持选中状态
+6、删除select
+
+var obj = document.getElementById("mySelect");
+obj.parentNode.removeChild(obj); //移除当前对象 
+7、select选择的响应事件
+
+$("#mySelect").change(function(){ //添加所需要执行的操作代码}) 
+1.动态创建select
+
+function createSelect(){
+var mySelect = document.createElement_x("select");
+mySelect.id = "mySelect";
+document.body.appendChild(mySelect);
+} 
+2.添加选项option
+
+复制代码
+function addOption(){
+//根据id查找对象，
+var obj=document.getElementByIdx_x('mySelect');
+//添加一个选项
+obj.add(new Option("文本","值")); //这个只能在IE中有效
+obj.options.add(new Option("text","value")); //这个兼容IE与firefox
+}
+复制代码
+3.删除所有选项option
+
+function removeAll(){
+var obj=document.getElementByIdx_x('mySelect');
+obj.options.length=0;
+}
+4.删除一个选项option
+
+复制代码
+function removeOne(){
+var obj=document.getElementByIdx_x('mySelect');
+//index,要删除选项的序号，这里取当前选中选项的序号
+var index=obj.selectedIndex;
+obj.options.remove(index);
+} 
+复制代码
+5.获得选项option的值
+
+var obj=document.getElementByIdx_x('mySelect');
+var index=obj.selectedIndex; //序号，取当前选中选项的序号
+var val = obj.options[index].value; 
+6.获得选项option的文本
+
+var obj=document.getElementByIdx_x('mySelect');
+var index=obj.selectedIndex; //序号，取当前选中选项的序号
+var val = obj.options[index].text;
+7.修改选项option
+
+var obj=document.getElementByIdx_x('mySelect');
+var index=obj.selectedIndex; //序号，取当前选中选项的序号
+var val = obj.options[index]=new Option("新文本","新值");
+8.删除select
+
+function removeSelect(){
+var mySelect = document.getElementByIdx_x("mySelect");
+mySelect.parentNode.removeChild(mySelect);
+} 
+ 
+
+分类: 前端学习

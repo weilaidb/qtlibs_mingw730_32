@@ -1,3 +1,5 @@
+rmrf;rm -rf
+dflh;df -lh
 gitmergeabort;git merge --abort
 gitmerge;git merge
 
