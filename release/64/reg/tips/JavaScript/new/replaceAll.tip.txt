@@ -1,0 +1,2 @@
+var str="Visit Microsoft! Visit Microsoft!";
+var n=str.replaceAll("Microsoft","Runoob");

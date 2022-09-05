@@ -1,0 +1,2 @@
+[工程名;测试源文件]
+chapterFirstExample;test.cpp
