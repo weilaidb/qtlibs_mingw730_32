@@ -1535,6 +1535,7 @@ LINUX/help/ps
 LINUX/help/systemtap
 LINUX/help/top
 LINUX/help/vmstat
+LINUX/know/Linux下为什么有的文件名后带个* 星号？
 LINUX/knowledge/diff 命令(比较文件的差异)
 LINUX/knowledge/diff 文件夹
 LINUX/knowledge/writev
@@ -2228,6 +2229,7 @@ Tools/Vim .Vimrc plugin
 Tools/Vim .Vimrc 插件/NerdTree
 Tools/Vim .Vimrc 插件/Nerdtree的基本操作
 Tools/Vim .Vimrc 插件/Vim插件之属性目录NERDTree
+Tools/Vim .Vimrc 插件/fzf Usage
 Tools/Vim .Vimrc 插件/junegunn vim-easy-align
 Tools/Vim .Vimrc 插件/know/snippets clang format 官方文档自定义参数介绍（中英文）
 Tools/Vim .Vimrc 插件/know/snippets 一份自己满意的ClangFormat配置
@@ -2418,6 +2420,7 @@ path路径/常用文件夹
 人格品行/弟子规
 人格品行/弟子规 翻译
 人格品行/每日训诫检查
+图片/常用网址
 字符/方向
 学习/小学生/成绩ABCD
 学习/小学生/英文电影
@@ -2556,6 +2559,7 @@ path路径/常用文件夹
 算法/C/计数排序
 算法/C/选择排序
 纪录片/视频及资料网址
+翻译/常用网址
 脚本/VBS/SecureCrt/Date
 脚本/VBS/SecureCrt/Send
 脚本/VBS/SecureCrt/Sleep

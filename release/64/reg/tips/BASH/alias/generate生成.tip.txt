@@ -272,3 +272,4 @@ cd..;cd ..
 lslh;ls -lh
 
 lslt;ls -lt
+lsf;ls -F

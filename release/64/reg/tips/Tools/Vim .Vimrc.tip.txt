@@ -101,8 +101,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 
 "A super simple function navigator for fzf, porting from ctrlp-funky.It is a very useful plugin when ctags is not exist or lsp is not support(vim版本需要在8.2以上)
-"Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plugin 'tracyone/fzf-funky',{'on': 'FzfFunky'}
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'tracyone/fzf-funky',{'on': 'FzfFunky'}
 
 "格式化代码
 Plugin 'rhysd/vim-clang-format'
@@ -171,6 +171,16 @@ Plugin 'tenfyzhong/vim-gencode-cpp'
 Plugin 'tpope/vim-pathogen'
 
 
+
+
+
+
+
+
+
+
+
+
 call vundle#end()
 "开启文件类型自动检测，编写代码时自动换行对齐"
 filetype plugin indent on
@@ -179,6 +189,8 @@ filetype plugin indent on
 "===================================插件定义列表=============================
 "===================================插件定义列表=============================
 "===================================插件定义列表=============================
+
+
 
 "生成CPP声明或实现
 " ===============================插件 vim-gencode-cpp'
@@ -650,7 +662,8 @@ map <leader>s :w<CR>
 "<leader>q 退出
 map <leader>q :q<CR>
 
-
+"手动重加载文件的命令是：e!
+map <leader>l :e!<CR>
 
 "================自定义函数
 " 返回当前时间
