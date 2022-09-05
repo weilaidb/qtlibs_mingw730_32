@@ -164,6 +164,8 @@ alias cd..="cd .."
 alias cd....="cd ../.. "
 alias cd...="cd ../.. "
 alias cdfdir='cd `dirname '
+alias dflh="df -lh "
+alias rmrf="rm -rf "
 
 alias useraddhome="useradd -d /home "
 alias journalctlxe="journalctl -xe "
