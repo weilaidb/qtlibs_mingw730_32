@@ -1,0 +1,52 @@
+-clipboard 表示不支持剪切板？
+
+
+$ vim --version
+VIM - Vi IMproved 8.1 (2018 May 18, compiled Aug 18 2022 21:57:56)
+Included patches: 1-2270
+Compiled by root@weilaidb
+Huge version without GUI.  Features included (+) or not (-):
++acl               -farsi             -mouse_sysmouse    -tag_any_white
++arabic            +file_in_path      +mouse_urxvt       -tcl
++autocmd           +find_in_path      +mouse_xterm       +termguicolors
++autochdir         +float             +multi_byte        +terminal
+-autoservername    +folding           +multi_lang        +terminfo
+-balloon_eval      -footer            -mzscheme          +termresponse
++balloon_eval_term +fork()            +netbeans_intg     +textobjects
+-browse            +gettext           +num64             +textprop
+++builtin_terms    -hangul_input      +packages          +timers
++byte_offset       +iconv             +path_extra        +title
++channel           +insert_expand     -perl              -toolbar
++cindent           +job               +persistent_undo   +user_commands
+-clientserver      +jumplist          +postscript        +vartabs
+-clipboard         +keymap            +printer           +vertsplit
++cmdline_compl     +lambda            +profile           +virtualedit
++cmdline_hist      +langmap           -python            +visual
++cmdline_info      +libcall           +python3           +visualextra
++comments          +linebreak         +quickfix          +viminfo
++conceal           +lispindent        +reltime           +vreplace
++cryptv            +listcmds          +rightleft         +wildignore
++cscope            +localmap          -ruby              +wildmenu
++cursorbind        -lua               +scrollbind        +windows
++cursorshape       +menu              +signs             +writebackup
++dialog_con        +mksession         +smartindent       -X11
++diff              +modify_fname      -sound             -xfontset
++digraphs          +mouse             +spell             -xim
+-dnd               -mouseshape        +startuptime       -xpm
+-ebcdic            +mouse_dec         +statusline        -xsmp
++emacs_tags        -mouse_gpm         -sun_workshop      -xterm_clipboard
++eval              -mouse_jsbterm     +syntax            -xterm_save
++ex_extra          +mouse_netterm     +tag_binary        
++extra_search      +mouse_sgr         -tag_old_static    
+   system vimrc file: "$VIM/vimrc"
+     user vimrc file: "$HOME/.vimrc"
+ 2nd user vimrc file: "~/.vim/vimrc"
+      user exrc file: "$HOME/.exrc"
+       defaults file: "$VIMRUNTIME/defaults.vim"
+  fall-back for $VIM: "/usr/local/share/vim"
+Compilation: gcc -c -I. -Iproto -DHAVE_CONFIG_H     -g -O2 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1       
+Linking: gcc   -L/usr/local/lib -Wl,--as-needed -o vim        -lm -ltinfo -lelf  -lselinux  -ldl     -L/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu -lpython3.6m      
+[root@weilaidb] ~
+$ 
+[root@weilaidb] ~
+$
