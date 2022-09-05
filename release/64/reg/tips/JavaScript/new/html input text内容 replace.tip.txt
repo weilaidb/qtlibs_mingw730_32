@@ -1,0 +1,51 @@
+function ReplaceContentByStr()
+{
+    var orgHtml = document.getElementById("fileaf").innerHTML;
+    var beforestr = document.getElementById("idbefore").value;
+    var afterstr = document.getElementById("idafter").value;
+    // alert(beforestr)
+    if(0 == beforestr.length)
+    {
+        alert("请输入替换前字符");
+        return;
+    }
+    orgHtml = orgHtml.replace(beforestr, afterstr);
+    // orgHtml = orgHtml.concat( customSign );
+    document.getElementById("fileaf").innerHTML = orgHtml;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form action="" method="post" name="form2" target="">
+    <input type="hidden" value="<%=topdir%>" name="topdir">
+    <input type="hidden" value="<%=selectitem%>" name="selectitem">
+    <input type="button" value="保存" onclick="saveFile()"/>
+    <select name="customsign" onchange="showCustomSign(this.value)" id="customsign" style="font-family:Verdana, Arial, Helvetica, sans-serif;">
+        <option value="v3">=======================================>>>>>>>>>>></option>
+        <option value="v4">#=======================================>>>>>>>>>>></option>
+        <option value="v5">---------------------------------------->>>>>>>>>>></option>
+        <option value="v6">#---------------------------------------->>>>>>>>>></option>
+        <option value="v1">【】</option>
+        <option value="v2">[]</option>
+    </select>
+    <input type="button" value="插入分隔符" onclick="InsertSeperatorAfterContent()"/><br/>
+    <input type="button" value="替换右侧内容" onclick="ReplaceContentByStr()"/>
+    <input type="text" placeholder="替换前字符" id="idbefore" name="beforestr"/>
+    <input type="text" placeholder="替换后字符" id="idafter" name="afterstr"/>
+    <%--        <input type="button" value="查看" onclick="showFile()" />--%>
+    </br>
+    <textarea name="filetip" style="width: 35%;height: 100%;background-color: #cce8cf;"><c:out value="<%=contentTips%>" escapeXml="true"></c:out></textarea>
+    <textarea name="filebf"  style="width: 15%;height: 100%;background-color: #cce8cf;"><c:out value="<%=contentBf%>" escapeXml="true"></c:out></textarea>
+    <textarea id="fileaf" name="fileaf"  style="width: 45%;height: 100%;background-color: #cce8cf;"><c:out value="<%=contentAf%>" escapeXml="true"></c:out></textarea>
+
+</form>

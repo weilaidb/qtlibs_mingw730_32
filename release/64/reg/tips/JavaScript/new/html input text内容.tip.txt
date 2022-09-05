@@ -1,0 +1,2 @@
+[input text的ID;变量名]
+idbefore;beforestr

@@ -460,7 +460,7 @@ CXX/Cout_in/cout size
 CXX/DECLARE_TO_IMPLEMENT
 CXX/DECLARE_TO_IMPLEMENT CLASS
 CXX/DECLARE_TO_IMPLEMENT static
-CXX/Format/Log _format_msg
+CXX/Format/Log _format_msg args
 CXX/GetStrOfData
 CXX/INCLUDE/FILTER
 CXX/INCLUDE/GENERATE
@@ -1359,6 +1359,10 @@ JavaScript/layui/use
 JavaScript/layui/入门指南/简介
 JavaScript/layui/字体图标 ico
 JavaScript/log/console
+JavaScript/new/html input text内容
+JavaScript/new/html input text内容 replace
+JavaScript/new/replaceAll
+JavaScript/new/replaceAll2
 JavaScript/proc/replace h3 京东读书代码
 JavaScript/scripts/checkemail
 JavaScript/scripts/checkemail 禁止重复提交
@@ -1521,6 +1525,7 @@ LINUX/Ubuntu/必备命令 order systemtap
 LINUX/Ubuntu/必备软件 necessary software
 LINUX/Ubuntu/必备软件 necessary software dpkg -i
 LINUX/Vim/vim实用技巧
+LINUX/cat EOF
 LINUX/help/HZ
 LINUX/help/cgroup cgconfig
 LINUX/help/chrt
@@ -2342,6 +2347,10 @@ UNITTEST/GTEST/ASSERT_xxx
 UNITTEST/GTEST/TEST
 UNITTEST/GTEST/TEST_F
 UNITTEST/GTEST/TEST_P
+UNITTEST/GTEST/class/TEST_F 4
+UNITTEST/GTEST/class/TEST_F 6
+UNITTEST/GTEST/class/eg
+UNITTEST/GTEST/class/gtestmakefile
 UNITTEST/GTEST/gtest说明
 UNITTEST/GTEST/header
 UNITTEST/GTEST/make

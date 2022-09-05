@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+</head>
+<body>
+
+<p>单击按钮将段落中的所有 Microsoft 替换成 Runoob：</p>
+<p id="demo">Visit Microsoft!Visit Microsoft!</p>
+<button onclick="myFunction()">点我</button>
+<script>
+function myFunction(){
+	var str=document.getElementById("demo").innerHTML; 
+	var n=str.replaceAll("Microsoft","Runoob");
+	document.getElementById("demo").innerHTML=n;
+}
+</script>
+
+</body>
+</html>
