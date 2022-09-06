@@ -794,8 +794,8 @@ GCC/-rdynamic
 GCC/Wall
 GCC/fpermissive
 GCC/gcc编译选项
-Html/DOM/DOM
-Html/DOM/DOM/Mouse/MouseEvent 鼠标事件
+Html/DOM/DOM Ext
+Html/DOM/DOM/Mouse/MouseEvent鼠标事件
 Html/DOM/div/刷新
 Html/DOM/getElementById
 Html/DOM/getElementById innerHTML
