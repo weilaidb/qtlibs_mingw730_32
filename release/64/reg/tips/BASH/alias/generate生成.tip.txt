@@ -113,6 +113,8 @@ findgitlist;find . -name .git
 
 
 vimhelp;vim --help
+vimversion;vim --version
+vimgrepclipboard;vim --version | grep clipboard
 vimgreppython;vim --version|grep python
 vim.;vim .
 vi.;vim.

@@ -48,8 +48,11 @@ alias slabtophelp="slabtop -h "
 
 alias tophelp="top -h "
 alias vimhelp="vim --help "
+alias vimversion="vim --version "
 
 alias vimgreppython="vim --version|grep python "
+alias vimgrepclipboard="vim --version | grep clipboard "
+
 alias vim.="vim . "
 alias vi.=vim.
 
