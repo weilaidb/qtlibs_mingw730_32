@@ -212,7 +212,8 @@ Plugin 'tpope/vim-fugitive'
 "这个插件主要是提供Syntax Check（语法检查）的。这方面之前比较流行的插件是syntastic。但因为ale支持异步的语法检查，所以我很早就切到ale了。其实异步检查这个非常重要，因为如果没有异步，当语法检查程序在跑的时候编辑器总是会卡一下，非常非常的不爽
 Plugin 'dense-analysis/ale'
 
-
+"E117: Unknown function: textobj#user#plugin
+Plugin 'kana/vim-textobj-user'
 
 
 
@@ -431,7 +432,7 @@ let g:NERDTreeHidden=0     "不显示隐藏文件
 "Making it prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-
+"r刷新目录
 
 " ============================ theme and status line ============================
 
@@ -704,6 +705,9 @@ map <leader>q :q<CR>
 
 "手动重加载文件的命令是：e!
 map <leader>l :e!<CR>
+
+
+
 
 "================自定义函数
 " 返回当前时间

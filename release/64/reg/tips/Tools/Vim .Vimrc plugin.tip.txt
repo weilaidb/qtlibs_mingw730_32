@@ -6,7 +6,7 @@ tpope/vim-surround
 kana/vim-textobj-entire
 tpope/vim-fugitive
 dense-analysis/ale
-
+kana/vim-textobj-user
 
 
 /usr/local/opt/fzf
