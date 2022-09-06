@@ -170,9 +170,47 @@ Plugin 'tenfyzhong/vim-gencode-cpp'
 "管理插件的插件
 Plugin 'tpope/vim-pathogen'
 
+"这个插件其实是上边ctrlp插件的一个补充，它主要是提升了文件查找的速度。
+Plugin 'FelikZ/ctrlp-py-matcher'
 
 
 
+"这个插件主要是提供了vim的配色方案。Solarized配色方案应该是一个系列，iTerm2什么的都有它的配色方案，我觉得总体来说还是比较舒服的。
+
+Plugin 'altercation/vim-colors-solarized'
+
+
+
+"这个插件主要是帮助我们更快速的注释代码。不管是在写代码还是调试过程中，我们经常需要注释掉一些代码。这个插件可以非常快速的帮我们注释和取消注释，不管是单行还是多行都可以很好的工作，而且各种文件格式基本都是支持的，可以根据文件类型来插入不同的注释代码。用习惯了根本离不开。
+Plugin 'tpope/vim-commentary'
+
+
+"我平时会用到比较多的di(delete in)或ci(change in)之类的vim命令，比如删除括号内的内容就是ci(。但是vim内置可以识别的`surroundings`只包括括号之类的少数字符，比如当我们想删除引号内的内容时，用原生vim是无法做到的。当我们安装了vim-surround插件后，就可以轻松的执行di"来删除引号内的内容了。
+
+
+Plugin 'tpope/vim-surround'
+
+
+"在vim中有一个text object的概念，比如一个单词就算是一个text object。然后我们就可以用一些vim命令来操作一个text object。比如删除一个单词就是dw，替换一个单词就是cw。而vim-textobj-entire这个插件就是将整个文件内容变为了一个`text object`。它允许我们执行比如dae三个字符来删除整个文件的内容。某些情况下用起来还是挺爽的。
+
+Plugin 'kana/vim-textobj-entire'
+
+
+
+
+"这个插件允许在vim中做一些git操作。我觉得最好用的两个功能就是:Gblame和:Gbrowse。
+
+":Gblame其实就是执行git blame命令，然后直接在vim中将git的输出结果与源代码一一对应起来。这样当你读团队代码的时候发现了一个坑，然后想知道是谁写的这个坑的时候，只需要:Gblame一下，结果立马呈现。
+
+":Gbrowse是当你想分享一段代码给别人的时候，可以直接选中你想分享的代码，可以是单行也可以是多行，然后执行:Gbrowse，它就会帮你在浏览器中打开github的地址，然后直接定位到你所选的代码行数。被选中的代码会被高亮显示。用这种方式分享代码可比截图或复制粘贴优雅多了。但是它只支持存放在github中的代码仓库，如果你的代码放在gitlab或其他仓库中，这个插件是无法打开的。
+
+Plugin 'tpope/vim-fugitive'
+
+
+
+
+"这个插件主要是提供Syntax Check（语法检查）的。这方面之前比较流行的插件是syntastic。但因为ale支持异步的语法检查，所以我很早就切到ale了。其实异步检查这个非常重要，因为如果没有异步，当语法检查程序在跑的时候编辑器总是会卡一下，非常非常的不爽
+Plugin 'dense-analysis/ale'
 
 
 
@@ -305,6 +343,8 @@ let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 "set autochdir
+"但是这里有个问题需要注意下，就是这个插件打开一次之后就会缓存当前项目的目录树。所以当你新增或删除了文件之后，需要清空它的缓存才能在下一次查找的时候更新查找结果。清空缓存的命令是：
+":CtrlPClearAllCaches
 
 
 " ===============================插件 ctrlp-funky 可以模糊搜索文件内容的方法名

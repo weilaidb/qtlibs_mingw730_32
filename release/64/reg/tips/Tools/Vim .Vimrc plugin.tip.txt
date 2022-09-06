@@ -1,3 +1,14 @@
+FelikZ/ctrlp-py-matcher
+
+altercation/vim-colors-solarized
+tpope/vim-commentary
+tpope/vim-surround
+kana/vim-textobj-entire
+tpope/vim-fugitive
+dense-analysis/ale
+
+
+
 /usr/local/opt/fzf
 junegunn/fzf.vim
 
