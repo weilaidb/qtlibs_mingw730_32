@@ -1,0 +1,92 @@
+C++中list的erase()函数问题
+
+nanfeng224
+
+于 2014-10-21 22:26:24 发布
+
+6184
+ 收藏 2
+分类专栏： 基础知识
+版权
+
+基础知识
+专栏收录该内容
+9 篇文章0 订阅
+订阅专栏
+erase的作用是，使作为参数的迭代器失效，并返回指向该迭代器下一参数的迭代器。
+1）典型错误
+using namespace std;
+int main()
+{
+  std::listtest_list;
+  std::list::iterator test_list_it;
+  test_list.push_back(1);
+  test_list_it = test_list.begin();
+  for(;test_list_it != test_list.end();test_list_it++)
+  {
+  test_list.erase(test_list_it);
+  }
+}
+
+问题：该程序不能跳出循环
+原因：test_list.erase(test_list_it);每次做erase时都有可能使迭代器失效，test_list_it++就发生错误了。可以参见effective stl一书。所有容器做erase操作时都有可能使迭代器失效。
+
+2）改正的原理是使当前迭代器失效时能指向下一个位置，具体的实现方法有三种。
+例子
+#include<iostream>
+#include<list>
+using namespace std;
+int main()
+{
+	int i;
+	list<int> list1;
+	list<int> ::iterator it;
+	for(i = 0; i < 8; i++)
+		list1.push_back(i);
+	
+	for(it = list1.begin(); it != list1.end(); ++ it)
+	{
+		cout <<*it<<" ";
+	}
+	cout<<endl;
+ 
+	/*
+	//写法一
+	for(it=list1.begin(); it!= list1.end(); )
+		if (*it % 2)
+		{
+			list1.erase(it++);
+		}
+		else
+			it++;
+	//写法二
+	for(it=list1.begin();it!=list1.end();)
+	{
+		if(*it%2)
+			it=list1.erase(it);
+		else it++;
+	}
+	*/
+	//写法三
+	for(it=list1.begin();it!=list1.end();)
+	{
+		if(*it%2)
+		{
+			list<int>::iterator tmp=it++;
+			list1.erase(tmp);
+		}
+		else
+			it++;
+	}
+ 
+	for (it = list1.begin(); it != list1.end(); ++ it)
+	{
+		cout <<*it<<" ";
+	}
+	cout<<endl;
+	return 1;
+}
+
+————————————————
+版权声明：本文为CSDN博主「nanfeng224」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/nanfeng224/article/details/40355465

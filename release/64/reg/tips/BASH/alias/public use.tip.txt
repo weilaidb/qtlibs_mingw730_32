@@ -247,6 +247,9 @@ alias cmakebuildmy="mkdir mybuild && cd mybuild && cmake .. && make && cd .."
 alias cmakebuildmyforce="rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. || cd .."
 alias mybuildtest="./mybuild/test "
 alias mybuildall="rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. && ./mybuild/test  || cd .."
+alias mybuildallgdb="rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. &&gdb ./mybuild/test  || cd .."
+alias mybuildgdb="gdb ./mybuild/test"
+
 
 #other
 alias diffdir="diff -urNa "
