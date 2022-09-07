@@ -54,6 +54,145 @@ endsnippet
 #=======================================>>>>>>>>>>>
 #=======================================>>>>>>>>>>>
 #=======================================>>>>>>>>>>>
+
+snippet cls "class declare" b  
+class ${1:Nice}
+{
+public:
+    $1();
+    ~$1();
+};
+
+
+//源文件
+$1::$1()
+{
+
+}
+
+$1::~$1()
+{
+
+}
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet cls2 "class declare init show etc" b  
+class ${1:Nice}
+{
+public:
+    $1();
+    ~$1();
+    WORD32 init();
+    WORD32 get();
+    WORD32 set();
+    WORD32 show();
+};
+
+
+//源文件
+$1::$1()
+{
+
+}
+
+$1::~$1()
+{
+
+}
+
+
+WORD32 $1::init()
+{
+
+    return 0;
+}
+
+WORD32 $1::get()
+{
+
+
+    return 0;
+}
+
+WORD32 $1::set()
+{
+
+
+    return 0;
+}
+
+WORD32 $1::show()
+{
+
+
+    return 0;
+}
+
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet cls2static "class declare init show etc(static)" b  
+class ${1:Nice}
+{
+public:
+    $1();
+    ~$1();
+    static WORD32 init();
+    static WORD32 get();
+    static WORD32 set();
+    static WORD32 show();
+};
+
+
+//源文件
+$1::$1()
+{
+
+}
+
+$1::~$1()
+{
+
+}
+
+
+WORD32 $1::init()
+{
+
+    return 0;
+}
+
+WORD32 $1::get()
+{
+
+
+    return 0;
+}
+
+WORD32 $1::set()
+{
+
+
+    return 0;
+}
+
+WORD32 $1::show()
+{
+
+
+    return 0;
+}
+
+                  
+endsnippet
+
 #=======================================>>>>>>>>>>>
 
 snippet gtestclass8 "gtest class with SetUp and TearDown With 8 TEST_F" b  
@@ -207,7 +346,11 @@ TEST_F(An$1, ${3:Hello})
 endsnippet
 
 
-
+#=======================================>>>>>>>>>>>
+snippet headerbase " headers basetype.h and basedef.h" b  
+#include "basetype.h"
+#include "basedef.h"                  
+endsnippet
 
 
 #=======================================>>>>>>>>>>>

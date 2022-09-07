@@ -6,6 +6,15 @@
 wel@welcome to china@welcome to china$NLhaha!!
 
 C和C++
+=====class
+cls@class declare@class ${1:Nice}$NL{$NLpublic:$NL    $1();$NL    ~$1();$NL};$NL$NL$NL//源文件$NL$1::$1()$NL{$NL$NL}$NL$NL$1::~$1()$NL{$NL$NL}$NL
+
+cls2@class declare init show etc@class ${1:Nice}$NL{$NLpublic:$NL    $1();$NL    ~$1();$NL    WORD32 init();$NL    WORD32 get();$NL    WORD32 set();$NL    WORD32 show();$NL};$NL$NL$NL//源文件$NL$1::$1()$NL{$NL$NL}$NL$NL$1::~$1()$NL{$NL$NL}$NL$NL$NLWORD32 $1::init()$NL{$NL$NL    return 0;$NL}$NL$NLWORD32 $1::get()$NL{$NL$NL$NL    return 0;$NL}$NL$NLWORD32 $1::set()$NL{$NL$NL$NL    return 0;$NL}$NL$NLWORD32 $1::show()$NL{$NL$NL$NL    return 0;$NL}$NL$NL
+
+
+
+cls2static@class declare init show etc(static)@class ${1:Nice}$NL{$NLpublic:$NL    $1();$NL    ~$1();$NL    static WORD32 init();$NL    static WORD32 get();$NL    static WORD32 set();$NL    static WORD32 show();$NL};$NL$NL$NL//源文件$NL$1::$1()$NL{$NL$NL}$NL$NL$1::~$1()$NL{$NL$NL}$NL$NL$NLWORD32 $1::init()$NL{$NL$NL    return 0;$NL}$NL$NLWORD32 $1::get()$NL{$NL$NL$NL    return 0;$NL}$NL$NLWORD32 $1::set()$NL{$NL$NL$NL    return 0;$NL}$NL$NLWORD32 $1::show()$NL{$NL$NL$NL    return 0;$NL}$NL$NL
+
 
 =====测试gtest
 
@@ -35,6 +44,7 @@ headerc@;c headers@#include <stdio.h>$NL#include <stdlib.h>$NL#include <unistd.h
 
 headercpp@c++ headers@#include <iostream>$NL#include <string>$NL#include <vector>$NL#include <map>$NL#include <iomanip>$NLusing namespace std;$NL
 
+headerbase@ headers basetype.h and basedef.h@#include "basetype.h"$NL#include "basedef.h"
 
 
 =====插入特殊符号

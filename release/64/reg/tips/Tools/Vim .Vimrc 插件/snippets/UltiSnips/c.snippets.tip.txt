@@ -184,6 +184,10 @@ endsnippet
 
 
 #=======================================>>>>>>>>>>>
+snippet headerbase " headers basetype.h and basedef.h" b  
+#include "basetype.h"
+#include "basedef.h"                  
+endsnippet
 
 #=======================================>>>>>>>>>>>
 
