@@ -231,6 +231,29 @@ filetype plugin indent on
 
 
 
+
+
+" ===============================插件 YouCompleteMe
+"配置后，自动弹出实例菜单，但是snippet无法使用
+"let g:ycm_semantic_triggers =  {
+"  \   'c' : ['->', '.','re![_a-zA-z0-9]'],
+"  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+"  \             're!\[.*\]\s'],
+"  \   'ocaml' : ['.', '#'],
+"  \   'cpp,objcpp' : ['->', '.', '::','re![_a-zA-Z0-9]'],
+"  \   'perl' : ['->'],
+"  \   'php' : ['->', '::'],
+"  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+"  \   'ruby' : ['.', '::'],
+"  \   'lua' : ['.', ':'],
+"  \   'erlang' : [':'],
+"  \ }
+
+"右边的数字是补全菜单的高度，自己定义"
+set pumheight=10
+let g:ycm_key_invoke_completion = '<c-z>'
+
+
 "生成CPP声明或实现
 " ===============================插件 vim-gencode-cpp'
 "<leader>d 生成函数声明
