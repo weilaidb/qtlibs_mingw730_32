@@ -251,7 +251,7 @@ filetype plugin indent on
 
 "右边的数字是补全菜单的高度，自己定义"
 set pumheight=10
-let g:ycm_key_invoke_completion = '<c-z>'
+let g:ycm_key_invoke_completion = '<leader>z'
 
 
 "生成CPP声明或实现
