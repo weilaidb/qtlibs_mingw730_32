@@ -267,6 +267,26 @@ endsnippet
 
 #=======================================>>>>>>>>>>>
 
+snippet pragma "#pragma pack(1)" b  
+#pragma pack(1)
+
+#pragma pack()
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet pragma2 "#pragma pack(1)" b  
+#pragma pack(1)
+
+#pragma pack(show)
+#pragma pack()
+                  
+endsnippet
+
+#=======================================>>>>>>>>>>>
+
 snippet if0 "mark if 0" b  
 
 #if 0

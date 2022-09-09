@@ -60,6 +60,11 @@ defineentertips@define ENTERTIPS@/*文件、 函数 、 行 */$NL#undef ENTERTIP
 definearraysize@define ARRAY_SIZE@#undef ARRAY_SIZE$NL#define ARRAY_SIZE(arr) ((unsigned)(sizeof(arr) / sizeof((arr)[0])))
 if0@mark if 0@$NL#if 0$NL#endif$NL
 
+pragma@#pragma pack(1)@#pragma pack(1)$NL$NL#pragma pack()$NL
+pragma2@#pragma pack(1)@#pragma pack(1)$NL$NL#pragma pack(show)$NL#pragma pack()$NL
+
+
+
 
 =====基本类型
 basetype@typedef base type@typedef char CHAR;$NLtypedef unsigned char BYTE;$NLtypedef unsigned char BOOLEAN;$NLtypedef char INT8;$NLtypedef short INT16;$NLtypedef int INT32;$NLtypedef long long INT64;$NLtypedef unsigned char UINT8;$NLtypedef unsigned short UINT16;$NLtypedef unsigned int UINT32;$NLtypedef unsigned long long UINT64;$NLtypedef unsigned short WORD;$NLtypedef unsigned short WORD16;$NLtypedef unsigned int   WORD32;$NLtypedef unsigned long long WORD64;
