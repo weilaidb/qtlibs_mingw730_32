@@ -150,9 +150,9 @@ pythonsetupinstall;/usr/bin/python setup.py install
 
 
 diffdir;diff -urNa
-ctagscscope0;ctags -R && cscope -Rkb
-ctagscscope;find `pwd` -name "*.[ch]" -o -name "*.cpp" > cscope.files  && cscope -Rkb
-
+[ctagscscope0;ctags -R && cscope -Rkb
+ctagscscope;rm -rf cscope.* tags && find . -name "*.[ch]" -o -name "*.cpp" > cscope.files  && cscope -Rkb && ctags -R
+ctt;ctagscscope
 
 mybuildtest;./mybuild/test
 

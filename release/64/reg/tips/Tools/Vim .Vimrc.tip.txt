@@ -352,6 +352,10 @@ nmap <silent> <Leader>x <Plug>TranslateX
 
 
 " ===============================插件 ctrlp.vim 模糊搜索文件
+"默认使用全路径搜索，置1后按文件名搜索，准确率会有所提高，可以用<C-d>进行切换
+let g:ctrlp_by_filename = 1
+"默认不使用正则表达式，置1改为默认使用正则表达式，可以用<C-r>进行切换
+let g:ctrlp_regexp = 0
 
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
@@ -360,13 +364,13 @@ let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
     \ }
+
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=15
 let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
-"set autochdir
 "但是这里有个问题需要注意下，就是这个插件打开一次之后就会缓存当前项目的目录树。所以当你新增或删除了文件之后，需要清空它的缓存才能在下一次查找的时候更新查找结果。清空缓存的命令是：
 ":CtrlPClearAllCaches
 
@@ -712,7 +716,8 @@ syntax on
 
 "ctags not found
 set tags=tags;
-set autochdir
+"配置非常少，cscope只是配置了快捷键，后来发现是由于设置了“set autochdir”，切换到子目录会自动重新设置路径，导致路径出错，删除后解决问题。
+"set autochdir
 
 "拷贝内容不变更
 "set paste
