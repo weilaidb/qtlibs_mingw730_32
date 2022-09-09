@@ -50,6 +50,20 @@ map <C-l> <C-W>l
 map <C-I> :PluginInstall
 
 
+"一键编译 Compile function 
+noremap <Leader>r :call CompileRunGcc()<CR>
+function! CompileRunGcc()
+  execute "w"
+  execute "!rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. && ./mybuild/test"
+endfunction
+
+"建立索引 ctags & cscope
+noremap <Leader>i :call CtagsCscope()<CR>
+function! CtagsCscope()
+  execute "!rm -rf cscope.* tags && find . -name '*.[ch]' -o -name '*.cpp' > cscope.files  && cscope -Rkb && ctags -R "
+endfunction
+
+
 
 "=============================================安装插件==============================
 "=============================================安装插件==============================
@@ -344,8 +358,8 @@ vmap <silent> <Leader>t <Plug>TranslateV
 nmap <silent> <Leader>w <Plug>TranslateW
 vmap <silent> <Leader>w <Plug>TranslateWV
 " Replace the text with translation
-nmap <silent> <Leader>r <Plug>TranslateR
-vmap <silent> <Leader>r <Plug>TranslateRV
+nmap <silent> <Leader>t <Plug>TranslateR
+vmap <silent> <Leader>t <Plug>TranslateRV
 " Translate the text in clipboard
 nmap <silent> <Leader>x <Plug>TranslateX
 
