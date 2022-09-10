@@ -230,6 +230,12 @@ Plugin 'dense-analysis/ale'
 Plugin 'kana/vim-textobj-user'
 
 
+"git clone
+Plugin 'airblade/vim-gitgutter'
+
+"nerdtree-git-plugin
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
 
 
 
@@ -243,8 +249,19 @@ filetype plugin indent on
 "===================================插件定义列表=============================
 "===================================插件定义列表=============================
 
-
-
+" ===============================插件 nerdtree-git-plugin
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
 
 
 " ===============================插件 YouCompleteMe

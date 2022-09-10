@@ -1,3 +1,8 @@
+airblade/vim-gitgutter
+Xuyuanp/nerdtree-git-plugin
+
+
+
 FelikZ/ctrlp-py-matcher
 
 altercation/vim-colors-solarized
