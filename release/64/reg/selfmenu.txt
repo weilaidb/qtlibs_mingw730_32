@@ -1937,6 +1937,9 @@ Python/API/datetime
 Python/API/entertips
 Python/API/exec_command
 Python/API/file read write
+Python/API/logn
+Python/API/logn 10
+Python/API/logn 2
 Python/API/thread
 Python/API/thread2
 Python/API/thread3

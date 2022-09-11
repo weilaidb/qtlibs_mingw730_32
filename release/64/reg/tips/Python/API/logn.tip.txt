@@ -1,0 +1,6 @@
+[import math   # 导入 math 模块]
+100.12
+100.72
+
+119L
+math.pi
