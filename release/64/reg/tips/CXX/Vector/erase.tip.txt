@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+WORD32 CVector::erase( string item)                                                                                      
+{
+    for ( veciter it = m_vec.begin(); it != m_vec.end(); )
+    {   
+         if ( item == *it )
+         {   
+            it = m_vec.erase( it );
+         }   
+         else
+         {   
+            it++;
+         }   
+    }   
+
+  return 0;
+}

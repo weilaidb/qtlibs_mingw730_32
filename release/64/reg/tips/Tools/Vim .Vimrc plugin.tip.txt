@@ -1,3 +1,6 @@
+tpope/vim-fugitive
+
+
 airblade/vim-gitgutter
 Xuyuanp/nerdtree-git-plugin
 

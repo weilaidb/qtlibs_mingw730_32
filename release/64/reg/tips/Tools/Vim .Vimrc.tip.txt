@@ -238,8 +238,6 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 
 
-
-
 call vundle#end()
 "开启文件类型自动检测，编写代码时自动换行对齐"
 filetype plugin indent on
@@ -771,25 +769,27 @@ map <leader>l :e!<CR>
 set clipboard=unnamedplus
 
 
-" Set cursor shape and color 光标颜色
-if &term =~ "xterm"
-    " INSERT mode
-    let &t_SI = "\<Esc>[6 q" . "\<Esc>]12;blue\x7"
-    " REPLACE mode
-    let &t_SR = "\<Esc>[3 q" . "\<Esc>]12;black\x7"
-    " NORMAL mode
-    let &t_EI = "\<Esc>[2 q" . "\<Esc>]12;green\x7"
-endif
-" 1 -> blinking block  闪烁的方块
-" 2 -> solid block  不闪烁的方块
-" 3 -> blinking underscore  闪烁的下划线
-" 4 -> solid underscore  不闪烁的下划线
-" 5 -> blinking vertical bar  闪烁的竖线
-" 6 -> solid vertical bar  不闪烁的竖线
+"" Set cursor shape and color 光标颜色
+"if &term =~ "xterm"
+"    " INSERT mode
+"    let &t_SI = "\<Esc>[6 q" . "\<Esc>]12;blue\x7"
+"    " REPLACE mode
+"    let &t_SR = "\<Esc>[3 q" . "\<Esc>]12;black\x7"
+"    " NORMAL mode
+"    let &t_EI = "\<Esc>[2 q" . "\<Esc>]12;green\x7"
+"endif
+"" 1 -> blinking block  闪烁的方块
+"" 2 -> solid block  不闪烁的方块
+"" 3 -> blinking underscore  闪烁的下划线
+"" 4 -> solid underscore  不闪烁的下划线
+"" 5 -> blinking vertical bar  闪烁的竖线
+"" 6 -> solid vertical bar  不闪烁的竖线
 
 
 
-
+"可以使用下面命令来设置空格和 tab 字符可见：
+setlocal list
+set listchars=tab:>~,trail:.
 
 "================自定义函数
 " 返回当前时间

@@ -512,6 +512,7 @@ CXX/String/tail
 CXX/String/toupper
 CXX/String/upper
 CXX/String/upperFront
+CXX/Vector/erase
 CXX/Vector/log
 CXX/array/char string
 CXX/base/const size_t
