@@ -427,6 +427,52 @@ typedef unsigned int   WORD32;
 typedef unsigned long long WORD64;                  
 endsnippet
 
+#=======================================>>>>>>>>>>>
+
+
+#=======================================>>>>>>>>>>>
+
+
+snippet typedefbase "typedef base type" b  
+typedef char CHAR;
+typedef unsigned char BYTE;
+typedef unsigned char BOOLEAN;
+typedef char INT8;
+typedef short INT16;
+typedef int INT32;
+typedef long long INT64;
+typedef unsigned char UINT8;
+typedef unsigned short UINT16;
+typedef unsigned int UINT32;
+typedef unsigned long long UINT64;
+typedef unsigned short WORD;
+typedef unsigned short WORD16;
+typedef unsigned int   WORD32;
+typedef unsigned long long WORD64;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet typedefenum "typedef enum" b  
+typedef enum E_${1:Test}
+{
+    ${2:INDEX_DW_MAX},
+}E_${1:Test};
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet typedefunion "typedef union" b  
+typedef union U_${1:Test}
+{
+    ${2:INDEX_DW_MAX},
+}U_${1:Test};
+                  
+endsnippet
+
 
 #=======================================>>>>>>>>>>>
 
