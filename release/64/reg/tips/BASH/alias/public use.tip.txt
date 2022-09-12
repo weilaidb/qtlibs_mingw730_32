@@ -57,7 +57,7 @@ alias vim.="vim . "
 alias vi.=vim.
 
 
-alias catvimrc="cat ~/.vimrc "
+#alias catvimrc="cat ~/.vimrc "
 alias vimvimrc="vim ~/.vimrc "
 alias tarvimrc="tar -cvzf ~/vim.tar.gz ~/.vimrc ~/.vim "
 alias cdvim="cd ~/.vim "

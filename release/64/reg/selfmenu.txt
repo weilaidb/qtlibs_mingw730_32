@@ -1540,6 +1540,7 @@ LINUX/help/systemtap
 LINUX/help/top
 LINUX/help/vmstat
 LINUX/know/Linux下为什么有的文件名后带个星号？
+LINUX/know/红黑树 什么是红黑树？
 LINUX/knowledge/diff 命令(比较文件的差异)
 LINUX/knowledge/diff 文件夹
 LINUX/knowledge/writev
