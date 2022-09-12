@@ -500,7 +500,8 @@ set background=dark
 "colorscheme default
 "这个也不错
 "colorscheme evening
-colorscheme morning
+"colorscheme morning
+colorscheme industry
 
 
 " set mark column color
@@ -768,6 +769,27 @@ map <leader>l :e!<CR>
 "系统剪切板clipboard
 "我搜了很多帖子并且尝试了很多方法，但是这个vim-gnome始终无法安装上去，所以这个方法就被我pass了，不过我没有直接使用vim-gtk这种方法，而是直接用.vimrc文件来配置了一下，先是通过vim处理.vimrc配置文件：vim ~/.vimrc，然后在.vimrc文件中输入一行set clipboard=unnamedplus这句话的意思是让vim的剪贴板与外部剪贴板连接。然后我就直接可以在vim中使用y、p、d、x指令与系统剪贴板连通了。感觉这句话的意思有可能是让系统剪贴板和vim剪贴板的地址直接相等，这样在这段内存中Linux系统与vim就可以直接公用了。
 set clipboard=unnamedplus
+
+
+" Set cursor shape and color 光标颜色
+if &term =~ "xterm"
+    " INSERT mode
+    let &t_SI = "\<Esc>[6 q" . "\<Esc>]12;blue\x7"
+    " REPLACE mode
+    let &t_SR = "\<Esc>[3 q" . "\<Esc>]12;black\x7"
+    " NORMAL mode
+    let &t_EI = "\<Esc>[2 q" . "\<Esc>]12;green\x7"
+endif
+" 1 -> blinking block  闪烁的方块
+" 2 -> solid block  不闪烁的方块
+" 3 -> blinking underscore  闪烁的下划线
+" 4 -> solid underscore  不闪烁的下划线
+" 5 -> blinking vertical bar  闪烁的竖线
+" 6 -> solid vertical bar  不闪烁的竖线
+
+
+
+
 
 "================自定义函数
 " 返回当前时间
