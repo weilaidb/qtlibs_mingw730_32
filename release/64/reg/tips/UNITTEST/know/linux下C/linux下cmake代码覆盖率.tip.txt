@@ -1,0 +1,43 @@
+linux下cmake代码覆盖率
+
+xuyaoquanxian
+
+于 2018-01-25 12:36:49 发布
+
+703
+ 收藏 1
+分类专栏： c++
+版权
+
+c++
+专栏收录该内容
+12 篇文章0 订阅
+订阅专栏
+
+安装两个需要的模块
+sudo apt-get install gcov lcov
+编译的时候，增加 -fprofile-arcs -ftest-coverage
+链接增加-fprofile-arcs
+
+优化-O2以下
+
+打开-g3
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage -O -g3") 
+
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}  -fprofile-arcs")
+
+make后运行一遍
+
+输入命令：
+
+lcov -c -d ./ -o app.info
+
+结果转换为html:
+
+genhtml app.info -o cc_result
+
+cc_result文件夹index.html
+————————————————
+版权声明：本文为CSDN博主「xuyaoquanxian」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/u011724566/article/details/79160345

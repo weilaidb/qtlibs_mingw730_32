@@ -63,6 +63,12 @@ function! CtagsCscope()
   execute "!rm -rf cscope.* tags && find . -name '*.[ch]' -o -name '*.cpp' > cscope.files  && cscope -Rkb && ctags -R "
 endfunction
 
+"一键生成测试覆盖率 lcov test function 
+noremap <Leader>o :call LCovGenTest()<CR>
+function! LCovGenTest()
+  execute "w"
+  execute "!rm -rf cc_result && rm -rf app.info && lcov -c -d ./ -o app.info && genhtml app.info -o cc_result"
+endfunction
 
 
 "=============================================安装插件==============================
