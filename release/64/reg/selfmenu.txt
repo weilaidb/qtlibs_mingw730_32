@@ -2366,6 +2366,7 @@ UNITTEST/GTEST/gtest说明
 UNITTEST/GTEST/header
 UNITTEST/GTEST/make
 UNITTEST/GTEST/make compile problem编译问题
+UNITTEST/know/linux下C/C++代码覆盖率工具gcov、lcov
 VBScript/Excel new
 VBScript/eg
 Vue.js/new/new Vue

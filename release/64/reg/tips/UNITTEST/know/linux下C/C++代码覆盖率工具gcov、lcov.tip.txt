@@ -1,0 +1,312 @@
+【测试】linux下C/C++代码覆盖率工具gcov、lcov
+
+bandaoyu
+
+于 2019-04-30 18:13:25 发布
+
+1278
+ 收藏 9
+分类专栏： 测试 linux
+版权
+
+测试
+同时被 2 个专栏收录
+60 篇文章6 订阅
+订阅专栏
+
+linux
+159 篇文章10 订阅
+订阅专栏
+目录
+
+即看即用
+
+前言 
+
+gcov与 lcov简介
+
+安装
+
+    gcov 安装
+
+　lcov 安装
+
+实例
+
+在makefile中 使用
+
+附录：
+
+即看即用
+简介：
+
+安装gcc自带gcov，gcov能够生成代码覆盖信息*.gcda，用lcov把*.gcda生成更容易阅读的Html。
+
+用法：
+
+gcc编译是带上 -fprofile-arcs -ftest-coverage
+      如：gcc -fprofile-arcs -ftest-coverage test.c -o test
+
+gcc编译每个.c生成.gcno ,和运行后每个.c生成：.gcda
+lcov将.gcno .gcda生成html
+        根据gcda生成.info： 
+        lcov -c -o test.info -d   ./    #-d 指向.gcno .gcda所在目录，./表示当前目录 
+        （可以只将关心的源码文件放入某个文件夹如mysrc，然后只统计关心的源码的覆盖率：
+
+        根据.info生成html放到./output目录：
+        genhtml test.info -o ./output
+
+查看：用浏览器打开./output下的index.html
+*安装lcov：yum install lcov
+
+运行程序 hello后
+
+gcov hello.c 也可以显示文本覆盖率报告
+
+前言 
+GNU工具链 (GNU Toolchain) 是一组用于开发应用程序和操作系统的编程工具的集合，这些工具构成了一个完整的系统。GNU工具链包括GCC、GNU Binutils、GNU m4、GNU Autoconf和GNU make等部分。这里主要介绍GCC、Binutils和Glibc。
+
+GNU Compiler Collection
+　　GCC全称GNU Compiler Collection，其主要的工具包括cpp、g++、gcc、gcov、gprof等
+
+gcov与 lcov简介
+　　通过gcov和lcov，可以很直观的看到代码的运行情况，同时也可以查看
+
+　　代码的行覆盖率，函数覆盖率等等信息，为开发提供一个方便的测试手段。
+
+　　gcov介绍
+
+　　gcov是Linux下GCC自带的一个C/C++代码覆盖率分析工具,因此只要安装了gcc，就不需要再次安装了
+
+　　lcov介绍
+
+　　gcov能够生成代码覆盖信息，但是不够直观（见文章末尾附录），因此需要借助lcov直观展示覆盖率,主要特点有：
+
+　　基于Html输出，并生成一棵完整的HTML树
+
+　　输出包括概述、覆盖率百分比、图表，能快速浏览覆盖率数据
+
+　　支持大项目，提供三个级别的视图：目录视图、文件视图、源码视图
+
+安装
+    gcov 安装
+gcov是Linux下GCC自带的一个C/C++代码覆盖率分析工具,因此只要安装了gcc，就不需要再次安装了
+
+　lcov 安装
+在线安装
+
+红帽系用：yum install lcov    直接安装
+德班系用apt-get ，具体命令形式自己百度
+源码安装
+
+　　下载地址：lcov
+　　下载完成后解压，执行命令：make install即可。
+　　下面简单介绍linux下，使用gcov和lcov进行代码覆盖率的测试。
+实例
+代码
+
+/***************************************************************
+*   Copyright (C) 2017 All rights reserved.
+*
+*   文件名称：test.c
+*   创 建 者：hyb
+*   创建日期：2017年08月06日
+*   描    述：
+*
+***************************************************************/
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int *twoSum(int *nums, int numsSize, int target)
+{
+    int loop = 0;
+    int inloop = 0;
+    int *result = NULL;
+    result = (int *) malloc(2 * sizeof(int));
+    memset(result, 0, 2 * sizeof(int));
+    printf("numsSize=%d\n", numsSize);
+    if(NULL == nums || numsSize == 0)
+    {
+        return result;
+    }
+    for(loop = 0; loop < numsSize; loop++)
+    {
+        for(inloop = loop + 1; inloop < numsSize; inloop++)
+        {
+            if(*(nums + loop) + * (nums + inloop) == target)
+            {
+                if(NULL != result)
+                {
+                    *result = loop;
+                    *(result + 1) = inloop;
+                }
+                return result;
+            }
+        }
+    }
+    return result;
+}
+int main(int arg, char argv[])
+{
+    int nums[4] = {2, 7, 11, 15};
+    int target = 9;
+    int numsSize = 4;
+    int *result = twoSum(nums, numsSize, target);
+    printf("index1:%d\nindex2:%d\n", *result, *(result + 1));
+}
+
+　编译
+
+　　gcc -fprofile-arcs -ftest-coverage test.c -o test
+　　上面的参数-fprofile-arcs -ftest-coverage一定要带上，会生成gcno文件
+
+（编译后会得到一个可执行文件test和test.gcno文件，当用gcc编译文件的时候，如果带有“-ftest-coverage”参数，就会生成这个.gcno文件，它包含了程序块和行号等信息）
+
+运行
+
+　　./test
+　　生成了gcda文件 
+
+（运行结束以后会生成一个.gcda文件，如果一个可执行文件带有“-fprofile-arcs”参数编译出来，并且运行过至少一次，就会生成。这个文件包含了程序基本块跳转的信息。）
+
+　转换覆盖率信息
+
+　　lcov -c -o test.info -d .
+
+　　-c 生成覆盖率信息
+
+　　-o 生成目标文件
+
+　　-d 目录
+
+　　. 当前目录
+
+　　可能出现的出错:可能会提示out of memory,原因是locv版本过低。
+
+生成html文件
+
+　　genhtml test.info -o ./output
+
+　　test.info 需要生成覆盖率信息的源文件
+
+　　-o 生成结果目录
+
+　　最后会有提示如下：
+
+　　Generating output.
+
+　　Processing file gcov_lcov/test.c
+
+　　Writing directory view page.
+
+　　Overall coverage rate:
+
+　　lines……: 91.3% (21 of 23 lines)
+
+　　functions..: 100.0% (2 of 2 functions)
+
+　　可以看到output目录下有index.html文件
+
+　　使用浏览器打开html文件，即可查看覆盖率报告
+
+　　覆盖率报告分析
+
+
+
+　褐色表示未跑到过的代码，左侧数字表示跑到的次数。
+
+　　总结
+
+　　结合使用gcov和locv,可以比较直观的观察到运行的程序是否按照自己的设计，
+
+　　跑到了对应的代码中。
+
+在makefile中 使用
+本人的工程是使用了lcov，并使用makefile，主要的用法如下：
+
+在makefile中定义宏文件：
+
+PROFILE
+
+ifeq ($(PROFILE),1)
+  CFLAGS += -fprofile-arcs
+  CFLAGS += -ftest-coverage
+  CXXFLAGS += -fprofile-arcs
+  CXXFLAGS += -ftest-coverage
+  LDFLAGS += -fprofile-arcs
+  LDFLAGS += -ftest-coverage
+  LDFLAGS += -lgcov
+  LIBLDFLAGS += -fprofile-arcs
+  LIBLDFLAGS += -ftest-coverage
+  LIBLDFLAGS += -lgcov
+endif
+ 在编译的时候打开此宏：PROFILE=1 make rtm DEBUG=0
+
+然后运行后生成*.gcda文件。
+
+使用下面命令生成report：
+
+lcov -d . -b . -c -o $rtmcovfile >/dev/null
+    #sed -i -e 's#/home/mac_ci/hudson/home/jobs/trunk_RTM/workspace/trunk#\.#g' $rtmcovfile
+    # - only keep ssTddPs folders in the report
+    lcov -r $rtmcovfile "*/SS_MacData/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "*/SS_MacPsWmp/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "*/ssCommon/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "*/ssData/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "*/ssDcmPs/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "*/ssPsCommon/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "*/ssTestModel/*" -o $rtmcovfile
+    # - Remove unneeded paths from coverage
+    lcov -r $rtmcovfile "/build/ltesdkroot/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "*/SC_DSP_Common/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "*/C_Test/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "*/T_Tools/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "*/ENV/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "*/I_Interface/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "/usr/*" -o $rtmcovfile
+    lcov -r $rtmcovfile "/opt/*" -o $rtmcovfile
+    
+    mv $rtmcovfile $PROJECT_ROOT/C_Test/SC_MAC/MacLinuxRtm/logs
+    cd $PROJECT_ROOT/C_Test/SC_MAC/MacLinuxRtm/logs
+    genhtml -o tdd_ut_rtm_tests_coverage $rtmcovfile >/dev/null
+
+参考：http://www.51testing.com/html/91/n-3725391.html
+
+         https://www.cnblogs.com/kb342/p/5639738.html
+
+附录：
+运行程序 hello后
+
+gcov hello.c
+
+gcov
+
+生成的不够直观的报告是：
+
+运行结束以后会生成2个文件hello.c.gcov和myfunc.c.gcov。打开看里面的信息：
+
+-: 0:Source:myfunc.c
+-: 0:Graph:hello.gcno
+-: 0:Data:hello.gcda
+-: 0:Runs:1
+-: 0:Programs:1
+-: 1:#include
+-: 2:
+-: 3:void test(int count)
+1: 4:{
+-: 5: int i;
+10: 6: for (i = 1; i < count; i++)
+-: 7: {
+9: 8: if (i % 3 == 0)
+3: 9: printf (“%d is divisible by 3 \n”, i);
+9: 10: if (i % 11 == 0)
+#####: 11: printf (“%d is divisible by 11 \n”, i);
+9: 12: if (i % 13 == 0)
+#####: 13: printf (“%d is divisible by 13 \n”, i);
+-: 14: }
+1: 15:}
+
+被标记为#####的代码行就是没有被执行过的，代码覆盖的信息是正确的，但是让人去读这些文字，实在是一个杯具,so use lcov，可以用程序解析这些晦涩的字符，最终输出成html格式的报告，很好吧！
+————————————————
+版权声明：本文为CSDN博主「bandaoyu」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/bandaoyu/article/details/89714064
