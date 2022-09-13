@@ -1686,6 +1686,7 @@ LINUX命令/readelf
 Makefile/CMake/eg
 Makefile/CMake/v1.0(gtest gmock)
 Makefile/CMake/v1.0(gtest gmock) 说明
+Makefile/CMake/v1.1(gtest gmock lcov)
 Makefile/PHONY
 Makefile/define
 Makefile/depend
@@ -2367,6 +2368,7 @@ UNITTEST/GTEST/header
 UNITTEST/GTEST/make
 UNITTEST/GTEST/make compile problem编译问题
 UNITTEST/know/linux下C/C++代码覆盖率工具gcov、lcov
+UNITTEST/know/linux下C/linux下cmake代码覆盖率
 VBScript/Excel new
 VBScript/eg
 Vue.js/new/new Vue

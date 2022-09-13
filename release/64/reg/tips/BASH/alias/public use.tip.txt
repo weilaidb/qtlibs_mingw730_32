@@ -249,6 +249,7 @@ alias mybuildtest="./mybuild/test "
 alias mybuildall="rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. && ./mybuild/test  || cd .."
 alias mybuildallgdb="rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. &&gdb ./mybuild/test  || cd .."
 alias mybuildgdb="gdb ./mybuild/test"
+alias lcovall="rm -rf cc_result && rm -rf app.info && lcov -c -d ./ -o app.info && genhtml app.info -o cc_result "
 
 
 #other

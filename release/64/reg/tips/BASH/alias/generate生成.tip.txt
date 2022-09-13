@@ -1,3 +1,6 @@
+lcovall;rm -rf cc_result && rm -rf app.info && lcov -c -d ./ -o app.info && genhtml app.info -o cc_result
+
+
 rmrf;rm -rf
 dflh;df -lh
 gitmergeabort;git merge --abort
