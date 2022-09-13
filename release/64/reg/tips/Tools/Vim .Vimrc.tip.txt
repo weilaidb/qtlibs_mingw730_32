@@ -50,6 +50,20 @@ map <C-l> <C-W>l
 map <C-I> :PluginInstall
 
 
+"一键编译 Compile function 
+noremap <Leader>r :call CompileRunGcc()<CR>
+function! CompileRunGcc()
+  execute "w"
+  execute "!rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. && ./mybuild/test"
+endfunction
+
+"建立索引 ctags & cscope
+noremap <Leader>i :call CtagsCscope()<CR>
+function! CtagsCscope()
+  execute "!rm -rf cscope.* tags && find . -name '*.[ch]' -o -name '*.cpp' > cscope.files  && cscope -Rkb && ctags -R "
+endfunction
+
+
 
 "=============================================安装插件==============================
 "=============================================安装插件==============================
@@ -101,8 +115,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 
 "A super simple function navigator for fzf, porting from ctrlp-funky.It is a very useful plugin when ctags is not exist or lsp is not support(vim版本需要在8.2以上)
-"Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plugin 'tracyone/fzf-funky',{'on': 'FzfFunky'}
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'tracyone/fzf-funky',{'on': 'FzfFunky'}
 
 "格式化代码
 Plugin 'rhysd/vim-clang-format'
@@ -170,6 +184,82 @@ Plugin 'tenfyzhong/vim-gencode-cpp'
 "管理插件的插件
 Plugin 'tpope/vim-pathogen'
 
+"这个插件其实是上边ctrlp插件的一个补充，它主要是提升了文件查找的速度。
+Plugin 'FelikZ/ctrlp-py-matcher'
+
+
+
+"这个插件主要是提供了vim的配色方案。Solarized配色方案应该是一个系列，iTerm2什么的都有它的配色方案，我觉得总体来说还是比较舒服的。
+
+Plugin 'altercation/vim-colors-solarized'
+
+
+
+"这个插件主要是帮助我们更快速的注释代码。不管是在写代码还是调试过程中，我们经常需要注释掉一些代码。这个插件可以非常快速的帮我们注释和取消注释，不管是单行还是多行都可以很好的工作，而且各种文件格式基本都是支持的，可以根据文件类型来插入不同的注释代码。用习惯了根本离不开。
+Plugin 'tpope/vim-commentary'
+
+
+"我平时会用到比较多的di(delete in)或ci(change in)之类的vim命令，比如删除括号内的内容就是ci(。但是vim内置可以识别的`surroundings`只包括括号之类的少数字符，比如当我们想删除引号内的内容时，用原生vim是无法做到的。当我们安装了vim-surround插件后，就可以轻松的执行di"来删除引号内的内容了。
+
+
+Plugin 'tpope/vim-surround'
+
+
+"在vim中有一个text object的概念，比如一个单词就算是一个text object。然后我们就可以用一些vim命令来操作一个text object。比如删除一个单词就是dw，替换一个单词就是cw。而vim-textobj-entire这个插件就是将整个文件内容变为了一个`text object`。它允许我们执行比如dae三个字符来删除整个文件的内容。某些情况下用起来还是挺爽的。
+
+Plugin 'kana/vim-textobj-entire'
+
+
+
+
+"这个插件允许在vim中做一些git操作。我觉得最好用的两个功能就是:Gblame和:Gbrowse。
+
+":Gblame其实就是执行git blame命令，然后直接在vim中将git的输出结果与源代码一一对应起来。这样当你读团队代码的时候发现了一个坑，然后想知道是谁写的这个坑的时候，只需要:Gblame一下，结果立马呈现。
+
+":Gbrowse是当你想分享一段代码给别人的时候，可以直接选中你想分享的代码，可以是单行也可以是多行，然后执行:Gbrowse，它就会帮你在浏览器中打开github的地址，然后直接定位到你所选的代码行数。被选中的代码会被高亮显示。用这种方式分享代码可比截图或复制粘贴优雅多了。但是它只支持存放在github中的代码仓库，如果你的代码放在gitlab或其他仓库中，这个插件是无法打开的。
+
+Plugin 'tpope/vim-fugitive'
+
+
+
+
+"这个插件主要是提供Syntax Check（语法检查）的。这方面之前比较流行的插件是syntastic。但因为ale支持异步的语法检查，所以我很早就切到ale了。其实异步检查这个非常重要，因为如果没有异步，当语法检查程序在跑的时候编辑器总是会卡一下，非常非常的不爽
+Plugin 'dense-analysis/ale'
+
+"E117: Unknown function: textobj#user#plugin
+Plugin 'kana/vim-textobj-user'
+
+
+"git clone
+Plugin 'airblade/vim-gitgutter'
+
+"nerdtree-git-plugin
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+
+"Vimspector是一个基于DAP(debug adapter protocol)的Vim多语言调试插件，理论上能够支持所有支持语言（只要有对应的 DAP）。这个插件仍在实验阶段，可能会有各种bug，但是对C/C++、Python 等流行的语言已经进行了充分的测试。
+Plugin 'puremourning/vimspector'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 call vundle#end()
 "开启文件类型自动检测，编写代码时自动换行对齐"
@@ -179,6 +269,42 @@ filetype plugin indent on
 "===================================插件定义列表=============================
 "===================================插件定义列表=============================
 "===================================插件定义列表=============================
+
+" ===============================插件 nerdtree-git-plugin
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+
+
+" ===============================插件 YouCompleteMe
+"配置后，自动弹出实例菜单，但是snippet无法使用
+"let g:ycm_semantic_triggers =  {
+"  \   'c' : ['->', '.','re![_a-zA-z0-9]'],
+"  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+"  \             're!\[.*\]\s'],
+"  \   'ocaml' : ['.', '#'],
+"  \   'cpp,objcpp' : ['->', '.', '::','re![_a-zA-Z0-9]'],
+"  \   'perl' : ['->'],
+"  \   'php' : ['->', '::'],
+"  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+"  \   'ruby' : ['.', '::'],
+"  \   'lua' : ['.', ':'],
+"  \   'erlang' : [':'],
+"  \ }
+
+"右边的数字是补全菜单的高度，自己定义"
+set pumheight=10
+let g:ycm_key_invoke_completion = '<leader>z'
+
 
 "生成CPP声明或实现
 " ===============================插件 vim-gencode-cpp'
@@ -270,14 +396,18 @@ vmap <silent> <Leader>t <Plug>TranslateV
 nmap <silent> <Leader>w <Plug>TranslateW
 vmap <silent> <Leader>w <Plug>TranslateWV
 " Replace the text with translation
-nmap <silent> <Leader>r <Plug>TranslateR
-vmap <silent> <Leader>r <Plug>TranslateRV
+nmap <silent> <Leader>t <Plug>TranslateR
+vmap <silent> <Leader>t <Plug>TranslateRV
 " Translate the text in clipboard
 nmap <silent> <Leader>x <Plug>TranslateX
 
 
 
 " ===============================插件 ctrlp.vim 模糊搜索文件
+"默认使用全路径搜索，置1后按文件名搜索，准确率会有所提高，可以用<C-d>进行切换
+let g:ctrlp_by_filename = 1
+"默认不使用正则表达式，置1改为默认使用正则表达式，可以用<C-r>进行切换
+let g:ctrlp_regexp = 0
 
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
@@ -286,13 +416,15 @@ let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
     \ }
+
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=15
 let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
-"set autochdir
+"但是这里有个问题需要注意下，就是这个插件打开一次之后就会缓存当前项目的目录树。所以当你新增或删除了文件之后，需要清空它的缓存才能在下一次查找的时候更新查找结果。清空缓存的命令是：
+":CtrlPClearAllCaches
 
 
 " ===============================插件 ctrlp-funky 可以模糊搜索文件内容的方法名
@@ -379,7 +511,7 @@ let g:NERDTreeHidden=0     "不显示隐藏文件
 "Making it prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-
+"r刷新目录
 
 " ============================ theme and status line ============================
 
@@ -389,7 +521,8 @@ set background=dark
 "colorscheme default
 "这个也不错
 "colorscheme evening
-colorscheme morning
+"colorscheme morning
+colorscheme industry
 
 
 " set mark column color
@@ -636,7 +769,8 @@ syntax on
 
 "ctags not found
 set tags=tags;
-set autochdir
+"配置非常少，cscope只是配置了快捷键，后来发现是由于设置了“set autochdir”，切换到子目录会自动重新设置路径，导致路径出错，删除后解决问题。
+"set autochdir
 
 "拷贝内容不变更
 "set paste
@@ -650,7 +784,35 @@ map <leader>s :w<CR>
 "<leader>q 退出
 map <leader>q :q<CR>
 
+"手动重加载文件的命令是：e!
+map <leader>l :e!<CR>
 
+"系统剪切板clipboard
+"我搜了很多帖子并且尝试了很多方法，但是这个vim-gnome始终无法安装上去，所以这个方法就被我pass了，不过我没有直接使用vim-gtk这种方法，而是直接用.vimrc文件来配置了一下，先是通过vim处理.vimrc配置文件：vim ~/.vimrc，然后在.vimrc文件中输入一行set clipboard=unnamedplus这句话的意思是让vim的剪贴板与外部剪贴板连接。然后我就直接可以在vim中使用y、p、d、x指令与系统剪贴板连通了。感觉这句话的意思有可能是让系统剪贴板和vim剪贴板的地址直接相等，这样在这段内存中Linux系统与vim就可以直接公用了。
+set clipboard=unnamedplus
+
+
+"" Set cursor shape and color 光标颜色
+"if &term =~ "xterm"
+"    " INSERT mode
+"    let &t_SI = "\<Esc>[6 q" . "\<Esc>]12;blue\x7"
+"    " REPLACE mode
+"    let &t_SR = "\<Esc>[3 q" . "\<Esc>]12;black\x7"
+"    " NORMAL mode
+"    let &t_EI = "\<Esc>[2 q" . "\<Esc>]12;green\x7"
+"endif
+"" 1 -> blinking block  闪烁的方块
+"" 2 -> solid block  不闪烁的方块
+"" 3 -> blinking underscore  闪烁的下划线
+"" 4 -> solid underscore  不闪烁的下划线
+"" 5 -> blinking vertical bar  闪烁的竖线
+"" 6 -> solid vertical bar  不闪烁的竖线
+
+
+
+"可以使用下面命令来设置空格和 tab 字符可见：
+setlocal list
+set listchars=tab:>~,trail:.
 
 "================自定义函数
 " 返回当前时间

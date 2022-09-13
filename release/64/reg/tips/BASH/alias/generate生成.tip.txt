@@ -113,6 +113,8 @@ findgitlist;find . -name .git
 
 
 vimhelp;vim --help
+vimversion;vim --version
+vimgrepclipboard;vim --version | grep clipboard
 vimgreppython;vim --version|grep python
 vim.;vim .
 vi.;vim.
@@ -148,9 +150,9 @@ pythonsetupinstall;/usr/bin/python setup.py install
 
 
 diffdir;diff -urNa
-ctagscscope0;ctags -R && cscope -Rkb
-ctagscscope;find `pwd` -name "*.[ch]" -o -name "*.cpp" > cscope.files  && cscope -Rkb
-
+[ctagscscope0;ctags -R && cscope -Rkb
+ctagscscope;rm -rf cscope.* tags && find . -name "*.[ch]" -o -name "*.cpp" > cscope.files  && cscope -Rkb && ctags -R
+ctt;ctagscscope
 
 mybuildtest;./mybuild/test
 
@@ -272,3 +274,4 @@ cd..;cd ..
 lslh;ls -lh
 
 lslt;ls -lt
+lsf;ls -F

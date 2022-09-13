@@ -1,61 +1,59 @@
-BASH/awk
-BASH/awk file
-BASH/scripts/
-BASH/scripts/public.sh
-BAT/COPY generate.libs.bat
-C/DEFINE/MAX
-CXX/class/多态 继承 virtual Board
-Code/new/Gmock test SetUP TearDown
-JAVA/SpringBoot/new/Controller/EC2
-Python/header
-QT/UI/QTextEdit/getSelectLineTextEdit
-Setting/网页显示常用Tab切换
-alias
-bash
-bat
-c eg
-date
-ec2
-ec3
-ec4
-form eg
-getter
-gmock
-javascript
-list string
-main
-mock eq
+cxx def
+cxx string
+dia
+git address
+lacp
 packet
-print
-printf
-printf %d
-public
-qdebug
-qt textedit
-reg test
-replace
-sett
+qt include
 setting
-springboot
-springboot con
-sprintboot
-sql
-sqlite
-struct
+string pub
+style
+suanfa
+submit
+system
+system print
+tcpdump
 test
-trunk
+test/
+test2
+test3
+textarea
+timer
+to string
+toLower
+tomcat
+tools
+try
+tte
 typedef
+ubuntu
+unittest
+usage
 vbs
-vbs wait
-vbs wit
-virtual
-vlan
-一行
-左右
-生成
-用户说明书
-疑难
-结构体
-继承
-设计/术语/Agile
-说明书
+vs
+wake_up_process
+wget
+while
+win10
+yaml
+yum
+yum instal
+yum install
+zero
+关闭
+头文件
+工作
+工具
+常用
+常用头文件
+快捷键
+护眼
+术语 kernel
+汇编
+测试用例/Test/1
+编译
+网络
+路径
+软件
+软件 dia
+软件设计

@@ -1,0 +1,11 @@
+翻译-必应
+https://cn.bing.com/translator/?ref=TThis&text=manuals&from=en&to=zh-Hans
+
+翻译-有道
+https://fanyi.youdao.com/
+
+翻译-百度
+https://fanyi.baidu.com/#auto/zh/
+
+翻译-金山
+https://www.iciba.com/

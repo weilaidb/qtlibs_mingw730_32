@@ -1,30 +1,30 @@
-正则表达式/所有转一行_替换为NL
-PACKET Parse/报文处理成一行规则
-正则表达式/所有转一行_替换为逗号
-正则表达式/所有转一行_替换为空格
+软件安装/dia/解决dia无法输入中文问题
+软件安装/dia/下载地址
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
-AutoTest/python/telnet
 AutoTest/python/telnet read_until
-AutoTest/python/telnet test
-BASH/alias/bashrc 加载配置
-BASH/alias/bashrc 加载配置 ubuntu20.04
 BASH/alias/generate生成
 BASH/alias/public use
-BASH/alias/public use @ubuntu20.04
 BASH/alias/public use @web
-BASH/awk
-BASH/replace nums in file or 提取数字自增1
-C/GETSET/GETTER
-C/GETSET/GETTER_AND_SETTER
-C/GETSET/GETTER_AND_SETTER GLOBAL ARRAY
-C/GETSET/GETTER_AND_SETTER unsigned int
-C/eg
-CXX/More/虚函数 eg
-CXX/More/虚函数 eg2
-CXX/eg
-FPGA/语法code new/reg
-JAVA/JSP/form/select eg
-JAVA/JSP/mysql/prepareStatement select eg
-JAVA/SpringBoot/application.yml eg
-JavaScript/JQuery/code/event/eg
+BASH/cdpath
+BASH/chmod
+BASH/echo
+BASH/eg
+BASH/exitcode
+BASH/gitinfo
+BAT/网络network/LACP报文格式
+BAT/网络network/lacp
+BAT/网络network/什么是LACP
+C/ARRAY/format diag
+C/注释comments. insertFileHeader 头文件
+CXX/Cout para 1
+CXX/Cout para 1 tcout
+CXX/INCLUDE/FILTER
+CXX/INCLUDE/GENERATE
+CXX/INCLUDE/常用头文件 header
+CXX/LOOP/list iterator
+CXX/String/pub
+PACKET Parse/ICMP destination unreachable
+PACKET Parse/LACP
+PACKET Parse/test3 zuoyoufangkuohao
+PACKET Parse/test5

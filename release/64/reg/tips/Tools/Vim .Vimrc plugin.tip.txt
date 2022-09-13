@@ -1,3 +1,27 @@
+tpope/vim-fugitive
+
+puremourning/vimspector
+
+
+airblade/vim-gitgutter
+Xuyuanp/nerdtree-git-plugin
+
+
+
+FelikZ/ctrlp-py-matcher
+
+altercation/vim-colors-solarized
+tpope/vim-commentary
+tpope/vim-surround
+kana/vim-textobj-entire
+tpope/vim-fugitive
+dense-analysis/ale
+kana/vim-textobj-user
+
+
+/usr/local/opt/fzf
+junegunn/fzf.vim
+
 tpope/vim-pathogen
 
 

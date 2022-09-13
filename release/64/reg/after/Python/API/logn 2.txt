@@ -1,0 +1,1 @@
+print ("math.log(\1,2) : ", math.log(\1,2))

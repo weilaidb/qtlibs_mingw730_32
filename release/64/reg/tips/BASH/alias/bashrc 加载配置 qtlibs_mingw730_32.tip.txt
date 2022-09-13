@@ -32,6 +32,7 @@ ln -s ~/reg/tips/Tools/Vim\ .Vimrc\ 插件/snippets/UltiSnips/cpp.snippets.tip.t
 
 
 cd ~/.vim/bundle/vim-snippets/snippets
+mv cmake.snippets cmake.snippets.bak
 ln -s ~/reg/tips/Tools/Vim\ .Vimrc\ 插件/snippets/UltiSnips/cmake.snippets.tip.txt cmake.snippets
 
 5.格式化软链接

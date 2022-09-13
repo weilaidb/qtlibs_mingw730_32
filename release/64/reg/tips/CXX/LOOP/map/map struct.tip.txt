@@ -1,0 +1,2 @@
+[迭代器;变量名;类名]
+std::map<T_Key , T_Val> MAP_Key_Val; m_map;CMapStruct

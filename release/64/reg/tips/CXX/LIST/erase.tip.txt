@@ -1,0 +1,15 @@
+void CList::remove( string item )
+{                            
+    StrListIt it = m_lst.begin();
+    for ( it = m_lst.begin(); it != m_lst.end(); )
+    {                        
+       if ( *it == item )   
+       {                    
+          m_lst.erase( it++ );   //此处应为it++;                                                                                   
+       }                    
+       else                 
+       {                    
+          it++;            
+       }                    
+    }                        
+}

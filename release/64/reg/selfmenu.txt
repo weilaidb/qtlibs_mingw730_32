@@ -467,6 +467,7 @@ CXX/INCLUDE/GENERATE
 CXX/INCLUDE/常用头文件 header
 CXX/INCLUDE/常用头文件 header2
 CXX/INCLUDE/常用头文件 header3
+CXX/LIST/erase
 CXX/LIST/log
 CXX/LIST/log 头文件
 CXX/LOOP/list DBList
@@ -476,6 +477,7 @@ CXX/LOOP/map/C++ map用法
 CXX/LOOP/map/map
 CXX/LOOP/map/map class
 CXX/LOOP/map/map class customkey
+CXX/LOOP/map/map struct
 CXX/LOOP/string
 CXX/LOOP/vector
 CXX/LOOP/vector for
@@ -510,6 +512,7 @@ CXX/String/tail
 CXX/String/toupper
 CXX/String/upper
 CXX/String/upperFront
+CXX/Vector/erase
 CXX/Vector/log
 CXX/array/char string
 CXX/base/const size_t
@@ -525,6 +528,7 @@ CXX/eg
 CXX/externc __cplusplus
 CXX/know/C++ Standard Library headers
 CXX/know/C++ explicit 关键字
+CXX/know/C++中list的erase 函数问题
 CXX/know/_MSC_VER
 CXX/know/eg
 CXX/knowledge/C++ cout格式化输出
@@ -795,8 +799,8 @@ GCC/-rdynamic
 GCC/Wall
 GCC/fpermissive
 GCC/gcc编译选项
-Html/DOM/DOM
-Html/DOM/DOM/Mouse/MouseEvent 鼠标事件
+Html/DOM/DOM Ext
+Html/DOM/DOM/Mouse/MouseEvent鼠标事件
 Html/DOM/div/刷新
 Html/DOM/getElementById
 Html/DOM/getElementById innerHTML
@@ -1536,6 +1540,7 @@ LINUX/help/systemtap
 LINUX/help/top
 LINUX/help/vmstat
 LINUX/know/Linux下为什么有的文件名后带个星号？
+LINUX/know/红黑树 什么是红黑树？
 LINUX/knowledge/diff 命令(比较文件的差异)
 LINUX/knowledge/diff 文件夹
 LINUX/knowledge/writev
@@ -1934,6 +1939,9 @@ Python/API/datetime
 Python/API/entertips
 Python/API/exec_command
 Python/API/file read write
+Python/API/logn
+Python/API/logn 10
+Python/API/logn 2
 Python/API/thread
 Python/API/thread2
 Python/API/thread3
@@ -2192,6 +2200,7 @@ TEST/RegExptest2
 TEST/RegExptest3
 TEST/RegExptest4
 TEST/RegExptest5
+TEST/RegExptest6
 Tools/Astyle格式化代码
 Tools/CLion 快捷键
 Tools/CMD快捷键
@@ -2357,6 +2366,7 @@ UNITTEST/GTEST/gtest说明
 UNITTEST/GTEST/header
 UNITTEST/GTEST/make
 UNITTEST/GTEST/make compile problem编译问题
+UNITTEST/know/linux下C/C++代码覆盖率工具gcov、lcov
 VBScript/Excel new
 VBScript/eg
 Vue.js/new/new Vue
