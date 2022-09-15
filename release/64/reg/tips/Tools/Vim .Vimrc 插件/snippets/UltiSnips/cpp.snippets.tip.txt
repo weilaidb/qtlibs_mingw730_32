@@ -33,6 +33,19 @@ endglobal
 ###########################################################################
 
 
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
 
 snippet wel "welcome to china" b  
 welcome to china
@@ -40,20 +53,9 @@ haha!!
 endsnippet
 
 
+#=======================================>>>>>>>>>>>
 
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
+
 
 snippet cls "class declare" b  
 class ${1:Nice}
@@ -193,25 +195,20 @@ WORD32 $1::show()
                   
 endsnippet
 
+
 #=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
-#=======================================>>>>>>>>>>>
+
 
 snippet gtestclass12 "gtest class with SetUp and TearDown With 12 TEST_F" b  
 class An${1:Test}: public Test {
 public:
-    $1 ${2:obj};
+    $1 *${2:pObj};
     void SetUp() {
-    
+        $2 = new $1();
     }
     void TearDown() {
-    
+        delete $2;
+        $2 = NULL;
     }
 };
 
@@ -312,17 +309,20 @@ TEST_F(An$1, ${14:T12})
 }
                   
 endsnippet
+
+
 #=======================================>>>>>>>>>>>
 
 snippet gtestclass8 "gtest class with SetUp and TearDown With 8 TEST_F" b  
 class An${1:Test}: public Test {
 public:
-    $1 ${2:obj};
+    $1 *${2:pObj};
     void SetUp() {
-    
+        $2 = new $1();
     }
     void TearDown() {
-    
+        delete $2;
+        $2 = NULL;
     }
 };
 
@@ -388,21 +388,22 @@ TEST_F(An$1, ${10:T8})
     ASSERT_TRUE(1==1);
     ASSERT_FALSE(1==0);
     ASSERT_THAT(1,Eq(1));
-}
-
-                  
+}                  
 endsnippet
 
+
 #=======================================>>>>>>>>>>>
-snippet gtestclass6 "gtest class with SetUp and TearDown" b  
+
+snippet gtestclass6 "gtest class with SetUp and TearDown With 4 TEST_F" b  
 class An${1:Test}: public Test {
 public:
-    $1 ${2:obj};
+    $1 *${2:pObj};
     void SetUp() {
-    
+        $2 = new $1();
     }
     void TearDown() {
-    
+        delete $2;
+        $2 = NULL;
     }
 };
 
@@ -436,22 +437,22 @@ TEST_F(An$1, ${6:T4})
     ASSERT_TRUE(1==1);
     ASSERT_FALSE(1==0);
     ASSERT_THAT(1,Eq(1));
-}
-
-                  
+}                  
 endsnippet
+
+
 #=======================================>>>>>>>>>>>
 
-
-snippet gtestclass2 "gtest class with SetUp and TearDown" b  
+snippet gtestclass1 "gtest class with SetUp and TearDown" b  
 class An${1:Test}: public Test {
 public:
-    $1 ${2:obj};
+    $1 *${2:pObj};
     void SetUp() {
-    
+        $2 = new $1();
     }
     void TearDown() {
-    
+        delete $2;
+        $2 = NULL;
     }
 };
 
@@ -466,14 +467,73 @@ endsnippet
 
 
 #=======================================>>>>>>>>>>>
-snippet headerbase " headers basetype.h and basedef.h" b  
-#include "basetype.h"
-#include "basedef.h"                  
+
+snippet gtestmakefile "gtest create CMakeLists.txt" b  
+project(${1:chapterFirstExample})
+cmake_minimum_required(VERSION 2.6)
+
+include_directories($ENV{GMOCK_HOME}/include $ENV{GMOCK_HOME}/gtest/include)
+include_directories(./)
+include_directories(./include)
+link_directories($ENV{GMOCK_HOME}/mybuild $ENV{GMOCK_HOME}/gtest/mybuild)
+add_definitions(-std=c++0x)
+set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall")
+
+set(sources 
+   main.cpp
+   ${2:test.cpp}
+   )
+add_executable(test ${sources})
+target_link_libraries(test pthread)
+target_link_libraries(test gmock)
+target_link_libraries(test gtest)                  
 endsnippet
 
 
 #=======================================>>>>>>>>>>>
 
+snippet gtestmain "gtest main" b  
+#include "gmock/gmock.h"
+int main(int argc, char** argv) {
+    testing::InitGoogleMock(&argc, argv);
+    return RUN_ALL_TESTS();
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet gtestheader "gtest header" b  
+#include "gmock/gmock.h"
+using namespace ::testing;                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet gtestclass "gtest class parent is Test" b  
+class A${1:RetweetCollection}: public Test {    
+public:    
+$1 ${2:collection};    
+};    
+TEST_F(A$1, ${3:IsEmptyWhenCreated}) {    
+ASSERT_TRUE(1);    
+//   ASSERT_TRUE($2.isEmpty());    
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet gtestf "gtest TEST_F" b  
+TEST_F(${1:AnTest}, ${2:isEmpty})
+{
+    ASSERT_THAT(1, Eq(1));
+}                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
 
 
 snippet headerc ";c headers" b  
@@ -500,6 +560,14 @@ snippet headercpp "c++ headers" b
 #include <iomanip>
 using namespace std;
                   
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
+snippet headerbase " headers basetype.h and basedef.h" b  
+#include "basetype.h"
+#include "basedef.h"                  
 endsnippet
 
 
@@ -550,6 +618,16 @@ endsnippet
 
 #=======================================>>>>>>>>>>>
 
+snippet if0 "mark if 0" b  
+
+#if 0
+#endif
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
+
 snippet pragma "#pragma pack(1)" b  
 #pragma pack(1)
 
@@ -566,37 +644,6 @@ snippet pragma2 "#pragma pack(1)" b
 #pragma pack(show)
 #pragma pack()
                   
-endsnippet
-
-#=======================================>>>>>>>>>>>
-
-snippet if0 "mark if 0" b  
-
-#if 0
-#endif
-                  
-endsnippet
-
-
-#=======================================>>>>>>>>>>>
-
-
-snippet basetype "typedef base type" b  
-typedef char CHAR;
-typedef unsigned char BYTE;
-typedef unsigned char BOOLEAN;
-typedef char INT8;
-typedef short INT16;
-typedef int INT32;
-typedef long long INT64;
-typedef unsigned char UINT8;
-typedef unsigned short UINT16;
-typedef unsigned int UINT32;
-typedef unsigned long long UINT64;
-typedef unsigned short WORD;
-typedef unsigned short WORD16;
-typedef unsigned int   WORD32;
-typedef unsigned long long WORD64;                  
 endsnippet
 
 
@@ -642,6 +689,7 @@ typedef union U_${1:Test}
 }U_${1:Test};
                   
 endsnippet
+
 
 #=======================================>>>>>>>>>>>
 
@@ -914,55 +962,6 @@ endsnippet
 
 
 
-snippet gtestmain "gtest main" b  
-#include "gmock/gmock.h"
-int main(int argc, char** argv) {
-    testing::InitGoogleMock(&argc, argv);
-    return RUN_ALL_TESTS();
-}                  
-endsnippet
-
-
-#=======================================>>>>>>>>>>>
-
-snippet gtestheader "gtest header" b  
-#include "gmock/gmock.h"
-using namespace ::testing;                  
-endsnippet
-
-
-
-#=======================================>>>>>>>>>>>
-
-snippet gtestclass "gtest class parent is Test" b  
-#include "gmock/gmock.h"
-using namespace ::testing;
-
-
-class A${1:RetweetCollection}: public Test {    
-public:    
-$1 ${2:collection};    
-};    
-TEST_F(A$1, ${3:IsEmptyWhenCreated}) {    
-ASSERT_TRUE(1);    
-//   ASSERT_TRUE($2.isEmpty());    
-}                  
-endsnippet
-
-
-#=======================================>>>>>>>>>>>
-
-snippet gtestf "gtest TEST_F" b  
-TEST_F(${1:AnTest}, ${2:isEmpty})
-{
-    ASSERT_THAT(1, Eq(1));
-}                  
-endsnippet
-
-
-#=======================================>>>>>>>>>>>
-
-
 snippet commenth "comments for header" b  
 /***************************************************************************
 ** 版权所有:  WeiLai Copyright (c) 2020-2030
@@ -1137,6 +1136,34 @@ endsnippet
 
 
 #=======================================>>>>>>>>>>>
+
+
+
+
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+#=======================================>>>>>>>>>>>
+
+
 
 
 
