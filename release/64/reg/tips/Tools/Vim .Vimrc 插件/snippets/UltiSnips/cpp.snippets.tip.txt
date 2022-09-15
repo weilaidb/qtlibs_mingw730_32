@@ -692,6 +692,21 @@ endsnippet
 
 
 #=======================================>>>>>>>>>>>
+snippet externc "define __cplusplus for extern C" b  
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+#ifdef __cplusplus
+}
+#endif
+
+                  
+endsnippet
+
+
+#=======================================>>>>>>>>>>>
 
 
 snippet st2 "typedef struct T_xx{}T_xx, *P_xx" b  
