@@ -75,6 +75,9 @@ typedefenum@typedef enum@typedef enum E_${1:Test}$NL{$NL$TB${2:INDEX_DW_MAX},$NL
 
 typedefunion@typedef union@typedef union U_${1:Test}$NL{$NL$TB${2:INDEX_DW_MAX},$NL}U_${1:Test};$NL
 
+externc@define __cplusplus for extern C@#ifdef __cplusplus$NLextern "C" {$NL#endif$NL$NL$NL#ifdef __cplusplus$NL}$NL#endif$NL$NL
+
+
 
 
 
