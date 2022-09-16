@@ -531,6 +531,7 @@ CXX/know/C++ explicit 关键字
 CXX/know/C++中list的erase 函数问题
 CXX/know/_MSC_VER
 CXX/know/eg
+CXX/know/rbtree
 CXX/know/rbtree和set-map区别与联系
 CXX/knowledge/C++ cout格式化输出
 CXX/knowledge/C++中operator关键字（重载操作符）
