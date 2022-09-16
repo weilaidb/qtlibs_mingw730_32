@@ -426,6 +426,9 @@ C/enum/enum single withname typedef
 C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
 C/know/sigaction
+C/know/signal/Linux 信号（signal）
+C/know/signal/segmentation fault (SIGSEGV) 定位方法
+C/know/signal/列表list
 C/know/二叉搜索树详解（附代码）
 C/know/面试常问的 16 个 C 语言问题，你能答上来几个？
 C/knowledge/Centos下安装boost（笨蛋版）
