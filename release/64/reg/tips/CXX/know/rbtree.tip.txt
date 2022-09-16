@@ -1,0 +1,19 @@
+15 /*
+   16  * red-black trees properties:  https://en.wikipedia.org/wiki/Rbtree
+   17  *
+   18  *  1) A node is either red or black
+   19  *  2) The root is black
+   20  *  3) All leaves (NULL) are black
+   21  *  4) Both children of every red node are black
+   22  *  5) Every simple path from root to leaves contains the same number
+   23  *     of black nodes.
+   24  *
+   25  *  4 and 5 give the O(log n) guarantee, since 4 implies you cannot have two
+   26  *  consecutive red nodes in a path and every red node is therefore followed by
+   27  *  a black. So if B is the number of black nodes on every simple path (as per
+   28  *  5), then the longest possible path due to 4 is 2B.
+   29  *
+   30  *  We shall indicate color with case, where black nodes are uppercase and red
+   31  *  nodes will be lowercase. Unknown color nodes shall be drawn as red within
+   32  *  parentheses and have some accompanying text comment.
+   33  */
