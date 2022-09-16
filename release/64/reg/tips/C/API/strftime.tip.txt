@@ -1,0 +1,77 @@
+C 库函数 - strftime()
+C 标准库 - <time.h> C 标准库 - <time.h>
+
+描述
+C 库函数 size_t strftime(char *str, size_t maxsize, const char *format, const struct tm *timeptr) 根据 format 中定义的格式化规则，格式化结构 timeptr 表示的时间，并把它存储在 str 中。
+
+声明
+下面是 strftime() 函数的声明。
+
+size_t strftime(char *str, size_t maxsize, const char *format, const struct tm *timeptr)
+参数
+str -- 这是指向目标数组的指针，用来复制产生的 C 字符串。
+maxsize -- 这是被复制到 str 的最大字符数。
+format -- 这是 C 字符串，包含了普通字符和特殊格式说明符的任何组合。这些格式说明符由函数替换为表示 tm 中所指定时间的相对应值。格式说明符是：
+说明符	替换为	实例
+%a	缩写的星期几名称	Sun
+%A	完整的星期几名称	Sunday
+%b	缩写的月份名称	Mar
+%B	完整的月份名称	March
+%c	日期和时间表示法	Sun Aug 19 02:56:02 2012
+%d	一月中的第几天（01-31）	19
+%H	24 小时格式的小时（00-23）	14
+%I	12 小时格式的小时（01-12）	05
+%j	一年中的第几天（001-366）	231
+%m	十进制数表示的月份（01-12）	08
+%M	分（00-59）	55
+%p	AM 或 PM 名称	PM
+%S	秒（00-61）	02
+%U	一年中的第几周，以第一个星期日作为第一周的第一天（00-53）	33
+%w	十进制数表示的星期几，星期日表示为 0（0-6）	4
+%W	一年中的第几周，以第一个星期一作为第一周的第一天（00-53）	34
+%x	日期表示法	08/19/12
+%X	时间表示法	02:50:06
+%y	年份，最后两个数字（00-99）	01
+%Y	年份	2012
+%Z	时区的名称或缩写	CDT
+%%	一个 % 符号	%
+timeptr -- 这是指向 tm 结构的指针，该结构包含了一个被分解为以下各部分的日历时间：
+struct tm {
+   int tm_sec;         /* 秒，范围从 0 到 59                */
+   int tm_min;         /* 分，范围从 0 到 59                */
+   int tm_hour;        /* 小时，范围从 0 到 23                */
+   int tm_mday;        /* 一月中的第几天，范围从 1 到 31                    */
+   int tm_mon;         /* 月份，范围从 0 到 11                */
+   int tm_year;        /* 自 1900 起的年数                */
+   int tm_wday;        /* 一周中的第几天，范围从 0 到 6                */
+   int tm_yday;        /* 一年中的第几天，范围从 0 到 365                    */
+   int tm_isdst;       /* 夏令时                        */    
+};
+返回值
+如果产生的 C 字符串小于 size 个字符（包括空结束字符），则会返回复制到 str 中的字符总数（不包括空结束字符），否则返回零。
+
+实例
+下面的实例演示了 strftime() 函数的用法。
+
+实例
+#include <stdio.h>
+#include <time.h>
+ 
+int main ()
+{
+   time_t rawtime;
+   struct tm *info;
+   char buffer[80];
+ 
+   time( &rawtime );
+ 
+   info = localtime( &rawtime );
+ 
+   strftime(buffer, 80, "%Y-%m-%d %H:%M:%S", info);
+   printf("格式化的日期 & 时间 : |%s|\n", buffer );
+  
+   return(0);
+}
+让我们编译并运行上面的程序，这将产生以下结果：
+
+格式化的日期 & 时间 : |2018-09-19 08:59:07|
