@@ -1,0 +1,7 @@
+1.componey run gtest report sigsev segement error
+strftime error:
+glibc error ?
+
+报glibc异常，version is 2.18.
+发现在前面加一个TEST(AnCar,hello){}就可以正常了，why ???
+2.还有一个报snpring的异常，不知道为啥，前面加了TEST也可以正常了
