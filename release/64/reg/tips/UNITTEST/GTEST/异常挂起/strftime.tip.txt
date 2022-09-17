@@ -1,0 +1,5 @@
+glic/_dl_fixup _dl_runtime_resolve
+运行gtest时，报 glic/_dl_fixup _dl_runtime_resolve 段错误，为啥呢
+
+
+发现在前面加一个TEST(AnCar,hello){}就可以正常了，why ???
