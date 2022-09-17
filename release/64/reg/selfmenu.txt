@@ -1494,6 +1494,7 @@ KERNEL/宏/_initcall
 KERNEL/宏/大小端
 KERNEL/时间相关/raid6_jiffies
 KERNEL/网址/常用的http
+KERNEL/调度/优先级
 KERNEL/调度/最大CPU
 KERNEL/调度/最大优先级
 KERNEL/调度/调度策略
@@ -1546,6 +1547,7 @@ LINUX/help/systemtap
 LINUX/help/top
 LINUX/help/vmstat
 LINUX/know/Linux下为什么有的文件名后带个星号？
+LINUX/know/find paths must precede expression
 LINUX/know/红黑树 什么是红黑树？
 LINUX/knowledge/diff 命令(比较文件的差异)
 LINUX/knowledge/diff 文件夹
