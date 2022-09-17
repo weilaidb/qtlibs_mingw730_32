@@ -1,0 +1,10 @@
+反汇编mytest中的text段内容，并尽可能用源代码形式表示：
+
+objdump -j .text -S mytest
+1
+在这里插入图片描述
+这里注意，不能单独使用-j或者–section，例如objdump -j .text mytest是不会运行成功的。另外-S命令对于包含调试信息的目标文件，显示的效果比较好，如果编译时没有指定-g选项，那么目标文件就不包含调试信息，那么显示效果就差多了。
+
+反汇编出mytest.o的源代码:
+
+objdump -S mytest

@@ -1,0 +1,6 @@
+$ objdump -v
+GNU objdump version 2.35-12.2.al8
+Copyright (C) 2020 Free Software Foundation, Inc.
+This program is free software; you may redistribute it under the terms of
+the GNU General Public License version 3 or (at your option) any later version.
+This program has absolutely no warranty.

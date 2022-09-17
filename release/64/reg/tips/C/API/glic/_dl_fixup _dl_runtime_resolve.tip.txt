@@ -1,0 +1,616 @@
+$ nm /lib64//ld-2.32.so | grep dl_runtime_resolve
+00000000000173b0 t _dl_runtime_resolve_fxsave
+0000000000017430 t _dl_runtime_resolve_xsave
+0000000000017500 t _dl_runtime_resolve_xsavec
+[root@weilaidb] ~/work/git/glibc-2.28
+$ nm /lib64//ld-2.32.so | grep _dl_fixup 
+000000000001000d t .annobin__dl_fixup.end
+000000000000fe50 t .annobin__dl_fixup.start
+000000000000fe50 t _dl_fixup
+[root@weilaidb] ~/work/git/glibc-2.28
+$ grep -nri _dl_fixup  /lib64/
+Binary file /lib64/ld-2.32.so matches
+[root@weilaidb] ~/work/git/glibc-2.28
+
+
+
+
+
+
+
+
+
+
+
+_dl_runtime_resolve源码分析
+
+二侠
+
+于 2017-01-23 10:16:33 发布
+
+6421
+ 收藏 7
+分类专栏： linux逆向编程
+版权
+
+linux逆向编程
+专栏收录该内容
+21 篇文章2 订阅
+订阅专栏
+_dl_runtime_resolve源码分析
+本文分析glibc的ld.so源码中的_dl_runtime_resolve函数，因为同事碰到了linux反汇编的问题，网络上的文章都是介绍原理，很少有对源码进行全面剖析的，几年前囫囵吞枣地看过glibc的这部分源码，因此有兴趣重新并且认真地阅读这部分源码，对新的glibc-2.15中的这部分源码进行阅读。
+_dl_runtime_resolve是重定位的核心函数，该函数会在进程运行时动态修改引用的函数地址，达到重定位的效果。和该函数相关的重定位、静态链接、动态链接、延迟绑定等概念可以到网上查，这里就不细述了。
+
+_dl_runtime_resolve是一段汇编代码，定义在/sysdeps/x86_64/dl-trampoline.S中。
+
+/sysdeps/x86_64/dl-trampoline.S::_dl_runtime_resolve
+
+    .text
+    .globl _dl_runtime_resolve
+    .type _dl_runtime_resolve, @function
+    .align 16
+    cfi_startproc
+_dl_runtime_resolve:
+    cfi_adjust_cfa_offset(16) 
+    subq $56,%rsp
+    cfi_adjust_cfa_offset(56)
+    movq %rax,(%rsp)
+    movq %rcx, 8(%rsp)
+    movq %rdx, 16(%rsp)
+    movq %rsi, 24(%rsp)
+    movq %rdi, 32(%rsp)
+    movq %r8, 40(%rsp)
+    movq %r9, 48(%rsp)
+    movq 64(%rsp), %rsi
+    movq 56(%rsp), %rdi 
+    call _dl_fixup      
+    movq %rax, %r11     
+    movq 48(%rsp), %r9  
+    movq 40(%rsp), %r8
+    movq 32(%rsp), %rdi
+    movq 24(%rsp), %rsi
+    movq 16(%rsp), %rdx
+    movq 8(%rsp), %rcx
+    movq (%rsp), %rax
+    addq $72, %rsp     
+    cfi_adjust_cfa_offset(-72)
+    jmp *%r11       # Jump to function address.
+    cfi_endproc
+    .size _dl_runtime_resolve, .-_dl_runtime_resolve
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+cfi开头的指令和函数检测有关，即GNU Profiler，这里不关心。_dl_runtime_resolve函数的这段汇编代码就是保存寄存器的值到栈中，然后调用_dl_fixup执行具体的功能，然后从栈中恢复寄存器。_dl_fixup函数传入的两个参数一个是rdi寄存器中存储的link_map，rsi是GOT表中关于PLT重定位的索引值，后面要根据该索引值写入新的地址。
+
+/elf/dl-runtime.c::_dl_fixup
+_dl_runtime_resolve->_dl_fixup
+
+ElfW(Addr) __attribute ((noinline)) _dl_fixup ( struct link_map *__unbounded l, ElfW(Word) reloc_arg)
+{
+  const ElfW(Sym) *const symtab = (const void *) D_PTR (l, l_info[DT_SYMTAB]);
+  const char *strtab = (const void *) D_PTR (l, l_info[DT_STRTAB]);
+  const PLTREL *const reloc = (const void *) (D_PTR (l, l_info[DT_JMPREL]) + reloc_offset);
+  const ElfW(Sym) *sym = &symtab[ELFW(R_SYM) (reloc->r_info)];
+  void *const rel_addr = (void *)(l->l_addr + reloc->r_offset);
+  lookup_t result;
+  DL_FIXUP_VALUE_TYPE value;
+
+  if (__builtin_expect (ELFW(ST_VISIBILITY) (sym->st_other), 0) == 0)
+    {
+      const struct r_found_version *version = NULL;
+
+      if (l->l_info[VERSYMIDX (DT_VERSYM)] != NULL)
+        {
+          const ElfW(Half) *vernum = (const void *) D_PTR (l, l_info[VERSYMIDX (DT_VERSYM)]);
+          ElfW(Half) ndx = vernum[ELFW(R_SYM) (reloc->r_info)] & 0x7fff;
+          version = &l->l_versions[ndx];
+          if (version->hash == 0)
+            version = NULL;
+        }
+
+      result = _dl_lookup_symbol_x (strtab + sym->st_name, l, &sym, l->l_scope,
+                    version, ELF_RTYPE_CLASS_PLT, flags, NULL);
+
+      value = sym ? (LOOKUP_VALUE_ADDRESS (result)
+                      + sym->st_value) : 0;
+    }
+  else
+    {
+      value = l->l_addr + sym->st_value;
+      result = l;
+    }
+
+  return elf_machine_fixup_plt (l, result, reloc, rel_addr, value);
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+ElfW宏定义用于根据32位或64位的计算机获取最终的变量。
+
+#define ElfW(type)  _ElfW (Elf, __ELF_NATIVE_CLASS, type)
+#define _ElfW(e,w,t)    _ElfW_1 (e, w, _##t)
+#define _ElfW_1(e,w,t)  e##w##t
+1
+2
+3
+扩展开来，假设为64位计算机，#define ElfW(type) Elf64_type。
+_dl_fixup函数首先通过宏D_PTR从link_map结构中获得符号表symtab、字符串表strtab。
+reloc_offset即是传入的参数reloc_arg，其代表在plt表中的第几项，保存在reloc中。
+reloc的r_offset表示需要修改的函数地址在GOT表中的地址，加上装载地址l_addr得到的rel_addr就是最终要修改的函数的绝对地址。
+接下来的st_other描述符号的可见性，如果包含STV_PROTECTED、STV_HIDDEN和STV_INTERNAL的其中任何一种，则直接将装载地址加上st_value即得到函数的最终地址value，将其写入rel_addr即可。
+大部分情况下，会进入if语句，首先获得符号的version信息，然后调用_dl_lookup_symbol_x函数从已装载的共享库中查找最终的符号地址，查找到符号sym后，对其进行重定位，即加上装载地址，保存在value中。
+最后调用elf_machine_fixup_plt函数进行修正。
+
+static inline Elf64_Addr
+elf_machine_fixup_plt (struct link_map *map, lookup_t t,
+               const Elf64_Rela *reloc,
+               Elf64_Addr *reloc_addr, Elf64_Addr value)
+{
+  return *reloc_addr = value;
+}
+1
+2
+3
+4
+5
+6
+7
+/elf/dl-lookup.c::_dl_lookup_symbol_x
+_dl_runtime_resolve->_dl_fixup->_dl_lookup_symbol_x
+
+lookup_t internal_function
+_dl_lookup_symbol_x (const char *undef_name, struct link_map *undef_map,
+             const ElfW(Sym) **ref,
+             struct r_scope_elem *symbol_scope[],
+             const struct r_found_version *version,
+             int type_class, int flags, struct link_map *skip_map)
+{
+  const uint_fast32_t new_hash = dl_new_hash (undef_name);
+  unsigned long int old_hash = 0xffffffff;
+  struct sym_val current_value = { NULL, NULL };
+  struct r_scope_elem **scope = symbol_scope;
+
+  size_t i = 0;
+  for (size_t start = i; *scope != NULL; start = 0, ++scope)
+    {
+      int res = do_lookup_x (undef_name, new_hash, &old_hash, *ref,
+                 &current_value, *scope, start, version, flags,
+                 skip_map, type_class, undef_map);
+      if (res > 0)
+        break;
+    }
+
+  int protected = (*ref && ELFW(ST_VISIBILITY) ((*ref)->st_other) == STV_PROTECTED);
+  if (__builtin_expect (protected != 0, 0))
+    {
+      if (type_class == ELF_RTYPE_CLASS_PLT)
+    {
+      if (current_value.s != NULL && current_value.m != undef_map)
+        {
+          current_value.s = *ref;
+          current_value.m = undef_map;
+        }
+    }
+      else
+    {
+        ...
+    }
+    }
+
+  if (__builtin_expect (current_value.m->l_used == 0, 0))
+    current_value.m->l_used = 1;
+
+  *ref = current_value.s;
+  return LOOKUP_VALUE (current_value.m);
+}
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+dl_new_hash函数首先根据符号名undef_name计算哈希值，计算公式如下，
+
+static uint_fast32_t dl_new_hash (const char *s)
+{
+  uint_fast32_t h = 5381;
+  for (unsigned char c = *s; c != '\0'; c = *++s)
+    h = h * 33 + c;
+  return h & 0xffffffff;
+}
+1
+2
+3
+4
+5
+6
+7
+current_value用于保存最后的返回结果。symbol_scope是scope列表起始指针。
+接下来遍历所有的scope，通过do_lookup_x函数在每个scope中查找符号，将结果记录在current_value结构中。
+假设查找到了符号，如果该符号的可见性是STV_PROTECTED，则需要将返回的link_map设置为待查找符号的所在的link_map。
+最后标记l_used表示符号在使用中，然后返回查找到的符号和所在的link_map结构。
+
+/elf/dl-lookup.c::do_lookup_x
+_dl_runtime_resolve->_dl_fixup->_dl_lookup_symbol_x->do_lookup_x
+
+static int __attribute_noinline__
+do_lookup_x (const char *undef_name, uint_fast32_t new_hash,
+         unsigned long int *old_hash, const ElfW(Sym) *ref,
+         struct sym_val *result, struct r_scope_elem *scope, size_t i,
+         const struct r_found_version *const version, int flags,
+         struct link_map *skip, int type_class, struct link_map *undef_map)
+{
+  size_t n = scope->r_nlist;
+  __asm volatile ("" : "+r" (n), "+m" (scope->r_list));
+  struct link_map **list = scope->r_list;
+
+  do
+    {
+      Elf_Symndx symidx;
+      int num_versions = 0;
+      const ElfW(Sym) *versioned_sym = NULL;
+      const struct link_map *map = list[i]->l_real;
+
+      ...
+
+      const ElfW(Sym) *symtab = (const void *) D_PTR (map, l_info[DT_SYMTAB]);
+      const char *strtab = (const void *) D_PTR (map, l_info[DT_STRTAB]);
+
+      const ElfW(Sym) *sym;
+      const ElfW(Addr) *bitmask = map->l_gnu_bitmask;
+      if (__builtin_expect (bitmask != NULL, 1))
+    {
+      ElfW(Addr) bitmask_word
+        = bitmask[(new_hash / __ELF_NATIVE_CLASS)
+              & map->l_gnu_bitmask_idxbits];
+
+      unsigned int hashbit1 = new_hash & (__ELF_NATIVE_CLASS - 1);
+      unsigned int hashbit2 = ((new_hash >> map->l_gnu_shift)
+                   & (__ELF_NATIVE_CLASS - 1));
+
+      if (__builtin_expect ((bitmask_word >> hashbit1)
+                & (bitmask_word >> hashbit2) & 1, 0))
+        {
+          Elf32_Word bucket = map->l_gnu_buckets[new_hash
+                             % map->l_nbuckets];
+          if (bucket != 0)
+            {
+              const Elf32_Word *hasharr = &map->l_gnu_chain_zero[bucket];
+
+              do
+                if (((*hasharr ^ new_hash) >> 1) == 0)
+                  {
+                    symidx = hasharr - map->l_gnu_chain_zero;
+                    sym = check_match (&symtab[symidx]);
+                    if (sym != NULL)
+                      goto found_it;
+                  }
+              while ((*hasharr++ & 1u) == 0);
+            }
+        }
+      symidx = SHN_UNDEF;
+    }
+      else
+    {
+      if (*old_hash == 0xffffffff)
+        *old_hash = _dl_elf_hash (undef_name);
+      for (symidx = map->l_buckets[*old_hash % map->l_nbuckets];
+           symidx != STN_UNDEF;
+           symidx = map->l_chain[symidx])
+        {
+          sym = check_match (&symtab[symidx]);
+          if (sym != NULL)
+            goto found_it;
+        }
+    }
+
+      sym = num_versions == 1 ? versioned_sym : NULL;
+      if (sym != NULL)
+    {
+    found_it:
+      switch (__builtin_expect (ELFW(ST_BIND) (sym->st_info), STB_GLOBAL))
+        {
+        case STB_WEAK:
+          if (__builtin_expect (GLRO(dl_dynamic_weak), 0))
+        {
+          if (! result->s)
+            {
+              result->s = sym;
+              result->m = (struct link_map *) map;
+            }
+          break;
+        }
+
+        case STB_GLOBAL:
+        success:
+          result->s = sym;
+          result->m = (struct link_map *) map;
+          return 1;
+
+        case STB_GNU_UNIQUE:
+          ...
+
+        default:
+          break;
+        }
+    }
+    }
+  while (++i < n);
+
+  return 0;
+}
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+首先获得该scope下的link_map个数r_nlist和数组r_list。
+然后遍历所有的link_map。
+省略的部分是检查当前link_map是否有符合查找的条件，没有就继续遍历。
+再往下取出当前link_map的符号表symtab和字符串表strtab。
+接下来的if和else条件语句部分都是通过哈希值找到符号表中对应符号列表的索引，如果找到，就通过check_match函数比对符号表中的函数名symtab[symidx]和待查找的函数名undef_name是否相等，如果相等，就找到了该符号并跳转到found_it语句，否则返回null。
+下面假设找到了该符号，接着要判断找到的符号类型。
+如果找到的是弱符号STB_WEAK，则保存第一次找到的结果，然后继续循环查找，如果后面没有找到可以覆盖该结果的符号，则返回的就是该第一次保存的结果。
+如果找到的是全局符号STB_GLOBAL，则直接返回该结果。
+后面省略的代码是当找到的符号类型为STB_GNU_UNIQUE时的处理方法，在链接C++程序时会用到，本章不管它。
+如果找到的符号是其他类型的符号，则继续循环查找。
+最后，如果什么都没找到，则返回0。
+
+/elf/dl-lookup.c::check_match
+_dl_runtime_resolve->_dl_fixup->_dl_lookup_symbol_x->do_lookup_x->check_match
+
+      const ElfW(Sym) *__attribute_noinline__
+      check_match (const ElfW(Sym) *sym)
+      {
+        ...
+
+        if (sym != ref && strcmp (strtab + sym->st_name, undef_name))
+          return NULL;
+
+        const ElfW(Half) *verstab = map->l_versyms;
+        if (version != NULL)
+          {
+
+            ElfW(Half) ndx = verstab[symidx] & 0x7fff;
+            if ((map->l_versions[ndx].hash != version->hash || strcmp (map->l_versions[ndx].name, version->name)) && (version->hidden || map->l_versions[ndx].hash || (verstab[symidx] & 0x8000)))
+              return NULL;
+          }
+        else
+          {
+            ...
+          }
+
+        return sym;
+      }
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+check_match函数首先通过strcmp函数比对符号名，如果两者相等，接下来要比对符号的version信息，如果不匹配，则直接返回null。这里忽略了待比对的符号没有提供version信息的情况。
+————————————————
+版权声明：本文为CSDN博主「二侠」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/conansonic/article/details/54634142

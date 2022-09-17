@@ -260,6 +260,8 @@ C/API/fstat
 C/API/getopt
 C/API/gettimeofday
 C/API/gettimeofday 说明
+C/API/glic/_dl_fixup _dl_runtime_resolve
+C/API/glic/深入理解-dl_runtime_resolve
 C/API/localtime 非线程安全
 C/API/localtime_r 线程安全
 C/API/memalign
@@ -426,6 +428,7 @@ C/enum/enum single withname
 C/enum/enum single withname typedef
 C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
+C/know/ld-linux.so.X查找和加载共享动态库的顺序
 C/know/sigaction
 C/know/signal/Linux 信号（signal）
 C/know/signal/segmentation fault (SIGSEGV) 定位方法
@@ -1542,6 +1545,16 @@ LINUX/help/cgroup cgconfig
 LINUX/help/chrt
 LINUX/help/free
 LINUX/help/lspci
+LINUX/help/objdump/objdump --section=.text
+LINUX/help/objdump/objdump -d 反汇编目标文件的特定机器码段
+LINUX/help/objdump/objdump -h 显示目标文件各个段的头部摘要信息
+LINUX/help/objdump/objdump -i 显示可用的架构和目标结构列表
+LINUX/help/objdump/objdump -t 显示文件的符号表入口
+LINUX/help/objdump/objdump -v
+LINUX/help/objdump/objdump j .text -S 反汇编
+LINUX/help/objdump/objdump 查看依赖so动态库文件
+LINUX/help/objdump/objdump 查看依赖so动态库文件2
+LINUX/help/objdump/objdump命令详解
 LINUX/help/ps
 LINUX/help/systemtap
 LINUX/help/top

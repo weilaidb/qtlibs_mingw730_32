@@ -1,0 +1,4 @@
+显示mytest文件中的text段的内容：
+
+objdump --section=.text -s mytest
+1
