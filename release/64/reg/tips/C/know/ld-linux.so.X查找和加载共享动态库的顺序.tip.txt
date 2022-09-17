@@ -1,0 +1,177 @@
+linux系统——ld-linux.so.X查找和加载共享动态库的顺序
+
+ld-linux.so查找共享库的顺序：
+
+Glibc安装的库中有一个为ld-linux.so.X，其中X为一个数字，在不同的平台上名字也会不同。可以用ldd查看：
+#ldd /bin/cat
+linux-gate.so.1 => (0x00bfe000)
+libc.so.6 => /lib/libc.so.6 (0x00a4a000)
+/lib/ld-linux.so.2 (0x00a28000)
+最后一个没有“=>”的就是。其中第一个不是实际的库文件，你是找不到的，它是一个虚拟库文件用于和kernel交互。
+/lib/ld-linux.so.2以及它的64位版本/lib64/ld-linux-x86-64.so.2虽然看起来是共享库文件，但实际上他们可以独立运行。他们的功能是负责动态加载。它们通过读取可执行文件的头部信息来确定哪些库文件是必须的，以及哪些需要加载。加载完成后，它会通过修正执行文件里的相关的地址指针来和加载的库文件完成动态链接，此时程序就可以运行了。
+
+
+ld-linux.so是专门负责寻找库文件的库。以cat为例，cat首先告诉ld-linux.so它需要libc.so.6这个库文件，ld-linux.so将按一定顺序找到libc.so.6库再给cat调用。
+
+那ld-linux.so又是怎么找到的呢？
+其实不用找，ld-linux.so的位置是写死在程序中的，gcc在编译程序时就写死在里面了。Gcc写到程序中ld-linux.so的位置是可以改变的，通过修改gcc的spec文件。
+
+编译时，ld-linux.so查找共享库的顺序：
+（1）ld-linux.so.6由gcc的spec文件中所设定
+（2）gcc --print-search-dirs所打印出的路径，主要是libgcc_s.so等库。可以通过GCC_EXEC_PREFIX来设定
+（3）LIBRARY_PATH环境变量中所设定的路径，或编译的命令行中指定的-L/usr/local/lib
+（4）binutils中的ld所设定的缺省搜索路径顺序，编译binutils时指定。（可以通过“ld --verbose | grep SEARCH”来查看）
+（5）二进制程序的搜索路径顺序为PATH环境变量中所设定。一般/usr/local/bin高于/usr/bin
+（6）编译时的头文件的搜索路径顺序，与library的查找顺序类似。一般/usr/local/include高于/usr/include
+
+
+运行时，ld-linux.so查找共享库的顺序：
+（1）ld-linux.so.6在可执行的目标文件中被指定，可用readelf命令查看
+（2）ld-linux.so.6缺省在/usr/lib和lib中搜索；当glibc安装到/usr/local下时，它查找/usr/local/lib
+（3）LD_LIBRARY_PATH环境变量中所设定的路径
+（4）/etc/ld.so.conf（或/usr/local/etc/ld.so.conf）中所指定的路径，由ldconfig生成二进制的ld.so.cache中
+
+
+
+
+
+如何查找和加载Linux应用程序需要的动态库？
+具体的：
+确定程序需要的库文件
+系统如何查找共享库文件
+加载共享库文件
+
+静态和动态链接
+Linux系统里有两种类型的可执行程序：
+静态链接的可执行程序。这种程序文件本身包含了运行所需要的所有库函数的代码。程序自身就可以运行，而不依赖于额外的库文件。静态链接的程序的一个优点就是安装时不需要额外安装依赖库。
+动态链接的可执行程序。动态链接程序只为调用的库函数设置了占位符，并没有真正把函数代码链接到程序本身中，所以这种程序体积小。而且往往多个程序依赖于同一个共享库文件，这样多个程序运行时，通过虚拟内存的机制，物理内存中之需要保留一份共享库代码，大大节约了内存空间。其缺点是自身运行需要依赖外部库文件，安装时如果所依赖的库文件不存在，需要额外安装库文件。总的来说，其优点大于缺点，所以目前系统上大多数程序都是动态链接的。
+
+在许多Linux系统中存在一个有趣的例子：
+/bin/ln命令。这个命令用来创建软链接或者硬链接（注意此处的链接与程序的动态链接是两个不同的概念）。ln这个程序也是动态链接的，所以其运行依赖动态加载机制。加载动态库时往往使用的是符号链接（比如使用ls-linux-86-64.so.2这个符号链接而不是真正的文件ld-2.11.1.so），所以动态加载依赖于这种符号链接机制。
+想想如果这个软链接有问题或者被删除了，该怎么办呢？解决方式就是重新建一个。此时问题来了，为能动态加载而新建链接文件使用的是ln命令，而ln本身运行时的动态加载又可能依赖于这个出问题符号链接，这就容易陷入死循环了。为了解决这个问题，一些Linux发行版里额外提供了ln的静态链接版本sln（像Debian或Ubuntu这样的系统，你可能找不到sln程序，你也需要检查一下/sbin/ldconfig是否存在）。
+Fedora12 64bit系统中的这两个文件如下所示：
+Listing 1. Sizes of sln and ln
+[ian@echidna ~]$ ls -l /sbin/sln /bin/ln
+-rwxr-xr-x. 1 root root 47384 2010-01-12 09:35 /bin/ln
+-rwxr-xr-x. 1 root root 603680 2010-01-04 09:07 /sbin/sln
+
+可以看出，同样的程序静态链接时，文件体积要大很多。
+
+
+
+需要哪些库文件？
+现在很多的Linux系统所在的机器能够同时支持32位和64位程序的运行。因此，很多库文件都同时存在32位和64位两个版本。其中的64位版本存放在目录/lib64中，32位版本存放在/lib中。你很可能会在一个典型的64位Linux系统中发现同时存在/lib/libc-2.11.1.so and /lib64/libc-2.11.1.so这两个库文件。
+
+
+ldd命令
+除了知道一个静态链接的文件体积大之外，你能分辨一个程序到底是静态链接还是动态链接的吗？如果是动态链接的，你知道它依赖于哪些库文件吗？ldd命令可以帮助你回答这两个问题。如果你正在运行一个像Debian或Ubuntu这样的系统，你可能找不到sln程序，你也需要检查一下/sbin/ldconfig是否存在。
+本例子使用的是Fedora12 64位系统。为了做个对比，32位系统上的输出也同时列出。
+Listing 2. Output of ldd for sln and ln
+
+//64-bit版本：
+[ian@echidna ~]#Fedora 12 64-bit         [ian@echidna ~] ldd /sbin/sln /sbin/ldconfig /bin/ln
+/sbin/sln:
+not a dynamic executable
+/sbin/ldconfig:
+not a dynamic executable
+/bin/ln:
+linux-vdso.so.1 => (0x00007fff644af000)
+libc.so.6 => /lib64/libc.so.6 (0x00000037eb800000)
+/lib64/ld-linux-x86-64.so.2 (0x00000037eb400000)
+
+//32-bit版本：
+[ian@pinguino ~]# Fedora 8 32-bit         [ian@pinguino ~] ldd /bin/ln
+linux-gate.so.1 => (0x00110000)
+libc.so.6 => /lib/libc.so.6 (0x00a57000)
+/lib/ld-linux.so.2 (0x00a38000)
+
+ldd命令的功能是查看动态链接的信息，所以对于sln,ldconfig这样的静态链接程序，仅仅提示"not a dynamic executable"。而对于动态链接的ln文件则给出了所依赖的三个动态链接库文件。.so后缀名是shared object的意思，也称为动态链接库。
+上面的输出结果还显示了三种不同类型的依赖文件：
+linux-vsdo.so.1 是Linux Virtual Dynamic Shared Object，一会我们会讲到这个。在Fedora8中则是 linux-gate.so.1。
+libc.so.6 指向/lib64/libc.so.6
+/lib64/ld-linux-x86-64.so.2 是一个库文件的绝对路径
+
+下表中，我们使用ls -l命令显示了上面最后的两个库文件其实是具体版本库文件的符号链接。
+在Fedora12系统中，结果如下：
+Listing 3. Library symbolic links
+
+[ian@echidna ~]$ ls -l /lib64/libc.so.6 /lib64/ld-linux-x86-64.so.2
+lrwxrwxrwx. 1 root root 12 2010-01-14 14:24 /lib64/ld-linux-x86-64.so.2 -> ld-2.11.1.so
+lrwxrwxrwx. 1 root root 14 2010-01-14 14:24 /lib64/libc.so.6 -> libc-2.11.1.so
+
+
+Linux虚拟动态共享对象
+在早期X86的年代里，用户程序和内核空间程序的通信是通过软中断。随着处理器速度的提高，这种方式成为了严重的瓶颈。从Pentium II开始，Intel引进了一种叫做Fast System Call的机制来加速系统调用的执行。这种新的方式使用的专门的SYSENTER和SYSEXIT指令而不是中断。
+上面提到的linux-vdso.so.1是一个虚拟库文件或者虚拟动态共享对象，这个文件驻留在每一个程序进程的地址空间。老的系统里文件名是linux-gate.so.1。这个虚拟库提供必要的逻辑来让用户程序在特定的处理器上选择最快的系统函数调用方式，也许是软中断，但在大多数新的CPU中都是使用fast system call。
+
+
+动态加载
+也许你会感到奇怪，上面提到的/lib/ld-linux.so.2以及它的64位版本/lib64/ld-linux-x86-64.so.2虽然看起来是共享库文件，但实际上他们可以独立运行。他们的功能是负责动态加载。它们通过读取可执行文件的头部信息来确定哪些库文件是必须的，以及哪些需要加载。加载完成后，它会通过修正执行文件里的相关的地址指针来和加载的库文件完成动态链接，此时程序就可以运行了。
+
+ld-linux.so的帮助手册还描述了ld.so这个文件，ld.so针对的是早期的a.out格式的可执行程序。ld-linux.so.2的--list参数可以显示和ldd命令同样的信息，如下表：
+Listing 4. Using ld-linux.so to display library requirements
+
+[ian@echidna ~]$ /lib64/ld-linux-x86-64.so.2 --list /bin/ln
+linux-vdso.so.1 => (0x00007fffc9fff000)
+libc.so.6 => /lib64/libc.so.6 (0x00000037eb800000)
+/lib64/ld-linux-x86-64.so.2 (0x00000037eb400000)
+
+[ian@pinguino ~]$ /lib/ld-linux.so.2 --list /bin/ln
+linux-gate.so.1 => (0x00110000)
+libc.so.6 => /lib/libc.so.6 (0x00a57000)
+/lib/ld-linux.so.2 (0x00a38000)
+
+注意：上面的地址部分可能每次运行都会有所不同。
+
+
+动态库配置
+从可执行文件头可以读取依赖的库文件信息，那么动态加载器去哪里寻找这些库文件呢？还是Linux世界的惯例，存在一个配置文件描述这些信息。
+实际上，有两个配置文件，一个是/etc/ld.so.conf，另一个是/etc/ld.so.cache。下表显示了/etc/ld.so.conf的内容。注意/etc/ld.so.conf文件指定了ld.so.conf.d目录下的所有配置文件都会被包含进来。老系统上的/etc/ld.so.conf文件可能本身就包含了很多配置项而不是从子目录中加载配置项。
+Listing 5. Content of /etc/ld.so.conf
+
+[ian@echidna ~]cat/etc/ld.so.confincludeld.so.conf.d/∗.conf[ian@echidna ] ls /etc/ld.so.conf.d/*.conf
+/etc/ld.so.conf.d/kernel-2.6.31.12-174.2.19.fc12.x86_64.conf
+/etc/ld.so.conf.d/kernel-2.6.31.12-174.2.22.fc12.x86_64.conf
+/etc/ld.so.conf.d/kernel-2.6.31.12-174.2.3.fc12.x86_64.conf
+/etc/ld.so.conf.d/mysql-x86_64.conf
+/etc/ld.so.conf.d/qt-x86_64.conf
+/etc/ld.so.conf.d/tix-x86_64.conf
+/etc/ld.so.conf.d/xulrunner-64.conf
+
+程序的加载速度很重要，所以使用ldconfig命令来处理ld.so.conf文件以及它包含的其他配置文件，还有/lib, /usr/lib目录下的库文件，以及以命令行参数形式提供的其他库文件。
+ldconfig的作用是为最近使用的库文件创建必要的符号链接和缓存信息，并写入/etc/ld.so.cache文件。动态加载器利用/etc/ld.so.cache这个文件里的信息来查找和加载库文件。如果你改变了ld.so.conf文件或者其包含的子文件，你必须重新运行ldconfig命令来更新/etc/ld.so.cache缓存文件。
+
+正常情况下，你使用不带任何参数的ldconfig命令来重建ld.so.cache文件。你也可以为ldconfig提供命令来改变这种默认的行为。通常使用man ldconfig来查看更多地信息。下表显示了使用-p 参数来查看ld.so.cache里的内容。
+Listing 6. Using ldconfig to display ld.so.cache
+
+[ian@lyrebird ian]$ /sbin/ldconfig -p | less
+1602 libs found in cache `/etc/ld.so.cache'
+libzip.so.1 (libc6,x86-64) => /usr/lib64/libzip.so.1
+libz.so.1 (libc6,x86-64) => /lib64/libz.so.1
+libz.so (libc6,x86-64) => /usr/lib64/libz.so
+libx86.so.1 (libc6,x86-64) => /usr/lib64/libx86.so.1
+libx11globalcomm.so.1 (libc6,x86-64) => /usr/lib64/libx11globalcomm.so.1
+libxul.so (libc6,x86-64) => /usr/lib64/xulrunner-1.9.1/libxul.so
+libxtables.so.2 (libc6,x86-64) => /usr/lib64/libxtables.so.2
+libxslt.so.1 (libc6,x86-64) => /usr/lib64/libxslt.so.1
+libxslt.so (libc6,x86-64) => /usr/lib64/libxslt.so
+libxpcom.so (libc6,x86-64) => /usr/lib64/xulrunner-1.9.1/libxpcom.so
+libxml2.so.2 (libc6,x86-64) => /usr/lib64/libxml2.so.2
+libxml2.so (libc6,x86-64) => /usr/lib64/libxml2.so
+...
+libABRTdUtils.so.0 (libc6,x86-64) => /usr/lib64/libABRTdUtils.so.0
+libABRTUtils.so.0 (libc6,x86-64) => /usr/lib64/libABRTUtils.so.0
+ld-linux.so.2 (ELF) => /lib/ld-linux.so.2
+ld-linux-x86-64.so.2 (libc6,x86-64) => /lib64/ld-linux-x86-64.so.2
+
+
+加载指定的库文件
+如果你在运行一个依赖于特定老版本共享库文件的应用程序，或者你在开发测试一个新开发的共享库或者已存在共享库的新版本，你就需要加载器使用的默认查找路径。这种需要也出现在使用特定产品共享库的脚本中，这个特定的产品共享库可能安装到了/opt目录下。
+就像可以通过修改PATH环境变量来指定可执行程序的搜索路径一样，你可以通过修改LD_LIBRARY_PATH环境变量来修改动态加载器的查找路径。LD_LIBRARY_PATH指定的路径会排在ld.so.cache文件里的路径之前。
+例如，你可能会使用这样一些命令：
+export LD_LIBRARY_PATH=/usr/lib/oldstuff:/opt/IBM/AgentController/lib
+
+ 
+
+分类: Linux系统
+标签: linux系统, d-linux.so.X, 查找共享动态库, 加载共享动态库的顺序

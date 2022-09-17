@@ -1,0 +1,34 @@
+objdump -x a.out |grep NEEDED
+
+Objdump查看依赖so动态库文件
+
+放牛娃不吃草
+
+于 2012-10-11 15:42:14 发布
+
+12199
+ 收藏 2
+分类专栏： linux系统常用 文章标签： ubuntu 跨平台 依赖库查看 grep命令 objdump
+版权
+
+linux系统常用
+专栏收录该内容
+52 篇文章0 订阅
+订阅专栏
+在做系统跨平台移植的时候，需要知道生成的o文件需要的so动态库文件，就可以使用下命令了。
+
+zchx@ubuntu:~/workspace/mips_UDP/g++build$ ls
+
+a.out  UDP_Multicast.cpp
+zchx@ubuntu:~/workspace/mips_UDP/g++build$ objdump -x a.out |grep NEEDED
+  NEEDED               libpthread.so.0
+  NEEDED               libboost_system.so.1.49.0
+  NEEDED               libstdc++.so.6
+  NEEDED               libm.so.0
+  NEEDED               libgcc_s.so.1
+  NEEDED               libc.so.0
+zchx@ubuntu:~/workspace/mips_UDP/g++build$
+
+————————————————
+版权声明：本文为CSDN博主「放牛娃不吃草」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/gubenpeiyuan/article/details/8060817

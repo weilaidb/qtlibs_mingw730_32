@@ -1,0 +1,2 @@
+a.out 
+/usr/bin/cp
