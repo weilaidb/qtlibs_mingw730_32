@@ -1,0 +1,42 @@
+解决find命令报错： paths must precede expression
+　　在一天早上，想在服务器 /tmp 目录清除一些pdf文件，大概一万多个文件，在执行命令的时候
+
+find /tmp  -maxdepth 1 -mtime 30 -name *.pdf 
+出现了错误：
+
+find: paths must precede expression
+Usage: find [-H] [-L] [-P] [path...] [expression]
+然后就上网查了一下,结果搜索到一篇,大概是这样说的:多文件的查找的时候需要增加单引号,一直是使用的双引号,没想到找多文件的时候居然要单引号.好吧,又学了一招,修改后:
+find ./ -mtime +30 -type f -name '*.php'
+这样执行后就没有再报错了,一个小问题得到解决.
+例子说明：
+# 进入tmp目录新建4个文本文件
+# cd /tmp
+# touch {1,2,3,4}.txt
+# find . -name *.txt
+find: paths must precede expression: 2.txt
+
+出现这个提示是因为星号被展开为当前目录下所有的文件，这样的匹配当然会出错。看这个就知道了：
+# echo *
+1.txt 2.txt 3.txt 4.txt
+# echo '*'
+*
+# echo \*
+*
+
+想要星号不被展开就需要加上括号或者反斜杠转义，知道了这些我们就知道该怎么find了
+# find . -name '*.txt'
+find . -name '*.txt'
+./4.txt
+./2.txt
+./3.txt
+./1.txt
+#或者使用反斜杠
+ find . -name \*.txt
+./4.txt
+./2.txt
+./3.txt
+./1.txt
+
+技术总结、分享，欢迎交流！
+分类: Shell
