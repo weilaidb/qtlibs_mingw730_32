@@ -22,3 +22,7 @@ http://c.biancheng.net/spring_boot/config-bind.html
 
 Layui
 https://www.layuiweb.com/
+
+
+standards.ieee.
+https://standards.ieee.org/products-programs/regauth/

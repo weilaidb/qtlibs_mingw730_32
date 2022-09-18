@@ -1,0 +1,56 @@
+网络流量可分为3大类：广播、组播和单播。
+
+
+
+组播是一种将单一来源数据包同时传输给多个目标的通信方式。
+组播的目的是简化这个过程，并使用尽可能少的网络带宽。组播流量通过避免数据包的大量复制来达到优化效果，而对组播流量的处置方式则高度依赖于不同网络协议的实现细节。
+
+实施组播的主要方法是通过一种数据包接收者加入组播组的编址方案实现的，这也是IP组播的工作原理。这种编址方案确保数据包不会被传送到未预期的目的地。
+
+
+事实上IP协议将一整段的地址都用于组播，如果你在网络上看到244.0.0.0 ~ 239.255.255.255的IP地址，那么它很有可能就是组播流量 。
+
+
+
+
+
+
+
+还有一种是组播MAC
+
+
+
+
+
+组播MAC地址
+    MAC地址是以太网二层使用的一个48bit（6字节十六进制数）的地址，用来标识设备位置。MAC地址分成两部分，前24位是组织唯一标识符（OUI, Organizationally unique identifier），后24位由厂商自行分配。
+
+    MAC地址有单播、组播、广播之分。单播地址(unicast address)表示单一设备、节点，多播地址或者组播地址(multicast address、group address)表示一组设备、节点，广播地址(broadcast address)是组播的特例，表示所有地址，用全F表示：FF-FF-FF-FF-FF-FF。当然，三层的IP地址也有单播、组播、广播之分。
+
+    48bit的MAC地址一般用6字节的十六进制来表示，如XX-XX-XX-XX-XX。IEEE 802.3规定：以太网的第48bit用于表示这个地址是组播地址还是单播地址。如果这一位是0，表示此MAC地址是单播地址，如果这位是1，表示此MAC地址是多播地址。见IEEE 802.3 3.2.3 Address fields： “The first bit (LSB) shall be used in the Destination Address field as an address type designation bit to identify the Destination Address either as an individual or as a group address. If this bit is 0, it shall indicate that the address field contains an individual address. If this bit is 1, it shall indicate that the address field contains a group address that identifies none, one or more, or all of the stations connected to the LAN. In the Source Address field, the first bit is reserved and set to 0.”
+
+    因为以太网线路上按“Big Endian”字节序传送报文（也就是最高字节先传送，关于字节序请参考相关文档），而比特序是”Little Endian”（也就是最低位先传送）。所以有如下的图（从最左边开始传送）：
+
+
+
+    注意图上的第47bit，这一位表示MAC地址是全球唯一地址还是本地地址，0表示全球唯一地址，1表示本地唯一地址。这一位也叫G/L位。
+
+    对于网络设备上固化的MAC地址，因为它唯一标识这个设备，所以只能是单播地址，也就是MAC帧里面的Source地址第48位只能0。    
+
+    我们常说有2的48次方个MAC地址可供网络设备使用，这些地址可以多到给地球上每一粒沙子分配一个地址，其实这个数量要打折扣的，因为MAC地址虽然有这么多，但真正用在网卡上并且全球唯一的只有2的46次方个：第48bit一定是0，第47bit一定是0。
+
+    这也就引出了一个有意思的现象：随便找一台PC，观察一下它的网卡地址，第1字节的十六进制数一般是4的倍数；查看一下IEEE分配的OUI(http://standards.ieee.org/develop/regauth/oui/oui.txt )，第1字节的十六进制数也一般是4的倍数（早期以太网没有本地地址的概念，所以分配的OUI里面G/L bit也可能是1），这种情况下就不是4的倍数了，但肯定是2的倍数，因为第48位只能是0。
+
+    关于组播地址，有这么个误解：MAC地址第1字节必须是0x01才表示组播地址，连TCP/IP详解上也这么说（见中文版12.4.2第一段）。IEEE 802.3里面已经明确说明了只要第48bit是1就表示组播地址，所以无论MAC地址第1字节是0x01、0xC1或者是0x33都表示这个MAC地址是组播地址（以0x33开头的表示IPV6对应的二层组播地址）。之所以有这样的误解，是因为到目前为止，大部分组播MAC地址的第1字节都是0x01。如：
+
+01-80-C2-00-00-00(STP协议使用)
+
+01-80-C2-00-00-01(MAC Control的PAUSE帧使用)
+
+01-80-C2-00-00-02(Slow Protocol: 802.3ah OAM/ LACP 协议都用这个地址，这个地址很有故事，有多少软件处理这个地址会出问题啊！)
+
+01-00-5E-xx-xx-xx(IP组播地址对应的二层组播地址)。
+
+完整的列表见http://standards.ieee.org/develop/regauth/grpmac/public.html
+
+    之所以大部分组播地址都以01-80-C2和01-00-5E开头，那是因为使用这些组播地址的协议都是带头大哥IEEE和IANA名下的，它们的OUI分别是00-80-C2和00-00-5E是，变成组播地址就是01-80-C2和01-00-5E了，当然，除了带头大哥霸占的这些组播地址，还有01-00-0C-CC-CC-CC这样的地址，这个地址是Cisco霸占的，Cisco的OUI是00-00-0C。
