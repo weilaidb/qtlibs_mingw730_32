@@ -1651,6 +1651,7 @@ LINUX/命令行/software/vsftpd 安装与配置
 LINUX/命令行/software/yum
 LINUX/命令行/software/yum CentOS安装mysql
 LINUX/命令行/software/yum install
+LINUX/命令行/software/yum installyum whatprovides 搜索
 LINUX/命令行/software/yum linux CentOS安装mysql 2
 LINUX/命令行/software/yum linux 阿里云mysql install
 LINUX/命令行/software/yum repo
