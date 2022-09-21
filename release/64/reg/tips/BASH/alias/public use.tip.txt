@@ -177,6 +177,7 @@ alias rpmqagrep="rpm -qa | grep "
 
 alias lslt="ls -lt"
 alias lslh="ls -lh"
+alias lsalh="ls -alh "
 alias lsf="ls -F "
 alias llt="ls -lt"
 alias llh="ls -lh"

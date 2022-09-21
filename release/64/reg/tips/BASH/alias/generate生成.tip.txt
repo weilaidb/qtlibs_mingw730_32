@@ -290,6 +290,7 @@ dockerversin;docker --version
 cd....;cd ../..
 cd..;cd ..
 lslh;ls -lh
+lsalh;ls -alh
 
 lslt;ls -lt
 lsf;ls -F
