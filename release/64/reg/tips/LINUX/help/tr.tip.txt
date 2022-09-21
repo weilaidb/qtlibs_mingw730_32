@@ -1,0 +1,307 @@
+linux命令总结之tr命令
+什么是tr命令？tr,translate的简写，translate的翻译：
+
+[trænsˈleit]
+
+vi. 翻译, 能被译出
+
+vt. 翻译, 解释, 转化, 转变为, 调动
+
+在这里用到的意思是转化，转变,转换，在linux下输入tr --help查看一下提示：
+
+amosli@amosli-pc:~$ tr --help
+Usage: tr [OPTION]... SET1 [SET2]
+Translate, squeeze, and/or delete characters from standard input,
+writing to standard output.
+ 
+  -c, -C, --complement    use the complement of SET1
+  -d, --delete            delete characters in SET1, do not translate
+  -s, --squeeze-repeats   replace each input sequence of a repeated character
+                            that is listed in SET1 with a single occurrence
+                            of that character
+  -t, --truncate-set1     first truncate SET1 to length of SET2
+      --help     display this help and exit
+      --version  output version information and exit
+ 
+SETs are specified as strings of characters.  Most represent themselves.
+Interpreted sequences are:
+ 
+  \NNN            character with octal value NNN (1 to 3 octal digits)
+  \\              backslash
+  \a              audible BEL
+  \b              backspace
+  \f              form feed
+  \n              new line
+  \r              return
+  \t              horizontal tab
+  \v              vertical tab
+  CHAR1-CHAR2     all characters from CHAR1 to CHAR2 in ascending order
+  [CHAR*]         in SET2, copies of CHAR until length of SET1
+  [CHAR*REPEAT]   REPEAT copies of CHAR, REPEAT octal if starting with 0
+  [:alnum:]       all letters and digits
+  [:alpha:]       all letters
+  [:blank:]       all horizontal whitespace
+  [:cntrl:]       all control characters
+  [:digit:]       all digits
+  [:graph:]       all printable characters, not including space
+  [:lower:]       all lower case letters
+  [:print:]       all printable characters, including space
+  [:punct:]       all punctuation characters
+  [:space:]       all horizontal or vertical whitespace
+  [:upper:]       all upper case letters
+  [:xdigit:]      all hexadecimal digits
+  [=CHAR=]        all characters which are equivalent to CHAR
+ 
+Translation occurs if -d is not given and both SET1 and SET2 appear.
+-t may be used only when translating.  SET2 is extended to length of
+SET1 by repeating its last character as necessary.  Excess characters
+of SET2 are ignored.  Only [:lower:] and [:upper:] are guaranteed to
+expand in ascending order; used in SET2 while translating, they may
+only be used in pairs to specify case conversion.  -s uses SET1 if not
+translating nor deleting; else squeezing uses SET2 and occurs after
+translation or deletion.
+全是英文？翻译过来看下：
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+tr [选项]… 集合1 [集合2]
+ 
+选项说明：
+ 
+-c, -C, –complement 用集合1中的字符串替换，要求字符集为ASCII。
+ 
+-d, –delete 删除集合1中的字符而不是转换
+ 
+-s, –squeeze-repeats 删除所有重复出现字符序列，只保留第一个；即将重复出现字符串压缩为一个字符串。
+ 
+-t, –truncate-set1 先删除第一字符集较第二字符集多出的字符
+ 
+字符集合的范围：
+ 
+\NNN 八进制值的字符 NNN (1 to 3 为八进制值的字符)
+\\ 反斜杠
+\a Ctrl-G 铃声
+\b Ctrl-H 退格符
+\f Ctrl-L 走行换页
+\n Ctrl-J 新行
+\r Ctrl-M 回车
+\t Ctrl-I tab键
+\v Ctrl-X 水平制表符
+CHAR1-CHAR2 从CHAR1 到 CHAR2的所有字符按照ASCII字符的顺序
+[CHAR*] in SET2, copies of CHAR until length of SET1
+[CHAR*REPEAT] REPEAT copies of CHAR, REPEAT octal if starting with 0
+[:alnum:] 所有的字母和数字
+[:alpha:] 所有字母
+[:blank:] 水平制表符，空白等
+[:cntrl:] 所有控制字符
+[:digit:] 所有的数字
+[:graph:] 所有可打印字符，不包括空格
+[:lower:] 所有的小写字符
+[:print:] 所有可打印字符，包括空格
+[:punct:] 所有的标点字符
+[:space:] 所有的横向或纵向的空白
+[:upper:] 所有大写字母
+tr用来从标准输入中通过替换或删除操作进行字符转换。tr主要用于删除文件中控制字符或进行字符转换。使用tr时要转换两个字符串：字符串1用于查询，字符串2用于处理各种转换。tr刚执行时，字符串1中的字符被映射到字符串2中的字符，然后转换操作开始。
+
+通过使用 tr，您可以非常容易地实现 sed 的许多最基本功能。您可以将 tr 看作为 sed 的（极其）简化的变体：它可以用一个字符来替换另一个字符，或者可以完全除去一些字符。您也可以用它来除去重复字符。这就是所有 tr 所能够做的。
+
+ 1、带有最常用选项的tr命令格式为
+1
+tr -c -d -s ["string1_to_translate_from"] ["string2_to_translate_to"] < input-file
+这里：
+
+-c 用字符串1中字符集的补集替换此字符集，要求字符集为ASCII。
+-d 删除字符串1中所有输入字符。
+-s 删除所有重复出现字符序列，只保留第一个；即将重复出现字符串压缩为一个字符串。
+input-file是转换文件名。虽然可以使用其他格式输入，但这种格式最常用。
+2、字符范围
+指定字符串1或字符串2的内容时，只能使用单字符或字符串范围或列表。
+[a-z] a-z内的字符组成的字符串。
+[A-Z] A-Z内的字符组成的字符串。
+[0-9] 数字串。
+\octal 一个三位的八进制数，对应有效的ASCII字符。
+[O*n] 表示字符O重复出现指定次数n。因此[O*2]匹配OO的字符串。
+
+tr中特定控制字符的不同表达方式
+1
+2
+3
+4
+5
+6
+7
+8
+速记符含义八进制方式
+\a Ctrl-G  铃声\007
+\b Ctrl-H  退格符\010
+\f Ctrl-L  走行换页\014
+\n Ctrl-J  新行\012
+\r Ctrl-M  回车\015
+\t Ctrl-I  tab键\011
+\v Ctrl-X  \030
+实例：
+1、将文件file中出现的"abc"替换为"xyz"
+1
+2
+3
+4
+5
+6
+[root@Gin scripts]# cat t.txt
+abc
+[root@Gin scripts]# cat t.txt |tr "abc" "xyz"
+xyz
+[root@Gin scripts]# cat t.txt
+abc
+ 
+【注意】这里，凡是在t.txt文件中出现的"a"字母，都替换成"x"字母，"b"字母替换为"y"字母，"c"字母替换为"z"字母。而不是将字符串"abc"替换为字符串"xyz"。这里的替换不修改源文件
+2、使用tr命令“统一”字母大小写
+1
+2
+3
+4
+[root@Gin scripts]# cat file
+abc
+[root@Gin scripts]# cat file|tr [a-z] [A-Z]
+ABC
+大写转小写只需要把tr后面的参数换个位置即可！
+
+3、把文件中的数字0-9替换为a-j
+1
+2
+[root@Gin scripts]# cat file|tr [0-9] [a-j]
+abcdefghij
+4、删除文件file中出现的"Snail"字符
+1
+2
+3
+4
+5
+6
+[root@Gin scripts]# cat file
+what is Snail
+[root@Gin scripts]# cat file|tr -d "Snail"
+wht s
+[root@Gin scripts]# cat file
+what is Snail
+【注意】这里，凡是在file文件中出现的'S','n','a','i','l'字符都会被删除！而不是紧紧删除出现的"Snail”字符串。
+5、删除文件file中出现的换行'\n'、制表'\t'字符 
+1
+# cat file | tr -d "\n\t"
+不可见字符都得用转义字符来表示的，这个都是统一的。
+7、删除空行
+1
+# cat file | tr -s "\n" > new_file
+8、删除Windows文件“造成”的'^M'字符
+1
+2
+3
+# cat file | tr -d "\r"
+或者
+# cat file | tr -s "\r" "\n"
+【注意】这里-s后面是两个参数"\r"和"\n"，用后者替换前者
+9、用空格符\040替换制表符\011
+1
+# cat file | tr -s "\011" "\040"
+10、把路径变量中的冒号":"，替换成换行符"\n"
+1
+# echo $PATH | tr -s ":" "\n"
+实际应用1，加密解密：
+1
+2
+3
+4
+[root@Gin scripts]# echo 12345|tr '0-9' '987654321'  ## 加密
+87654
+[root@Gin scripts]# echo 87654|tr '987654321' '0-9'  ## 解密
+12345
+上面是一个非常有趣的小例子，通过映射来实现简单的加密解密，看懂这个例子，可以接着往下看古罗马时期发明的凯撒加密的一种变体ROT13
+
+1
+2
+3
+4
+[root@Gin scripts]# echo "hi,this is amosli" | tr 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
+uv,guvf vf nzbfyv
+[root@Gin scripts]# echo "uv,guvf vf nzbfyv" | tr 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
+hi,this is amosli
+ROT13是它自己本身的逆反；也就是说，要还原ROT13，套用加密同样的算法即可得，故同样的操作可用再加密与解密。非常神奇！
+
+实际应用2，字符集补集：
+1
+tr -c [set1] [set2]
+set1的补集意味着从这个集合中包含set1中没有的所有字符。最典型的用法就是从输入文本中将不在补集中的所有字符全部删除。例如：
+
+1
+2
+[root@Gin scripts]# echo "hello 123 world " | tr -d -c '0-9 \n'
+ 123
+在这里，补集中包含了除数字、空格字符和换行符之外的所有字符，因为指定了-d，所以这些字符全部都会被删除。
+
+实际应用3，用tr压缩字符:
+1
+2
+[root@Gin scripts]# echo "GNU is  not          UNIX . Recursicve right?" | tr -s  ' '
+GNU is not UNIX . Recursicve right?
+使用-s参数可以压缩字符串中重复的字符。看另一个例子：
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+[root@Gin scripts]# cat sum.txt
+5
+4
+3
+5
+4
+3
+[root@Gin scripts]# cat sum.txt|echo $[ $(tr '\n' '+') 0 ]
+24
+[root@Gin scripts]# cat sum.txt|echo $[ $(tr '\n' '+') ] 
+-bash: 5+4+3+5+4+3+ : syntax error: operand expected (error token is "+ ")
+这里，运用tr实现了加法运算， tr '\n' '+'使用换行符来替换为'+'然后连接起来，最后多出来一个'+'再接上数字0即实现了加法。
+
+标签: linux, tr命令总结

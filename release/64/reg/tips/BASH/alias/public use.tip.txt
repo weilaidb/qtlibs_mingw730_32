@@ -1,3 +1,19 @@
+alias tsharkversion="tshark -v "
+alias tsharkdesc="tshark -D "
+alias tsharki="tshark -i "
+alias tsharketh0w123="tshark -i eth0 -w capture123.pcap "
+alias tsharketh0r123="tshark -i eth0 -r capture123.pcap "
+alias tsharketh0time600s="tshark -i eth0 -a duration:600 "
+alias tsharketh0cnt10000="tshark -c 10000 -i eth0 "
+alias tsharketh0host192.168.1.1="tshark -i eth0 -f "host 192.168.1.1" "
+alias tsharketh0pro.tcp="tshark -i eth0 -f tcp "
+alias tsharketh0pro.udp="tshark -i eth0 -f udp "
+alias tsharketh0pro.dns="tshark -i eth0 -f dns "
+alias tsharketh0pro.icmp="tshark -i eth0 -f icmp "
+alias tsharketh0pro.http="tshark -i eth0 -f http "
+
+
+
 alias catiptables="cat /etc/sysconfig/iptables "
 
 

@@ -1,3 +1,18 @@
+tsharkversion;tshark -v
+tsharkdesc;tshark -D
+tsharki;tshark -i 
+tsharketh0w123;tshark -i eth0 -w capture123.pcap
+tsharketh0r123;tshark -i eth0 -r capture123.pcap
+tsharketh0time600s;tshark -i eth0 -a duration:600
+tsharketh0cnt10000;tshark -c 10000 -i eth0
+tsharketh0host192.168.1.1;tshark -i eth0 -f "host 192.168.1.1"
+tsharketh0pro.tcp;tshark -i eth0 -f tcp
+tsharketh0pro.udp;tshark -i eth0 -f udp
+tsharketh0pro.dns;tshark -i eth0 -f dns
+tsharketh0pro.icmp;tshark -i eth0 -f icmp
+tsharketh0pro.http;tshark -i eth0 -f http
+
+
 lcovall;rm -rf cc_result && rm -rf app.info && lcov -c -d ./ -o app.info && genhtml app.info -o cc_result
 
 
