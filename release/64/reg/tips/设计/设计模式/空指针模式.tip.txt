@@ -1,0 +1,95 @@
+详解设计模式之空指针模式
+ 溜溜丽 发表于 2021/05/19 22:28:36  1.4k+  0  0
+【摘要】 属于新模式。我们在之前介绍了23种设计模式，设计模式诞生多年，设计模式也在逐步增多。本文将会介绍一个常用且容易忽视的模式：空指针模式。 空指针模式的定义在空对象模式中，一个空对象取代NULL对象的实例的检查。NULL对象不是检查空值，而是反映一个不做任何动作的关系。这样的NULL对象也可以在数据不可用的时候提供默认的行为。在空对象模式中，我们创建一个指定各种要执行的操作的抽象类和扩展该类的实...
+属于新模式。我们在之前介绍了23种设计模式，设计模式诞生多年，设计模式也在逐步增多。本文将会介绍一个常用且容易忽视的模式：空指针模式。
+
+空指针模式的定义
+在空对象模式中，一个空对象取代NULL对象的实例的检查。NULL对象不是检查空值，而是反映一个不做任何动作的关系。这样的NULL对象也可以在数据不可用的时候提供默认的行为。
+在空对象模式中，我们创建一个指定各种要执行的操作的抽象类和扩展该类的实体类，还创建一个未对该类做任何实现的空对象类，该空对象类将无缝地使用在需要检查空值的地方。
+空对象模式一般和策略模式或工厂模式结合使用。
+
+空指针模式的结构
+空指针模式的角色和职责：
+
+AbstractObject：声明协作对象的接口。如果需要，可以实现默认行为。
+RealObject：具体的协作对象类，提供有意义的行为。
+NullObject：空对象类，继承自 AbstractObject，但接口实现不做任何事情。
+Client：请求协作对象。
+空指针模式的UML图如下：
+
+nullable-pattern
+
+当以下情况成立时可以使用 Null Object 模式：
+
+一个对象需要一个协作对象，但并无具体的协作对象。
+协作对象不需要做任何事情。
+空指针模式的实现
+假如我们需要查询某个商品的信息，我们输入商品号来进行查询，如果没有这个商品的话，我们就返回一个空对象，以此来实现空对象模式。
+
+AbstractObject
+public interface AbstractCustomer{
+    String query();
+}
+定义一个为查询和空对象的类定义一个共同的接口。
+
+RealObject
+public class RealObject implements AbstractCustomer{
+    @Override
+    public String query() {
+        //返回商品信息
+        return "successful";
+    }
+}
+
+查询商品的具体实现。
+
+NullObject
+public class NullObject implements AbstractCustomer{
+    @Override
+    public String query() {
+        return "can not find this product";
+    }
+}
+空对象类的实现。
+
+构建工厂
+public class CustomerFactory{
+    //我们假定这是我们储存商品的数据库,现在我们获取到了，把它装到我们的数组里
+    int[] arr = {1,2,3,4,5};
+
+    public AbstractCustomer query(){
+        //模拟查询
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("please input product_id:\n");
+        int index = scanner.nextInt();
+        for(int i : arr){
+            if(i == index){
+                return new RealObject();
+            }
+        }
+        //如果没有查找到的话我们直接返回一个空对象
+        return new NullObject();
+    }
+}
+客户端测试
+接下来是客户端方面，我们直接操作工厂即可：
+
+public class Main {
+    static void customer(CustomerFactory cf){
+        //先调用工厂的query返回一个对象，然后再用这个对象调用自己的query
+        String s = cf.query().query();
+        System.out.println(s);
+    }
+    public static void main(String[] args){
+        customer(new CustomerFactory());
+    }
+}
+当我们输入6时，不会出现空指针异常，取而代之的是实现定义的空指针类的实现逻辑。
+
+总结
+本文主要讲解了空对象模式。空对象模式通过代码实现一个接口或抽象类的所有方法，以满足开发需求，简化程序。空对象模式减少了对对象是否为 Null 的判断，并且提供默认无任何具体行为的协作对象。
+
+参考
+设计模式之禅
+被遗忘的设计模式——空对象模式（Null Object Pattern）
+【版权声明】本文为华为云社区用户原创内容，转载时必须标注文章的来源（华为云社区），文章链接，文章作者等基本信息，否则作者和本社区有权追究责任。如果您发现本社区中有涉嫌抄袭的内容，欢迎发送邮件至：cloudbbs@huaweicloud.com进行举报，并提供相关证据，一经查实，本社区将立刻删除涉嫌侵权内容。
