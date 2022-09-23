@@ -28,3 +28,4 @@ Tools/Vim .Vimrc;Tools/Vim .Vimrc
 BASH/alias/bashrc 加载配置 qtlibs_mingw730_32;BASH/alias/bashrc 加载配置 qtlibs_mingw730_32
 JAVA/JSP/form/js 操作select和option常见用法;JAVA/JSP/form/js 操作select和option常见用法
 翻译/常用网址;翻译/常用网址
+JAVA/JSP/form/button func/close网页;JAVA/JSP/form/button func/close网页

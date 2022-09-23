@@ -946,6 +946,8 @@ JAVA/JSP/css/什么是 CSS
 JAVA/JSP/foreach list string
 JAVA/JSP/form/basepath
 JAVA/JSP/form/basepath 2
+JAVA/JSP/form/button func/clearcontent
+JAVA/JSP/form/button func/close网页
 JAVA/JSP/form/button submit action
 JAVA/JSP/form/button submit action 在一个页面 跳转后返回
 JAVA/JSP/form/checkbox
@@ -2213,6 +2215,7 @@ QT/依赖库 Gmock
 QT/添加头文件和链接库
 QT/版本Debug或Release宏 QT_DEBUG 和QT_NO_DEBUG
 QT/示例/随机数
+RegExp/replace/H2D
 Setting/网页显示常用Tab切换
 SoftWare/AutoCad 2022
 SoftWare/FastStone Capture v9.7
