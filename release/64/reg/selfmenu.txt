@@ -694,6 +694,7 @@ Docker/top
 Docker/xxx(exec) --help
 Docker/自定义docker镜像
 Docker/镜像路径
+ECLIST/时钟时间/gmac读取从e2prom中读取数据错误
 ERLANG/eg
 ERLANG/资料路径 address
 FPGA/ZYNQ/AHB
@@ -2636,6 +2637,7 @@ path路径/常用文件夹
 英语/单词
 设计/术语/Agile
 设计/术语/BA（Business Analyst）业务分析师
+设计/设计模式/依赖倒置原则
 设计/设计模式/空指针模式
 设计/设计模式/里氏替换原则
 设计/试题/出题
