@@ -433,6 +433,7 @@ C/enum/enum single withname
 C/enum/enum single withname typedef
 C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
+C/know/Linux中的软件安装进度条怎么搞?
 C/know/ld-linux.so.X查找和加载共享动态库的顺序
 C/know/sigaction
 C/know/signal/Linux 信号（signal）
@@ -452,6 +453,7 @@ C/new/return unsigned int
 C/new/return unsigned short
 C/new/return void
 C/new/sigaction
+C/new/tools/progressbar进度条
 C/单链表 single list
 C/单链表 single list new
 C/基本类型/BASE TYPE typedef
