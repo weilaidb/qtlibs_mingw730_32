@@ -1571,6 +1571,7 @@ LINUX/help/top
 LINUX/help/tr
 LINUX/help/vmstat
 LINUX/know/Linux下为什么有的文件名后带个星号？
+LINUX/know/epoll
 LINUX/know/find paths must precede expression
 LINUX/know/glibc/glibc unlink触发机制解析（pwn unlink）
 LINUX/know/glibc/glibc中malloc源码分析
@@ -1585,6 +1586,7 @@ LINUX/man/chrt -m
 LINUX/man/chrt -p
 LINUX/man/systemtap
 LINUX/man/vmstat
+LINUX/man/手册说明 man1 man2
 LINUX/man/自定义self 自己编写linux的man手册
 LINUX/man/自定义手册 self
 LINUX/qemu intr
