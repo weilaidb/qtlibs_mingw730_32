@@ -1,0 +1,76 @@
+https://hpglw.com/d306e53.html
+
+
+
+老吴黑苹果工作室
+首页
+标签
+分类
+归档
+老吴的淘宝店
+油管频道
+头条频道
+B站频道
+ 搜索
+联想ThinkPad T14 Gen 1 i7-10510U黑苹果引导EFI OC7.8 MONTEREY 12.3
+ 发表于 2022-03-20  更新于 2022-09-08  分类于 笔记本 ， ThinkPad
+配置
+联想ThinkPad T14 Gen 1笔记本
+处理器 i7-10510U
+主板 联想20S0A0DPCD
+内存 32 GB
+主硬盘 CT 2TB
+主显卡 UHD+MX330
+显示器 14”1080P
+声卡 ALC257
+网卡 I219V+INTEL WIFI 6 AX201 160MHZ
+
+说明
+有关于bios的设置，请参考网站上的安装视频，看一下。
+己知驱动的有核显，声卡，有线网卡，wifi，蓝牙，电池电量，变频，触控板，读卡器，usb,type c等
+upload successful
+安装视频：https://www.bilibili.com/video/BV1ou411i71a/
+
+引导
+OPENCORE 0.7.8
+
+系统
+Monterey 12.3
+EFI&教程
+联想ThinkPad T14 Gen 1 i7-10510U黑苹果引导EFI OC7.8 MONTEREY 12.3
+【老吴黑苹果】macOS黑苹果系统镜像恢复版安装教程
+配置中包含INTEL各型号无线网卡的需要下载安装HeliPort工具才可以联WIFI
+检查你的固态硬盘是否支持安装黑苹果
+己驱动
+核显
+声卡
+USB（type c）
+有线网卡
+电池电量显示
+键盘
+触控板
+亮度调节
+蓝牙
+HIDPI
+手势多指
+变频
+摄像头
+读卡器
+WIFI
+外接显示器
+ i7-4790 - 技嘉B85M-D2V-SI - GTX 650黑苹果引导EFI OC7.8 BIG SUR 11.6.4
+i7-11700K - 华硕ROG STRIX Z590I GAMING WIFI - RX580黑苹果引导EFI OC7.8 MONTEREY 12.3 
+老吴
+老吴
+
+hpglw.com 第一次安装黑苹果系统用了近一个月的时候，装完才知道原来世上有这么好用的系统，果断把windows扔了。因为喜爱所以尽力研究。黑苹果是一项复杂的工程，黑苹果也没有完美一说，只有尽力调到满意为止。在这个小站上，老吴提供以前安装过的一些配置的引导，记录安装过程，解答安装问题等。
+984
+日志
+37
+分类
+338
+标签
+ Links
+装黑苹果找老吴，淘宝店
+粤ICP备14098990号-3
+© 2022 老吴
