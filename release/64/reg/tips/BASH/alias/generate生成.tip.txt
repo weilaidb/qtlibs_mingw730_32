@@ -162,6 +162,13 @@ tophelp;top -h
 dush;du -sh
 dus;du -s
 gitsubmoduleinit;git submodule update --init --recursive
+gitloglastestmaster;git log --max-count=1 --pretty=format:%H master
+gitloglastest;git log --max-count=1 --pretty=format:%H 
+gitstatusshort;git status --porcelain
+gitst2;git status --porcelain
+gitstatusshort2;git status --short
+gitst3;git status --short
+gitstv2;git status --porcelain=v2
 
 pythoninstallpy;/usr/bin/python install.py
 pythonsetupinstall;/usr/bin/python setup.py install

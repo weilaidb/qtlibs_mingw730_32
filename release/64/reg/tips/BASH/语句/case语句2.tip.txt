@@ -1,0 +1,9 @@
+command="$1"
+
+case "$command" in
+    patch|commit)
+    ;;
+    *)
+	usage
+	;;
+esac
