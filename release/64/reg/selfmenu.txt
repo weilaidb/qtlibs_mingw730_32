@@ -58,6 +58,7 @@ BASH/usage para2
 BASH/usage para3
 BASH/usage para4
 BASH/usage while
+BASH/usage2
 BASH/休眠
 BASH/函数
 BASH/变量/命令行参数
@@ -91,6 +92,8 @@ BASH/注释/多行
 BASH/注释/多行2
 BASH/自增1 自加1
 BASH/语句/case语句
+BASH/语句/case语句2
+BASH/语句/case语句string
 BASH/语句/for语句-1
 BASH/语句/for语句-2
 BASH/语句/if-elif-else语句
@@ -1550,6 +1553,7 @@ LINUX/Ubuntu/必备软件 necessary software
 LINUX/Ubuntu/必备软件 necessary software dpkg -i
 LINUX/Vim/vim实用技巧
 LINUX/cat EOF
+LINUX/cat EOF 2 stdout
 LINUX/help/HZ
 LINUX/help/cgroup cgconfig
 LINUX/help/chrt

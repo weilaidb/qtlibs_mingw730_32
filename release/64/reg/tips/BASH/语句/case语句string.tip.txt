@@ -1,0 +1,33 @@
+ssh='ssh'
+timeoutfactor=$TIMEOUTFACTOR
+while [ $# -gt 0 ]; do
+  case "$1" in
+
+    "--ssh")
+      shift
+      if [ $# -lt 1 ]; then
+        break
+      fi
+      ssh="$1"
+      ;;
+
+    "--timeoutfactor")
+      shift
+      if [ $# -lt 1 ]; then
+        break
+      fi
+      timeoutfactor="$1"
+      ;;
+
+    "--help")
+      echo "$usage"
+      echo "$help"
+      exit 0
+      ;;
+
+    *)
+      break
+      ;;
+  esac
+  shift
+done

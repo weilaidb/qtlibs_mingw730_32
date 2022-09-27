@@ -1,0 +1,11 @@
+usage () {
+    cat >&2 <<EOF
+usage: $0 {patch|commit}
+EOF
+    exit 1
+}
+
+
+if test $# -ne 1 ; then
+    usage
+fi
