@@ -28,6 +28,7 @@ alias npminstallrun="npminstall && npmrundev "
 
 
 alias rmswp="rm -f .*.swp && rm -f *.swp "
+alias rmswpfind="find . -name *.swp | xargs -n1 rm -f "
 
 
 alias dush="du -sh "

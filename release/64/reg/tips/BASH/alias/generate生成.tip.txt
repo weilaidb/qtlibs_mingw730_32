@@ -35,7 +35,7 @@ npmrundev;npm run dev
 npminstallrun;npminstall && npmrundev
 
 rmswp;rm -f .*.swp && rm -f *.swp
-
+rmswpfind;find . -name *.swp | xargs -n1 rm -f
 
 catsnippetada;cat ~/.vim/bundle/vim-snippets/UltiSnips/ada.snippets | grep ^snippet
 catsnippetall;cat ~/.vim/bundle/vim-snippets/UltiSnips/all.snippets | grep ^snippet

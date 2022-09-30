@@ -47,8 +47,10 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 "安装插件
-map <C-I> :PluginInstall
+map <C-P> :PluginInstall
 
+"格式化代码
+map <C-I> :Autoformat
 
 "一键编译 Compile function 
 noremap <Leader>r :call CompileRunGcc()<CR>
@@ -475,7 +477,7 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 autocmd FileType c ClangFormatAutoEnable
 
 "保存时自动格式化
-au BufWrite * :Autoformat
+"au BufWrite * :Autoformat
 
 
 "===============================插件winmanager
