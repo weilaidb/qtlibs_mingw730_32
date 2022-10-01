@@ -227,6 +227,7 @@ BAT/网络network/知识点/mpls
 BAT/网络network/知识点/ospf hello
 BAT/网络network/知识点/ospf lsu
 BAT/网络network/知识点/ospf 路由协议 开放的最短路径优先协议 Open Shortest Path First
+BAT/网络network/知识点/ospf网络类型
 BAT/网络network/知识点/协议卡(protocol card)/ARP
 BAT/网络network/知识点/协议卡(protocol card)/ICMP
 BAT/网络network/知识点/协议卡(protocol card)/IP
