@@ -195,6 +195,7 @@ alias cd..="cd .."
 alias cd....="cd ../.. "
 alias cd...="cd ../.. "
 alias cdfdir='cd `dirname '
+alias mkdirx="mkdir -p `dirname "
 alias dflh="df -lh "
 alias rmrf="rm -rf "
 

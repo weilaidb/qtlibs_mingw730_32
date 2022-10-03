@@ -1,1 +1,33 @@
-1.什么是IS-IS协议？
+1.什么是IS-IS路由协议？
+IS-IS最早由国际标准化组织设计的用于实现基于无连接网络协议(ConnectionLess Network Protocol, CLNP)寻址的路由协议。CLNP是国际标准化组织ISO提出的OSI协议栈中的第三层协议（相当于TCP/IP协议栈中的第三层网络层的IP）。随着TCP/IP的流行，IS-IS的RFC1195中也加入了对IP的支持，实现了IP路由能力，因此IS-IS也被称为集成化IS-IS（Integrated IS-IS）或者Dual IS-IS。
+
+IS-IS基本概念
+IS-IS与OSPF有许多相似的地方。但与OSPF对比，主要有以下两个不同。
+(1)IS-IS直接运行于链路层之上，通过传递协议数据单元(Protocol Data Unit, PDU)来传递链路信息，完成链路数据库的同步。
+IS-IS协议报文的格式分为三大部分。
+a)数据链路层头。OSI Family固定为0xFEFE，表示封装的是OSI的报文结构。
+
+b)IS-IS固定报文头。第一字节为0x83，表示IS-IS的报文。
+
+c)IS-IS TLVs。具体内容因为报文类型的不同而不同，可以包含多个类型长度值(Type-Length-Value，TLV）结构。
+
+(2)IS-IS协议报文采用TLV的格式，很容易扩展支持新的特性。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+end
