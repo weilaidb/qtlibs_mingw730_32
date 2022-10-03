@@ -5,7 +5,7 @@ alias tsharketh0w123="tshark -i eth0 -w capture123.pcap "
 alias tsharketh0r123="tshark -i eth0 -r capture123.pcap "
 alias tsharketh0time600s="tshark -i eth0 -a duration:600 "
 alias tsharketh0cnt10000="tshark -c 10000 -i eth0 "
-alias tsharketh0host192.168.1.1="tshark -i eth0 -f "host 192.168.1.1" "
+#alias tsharketh0host192.168.1.1="tshark -i eth0 -f "host 192.168.1.1" "
 alias tsharketh0pro.tcp="tshark -i eth0 -f tcp "
 alias tsharketh0pro.udp="tshark -i eth0 -f udp "
 alias tsharketh0pro.dns="tshark -i eth0 -f dns "
@@ -105,7 +105,7 @@ alias gitmergeabort="git merge --abort "
 alias gitmerge="git merge "
 
 
-alias findgitlist="find . -name .git "
+alias findgitlist="find . -name \.git "
 
 
 alias gitdiff="git diff "
@@ -154,10 +154,10 @@ alias gitstv2="git status --porcelain=v2 "
 
 alias gitadd="git add -A "
 alias gitadd.="git add -A . "
-alias gitaddchangeauto1="sourcerootbash && git add . && gitci -m 'add changes for `gitst . | grep 'modified\|deleted\|new' | awk -F':' '{print $2}'`'"
-alias gitaddchangeauto2="git add . && gitci -m "add changes for `gitst . | grep 'modified\|deleted' | awk '{print $2}'`""
+#alias gitaddchangeauto1="sourcerootbash && git add . && gitci -m 'add changes for `gitst . | grep 'modified\|deleted\|new' | awk -F':' '{print $2}'`'"
+#alias gitaddchangeauto2="git add . && gitci -m "add changes for `gitst . | grep 'modified\|deleted' | awk '{print $2}'`""
 alias gitaddchangeauto="sourcerootbash && gitaddchangeauto1"
-alias gitpushcurbranch="CURBR=`git branch| awk '{print $2}'` && git push origin $CURBR"
+alias gitpushcurbranch="CURBR=\`git branch| awk '{print $2}'\` && git push origin $CURBR"
 #for  PATH and other define
 export PATH=$PATH:~/bin
 export PS1="[\u@\h] \w\n$ "
@@ -165,7 +165,7 @@ alias killyum="sudo rm -f /var/run/yum.pid"
 alias explorer="nautilus --new-window "
 
 alias makelinuxX86="make clean && make defconfig && make && make modules"
-alias findlist="find | grep -v .git > findlist"
+alias findlist="find | grep -v \.git > findlist"
 alias findimage="find | grep Image"
 alias yuminstally="yum install -y "
 alias yumremove="yum remove "
@@ -195,7 +195,7 @@ alias cd..="cd .."
 alias cd....="cd ../.. "
 alias cd...="cd ../.. "
 alias cdfdir='cd `dirname '
-alias mkdirx="mkdir -p `dirname "
+alias mkdirx="mkdir -p \`dirname "
 alias dflh="df -lh "
 alias rmrf="rm -rf "
 
@@ -212,8 +212,6 @@ alias makemenuconfigarchx86="make menuconfig ARCH=x86 "
 
 
 #java
-alias javassm="cd ~/soft/web_notebook_online/jar && java -jar ssm-0.0.1-SNAPSHOT.jar --server.port=9090 "
-alias javassmlastest="cd ~/soft/web_notebook_online/jar && nohup java -jar  `ls -lat *.jar | awk '{print $9}' | head -n 1` --server.port=9090 &"
 alias javajar="java -jar "
 alias javajarport="java --server.port=9090 -jar "
 
@@ -290,169 +288,3 @@ alias ctagscscope="rm -rf cscope.* tags && find . -name '*.[ch]' -o -name '*.cpp
 
 
 alias ctt="ctagscscope "
-
-
-
-"Vim snippets 代码片段
-
-alias catsnippetada="cat ~/.vim/bundle/vim-snippets/UltiSnips/ada.snippets | grep ^snippet "
-
-alias catsnippetall="cat ~/.vim/bundle/vim-snippets/UltiSnips/all.snippets | grep ^snippet "
-
-alias catsnippetbib="cat ~/.vim/bundle/vim-snippets/UltiSnips/bib.snippets | grep ^snippet "
-
-alias catsnippetbindzone="cat ~/.vim/bundle/vim-snippets/UltiSnips/bindzone.snippets | grep ^snippet "
-
-alias catsnippetblade="cat ~/.vim/bundle/vim-snippets/UltiSnips/blade.snippets | grep ^snippet "
-
-alias catsnippetcoffee-jasmine="cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee-jasmine.snippets | grep ^snippet "
-
-alias catsnippetcoffee-react="cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee-react.snippets | grep ^snippet "
-
-alias catsnippetcoffee="cat ~/.vim/bundle/vim-snippets/UltiSnips/coffee.snippets | grep ^snippet "
-
-alias catsnippetcpp="cat ~/.vim/bundle/vim-snippets/UltiSnips/cpp.snippets | grep ^snippet "
-
-alias catsnippetcrystal="cat ~/.vim/bundle/vim-snippets/UltiSnips/crystal.snippets | grep ^snippet "
-
-alias catsnippetc="cat ~/.vim/bundle/vim-snippets/UltiSnips/c.snippets | grep ^snippet "
-
-alias catsnippetcs="cat ~/.vim/bundle/vim-snippets/UltiSnips/cs.snippets | grep ^snippet "
-
-alias catsnippetcss="cat ~/.vim/bundle/vim-snippets/UltiSnips/css.snippets | grep ^snippet "
-
-alias catsnippetcuda="cat ~/.vim/bundle/vim-snippets/UltiSnips/cuda.snippets | grep ^snippet "
-
-alias catsnippetdjango="cat ~/.vim/bundle/vim-snippets/UltiSnips/django.snippets | grep ^snippet "
-
-alias catsnippetd="cat ~/.vim/bundle/vim-snippets/UltiSnips/d.snippets | grep ^snippet "
-
-alias catsnippeteelixir="cat ~/.vim/bundle/vim-snippets/UltiSnips/eelixir.snippets | grep ^snippet "
-
-alias catsnippetejs="cat ~/.vim/bundle/vim-snippets/UltiSnips/ejs.snippets | grep ^snippet "
-
-alias catsnippetelm="cat ~/.vim/bundle/vim-snippets/UltiSnips/elm.snippets | grep ^snippet "
-
-alias catsnippeterlang="cat ~/.vim/bundle/vim-snippets/UltiSnips/erlang.snippets | grep ^snippet "
-
-alias catsnippeteruby="cat ~/.vim/bundle/vim-snippets/UltiSnips/eruby.snippets | grep ^snippet "
-
-alias catsnippetgitcommit="cat ~/.vim/bundle/vim-snippets/UltiSnips/gitcommit.snippets | grep ^snippet "
-
-alias catsnippetgo="cat ~/.vim/bundle/vim-snippets/UltiSnips/go.snippets | grep ^snippet "
-
-alias catsnippethaskell="cat ~/.vim/bundle/vim-snippets/UltiSnips/haskell.snippets | grep ^snippet "
-
-alias catsnippethelp="cat ~/.vim/bundle/vim-snippets/UltiSnips/help.snippets | grep ^snippet "
-
-alias catsnippethtmldjango="cat ~/.vim/bundle/vim-snippets/UltiSnips/htmldjango.snippets | grep ^snippet "
-
-alias catsnippethtmljinja="cat ~/.vim/bundle/vim-snippets/UltiSnips/htmljinja.snippets | grep ^snippet "
-
-alias catsnippethtml_minimal="cat ~/.vim/bundle/vim-snippets/UltiSnips/html_minimal.snippets | grep ^snippet "
-
-alias catsnippethtml="cat ~/.vim/bundle/vim-snippets/UltiSnips/html.snippets | grep ^snippet "
-
-alias catsnippetjavascript-angular="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-angular.snippets | grep ^snippet "
-
-alias catsnippetjavascript-ember="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-ember.snippets | grep ^snippet "
-
-alias catsnippetjavascript-jasmine-arrow="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-jasmine-arrow.snippets | grep ^snippet "
-
-alias catsnippetjavascript-jsdoc="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-jsdoc.snippets | grep ^snippet "
-
-alias catsnippetjavascript-node="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript-node.snippets | grep ^snippet "
-
-alias catsnippetjavascript_react="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript_react.snippets | grep ^snippet "
-
-alias catsnippetjavascript="cat ~/.vim/bundle/vim-snippets/UltiSnips/javascript.snippets | grep ^snippet "
-
-alias catsnippetjava="cat ~/.vim/bundle/vim-snippets/UltiSnips/java.snippets | grep ^snippet "
-
-alias catsnippetjinja2="cat ~/.vim/bundle/vim-snippets/UltiSnips/jinja2.snippets | grep ^snippet "
-
-alias catsnippetjson="cat ~/.vim/bundle/vim-snippets/UltiSnips/json.snippets | grep ^snippet "
-
-alias catsnippetjulia="cat ~/.vim/bundle/vim-snippets/UltiSnips/julia.snippets | grep ^snippet "
-
-alias catsnippetledger="cat ~/.vim/bundle/vim-snippets/UltiSnips/ledger.snippets | grep ^snippet "
-
-alias catsnippetlhaskell="cat ~/.vim/bundle/vim-snippets/UltiSnips/lhaskell.snippets | grep ^snippet "
-
-alias catsnippetlua="cat ~/.vim/bundle/vim-snippets/UltiSnips/lua.snippets | grep ^snippet "
-
-alias catsnippetmako="cat ~/.vim/bundle/vim-snippets/UltiSnips/mako.snippets | grep ^snippet "
-
-alias catsnippetmarkdown="cat ~/.vim/bundle/vim-snippets/UltiSnips/markdown.snippets | grep ^snippet "
-
-alias catsnippetmatlab="cat ~/.vim/bundle/vim-snippets/UltiSnips/matlab.snippets | grep ^snippet "
-
-alias catsnippetobjc="cat ~/.vim/bundle/vim-snippets/UltiSnips/objc.snippets | grep ^snippet "
-
-alias catsnippetocaml="cat ~/.vim/bundle/vim-snippets/UltiSnips/ocaml.snippets | grep ^snippet "
-
-alias catsnippetoctave="cat ~/.vim/bundle/vim-snippets/UltiSnips/octave.snippets | grep ^snippet "
-
-alias catsnippetpandoc="cat ~/.vim/bundle/vim-snippets/UltiSnips/pandoc.snippets | grep ^snippet "
-
-alias catsnippetperl="cat ~/.vim/bundle/vim-snippets/UltiSnips/perl.snippets | grep ^snippet "
-
-alias catsnippetphp-laravel="cat ~/.vim/bundle/vim-snippets/UltiSnips/php-laravel.snippets | grep ^snippet "
-
-alias catsnippetphp-phpspec="cat ~/.vim/bundle/vim-snippets/UltiSnips/php-phpspec.snippets | grep ^snippet "
-
-alias catsnippetphp="cat ~/.vim/bundle/vim-snippets/UltiSnips/php.snippets | grep ^snippet "
-
-alias catsnippetphp-symfony2="cat ~/.vim/bundle/vim-snippets/UltiSnips/php-symfony2.snippets | grep ^snippet "
-
-alias catsnippetplsql="cat ~/.vim/bundle/vim-snippets/UltiSnips/plsql.snippets | grep ^snippet "
-
-alias catsnippetproto="cat ~/.vim/bundle/vim-snippets/UltiSnips/proto.snippets | grep ^snippet "
-
-alias catsnippetpuppet="cat ~/.vim/bundle/vim-snippets/UltiSnips/puppet.snippets | grep ^snippet "
-
-alias catsnippetpython="cat ~/.vim/bundle/vim-snippets/UltiSnips/python.snippets | grep ^snippet "
-
-alias catsnippetrails="cat ~/.vim/bundle/vim-snippets/UltiSnips/rails.snippets | grep ^snippet "
-
-alias catsnippetrnoweb="cat ~/.vim/bundle/vim-snippets/UltiSnips/rnoweb.snippets | grep ^snippet "
-
-alias catsnippetrobot="cat ~/.vim/bundle/vim-snippets/UltiSnips/robot.snippets | grep ^snippet "
-
-alias catsnippetr="cat ~/.vim/bundle/vim-snippets/UltiSnips/r.snippets | grep ^snippet "
-
-alias catsnippetrst="cat ~/.vim/bundle/vim-snippets/UltiSnips/rst.snippets | grep ^snippet "
-
-alias catsnippetruby="cat ~/.vim/bundle/vim-snippets/UltiSnips/ruby.snippets | grep ^snippet "
-
-alias catsnippetrust="cat ~/.vim/bundle/vim-snippets/UltiSnips/rust.snippets | grep ^snippet "
-
-alias catsnippetsh="cat ~/.vim/bundle/vim-snippets/UltiSnips/sh.snippets | grep ^snippet "
-
-alias catsnippetsnippets="cat ~/.vim/bundle/vim-snippets/UltiSnips/snippets.snippets | grep ^snippet "
-
-alias catsnippetsoy="cat ~/.vim/bundle/vim-snippets/UltiSnips/soy.snippets | grep ^snippet "
-
-alias catsnippetsupercollider="cat ~/.vim/bundle/vim-snippets/UltiSnips/supercollider.snippets | grep ^snippet "
-
-alias catsnippetsvelte="cat ~/.vim/bundle/vim-snippets/UltiSnips/svelte.snippets | grep ^snippet "
-
-alias catsnippettcl="cat ~/.vim/bundle/vim-snippets/UltiSnips/tcl.snippets | grep ^snippet "
-
-alias catsnippettexmath="cat ~/.vim/bundle/vim-snippets/UltiSnips/texmath.snippets | grep ^snippet "
-
-alias catsnippettex="cat ~/.vim/bundle/vim-snippets/UltiSnips/tex.snippets | grep ^snippet "
-
-alias catsnippettypescript_react="cat ~/.vim/bundle/vim-snippets/UltiSnips/typescript_react.snippets | grep ^snippet "
-
-alias catsnippettypescript="cat ~/.vim/bundle/vim-snippets/UltiSnips/typescript.snippets | grep ^snippet "
-
-alias catsnippetvim="cat ~/.vim/bundle/vim-snippets/UltiSnips/vim.snippets | grep ^snippet "
-
-alias catsnippetvue="cat ~/.vim/bundle/vim-snippets/UltiSnips/vue.snippets | grep ^snippet "
-
-alias catsnippetxhtml="cat ~/.vim/bundle/vim-snippets/UltiSnips/xhtml.snippets | grep ^snippet "
-
-alias catsnippetxml="cat ~/.vim/bundle/vim-snippets/UltiSnips/xml.snippets | grep ^snippet "
-
-alias catsnippetzsh="cat ~/.vim/bundle/vim-snippets/UltiSnips/zsh.snippets | grep ^snippet "
