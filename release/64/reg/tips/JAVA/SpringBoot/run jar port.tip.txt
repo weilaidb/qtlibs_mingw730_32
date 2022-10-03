@@ -1,3 +1,6 @@
+8082;filepreview.jar
+
+
 9090;ssm-0.0.1-SNAPSHOT.jar
 
 
