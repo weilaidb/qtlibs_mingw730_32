@@ -1,3 +1,7 @@
+alias sofficeversion="soffice --version "
+alias sudodash="sudo dpkg-reconfigure dash "
+
+
 alias tsharkversion="tshark -v "
 alias tsharkdesc="tshark -D "
 alias tsharki="tshark -i "
@@ -160,6 +164,8 @@ alias gitaddchangeauto="sourcerootbash && gitaddchangeauto1"
 alias gitpushcurbranch="CURBR=\`git branch| awk '{print $2}'\` && git push origin $CURBR"
 #for  PATH and other define
 export PATH=$PATH:~/bin
+export PATH=$PATH:/opt/libreoffice6.4/program
+
 export PS1="[\u@\h] \w\n$ "
 alias killyum="sudo rm -f /var/run/yum.pid"
 alias explorer="nautilus --new-window "

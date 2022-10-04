@@ -1,0 +1,17 @@
+kkFileView-2.2.0
+D:\code\java\file-online-preview\jodconverter-web\target\kkFileView-2.2.0.zip
+=====用户说明书
+1.解压后，start.sh
+~/soft/kkFileView/kkFileView-2.2.0/bin
+$ ./startup.sh 
+
+2.查看日志 
+~/soft/kkFileView/kkFileView-2.2.0/bin
+$ ./showlog.sh 
+
+3.
+
+
+提示错误 
+找不到office组件，请确认'office.home'配置是否有误
+第1个会自动安装支持的版本

@@ -1,3 +1,7 @@
+sofficeversion;soffice --version
+sudodash;sudo dpkg-reconfigure dash
+
+
 tsharkversion;tshark -v
 tsharkdesc;tshark -D
 tsharki;tshark -i 
