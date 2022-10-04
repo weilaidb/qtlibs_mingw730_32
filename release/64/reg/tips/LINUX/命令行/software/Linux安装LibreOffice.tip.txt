@@ -1,0 +1,41 @@
+https://downloadarchive.documentfoundation.org/libreoffice/old/6.4.7.2/rpm/x86_64/
+
+
+Linux安装LibreOffice
+
+小鱼儿...
+
+已于 2022-06-19 15:56:06 修改
+
+2907
+ 收藏 3
+分类专栏： linux 安装软件 文章标签： linux vim
+版权
+
+linux 安装软件
+专栏收录该内容
+1 篇文章0 订阅
+订阅专栏
+ 解决安装kkfileview 找不到office组件，请确认'office.home'配置是否有误
+1、简介
+LibreOffice是一套可与其他主要办公室软件相容的套件，包含6大组件：文本文档【文字处理（word）】，电子表格【计算表（excel）】，演示文稿【简报（powerpoint）】，公式，绘图，资料库【access】。
+
+2、下载
+根据需求登录 LibreOffice官网 下载对应版本的安装包，我们计划使用rpm的方式来进行安装，所以选择Linux x86_64(rpm)
+
+
+
+3、安装
+删除: 在安装之前，先删除已经安装的 LibreOffice: yum remove libreoffice*
+解压: tar -xvf LibreOffice_6.4.2_Linux_x86-64_rpm.tar.gz
+安装：cd LibreOffice_6.4.2_Linux_x86-64_rpm/RPMS && yum localinstall *.rpm
+查看：which libreoffice6.4 看到路径为 "/usr/bin/libreoffice6.4" ,然后 ll /usr/bin/libreoffice6.4 得到 "/opt/libreoffice6.4/program/soffice"，说明安装到了 "/opt/libreoffice6.4"
+4、依赖
+执行 libreoffice6.4 可能会提示库文件找不到，如 libcairo.so.2，libcups.so.2，libSM.so.6 等，执行下面几条命令安装需要的库:
+
+yum install cairo -y
+yum install cups-libs -y
+yum install libSM -y
+————————————————
+版权声明：本文为CSDN博主「小鱼儿...」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/ba370921/article/details/120713963

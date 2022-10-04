@@ -1651,6 +1651,7 @@ LINUX/命令行/sed
 LINUX/命令行/setenforce
 LINUX/命令行/shutdown
 LINUX/命令行/software/CentOS安装mysql
+LINUX/命令行/software/Linux安装LibreOffice
 LINUX/命令行/software/RPM的强制安装和强制卸载
 LINUX/命令行/software/RedHat7配置yum源
 LINUX/命令行/software/install
