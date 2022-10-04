@@ -183,6 +183,7 @@ mybuildtest;./mybuild/test
 
 yumcleanall;yum clean all
 yummakecache;yum makecache
+yumremove;yum remove
 rpmremovenoeps;rpm -e  --nodeps 
 yumcleanpackages;yum clean packages
 

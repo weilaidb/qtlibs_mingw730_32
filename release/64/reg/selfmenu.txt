@@ -4,6 +4,7 @@ Algorithm 算法/大数进制转换
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
 BASH/alias/.bashrc(101.201.79.164)
+BASH/alias/.bashrc加载反引号问题
 BASH/alias/bashrc deploy script
 BASH/alias/bashrc 加载配置 qtlibs_mingw730_32
 BASH/alias/bashrc 加载配置 ubuntu20.04

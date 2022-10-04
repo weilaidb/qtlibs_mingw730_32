@@ -1,0 +1,19 @@
+alias gitpushcurbranch="CURBR=\`git branch| awk '{print $2}'\` && git push origin $CURBR"
+alias cdfdir="cd \`dirname "
+alias mkdirx="mkdir -p \`dirname "
+
+
+反引号和单引号一起时经常出现加载.bashrc出错问题。
+总结以下:1
+1.反引号加反斜杠
+\`
+
+2.外侧使用双引号
+alias mkdirx="mkdir -p \`dirname "
+
+
+
+3.使用错了"
+"Vim snippets 代码片段
+应该使用#开头
+#Vim snippets 代码片段
