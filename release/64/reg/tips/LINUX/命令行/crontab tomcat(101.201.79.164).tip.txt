@@ -1,0 +1,5 @@
+[root@weilaidb] ~
+$ crontab -l
+0 */2 * * * sh /root/soft/web_notebook_online/script/updategit.atwork.sh ~/work/git/
+0 */2 * * * sh /root/soft/web_notebook_online/script/commitgit.atwork.sh
+59 23 * * * cd ~/work/git/qtlibs_mingw730_32/script.ln && ./opengrok.run.ext.sh 1.5.12 ~/work/git/ 8081 /usr/local/bin/ctags
