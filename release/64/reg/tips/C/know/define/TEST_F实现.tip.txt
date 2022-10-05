@@ -1,0 +1,95 @@
+2271  #define TEST_F(test_fixture, test_name)\
+2272    GTEST_TEST_(test_fixture, test_name, test_fixture, \
+2273                ::testing::internal::GetTypeId<test_fixture>())
+
+
+
+724  // A macro to disallow copy constructor and operator=
+725  // This should be used in the private: declarations for a class.
+726  #define GTEST_DISALLOW_COPY_AND_ASSIGN_(type)\
+727    type(type const &);\
+728    GTEST_DISALLOW_ASSIGN_(type)
+
+
+
+1131  // Expands to the name of the class that implements the given test.
+1132  #define GTEST_TEST_CLASS_NAME_(test_case_name, test_name) \
+1133    test_case_name##_##test_name##_Test
+
+
+
+
+1135  // Helper macro for defining tests.
+1136  #define GTEST_TEST_(test_case_name, test_name, parent_class, parent_id)\
+1137  class GTEST_TEST_CLASS_NAME_(test_case_name, test_name) : public parent_class {\
+1138   public:\
+1139    GTEST_TEST_CLASS_NAME_(test_case_name, test_name)() {}\
+1140   private:\
+1141    virtual void TestBody();\
+1142    static ::testing::TestInfo* const test_info_ GTEST_ATTRIBUTE_UNUSED_;\
+1143    GTEST_DISALLOW_COPY_AND_ASSIGN_(\
+1144        GTEST_TEST_CLASS_NAME_(test_case_name, test_name));\
+1145  };\
+1146  \
+1147  ::testing::TestInfo* const GTEST_TEST_CLASS_NAME_(test_case_name, test_name)\
+1148    ::test_info_ =\
+1149      ::testing::internal::MakeAndRegisterTestInfo(\
+1150          #test_case_name, #test_name, NULL, NULL, \
+1151          (parent_id), \
+1152          parent_class::SetUpTestCase, \
+1153          parent_class::TearDownTestCase, \
+1154          new ::testing::internal::TestFactoryImpl<\
+1155              GTEST_TEST_CLASS_NAME_(test_case_name, test_name)>);\
+1156  void GTEST_TEST_CLASS_NAME_(test_case_name, test_name)::TestBody()
+
+
+
+
+
+
+
+686    friend TestInfo* internal::MakeAndRegisterTestInfo(
+687        const char* test_case_name,
+688        const char* name,
+689        const char* type_param,
+690        const char* value_param,
+691        internal::TypeId fixture_class_id,
+692        Test::SetUpTestCaseFunc set_up_tc,
+693        Test::TearDownTestCaseFunc tear_down_tc,
+694        internal::TestFactoryBase* factory);
+
+
+
+
+199  // Creates a new TestInfo object and registers it with Google Test;
+2200  // returns the created object.
+2201  //
+2202  // Arguments:
+2203  //
+2204  //   test_case_name:   name of the test case
+2205  //   name:             name of the test
+2206  //   type_param:       the name of the test's type parameter, or NULL if
+2207  //                     this is not a typed or a type-parameterized test.
+2208  //   value_param:      text representation of the test's value parameter,
+2209  //                     or NULL if this is not a value-parameterized test.
+2210  //   fixture_class_id: ID of the test fixture class
+2211  //   set_up_tc:        pointer to the function that sets up the test case
+2212  //   tear_down_tc:     pointer to the function that tears down the test case
+2213  //   factory:          pointer to the factory that creates a test object.
+2214  //                     The newly created TestInfo instance will assume
+2215  //                     ownership of the factory object.
+2216  TestInfo* MakeAndRegisterTestInfo(
+2217      const char* test_case_name,
+2218      const char* name,
+2219      const char* type_param,
+2220      const char* value_param,
+2221      TypeId fixture_class_id,
+2222      SetUpTestCaseFunc set_up_tc,
+2223      TearDownTestCaseFunc tear_down_tc,
+2224      TestFactoryBase* factory) {
+2225    TestInfo* const test_info =
+2226        new TestInfo(test_case_name, name, type_param, value_param,
+2227                     fixture_class_id, factory);
+2228    GetUnitTestImpl()->AddTestInfo(set_up_tc, tear_down_tc, test_info);
+2229    return test_info;
+2230  }
