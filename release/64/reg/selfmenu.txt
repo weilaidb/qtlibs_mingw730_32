@@ -236,6 +236,7 @@ BAT/网络network/知识点/协议卡(protocol card)/TCP
 BAT/网络network/知识点/协议卡(protocol card)/UDP
 BAT/网络network/知识点/协议卡(protocol card)/以太帧
 BAT/网络network/知识点/基于MPLS的VPN
+BAT/网络network/知识点/基于MPLS的VPN 2
 BAT/网络network/知识点/复习
 BAT/网络network/知识点/常用端口号大全 port
 BAT/网络network/问题列表/主控ping线卡偶发不通 ping不通
@@ -2582,6 +2583,7 @@ path路径/常用文件夹
 术语/网络/PHY/RGMII
 术语/网络/PHY/RMII
 术语/网络/PMA
+术语/网络/Qos保证
 术语/网络/RJ45
 术语/网络/TCP_IP协议族
 术语/网络/万兆以太网
@@ -2591,6 +2593,7 @@ path路径/常用文件夹
 术语/网络/实体(entity)
 术语/网络/异构网络
 术语/网络/数字信号
+术语/网络/无连接
 术语/网络/服务数据单元SDU
 术语/网络/服务访问点SAP
 术语/网络/模拟信号

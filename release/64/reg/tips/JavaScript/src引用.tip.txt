@@ -1,1 +1,2 @@
-../../js/libs/base/pub.js
+../../js/base/pub.js
+../js/base/pub.js
