@@ -11,6 +11,9 @@ https://download.qt.io/archive/qt/
 #bugZilla
 https://ftp.mozilla.org/pub/webtools/
 https://github.com/bugzilla/bugzilla
+https://bugzilla.kernel.org/
+
+
 
 常用git库:
 https://github.com/torvalds/linux.git

@@ -6,6 +6,13 @@ git clone --branch release-X.X-stable https://github.com/bugzilla/bugzilla
 git clone --branch release-4.4.13 https://github.com/bugzilla/bugzilla 
 
 
+说明:4.4.13版本安装时报错，sql语法执行失败，使用5.0.6可以!!!!
+
+$ ./checksetup.pl 
+* This is Bugzilla 5.0.6 on perl 5.26.3
+* Running on Linux 5.10.60-9.al8.x86_64 #1 SMP Mon Sep 6 21:30:37 CST 2021
+
+
 
 
 1.运行数据库
@@ -41,15 +48,85 @@ https://bugzilla.readthedocs.io/en/latest/installing/apache.html
 
 
 4.映射配置文件，修改配置文件，重新启动服务器
-<Directory /var/www/bugzilla>
-  AddHandler cgi-script .cgi
-  Options +ExecCGI +FollowSymLinks
-  DirectoryIndex index.cgi index.html
-  AllowOverride All
+cat /etc/httpd/conf/httpd.conf
+
+--------------------------------ok
+<VirtualHost *:80>
+   DocumentRoot /var/www/html/
+</VirtualHost>
+  
+<Directory /var/www/html/bugzilla>
+   AddHandler cgi-script .cgi
+   Options +Indexes +ExecCGI
+   DirectoryIndex index.cgi
+#   AllowOverride Limit FileInfo Indexes
+   AllowOverride None
 </Directory>
 
 
-cat /etc/httpd/conf/httpd.conf
+5.创建数据库
+二、创建mysql数据库
+修改 /etc/my.cnf文件，在 mysqld段下面，加入如下内容：
+
+max_allowed_packet = 100M
+
+ft_min_word_len = 2
+
+default-storage-engine=MYISAM
+1
+2
+3
+4
+5
+如下图所示：
+
+执行如下命令：
+
+# 启动mysql
+service mysqld start
+# 修改mysql的root密码
+mysqladmin -u root password '123124'
+1
+2
+3
+4
+如果第二步修改密码，出现错误，请参考如下博客进行解决。
+
+https://www.cnblogs.com/qq78292959/p/3641972.html
+
+在mysql中创建数据库bugs和用户bugzilla，并授予bugzilla用户对这个bugs数据库拥有所有权限。
+
+输入 mysql -uroot -p123124， 启动mysql命令行。
+
+在命令行中，输入如下命令：
+
+# 创建bugs数据库
+create database bugs;
+# 创建bugzilla用户
+create user bugzilla@localhost IDENTIFIED BY '123124';
+# 授予 bugzilla用户，对bugzilla数据库，拥有所有权限
+grant all privileges on bugs.* to bugzilla@localhost;
+# 更新
+flush privileges;
+1
+2
+3
+4
+5
+6
+7
+8
+设置完毕后，重启 mysql 服务。
+————————————————
+版权声明：本文为CSDN博主「Archie_java」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_43842093/article/details/120790816
+
+
+6.修改localconfig
+checksetup.pl
+
+$db_pass = '123124'; 
+$db_user = 'bugzilla';
 
 
 

@@ -1,5 +1,12 @@
 perlv;perl -v
+perlinstallmodperl2;/usr/bin/perl install-module.pl mod_perl2
+perlinstallApache-SizeLimit;/usr/bin/perl install-module.pl Apache2::SizeLimit
+perlinstallDBDmysql;/usr/bin/perl install-module.pl DBD::mysql
+
+
 mysqlv;mysql -V
+mysqlduserroot;mysqld --user=root
+kill9;kill -9
 sofficeversion;soffice --version
 sudodash;sudo dpkg-reconfigure dash
 sudoapachectlstart;sudo apachectl start

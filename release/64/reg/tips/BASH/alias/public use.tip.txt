@@ -1,5 +1,13 @@
 alias perlv="perl -v "
 alias mysqlv="mysql -V "
+alias mysqlduserroot="mysqld --user=root "
+alias perlinstallmodperl2="/usr/bin/perl install-module.pl mod_perl2 "
+alias perlinstallApache-SizeLimit="/usr/bin/perl install-module.pl Apache2::SizeLimit "
+alias perlinstallDBDmysql="/usr/bin/perl install-module.pl DBD::mysql "
+
+
+alias kill9="kill -9 "
+
 alias sudoapachectlstart="sudo apachectl start "
 alias sudoapachectlrestart="sudo apachectl restart "
 alias sudoapachectlrestop="sudo apachectl restop "
