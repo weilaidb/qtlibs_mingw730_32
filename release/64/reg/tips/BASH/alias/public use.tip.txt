@@ -1,3 +1,9 @@
+alias perlv="perl -v "
+alias mysqlv="mysql -V "
+
+
+
+
 alias sofficeversion="soffice --version "
 alias sudodash="sudo dpkg-reconfigure dash "
 

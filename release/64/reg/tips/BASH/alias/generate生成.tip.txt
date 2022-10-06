@@ -1,3 +1,5 @@
+perlv;perl -v
+mysqlv;mysql -V
 sofficeversion;soffice --version
 sudodash;sudo dpkg-reconfigure dash
 

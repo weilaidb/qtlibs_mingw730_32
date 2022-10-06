@@ -8,6 +8,8 @@ https://mirrors.tuna.tsinghua.edu.cn/
 https://downloadarchive.documentfoundation.org/libreoffice/old/6.4.7.2/rpm/x86_64/
 #Qt
 https://download.qt.io/archive/qt/
+#bugZilla
+https://ftp.mozilla.org/pub/webtools/
 
 
 常用git库:
