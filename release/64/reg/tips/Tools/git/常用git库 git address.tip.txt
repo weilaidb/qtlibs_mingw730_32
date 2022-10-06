@@ -10,7 +10,7 @@ https://downloadarchive.documentfoundation.org/libreoffice/old/6.4.7.2/rpm/x86_6
 https://download.qt.io/archive/qt/
 #bugZilla
 https://ftp.mozilla.org/pub/webtools/
-
+https://github.com/bugzilla/bugzilla
 
 常用git库:
 https://github.com/torvalds/linux.git

@@ -1,0 +1,71 @@
+-bugzilla 
+=====用户说明书
+0.下载版本
+git clone --branch release-X.X-stable https://github.com/bugzilla/bugzilla 
+
+git clone --branch release-4.4.13 https://github.com/bugzilla/bugzilla 
+
+
+
+
+1.运行数据库
+$ mysqld --user=root
+
+2.运行mysql，添加bugs数据库
+CREATE DATABASE IF NOT EXISTS bugs CHARACTER SET = ‘utf8’;
+
+GRANT SELECT, INSERT,UPDATE, DELETE, INDEX, ALTER, CREATE, LOCK TABLES,
+CREATE TEMPORARY TABLES, DROP, REFERENCES ON bugs.* TO bugs@localhost IDENTIFIED BY '$DB_PASS';
+
+FLUSH PRIVILEGES;
+
+
+
+3.运行web服务器，默认是80端口
+sudo apachectl start
+
+http://101.201.79.164/
+http://101.201.79.164/bugzilla
+
+
+These instructions require editing the Apache configuration file, which is:
+
+Fedora/Red Hat: /etc/httpd/conf/httpd.conf
+Debian/Ubuntu: /etc/apache2/apache2.conf
+Mac OS X: /etc/apache2/httpd.conf
+
+
+
+https://bugzilla.readthedocs.io/en/latest/installing/apache.html
+
+
+
+4.映射配置文件，修改配置文件，重新启动服务器
+<Directory /var/www/bugzilla>
+  AddHandler cgi-script .cgi
+  Options +ExecCGI +FollowSymLinks
+  DirectoryIndex index.cgi index.html
+  AllowOverride All
+</Directory>
+
+
+cat /etc/httpd/conf/httpd.conf
+
+
+
+
+问题点:
+1. mysql中确缺失mysql_config的方法
+https://blog.csdn.net/weixin_42166523/article/details/80404778
+
+yum install mysql-devel 
+
+
+2.
+Can't find mod_perl installed
+
+
+
+
+
+end

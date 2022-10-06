@@ -2,6 +2,9 @@ perlv;perl -v
 mysqlv;mysql -V
 sofficeversion;soffice --version
 sudodash;sudo dpkg-reconfigure dash
+sudoapachectlstart;sudo apachectl start
+sudoapachectlrestart;sudo apachectl restart
+sudoapachectlrestop;sudo apachectl restop
 
 
 tsharkversion;tshark -v

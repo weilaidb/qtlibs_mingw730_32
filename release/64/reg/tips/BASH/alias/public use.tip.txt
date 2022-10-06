@@ -1,5 +1,8 @@
 alias perlv="perl -v "
 alias mysqlv="mysql -V "
+alias sudoapachectlstart="sudo apachectl start "
+alias sudoapachectlrestart="sudo apachectl restart "
+alias sudoapachectlrestop="sudo apachectl restop "
 
 
 
