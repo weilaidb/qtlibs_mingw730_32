@@ -2250,6 +2250,7 @@ SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
 SoftWare/opengrok/md5sum
 SoftWare/vmware/16
+TEST/RegExp/单个空格替换无
 TEST/RegExp/添加引号和末尾逗号
 TEST/RegExp/添加引号和末尾逗号-加一空行
 TEST/RegExptest
@@ -2576,12 +2577,17 @@ path路径/常用文件夹
 术语/内核Kernel/编译器
 术语/大小端
 术语/异或
+术语/网络/ABR(OSPF)
 术语/网络/ATM网络
 术语/网络/CAM表
 术语/网络/CERNET
+术语/网络/Dijkstra算法
+术语/网络/EIGRP
 术语/网络/FDDI网络
 术语/网络/GRE隧道
 术语/网络/IDLE帧
+术语/网络/IGP
+术语/网络/LACP
 术语/网络/MTU Maximum Transmission Unit
 术语/网络/PCS
 术语/网络/PDU
@@ -2595,6 +2601,7 @@ path路径/常用文件夹
 术语/网络/RJ45
 术语/网络/TCP_IP协议族
 术语/网络/万兆以太网
+术语/网络/二层协议和三层协议有哪些
 术语/网络/信道(channel)
 术语/网络/协议
 术语/网络/基带信号
@@ -2606,6 +2613,7 @@ path路径/常用文件夹
 术语/网络/服务访问点SAP
 术语/网络/模拟信号
 术语/网络/物理层 规程 procedure
+术语/网络/网络收敛
 术语/网络/网络流量 单播
 术语/网络/网络流量 广播
 术语/网络/网络流量 组播

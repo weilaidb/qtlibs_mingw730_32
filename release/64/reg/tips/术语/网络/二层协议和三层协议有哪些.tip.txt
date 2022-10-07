@@ -1,0 +1,20 @@
+数据链路层协议=二层网络协议
+数据链路层协议分类
+1.面向字符的链路层协议
+Ø ISO的IS1745，基本型传输控制规程及其扩充部分（BM和XBM）
+Ø IBM的二进制同步通信规程（BSC）
+ØDEC的数字数据通信报文协议（DDCMP）
+Ø PPP
+2.面向比特的链路层协议
+Ø IBM的SNA使用的数据链路协议SDLC（Synchronous Data Link Control protocol）；
+Ø ANSI修改SDLC，提出ADCCP（Advanced Data Communication Control Procedure）；
+Ø ISO修改SDLC，提出HDLC（High-level Data Link Control）；
+Ø CCITT修改HDLC，提出LAP（Link Access Procedure）作为X.25网络接口标准的一部分，后来改为LAPB。
+
+
+
+第三层
+TCP协议
+TCP，即传输控制协议，是一种面向连接的传输层协议。通过使用序列号和确认信息，TCP协议能够向发送方提供到达接收方的数据包的传送信息。当传送过程中出现数据包丢失情况时，TCP协议可以重新发送丢失的数据包直到数据成功到达接收方或者出现网络超时。TCP协议还可以识别重复信息，丢弃不需要的多余信息，使网络环境得到优化。如果发送方传送数据的速度大大快于接收方接收数据的速度，TCP协议可以采用数据流控制机制减慢数据的传送速度，协调发送和接收方的数据响应。TCP协议能够把数据传送信息传递给所支持的更高层次的协议或应用使用。
+IP协议
+IP协议位于Internet协议栈的第三层，最早于1970年在UNIX系统平台上开发成功。今天，IP协议已经发展成为网络操作系统相互之间进行通讯的标准机制，是HTTP和TCP等高层协议的基础。除了可以提供网络路由之外，IP协议还具有错误控制以及网络分段等众多功能，是整个Internet协议栈的核心。

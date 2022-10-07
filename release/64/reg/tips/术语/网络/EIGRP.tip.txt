@@ -1,0 +1,255 @@
+EIGRP 
+播报
+编辑
+讨论
+上传视频
+增强内部网关路由协议
+EIGRP:Enhanced Interior Gateway Routing Protocol 即 增强内部网关路由协议。也翻译为 加强型内部网关路由协议。 EIGRP是Cisco公司的私有协议（2013年已经公有化）。 EIGRP结合了链路状态和距离矢量型路由选择协议的Cisco专用协议，采用弥散修正算法（DUAL）来实现快速收敛，可以不发送定期的路由更新信息以减少带宽的占用，支持Appletalk、IP、Novell和NetWare等多种网络层协议。
+
+中文名增强内部网关路由线路协议
+外文名Enhanced Interior Gateway Routing Protocol
+简    称EIGRP
+研发公司Cisco公司
+
+
+目录
+1 协议特点
+▪ 技术
+▪ 传输协议
+2 计算方法
+▪ Packet
+▪ 恢复协议
+3 基本特点
+4 环路解决
+5 路由分发
+6 术语定义
+7 优缺点
+▪ 协议区别
+▪ 基本配置
+8 K值详解
+9 排错命令
+10 其他区别
+协议特点编辑 播报
+是Cisco的私有路由协议，它综合了距离矢量和链路状态2者的优点，它的特点包括：
+快速收敛
+EIGRP采用DUAL来实现快速收敛。运行EIGRP的路由器存储了邻居的路由表，因此能够快速适应网络中的变化。如果本地路由表中没有合适的路由且拓扑表中没有合适的备用路由，EIGRP将查询邻居以发现替代路由。查询将不断传播，直到找到替代路由或确定不存在替代路由
+2.部分更新
+EIGRP发送部分更新而不是定期更新，且仅在路由路径或者度量值发生变化时才发送。更新中只包含已变化的链路的信息，而不是整个路由表，可以减少带宽的占用。此外，还自动限制这些部分更新的传播，只将其传递给需要的路由器，因此EIGRP消耗的带宽比IGRP少很多。这种行为也不同于链路状态路由协议，后者将更新发送给区域内的所有路由器。
+3.支持多种网络层协议
+EIGRP使用协议相关模块来支持IPv4、IPv6、Apple Talk和IPX，以满足特定网络层需求。
+4.使用组播和单播
+EIGRP在路由器之间通信时使用组播和单播而不是广播，因此终端站不受路由更新和查询的影响。EIGRP使用的组播地址是224.0.0.10
+5.支持变长子网掩码（VLSM)
+EIGRP是一种无类路由协议，它将通告每个目标网络的子网掩码，支持不连续子网和VLSM
+6.无缝连接数据链路层协议和拓扑结构
+EIGRP不要求对OSI参考模型的2层协议做特别的配置.不像OSPF,OSPF对不同的2层协议要做不同配置，比如以太网和帧中继,EIGRP能够有效的工作在LAN和WAN中，而且EIGRP保证网络及不会产生环路（loop-free）；而且配置起来很简单；支持VLSM；它使用组播和单播，不使用广播，这样做节约了带宽；它使用和IGRP一样的度量值算法，但是EIGRP度量值是32位的；它可以做非等价的路径的负载平衡.
+7.配置简单
+使用EIGRP协议组建网络，路由器配置非常简单，它没有复杂的区域设置，也无需针对不同网络接口类型实施不同的配置方法。使用EIGRP协议只需使用router eigrp命令在路由器上启动EIGRP路由进程，然后再使用network命令使能网络范围内的接口即可。
+技术
+1．协议相关模块 （Protocol-Dependent Module,PDM)
+2．可靠传输协议（Reliable Transport Protocol,RTP)
+3．邻居的发现/恢复
+4．扩散更新算法（Diffusing Update Algorithm,DUAL)
+传输协议
+RTP负责EIGRP packet（下面有讲）的按顺序（可靠）的发送和接收，这个可靠的保障是通过Cisco私有的一个算法，reliable multicast实现的，使用组播地址224.0.0.10，每个邻居接收到这个可靠的组播包的时候就会以一个unicast作为确认按顺序的发送是通过packet里的2个序列号实现的，每个packet都包含发送方分配的1个序列号，发送方每发送1个packet，这个序列号就递增1.另外，发送方也会把从目标路由器接收到的packet的序列号放在这个要发送的packet里，在某些情况下，RTP也可以使用无需确认的不可靠的发送，并且使用这种不可靠发送的packet中不包含序列号.EIGRP第一次传输都采用组播形式，重传输都采用单播。
+计算方法编辑 播报
+EIGRP选择一条主路由（最佳路由）和一条备份路由放在topology table(EIGRP到目的地支持最多16条链路。从12.3T IOS版本之后，最多支持16条负载均衡，之前为6条）.它支持几种路由类型：内部，外部（非EIGRP）和汇总路由.EIGRP使用混合度量值.
+EIGRP Metric的5个标准
+带宽（bandwidth）
+10的7次方除以源和目标之间最低的带宽乘以256(10的7次方除以以Kbit/s为单位的最小带宽，然后加上延迟之和除以10，最后乘于256)
+延迟（delay)
+接口的累积延迟乘以256，单位是10微秒
+可靠性（reliability)
+根据keepalive而定的源和目的之间最不可靠的可靠度的值
+负载（loading)
+根据包速率和接口配置带宽而定的源和目的之间最不差的负载的值
+最大传输单元（MTU)
+路径中最小的MTU.MTU包含在EIGRP的路由更新里，但是一般不参与EIGRP度的运算
+EIGRP Metric的计算
+一般情况下，K5=0；EIGRP度量值的计算公式为：256*{K1（10^7/带宽）+K2（10^7/带宽）/（256-负载）+K3（延迟）}
+由于默认情况下，K1和K3是1，其他的K值都是0.
+所以通常情况下，度量值=256×（10^7/最小带宽+累积延时/10）
+如果修改K值，使K5不等于0，则 Metric 计算式变成：256*[K1（10^7/带宽）+K2（10^7/带宽）/（256-负载）+K3（延迟）]*[K5 / (可靠性+K4)]
+计算出的Metric值不是整数时自动取整，比如计算结果为8501.39 ，显示值将为8501。
+通过配置权重（K值），可以修改EIGRP度量值计算方式。可以再EIGRP配置模式使用命令：Metric weightTosK1 K2 K3 K4 K5 来修改K值，Tos 只有一个有效值0，否则将被忽略。
+EIGRP 要求两台路由器的K值必须相同才能成为邻居。另外，K2,K4,,K5最好不要设置，因为这些参数设置为非零之后，会导致计算度量值时会考虑接口的负载和可靠性，而负载和可靠性会随时间变化，这将导致EIGRP重新泛洪拓扑数据，还可能导致路由器不断地选择不同的路由，由此导致网络不稳定。
+Packet
+EIGRP使用多种类型的packet,这些packet通过IP头部信息里的协议号88来标识：
+在EIGRP协议中，总共会使用5种类型的数据包，分别为Hello、Update、 Query、Reply、Ack，下面介绍各种数据包的功能与用途：
+Hello
+是用来发现和维护EIGRP邻居关系的，目标地址为224.0.0.10，Hello包在邻居收到后不需要确认。
+Update
+发给邻居的路由表，通过组播发送Update数据包，邻居收到后必须回复确认消息。
+Query
+当路由信息丢失并没有备用路由时，使用Query数据包向邻居查询，邻居必须回复确认。
+Reply
+是对邻居Query数据包的回复，也需要邻居回复确认。
+Ack
+是对收到的数据包的确认，告诉邻居自己已经收到数据包了，收到Ack后，不需要再对Ack做回复，因为这是没有意义的，并且可能造成死循环。
+由以上可以看出，5种数据包中，Update、Query、Reply在对方收到后，都需要回复确认，这些数据包是可靠的，回复是发送Ack；而Hello和Ack，是不需要回复的，因此被认为不可靠。
+恢复协议
+EIGRP的Update包是非周期性发送的，
+1．Hello包在一般的网络中（比如点到点，point-to-point）是每5秒组播1次（要随机减去1个很小的时间防止同步）；
+2．在多点（multipoint)X.25，帧中继（Frame Relay,FR）和ATM接口（比如ATM SVC）和ISDN PRI接口上，Hello包的发送间隔是60秒.
+在所有的情况中，Hello包是不需要确认的.可以在接口配置模式下修改该接口的Hello包默认的发送间隔，命令为
+ip hello-interval eigrp
+当一个路由器收到从邻居发来的Hello包的时候，这个Hello包包含了一个holdon time，这个holdown time告诉这个路由器等待后续Hello包的最大时间.如果在超出这个holdown time之前没有收到后续Hello包，那么这个邻居就会被宣告为不可达，并通知DUAL这个邻居已丢失.默认hold time是3倍于Hello包发送间隔的， 更高链路-- 默认Hello间隔和保持时间是5s和15s T1或低于T1链路-- 分别是60s和180s可以在接口配置模式下修改这个默认的holdown time，命令为
+ip hold-time eigrp.
+EIGRP邻居信息都记录在邻居表（neighbor table）中，使用show ip eigrpneighbors命令查看IP EIGRP的邻居.
+基本特点编辑 播报
+通过发送和接收Hello包来建立和维持邻居关系，并交换路由信息；
+采用组播（224.0.0.10）或单播进行路由更新；
+EIGRP的管理距离为90或170；
+采用增量更新，减少带宽占用；
+支持可变长子网掩码（VLSM），默认开启自动汇总功能；
+支持IP、IPX和AppleTalk等多种网络层协议；
+对每一种网络协议，EIGRP都维持独立的邻居表、拓扑表和路由表；
+EIGRP使用Diffusing Update算法（DUAL）来实现快速收敛并确保没有路由环路；
+存储整个网络拓扑结构的信息，以便快速适应网络变化；
+支持等价和非等价的负载均衡；
+使用可靠传输协议（RTP）保证路由信息传输的可靠性。
+无缝连接数据链路层协议和拓扑结构，EIGRP不要求对OSI参考模型的2层协议进行特别的配置。
+环路解决编辑 播报
+如果EIGRP不考虑环路的问题，那么当连接路由3和4的线路断开后会因到不了network a而使路由1-3相互查询怎么去network a而产生环路。因此EIGRP对于环路的防止考虑两方面：
+1．水平分割（Split Horizon)
+永远不会在同一个接口下通告一条该接口学到的路由信息
+2．路由的毒性逆转（Poison reverse)
+接收路由信息的接口，再从该接口通告出刚才学到的路由为不可达
+触发条件：
+当两台路由器进行邻居初始化时，他们会互相以最大的metric值通告回刚才学到的路由信息（路由中毒）
+当拓扑发生改变时，会临时关闭水平分割和毒性逆转，重新学习拓扑
+发送查询请求时，会引起水平分割，比如当一个路由器查询一条未知网段去向时，他会向每一个邻居发送查询，处于该网段的继承者（successor）会返回查询给该路由器，而该路由器会反馈一个查询结果给其他邻居，不会再次告诉那个继承者要走这个网段应该要经过自己
+路由分发编辑 播报
+图1  EIGRP重分发
+图1 EIGRP重分发
+在一些大型网络中，往往存在不同的自治区域需要互联的情况。比如在图1的情况下，AS号为1000的要与AS号为2000的两个EIGRP相互通信，只需要在中间路由器配置重分发，注意配置重分发也要避免路由环路。
+示例：
+Router One
+router eigrp 2000
+network 172.16.1.0 0.0.0.255
+Router Two
+router eigrp 2000
+redistribute eigrp1000 route-map to-eigrp2000
+network 172.16.1.0 0.0.0.255--在AS=2000内定义邻居AS=1000去AS=2000的网段
+!
+router eigrp1000
+redistribute eigrp2000 route-map to-eigrp1000--在AS=1000内定义邻居AS=2000去AS=1000的网段
+network 10.1.0.0 0.0.255.255
+route-map to-eigrp1000 deny 10
+match tag 1000
+!
+route-map to-eigrp1000 permit 20
+set tag 2000
+!
+route-map to-eigrp2000 deny 10
+match tag 2000
+!
+route-map to-eigrp2000 permit 20
+set tag 1000
+--当AS=1000的网段被标上（tag）1000的标记，当AS=2000重分发进AS=1000时，被标上1000的路由信息将被拒绝，以防产生环路；反之在AS=2000上亦然。
+Router Three
+router eigrp 1000network 10.1.0.0 0.0.255.255
+路由1和3之间就能互访了。
+术语定义编辑 播报
+弥散更新算法简介
+（弥散更新算法可以保证路由100%无环路loopfree）为了能够让DUAL正确的操作，低层协议必须满足以下几个条件：
+一个节点要在有限的时间里检测到新邻居的存在或和一个邻居的连接的丢失
+2． 在链路上传输的所有信息必须在有限的时间里按正确的顺序收到
+3． 所有的消息，包括链路cost的更改，链路故障，和新邻居的发现，都应该是在有限时间里，一个一个的依次处理Cisco的EIGRP使用邻居的发现/恢复和RTP来确保上述前提条件
+adjacency（邻接）
+在刚启动的时候，路由器使用Hello包来发现邻居并标识自己用于邻居的识别.当邻居被发现以后，EIGRP会在它们之间形成一种邻接关系.邻接是指在这2个邻居之间形成一条交换路由信息的虚链路（virtual link).当邻接关系形成以后，它们之间就可以相互发送路由update，这些update包括路由器它所知道的所有的链路及其metric.对于每个路由，路由器都会基于它邻居宣告的距离（distance）和到达那个邻居的链路的cost来计算出一个距离
+Feasible Distance(FD，可行距离）
+到达每个目标网络的最小的metric将作为那个目标网络的FD.比如，路由器可能有3条到达网络172.16.5.0的路由，metric分别为380672,12381440和660868，那么380672就成了FD.
+Feasible Condition(FC，可行条件）
+邻居宣告到达目标网络的的距离小于本地路由器到达目标网络的FD AD < FD => FC=ture.
+Feasible Successor(FS，可行后继路由）
+如果一个邻居宣告到达目标网络的距离满足FC，那么这个邻居就成为FS.比如，路由器到达目标网络172.16.5.0的FD为380672，而他邻居所宣告到达目标网络的距离为355072，这个邻居路由器满足FC，它就成为FS；如果邻居路由器宣告到达目标网络的距离为380928，即不满足FC，那么这个邻居路由器就不能成为FS,FS和FC是避免环路的核心技术，FS也是downstream router（下游路由器），因为从FS到达目标网络的距离比本地路由器到达目标网络的FD要小，存在一个或多个FS的目标网络被记录在拓扑表中。
+拓扑表（Topological Table)
+拓扑表包括以下内容：
+目标网络的FD.
+所有的FD.
+每一个FS所宣告的到达目标网络的距离.
+本地路由器计算出的，经过每个FS到达目标网络的距离，即基于FS所宣告到达目标网络的距离和本地路由器到达那个FS的链路的cost.
+发现FS的网络相连的接口.
+邻居表（Neighbor Table)
+每个路由器的RAM中都保存有关于邻居的地址和接口信息的表。
+后继路由（Successor)
+又称成功者（Secessful），是到达远程网络的最佳路由。是EIGRP用于转发业务量的路由，它被存储在路由表中。
+后继路由器：
+是一个直接连接的邻居路由器，通过它到达目的网络的路由最优。
+可行后继路由器：
+是一个邻居路由器，但是通过它到达目的地的度量值比后继路由器高，但它的通告距离小于通过后继路由器到达目的网络的可行距离，因而被保存在拓扑表中，用做备份路由。
+优缺点编辑 播报
+（1）EIGRP路由协议主要优点
+精确路由计算和多路由支持。EIGRP协议继承了IGRP协议的最大的优点是矢量路由权。EIGRP协议在路由计算中要对网络带宽、网络时延、信道占用率和信道可信度等因素作全面的综合考虑，所以EIGRP的路由计算更为准确，更能反映网络的实际情况。同时EIGRP协议支持多路由，使路由器可以按照不同的路径进行负载分担。
+较少带宽占用。使用EIGRP协议的对等路由器之间周期性的发送很小的hello报文，以此来保证从前发送报文的有效性。路由的发送使用增量发送方法，即每次只发送发生变化的路由。发送的路由更新报文采用可靠传输，如果没有收到确认信息则重新发送，直至确认。EIGRP还可以对发送的EIGRP报文进行控制，减少EIGRP报文对接口带宽的占用率，从而避免连续大量发送路由报文而影响正常数据业务的事情发生。
+快速收敛。路由计算的无环路和路由的收敛速度是路由计算的重要指标。EIGRP协议由于使用了DUAL算法，使得EIGRP协议在路由计算中不可能有环路路由产生，同时路由计算的收敛时间也有很好的保证。因为，DUAL算法使得EIGRP在路由计算时，只会对发生变化的路由进行重新计算；对一条路由，也只有此路由影响的路由器才会介入路由的重新计算。
+MD5认证。为确保路由获得的正确性，运行EIGRP协议进程的路由器之间可以配置MD5认证，对不符合认证的报文丢弃不理，从而确保路由获得的安全。
+路由聚合。EIGRP协议可以通过配置，对所有的EIGRP路由进行任意掩码长度的路由聚合，从而减少路由信息传输，节省带宽。
+实现负载分担。去往同一目的的路由表项，可根据接口的速率、连接质量和可靠性等属性，自动生成路由优先级，报文发送时可根据这些信息自动匹配接口的流量，达到几个接口负载分担的目的。
+配置简单。使用EIGRP协议组建网络，路由器配置非常简单，它没有复杂的区域设置，也无需针对不同网络接口类型实施不同的配置方法。使用EIGRP协议只需使用router eigrp命令在路由器上启动EIGRP 路由进程，然后再使用network 命令使能网络范围内的接口即可。
+区域概念，EIGRP已经引用AS概念，可以进行大规模网络的路由支持了。
+（2）EIGRP路由协议主要缺点
+定时发送HELLO报文。运行EIGRP的路由器之间必须通过定时发送HELLO报文来维持邻居关系，这种邻居关系即使在拨号网络上，也需要定时发送HELLO报文，这样在按需拨号的网络上，无法定位这是有用的业务报文还是EIGRP发送的定时探询报文，从而可能误触发按需拨号网络发起连接，尤其在备份网络上，引起不必要的麻烦。所以，一般运行EIGRP的路由器，在拨号备份端口还需配置Dialer list和Dialer group，以便过滤不必要的报文，或者运行TRIP协议，这样做增加路由器运行的开销。而OSPF可以提供对拨号网络按需拨号的支持，只用一种路由协议就可以满足各种专线或拨号网络应用的需求。
+基于分布式的DUAL算法。EIGRP的无环路计算和收敛速度是基于分布式的DUAL算法的，这种算法实际上是将不确定的路由信息散播（向邻居发query报文），得到所有邻居的确认后（reply报文）再收敛的过程，邻居在不确定该路由信息可靠性的情况下又会重复这种散播，因此某些情况下可能会出现该路由信息一直处于活动状态（这种路由被称为活动路由栈），并且，如果在活动路由的这次DUAL计算过程中，出现到该路由的后继（successor）的测量发生变化的情况，就会进入多重计算，这些都会影响DUAL算法的收敛速度。而OSPF算法则没有这种问题，所以从收敛速度上看，虽然整体相近，但在某种特殊情况下，EIGRP还有不理想的情况。
+EIGRP是Cisco公司的私有协议。Cisco公司是该协议的发明者和唯一具备该协议解释和修改权的厂商。如果要支持EIGRP协议需向Cisco公司购买相应版权，并且Cisco公司修改该协议没有义务通知任何其他厂家和使用该协议的用户。而OSPF是开放的协议，是IETF组织公布的标准。世界上主要的网络设备厂商都支持该协议，所以它的互操作性和可靠性由于公开而得到保障，并且在众多的厂商支持下，该协议也会不断走向更加完善。
+协议区别
+IGRP（Interior Gateway Routing Protocol，内部网关路由选择协议）是Cisco特有的基于距离向量的路由协议，虽然同样应用于规模较小的局域网络，但是，与RIP路由协议有所不同，IGRP使用IP层的端口号9进行报文交换，而RIP则是使用520端口进行报文交换。
+IGRP同样是一种动态距离向量路由协议，它由Cisco公司20世界80年代中期设计推出，使用跳数来确定到达一个网络的最佳路径，使用延迟、带宽、可靠性和负载来确定最优路由。默认状态下，IGRP每90秒钟发送一次路由更新广播，在3个更新周期（即270秒）内，如果没有从路由中的第一个路由器接受到更新，则宣布路由器不可访问。在7个周期（即630秒）后，Cisco IOS（网际操作系统）软件会从路由表中清除该路由。
+EIGRP结合了链路状态和距离矢量型路由选择协议的Cisco专用协议，采用弥散修正算法（DUAL）来实现快速收敛，可以不发送定期的路由更新信息以减少带宽的占用，支持Appletalk、IP、Novell和NetWare等多种网络层协议。自从EIGRP路由协议诞生后，IGRP路由协议便很少再被使用了。
+基本配置
+r1(config)#router eigrp AS号（0~65535） 激活eigrp
+r1(config-router)#net 192.168.1.0 通配符 激活接口，下行等价命令
+r1(config-router)#passive-interface fastEthernet 0/1 不从F0/1发hello包
+neib 192.168.1.2 / lo 0单播
+variance <multiplier> 非等价负载均衡
+bandwidth <kbps> 带宽
+ip bandwidth-parcent AS 占用带宽
+key chain <name> MD5验证
+key <ID>
+key-string <string>
+ip authenticatian mode eigrp<AS> md5
+ip authentication key-chain eigrp <AS> <name-of-chain>
+show命令：
+show ip eigrpint / nei / top / tra/
+show ip pro
+K值详解编辑 播报
+1． EIGRP metric = (IGRP metric) * 256 IGRP metric is 24 bits in length. EIGRP metric is 32 bits in length.
+2． K1 :: Bandwidth = (10,000,000 / bandwidth on interface,kbps) * 256 56K 45714176 1.544M 1657856 (10,000,000 / 1544 = 6476) * 256 10M 256000 100M 25600 1G 2560
+3． K2 :: Loading
+4． K3 :: Delay sum of delays in the path,in tens of microseconds,mutliplied by 256 Delay = [(sum of the DLY,in microseconds) / 10] * 256
+这里的DLY是从本地接口发出后，沿途所经所有源接口的DLY。
+6． K5 :: Reliability(可靠性)
+7． K1~K5 ---> B-L-D-R-M ---> BLack DReaM （这是我的一个记忆技巧）
+8．Formula with default K values (K1=1,K2=0,K3=1,K4=0,K5=0): metric = K1*BW + ((K2*BW)/(256-load)) + K3*delay = BW + delay
+9． If K5 is not equal to 0: metric = metric * [ K5/(reliability + K4) ]
+10．K values are carried in EIGRP hello packets.
+11．Mismatched K values can cause a neighbor to be reset.
+排错命令编辑 播报
+show run | begin router eigrp//查看配置文件中eigrp的配置命令
+show ip protocols//查看当前路由器运行的eigrp协议状态
+show ip route summary//查看eigrp路由汇总状态
+show ip eigrp neighbors//查看eigrp邻居状态
+show ip eigrp interface//查看各个运行eigrp的接口状态
+show ip eigrp interface detail//查看各个运行eigrp的接口详细状态
+show ip route eigrp//查看eigrp协议学习到的路由表
+show ip eigrptopology//查看eigrp的拓扑表
+show ip eigrptopology all-links//查看eigrp完整的拓扑表
+show ip eigrptopology 10.1.1.0 255.255.255.0//查看指定的某个网络参数信息
+debug eigrp packets//调试eigrp的查讯包
+debug eigrp fsm //调试eigrp的dual算法调试信息
+其他区别编辑 播报
+EIGRP是cisco专用的，而OSPF则是通用的协议。
+EIGRP是一个距离矢量协议，而OSPF是链路状态协议。
+EIGRP支持自动汇总功能，它可以在A.B.C类网络的边界实现自动汇总，同时也支持手动配置；而OSPF则不可以，汇总必须手动配置
+EIGRP的汇聚速度要比OSPF快，因为在它的拓扑图中保存了可选后继，直接后继找不到时可以直接通过可选后继转发。
+EIGRP的多播地址是224.0.0.10,OSPF是224.0.0.5和224.0.0.6。
+EIGRP的路径度量是复合型的，OSPF则是Cost型的（当然一般的cost还是根据bandwidth来计算的）
+尽管EIGRP支持路由汇总功能，但是它没有分级（hierachical）路由的概念，不像OSPF那样对网络进行分级。
+在邻居关系的建立上，EIGRP没有OSPF那么复杂的down-init-two way的过程，只要一个路由器看到邻居的hello包，它就与之建立邻接关系。
+在汇总功能的实现上，EIGRP可以在任何路由器的任何接口实现，而OSPF则只能在ABR和ASBR上实现，而且它的路由汇总不是基于接口的。
+EIGRP支持不等路径度量值的负载均衡，而OSPF则只支持相等度量值的负载均衡。
+EIGRP使用DUAL算法计算最短路径，而且它采用了有限状态机（finite-state machine）来跟踪所有的路由信息包，保证无回路（loop-free）以及后继路由的选择。OSPF采用Dijikstra算法计算最短路径，它不采用有限状态机。
+EIGRP邻接关系的确立只要两个参数相符合就行：K-value和AS number；而OSPF的邻接关系的建立需要多个参数符合：hello/dead timer,authentication password，area id,stub flag等。
+最后就是它们配置以及检查（show command）上的不同了，这方面不同点很多，就要慢慢体会了。如ospf 中的show ip ospf database对应eigrp中的show ip eigrp topology。
+Cisco 公司于2013年3月将EIGRP路由协议以RFC文档的形势提交给IETF。

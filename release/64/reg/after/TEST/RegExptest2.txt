@@ -1,1 +1,1 @@
-$RANDOMDATA8(\1)
+$RANDOMDATA8<<<\1>>>
