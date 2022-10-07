@@ -225,6 +225,7 @@ BAT/网络network/知识点/Web服务器
 BAT/网络network/知识点/dhcp
 BAT/网络network/知识点/dhcp relay
 BAT/网络network/知识点/mpls
+BAT/网络network/知识点/mpls 2
 BAT/网络network/知识点/ospf hello
 BAT/网络network/知识点/ospf lsu
 BAT/网络network/知识点/ospf 路由协议 开放的最短路径优先协议 Open Shortest Path First
@@ -1391,10 +1392,16 @@ JavaScript/layui/use
 JavaScript/layui/入门指南/简介
 JavaScript/layui/字体图标 ico
 JavaScript/log/console
+JavaScript/new/ContentState
+JavaScript/new/animateManage
 JavaScript/new/html input text内容
 JavaScript/new/html input text内容 replace
+JavaScript/new/onfocus禁止输入
 JavaScript/new/replaceAll
 JavaScript/new/replaceAll2
+JavaScript/new/replace去除空格
+JavaScript/new/replace输入为空
+JavaScript/new/strLen
 JavaScript/proc/replace h3 京东读书代码
 JavaScript/scripts/checkemail
 JavaScript/scripts/checkemail 禁止重复提交
