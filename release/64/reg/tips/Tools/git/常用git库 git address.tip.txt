@@ -9,10 +9,11 @@ https://downloadarchive.documentfoundation.org/libreoffice/old/6.4.7.2/rpm/x86_6
 #Qt
 https://download.qt.io/archive/qt/
 #bugZilla
+git@github.com:bugzilla/bugzilla.git
 https://ftp.mozilla.org/pub/webtools/
 https://github.com/bugzilla/bugzilla
 https://bugzilla.kernel.org/
-
+https://bugzilla.mozilla.org/home
 
 
 常用git库:

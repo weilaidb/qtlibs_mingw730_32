@@ -1,3 +1,10 @@
+alias sudoaptautoremove ="sudo apt autoremove "
+alias sudodpkgconfigurea="sudo dpkg --configure -a "
+alias sudoaptinstall=" sudo apt install "
+alias historygrep="history | grep "
+
+
+
 alias perlv="perl -v "
 alias mysqlv="mysql -V "
 alias mysqlduserroot="mysqld --user=root "
@@ -10,7 +17,7 @@ alias kill9="kill -9 "
 
 alias sudoapachectlstart="sudo apachectl start "
 alias sudoapachectlrestart="sudo apachectl restart "
-alias sudoapachectlrestop="sudo apachectl restop "
+alias sudoapachectlstop="sudo apachectl stop "
 
 
 

@@ -1,3 +1,8 @@
+sudoaptautoremove ;sudo apt autoremove 
+sudodpkgconfigurea;sudo dpkg --configure -a
+sudoaptinstall; sudo apt install
+historygrep;history | grep 
+
 perlv;perl -v
 perlinstallmodperl2;/usr/bin/perl install-module.pl mod_perl2
 perlinstallApache-SizeLimit;/usr/bin/perl install-module.pl Apache2::SizeLimit
@@ -11,7 +16,7 @@ sofficeversion;soffice --version
 sudodash;sudo dpkg-reconfigure dash
 sudoapachectlstart;sudo apachectl start
 sudoapachectlrestart;sudo apachectl restart
-sudoapachectlrestop;sudo apachectl restop
+sudoapachectlstop;sudo apachectl stop
 
 
 tsharkversion;tshark -v
