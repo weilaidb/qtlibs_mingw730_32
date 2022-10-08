@@ -14,6 +14,7 @@ https://ftp.mozilla.org/pub/webtools/
 https://github.com/bugzilla/bugzilla
 https://bugzilla.kernel.org/
 https://bugzilla.mozilla.org/home
+http://101.201.79.164/bugzilla/
 #博文视点
 http://www.broadview.com.cn/
 超实用的JavaScript代码段
