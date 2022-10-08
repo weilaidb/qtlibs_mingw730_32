@@ -1,2 +1,13 @@
-MST域（MST Region）
-MST域是多生成树域（Multiple Spanning Tree Region）
+5．MSTP
+    多生成树协议MSTP（MultipleSpanningTreeProtocol）是IEEE802.1s中定义的一种新型生成树协议。MSTP与STP/RSTP一脉相承，三者有很好的兼容性。MSTP是在传统的STP、RSTP的基础上发展而来的新的生成树协议，使用RSTP进行快速收敛。
+
+    由于传统的生成树协议与VLAN没有任何联系，因此，在特定网络拓扑下就会产生一些问题。MSTP可以把一组VLAN划分为一个生成树实例（instance），有着相同实例配置的交换机就组成一个MST域（region），运行独立的生成树（该内部生成树称为IST，InternalSpanning-Tree）。MST域组合就相当于一个大的交换机，与其他MST域再进行生成树算法运算，得出一个整体的生成树，称为CST（CommonSpanningTree，共同生成树）。
+
+    简单地说，STP/RSTP是基于端口的，PVST＋是基于VLAN的，而MSTP是基于实例的。与STP/RSTP和PVST+相比，MSTP中引入了“实例”（Instance）和“域”（Region）的概念。所谓“实例”就是多个VLAN的一个集合，这种通过多个VLAN捆绑到一个实例中去的方法可以节省通信开销和资源占用率。MSTP各个实例拓扑的计算是独立的，在这些实例上就可以实现负载均衡。使用时，可以把多个相同拓扑结构的VLAN映射到某一个实例中，这些VLAN在端口上的转发状态将取决于对应实例在MSTP里的转发状态。
+
+提•示
+    与STP和RSTP相比，MSTP具有VLAN认知能力，可以实现负载均衡，实现类似RSTP的端口状态快速切换；与PVST+相比，MSTP可以捆绑多个VLAN到一个实例中以降低资源占用率，并且可以很好地向下兼容STP/RSTP协议。
+
+    如图2-15所示，交换机A和B都在MSTP域1内，MSTP域1没有环路产生，所以，没有链路被禁用。同理，MSTP域2的情况也一样。然后，域1和域2就分别相当于两个大的交换机，这两台“交换机”间有环路，因此，根据相关配置选择一条链路被禁用。这样，既避免了环路的产生，也能让相同VLAN间的通信不受影响。图2-15　MSTPPVST+、MSTP和Rapid-PVST+之间的协同性与兼容性如表2-1所示。表2-1　PVST+、MSTP和Rapid-PVST+之间的协同性与兼容性
+
+刘晓辉.交换机·路由器·防火墙(第3版)(网管天下)(Kindle位置1134-1139).电子工业出版社.Kindle版本.

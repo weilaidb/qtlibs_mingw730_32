@@ -1,0 +1,22 @@
+2．链路汇聚协议
+使用PAgP或LACP协议，可以很容易地在有EtherChannel能力的端口间，自动建立FastEtherChannel和GigabitEtherChannel连接，进行信息的交流。该协议具有学习相邻端口组动态和信息的能力。PAgP是EtherChannel的增强版，支持在EtherChannel上的SpanningTree和UplinkFast功能，并支持自动配置EtherChannel的捆绑。
+■　PAgP协议
+PAgP支持模式：
+auto，当侦测到PAgP设备时，将只启用PAgP。将端口置于被动协商状态，可以对接收到的PAgP作出响应，但是，不能主动发送PAgP包进行协商。
+desirable，无条件启用PAgP。将端口置于主动协商状态，通过发送PAgP包，主动与其他接口进行协商。
+on，将接口强行指定至Channel。只有两个on模式接口组连接时，EtherChannel才可用。
+non-silent，如果交换机连接到有PAgP能力的伙伴，可以将端口配置为nonsilent（非沉默）运行。如果没有为auto或desirable模式指定non-silent关键字，默认为silent。沉默设置被用于连接到文件服务器或包分析仪。该设置允许PAgP，将端口添加至Channel组，并使用端口进行传输。采用PAgP协议时，以下几种模式可以构建EtherChannel。
+一个端口为desirable模式，另一个端口为desirable或auto模式。
+一个端口为auto模式，另一个端口为desirable模式。
+
+■　LACP协议
+LACP支持模式：
+active，当侦测到LACP设备时，将只启用LACP。激活端口的主动协商状态，通过发送LACP包，与其他端口进行主动协商。
+passive，当侦测到LACP设备时，将只启用LACP。将端口置于被动协商状态，可以对接收到的LACP作出响应，但是，不能主动发送LACP包进行协商。采用LACP协议时，以下几种模式可以构建EtherChannel。
+一个端口为active模式，另一个端口为active或passive模式。
+一个端口为passive模式，另一个端口也为passive模式。
+在Catalyst交换机之间创建EtherChannel时，建议的端口模式如表2-2所示。
+表2-2　Catalyst交换机之间创建EtherChannel时的建议模式
+
+注•意
+不是所有型号的CiscoCatalyst交换机和所有的CiscoIOS版本都同时支持PAgP和LACP协议。因此，在配置链路汇聚前，应先查阅相关的技术文档，并采用双方都支持的链路汇聚协议，以避免配置失败。
