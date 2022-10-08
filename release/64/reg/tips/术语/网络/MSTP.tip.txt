@@ -1,0 +1,2 @@
+MST域（MST Region）
+MST域是多生成树域（Multiple Spanning Tree Region）

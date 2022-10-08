@@ -1,0 +1,156 @@
+MSTP基本概念
+MSTP的网络层次
+如图15-3所示，MSTP网络中包含1个或多个MST域（MST Region），每个MST Region中包含一个或多个MSTI。组成MSTI的是运行STP/RSTP/MSTP的交换设备，MSTI是所有运行STP/RSTP/MSTP的交换设备经MSTP协议计算后形成的树状网络。
+
+图15-3 MSTP网络层次示意图
+
+MST域（MST Region）
+MST域是多生成树域（Multiple Spanning Tree Region），由交换网络中的多台交换设备以及它们之间的网段所构成。同一个MST域的设备具有下列特点：
+都启动了MSTP。
+具有相同的域名。
+具有相同的VLAN到生成树实例映射配置。
+具有相同的MSTP修订级别配置。
+一个局域网可以存在多个MST域，各MST域之间在物理上直接或间接相连。用户可以通过MSTP配置命令把多台交换设备划分在同一个MST域内。
+
+如图15-4所示的MST Region 4中由交换设备A、B、C和D构成，域中有3个MSTI。
+
+图15-4 MST Region示意图
+
+VLAN映射表
+VLAN映射表是MST域的属性，它描述了VLAN和MSTI之间的映射关系。
+
+如图15-4所示，MST Region 4的VLAN映射表是：
+VLAN1映射到MSTI1
+VLAN2映射到MSTI2
+其余VLAN映射到MSTI3
+CST
+公共生成树CST（Common Spanning Tree）是连接交换网络内所有MST域的一棵生成树。
+
+如果把每个MST域看作是一个节点，CST就是这些节点通过STP或RSTP协议计算生成的一棵生成树。
+
+如图15-3所示，黑色线条连接各个域构成CST。
+
+IST
+内部生成树IST（Internal Spanning Tree）是各MST域内的一棵生成树。
+
+IST是一个特殊的MSTI，MSTI的ID为0，通常称为MSTI0。
+
+IST是CIST在MST域中的一个片段。
+
+如图15-3所示，深蓝色线条在域中连接该域的所有交换设备构成IST。
+
+SST
+构成单生成树SST（Single Spanning Tree）有两种情况：
+运行STP或RSTP的交换设备只能属于一个生成树。
+MST域中只有一个交换设备，这个交换设备构成单生成树。
+CIST
+公共和内部生成树CIST（Common and Internal Spanning Tree）是通过STP或RSTP协议计算生成的，连接一个交换网络内所有交换设备的单生成树。
+
+如图15-3所示，所有MST域的IST加上CST就构成一棵完整的生成树，即CIST。
+
+域根
+域根（Regional Root）分为IST域根和MSTI域根。
+
+IST域根如图15-3所示，在MST域中IST生成树中距离总根（CIST Root）最近的交换设备是IST域根。
+
+一个MST域内可以生成多棵生成树，每棵生成树都称为一个MSTI。MSTI域根是每个多生成树实例的树根。如图15-4所示，域中不同的MSTI有各自的域根。
+
+总根
+总根是CIST（Common and Internal Spanning Tree）的根桥。如图15-3中的S1。
+
+主桥
+主桥（Master Bridge）也就是IST Master，它是域内距离总根最近的交换设备。如图15-3中的黄色交换机。
+
+如果总根在MST域中，则总根为该域的主桥。
+
+端口角色
+根端口、指定端口、Alternate端口、Backup端口和边缘端口的作用同RSTP协议中定义，MSTP中定义的所有端口角色如表15-1所示。
+
+
+除边缘端口外，其他端口角色都参与MSTP的计算过程。
+
+同一端口在不同的生成树实例中可以担任不同的角色。
+
+表15-1 端口角色
+端口角色
+
+说明
+
+根端口
+
+在非根桥上，离根桥最近的端口是本交换设备的根端口。根交换设备没有根端口。
+
+根端口负责向树根方向转发数据。
+
+如图15-5所示，S1为根桥，CP1为S3的根端口，BP1为S2的根端口。
+
+指定端口
+
+对一台交换设备而言，它的指定端口是向下游交换设备转发BPDU报文的端口。
+
+如图15-5所示，AP2和AP3为S1的指定端口，CP2为S3的指定端口。
+
+Alternate端口
+
+从配置BPDU报文发送角度来看，Alternate端口就是由于学习到其它网桥发送的配置BPDU报文而阻塞的端口。
+从用户流量角度来看，Alternate端口提供了从指定桥到根的另一条可切换路径，作为根端口的备份端口。
+如图15-5所示，BP2为Alternate端口。
+
+Backup端口
+
+从配置BPDU报文发送角度来看，Backup端口就是由于学习到自己发送的配置BPDU报文而阻塞的端口。
+从用户流量角度来看，Backup端口作为指定端口的备份，提供了另外一条从根节点到叶节点的备份通路。
+如图15-5所示，CP3为Backup端口。
+
+Master端口
+
+Master端口是MST域和总根相连的所有路径中最短路径上的端口，它是交换设备上连接MST域到总根的端口。
+
+Master端口是域中的报文去往总根的必经之路。
+
+Master端口是特殊域边缘端口，Master端口在CIST上的角色是Root Port，在其它各实例上的角色都是Master端口。
+
+如图15-6所示，交换设备S1、S2、S3、S4和它们之间的链路构成一个MST域，S1交换设备的端口AP1在域内的所有端口中到总根的路径开销最小，所以AP1为Master端口。
+
+域边缘端口
+
+域边缘端口是指位于MST域的边缘并连接其它MST域或SST的端口。
+
+如图15-6所示，MST域内的AP1、DP1和DP2都和其它域直接相连，它们都是本MST域的域边缘端口。
+
+边缘端口
+
+如果指定端口位于整个域的边缘，不再与任何交换设备连接，这种端口叫做边缘端口。
+
+边缘端口一般与用户终端设备直接连接。
+
+端口使能MSTP功能后，会默认启用边缘端口自动探测功能，当端口在（2 × Hello Timer + 1）秒的时间内收不到BPDU报文，自动将端口设置为边缘端口，否则设置为非边缘端口。
+
+图15-5 根端口、指定端口、Alternate端口和Backup端口示意图
+
+图15-6 Master端口和域边缘端口示意图
+
+MSTP的端口状态
+MSTP定义的端口状态与RSTP协议中定义相同，如表15-2所示。
+
+表15-2 端口状态
+端口状态
+
+说明
+
+Forwarding
+
+在这种状态下，端口既转发用户流量又处理BPDU报文。
+
+Learning
+
+这是一种过渡状态。在Learning下，交换设备会根据收到的用户流量，构建MAC地址表，但不转发用户流量，所以叫做学习状态。
+
+Learning状态的端口处理BPDU报文，不转发用户流量。
+
+Discarding
+
+Discarding状态的端口只处理BPDU报文。
+
+
+根端口、Master端口、指定端口和域边缘端口支持Forwarding、Learning和Discarding状态，Alternate端口和Backup端口仅支持Discarding状态。
