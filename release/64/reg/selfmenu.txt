@@ -2249,6 +2249,7 @@ SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
+SoftWare/WPS/如何批量选中不同颜色的文字
 SoftWare/opengrok/md5sum
 SoftWare/vmware/16
 TEST/RegExp/单个空格替换无
