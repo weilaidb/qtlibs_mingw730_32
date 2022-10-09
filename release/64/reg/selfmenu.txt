@@ -2024,6 +2024,7 @@ Python/Print 注释
 Python/Regex/split
 Python/WEB/简介
 Python/common/id
+Python/excel/Python 自动化操作 Excel
 Python/from_xxx_import_all
 Python/gc
 Python/header

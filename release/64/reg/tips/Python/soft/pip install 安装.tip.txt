@@ -1,3 +1,13 @@
+xlrd
+xlwt
+xlutils
+xlwings
+openpyxl 
+XlsxWriter
+pypiwin32
+pandas
+
+
 jupyter
 paramiko
 PyQt5
