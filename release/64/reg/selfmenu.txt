@@ -1,3 +1,4 @@
+
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoTest/python/telnet
@@ -1401,6 +1402,7 @@ JavaScript/new/replaceAll2
 JavaScript/new/replace去除空格
 JavaScript/new/replace输入为空
 JavaScript/new/strLen
+JavaScript/new/trim去除首尾空格
 JavaScript/proc/replace h3 京东读书代码
 JavaScript/scripts/checkemail
 JavaScript/scripts/checkemail 禁止重复提交
