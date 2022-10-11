@@ -185,6 +185,7 @@ dus;du -s
 gitsubmoduleinit;git submodule update --init --recursive
 gitloglastestmaster;git log --max-count=1 --pretty=format:%H master
 gitloglastest;git log --max-count=1 --pretty=format:%H 
+gitlogoneline;git log --oneline
 gitstatusshort;git status --porcelain
 gitst2;git status --porcelain
 gitstatusshort2;git status --short

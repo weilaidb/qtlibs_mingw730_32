@@ -173,6 +173,8 @@ alias gitlognomergespatchsince1year="git log --no-merges -p --since=1.year"
 alias gitlognomergespatchsince2year="git log --no-merges -p --since=2.year"
 alias gitloglastestmaster="git log --max-count=1 --pretty=format:%H master "
 alias gitloglastest="git log --max-count=1 --pretty=format:%H "
+alias gitlogoneline="git log --oneline "
+
 alias gitstatusshort="git status --porcelain "
 alias gitst2="git status --porcelain "
 alias gitstatusshort2="git status --short "
