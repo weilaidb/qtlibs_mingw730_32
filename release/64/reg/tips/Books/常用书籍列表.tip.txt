@@ -1,4 +1,8 @@
 GNU Make 使用手册
+gcc-9手册.pdf
+gdb手册.pdf
+GNU汇编器as_v2.34-精简版本.pdf
+GNU链接器ld_v2.34-精简版ld.pdf
 Linux2.6协议栈源代码分析（linux tcp ip 协议栈分析.pdf）
 AT&T_ASM.pdf
 AT&T_GCC_ASM.pdf
