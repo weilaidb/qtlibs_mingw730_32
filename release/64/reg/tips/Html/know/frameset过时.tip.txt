@@ -1,137 +1,44 @@
-热门频道
+frameset标签在H5中已经弃用了，用什么来代替
 
-首页
+阿尔卑斯狼__
 
+于 2020-12-28 23:38:24 发布
 
-博客
+3474
+ 收藏 13
+分类专栏： 前端 文章标签： html web jsp html5 前端
+版权
 
-
-研修院
-
-
-VIP
-
-
-APP
-
-
-问答
-
-
-下载
-
-
-社区
-
-推荐频道
-
-活动
-
-
-招聘
-
-
-专题
-
-打开CSDN APP
-Copyright © 1999-2020, CSDN.NET, All Rights Reserved
-
-
-html5
-打开APP
-
-
-frameset标签在H5中已经弃用了，用什么来代替 原创
-2020-12-28 23:38:24
- 3点赞
-
-阿尔卑斯狼__ 
-
-码龄2年
-
-关注
+前端
+专栏收录该内容
+2 篇文章0 订阅
+订阅专栏
 frameset标签在H5中已经弃用了，用什么来代替
 用div+iframe 顶替frameset 框架。
 用div+iframe 代替frameset 框架
 frameset 已经过时, 使用frameset会带来很多问题,比如session丢失等. 所以提倡用iframe,iframe的好处我就不用多说了.下面用div+iframe来代替frameset的收缩与展开功能.
 
-点击阅读全文 
-打开CSDN，阅读体验更佳
+<%@include file="common/taglib.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<html>
+<head>
+    <title>客户关系管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
 
+<div rows="85,*,40" frameborder="NO" noresize Borders="NO" framespacing="0">
+    <iframe name="topFrame" frameborder="NO" scrolling="NO" noresize Borders="NO" src="${basePath}/jsp/top.jsp"
+            marginwidth="value" marginheight="value"></iframe>
+        <iframe name="mainFrame" noresize Borders="NO" src="${basePath}/jsp/index-ec.jsp" marginwidth="value"
+                marginheight="value"></iframe>
+            <iframe src="${basePath}/jsp/footer.jsp" name="top1Frame" frameborder="NO" scrolling="NO" noresize
+                    marginwidth="0" marginheight="0" Borders="NO"></iframe>
+</div>
+<body bgcolor="#FFFFFF">
 
+</body>
+</html>
 
-评论(3) 请先 登录 后发表或查看评论
-html frameset为什么废弃_那些被弃用的HTML元素_ZH洺的...
-如:、 标签我们实际应用中知道其有加粗效果,用户体验上是为了引起用户的注意,无语义。与之相似的元素就是,它具有强调的意义,同时可对搜索引擎增加权重。 标签页是无语义,斜体显示文本。与之相似的是,作用同上。 因此呢,对于我们Web端...
-答疑解惑:为什么某些HTML元素被弃用?_杭州程序员张张的...
-<frameset>(不再需要) <isindex>(不再需要) <noframes>(不再需要) <s>(使用text-decoration: line-through) <strike>(使用text-decoration: line-through) <tt>(使用<code>) 还有一长串被弃用的属性,包括许多在其他方面仍然有效...
-html5代替frame,『前端』：HTML5 的 frameset 替代方案
-方案一：1.主页面load_method*{margin: 0;padding: 0}html, body{height: 100%}#nav{float: left;width:5%;height:100%;background-color: antiquewhite}#con{float: right;width: 95%;height:100%;background-color: aqua}...
-继续访问
-html5实现frame效果,html5 frameset标签的替代方案是什么
-摘要 腾兴网为您分享:html5 frameset标签的替代方案是什么，优酷，校讯通，小米手环，我的世界等软件知识，以及亚马逊手机端，帮5淘，安全一点通，安信证券软件，微信骰子表情包gif，兄弟7060d，蝙蝠侠阿甘骑士补丁,qq浏览器广告，e8票据打印软件，萝卜团，论文去重，摩托车驾考宝典，畅通驾校，2345杀毒软件，大连皮肤医院等软件it资讯，欢迎关注腾兴网。本篇文章主要的介绍了关于html5...
-继续访问
-
-二、HTML5新增标签和被移除标签_养只狗的博客
-该标签已在新的Web标准中被废弃 <form action="demo_keygen.asp" method="get"> 用户名: <input type="text" name="usr_name"> 加密: <keygen name="security"> <input type="submit"> </form> 1 2 3 4 5 属性: 3...
-【编程标签】_Hey_Coder的博客
-然后使用<script> 标签中的src属性 引用该文件即可。 示例1: 链接一个 外部脚本文件 <script type="text/javascript" src="myscripts.js"></script> 1⑺ charset 属性: 外部脚本的 字符编码(已废弃,继承 文档的字符编码)<...
-浅谈HTML5新增和废弃的标签
-一、废弃的标签 以下的 HTML 4.01 元素在HTML5中已经被删除，虽然浏览器为了兼容性考虑都还支持这些标签，但建议使用新的替代标签，矛盾的是老浏览器对新标签的支持度又不够，视项目的受众对象而定了。 1、能用CSS代替的元素 这些元素包含basefont、big、center、font、s、strike、tt、u。这些元素纯粹是为页面展示用的，表现的内容应该由CSS完成。 2、frame框架 这些元素包含frameset、frame、noframes。HTML5中不支持frame框架，只支持iframe框架，或者用服务器方创建的由多个页面组成的符合页面的形式，删除以上这三个标签。 3、只
-最新发布 HTML5 之 Frame Frameset Noframes 标签
-概述   frame 可定义特定区域，用于显示HTML文档。   HTML5已废弃，不再支持frame，但是当前仍有一部分浏览器支持。   frame为块级双标签，只能作为frameset子元素，无法单独使用。   常用属性如下。 src：指定显示的HTML文档 name：为frame添加标识，若未指定标识，所有链接将在其所在的frame打开 noresize：禁止改变区域大小 <!DOCTYPE html> <html lang="en"> <frameset row.
-继续访问
-
-html中frameset标签无法正常显示原因分析及解决_htmlframeset...
-Frameset小例子,就是html里面框架的运用 浅谈HTML5新增和废弃的标签 一、废弃的标签以下的HTML4.01 元素在HTML5中已经被删除,虽然浏览器为了兼容性考虑都还支持这些标签,但建议使用新的替代标签,矛盾的是老浏览器对新标签的支持度又不够...
-html取代frame框架,html5 frameset标签的替代方案是什么？frameset标签替代的解决办法...
-本篇文章主要的介绍了关于html5 frameset标签的替代方案实例解析，还有关于html5 frameset标签的两个解决办法，现在让我们一起来看这篇文章吧首先我们先看看html5 frameset标签的替代方案是什么：页面尽量少用 frameset 不利于被搜索引擎搜索到。下面是在Visual Studio中对FrameSet与Frame的警告提示:警告 验证 (XHTML 1.0 Tr...
-继续访问
-
-html css表格样式模板_那些被弃用的HTML元素
-随着互联网的发展，许多新技术替代旧技术层出不穷，为什么不赞成使用某些HTML元素或者说为什么弃用某些HTML元素？随着互联网的发展，许多新技术替代旧技术层出不尽，我们也司空见惯；在互联网技术中，常常会看见“淘汰、弃用、不赞成使用、建议”等等关键词字眼。往往我们也是只管使用，很少关注其为何被弃用。当然HTML作为最基础的文本标记语言也是如此，也会随发展变化而变化。对于web前端开发工作人员来说，应该...
-继续访问
-为什么html5会取消frame,W3C为什么要在HTML5中舍弃<frameset>？_html/css_WEB-ITnose
-我觉的这个东西挺好的呀，做个头部在点击其他页面的时候头部都不用刷新，省去很多下载解析的时间...等等等等。为什么现在很少有人用frameset了？有什么性能问题吗？小弟虚心请教各位大侠!回复讨论(解决方案)谁说的 frameset好东西啊那为什么现在很少有人用了？我也觉得frameset很好用啊或许各个见解不一。不利搜索引擎破坏文档结构实际也没啥啦^_^原来是这样哦~！但是有取代frameset...
-继续访问
-H5使用div实现frameset效果
-由于在H5中已弃用frameset标签，因此在页面中使用时提示 Element (frameset) is obsolete. Its use is discouraged in HTML5 documents. 可以使用div标签+js实现该效果，代码如下：<%@ page language="java" import="java.util.*" contentType="text/html;
-继续访问
-html div代替frameset,frameset过时，以及用div+iframe的代替frameset实现
-今天在学习 java web项目时，书中示例使用了 标签，编译器添加删除线标识该标签过时，最初考虑不影响使用，就没有关心，运行工程后发现网页没有输出，于是查询相关资料，学习记录。过时的frameset使用frameset页面空白问题这是因为我将 标签放到了 标签中实现，而 和 不能一起使用。在 HTML 5 中不支持 标签。使用可能会带来session丢失等问题rows="100,*" bo...
-继续访问
-以div代替frameset，用css实现仿框架布局
-NULL 博文链接：https://jsufly.iteye.com/blog/648867
-认识iframe
-最近的工作经常能用到iframe标签, 到目前为止对iframe的特性了解甚少, 以至于在使用的时候难以得心应手, 遂利用周末的时间来学习一下. 一. iframe是什么及作用 iframe是嵌入式框架, 是html标签, 还是一个内联元素, iframe 元素会创建包含另外一个文档的内联框架（即行内框架) . 说白了, iframe用来在页面嵌入其他页面. 二. iframe的优缺点...
-继续访问
-【框架标签】
-(重点) ★ iframe: 页面嵌套（HTML 页面 嵌入到当前页面） 1.2.1 iframe 内联框架 标签的属性 (1) height 属性+width 属性: 高度和宽度（像素，百分比） (2) name 属性: 内联框架 名称 （搭配其他标签的 target） ❤ 内联框架的可访问性：标签内容，title 属性 (3) src 属性: 嵌入页面的 地址（url） ⑷ referrerpolicy 属性: referrer 发不发，发什么 (源网址 or 完整网址) 1.2.2 iframe 内联
-继续访问
-
-frameset框架
-frameset框架是HTML框架。 框架网页通过一个frameset（框架集）标记和多个frame（框架）标记来定义。在框架网页中，将frameset标记置于head之后，以取代body的位置，还可以使用noframes标记生成不能被浏览器显示时的替换内容。框架网页的基本结构如下： <html> <head> <title>框架网页的基本结构</title> </head> <frameset属性="值"…> <f
-继续访问
-
-php主机不支持frameset,HTML5不支持frameset的两种解决方法
-解决方法如下：第一种使用iframe，但是目前使用iframe的人已经越来越少了，而且iframe在不同浏览器之间还有不兼容的情况。而且我一些研发的人员，他们表示iframe窗口间传值似乎很麻烦。第二种使用jQuery的onload方法加载页面，不过这种方法跳转多个页面后，点击浏览器上方的后退前进是无效的，不过可以认为的添加一个返回按钮。所以个人更倾向于这种方法。我一般是这样写的$("#main"...
-继续访问
-html div代替frameset,用div+iframe替代frameset
-用div+iframe替代frameset(2011-05-21 19:14:39)使用div+iframe标签配合JavaScript是可以替代frameset的示例代码：//===========样式表============#header{ height:55px; background-color:blue;}#left{ width:200px; float:left;}#right{ ...
-继续访问
-frameset过时，以及用div+iframe的代替frameset实现
-今天在学习 java web项目时，书中示例使用了 &lt;frameset&gt;&lt;/frameset&gt;标签，编译器添加删除线标识该标签过时，最初考虑不影响使用，就没有关心，运行工程后发现网页没有输出，于是查询相关资料，学习记录。 过时的frameset 使用frameset页面空白问题 这是因为我将 &lt;frameset&gt;&lt;/frameset&gt; 标...
-继续访问
-html中frameset标签无法正常显示原因分析及解决
-frameset /frameset想必大家都不陌生吧，在网站的后台经常会用到吧，它的功能就是将一个页面划分成好几个页面，接下来为大家介绍下frameset标签无法正常显示如何解决，感性的你可不要错过了哈
-写评论
-
-3
-
-13
-
-3
-
-踩
-
-分享
+————————————————
+版权声明：本文为CSDN博主「阿尔卑斯狼__」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/m0_50217781/article/details/111877269
