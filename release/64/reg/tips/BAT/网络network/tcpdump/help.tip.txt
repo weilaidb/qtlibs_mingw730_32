@@ -1,0 +1,15 @@
+$ tcpdump --help
+tcpdump version 4.9.3
+libpcap version 1.9.1 (with TPACKET_V3)
+OpenSSL 1.1.1g FIPS  21 Apr 2020
+Usage: tcpdump [-aAbdDefhHIJKlLnNOpqStuUvxX#] [ -B size ] [ -c count ]
+                [ -C file_size ] [ -E algo:secret ] [ -F file ] [ -G seconds ]
+                [ -i interface ] [ -j tstamptype ] [ -M secret ] [ --number ]
+                [ -Q in|out|inout ]
+                [ -r file ] [ -s snaplen ] [ --time-stamp-precision precision ]
+                [ --immediate-mode ] [ -T type ] [ --version ] [ -V file ]
+                [ -w file ] [ -W filecount ] [ -y datalinktype ] [ -z postrotate-command ]
+                [ -Z user ] [ expression ]
+[root@weilaidb] ~
+$ 
+
