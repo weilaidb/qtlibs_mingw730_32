@@ -177,6 +177,7 @@ BAT/网络network/tcpdump/capture order抓包命令 端口 数量 端口范围 �
 BAT/网络network/tcpdump/capture order抓包命令 进阶
 BAT/网络network/tcpdump/dhcp
 BAT/网络network/tcpdump/help
+BAT/网络network/tcpdump/help 常用
 BAT/网络network/tcpdump/wireshark源地址
 BAT/网络network/tcpdump/wireshark相关分析软件
 BAT/网络network/tcpdump/wireshark过滤条件
@@ -1644,6 +1645,7 @@ LINUX/命令行/grep -Po
 LINUX/命令行/grep -Poh
 LINUX/命令行/grep 左匹配的问题
 LINUX/命令行/iptables clean -F
+LINUX/命令行/iptables eg
 LINUX/命令行/iptables help
 LINUX/命令行/iptables list -L
 LINUX/命令行/kill

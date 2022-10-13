@@ -1,0 +1,4 @@
+# IPv4 源地址。
+iptables --append INPUT --in-interface eth0 --source 103.25.28.193/32 --jump DROP
+
+结果连接不上了

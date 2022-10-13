@@ -1,0 +1,2 @@
+#超时10秒，-G 300为300秒生成一个文件
+timeout 10 tcpdump -i eth0 -s0 -G 300 -Z root -w %Y_%m%d_%H%M_%S.pcap
