@@ -118,6 +118,7 @@ git@gitee.com:weilaidb/cpp_eg.git
 git@github.com:weilaidb/django-webssh.git
 git@gitee.com:weilaidb/web-telnet.git
 git@github.com:weilaidb/demo0_hello_world.git
+#Python Caculator(Python计算器) 见py1.0(tag)
 git@github.com:weilaidb/jsp.git
 git@gitee.com:weilaidb/cxxcodesets.git
 git@github.com:weilaidb/gmock-1.7.0.git

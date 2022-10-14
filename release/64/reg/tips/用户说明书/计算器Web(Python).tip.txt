@@ -1,0 +1,12 @@
+计算器Web(Python) 
+=====用户说明书
+1.使用python语法编写
+2.示例
+http://101.201.79.164:8081/weilaipy/
+http://101.201.79.164:8081/weilaipy/python/calculator.jsp
+
+3.所在库
+git@github.com:weilaidb/jsp.git
+
+注:实现方式为
+PythonCommand.java
