@@ -1,0 +1,1 @@
+var b = Number('\1'); // b === \1 is true$NL

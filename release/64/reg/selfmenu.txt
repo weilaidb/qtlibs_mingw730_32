@@ -1399,8 +1399,10 @@ JavaScript/layui/use
 JavaScript/layui/入门指南/简介
 JavaScript/layui/字体图标 ico
 JavaScript/log/console
+JavaScript/new/== ===
 JavaScript/new/ContentState
 JavaScript/new/NaN
+JavaScript/new/Number
 JavaScript/new/animateManage
 JavaScript/new/array数组
 JavaScript/new/array数组（二维）
@@ -1418,6 +1420,8 @@ JavaScript/new/replaceAll2
 JavaScript/new/replace去除空格
 JavaScript/new/replace输入为空
 JavaScript/new/strLen
+JavaScript/new/toLowerCase
+JavaScript/new/toUpperCase
 JavaScript/new/trim去除首尾空格
 JavaScript/proc/replace h3 京东读书代码
 JavaScript/scripts/checkemail
@@ -2290,6 +2294,7 @@ Tools/Dreamweaver（DW）常用快捷键
 Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
 Tools/Emacs快捷键
+Tools/Net/Mac(- 2 dot2)convert
 Tools/Subline Text快捷键
 Tools/Tomcat/Web端403 Access Denied You are not authorized to view this page解决
 Tools/Tomcat/conf context.xml
