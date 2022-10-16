@@ -1,0 +1,1 @@
+const parsed = parseInt(\1, \2);$NL$NL$NL

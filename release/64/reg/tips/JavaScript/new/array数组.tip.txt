@@ -1,0 +1,4 @@
+var myArray = new Array();
+myArray[0] = "Bob";
+myArray[1] = "Peter";
+myArray[2] = "Nice";

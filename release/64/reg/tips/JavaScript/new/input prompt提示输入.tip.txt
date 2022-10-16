@@ -1,0 +1,2 @@
+[提示语;默认值]
+Enter the degress in Fahrenheit;50
