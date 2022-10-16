@@ -158,7 +158,7 @@ class MobileMessagePerfect: public MobileMessageBase
 };
 
 
-//业务实现
+//实现
 void Process()
 {
     Messager *m =

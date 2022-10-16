@@ -1,0 +1,243 @@
+桥接模式
+
+桥接模式（c++实现）
+桥接模式
+目录
+桥接模式
+模式定义
+模式动机
+UML类图
+源码实现
+优点
+缺点
+总结
+模式定义
+桥接模式(Bridge),将抽象部分与它的实现部分分离，使他们都可以独立的变化。什么叫抽象与他的实现分离，这并不是说让抽象类与其派生类分离，因为这没有任何意义。实现指的是抽象类和它的派生类用来实现自己的对象。
+
+模式动机
+解决继承带来的问题
+
+对象的继承关系是在编译时就定义好的，所以无法再运行时改变从父类继承的实现。子类的实现与他的父类有非常紧密的依赖关系，以至于父类实现中的任何变化必然会导致子类发生变化。当你需要复用子类时，如果继承下来的实现不适合解决新的问题，则父类必须重写或被其他更适合的类替换。这种依赖关系限制了灵活性并最终限制了复用性。
+
+合成/聚合复用原则（CARP）
+
+合成（组合）和聚合都是关联的特殊种类。聚合表示一种弱的‘拥有’关系，体现的是A对象可以包含B对象，但B对象不是A对象的一部分；合成则是一种强的‘拥有’关系，体现了严格的部分和整体的关系，部分和整体的生命周期一样。聚合关系在继承关系不适用的情况下可以做替代。其实只要真正深入的理解了设计原则，很多设计模式其实就是原则的应用而已，或许在不知不觉中就在使用设计模式了。
+
+设想如果要绘制矩形、圆形、椭圆、正方形，我们至少需要4个形状类，但是如果绘制的图形需要具有不同的颜色，如红色、绿色、蓝色等，此时至少有如下两种设计方案：
+
+第一种设计方案是为每一种形状都提供一套各种颜色的版本。
+
+
+
+第二种设计方案是根据实际需要对形状和颜色进行组合。
+
+
+
+明显方案二采用聚合的方式组织类结构能够使类的数量减少很多。当然这只是一个简单的例子。
+
+UML类图
+
+
+源码实现
+color.h
+
+#ifndef COLOR_H
+#define COLOR_H
+#include <QString>
+
+class Color
+{
+public:
+    Color(){}
+    virtual ~Color(){}
+    virtual QString Name() = 0;
+protected:
+    QString m_Name;
+};
+
+class Black : public Color
+{
+public:
+    Black();
+    virtual ~Black();
+    virtual QString Name();
+};
+
+class Red : public Color
+{
+public:
+    Red();
+    virtual ~Red();
+    virtual QString Name();
+};
+#endif // COLOR_H
+
+color.cpp
+
+#include <QDebug>
+#include "color.h"
+Black::Black()
+{
+    m_Name = "Black";
+}
+
+Black::~Black()
+{
+
+}
+
+QString Black::Name()
+{
+    return m_Name;
+}
+
+Red::Red()
+{
+    m_Name = "Red";
+}
+
+Red::~Red()
+{
+
+}
+
+QString Red::Name()
+{
+    return m_Name;
+}
+
+shape.h
+
+#ifndef SHAPE_H
+#define SHAPE_H
+#include "color.h"
+
+//抽象类
+class Shape
+{
+public:
+    Shape(){}
+    virtual ~Shape(){}
+    void SetColor(Color* color);
+    virtual void MyShape() = 0;
+protected:
+    Color* m_Color;
+};
+
+class Rectangle : public Shape
+{
+public:
+    Rectangle();
+    ~Rectangle();
+
+    virtual void MyShape();
+};
+
+class Circle : public Shape
+{
+public:
+    Circle();
+    ~Circle();
+
+    virtual void MyShape();
+};
+#endif // SHAPE_H
+
+shape.cpp
+
+#include <QDebug>
+#include "shape.h"
+
+void Shape::SetColor(Color *color)
+{
+    m_Color = color;
+}
+
+
+Rectangle::Rectangle()
+{
+
+}
+
+Rectangle::~Rectangle()
+{
+
+}
+
+void Rectangle::MyShape()
+{
+    qDebug() << "Rectangle" + QString(" And ") + m_Color->Name();
+}
+
+Circle::Circle()
+{
+
+}
+
+Circle::~Circle()
+{
+
+}
+
+void Circle::MyShape()
+{
+    qDebug() << "Circle" + QString(" And ") + m_Color->Name();
+}
+main.cpp
+
+#include <QCoreApplication>
+#include "shape.h"
+#include "color.h"
+
+#define DELETEOBJECT(x) if(x != nullptr){delete x; x = nullptr;}
+
+int main(int argc, char *argv[])
+{
+    QCoreApplication a(argc, argv);
+
+    Color* red = new Red();
+    Color* black = new Black();
+
+    //组合一个黑色的圆和一个红色的方形
+    Shape* rectangle = new Rectangle();
+    rectangle->SetColor(red);
+    Shape* circle = new Circle();
+    circle->SetColor(black);
+
+    rectangle->MyShape();
+    circle->MyShape();
+
+    DELETEOBJECT(red);
+    DELETEOBJECT(black);
+    DELETEOBJECT(rectangle);
+    DELETEOBJECT(circle);
+    return a.exec();
+}
+
+运行结果
+
+"Rectangle And Red"
+
+"Circle And Black"
+
+优点
+分离抽象接口及其实现部分。
+
+桥接模式有时类似于多继承方案，但是多继承方案违背了类的单一职责原则（即一个类只有一个变化的原因），复用性比较差，而且多继承结构中类的个数非常庞大，桥接模式是比多继承方案更好的解决方法。
+
+桥接模式提高了系统的可扩充性，在两个变化维度中任意扩展一个维度，都不需要修改原有系统。
+
+实现细节对客户透明，可以对用户隐藏实现细节。
+
+缺点
+桥接模式的引入会增加系统的理解与设计难度，由于聚合关联关系建立在抽象层，要求开发者针对抽象进行设计与编程。
+
+桥接模式要求正确识别出系统中两个独立变化的维度，因此其使用范围具有一定的局限性。
+
+总结
+桥接模式将抽象部分与它的实现部分分离，使它们都可以独立地变化。它是一种对象结构型模式，又称为柄体(Handle and Body)模式或接口(Interface)模式。
+桥接模式包含如下四个角色：抽象类中定义了一个实现类接口类型的对象并可以维护该对象；扩充抽象类扩充由抽象类定义的接口，它实现了在抽象类中定义的抽象业务方法，在扩充抽象类中可以调用在实现类接口中定义的业务方法；实现类接口定义了实现类的接口，实现类接口仅提供基本操作，而抽象类定义的接口可能会做更多更复杂的操作；具体实现类实现了实现类接口并且具体实现它，在不同的具体实现类中提供基本操作的不同实现，在程序运行时，具体实现类对象将替换其父类对象，提供给客户端具体的业务操作方法。
+在桥接模式中，抽象化(Abstraction)与实现化(Implementation)脱耦，它们可以沿着各自的维度独立变化。
+桥接模式的主要优点是分离抽象接口及其实现部分，是比多继承方案更好的解决方法，桥接模式还提高了系统的可扩充性，在两个变化维度中任意扩展一个维度，都不需要修改原有系统，实现细节对客户透明，可以对用户隐藏实现细节；其主要缺点是增加系统的理解与设计难度，且识别出系统中两个独立变化的维度并不是一件容易的事情。
+桥接模式适用情况包括：需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系；抽象化角色和实现化角色可以以继承的方式独立扩展而互不影响；一个类存在两个独立变化的维度，且这两个维度都需要进行扩展；设计要求需要独立管理抽象化角色和具体化角色；不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统。
+分类: 大话设计模式

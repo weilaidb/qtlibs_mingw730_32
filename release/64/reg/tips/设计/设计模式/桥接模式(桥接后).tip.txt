@@ -5,7 +5,6 @@
 
 大师 这个讲的挺好 抽象部分和实现部分终于理解了
 
-
 #include "qiaojie.h"
 
 qiaojie::qiaojie()
@@ -13,26 +12,32 @@ qiaojie::qiaojie()
 
 }
 
-
-
-
-class Messager{
+class MessagerImp{
 public:
-    virtual void Login(string username, string password) = 0;
-    virtual void SendMessage(string message) = 0;
-    virtual void SendPicture(Image image) = 0;
-
     virtual void PlaySound() = 0;
     virtual void DrawShape() = 0;
     virtual void WriteText() = 0;
     virtual void Connect()=0;
 
+    virtual ~MessagerImp(){}
+};
+
+
+class Messager{
+protected:
+    MessagerImp *messagerImp;//...
+public:
+    virtual void Login(string username, string password) = 0;
+    virtual void SendMessage(string message) = 0;
+    virtual void SendPicture(Image image) = 0;
+
     virtual ~Messager(){}
 };
 
 
+
 //平台实现 n
-class PCMessageBase : public Messager{
+class PCMessageImp : public MessagerImp{
 public:
     virtual void PlaySound()
     {
@@ -52,7 +57,7 @@ public:
     }
 };
 
-class MobileMessageBase : public Messager{
+class MobileMessageImp : public MessagerImp{
 public:
     virtual void PlaySound()
     {
@@ -74,96 +79,54 @@ public:
 
 
 //业务抽象 m
-//类的数目: 1 + n + n * m
+//类的数目: 1 + n + m
 
-class PCMessageLite: public PCMessageBase
+class MessageLite:public Messager
 {
     virtual void Login(string username, string password)
     {
-        PCMessageBase::PlaySound();
+        messagerImp->PlaySound();
         //*****
-        PCMessageBase::Connect();
+        messagerImp->Connect();
     }
     virtual void SendMessage(string message)
     {
-        PCMessageBase::WriteText();
+        messagerImp->WriteText();
     }
     virtual void SendPicture(Image image)
     {
-        PCMessageBase::DrawShape();
+        messagerImp->DrawShape();
         //*****
     }
 
 };
 
-class MobileMessageLite: public MobileMessageBase
+class MessagePerfect:public Messager
 {
     virtual void Login(string username, string password)
     {
-        MobileMessageBase::PlaySound();
+        messagerImp->PlaySound();
         //*****
-        MobileMessageBase::Connect();
+        messagerImp->Connect();
     }
     virtual void SendMessage(string message)
     {
-        MobileMessageBase::WriteText();
+        messagerImp->WriteText();
     }
     virtual void SendPicture(Image image)
     {
-        MobileMessageBase::DrawShape();
-        //*****
-    }
-
-};
-
-
-class PCMessagePerfect: public PCMessageBase
-{
-    virtual void Login(string username, string password)
-    {
-        PCMessageBase::PlaySound();
-        //*****
-        PCMessageBase::Connect();
-    }
-    virtual void SendMessage(string message)
-    {
-        PCMessageBase::WriteText();
-    }
-    virtual void SendPicture(Image image)
-    {
-        PCMessageBase::DrawShape();
-        //*****
-    }
-
-};
-
-class MobileMessagePerfect: public MobileMessageBase
-{
-    virtual void Login(string username, string password)
-    {
-        MobileMessageBase::PlaySound();
-        //*****
-        MobileMessageBase::Connect();
-    }
-    virtual void SendMessage(string message)
-    {
-        MobileMessageBase::WriteText();
-    }
-    virtual void SendPicture(Image image)
-    {
-        MobileMessageBase::DrawShape();
+        messagerImp->DrawShape();
         //*****
     }
 
 };
 
 
-//业务实现
 void Process()
 {
-    Messager *m =
-            new MobileMessagePerfect();
+    //运行时装配
+    MessagerImp *mImp = new PCMessageImp();
+    Messager *m = new Messager(mImp);
 }
-
 
 
