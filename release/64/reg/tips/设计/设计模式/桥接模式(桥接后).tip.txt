@@ -1,0 +1,169 @@
+桥接模式
+
+
+侯捷老师主讲C++设计模式教程：第7讲，桥模式 https://v.ixigua.com/MB96Jh6/
+
+大师 这个讲的挺好 抽象部分和实现部分终于理解了
+
+
+#include "qiaojie.h"
+
+qiaojie::qiaojie()
+{
+
+}
+
+
+
+
+class Messager{
+public:
+    virtual void Login(string username, string password) = 0;
+    virtual void SendMessage(string message) = 0;
+    virtual void SendPicture(Image image) = 0;
+
+    virtual void PlaySound() = 0;
+    virtual void DrawShape() = 0;
+    virtual void WriteText() = 0;
+    virtual void Connect()=0;
+
+    virtual ~Messager(){}
+};
+
+
+//平台实现 n
+class PCMessageBase : public Messager{
+public:
+    virtual void PlaySound()
+    {
+        //**************
+    }
+    virtual void DrawShape()
+    {
+        //**************
+    }
+    virtual void WriteText()
+    {
+        //**************
+    }
+    virtual void Connect()
+    {
+        //**************
+    }
+};
+
+class MobileMessageBase : public Messager{
+public:
+    virtual void PlaySound()
+    {
+        //**************
+    }
+    virtual void DrawShape()
+    {
+        //**************
+    }
+    virtual void WriteText()
+    {
+        //**************
+    }
+    virtual void Connect()
+    {
+        //**************
+    }
+};
+
+
+//业务抽象 m
+//类的数目: 1 + n + n * m
+
+class PCMessageLite: public PCMessageBase
+{
+    virtual void Login(string username, string password)
+    {
+        PCMessageBase::PlaySound();
+        //*****
+        PCMessageBase::Connect();
+    }
+    virtual void SendMessage(string message)
+    {
+        PCMessageBase::WriteText();
+    }
+    virtual void SendPicture(Image image)
+    {
+        PCMessageBase::DrawShape();
+        //*****
+    }
+
+};
+
+class MobileMessageLite: public MobileMessageBase
+{
+    virtual void Login(string username, string password)
+    {
+        MobileMessageBase::PlaySound();
+        //*****
+        MobileMessageBase::Connect();
+    }
+    virtual void SendMessage(string message)
+    {
+        MobileMessageBase::WriteText();
+    }
+    virtual void SendPicture(Image image)
+    {
+        MobileMessageBase::DrawShape();
+        //*****
+    }
+
+};
+
+
+class PCMessagePerfect: public PCMessageBase
+{
+    virtual void Login(string username, string password)
+    {
+        PCMessageBase::PlaySound();
+        //*****
+        PCMessageBase::Connect();
+    }
+    virtual void SendMessage(string message)
+    {
+        PCMessageBase::WriteText();
+    }
+    virtual void SendPicture(Image image)
+    {
+        PCMessageBase::DrawShape();
+        //*****
+    }
+
+};
+
+class MobileMessagePerfect: public MobileMessageBase
+{
+    virtual void Login(string username, string password)
+    {
+        MobileMessageBase::PlaySound();
+        //*****
+        MobileMessageBase::Connect();
+    }
+    virtual void SendMessage(string message)
+    {
+        MobileMessageBase::WriteText();
+    }
+    virtual void SendPicture(Image image)
+    {
+        MobileMessageBase::DrawShape();
+        //*****
+    }
+
+};
+
+
+//业务实现
+void Process()
+{
+    Messager *m =
+            new MobileMessagePerfect();
+}
+
+
+
