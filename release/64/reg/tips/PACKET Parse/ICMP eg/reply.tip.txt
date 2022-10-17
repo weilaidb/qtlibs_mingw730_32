@@ -1,0 +1,41 @@
+Frame 57: 74 bytes on wire (592 bits), 74 bytes captured (592 bits) on interface 0
+Ethernet II, Src: bogon (98:cf:53:55:e8:45), Dst: bogon (84:a9:38:5b:fd:53)
+    Destination: bogon (84:a9:38:5b:fd:53)
+        Address: bogon (84:a9:38:5b:fd:53)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Source: bogon (98:cf:53:55:e8:45)
+        Address: bogon (98:cf:53:55:e8:45)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: bogon (192.168.0.102), Dst: bogon (192.168.0.100)
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+    Total Length: 60
+    Identification: 0x7b31 (31537)
+    Flags: 0x00
+    Fragment offset: 0
+    Time to live: 64
+    Protocol: ICMP (1)
+    Header checksum: 0x7d75 [validation disabled]
+    [Header checksum status: Unverified]
+    Source: bogon (192.168.0.102)
+    Destination: bogon (192.168.0.100)
+    [Source GeoIP: Unknown]
+    [Destination GeoIP: Unknown]
+Internet Control Message Protocol
+    Type: 0 (Echo (ping) reply)
+    Code: 0
+    Checksum: 0x43f4 [correct]
+    [Checksum Status: Good]
+    Identifier (BE): 1 (0x0001)
+    Identifier (LE): 256 (0x0100)
+    Sequence number (BE): 4455 (0x1167)
+    Sequence number (LE): 26385 (0x6711)
+    [Request frame: 56]
+    [Response time: 124.650 ms]
+    Data (32 bytes)
+        Data: 6162636465666768696a6b6c6d6e6f707172737475767761...
+        [Length: 32]

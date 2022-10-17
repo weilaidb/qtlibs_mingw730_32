@@ -1855,6 +1855,9 @@ PACKET Parse/General Rules
 PACKET Parse/HTTP
 PACKET Parse/ICMP
 PACKET Parse/ICMP destination unreachable
+PACKET Parse/ICMP eg/Destination unreachable
+PACKET Parse/ICMP eg/reply
+PACKET Parse/ICMP eg/request
 PACKET Parse/IGMP
 PACKET Parse/IP
 PACKET Parse/LACP
@@ -2725,6 +2728,7 @@ path路径/常用文件夹
 设计/设计模式/桥接模式(示例)
 设计/设计模式/空指针模式
 设计/设计模式/适配器
+设计/设计模式/适配器(改造后)
 设计/设计模式/里氏替换原则
 设计/试题/出题
 设计/试题/出题2
