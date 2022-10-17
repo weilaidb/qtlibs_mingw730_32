@@ -1,2 +1,9 @@
 javascript:
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt
+
+
+设计模式(桥接模式)
+https://www.ixigua.com/6804249883344634380?id=6803643064515559944&logTag=b74333a60fbaac069c04
+
+设计模式(适配器)
+https://www.ixigua.com/6804249883344634380?id=6803643938335883779&logTag=a5a9fd893e92d45a6e9c

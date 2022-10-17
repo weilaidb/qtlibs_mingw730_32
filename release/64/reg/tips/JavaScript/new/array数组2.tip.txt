@@ -1,0 +1,1 @@
+var myArray = new Array(211，"string data", -12.343);

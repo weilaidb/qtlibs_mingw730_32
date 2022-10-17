@@ -1405,6 +1405,7 @@ JavaScript/new/NaN
 JavaScript/new/Number
 JavaScript/new/animateManage
 JavaScript/new/array数组
+JavaScript/new/array数组2
 JavaScript/new/array数组（二维）
 JavaScript/new/eg
 JavaScript/new/html input text内容
