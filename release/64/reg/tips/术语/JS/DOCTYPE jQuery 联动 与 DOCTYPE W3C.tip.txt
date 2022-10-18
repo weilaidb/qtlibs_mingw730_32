@@ -1,0 +1,41 @@
+jQuery 联动 与 DOCTYPE W3C<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 结合没ajax效果问题
+
+we will rock you
+
+于 2011-07-27 18:35:47 发布
+
+2124
+ 收藏
+分类专栏： JS+jQuery+Json 文章标签： xhtml html jquery ajax c
+版权
+
+JS+jQuery+Json
+专栏收录该内容
+17 篇文章0 订阅
+订阅专栏
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+
+ 
+
+对JQyery,dwr.xml 配置的(调用service.java 业务层中的) 联动效果没作用，
+
+ 
+
+最后修改为：
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html >
+
+即可。
+
+ 
+
+【注：】若页面在Frameset框架中，，框架的从哦doctype 也必须是只有
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+如果有其他 "http://www.w3.org/TR/html4/loose.dtd" 之类的必须去掉。否则jQuery 还是没有联动效果。
+————————————————
+版权声明：本文为CSDN博主「we will rock you」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/rockstar541/article/details/6638852

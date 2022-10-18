@@ -2583,6 +2583,8 @@ path路径/常用文件夹
 术语/C/什么是 CLR ？
 术语/C/宏和内联函数的区别
 术语/C/宏和内联函数的区别2
+术语/JS/DOCTYPE
+术语/JS/DOCTYPE jQuery 联动 与 DOCTYPE W3C
 术语/JavaScript/new
 术语/Linux/FIB Forward Information Base
 术语/Linux/FIB Forward Information Base 2
