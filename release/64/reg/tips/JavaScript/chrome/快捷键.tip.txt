@@ -1,0 +1,2 @@
+按下
+Ctrl+Shift+J 打开JavaScript控制台

@@ -1319,6 +1319,7 @@ JavaScript/JQuery/语法/用法
 JavaScript/JQuery/选择器
 JavaScript/JavaScript参考手册
 JavaScript/JavaScript语言调试技巧
+JavaScript/chrome/快捷键
 JavaScript/func/Date
 JavaScript/func/Date 日期获取方法
 JavaScript/func/Date 耗时
