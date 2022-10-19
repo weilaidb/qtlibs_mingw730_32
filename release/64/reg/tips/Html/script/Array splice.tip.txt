@@ -1,0 +1,19 @@
+<script>
+    var array = new Array();
+    var myArray = [];
+    myArray[0] = 'A';
+    myArray[2] = 'BC';
+    myArray[1] = 'DEF';
+    myArray[2] = 'DEF';
+
+    var myOtherArray = ['Tuesday','Wednesday','Monday',];
+    var newArray = myOtherArray;
+    myOtherArray.splice(2,1,"holiday");//'Tuesday','Wednesday','holiday'
+    newArray.splice(1,1,"holiday");//'Tuesday','holiday','holiday'
+    //第1个参数指定在数组的什么位置进行操作
+    //第2个参数说明要删除多少个元素(设置0表示不删除元素)
+    //第3个参数是可选的，是要插入的新元素列表
+    //注:splice会改变原数组
+    alert(myOtherArray);
+    alert(newArray);
+</script>

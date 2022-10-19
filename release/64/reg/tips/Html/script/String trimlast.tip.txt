@@ -1,0 +1,13 @@
+<script>
+    function trimlast(input, length) {
+        if(input.length > length)
+        {
+            return input.substr(0, length) + "...";
+        }
+        return input;
+    }
+
+    var inStr = prompt("Enter a string");
+    alert(trimlast(inStr,20));
+
+</script>

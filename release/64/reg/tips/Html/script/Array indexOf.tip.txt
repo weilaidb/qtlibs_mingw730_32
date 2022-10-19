@@ -1,0 +1,12 @@
+<script>
+    var array = new Array();
+    var myArray = [];
+    myArray[0] = 'A';
+    myArray[2] = 'BC';
+    myArray[1] = 'DEF';
+
+    var myOtherArray = ['Monday','Tuesday','Wednesday'];
+    alert(myArray.indexOf("E"));
+    alert(myArray.indexOf("DEF"));
+    alert(myOtherArray.indexOf("Wednesday"));
+</script>

@@ -1,0 +1,5 @@
+<script>
+    var string1 = "The quick brown fox";
+    var string2 = string1.replace("brown", "orange");
+    alert(string2);
+</script>

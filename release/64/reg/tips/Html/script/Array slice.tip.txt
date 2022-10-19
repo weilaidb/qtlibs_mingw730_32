@@ -1,0 +1,14 @@
+<script>
+    var array = new Array();
+    var myArray = [];
+    myArray[0] = 'A';
+    myArray[2] = 'BC';
+    myArray[1] = 'DEF';
+    myArray[2] = 'DEF';
+
+    var myOtherArray = ['Monday','Tuesday','Wednesday'];
+    var myShortArray = myOtherArray.slice(1,2);
+    var myShortArray2 = myOtherArray.slice(0,-1);//['Monday','Tuesday'];
+    alert(myShortArray);
+    alert(myShortArray2);
+</script>

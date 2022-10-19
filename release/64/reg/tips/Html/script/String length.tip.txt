@@ -1,0 +1,4 @@
+<script>
+    var myString = "This is a string";
+    alert(myString.length);
+</script>

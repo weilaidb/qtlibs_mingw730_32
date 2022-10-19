@@ -1,0 +1,11 @@
+<script>
+    var array = new Array();
+    var myArray = [];
+    myArray[0] = 'A';
+    myArray[2] = 'BC';
+    myArray[1] = 'DEF';
+
+    var myOtherArray = ['Monday','Tuesday','Wednesday'];
+    var myWeek = myArray.concat(myOtherArray);
+    alert(myWeek);
+</script>

@@ -1,0 +1,13 @@
+<script>
+    var array = new Array();
+    var myArray = [];
+    myArray[0] = 'A';
+    myArray[2] = 'BC';
+    myArray[1] = 'DEF';
+
+    var myOtherArray = ['Monday','Tuesday','Wednesday'];
+    var longDay = myArray.toString();//以逗号分隔
+    var longDay2 = myOtherArray.toString();//以逗号分隔
+    alert(longDay);
+    alert(longDay2);
+</script>

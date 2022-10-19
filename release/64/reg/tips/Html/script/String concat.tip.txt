@@ -1,0 +1,6 @@
+<script>
+    var string1 = "The quick brown fox,";
+    var string2 = "jumps over the lazy dog";
+    var longString = string1.concat(string2);
+    alert(longString);
+</script>

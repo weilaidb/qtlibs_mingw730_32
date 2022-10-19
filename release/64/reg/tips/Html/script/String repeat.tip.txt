@@ -1,0 +1,5 @@
+<script>
+    var inStr = "lots and ";
+    var outStr = inStr.repeat(3);
+    alert(outStr);
+</script>

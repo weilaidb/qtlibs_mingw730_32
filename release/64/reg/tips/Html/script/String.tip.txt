@@ -1,0 +1,5 @@
+<script>
+    var myString = "This is a string";
+    myString = 'This is a "special" string';
+    myString = 'This is Phil\'s string';
+</script>

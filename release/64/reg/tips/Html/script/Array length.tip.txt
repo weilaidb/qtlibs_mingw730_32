@@ -1,0 +1,16 @@
+<script>
+    var array = new Array();
+    var myArray = [];
+    var myArray1 = ['Monday','Tuesday','Wednesday'];
+    alert(array.length);
+    alert(myArray.length);
+    alert(myArray1.length);
+
+    var testArray = [];
+    testArray[0] = 'Monday';
+    testArray[2] = 'Wednesday';
+    testArray[1] = 'Tuesday';
+    alert(testArray.length);//3
+    testArray[50] = 'Tuesday';
+    alert(testArray.length);//51
+</script>

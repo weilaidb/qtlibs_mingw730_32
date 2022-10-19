@@ -1,0 +1,11 @@
+<script>
+    var string1 = "The quick brown fox";
+    var sub1 = string1.toLowerCase();
+    var sub2 = string1.toUpperCase();
+    var sub3 = string1.toLocaleLowerCase();
+    var sub4 = string1.toLocaleUpperCase();
+    alert(sub1);
+    alert(sub2);
+    alert(sub3);
+    alert(sub4);
+</script>

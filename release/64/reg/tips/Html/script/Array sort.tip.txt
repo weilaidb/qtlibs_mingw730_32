@@ -1,0 +1,12 @@
+<script>
+    var array = new Array();
+    var myArray = [];
+    myArray[0] = 'A';
+    myArray[2] = 'BC';
+    myArray[1] = 'DEF';
+    myArray[2] = 'DEF';
+
+    var myOtherArray = ['Tuesday','Wednesday','Monday',];
+    alert(myArray.sort());
+    alert(myOtherArray.sort());
+</script>

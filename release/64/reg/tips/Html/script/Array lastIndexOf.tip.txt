@@ -1,0 +1,13 @@
+<script>
+    var array = new Array();
+    var myArray = [];
+    myArray[0] = 'A';
+    myArray[2] = 'BC';
+    myArray[1] = 'DEF';
+    myArray[2] = 'DEF';
+
+    var myOtherArray = ['Monday','Tuesday','Wednesday'];
+    alert(myArray.lastIndexOf("E"));
+    alert(myArray.lastIndexOf("DEF"));
+    alert(myOtherArray.lastIndexOf("Wednesday"));
+</script>

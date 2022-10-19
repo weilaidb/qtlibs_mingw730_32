@@ -1,0 +1,7 @@
+<script>
+    var string1 = "The quick brown fox";
+    var sub1 = string1.substr(4,11);
+    var sub2 = string1.substr(4);
+    alert(sub1);
+    alert(sub2);
+</script>

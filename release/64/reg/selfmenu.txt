@@ -847,12 +847,34 @@ Html/eg
 Html/know/frame,iframe,frameset之间的关系与区别
 Html/know/frameset过时
 Html/new/table/eg
+Html/script/Array
+Html/script/Array concat
+Html/script/Array indexOf
+Html/script/Array join
+Html/script/Array lastIndexOf
+Html/script/Array length
+Html/script/Array slice
+Html/script/Array sort
+Html/script/Array splice
+Html/script/Array toString
 Html/script/Date
 Html/script/Date Get
 Html/script/Date Set
 Html/script/Math
 Html/script/Number
 Html/script/Number parseFloat parseInt
+Html/script/String
+Html/script/String concat
+Html/script/String indexOf
+Html/script/String lastIndexOf
+Html/script/String length
+Html/script/String module
+Html/script/String repeat
+Html/script/String replace
+Html/script/String split
+Html/script/String substr
+Html/script/String toLowerCase toUpperCase
+Html/script/String trimlast
 Html/script/appendEnter
 Html/script/eg
 Html/script/toExponential指数法

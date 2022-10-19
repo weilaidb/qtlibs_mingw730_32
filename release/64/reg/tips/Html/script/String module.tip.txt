@@ -1,0 +1,19 @@
+<script>
+    var name = "John";
+    var course = "Mathematics III";
+    var myString = `Hello ${name}, welcome to ${course}.`;
+    alert(myString);
+
+    var total = 20;
+    var tax = 4;
+    msg = `Total is ${total} dollars (or ${total + tax} dollars,including tax)`;
+    alert(msg);
+
+
+    var condition = "pressure";
+    var myString1 = `WARNING
+
+    The maximum safe ${condition} has
+    been exceeded! `;
+    alert(myString1);
+</script>

@@ -1,0 +1,6 @@
+<script>
+    var myString = "This is a string";
+    alert(myString.indexOf("This"));
+    alert(myString.indexOf("a"));
+    alert(myString.indexOf("abc"));
+</script>

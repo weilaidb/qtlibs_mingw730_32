@@ -1,0 +1,5 @@
+<script>
+    var string1 = "The quick brown fox";
+    var newArray = string1.split(" ");
+    alert(newArray);
+</script>
