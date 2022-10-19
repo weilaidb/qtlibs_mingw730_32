@@ -1,0 +1,3 @@
+<style>
+    td{border:1px gray solid;padding:3px 5px;}
+</style>

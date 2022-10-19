@@ -1,0 +1,20 @@
+<script>
+    function addEnter(line) {
+        return line + "\n";
+    }
+
+    function appendEnter(result, tips, line)
+    {
+        return result + tips + ":" + line + "\n";
+    }
+    var result="";
+    var result = appendEnter(result,"location.href",location.href);
+    var result = appendEnter(result,"location.protocol",location.protocol);
+    var result = appendEnter(result,"location.host",location.host);
+    var result = appendEnter(result,"location.hostname",location.hostname);
+    var result = appendEnter(result,"location.port",location.port);
+    var result = appendEnter(result,"location.pathname",location.pathname);
+    var result = appendEnter(result,"location.search",location.search);
+    var result = appendEnter(result,"location.hash",location.hash);
+    alert(result)
+</script>

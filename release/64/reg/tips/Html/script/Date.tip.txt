@@ -1,0 +1,11 @@
+<script>
+    var mydate = new Date();
+    var year = mydate.getFullYear();
+    var month = mydate.getMonth();
+    var date = mydate.getDate();
+    var day = mydate.getDay();
+    var hours = mydate.getHours();
+    var minutes = mydate.getMinutes();
+    var seonds = mydate.getSeconds();
+    
+</script>
