@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Set Date </title>
-</head>
-<body>
-<h1>
-    Hello WORLD!!!
-</h1>
-<!--<input type="button" value="Say Hello World" onclick="sayHello()"/>-->
-</body>
 <script>
     function appendEnter(result, tips, line)
     {
@@ -34,5 +22,10 @@
     result = appendEnter(result, "seonds", seonds);
     result = appendEnter(result, "weeks", day);
     alert(result);
+
+
+    document.write("Object created on day number " + mydate.getDate() + "<br/>");
+    mydate.setDate(15);//改成当月15日
+    document.write("After amending date to 15th, the day number is " + mydate.getDate() + "<br/>");
+
 </script>
-</html>

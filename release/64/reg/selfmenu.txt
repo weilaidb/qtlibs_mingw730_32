@@ -847,6 +847,8 @@ Html/know/frame,iframe,frameset之间的关系与区别
 Html/know/frameset过时
 Html/new/table/eg
 Html/script/Date
+Html/script/Date Set
+Html/script/Math
 Html/script/appendEnter
 Html/script/eg
 Html/style/eg

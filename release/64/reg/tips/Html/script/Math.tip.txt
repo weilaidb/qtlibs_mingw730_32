@@ -1,0 +1,10 @@
+<script>
+    var myNum1 = 12.55;
+    var myNum2 = 12.32;
+    alert(Math.floor(myNum1));//向下取整的数
+    alert(Math.ceil(myNum1));//向上取整的数
+    alert(Math.round(myNum1));//四舍五入的数
+    alert(Math.round(myNum2));
+
+
+</script>
