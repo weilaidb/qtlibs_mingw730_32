@@ -1,0 +1,11 @@
+<script>
+    var array = new Array();
+    var myArray = [];
+    var myArray1 = ['Monday','Tuesday','Wednesday'];
+
+
+    var testArray = [];
+    testArray[0] = 'Monday';
+    testArray[2] = 'Wednesday';
+    testArray[1] = 'Tuesday';
+</script>
