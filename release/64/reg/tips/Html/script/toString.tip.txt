@@ -1,0 +1,10 @@
+<script>
+    var num = 666;
+    num.toString();
+    (666).toString();
+
+    var x = 13;
+    alert(x.toString());
+    alert(x.toString(2));
+    alert(x.toString(16));
+</script>

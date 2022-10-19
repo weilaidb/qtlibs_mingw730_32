@@ -1,0 +1,17 @@
+<script>
+
+    alert(Number.parseFloat("21.4"));//返回21.4
+    alert(Number.parseFloat("76 trombones"));//返回76
+    alert(Number.parseFloat("The magnificent7"));//返回NaN
+
+    alert(Number.parseInt("18.95",10));//返回18
+    alert(Number.parseInt("12px",10));//返回12
+    alert(Number.parseInt("1110",2));//返回14
+    alert(Number.parseInt("Hello"));//返回NaN
+
+    alert(Number.isFinite(21));//返回true
+    alert(Number.isFinite("This is not a numeric value"));//返回false
+    alert(Number.isFinite(Math.sqrt(-1)));//返回false
+
+
+</script>

@@ -1,0 +1,9 @@
+<script>
+    var num = 666;
+    num.toFixed();
+    (666).toFixed(3);
+
+    var x = 13;
+    alert(x.toFixed());
+    alert(x.toFixed(3));
+</script>

@@ -1,0 +1,9 @@
+<script>
+    var num = 666;
+    num.toExponential();
+    (666).toExponential(3);
+
+    var x = 13;
+    alert(x.toExponential(4));
+    alert(x.toExponential(6));
+</script>

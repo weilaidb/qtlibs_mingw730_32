@@ -1,0 +1,20 @@
+<script>
+    var num = 666;
+    alert(Number.isFinite(num));
+
+
+    alert(Number.isNaN(3));//如果为非法值或者不是值，则返回TRUE
+    alert(Number.isNaN(3.14159));
+    alert(Number.isNaN(0/0));
+    alert(Number.isNaN(3 * 'blah'));
+
+
+    alert(Number.isInteger(666));
+    alert(Number.isInteger(-666));
+    alert(Number.isInteger(-12 *7 *666));
+    alert(Number.isInteger(0));
+    alert(Number.isInteger(3/4));
+    alert(Number.isInteger('666'));
+    alert(Number.isInteger(Infinity));
+
+</script>
