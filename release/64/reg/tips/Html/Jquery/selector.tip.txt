@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择器</title>
+    <script src="lib/jquery-3.6.1.min.js"></script>
+    <script>
+        //单击按钮弹窗
+        $(function(){
+            alert("hello selector");
+            alert($('div').length);
+            alert($('#div1').length);
+            alert($('#box').length);
+            alert($('#btn1').length);
+            $("#btn1").css('color','red').css('background','blue');
+            $("#div1").css('color','red');
+            $("#div3>p").css('color','yellow');//子选择器
+        });
+    </script>
+
+</head>
+<body>
+<input type="button" value="测试" id="btn1">
+
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3">
+    <h1>Hello</h1>
+    <p>
+        nihaoma??
+    </p>
+
+</div>
+
+</body>
+</html>

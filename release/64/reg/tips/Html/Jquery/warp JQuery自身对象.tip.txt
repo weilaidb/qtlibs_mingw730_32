@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>包裹对象 JQuery</title>
+    <script src="lib/jquery-3.6.1.min.js"></script>
+    <script>
+        //单击按钮弹窗
+        $(function(){
+            $('input').click(function(){
+                alert('第一个JQuery程序!');
+                alert($);
+                alert($());
+                alert($('#box'));
+                alert($('#div1').get(0));//返回原生对象
+                alert(document.getElementById('btn1'));
+                alert(document.getElementById('div1'));
+            })
+        });
+
+    </script>
+
+</head>
+<body>
+<input type="button" value="测试" id="btn1">
+<div id="div1">
+
+</div>
+</body>
+</html>
