@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <script src="lib/jquery-3.6.1.min.js"></script>
+    <script>
+        //单击按钮弹窗
+        $(function(){
+            $('input').click(function(){
+                alert('第一个JQuery程序!');
+            })
+        });
+
+    </script>
+
+</head>
+<body>
+<input type="button" value="测试">
+</body>
+</html>
