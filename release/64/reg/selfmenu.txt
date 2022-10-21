@@ -855,10 +855,15 @@ Html/new/table/eg
 Html/script/Array
 Html/script/Array concat
 Html/script/Array eg1
+Html/script/Array for of
+Html/script/Array forEach
 Html/script/Array indexOf
 Html/script/Array join
 Html/script/Array lastIndexOf
 Html/script/Array length
+Html/script/Array map
+Html/script/Array restparameters(三点表示法)
+Html/script/Array restparameters(三点表示法) 2
 Html/script/Array slice
 Html/script/Array sort
 Html/script/Array splice

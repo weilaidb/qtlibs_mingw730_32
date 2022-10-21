@@ -1,0 +1,12 @@
+<script>
+    var array = [1,2,3,4,5,6,7,8,9];
+
+    function cube(x) {
+        console.log(x*x*x);
+    }
+
+    for(var y of array){
+        cube(y);
+    }
+
+</script>
