@@ -867,10 +867,17 @@ Html/script/Array restparameters(三点表示法) 2
 Html/script/Array slice
 Html/script/Array sort
 Html/script/Array splice
+Html/script/Array sum求和
 Html/script/Array toString
 Html/script/Date
 Html/script/Date Get
 Html/script/Date Set
+Html/script/Event
+Html/script/Event addEventListener
+Html/script/Event addEventListener2
+Html/script/Event id
+Html/script/Event id2
+Html/script/Event removeEventListener
 Html/script/Math
 Html/script/Number
 Html/script/Number parseFloat parseInt

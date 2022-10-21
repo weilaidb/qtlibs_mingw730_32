@@ -1,0 +1,44 @@
+<script>
+
+    function cube(x) {
+        console.log(x*x*x);
+    }
+
+    function sum(...array) {
+        let result = 0;
+        console.log(array.length);
+        for(var i = 0; i < array.length;i++)
+        {
+            result +=array[i];
+        }
+        console.log(result);
+
+        return result;
+    }
+
+    var [a,b,...c] = [1,2,3,4,5,6,7,8,9];
+    sum(c);
+    document.writeln(sum(...c));
+
+    var array = [1,2,3,4,5,6,7,8,9];
+    sum(...array);
+    document.writeln(sum(...array));
+
+
+    function sumInt()
+    {
+        var sum = 0;
+        for(var i=0;i<sumInt.arguments.length;i++)
+        {
+            sum += sumInt.arguments[i];
+        }
+        return sum;
+    }
+
+    function test()
+    {
+        document.write(sumInt(1,2,3,4,5,6,7,8,9,10));
+    }
+
+    test();
+</script>
