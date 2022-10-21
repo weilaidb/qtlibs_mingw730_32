@@ -854,6 +854,7 @@ Html/know/frameset过时
 Html/new/table/eg
 Html/script/Array
 Html/script/Array concat
+Html/script/Array eg1
 Html/script/Array indexOf
 Html/script/Array join
 Html/script/Array lastIndexOf
