@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件Event preventDefault阻止</title>
+
+</head>
+<body>
+<a href="https://www.w3.org/" id="a1">World Wide Web Consortium(W3C)</a>
+<a href="https://cn.bing.com/?FORM=Z9FD1" id="a2">Biying</a>
+
+
+</body>
+<script>
+    var myLink = document.getElementById("a1");
+    var myLink2 = document.getElementById("a2");
+
+    function refuseAccess(e){
+        alert("Sorry, but you are not yet authorized to follow this link.");
+        e.preventDefault();
+    }
+
+    myLink.addEventListener('click', refuseAccess);
+    myLink2.addEventListener('click', refuseAccess);
+</script>
+</html>

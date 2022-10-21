@@ -1,0 +1,9 @@
+<script>
+    var count = 100;
+    var sum = 0;
+    while (count > 0){
+        sum = sum + count;
+        count--;
+    }
+    alert(sum);
+</script>

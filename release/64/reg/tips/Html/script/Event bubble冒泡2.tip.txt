@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件Event 冒泡bubble</title>
+
+</head>
+<body>
+<!--<input type="text" id="input">-->
+<form id="form1">
+    <input type="text" id="input" style="ime-mode:Disabled;">
+</form>
+
+</body>
+<script>
+    function formFunctioin(e){
+        // e.stopPropagation();//阻止进一步冒泡
+        console.log("form event happen! " + e.keyCode);
+        if(27 === e.keyCode)
+        {
+            alert("Esc");
+        }
+    }
+
+    function inputFunc(e){
+        console.log("input event happen! " + e.keyCode);
+    }
+
+    //并行执行
+    var myForm = document.getElementById("form1");
+    var myInputField = document.getElementById("input");
+    myForm.addEventListener('keydown', formFunctioin, true); //第三个参数为TRUE，从外到里
+    myInputField.addEventListener('keydown', inputFunc); //ok
+</script>
+</html>

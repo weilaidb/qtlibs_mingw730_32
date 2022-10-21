@@ -1,0 +1,16 @@
+<script>
+    switch (color) {
+        case "red":
+            message = "Stop";
+            break;
+        case "yellow":
+            message = "Pass with caution";
+            break;
+        case "green":
+            message = "Come on through";
+            break;
+        default:
+            message = "Traffic light out of service.Pass only with great care.";
+            break;
+    }
+</script>

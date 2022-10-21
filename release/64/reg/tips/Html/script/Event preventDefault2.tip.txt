@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件Event preventDefault阻止2</title>
+    <script>
+        window.onload = function() {
+            var Go = document.getElementById("a1");
+            var NoGo = document.getElementById("a2");
+
+            function permitAccess(){
+                alert("Go right ahead -- have fun!");
+            }
+
+            function refuseAccess(e){
+                alert("sorry, but you are not yet authorized to follow this link!");
+                e.preventDefault();
+            }
+
+            Go.addEventListener('click', permitAccess);
+            NoGo.addEventListener('click', refuseAccess);
+        }
+
+
+    </script>
+</head>
+<body>
+<a href="https://www.w3.org/" id="a1">World Wide Web Consortium(W3C)</a><br/>
+<a href="https://cn.bing.com/?FORM=Z9FD1" id="a2">Biying</a>
+
+
+</body>
+
+</html>

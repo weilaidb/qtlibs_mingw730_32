@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器 Timer clearInterval</title>
+    <script>
+        var counter = 0;
+        function updateClock(elementId){
+            document.getElementById(elementId).innerHTML = ++counter;
+        }
+
+        window.onload = function (){
+            var timer1 = setInterval("updateClock('id1')", 1000);
+            clearInterval(timer1);
+        }
+
+    </script>
+</head>
+<body>
+<div id="id1">I'm about to disappear!!!</div>
+</body>
+
+</html>

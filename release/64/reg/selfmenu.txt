@@ -869,6 +869,11 @@ Html/script/Array sort
 Html/script/Array splice
 Html/script/Array sum求和
 Html/script/Array toString
+Html/script/Condition
+Html/script/Condition for
+Html/script/Condition for in
+Html/script/Condition switch
+Html/script/Condition while
 Html/script/Date
 Html/script/Date Get
 Html/script/Date Set
@@ -877,8 +882,13 @@ Html/script/Event addEventListener
 Html/script/Event addEventListener input onkeydown
 Html/script/Event addEventListener keyCode
 Html/script/Event addEventListener2
+Html/script/Event bubble冒泡
+Html/script/Event bubble冒泡2
+Html/script/Event closepage关闭网页
 Html/script/Event id
 Html/script/Event id2
+Html/script/Event preventDefault
+Html/script/Event preventDefault2
 Html/script/Event removeEventListener
 Html/script/Math
 Html/script/Number
@@ -895,6 +905,11 @@ Html/script/String split
 Html/script/String substr
 Html/script/String toLowerCase toUpperCase
 Html/script/String trimlast
+Html/script/Timer
+Html/script/Timer clearInterval
+Html/script/Timer clearTimeout
+Html/script/Timer setInterval
+Html/script/Timer setTimeout
 Html/script/appendEnter
 Html/script/eg
 Html/script/know/当打开输入法时，javascript中onkeydown事件不能触发
@@ -1505,6 +1520,7 @@ JavaScript/示例/检测form不能为空
 JavaScript/示例/颜色
 JavaScript/简介
 JavaScript/自动关闭网页 close self
+JavaScript/自动关闭网页 close self closePage
 KERNEL/2.6.18/函数或结构体/alloc_skb
 KERNEL/2.6.18/函数或结构体/asm/AT&T ASM
 KERNEL/2.6.18/函数或结构体/asm/AT&T 常用指令说明

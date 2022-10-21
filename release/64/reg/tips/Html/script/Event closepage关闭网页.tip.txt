@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件Event 关闭网页</title>
+    <script>
+        function closePage(){
+            if(navigator.userAgent.indexOf("Firefox") != -1 || navigator.userAgent.indexOf("Chrome") != -1){
+                window.location.href = "about:blank";
+                window.close();
+            }else{
+                window.opener = null;
+                window.open("", "_self");
+                window.close();
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            const key = event.key; // const {key} = event; in ES6+
+            const keyCode = event.keyCode; // const {key} = event; in ES6+
+            alert(key);
+            // alert(keyCode);
+            if (key == "Escape") {
+                // window.close();
+                closePage();
+            }
+        });
+    </script>
+</head>
+<body>
+
+</body>
+
+</html>

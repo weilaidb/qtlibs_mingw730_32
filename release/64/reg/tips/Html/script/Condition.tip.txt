@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件Condition</title>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+<a href="https://www.w3.org/" onclick="alert('hello W3C!')">World Wide Web Consortium(W3C)</a>
+</body>
+<script>
+var message="";
+var bool = true;
+if(bool)
+{
+    message = "The test condition evaluated to TRUE";
+}
+alert(message);
+
+</script>
+</html>
