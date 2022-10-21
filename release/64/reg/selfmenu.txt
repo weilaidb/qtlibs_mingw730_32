@@ -874,6 +874,8 @@ Html/script/Date Get
 Html/script/Date Set
 Html/script/Event
 Html/script/Event addEventListener
+Html/script/Event addEventListener input onkeydown
+Html/script/Event addEventListener keyCode
 Html/script/Event addEventListener2
 Html/script/Event id
 Html/script/Event id2
@@ -895,6 +897,7 @@ Html/script/String toLowerCase toUpperCase
 Html/script/String trimlast
 Html/script/appendEnter
 Html/script/eg
+Html/script/know/当打开输入法时，javascript中onkeydown事件不能触发
 Html/script/toExponential指数法
 Html/script/toFixed
 Html/script/toString

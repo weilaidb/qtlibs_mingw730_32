@@ -1,0 +1,11 @@
+<!--屏蔽输入法无法输入数字-->
+<input id="id1" type="text" style="ime-mode:Disabled;">
+<script>
+    function myFunction() {
+        alert("You pressed a key inside the input field");
+    }
+    var myinput = document.getElementById("id1");
+    myinput.addEventListener('click', myFunction);
+    myinput.addEventListener('onkeypress', myFunction);
+
+</script>

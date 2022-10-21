@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件Event onkeydown</title>
+
+</head>
+<body>
+<!--<input type="text" id="input">-->
+<form>
+    <input type="text" id="input" style="ime-mode:Disabled;">
+</form>
+
+</body>
+<script>
+    function inputFunc(e){
+        // alert("onkeydown?");
+        var kc = e.keyCode;
+        console.log(kc);
+        if(kc == 13){
+            alert("Possible values for this field are:.....");
+        }
+    }
+
+    //并行执行
+    var myInputField = document.getElementById("input");
+    // myInputField.addEventListener('keypress', inputFunc); //ok
+    myInputField.addEventListener('keydown', inputFunc); //ok
+    // myInputField.addEventListener('onkeypress', inputFunc); //ng
+</script>
+</html>

@@ -1,0 +1,23 @@
+当打开输入法时，javascript中onkeydown事件不能触发
+
+黄小二哥
+
+于 2010-12-09 12:56:00 发布
+
+178
+ 收藏
+文章标签： javascript ViewUI
+版权
+当输入法打开时，判断input只能输入数字时，input 的onkeydown事件不触发。
+
+Solution:
+
+<input style="ime-mode:Disabled;" οnkeydοwn="函数" />
+
+ 
+
+style="ime-mode:Disabled;"
+这个样式可以关闭输入法。
+ 
+
+转载于:https://www.cnblogs.com/lfzwenzhu/archive/2010/12/09/1901123.html
