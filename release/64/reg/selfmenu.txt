@@ -894,6 +894,7 @@ Html/script/Math
 Html/script/Number
 Html/script/Number parseFloat parseInt
 Html/script/Object
+Html/script/Object box
 Html/script/Object car
 Html/script/Object person
 Html/script/Object prototype

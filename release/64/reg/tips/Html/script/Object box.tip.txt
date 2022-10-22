@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象Object Box</title>
+    <script>
+        function Box(width, length, height){
+            function volume(a,b,c){
+                return a*b*c;
+            }
+            this.boxVolume = volume(width, length, height);
+        }
+
+        var crate = new Box(5,4,3);
+        alert("Volume=" + crate.boxVolume);
+        alert(volume(5,4,3));//会失败
+
+    </script>
+</head>
+<body>
+</body>
+
+</html>
