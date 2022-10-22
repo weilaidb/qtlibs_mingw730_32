@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象Object</title>
+    <script>
+        function myObjectType(){
+            this.info = 'I am a shiny new object';
+            this.showInfo = function(){
+                alert(this.info);
+            }
+
+            this.setInfo = function(newInfo){
+                this.info = newInfo;
+            }
+        }
+
+        var myNewObject1 = new myObjectType();
+        var myNewObject2 = new myObjectType();
+    </script>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+<input type="button" value="Show Info 1" onclick="myNewObject1.showInfo()"/>
+<input type="button" value="Show Info 2" onclick="myNewObject2.showInfo()"/>
+<input type="button" value="Change Info Object2" onclick="myNewObject2.setInfo('New Infomation')"/>
+
+</body>
+
+</html>

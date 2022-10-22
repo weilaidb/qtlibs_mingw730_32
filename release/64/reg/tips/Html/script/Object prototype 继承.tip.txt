@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象Object prototype pet 继承</title>
+    <script>
+        function Pet(){
+            this.animal = "";
+            this.name = "";
+            this.setAnimal = function(newAnimal){
+                this.animal = newAnimal;
+            }
+            this.setName = function (newName) {
+                this.name = newName;
+            }
+        }
+
+
+        var myCat = new Pet();
+        myCat.setAnimal = "cat";
+        myCat.setName = "Sylvester";
+
+        function Dog(){
+            this.breed="";
+            this.setBreed = function(newBreed){
+                this.breed = newBreed;
+            }
+        }
+
+        Dog.prototype = new Pet();//继承属性和方法
+        var myDog = new Dog();
+        myDog.setName("Alan");
+        myDog.setBreed("Greyhound");
+        alert(myDog.name + " is a " + myDog.breed);
+
+
+    </script>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+
+</body>
+
+</html>

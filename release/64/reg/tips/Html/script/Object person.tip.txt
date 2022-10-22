@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象Object Person</title>
+    <script>
+        function Person(personName){
+            this.name = personName;
+            this.info = 'I am called ' + personName;
+            this.showInfo = function(){
+                alert(this.info);
+            }
+        }
+
+        var person1 = new Person('Adam');
+        var person2 = new Person('Eved');
+
+    </script>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+<input type="button" value="Show Person 1" onclick="person1.showInfo()"/>
+<input type="button" value="Show Person 2" onclick="person2.showInfo()"/>
+
+</body>
+
+</html>

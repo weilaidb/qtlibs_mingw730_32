@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象Object Person</title>
+    <script>
+        function Car(Color,Year,Make,Miles){
+            this.color = Color;
+            this.year = Year;
+            this.make = Make;
+            this.odometerReadings = Miles;
+            this.setOdometer = function(newMiles){
+                this.odometerReadings = newMiles;
+            }
+            this.showInfo = function(){
+                alert(this.color);
+                alert(this.year);
+                alert(this.make);
+                alert(this.odometerReadings);
+            }
+        }
+
+        var car1 = new Car('blue',"1998", "Ford", 79000);
+        var car2 = new Car('yellow',"2004", "Nissaj", 56350);
+        car1.setOdometer(122323232);
+
+    </script>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+<input type="button" value="Show Car 1" onclick="car1.showInfo()"/>
+<input type="button" value="Show Car 2" onclick="car2.showInfo()"/>
+
+</body>
+
+</html>

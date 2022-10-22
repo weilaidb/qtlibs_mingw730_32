@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象Object</title>
+    <script>
+        myNewObject = new Object();
+        myNewObject.info = "I am a shiny new object";
+
+        function myFunc()
+        {
+            alert(this.info);
+        }
+
+        myNewObject.showInfo = myFunc;
+
+    </script>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+<input type="button" value="Good showInfo Call" onclick="myNewObject.showInfo()"/>
+<input type="button" value="myFunc call" onclick="myFunc()"/>
+<input type="button" value="Bad showInfo Call" onclick="showInfo()"/>
+</body>
+
+</html>

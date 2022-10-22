@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象Object prototype</title>
+    <script>
+
+
+        function Person(personName){
+            this.name = personName;
+            this.info = 'I am called ' + personName;
+            this.showInfo = function(){
+                alert(this.info);
+            }
+        }
+
+
+
+        var person1 = new Person('Adam');
+        var person2 = new Person('Eved');
+        //给对象添加一个方法 sayHello
+        Person.prototype.sayHello = function()
+        {
+            alert(this.name + " say hello");
+        }
+    </script>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+<input type="button" value="Show Person 1" onclick="person1.showInfo()"/>
+<input type="button" value="Show Person 2" onclick="person2.showInfo()"/>
+<input type="button" value="Person 1 say Hello" onclick="person1.sayHello()"/>
+<input type="button" value="Person 2 say Hello" onclick="person2.sayHello()"/>
+
+</body>
+
+</html>

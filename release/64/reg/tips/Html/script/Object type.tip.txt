@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象Object</title>
+    <script>
+        function myObjectType(){
+            this.info = 'I am a shiny new object';
+            this.showInfo = function(){
+                alert(this.info);
+            }
+
+            this.setInfo = function(newInfo){
+                this.info = newInfo;
+            }
+        }
+
+        var myNewObject = new myObjectType();
+        var x = myNewObject.info;
+        myNewObject.showInfo();
+        myNewObject.setInfo("Today is a nice day");
+        myNewObject.showInfo();
+
+
+    </script>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+
+</body>
+
+</html>
