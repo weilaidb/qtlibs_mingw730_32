@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>正则RegExp</title>
+    <title>求和和余数</title>
 
     <script>
         // var re = new RegExp("ab+c");
@@ -84,8 +84,8 @@
             console.log(resultArray[1]);
 
             let showText = "";
-            showText = appendEnter(showText,"和    :", resultArray[0]);
-            showText = appendEnter(showText,"平均值:", resultArray[1]);
+            showText = appendEnter(showText,"和    ", resultArray[0]);
+            showText = appendEnter(showText,"平均值", resultArray[1]);
             console.log(showText);
 
             document.getElementById("id2").innerHTML = showText;
@@ -96,11 +96,11 @@
 <body>
 
 <div id="id1"></div>
-<textarea id="area1" name="messages" rows="20%" cols="200%"></textarea>
+<textarea id="area1" name="messages" rows="20%" cols="200%" placeholder="请输入以空格分隔的整数列表，比如 1 2 3 4 43"></textarea>
 <div></div>
-<input type="button" value="运算" onclick="showResult()"/>
+<input type="button" value="运算" onclick="showResult()" style="font-size:36px"/>
 <h1>运算结果:</h1>
-<div id="id2">
+<div id="id2"  style="font-size:36px">
 
 </div>
 
