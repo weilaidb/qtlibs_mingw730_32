@@ -146,6 +146,7 @@ alias gitresetcheckout="git reset && git checkout "
 alias gitresethead1="git reset HEAD~1"
 alias gitresethead2="git reset HEAD~2"
 alias gitresetheadn="git reset HEAD~"
+
 alias gitlog="git log "
 #merges的显示补丁diff
 alias gitlogpatchall="git log -p -m "
@@ -174,6 +175,10 @@ alias gitlognomergespatchsince2year="git log --no-merges -p --since=2.year"
 alias gitloglastestmaster="git log --max-count=1 --pretty=format:%H master "
 alias gitloglastest="git log --max-count=1 --pretty=format:%H "
 alias gitlogoneline="git log --oneline "
+alias gitlognumstat="git log --pretty=tformat: --numstat "
+alias gitlogpatchallonlydiff="git log -p -m -U0 "
+
+
 
 alias gitstatusshort="git status --porcelain "
 alias gitst2="git status --porcelain "

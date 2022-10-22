@@ -1,3 +1,11 @@
+gitlograte;git log  --pretty=tformat: --numstat  | awk '{adds += $1; subs += $2; diffs += $1 - $2;totals +=$1 + $2} END {printf "added lines: %s removed lines: %s, diff lines: %s,totals lines:%s\n", adds, subs, diffs, totals}'
+gitlogpatchallonlydiff;git log -p -m -U0
+
+
+
+gitlognumstat;git log --pretty=tformat: --numstat
+
+
 sudoaptautoremove ;sudo apt autoremove 
 sudodpkgconfigurea;sudo dpkg --configure -a
 sudoaptinstall; sudo apt install
