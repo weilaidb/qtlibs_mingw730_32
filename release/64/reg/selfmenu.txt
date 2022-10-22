@@ -868,6 +868,7 @@ Html/script/Array slice
 Html/script/Array sort
 Html/script/Array splice
 Html/script/Array sum求和
+Html/script/Array sum求和和余数
 Html/script/Array toString
 Html/script/Condition
 Html/script/Condition for
@@ -1418,6 +1419,7 @@ JavaScript/func/array/说明
 JavaScript/func/br enter
 JavaScript/func/cleartext
 JavaScript/func/confirm 弹出对话框
+JavaScript/func/div input获取值
 JavaScript/func/eg
 JavaScript/func/form
 JavaScript/func/getElementById
@@ -1434,6 +1436,7 @@ JavaScript/func/string/说明
 JavaScript/func/textarea
 JavaScript/func/textarea support html
 JavaScript/func/textarea 显示html元素
+JavaScript/func/textarea 获取值
 JavaScript/func/textarea标签实现html转义textarea标签显示html代码
 JavaScript/func/throw
 JavaScript/func/throw2

@@ -1,0 +1,11 @@
+var  text = document.getElementById('id1').value;
+alert(text);
+
+
+
+
+
+
+
+<textarea id="id1" name="messages" rows="20%" cols="200%"></textarea>
+

@@ -1,0 +1,7 @@
+var txt = document.getElementById("id1").innerText;
+
+
+
+
+
+<div id="id1"></div>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则RegExp</title>
+
+    <script>
+        // var re = new RegExp("ab+c");
+
+        function addEnter(line) {
+            return line + "\n";
+        }
+
+        function appendEnter(result, tips, line)
+        {
+            return result + tips + ":" + line + "<br/>";
+        }
+
+        function textareaToArray(val)
+        {
+            // 取得textarea中的所有文本值
+            // var val = $("#textareaId").val();
+// 拆分出每一行
+            var arr = val.split("\n");
+            var seq = 0;
+            var newArr = []
+            for (var i = 0; i < arr.length; i++) {
+                // 这里将每一行继续按逗号、制表符拆分：split(/[符号1、符号2]/)
+                var pairs = arr[i].split(" ");
+                for (var j = 0; j < pairs.length; j++) {
+                    // 打印具体的每个键值
+                    // alert(pairs[j]);
+                    var intxt = pairs[j];
+                    if(0 === intxt.length)
+                    {
+                        continue;
+                    }
+                    newArr[seq++] = pairs[j];
+                }
+            }
+            console.log("seq:" + seq);
+
+            return newArr;
+        }
+
+
+
+        function sumArray(...array) {
+            let result = 0;
+            let remainder = 0;
+
+            console.log(array.length);
+
+            var length = array.length;
+
+            if(0 === length)
+            {
+                return;
+            }
+
+            for(var i = 0; i < array.length;i++)
+            {
+                result += parseInt(array[i]);
+            }
+            console.log("result:" + result);
+            remainder = result/length;
+
+            return [result,remainder];
+        }
+
+        function showResult()
+        {
+            var txt = document.getElementById("area1").value;
+            // var txt = $("#id1").val();
+            console.log(txt);
+            // alert(txt);
+
+            var myArray = textareaToArray(txt);
+            console.log(myArray);
+
+            var resultArray = sumArray(...myArray);
+            console.log(resultArray);
+            console.log(resultArray[0]);
+            console.log(resultArray[1]);
+
+            let showText = "";
+            showText = appendEnter(showText,"和    :", resultArray[0]);
+            showText = appendEnter(showText,"平均值:", resultArray[1]);
+            console.log(showText);
+
+            document.getElementById("id2").innerHTML = showText;
+
+        }
+    </script>
+</head>
+<body>
+
+<div id="id1"></div>
+<textarea id="area1" name="messages" rows="20%" cols="200%"></textarea>
+<div></div>
+<input type="button" value="运算" onclick="showResult()"/>
+<h1>运算结果:</h1>
+<div id="id2">
+
+</div>
+
+
+</body>
+
+
+</html>
