@@ -902,6 +902,7 @@ Html/script/Object prototype String
 Html/script/Object prototype 继承
 Html/script/Object type
 Html/script/Object type2
+Html/script/RegExp
 Html/script/String
 Html/script/String concat
 Html/script/String indexOf
