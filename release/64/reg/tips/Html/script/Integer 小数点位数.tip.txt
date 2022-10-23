@@ -1,0 +1,7 @@
+<script>
+    var rate = 10.12;
+    alert(rate.toFixed(1));//小数点位数1个
+    alert(rate.toFixed(2));//小数点位数2个
+    alert(rate);
+
+</script>

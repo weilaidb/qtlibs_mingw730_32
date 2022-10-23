@@ -43,8 +43,6 @@
             return newArr;
         }
 
-
-
         function sumArray(...array) {
             let result = 0;
             let remainder = 0;
@@ -55,7 +53,7 @@
 
             if(0 === length)
             {
-                return;
+                return [0,0];
             }
 
             for(var i = 0; i < array.length;i++)
@@ -100,7 +98,6 @@
             document.getElementById("id2").innerHTML = "";
         }
 
-
     </script>
 </head>
 <body>
@@ -117,7 +114,31 @@
 </div>
 
 
-</body>
 
+</body>
+<script>
+    var textarea = document.getElementById("area1");
+    textarea.onfocus = function() {
+        var initialValue = textarea.value;
+
+        function testForChange() {
+            if (textarea.value !== initialValue) {
+                // Do the button hiding stuff
+                // alert("textarea changed!!!");
+                showResult();
+            }
+        }
+
+        textarea.onblur = function() {
+            window.clearInterval(timer);
+            testForChange();
+            textarea.onblur = null;
+        };
+
+        var timer = window.setInterval(function() {
+            testForChange();
+        }, 50);
+    };
+</script>
 
 </html>

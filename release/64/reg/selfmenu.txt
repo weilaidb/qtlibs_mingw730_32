@@ -867,6 +867,7 @@ Html/script/Array restparameters(三点表示法) 2
 Html/script/Array slice
 Html/script/Array sort
 Html/script/Array splice
+Html/script/Array sum average求和 平均值
 Html/script/Array sum求和
 Html/script/Array sum求和和余数
 Html/script/Array toString
@@ -891,6 +892,8 @@ Html/script/Event id2
 Html/script/Event preventDefault
 Html/script/Event preventDefault2
 Html/script/Event removeEventListener
+Html/script/Integer
+Html/script/Integer 小数点位数
 Html/script/Math
 Html/script/Number
 Html/script/Number parseFloat parseInt
@@ -921,8 +924,10 @@ Html/script/Timer clearInterval
 Html/script/Timer clearTimeout
 Html/script/Timer setInterval
 Html/script/Timer setTimeout
+Html/script/Timer textarea定时刷新 求和平均值
 Html/script/appendEnter
 Html/script/eg
+Html/script/know/JS - 控制小数位数的方法（保留小数点后N位、以及小数取整）
 Html/script/know/当打开输入法时，javascript中onkeydown事件不能触发
 Html/script/toExponential指数法
 Html/script/toFixed

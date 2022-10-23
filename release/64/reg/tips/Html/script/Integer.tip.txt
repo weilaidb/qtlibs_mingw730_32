@@ -1,0 +1,4 @@
+<script>
+    var age = 10;
+
+</script>
