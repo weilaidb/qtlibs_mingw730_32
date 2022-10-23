@@ -1,0 +1,22 @@
+function arrayDot(hexflag, ...array)
+{
+    var result = "";
+    var num = 10;
+    console.log("arrayDot:" + array);
+    if(hexflag === true)
+    {
+        num = 16;
+    }
+
+    for(var i = 0; i < array.length;i++) {
+        if(i === array.length - 1)
+        {
+            result += parseInt(array[i],num);
+        }
+        else
+        {
+            result += parseInt(array[i],num) + ".";
+        }
+    }
+    return result;
+}

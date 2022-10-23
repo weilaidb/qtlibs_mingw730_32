@@ -1,0 +1,11 @@
+在本例中，我们将使用 substring() 从字符串中提取一些字符：
+
+<script type="text/javascript">
+
+var str="Hello world!"
+document.write(str.substring(3,7))
+
+</script>
+输出：
+
+lo w

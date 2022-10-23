@@ -1,0 +1,17 @@
+function addEnter(line) {
+    return line + "<br/>";
+}
+
+function appendEnter(result, tips, line)
+{
+    if( 0xFFFE === line)
+    {
+        return result + tips + "<br/>";
+    }
+    return result + tips + "" + line + "<br/>";
+}
+
+function show(tips,value)
+{
+    console.log(tips + value);
+}

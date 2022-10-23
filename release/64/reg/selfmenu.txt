@@ -915,20 +915,27 @@ Html/script/String length
 Html/script/String module
 Html/script/String repeat
 Html/script/String replace
+Html/script/String slice
 Html/script/String split
 Html/script/String substr
+Html/script/String substring
 Html/script/String toLowerCase toUpperCase
 Html/script/String trimlast
+Html/script/String 补零
 Html/script/Timer
 Html/script/Timer clearInterval
 Html/script/Timer clearTimeout
 Html/script/Timer setInterval
 Html/script/Timer setTimeout
 Html/script/Timer textarea定时刷新 求和平均值
-Html/script/appendEnter
 Html/script/eg
 Html/script/know/JS - 控制小数位数的方法（保留小数点后N位、以及小数取整）
+Html/script/know/JS 的整型及最大安全整数
+Html/script/know/javascript怎么将数字转为Hex（16进制）
 Html/script/know/当打开输入法时，javascript中onkeydown事件不能触发
+Html/script/pub/appendEnter
+Html/script/pub/arrayDot
+Html/script/pub/textareaToArray
 Html/script/toExponential指数法
 Html/script/toFixed
 Html/script/toString
@@ -2501,6 +2508,7 @@ Tools/git/tig help
 Tools/git/删除文件不删除本地 delete
 Tools/git/删除文件不删除本地 delete2
 Tools/git/常用git库 git address
+Tools/git/常见问题汇总
 Tools/hex to dec 十六进制转十进制
 Tools/ico生成在线工具
 Tools/knowledge/ctags 解析多目录

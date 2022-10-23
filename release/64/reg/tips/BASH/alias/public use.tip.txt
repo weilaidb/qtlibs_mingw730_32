@@ -1,3 +1,7 @@
+#weilaix.war部署
+alias deployweilax1="tomcatstop && cd ../webapps/&& ls&& rm -rf weilaix1*&& mv ~/weilaix1.war .&& tomcatstart "
+
+
 alias sudoaptautoremove="sudo apt autoremove "
 alias sudodpkgconfigurea="sudo dpkg --configure -a "
 alias sudoaptinstall=" sudo apt install "

@@ -1,8 +1,0 @@
-function addEnter(line) {
-    return line + "\n";
-}
-
-function appendEnter(result, tips, line)
-{
-    return result + tips + ":" + line + "\n";
-}

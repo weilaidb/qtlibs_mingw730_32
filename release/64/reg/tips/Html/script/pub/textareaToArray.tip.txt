@@ -1,0 +1,26 @@
+function textareaToArray(val)
+{
+    // 取得textarea中的所有文本值
+    // var val = $("#textareaId").val();
+// 拆分出每一行
+    var arr = val.split("\n");
+    var seq = 0;
+    var newArr = []
+    for (var i = 0; i < arr.length; i++) {
+        // 这里将每一行继续按逗号、制表符拆分：split(/[符号1、符号2]/)
+        var pairs = arr[i].split(" ");
+        for (var j = 0; j < pairs.length; j++) {
+            // 打印具体的每个键值
+            // alert(pairs[j]);
+            var intxt = pairs[j];
+            if(0 === intxt.length)
+            {
+                continue;
+            }
+            newArr[seq++] = pairs[j];
+        }
+    }
+    console.log("seq:" + seq);
+
+    return newArr;
+}
