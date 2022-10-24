@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scriting the DOM</title>
+    <script src="menu.js"></script>
+    <script>window.onload=makeMenu;</script>
+</head>
+<body>
+<h1>The Extremadura Region of Western Spain</h1>
+<h2>Geography Of The Regioin</h2>
+<p>The autonomous community of Extremadura is in western Spain alogside the Portuguese border.It borders the Spaniish regions
+ of Castilla y Leon.Castilla La Ma .f........................</p>
+<h2>Where To Stay</h2>
+<p>There is a wide range of accommodation throughout Extremadura including small inns and guest houses('Hostals') or think about renting a 'casa rural'
+(country house) if you are traveling in a group.</p>
+<h2>Climate</h2>
+<p>Generapply Mediterranean, except for the north, where it is continental.
+Generally known for its extremes,including very hot and dry summres with frequent droughts. and its long and mild winters.</p>
+<h2>What to See</h2>
+<p>Extremadura hosts major events all year around including theater.music,cinema,literature and folklore.Spectacular venues include castles,
+medieval town squares and historic centers. There are special summer theater festivals in the Merida.</p>
+<h2>Gastronomy</h2>
+<p>The quanlity of Extremaduran food arises from the fine quality of the local ingredients. In addition to free-range lamb and beef.</p>
+</body>
+
+</html>
+
+
+
+
+=====================menu.js
+function makeMenu(){
+    //获取所有H2标题元素
+    var h2s = document.getElementsByTagName("h2");
+    //为菜单创建一个新的页面元素
+    var menu = document.createElement("div");
+    //创建一个UL元素，并将其添加到菜单div
+    var menuU1 = document.createElement("ul");
+    menu.appendChild(menuU1);
+
+    //遍历H2元素
+    for(var i = 0; i < h2s.length;i++){
+        //获取h2元素的文本节点
+        var itemText = h2s[i].childNodes[0].nodeValue;
+        //添加一个列表项
+        var menuLi = document.createElement("li");
+        //将其添加到菜单列表
+        menuU1.appendChild(menuLi);
+        //该列表项包含一个链接
+        var menuLiA = document.createElement("a");
+        menuLiA = menuLi.appendChild(menuLiA);
+        //设置链接的href
+        menuLiA.setAttribute("href", "#item" + i);
+        //设置链接的文本
+        var menuText = document.createTextNode(itemText);
+        menuLiA.appendChild(menuText);
+        //创建相应的锚点元素
+        var anc = document.createElement("a");
+        anc.setAttribute("name", "item" + i);
+        //将锚点元素添加到标题列
+        document.body.insertBefore(anc,h2s[i]);
+    }
+    //将菜单添加到页面顶部
+    document.body.insertBefore(menu,document.body.firstChild);
+}
+
+
+
+
+
+
+
+
+
+
+
+

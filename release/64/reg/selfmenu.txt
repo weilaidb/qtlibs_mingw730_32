@@ -887,6 +887,7 @@ Html/script/Dom getElementsByTagName
 Html/script/Dom nodeName
 Html/script/Dom removeChild
 Html/script/Dom replaceChild
+Html/script/Dom script
 Html/script/Event
 Html/script/Event addEventListener
 Html/script/Event addEventListener input onkeydown
