@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Replace Page Element removeChild</title>
+    <script>
+        function replaceHeading(){
+            var newH2 = document.createElement("h2");
+            var newH2Text = document.createTextNode("welcome!");
+            newH2.appendChild(newH2Text);
+            
+            var myDiv = document.getElementById("id1");
+            var oldP = document.getElementById("para1");
+            myDiv.replaceChild(newH2,oldP);
+
+            var para2 = document.getElementById("para2");
+            myDiv.removeChild(para2);
+        }
+
+        window.onload = function () {
+            document.getElementById("btn").onclick = replaceHeading;
+
+        };
+    </script>
+</head>
+<body>
+<div id="id1">
+    <p id="para1">Welcome to my web page</p>
+    <p id="para2">Welcome to my web page</p>
+    <input id="btn" value="Replace Element" type="button"/>
+</div>
+
+
+
+</body>
+</html>

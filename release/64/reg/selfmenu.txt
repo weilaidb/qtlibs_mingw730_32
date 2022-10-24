@@ -882,6 +882,11 @@ Html/script/Date Set
 Html/script/Dom
 Html/script/Dom childNodes
 Html/script/Dom firstChild lastChild nodeValue
+Html/script/Dom getAttributes
+Html/script/Dom getElementsByTagName
+Html/script/Dom nodeName
+Html/script/Dom removeChild
+Html/script/Dom replaceChild
 Html/script/Event
 Html/script/Event addEventListener
 Html/script/Event addEventListener input onkeydown
@@ -939,6 +944,7 @@ Html/script/know/当打开输入法时，javascript中onkeydown事件不能触�
 Html/script/pub/appendEnter
 Html/script/pub/arrayDot
 Html/script/pub/textareaToArray
+Html/script/shortcut快捷键
 Html/script/toExponential指数法
 Html/script/toFixed
 Html/script/toString

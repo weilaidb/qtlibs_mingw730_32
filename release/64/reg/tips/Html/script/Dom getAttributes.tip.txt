@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List getAttributes</title>
+    <script>
+        function getAttributes(){
+            var myNode = document.getElementById("id1");
+            alert(myNode.getAttribute("title"));
+        }
+
+        window.onload = getAttributes;
+    </script>
+</head>
+<body>
+<h1>
+    Dom 文档对象类型
+    Things To Do
+</h1>
+<div id="id1" title="report">Here is some text.</div>
+</body>
+</html>

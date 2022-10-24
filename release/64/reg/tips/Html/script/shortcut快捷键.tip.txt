@@ -1,0 +1,2 @@
+Ctrl+Shift+J -- 打开开发人员工具
+Ctrl+Shift+I -- DOM查看器
