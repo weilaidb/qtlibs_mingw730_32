@@ -879,6 +879,9 @@ Html/script/Condition while
 Html/script/Date
 Html/script/Date Get
 Html/script/Date Set
+Html/script/Dom
+Html/script/Dom childNodes
+Html/script/Dom firstChild lastChild nodeValue
 Html/script/Event
 Html/script/Event addEventListener
 Html/script/Event addEventListener input onkeydown

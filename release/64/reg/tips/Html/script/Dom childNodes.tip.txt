@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List ChildNodes</title>
+    <script>
+        function countListItem(){
+            var olElement = document.getElementById("toDoList");
+            var count = 0;
+            // alert("olElement length:" + olElement.childNodes.length);
+            for(var i = 0;i < olElement.childNodes.length;i++){
+                if(olElement.childNodes[i].nodeType ===1){
+                    count++;
+                }
+            }
+            alert("The ordered list contains " + count + " items");
+        }
+
+        window.onload = countListItem;
+    </script>
+</head>
+<body>
+<h1>
+    Dom 文档对象类型
+    Things To Do
+</h1>
+<ol id="toDoList">
+    <li>Move the lawn</li>
+    <li>Clean the windows</li>
+    <li>Answer your email</li>
+</ol>
+
+<p id="toDoNotes">Make sure all thse are completed by 8pm so you can watch the game on TV!</p>
+</body>
+<script>
+    var olElement = document.getElementById("toDoList");
+    //遍历
+    var count = 0;
+    for(var i = 0; i < olElement.childNodes.length;i++){
+        if(olElement.childNodes[i].nodeType === 1){
+            continue;
+        }else{
+
+        }
+    }
+</script>
+</html>
