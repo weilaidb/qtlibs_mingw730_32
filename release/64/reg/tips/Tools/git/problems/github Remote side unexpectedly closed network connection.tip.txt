@@ -1,0 +1,12 @@
+git.exe push -v --progress "origin" war.weilaix:war.weilaix
+Pushing to github.com:weilaidb/jsp.git
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+
+git did not exit cleanly (exit code 128) (3156 ms @ 2022/10/25 22:30:33)
+
+
+--- 关掉防火墙

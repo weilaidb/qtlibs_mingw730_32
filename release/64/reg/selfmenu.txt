@@ -2528,6 +2528,9 @@ Tools/git/know/git中子模块/子仓库的使用 submodule
 Tools/git/know/如何在 Linux 上设置私有 Git 服务器
 Tools/git/order
 Tools/git/problems/git dangling commit
+Tools/git/problems/github Network error Software caused connection abort
+Tools/git/problems/github Remote side unexpectedly closed network connection
+Tools/git/problems/github 推送不上去
 Tools/git/tig blame filename
 Tools/git/tig help
 Tools/git/删除文件不删除本地 delete
