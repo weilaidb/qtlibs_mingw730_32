@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON 解析JSON字符串</title>
+    <script>
+        function jsonParse(){
+            var inString = prompt("Enter JSON object");
+            var out = "";
+            myObject = JSON.parse(inString);
+            for(i in myObject){
+                out += "Property:" + i + "=" + myObject[i] + "\n";
+            }
+            alert(out);
+        }
+        //input:
+        //{"name":"weilai","age":23}
+    </script>
+</head>
+<body onload="jsonParse()">
+<h1>
+    Hello WORLD!!!
+</h1>
+</body>
+
+</html>

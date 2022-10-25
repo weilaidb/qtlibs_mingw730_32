@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON 创建对象</title>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+</body>
+<script>
+    var categories = [
+        "news",
+        "sport",
+        "films",
+        "music",
+        "comedy",
+    ];
+
+    var user = {
+        "username":"lili",
+        "location":"Spain",
+        "height":1.80,
+        "setName":function(newName){
+            this.username = newName;
+        }
+    };
+
+    // var myObject = new Object();
+    // var name = user.username;
+
+    alert(user.username);
+
+    var newName = prompt("Enter a new username:");
+    user.setName(newName);
+    alert(user.username);
+
+
+</script>
+</html>

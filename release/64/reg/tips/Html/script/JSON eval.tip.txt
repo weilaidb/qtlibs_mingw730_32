@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON eval</title>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+</body>
+<script>
+    var x = eval(4*3);
+    alert(x);
+    alert("a=1;b=2;document.write(a+b);");
+
+
+    var user = '{\
+        "username": "wwwww",\
+        "location": "beijingxiamen",\
+        "height": "180",\
+    }';
+
+    var myObject = eval('(' + user+')');
+
+    alert(myObject.username);
+
+</script>
+</html>

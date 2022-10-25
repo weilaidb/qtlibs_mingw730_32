@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Array数组</title>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+</body>
+<script>
+    var bookListObject = {
+        "booklist":[
+            "Foundation",
+            "Dune",
+            "Eon",
+            "2001 A Space Odyssey",
+            "Stranger In A Strange Land",
+        ]
+    };
+
+    var book = bookListObject.booklist[2];
+    alert(bookListObject);
+    alert(book);
+
+</script>
+</html>

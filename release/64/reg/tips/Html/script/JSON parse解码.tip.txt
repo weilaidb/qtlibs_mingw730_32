@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON parse解码</title>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+</body>
+<script>
+    var Mary = '{"height":1.9,"age":36,"eyeColor":"brown"}';
+    var myObject = JSON.parse(Mary);
+    var out = "";
+    for (i in myObject){
+        out += i + "=" + myObject[i] + "\n";
+    }
+
+    alert(out);
+
+</script>
+</html>

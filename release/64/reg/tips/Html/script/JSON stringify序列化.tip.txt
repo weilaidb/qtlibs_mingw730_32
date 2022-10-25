@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON stringify序列化</title>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+</body>
+<script>
+    var Dan = new Object();
+    Dan.height = 1.85;
+    Dan.age = 41;
+    Dan.eyeColor = "blue";
+
+    alert(JSON.stringify(Dan));
+
+</script>
+</html>

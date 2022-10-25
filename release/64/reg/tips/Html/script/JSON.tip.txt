@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON</title>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+</body>
+<script>
+    var jsonObject = {
+        "param1": "value1",
+        "param2": "value2",
+        "param3": "value3",
+    };
+
+    alert(jsonObject.param1);
+
+</script>
+</html>

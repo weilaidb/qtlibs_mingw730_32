@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON 创建对象2</title>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+</body>
+<script>
+
+    var bookListObject = {
+        "booklist":[
+            {"title":"Foundation","author":"Isaac Asimov"},
+            {"title":"Dune","author":"Frank Herbert"},
+            {"title":"Eon","author":"Greg Bear"},
+            {"title":"2001 A Space Odyssey","author":"Arhur C.Clarke"},
+            {"title":"Stranger In A Strange Land","author":"Robert A. Heinlein"},
+        ]
+    };
+
+    var book = bookListObject.booklist[2];
+    alert(book.author);
+
+
+</script>
+</html>
