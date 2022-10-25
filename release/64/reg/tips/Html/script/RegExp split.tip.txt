@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>和、平均数</title>
+
+    <script>
+        // var re = new RegExp("ab+c");
+
+        function addEnter(line) {
+            return line + "\n";
+        }
+
+        function appendEnter(result, tips, line)
+        {
+            return result + tips + ":" + line + "<br/>";
+        }
+
+        function textareaToArray(val)
+        {
+            // 取得textarea中的所有文本值
+            // var val = $("#textareaId").val();
+// 拆分出每一行
+            var arr = val.split(/\r\n|\r|\n/);
+            var seq = 0;
+            var newArr = []
+            for (var i = 0; i < arr.length; i++) {
+                // 这里将每一行继续按逗号、制表符拆分：split(/[符号1、符号2]/)
+                var pairs = arr[i].split(/\s+/);
+                for (var j = 0; j < pairs.length; j++) {
+                    // 打印具体的每个键值
+                    // alert(pairs[j]);
+                    var intxt = pairs[j];
+                    if(0 === intxt.length)
+                    {
+                        continue;
+                    }
+                    newArr[seq++] = pairs[j];
+                }
+            }
+            console.log("seq:" + seq);
+
+            return newArr;
+        }
+
+        function sumArray(...array) {
+            let result = 0;
+            let remainder = 0;
+
+            console.log(array.length);
+
+            var length = array.length;
+
+            if(0 === length)
+            {
+                return [0,0];
+            }
+
+            for(var i = 0; i < array.length;i++)
+            {
+                result += parseInt(array[i]);
+            }
+            console.log("result:" + result);
+            remainder = result/length;
+
+            return [result,remainder];
+        }
+
+        function showResult()
+        {
+            var txt = document.getElementById("area1").value;
+            // var txt = $("#id1").val();
+            console.log(txt);
+            // alert(txt);
+
+            var myArray = textareaToArray(txt);
+            console.log(myArray);
+
+            var resultArray = sumArray(...myArray);
+            console.log(resultArray);
+            console.log(resultArray[0]);
+            console.log(resultArray[1]);
+
+            let showText = "";
+            showText = appendEnter(showText,"----和    ", resultArray[0]);
+            showText = appendEnter(showText,"平均值", resultArray[1].toFixed(1));
+            showText = appendEnter(showText,"平均值", resultArray[1].toFixed(2));
+            showText = appendEnter(showText,"平均值", resultArray[1]);
+            console.log(showText);
+
+            document.getElementById("id2").innerHTML = showText;
+
+        }
+
+        function clearResult()
+        {
+            document.getElementById("area1").value = "";
+            document.getElementById("id2").innerHTML = "";
+            document.getElementById("area1").focus();
+        }
+
+    </script>
+</head>
+<body>
+<h1>计算空格相隔的一系列的整数的和、平均数</h1>
+<div id="id1"></div>
+<textarea id="area1" name="messages" rows="15%" cols="200%" placeholder="请输入以空格分隔的整数列表，比如 1 2 3 4 43"></textarea>
+<div>
+    <input type="button" value="运算" onclick="showResult()" style="font-size:26px"/>
+    <input type="button" value="清除" onclick="clearResult()" style="font-size:26px"/>
+</div>
+<h1>运算结果:</h1>
+<div id="id2"  style="font-size:36px">
+
+</div>
+
+
+
+</body>
+<script>
+    var textarea = document.getElementById("area1");
+    textarea.onfocus = function() {
+        var initialValue = textarea.value;
+
+        function testForChange() {
+            if (textarea.value !== initialValue) {
+                // Do the button hiding stuff
+                // alert("textarea changed!!!");
+                showResult();
+                initialValue = textarea.value;
+            }
+        }
+
+        textarea.onblur = function() {
+            window.clearInterval(timer);
+            testForChange();
+            textarea.onblur = null;
+        };
+
+        var timer = window.setInterval(function() {
+            testForChange();
+        }, 100);
+    };
+</script>
+
+</html>

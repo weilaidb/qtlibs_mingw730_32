@@ -880,8 +880,10 @@ Html/script/Date
 Html/script/Date Get
 Html/script/Date Set
 Html/script/Dom
+Html/script/Dom ClipBoard Copy复制
 Html/script/Dom childNodes
 Html/script/Dom firstChild lastChild nodeValue
+Html/script/Dom focus 设置焦点
 Html/script/Dom getAttributes
 Html/script/Dom getElementsByTagName
 Html/script/Dom nodeName
@@ -926,6 +928,7 @@ Html/script/Object prototype 继承
 Html/script/Object type
 Html/script/Object type2
 Html/script/RegExp
+Html/script/RegExp split
 Html/script/String
 Html/script/String concat
 Html/script/String indexOf
@@ -948,6 +951,7 @@ Html/script/Timer setInterval
 Html/script/Timer setTimeout
 Html/script/Timer textarea定时刷新 求和平均值
 Html/script/eg
+Html/script/know/HTML DOM focus() 方法
 Html/script/know/JS - 控制小数位数的方法（保留小数点后N位、以及小数取整）
 Html/script/know/JS 的整型及最大安全整数
 Html/script/know/javascript怎么将数字转为Hex（16进制）

@@ -1,0 +1,33 @@
+HTML DOM focus() 方法
+HTML DOM Textarea 对象
+
+定义和用法
+focus() 方法用于给予该元素焦点。这样用户不必点击它，就能编辑显示的文本了。
+
+语法
+textareaObject.focus()
+实例
+下面的例子设置并移开了文本框上的焦点：
+
+<html>
+<head>
+<script type="text/javascript">
+function setFocus()
+  {
+  document.getElementById('txt1').focus()
+  }
+function loseFocus()
+  {
+  document.getElementById('txt1').blur()
+  }
+</script>
+</head>
+<body>
+
+<textarea id="txt1">Hello world....</textarea>
+<br />
+<input type="button" onclick="setFocus()" value="Set focus" />
+<input type="button" onclick="loseFocus()" value="Lose focus" />
+
+</body>
+</html>

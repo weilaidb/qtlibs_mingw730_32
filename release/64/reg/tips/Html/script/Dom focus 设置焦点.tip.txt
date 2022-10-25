@@ -1,0 +1,6 @@
+function clearResult()
+{
+    document.getElementById("area1").value = "";
+    document.getElementById("id2").innerHTML = "";
+    document.getElementById("area1").focus();
+}

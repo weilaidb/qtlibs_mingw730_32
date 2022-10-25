@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .divBox {
+        width: 500px;
+        margin: 100px auto;
+        display: flex;
+    }
+
+    .popupStyle {
+        display: none;
+        width: 160px;
+        background-color: rgb(85, 85, 85);
+        color: aqua;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 0;
+        position: fixed;
+        z-index: 1;
+        top: 2%;
+        left: 50%;
+        margin-left: -80px;
+    }
+</style>
+<body>
+<div class="divBox">
+    <div id="div">这是要复制的div内容</div>
+    <a href="#" onclick="handleDivCopy()">点击复制</a>
+</div>
+<div class="divBox">
+    <textarea id="textarea">Hello,World</textarea>
+    <a href="#" onclick="handleCopy()">点击复制</a>
+</div>
+<script>
+
+    // 复制 div 内容
+    function handleDivCopy() {
+        const div = document.getElementById("div");
+        const input = document.createElement("input");
+        document.body.appendChild(input);
+        input.value = div.innerText;
+        input.select();
+
+        try {
+            if (document.execCommand("copy", false)) {
+                handleDomMsg("div 内容复制成功");
+            } else {
+                handleDomMsg("div 内容复制失败");
+            }
+        } catch (error) {
+            console.log(error, "error")
+        } finally {
+            input.remove();
+        }
+    };
+
+    // 复制输入框内容
+    function handleCopy() {
+        const textarea = document.getElementById("textarea");
+        textarea.select();
+        try {
+            if (document.execCommand("copy", false)) {
+                handleDomMsg("输入框内容复制成功");
+            } else {
+                handleDomMsg("输入框内容复制失败");
+            }
+        } catch (error) {
+            console.log(error, "error")
+        }
+    };
+
+
+    // DOM 弹窗
+    function handleDomMsg(message) {
+        const div = document.createElement("div");
+        document.body.appendChild(div);
+        div.innerHTML = message || "this is a Message";
+        div.className = "popupStyle";
+        div.style.display = "block";
+
+        setTimeout(() => {
+            div.remove();
+        }, 1000);
+    }
+
+</script>
+</body>
+</html>
