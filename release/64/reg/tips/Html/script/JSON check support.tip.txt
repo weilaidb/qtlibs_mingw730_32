@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Check Support</title>
+</head>
+<body>
+<h1>
+    Hello WORLD!!!
+</h1>
+</body>
+<script>
+    if(typeof JSON == 'object'){
+        alert("suport json");
+    }else{
+        alert("not support json,please user others");
+    }
+
+</script>
+</html>

@@ -905,6 +905,7 @@ Html/script/Integer
 Html/script/Integer 小数点位数
 Html/script/JSON
 Html/script/JSON array
+Html/script/JSON check support
 Html/script/JSON eg1
 Html/script/JSON eval
 Html/script/JSON object
