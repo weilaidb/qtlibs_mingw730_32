@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS P</title>
+    <style>
+        div,#para1{
+            font-weight:bold;
+            font-size:14px;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<p id="para1">This text is in red!</p>
+<div>
+    This is Another text!!!
+</div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS include</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<p class="info">Welcome to my website.</p>
+<span class="info">Please log in or register using the form below.</span>
+</body>
+
+</html>
+
+
+
+
+
+===============style.css
+p{
+    color:black;
+    font-family: "Times New Roman", monospace;
+}
+
+h1{
+    color:blue;
+    font-size: 22pt;
+}
+
+.info{
+    font-family:arial,Verdana,sans-serif;
+    color:green;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS toggle</title>
+    <style>
+        span{
+            font-size:16pt;
+            font-family: arial, Verdana, sans-serif;
+            padding:20px;
+        }
+    </style>
+    <script>
+        function toggle() {
+            var myElement = document.getElementById("id1");
+            if(myElement.style.backgroundColor == 'red'){
+                myElement.style.background = 'yellow';
+                myElement.style.color = 'black';
+            }else{
+                myElement.style.background = 'red';
+                myElement.style.color = 'white';
+            }
+        }
+
+        window.onload = function(){
+            document.getElementById("btn1").onclick = toggle;
+        }
+    </script>
+</head>
+<body>
+<span id="id1">Welcome back to my site.</span>
+<input type="button" id="btn1" value="Toggle"/>
+</body>
+
+</html>

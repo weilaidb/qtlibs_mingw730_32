@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Style</title>
+</head>
+<body>
+<p style="color:red;font-size: 36px;">This text is in red!</p>
+
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Style width</title>
+</head>
+<body>
+<div id="id1" style="width:220px;">Welcome back to my site.</div>
+<script>
+    var myNode = document.getElementById("id1");
+    var myProperty = "width";
+    alert(myNode.style.width);
+    alert(myNode.style[myProperty]);
+
+    myNode.style[myProperty] = "200px";
+</script>
+</body>
+
+</html>
