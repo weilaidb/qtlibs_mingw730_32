@@ -31,3 +31,26 @@ https://www.layuiweb.com/
 
 standards.ieee.
 https://standards.ieee.org/products-programs/regauth/
+
+
+本地网址
+主页
+http://101.201.79.164:8081/weilaix1/
+
+
+看代码
+http://101.201.79.164:8081/source/
+
+代码管理系统
+http://101.201.79.164:8081/weilaix1/file/index.jsp
+
+
+
+
+
+
+
+
+
+
+
