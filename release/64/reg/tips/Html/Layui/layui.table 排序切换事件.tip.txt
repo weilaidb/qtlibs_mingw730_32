@@ -1,0 +1,29 @@
+排序切换事件
+点击表头排序时触发，它通用在基础参数中设置 autoSort: false 时使用，以完成服务端的排序，而不是默认的前端排序。该事件的回调函数返回一个 object 参数，携带的成员如下：
+
+</>
+//禁用前端自动排序，以便由服务端直接返回排序好的数据
+table.render({
+  elem: '#id'
+  ,autoSort: false //禁用前端自动排序。
+  //,… //其它参数省略
+});
+ 
+//触发排序事件 
+table.on('sort(test)', function(obj){ //注：sort 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+  console.log(obj.field); //当前排序的字段名
+  console.log(obj.type); //当前排序类型：desc（降序）、asc（升序）、null（空对象，默认排序）
+  console.log(this); //当前排序的 th 对象
+ 
+  //尽管我们的 table 自带排序功能，但并没有请求服务端。
+  //有些时候，你可能需要根据当前排序的字段，重新向服务端发送请求，从而实现服务端排序，如：
+  table.reload('idTest', {
+    initSort: obj //记录初始排序，如果不设的话，将无法标记表头的排序状态。
+    ,where: { //请求参数（注意：这里面的参数可任意定义，并非下面固定的格式）
+      field: obj.field //排序字段
+      ,order: obj.type //排序方式
+    }
+  });
+  
+  layer.msg('服务端排序。order by '+ obj.field + ' ' + obj.type);
+});

@@ -880,6 +880,12 @@ Html/Layui/layui.tab
 Html/Layui/layui.table
 Html/Layui/layui.table 1
 Html/Layui/layui.table 1 user.json
+Html/Layui/layui.table convert
+Html/Layui/layui.table toolbar
+Html/Layui/layui.table 事件
+Html/Layui/layui.table 单元格工具事件
+Html/Layui/layui.table 头部工具栏事件
+Html/Layui/layui.table 排序切换事件
 Html/Layui/layui.table 方法渲染
 Html/Layui/layui.table 自动渲染
 Html/Layui/layui.upload

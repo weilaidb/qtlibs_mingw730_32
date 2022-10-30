@@ -1,0 +1,79 @@
+单元格工具事件
+在表格主体的单元格中，需要进行很多的动态操作，比如编辑、删除，这时可借助单元格工具事件（tool）来实现，这是一个示例：
+
+HTML
+<!-- 假设下述为 templet 对应的模板，其中 lay-event="" 是获取「单元格工具事件」的关键所在，值可随意定义 -->
+<script type="text/html" id="toolEventDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  
+  <!-- 支持任意的 laytpl 语法，如： -->
+  {{#  if(d.auth > 2){ }}
+    <a class="layui-btn layui-btn-xs" lay-event="check">审核</a>
+  {{#  } }}
+</script>
+ 
+<table id="demo" lay-filter="test"></table> 
+ 
+<script>
+table.render({
+  elem: '#demo'
+  ,cols: [[
+    {title: '操作', width: 200, templet: '#toolEventDemo'}
+  ]]
+  //,…… //其他参数
+});
+</script>
+接下来我们可以借助 table 模块的单元格工具事件，完成不同的操作功能：
+
+</>
+//单元格工具事件
+table.on('tool(test)', function(obj){ // 注：test 是 table 原始标签的属性 lay-filter="对应的值"
+  var data = obj.data; //获得当前行数据
+  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+  var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+ 
+  if(layEvent === 'detail'){ //查看
+    //do somehing
+  } else if(layEvent === 'del'){ //删除
+    layer.confirm('确定删除吗？', function(index){
+      obj.del(); // 删除对应行（tr）的 DOM 结构，并更新缓存
+      layer.close(index);
+      
+      // 向服务端发送删除请求，执行完毕后，可通过 reloadData 方法完成数据重载
+      /*
+      table.reloadData(id, {
+        scrollPos: 'fixed'  // 保持滚动条位置不变 - v2.7.3 新增
+      });
+      */
+    });
+  } else if(layEvent === 'edit'){ //编辑
+    //do something
+    
+    // 同步更新缓存对应的值
+    // 该方法仅为前端层面的临时更新，在实际业务中需提交后端请求完成真实的数据更新。
+    obj.update({
+      username: '123',
+      title: 'abc'
+    }); 
+    // 若需更新其他包含自定义模板并可能存在关联的列视图，可在第二个参数传入 true
+    obj.update({
+      username: '123'
+    }, true); // 注：参数二传入 true 功能为 v2.7.4 新增
+ 
+    // 当发送后端请求成功后，可再通过 reloadData 方法完成数据重载
+    /*
+    table.reloadData(id, {
+      scrollPos: 'fixed'  // 保持滚动条位置不变 - v2.7.3 新增
+    });
+    */
+  }
+});
+上述 tool 事件为单击时触发，若需双击触发，采用 toolDouble 事件即可，如：
+
+</>
+//单元格工具事件 - 双击触发 注：v2.7.0 新增
+table.on('toolDouble(test)', function(obj){
+  // 用法跟 tool 事件完全相同
+});

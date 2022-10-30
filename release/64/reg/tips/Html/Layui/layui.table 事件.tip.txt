@@ -1,0 +1,13 @@
+事件
+语法：table.on('event(filter)', callback);
+注：event 为内置事件名，filter 为容器 lay-filter 设定的值
+目前所支持的所有事件见下文
+
+默认情况下，事件所触发的是全部的table模块容器，但如果你只想触发某一个容器，使用事件过滤器即可。
+假设原始容器为：<table class="layui-table" lay-filter="test"></table> 那么你的事件写法如下：
+
+</>
+//以复选框事件为例
+table.on('checkbox(test)', function(obj){
+  console.log(obj)
+});

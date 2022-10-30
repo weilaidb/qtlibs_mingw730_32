@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>开始使用 Layui Table表格 头部工具栏事件</title>
+    <link href="../layui/dist/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<!-- HTML -->
+原始容器
+<table id="demo" lay-filter="test"></table>
+
+工具栏模板：
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+        <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+        <button class="layui-btn layui-btn-sm" lay-event="update">编辑</button>
+        <button class="layui-btn layui-btn-sm" lay-event="create">创建</button>
+    </div>
+</script>
+
+
+<script src="../layui/dist/layui.js"></script>
+<script>
+    // 使用组件
+    layui.use('table', function(){
+        var table = layui.table;
+
+//JS 调用：
+        table.render({
+            elem: '#demo'
+            ,toolbar: '#toolbarDemo'
+            //,…… //其他参数
+        });
+
+//触发事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'add':
+                    layer.msg('添加');
+                    break;
+                case 'delete':
+                    layer.msg('删除');
+                    break;
+                case 'update':
+                    layer.msg('编辑');
+                    break;
+                case 'create':
+                    layer.msg('创建');
+                    break;
+            };
+        });
+        
+    });
+</script>
+</body>
+</html>
