@@ -1,0 +1,21 @@
+https://layui.gitee.io/v2/docs/
+
+Layui 采用自身轻量级模块化规范，并非是有意违背 CommonJS 和 ES Module ，而是试图以更简单的方式去诠释高效，这种对返璞归真的执念源于在主流标准尚未完全普及的前 ES5 时代，后来也成为 Layui 独特的表达方式，而沿用至今。如下是一个关于模块的简单示例：
+
+</>
+// 定义模块（通常单独作为一个 JS 文件）
+layui.define([modules], function(exports){
+  //…
+  
+  exports('mod1', api);
+});  
+ 
+// 使用模块
+layui.use(['mod1'], function(args){
+  var mod1 = layui.mod1;
+  
+  //…
+});
+我们可以将其视为「像使用普通的 API 一样来管理模块」，在此前提下，组件的承载也变得轻松自如，我们完全可以游刃在以浏览器为宿主的原生态的 HTML/CSS/JavaScript 的开发模式中，而不必卷入层出不穷的主流框架的浪潮之中，给心灵一个栖息之所。
+
+当然，Layui 自然也不是一个模块加载器，而是一套相对完整的 UI 解决方案，但与 Bootstrap 又并不相同，除了 HTML+CSS 本身的静态化处理，Layui 更倾向于组件的动态化渲染，并为之提供了相对丰富和统一的 API，只需稍加熟悉，便可以在各种交互中应付自如。

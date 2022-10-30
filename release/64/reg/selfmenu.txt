@@ -846,7 +846,16 @@ Html/Jquery/include src
 Html/Jquery/input
 Html/Jquery/selector
 Html/Jquery/warp JQuery自身对象
+Html/Layui/CSS 内置公共基础类
+Html/Layui/all modules
 Html/Layui/eg
+Html/Layui/layui.data
+Html/Layui/layui.device
+Html/Layui/layui.more api
+Html/Layui/module/内置模块
+Html/Layui/module/定义
+Html/Layui/module/所有模块
+Html/Layui/module/支持的模块
 Html/TOOL/HTML编码解码
 Html/button/Reload Refresh刷新
 Html/eg

@@ -1,0 +1,44 @@
+更多底层 API
+除上述介绍的方法外，layui 内部还提供了许多底层引擎，他们同样是整个 layui 框架的有力支撑，在日常应用中通常也会用到：
+
+方法/属性	描述
+layui.cache	静态属性。获得一些配置及临时的缓存信息
+layui.disuse(modules)	用于弃用某模块，以便重新扩展新的同名模块。如：layui.disuse('table');
+参数支持数组，即可同时弃用多个模块。
+注：v2.7.0 新增
+layui.extend(options)	拓展一个模块别名，如：layui.extend({test: '/res/js/test'})
+layui.each(obj, fn)	对象（Array、Object、DOM 对象等）遍历，可用于取代 for 语句
+layui.type(operand)	获取详细数据类型（基本数据类型和各类常见引用类型）如：
+layui.type([]); //array layui.type({}); //object layui.type(new Date()); //date等等。
+
+该方法为 layui 2.6.7 新增
+layui.isArray(obj)	对象是否为泛数组结构。如 Array、NodeList、jQuery 对象等等。
+layui.isArray([1,6]); //true layui.isArray($('div')); //true layui.isArray(document.querySelectorAll('div')); //true
+
+该方法为 layui 2.6.7 新增
+layui.getStyle(node, name)	获得一个原始 DOM 节点的 style 属性值，如：
+layui.getStyle(document.body, 'font-size')
+layui.img(url, callback, error)	图片预加载
+layui.sort(obj, key, desc)	将数组中的对象按某个成员重新对该数组排序，如：
+layui.sort([{a: 3},{a: 1},{a: 5}], 'a')
+layui.router()	获得 location.hash 路由结构，一般在单页面应用中发挥作用。
+layui.url(href)	用于将一段 URL 链接中的 pathname、search、hash 属性值进行对象化处理
+参数： href 可选。若不传，则自动读取当前页面的 url（即：location.href）
+示例：var url = layui.url();
+
+layui.hint()	向控制台打印一些异常信息，目前只返回了 error 方法：
+layui.hint().error('出错啦');
+layui.stope(e)	阻止事件冒泡
+layui.onevent(modName, events, callback)	增加自定义模块事件。有兴趣的同学可以阅读 layui.js 源码以及 form 模块
+layui.event(modName, events, params)	执行自定义模块事件，搭配 onevent 使用
+layui.off(events, modName)	用于移除模块相关事件（v2.5.7 新增）
+如：layui.off('select(filter)', 'form')，
+那么 form.on('select(filter)', callback)的事件将会被移除。
+
+layui.factory(modName)	用于获取模块对应的 define 回调函数
+第三方工具
+Layui 部分内置模块依赖 jQuery（比如 layer），但你不必额外引入 jQuery。Layui 已经将 jQuery 最稳定的一个版本进行了符合 Layui 规范的模块化处理，你只需要像使用 Layui 的其他模块一样去使用 jQuery 即可。
+
+另外，我们的图标取材于阿里巴巴矢量图标库（iconfont），构建工具采用 Gulp 。除此之外，不依赖于其他第三方工具。
+
+layui - 在每一个细节中，用心与你沟通

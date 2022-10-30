@@ -1,0 +1,28 @@
+获取浏览器信息
+方法：layui.device(key)，参数 key 是可选的
+
+由于 layui 的一些功能进行了兼容性处理和响应式支持，因此该方法同样发挥了至关重要的作用。其返回的信息如下：
+
+</>
+var device = layui.device();
+ 
+//device 即可根据不同的设备返回下述不同的信息
+</>
+{
+  os: "windows" //当前浏览器所在的底层操作系统，如：Windows、Linux、Mac 等
+  ,ie: false //当前浏览器是否为 ie6-11 的版本，如果不是 ie 浏览器，则为 false
+  ,weixin: false //当前浏览器是否为微信 App 环境
+  ,android: false //当前浏览器是否为安卓系统环境
+  ,ios: false //当前浏览器是否为 IOS 系统环境
+  ,mobile: false //当前浏览器是否为移动设备环境（v2.5.7 新增）
+}
+有时你的 App 可能会对 userAgent 插入一段特定的标识，譬如：
+
+Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 myapp/1.8.6 Safari/537.36
+你要验证当前的 WebView 是否在你的 App 环境，即可通过上述的myapp（即为 Native 给 Webview 插入的标识，可以随意定义）来判断。
+
+</>
+var device = layui.device('myapp');
+if(device.myapp){
+  alert('在我的App环境');
+}

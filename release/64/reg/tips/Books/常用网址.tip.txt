@@ -31,6 +31,7 @@ http://c.biancheng.net/spring_boot/config-bind.html
 Layui
 https://www.layuiweb.com/
 https://gitee.com/layui/layui
+https://layui.gitee.io/v2/docs/
 
 
 standards.ieee.

@@ -1,0 +1,9 @@
+//引用所有模块（layui 2.6 开始支持）
+layui.use(function(){
+  var layer = layui.layer
+  ,laydate = layui.laydate
+  ,table = layui.table;
+  //…
+  
+  //do something
+});

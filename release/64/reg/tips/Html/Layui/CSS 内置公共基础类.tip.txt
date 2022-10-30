@@ -1,0 +1,86 @@
+页面元素规范与说明
+layui 提倡返璞归真，遵循于原生态的元素书写规则，所以通常而言，你仍然是在写基本的 HTML 和 CSS 代码，不同的是，在 HTML 结构上及 CSS 定义上需要小小遵循一定的规范。
+CSS 内置公共基础类
+类名（class）	说明
+布局 / 容器
+layui-main	用于设置一个宽度为 1140px 的水平居中块（无响应式）
+layui-inline	用于将标签设为内联块状元素
+layui-clear	用于消除浮动
+layui-btn-container	用于定义按钮的父容器。（layui 2.2.5 新增）
+layui-btn-fluid	用于定义流体按钮。即宽度最大化适应。（layui 2.2.5 新增）
+辅助
+layui-icon	用于图标
+layui-elip	用于单行文本溢出并显示省略号
+layui-unselect	用于屏蔽选中
+layui-disabled	用于设置元素不可点击状态
+layui-circle	用于设置元素为圆形
+layui-show	用于显示块状元素
+layui-hide	用于隐藏元素
+文本
+layui-text	定义一段文本区域，该区域内的特殊标签（如 a、li、em 等）将会进行 CSS 渲染
+layui-word-aux	浅颜色的文字，左右会有间隔
+背景颜色
+layui-bg-red	红
+layui-bg-orange	橙
+layui-bg-green	绿（主色调）
+layui-bg-cyan	藏青
+layui-bg-blue	蓝
+layui-bg-black	深
+layui-bg-gray	浅
+字体大小及颜色
+</>
+layui-font-12 （12px 的字体）
+layui-font-14 （14px 的字体）
+layui-font-16 （16px 的字体）
+layui-font-18 （18px 的字体）
+layui-font-20 （20px 的字体）
+layui-font-red （红色字体）
+layui-font-orange （橙色字体）
+layui-font-green （绿色字体）
+layui-font-cyan （青色字体）
+layui-font-blue （蓝色字体）
+layui-font-black （黑色字体）
+layui-font-gray （灰色字体）
+CSS 命名规范
+class 命名前缀：layui，连接符：-，如：class="layui-form"
+
+命名格式一般分为两种：一：layui-模块名-状态或类型，二：layui-状态或类型。因为有些类并非是某个模块所特有，他们通常会是一些公共类。如：一（定义按钮的原始风格）：class="layui-btn layui-btn-primary"、二（定义内联块状元素）：class="layui-inline"
+
+大致记住这些简单的规则，会让你在填充 HTML 的时候显得更加得心应手。另外，如果你是开发 Layui 第三方模块，你最好也要遵循于类似的规则，并且请勿占用 Layui 已经命名好的类，假设你是在帮 Layui 开发一个 markdown 编辑器，你的 css 书写规则应该如下：
+
+CSS
+.layui-markdown{border: 1px solid #e2e2e2;}
+.layui-markdown-tools{}
+.layui-markdown-text{}
+HTML 规范：结构
+Layui 在解析 HTML 元素时，必须充分确保其结构是被支持的。以 Tab 选项卡为例：
+
+HTML
+<div class="layui-tab">
+  <ul class="layui-tab-title">
+    <li class="layui-this">标题一</li>
+    <li>标题二</li>
+    <li>标题三</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show">内容1</div>
+    <div class="layui-tab-item">内容2</div>
+    <div class="layui-tab-item">内容3</div>
+  </div>
+</div>
+你如果改变了结构，极有可能会导致 Tab 功能失效。所以在嵌套 HTML 的时候，你应该细读各个元素模块的相关文档
+
+HTML 规范：常用公共属性
+很多时候，元素的基本交互行为，都是由模块自动开启。但不同的区域可能需要触发不同的动作，这就需要你设定我们所支持的自定义属性来作为区分。如下面的 lay-submit、lay-filter即为公共属性（即以 lay- 作为前缀的自定义属性）：
+
+</>
+<button class="layui-btn" lay-submit lay-filter="login">文字</button>
+目前我们的公共属性如下所示（即普遍运用于所有元素上的属性）
+
+属性	描述
+lay-skin=" "	定义相同元素的不同风格，如 checkbox 的开关风格
+lay-filter=" "	事件过滤器。你可能会在很多地方看到他，他一般是用于获得特定的自定义事件。你可以把它看作是一个 ID 选择器
+lay-submit	定义一个触发表单提交的 button，不用填写值
+其它的自定义属性基本都在各自模块的文档中有所介绍。
+
+layui - 在每一个细节中，用心与你沟通
