@@ -846,6 +846,7 @@ Html/Jquery/include src
 Html/Jquery/input
 Html/Jquery/selector
 Html/Jquery/warp JQuery自身对象
+Html/Layui/eg
 Html/TOOL/HTML编码解码
 Html/button/Reload Refresh刷新
 Html/eg
