@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>开始使用 Layui upload</title>
+    <link href="../layui/dist/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<!-- HTML -->
+
+<script src="../layui/dist/layui.js"></script>
+<script>
+    // 使用组件
+    layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可以不填数组。如：layui.use('form')
+        var form = layui.form; //获取form模块
+        var upload = layui.upload; //获取upload模块
+
+        //提交按钮事件
+        form.on('submit(test)', function(data){
+            console.log(data);
+        });
+
+        //实例化一个上传控件
+        upload.render({
+            url: '上传接口url'
+            ,success: function(data){
+                console.log(data);
+            }
+        });
+        // 欢迎语
+        layer.msg('Hello World');
+    });
+</script>
+</body>
+</html>

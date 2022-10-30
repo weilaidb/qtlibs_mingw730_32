@@ -849,10 +849,14 @@ Html/Jquery/warp JQuery自身对象
 Html/Layui/CSS 内置公共基础类
 Html/Layui/all modules
 Html/Layui/eg
+Html/Layui/layui.button
 Html/Layui/layui.data
 Html/Layui/layui.device
 Html/Layui/layui.more api
+Html/Layui/layui.tab
+Html/Layui/layui.upload
 Html/Layui/module/内置模块
+Html/Layui/module/内置模块 var
 Html/Layui/module/定义
 Html/Layui/module/所有模块
 Html/Layui/module/支持的模块

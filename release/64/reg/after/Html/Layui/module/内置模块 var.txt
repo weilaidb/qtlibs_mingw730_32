@@ -1,0 +1,1 @@
+var \1 = layui.\1;$NL$NL
