@@ -1,0 +1,39 @@
+复选框
+     
+结构
+默认风格：
+<input type="checkbox" name="" title="写作" checked>
+<input type="checkbox" name="" title="发呆"> 
+<input type="checkbox" name="" title="禁用" disabled> 
+ 
+原始风格：
+<input type="checkbox" name="" title="写作" lay-skin="primary" checked>
+<input type="checkbox" name="" title="发呆" lay-skin="primary"> 
+<input type="checkbox" name="" title="禁用" lay-skin="primary" disabled>
+属性title可自定义文本（温馨提示：如果只想显示复选框，可以不用设置title）
+属性checked可设定默认选中
+属性lay-skin可设置复选框的风格
+设置value="1"可自定义值，否则选中时返回的就是默认的on
+
+
+
+
+
+
+
+
+开关
+   
+其实就是checkbox复选框的“变种”，通过设定 lay-skin="switch" 形成了开关风格
+
+结构
+<input type="checkbox" name="xxx" lay-skin="switch">
+<input type="checkbox" name="yyy" lay-skin="switch" lay-text="ON|OFF" checked>
+<input type="checkbox" name="zzz" lay-skin="switch" lay-text="开启|关闭">
+<input type="checkbox" name="aaa" lay-skin="switch" disabled>
+属性checked可设定默认开
+属性disabled开启禁用
+属性lay-text可自定义开关两种状态的文本
+设置value="1"可自定义值，否则选中时返回的就是默认的on
+
+

@@ -1,0 +1,47 @@
+下拉选择框
+ 
+杭州
+ 
+ 
+带搜索的选择框
+结构
+<select name="city" lay-verify="">
+  <option value="">请选择一个城市</option>
+  <option value="010">北京</option>
+  <option value="021">上海</option>
+  <option value="0571">杭州</option>
+</select>
+上述option的第一项主要是占个坑，让form模块预留“请选择”的提示空间，否则将会把第一项（存在value值）作为默认选中项。你可以在option的空值项中自定义文本，如：请选择分类。
+
+你可以通过设定 selected 来设定默认选中项：
+
+结构
+<select name="city" lay-verify="">
+  <option value="010">北京</option>
+  <option value="021" disabled>上海（禁用效果）</option>
+  <option value="0571" selected>杭州</option>
+</select>
+你还可以通过 optgroup 标签给select分组：
+
+结构
+<select name="quiz">
+  <option value="">请选择</option>
+  <optgroup label="城市记忆">
+    <option value="你工作的第一个城市">你工作的第一个城市？</option>
+  </optgroup>
+  <optgroup label="学生时代">
+    <option value="你的工号">你的工号？</option>
+    <option value="你最喜欢的老师">你最喜欢的老师？</option>
+  </optgroup>
+</select>
+以及通过设定属性 lay-search 来开启搜索匹配功能
+
+结构
+<select name="city" lay-verify="" lay-search="">
+  <option value="010">layer</option>
+  <option value="021">form</option>
+  <option value="0571" selected>layim</option>
+  ……
+</select>
+属性selected可设定默认项
+属性disabled开启禁用，select和option标签都支持

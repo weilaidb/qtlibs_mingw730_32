@@ -1,26 +1,117 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>开始使用 Layui Button</title>
-    <link href="../layui/dist/css/layui.css" rel="stylesheet">
-</head>
-<body>
-<!-- HTML -->
-<button class="layui-btn" lay-submit lay-filter="login">文字</button>
+按钮 - 页面元素
+向任意HTML元素设定class="layui-btn"，建立一个基础按钮。通过追加格式为layui-btn-{type}的class来定义其它按钮风格。内置的按钮class可以进行任意组合，从而形成更多种按钮风格。
+用法
+</>
+<button type="button" class="layui-btn">一个标准的按钮</button>
+<a href="/v2" class="layui-btn">一个可跳转的按钮</a>
+主题
+     
+名称	组合
+原始	class="layui-btn layui-btn-primary"
+默认	class="layui-btn"
+百搭	class="layui-btn layui-btn-normal"
+暖色	class="layui-btn layui-btn-warm"
+警告	class="layui-btn layui-btn-danger"
+禁用	class="layui-btn layui-btn-disabled"
+    
+名称	组合
+主色	class="layui-btn layui-btn-primary layui-border-green"
+百搭	class="layui-btn layui-btn-primary layui-border-blue"
+暖色	class="layui-btn layui-btn-primary layui-border-orange"
+警告	class="layui-btn layui-btn-primary layui-border-red"
+深色	class="layui-btn layui-btn-primary layui-border-black"
+尺寸
+   
+尺寸	组合
+大型	class="layui-btn layui-btn-lg"
+默认	class="layui-btn"
+小型	class="layui-btn layui-btn-sm"
+迷你	class="layui-btn layui-btn-xs"
+   
+尺寸	组合
+大型百搭	class="layui-btn layui-btn-lg layui-btn-normal"
+正常暖色	class="layui-btn layui-btn-warm"
+小型警告	class="layui-btn layui-btn-sm layui-btn-danger"
+迷你禁用	class="layui-btn layui-btn-xs layui-btn-disabled"
+</>
+<button type="button" class="layui-btn layui-btn-fluid">流体按钮（最大化适应）</button>
+圆角
+     
+主题	组合
+原始	class="layui-btn layui-btn-radius layui-btn-primary"
+默认	class="layui-btn layui-btn-radius"
+百搭	class="layui-btn layui-btn-radius layui-btn-normal"
+暖色	class="layui-btn layui-btn-radius layui-btn-warm"
+警告	class="layui-btn layui-btn-radius layui-btn-danger"
+禁用	class="layui-btn layui-btn-radius layui-btn-disabled"
+  
+尺寸	组合
+大型百搭	class="layui-btn layui-btn-lg layui-btn-radius layui-btn-normal"
+小型警告	class="layui-btn layui-btn-sm layui-btn-radius layui-btn-danger"
+迷你禁用	class="layui-btn layui-btn-xs layui-btn-radius layui-btn-disabled"
+哈哈哈哈哈，这组合名长得简直没朋友~
 
+图标
+    
+        
+结构
+<button type="button" class="layui-btn">
+  <i class="layui-icon layui-icon-down layui-font-12"></i> 按钮
+</button>
+ 
+<button type="button" class="layui-btn layui-btn-sm layui-btn-primary">
+  <i class="layui-icon layui-icon-left"></i>
+</button>
+温馨提示：各种图标字体请移步文档左侧【页面元素 - 图标】阅览
 
-<script src="../layui/dist/layui.js"></script>
-<script>
-    // 使用组件
-    layui.use(['layer', 'form'], function(){
-        var layer = layui.layer;
-        var form = layui.form;
+按钮组
+         
+将按钮放入一个class="layui-btn-group"元素中，即可形成按钮组，按钮本身仍然可以随意搭配
 
-        // 欢迎语
-        layer.msg('Hello World');
-    });
-</script>
-</body>
-</html>
+结构
+<div class="layui-btn-group">
+  <button type="button" class="layui-btn">增加</button>
+  <button type="button" class="layui-btn">编辑</button>
+  <button type="button" class="layui-btn">删除</button>
+</div>
+      
+<div class="layui-btn-group">
+  <button type="button" class="layui-btn layui-btn-sm">
+    <i class="layui-icon">&#xe654;</i>
+  </button>
+  <button type="button" class="layui-btn layui-btn-sm">
+    <i class="layui-icon">&#xe642;</i>
+  </button>
+  <button type="button" class="layui-btn layui-btn-sm">
+    <i class="layui-icon">&#xe640;</i>
+  </button>
+  <button type="button" class="layui-btn layui-btn-sm">
+    <i class="layui-icon">&#xe602;</i>
+  </button>
+</div>
+ 
+<div class="layui-btn-group">
+  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+    <i class="layui-icon">&#xe654;</i>
+  </button>
+  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+    <i class="layui-icon">&#xe642;</i>
+  </button>
+  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+    <i class="layui-icon">&#xe640;</i>
+  </button>
+</div>
+按钮容器
+尽管按钮在同节点并排时会自动拉开间距，但在按钮太多的情况，效果并不是很美好。因为你需要用到按钮容器
+
+                   
+</>
+<div class="layui-btn-container">
+  <button type="button" class="layui-btn">按钮一</button> 
+  <button type="button" class="layui-btn">按钮二</button> 
+  <button type="button" class="layui-btn">按钮三</button> 
+</div>
+结语
+你是否发现，主题、尺寸、图标、圆角的交叉组合，可以形成难以计算的按钮种类。另外，你可能最关注的是配色，Layui内置的六种主题的按钮颜色都是业界常用的标准配色，如果他们仍然无法与你的网站契合，那么请先允许我“噗”一声。。。然后你就大胆地自撸一个颜色吧！比如：粉红色或者菊花色（一个有味道的颜色）
+
+layui - 在每一个细节中，用心与你沟通

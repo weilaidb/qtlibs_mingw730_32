@@ -1,0 +1,11 @@
+layui-anim-down
+layui-anim-downbit
+layui-anim-up
+layui-anim-upbit
+layui-anim-scale
+layui-anim-scaleSpring
+layui-anim-scalesmall
+layui-anim-scalesmall-spring
+layui-anim-fadein
+layui-anim-fadeout
+layui-anim-rotate

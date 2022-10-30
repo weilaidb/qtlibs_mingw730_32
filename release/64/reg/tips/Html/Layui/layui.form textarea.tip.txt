@@ -1,0 +1,5 @@
+文本域
+请输入
+结构
+<textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+class="layui-textarea"：layui.css提供的通用CSS类

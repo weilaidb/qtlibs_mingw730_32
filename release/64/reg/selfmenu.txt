@@ -849,15 +849,39 @@ Html/Jquery/warp JQuery自身对象
 Html/Layui/CSS 内置公共基础类
 Html/Layui/all modules
 Html/Layui/eg
+Html/Layui/layui.animate
+Html/Layui/layui.animate all
 Html/Layui/layui.button
+Html/Layui/layui.button all
+Html/Layui/layui.button container
+Html/Layui/layui.button group
+Html/Layui/layui.button icon
+Html/Layui/layui.button1
+Html/Layui/layui.button2
+Html/Layui/layui.color
 Html/Layui/layui.data
 Html/Layui/layui.device
 Html/Layui/layui.element
+Html/Layui/layui.form
+Html/Layui/layui.form 1
+Html/Layui/layui.form checkbox
+Html/Layui/layui.form inline
+Html/Layui/layui.form radio
+Html/Layui/layui.form select
+Html/Layui/layui.form textarea
 Html/Layui/layui.grid
+Html/Layui/layui.icon all
+Html/Layui/layui.icon smile
+Html/Layui/layui.icon图标
 Html/Layui/layui.more api
 Html/Layui/layui.render
 Html/Layui/layui.render 为什么表单不显示
 Html/Layui/layui.tab
+Html/Layui/layui.table
+Html/Layui/layui.table 1
+Html/Layui/layui.table 1 user.json
+Html/Layui/layui.table 方法渲染
+Html/Layui/layui.table 自动渲染
 Html/Layui/layui.upload
 Html/Layui/module/内置模块
 Html/Layui/module/内置模块 var

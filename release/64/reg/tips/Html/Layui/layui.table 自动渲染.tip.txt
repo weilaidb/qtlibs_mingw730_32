@@ -1,0 +1,25 @@
+自动渲染
+所谓的自动渲染，即：在一段 table 容器中配置好相应的参数，由 table 模块内部自动对其完成渲染，而无需你写初始的渲染方法。其特点在上文也有阐述。你需要关注的是以下三点：
+
+1) 带有 class="layui-table" 的 <table> 标签。
+2) 对标签设置属性 lay-data="" 用于配置一些基础参数
+3) 在 <th> 标签中设置属性lay-data=""用于配置表头信息
+
+按照上述的规范写好table原始容器后，只要你加载了layui 的 table 模块，就会自动对其建立动态的数据表格。下面是一个示例：
+
+</>
+<table class="layui-table" lay-data="{height:315, url:'/v2/static/json/table/user.json', page:true, id:'test'}" lay-filter="test">
+  <thead>
+    <tr>
+      <th lay-data="{field:'id', width:80, sort: true}">ID</th>
+      <th lay-data="{field:'username', width:80}">用户名</th>
+      <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
+      <th lay-data="{field:'city'}">城市</th>
+      <th lay-data="{field:'sign'}">签名</th>
+      <th lay-data="{field:'experience', sort: true}">积分</th>
+      <th lay-data="{field:'score', sort: true}">评分</th>
+      <th lay-data="{field:'classify'}">职业</th>
+      <th lay-data="{field:'words', sort: true}">字数</th>
+    </tr>
+  </thead>
+</table>

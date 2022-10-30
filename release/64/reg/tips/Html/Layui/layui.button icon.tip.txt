@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>开始使用 Layui Button</title>
+    <link href="../layui/dist/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<!-- HTML -->
+<button type="button" class="layui-btn">
+    <i class="layui-icon layui-icon-down layui-font-12"></i> 按钮
+</button>
+
+<button type="button" class="layui-btn layui-btn-sm layui-btn-primary">
+    <i class="layui-icon layui-icon-left"></i>
+    <i class="layui-icon layui-icon-right"></i>
+    <i class="layui-icon layui-icon-up"></i>
+    <i class="layui-icon layui-icon-down"></i>
+    <i class="layui-icon layui-icon-about"></i>
+    <i class="layui-icon layui-icon-bluetooth"></i>
+    <i class="layui-icon layui-icon-print"></i>
+    <i class="layui-icon layui-icon-password"></i>
+    <i class="layui-icon layui-icon-more"></i>
+    <i class="layui-icon layui-icon-more-vertical"></i>
+    <i class="layui-icon layui-icon-delete"></i>
+    <i class="layui-icon layui-icon-pause"></i>
+    <i class="layui-icon layui-icon-face-cry"></i>
+    <i class="layui-icon layui-icon-upload-drag"></i>
+    <i class="layui-icon layui-icon-circle-dot"></i>
+    <i class="layui-icon layui-icon-add-circle"></i>
+    <i class="layui-icon layui-icon-add-circle-fine"></i>
+    <i class="layui-icon layui-icon-gift"></i>
+    <i class="layui-icon layui-icon-group"></i>
+    <i class="layui-icon layui-icon-camera"></i>
+</button>
+
+<script src="../layui/dist/layui.js"></script>
+<script>
+    // 使用组件
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer;
+        var form = layui.form;
+
+        // 欢迎语
+        layer.msg('Hello World');
+    });
+</script>
+</body>
+</html>

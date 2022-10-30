@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>开始使用 Layui Button Group</title>
+    <link href="../layui/dist/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<!-- HTML -->
+<button type="button" class="layui-btn">
+    <i class="layui-icon layui-icon-down layui-font-12"></i> 按钮
+</button>
+
+<div class="layui-btn-group">
+    <button type="button" class="layui-btn">增加</button>
+    <button type="button" class="layui-btn">编辑</button>
+    <button type="button" class="layui-btn">删除</button>
+</div>
+
+<div class="layui-btn-group">
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe654;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe642;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe640;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe602;</i>
+    </button>
+</div>
+
+<div class="layui-btn-group">
+    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+        <i class="layui-icon">&#xe654;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+        <i class="layui-icon">&#xe642;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+        <i class="layui-icon">&#xe640;</i>
+    </button>
+</div>
+
+
+
+<script src="../layui/dist/layui.js"></script>
+<script>
+    // 使用组件
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer;
+        var form = layui.form;
+
+        // 欢迎语
+        layer.msg('Hello World');
+    });
+</script>
+</body>
+</html>

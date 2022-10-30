@@ -1,0 +1,9 @@
+单选框
+  
+结构
+<input type="radio" name="sex" value="nan" title="男">
+<input type="radio" name="sex" value="nv" title="女" checked>
+<input type="radio" name="sex" value="" title="中性" disabled>
+属性title可自定义文本
+属性disabled开启禁用
+设置value="xxx"可自定义值，否则选中时返回的就是默认的on
