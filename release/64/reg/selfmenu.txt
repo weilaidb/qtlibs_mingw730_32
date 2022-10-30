@@ -852,7 +852,11 @@ Html/Layui/eg
 Html/Layui/layui.button
 Html/Layui/layui.data
 Html/Layui/layui.device
+Html/Layui/layui.element
+Html/Layui/layui.grid
 Html/Layui/layui.more api
+Html/Layui/layui.render
+Html/Layui/layui.render 为什么表单不显示
 Html/Layui/layui.tab
 Html/Layui/layui.upload
 Html/Layui/module/内置模块
@@ -860,6 +864,8 @@ Html/Layui/module/内置模块 var
 Html/Layui/module/定义
 Html/Layui/module/所有模块
 Html/Layui/module/支持的模块
+Html/Layui/update/更新日志
+Html/Layui/栅格系统
 Html/TOOL/HTML编码解码
 Html/button/Reload Refresh刷新
 Html/eg
