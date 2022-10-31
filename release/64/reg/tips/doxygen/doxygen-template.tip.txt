@@ -21,6 +21,6 @@ FILE_PATTERNS          = *.h
 RECURSIVE              = YES
 GENERATE_LATEX         = NO
 SOURCE_BROWSER         = YES
-
+CHM_FILE               = YES
 
 doxygen doc.dot // generate html document
