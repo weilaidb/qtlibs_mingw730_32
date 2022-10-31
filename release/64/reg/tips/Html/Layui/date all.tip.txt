@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>开始使用 Layui</title>
+    <link href="../layui/dist/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<!-- HTML -->
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test1">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test2">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test3">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test4">
+</div>
+
+
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label">日期范围</label>
+        <div class="layui-inline" id="test-range">
+            <div class="layui-input-inline">
+                <input type="text" id="startDate" class="layui-input" placeholder="开始日期">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline">
+                <input type="text" id="endDate" class="layui-input" placeholder="结束日期">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test5">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test6">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test7">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test8">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test9">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test10">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test11">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test12">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test13">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test14">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test15">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test16">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test17">
+</div>
+
+
+
+
+<span id="testView"></span>
+<div id="test18"></div>
+
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test19">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test20">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test21">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test22">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test23">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test24">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test25">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test26">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test27">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test28">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test29">
+</div>
+
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test30">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test31">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test32">
+</div>
+
+
+
+
+<script src="../layui/dist/layui.js"></script>
+<script>
+    // 使用组件
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test1,#test2' //指定元素
+        });
+
+        //时间选择器
+        laydate.render({
+            elem: '#test3'
+            ,type: 'time'
+        });
+
+
+        //日期时间选择器
+        laydate.render({
+            elem: '#test4'
+            ,type: 'datetime'
+        });
+
+
+        laydate.render({
+            elem: '#test-range' //开始时间和结束时间所在 input 框的父选择器
+            //设置开始日期、日期日期的 input 选择器
+            ,range: ['#startDate', '#endDate'] //数组格式为 layui 2.6.6 开始新增
+        });
+
+
+
+//自定义日期格式
+        laydate.render({
+            elem: '#test5'
+            ,format: 'yyyy年MM月dd日' //可任意组合
+        });
+
+//传入符合format格式的字符给初始值
+        laydate.render({
+            elem: '#test6'
+            ,value: '2018-08-18' //必须遵循format参数设定的格式
+        });
+
+//传入Date对象给初始值
+        laydate.render({
+            elem: '#test7'
+            ,value: new Date(1534766888000) //参数即为：2018-08-20 20:08:08 的毫秒数
+        });
+
+        laydate.render({
+            elem: '#test8'
+            ,value: '2017-09-10'
+            ,isInitValue: false //是否允许填充初始值，默认为 true
+        });
+
+
+        laydate.render({
+            elem: '#test9'
+            ,weekStart: 1 // 设置周一为起始周
+        });
+
+        laydate.render({
+            elem: '#test10'
+            ,isPreview: false //禁用面板左下角选择值的预览，默认 true
+        });
+
+
+//日期有效范围只限定在：2017年
+        laydate.render({
+            elem: '#test11'
+            ,min: '2017-1-1'
+            ,max: '2017-12-31'
+        });
+
+//日期有效范围限定在：过去一周到未来一周
+        laydate.render({
+            elem: '#test12'
+            ,min: -7 //7天前
+            ,max: 7 //7天后
+        });
+
+
+//日期时间有效范围的设定:
+        laydate.render({
+            elem: '#test13'
+            ,type: 'datetime'
+            ,min: '2017-8-11 12:30:00'
+            ,max: '2017-8-18 12:30:00'
+        });
+
+//时间有效范围设定在: 上午九点半到下午五点半
+        laydate.render({
+            elem: '#test14'
+            ,type: 'time'
+            ,min: '09:30:00'
+            ,max: '17:30:00'
+        });
+
+//自定义事件
+        laydate.render({
+            elem: '#test15'
+            ,trigger: 'click' //采用click弹出
+        });
+
+//默认显示
+        laydate.render({
+            elem: '#test16'
+            ,show: true //直接显示
+        });
+
+//外部事件调用
+        lay('#test17').on('click', function(e){ //假设 test1 是一个按钮
+            laydate.render({
+                elem: '#test17'
+                ,show: true //直接显示
+                ,closeStop: '#test17' //这里代表的意思是：点击 test1 所在元素阻止关闭事件冒泡。如果不设定，则无法弹出控件
+            });
+        });
+
+
+// //嵌套在指定容器中
+//         laydate.render({
+//             elem: '#test18'
+//             ,position: 'static'
+//             ,change: function(value, date){ //日期被切换的回调
+//                 lay('#testView').html(value);
+//             }
+//         });
+//
+
+
+//设定控件的层叠顺序
+        laydate.render({
+            elem: '#test19'
+            ,zIndex: 99999999
+        });
+
+
+//不显示底部栏
+        laydate.render({
+            elem: '#test20'
+            ,showBottom: false
+        });
+
+
+//只显示清空和确认
+        laydate.render({
+            elem: '#test21'
+            ,btns: ['clear', 'confirm']
+        });
+
+
+
+//国际版
+        laydate.render({
+            elem: '#test22'
+            ,lang: 'en'
+        });
+
+//墨绿背景主题
+        laydate.render({
+            elem: '#test23'
+            ,theme: 'molv'
+        });
+
+//自定义背景色主题 - 非常实用
+        laydate.render({
+            elem: '#test24'
+            ,theme: '#393D49'
+        });
+
+//格子主题
+        laydate.render({
+            elem: '#test25'
+            ,theme: 'grid'
+        });
+
+
+//允许显示公历节日
+        laydate.render({
+            elem: '#test26'
+            ,calendar: true
+        });
+
+
+
+//标注重要日子
+        var ins1 = laydate.render({
+            elem: '#test27'
+            ,mark: {
+                '0-10-14': '生日'
+                ,'0-12-31': '跨年' //每年12月31日
+                ,'0-0-10': '工资' //每个月10号
+                ,'2017-8-15': '' //具体日期
+                ,'2017-8-20': '预发' //如果为空字符，则默认显示数字+徽章
+                ,'2017-8-21': '发布'
+            }
+            ,done: function(value, date){
+                if(date.month === 10 && date.date === 14){ //点击每年的10月14日，弹出提示语
+                    ins1.hint('生日啦');
+                }
+            }
+            ,calendar:true
+        });
+
+
+
+// 示例
+        laydate.render({
+            elem: '#test28'
+            ,holidays: [
+                // 2022 年的节假日，可参见国家每年公布的法定节假日安排
+                ['2022-1-1','2022-1-2','2022-1-3'], // …
+                // 2022 年的补班日
+                ['2022-1-29','2022-1-30'] // …
+            ]
+        });
+
+
+        laydate.render({
+            elem: '#test29'
+            ,ready: function(date){
+                console.log(date); //得到初始的日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+            }
+        });
+
+
+
+
+        laydate.render({
+            elem: '#test30'
+            ,change: function(value, date, endDate){
+                console.log(value); //得到日期生成的值，如：2017-08-18
+                console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+                console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+            }
+        });
+
+
+
+        laydate.render({
+            elem: '#test31'
+            ,done: function(value, date, endDate){ // 选择完毕的回调
+                // …
+            }
+            ,close: function(that){ // 关闭后的回调
+                // …
+            }
+        });
+
+
+        var ins1 = laydate.render({
+            elem: '#test32'
+            ,change: function(value, date, endDate){
+                ins1.hint(value); //在控件上弹出value值
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+    });
+
+    
+</script>
+</body>
+</html>

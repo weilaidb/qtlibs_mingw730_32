@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>开始使用 Layui</title>
+    <link href="../layui/dist/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<!-- HTML -->
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test1">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test2">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test3">
+</div>
+
+<div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+    <input type="text" class="layui-input" id="test4">
+</div>
+
+
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label">日期范围</label>
+        <div class="layui-inline" id="test-range">
+            <div class="layui-input-inline">
+                <input type="text" id="startDate" class="layui-input" placeholder="开始日期">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline">
+                <input type="text" id="endDate" class="layui-input" placeholder="结束日期">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../layui/dist/layui.js"></script>
+<script>
+    // 使用组件
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test1,#test2' //指定元素
+        });
+
+        //时间选择器
+        laydate.render({
+            elem: '#test3'
+            ,type: 'time'
+        });
+
+
+        //日期时间选择器
+        laydate.render({
+            elem: '#test4'
+            ,type: 'datetime'
+        });
+
+
+        laydate.render({
+            elem: '#test-range' //开始时间和结束时间所在 input 框的父选择器
+            //设置开始日期、日期日期的 input 选择器
+            ,range: ['#startDate', '#endDate'] //数组格式为 layui 2.6.6 开始新增
+        });
+
+
+
+
+
+
+
+
+
+
+    });
+
+    
+</script>
+</body>
+</html>

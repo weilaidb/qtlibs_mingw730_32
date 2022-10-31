@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>开始使用 Layui Layer弹出层 Content</title>
+    <link href="../layui/dist/css/layui.css" rel="stylesheet">
+    <script src="../lib/jquery-3.6.1.min.js"></script>
+    <script src="../layui/dist/layui.js"></script>
+</head>
+<body>
+<!-- HTML -->
+
+<div id="id1">This is Nice Day!</div>
+
+
+<script>
+    // 使用组件
+    layui.use('layer', function(){
+        var layer = layui.layer;
+
+        // layer.msg('hello');
+        /* 如果是页面层*/
+        layer.open({
+            type: 1,
+            content: $('#id1') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            // content: "nide !!!" //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+
+
+    });
+
+
+</script>
+</body>
+</html>

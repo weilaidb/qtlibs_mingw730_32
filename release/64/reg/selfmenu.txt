@@ -848,7 +848,17 @@ Html/Jquery/selector
 Html/Jquery/warp JQuery自身对象
 Html/Layui/CSS 内置公共基础类
 Html/Layui/all modules
+Html/Layui/date
+Html/Layui/date all
+Html/Layui/date time
+Html/Layui/date1
+Html/Layui/date2
 Html/Layui/eg
+Html/Layui/layer 1
+Html/Layui/layer 2
+Html/Layui/layer content
+Html/Layui/layer content2
+Html/Layui/layer 弹出层
 Html/Layui/layui.animate
 Html/Layui/layui.animate all
 Html/Layui/layui.button
@@ -1517,7 +1527,7 @@ JavaScript/func/confirm 弹出对话框
 JavaScript/func/div input获取值
 JavaScript/func/eg
 JavaScript/func/form
-JavaScript/func/getElementById
+JavaScript/func/getElementById 获取值
 JavaScript/func/include 引用 src
 JavaScript/func/input text
 JavaScript/func/js new Date() 获取时间
