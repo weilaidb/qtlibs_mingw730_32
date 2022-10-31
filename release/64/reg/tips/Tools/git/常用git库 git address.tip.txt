@@ -22,6 +22,7 @@ https://github.com/maomaoshu/jsBook
 
 
 
+
 常用git库:
 https://github.com/torvalds/linux.git
 https://github.com/FFmpeg/FFmpeg.git
@@ -43,6 +44,8 @@ https://sourceware.org/git/glibc.git
 http://ftp.gnu.org/gnu/glibc/
 http://ftp.gnu.org/gnu/glibc/glibc-2.28.tar.bz2
 git@gitee.com:weilaidb/jquery_eg.git
+https://github.com/doxygen/doxygen.git
+
 
 #仿真
 https://gitlab.com/qemu-project/qemu.git
