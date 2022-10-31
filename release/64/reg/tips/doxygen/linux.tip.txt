@@ -1,0 +1,207 @@
+linux平台使用doxygen生成项目文档
+
+寒江雪Charles
+
+于 2018-11-02 10:29:34 发布
+
+4962
+ 收藏 12
+分类专栏： 编译器和工具 文章标签： doxygen linux doxygen 项目文档
+版权
+
+编译器和工具
+专栏收录该内容
+6 篇文章2 订阅
+订阅专栏
+Doxygen简介
+Doxygen是一种开源跨平台的，以类似JavaDoc风格描述的文档系统，完全支持C、C++、Java、Objective-C和IDL语言，部分支持PHP、C#。注释的语法与Qt-Doc、KDoc和JavaDoc兼容。Doxygen可以从一套归档源文件开始，生成HTML格式的在线类浏览器，或离线的LATEX、RTF参考手册。
+更多详细内容请查看 Doxygen官网。
+
+安装Doxygen
+本篇只介绍linux平台的使用方法，Doxygen同样支持Window和MacOS系统。
+安装方式：
+
+直接命令行安装
+sudo apt-get install doxygen
+sudo apt-get install graphviz
+
+下载Doxygen开源版本安装包，自行解压安装
+Doxygen开源版本
+
+自定义Doxygen项目配置
+使用Doxygen命令生成配置模板文件
+doxygen -g doc.dot
+
+根据工程的目录树来配置doc.dot文件，参考目录树如下：
+
+$ tree
+.
+├── doc.dot
+├── include
+│   └── dev_sdk.h
+├── logo.png
+├── Readme.html
+├── README.md
+└── reference
+1
+2
+3
+4
+5
+6
+7
+8
+9
+include目录存放代码头文件，reference目录用来存放生成的html文件。
+
+配置Doxygen模板文件
+只需要修改基本的字段，即可完成配置
+
+# 项目名称，显示在html首页
+PROJECT_NAME           = "Device SDK APIs"
+
+# 项目版本号，显示在html首页
+PROJECT_NUMBER         = "ver: 2.3.0"
+
+# 项目logo图片，显示在html首页
+PROJECT_LOGO           = logo.png
+
+# 输出目录，用来存放导出的html和配置文件
+OUTPUT_DIRECTORY       = reference
+
+# 代码使用的语言，这里使用c语言
+OPTIMIZE_OUTPUT_FOR_C  = YES
+
+# 导入的代码路径，多个路径使用空格隔开
+INPUT                  = ./include
+
+# 文件类型，如 *.c  *.cpp *.h
+FILE_PATTERNS          = *.h
+
+# 是否依次查找子路径
+RECURSIVE              = YES
+
+# 是否生成Latex，这样不使用latex，只需要html
+GENERATE_LATEX         = NO
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+更多高级用法，请参考doc.dot注释自行研究。
+
+生成Doxygen项目文档
+代码注释规范
+Doxygen支持多种代码规范，这里举例一种常用规范
+
+/**
+ * sdk information
+**/
+struct dev_sdk_info {
+    char *device_id; /**< device id */
+    char *device_key; /**< device key */
+    int device_type; /**< device type */
+};
+
+/**
+ * @fn          int dev_sdk_set_volume(int volume)
+ * @brief       set device volume
+ *
+ * @param       [in] volume - input volume value
+ * @return      On success, return 0. On error, return error code.
+**/
+extern int dev_sdk_set_volume(int volume);
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+生成html文档
+修改好doc.dot配置文件后，使用命令生成html文档：
+doxygen doc.dot
+执行成功后，再reference目录下会自动生成html配置文件，打开reference/index.html文件即可查看。
+
+为html文档增加索引文件
+方便工程的整体性功能，可以在项目主目录增加Readme.html索引文件，将链接指向reference/index.html，如下示例：
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Readme.html</title>
+	<style>
+    	body {
+        	width: 35em;
+        	margin: 0 auto;
+        	font-family: Tahoma, Verdana, Arial, sans-serif;
+    	}
+	</style>
+</head>
+<body>
+	<h1>Device SDK API manual</h1>
+	<p><a href="reference/html/index.html">API reference guide</a> (./reference/html/index.html) </p>
+</body>
+</html>
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+详细的代码和配置请参考 github工程 doxygen-template。
+
+打开效果：
+
+
+
+
+文章知识点与官方知识档案匹配，可进一步学习相关知识
+————————————————
+版权声明：本文为CSDN博主「寒江雪Charles」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/superhcq/article/details/83650762

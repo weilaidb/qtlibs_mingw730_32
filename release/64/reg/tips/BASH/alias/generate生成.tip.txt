@@ -1,5 +1,8 @@
 doxygendocdotcreate;doxygen -g doc.dot
 doxygendocdot;doxygen doc.dot 
+doxygendocdotcreateshort;doxygen -s -g doc.dot
+
+
 
 deployweilax1;tomcatstop && cd ../webapps/&& ls&& rm -rf weilaix1*&& mv ~/weilaix1.war .&& sleep 10 && tomcatstart
 

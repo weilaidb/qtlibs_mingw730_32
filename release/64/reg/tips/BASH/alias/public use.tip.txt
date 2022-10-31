@@ -1,5 +1,6 @@
 alias doxygendocdotcreate="doxygen -g doc.dot "
 alias doxygendocdot="doxygen doc.dot "
+alias doxygendocdotcreateshort="doxygen -s -g doc.dot "
 
 
 

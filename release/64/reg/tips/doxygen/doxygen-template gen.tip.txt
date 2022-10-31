@@ -1,0 +1,5 @@
+[PROJECT_NAME;PROJECT_NUMBER;INPUT]
+BaseCpp;ver:1.0;.
+
+
+Device SDK APIs;ver: 2.3.0;./include
