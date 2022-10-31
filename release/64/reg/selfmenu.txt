@@ -858,6 +858,7 @@ Html/Layui/layer 1
 Html/Layui/layer 2
 Html/Layui/layer content
 Html/Layui/layer content2
+Html/Layui/layer msg
 Html/Layui/layer 弹出层
 Html/Layui/layui.animate
 Html/Layui/layui.animate all
@@ -905,6 +906,8 @@ Html/Layui/module/定义
 Html/Layui/module/所有模块
 Html/Layui/module/支持的模块
 Html/Layui/update/更新日志
+Html/Layui/在线测试
+Html/Layui/时间线 timeline
 Html/Layui/栅格系统
 Html/TOOL/HTML编码解码
 Html/button/Reload Refresh刷新
