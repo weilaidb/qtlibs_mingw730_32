@@ -1,3 +1,6 @@
+doxygendocdotcreate;doxygen -g doc.dot
+doxygendocdot;doxygen doc.dot 
+
 deployweilax1;tomcatstop && cd ../webapps/&& ls&& rm -rf weilaix1*&& mv ~/weilaix1.war .&& sleep 10 && tomcatstart
 
 gitlograte;git log  --pretty=tformat: --numstat  | awk '{adds += $1; subs += $2; diffs += $1 - $2;totals +=$1 + $2} END {printf "added lines: %s removed lines: %s, diff lines: %s,totals lines:%s\n", adds, subs, diffs, totals}'

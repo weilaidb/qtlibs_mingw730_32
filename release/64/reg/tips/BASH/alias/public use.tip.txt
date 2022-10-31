@@ -1,3 +1,8 @@
+alias doxygendocdotcreate="doxygen -g doc.dot "
+alias doxygendocdot="doxygen doc.dot "
+
+
+
 #weilaix.war部署
 alias deployweilax1="tomcatstop && cd ../webapps/&& ls&& rm -rf weilaix1*&& mv ~/weilaix1.war .&& sleep 10 && tomcatstart "
 
