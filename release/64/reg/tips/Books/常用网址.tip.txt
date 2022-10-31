@@ -32,7 +32,7 @@ Layui
 https://www.layuiweb.com/
 https://gitee.com/layui/layui
 https://layui.gitee.io/v2/docs/
-
+https://layui.gitee.io/v2/docs/modules/table.html#cols
 
 standards.ieee.
 https://standards.ieee.org/products-programs/regauth/
