@@ -10,6 +10,7 @@ I:
 I:\研究文档\通用文档工程\books\驱动\Linux驱动开发入门与实战.pdf
 T:
 http://kerneltravel.net/blog/2020/lp_824/
+http://localhost:8080/
 http://localhost:8080/source/
 http://localhost:8080/weilai/sql/bselectdb.jsp
 https://docs.python.org/3.8/
@@ -21,6 +22,7 @@ https://github.com/weilaidb/linux_driver
 【Web计算器】http://101.201.79.164:8081/weilaipy/python/calculator.jsp
 【Web计算器（首页）】http://101.201.79.164:8081/weilaipy/
 【help basecpp】http://101.201.79.164:8081/basecpp/
+【】
 【下载视频】C:\Users\dell\dwhelper
 【双拼练习】https://dazi.91xjr.com/typing/train/shuang.html
 【吾爱破解】https://www.52pojie.cn/
