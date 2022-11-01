@@ -1,1 +1,1 @@
-git config --global user.email "\1"$NLgit config --global user.name "\2"
+git config --global user.email "\1"$NLgit config --global user.name "\2"$NL$NLgit config --global push.default simple$NL$NL$NL$NL=======================================>>>>>>>>>>>$NL
