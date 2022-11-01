@@ -1,8 +1,16 @@
 alias cdsoft='cd ~/soft'
 alias cdwork='cd ~/work'
 alias cdworkgit='cd ~/work/git'
+alias cdworkgitbak="cd ~/work/git.bak "
 alias cdworkgitlinux='cd ~/work/git/linux'
 alias cdworkgitqtlibs='cd ~/work/git/qtlibs_mingw730_32'
+alias cdworkgittdd="cd ~/work/git/tdd "
+alias cdworkgittest="cd ~/work/git/test "
+alias cdworkgitpython="cd ~/work/git/test/python "
+alias cdworkgitbasecpp="cd ~/work/git/basecpp "
+alias cdworkgitvue="cd ~/work/git/vue_eg "
+
+
 alias cdtest="cd ~/test "
 alias cdworkcode="cd ~/work/code "
 alias cdworkcodecode="cd ~/work/code/code "
