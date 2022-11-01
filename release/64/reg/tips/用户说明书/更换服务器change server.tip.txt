@@ -1,0 +1,40 @@
+-更换服务器(云服务器到期)
+=====用户说明书
+1.建立软链接
+
+$ ls -alh | grep ^l
+lrwxrwxrwx   1 root root   96 Sep  3 23:12 .bashrc -> /root/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/.bashrc(101.201.79.164).tip.txt
+lrwxrwxrwx   1 root root   86 Aug 27 00:46 .clang-format -> work/git/qtlibs_mingw730_32/release/64/reg/tips/Tools/Vim .Vimrc .clang-format.tip.txt
+lrwxrwxrwx   1 root root   49 Oct 31 20:52 pubconfig -> /root/work/git/qtlibs_mingw730_32/release/64/reg/
+lrwxrwxrwx   1 root root   69 May 29 22:03 pythonscript -> /root/work/git/qtlibs_mingw730_32/release/64/reg/tips/Python/scripts/
+lrwxrwxrwx   1 root root   43 Aug 25 22:57 reg -> work/git/qtlibs_mingw730_32/release/64/reg/
+lrwxrwxrwx   1 root root   78 Aug 19 21:27 .vimrc -> /root/work/git/qtlibs_mingw730_32/release/64/reg/tips/Tools/Vim .Vimrc.tip.txt
+
+
+#命令
+cd ~
+ln -s /root/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/.bashrc\(49.234.85.12\).tip.txt .bashrc
+
+ln -s work/git/qtlibs_mingw730_32/release/64/reg/tips/Tools/Vim\ .Vimrc\ .clang-format.tip.txt .clang-format
+
+ln -s /root/work/git/qtlibs_mingw730_32/release/64/reg/ pubconfig
+ln -s /root/work/git/qtlibs_mingw730_32/release/64/reg/ reg
+
+ln -s /root/work/git/qtlibs_mingw730_32/release/64/reg/tips/Python/scripts/ pythonscript 
+
+ln -s /root/work/git/qtlibs_mingw730_32/release/64/reg/tips/Tools/Vim\ .Vimrc.tip.txt .vimrc
+
+2.
+下载vim v8.1.2270
+
+[root@VM-0-10-centos] /usr/bin
+$ vim .
+YouCompleteMe unavailable: requires Vim compiled with Python (3.6.0+) support.
+Vimspector unavailable: Requires Vim compiled with +python3
+Press ENTER or type command to continue
+
+
+
+
+
+end
