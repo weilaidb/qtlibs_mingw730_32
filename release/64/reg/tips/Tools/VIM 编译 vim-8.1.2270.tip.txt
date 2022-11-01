@@ -14,8 +14,8 @@ sudo make install
 
 
 ----------使用这个编译
-./configure --enable-pythoninterp=yes --enable-cscope --enable-fontset --with-python3-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu --enable-python3interp=yes --with-python3-command=python3.6
-make
+./configure --enable-pythoninterp=yes --enable-cscope --enable-fontset --with-python3-config-dir=/usr/lib64/python3.6/config-3.6m-x86_64-linux-gnu --enable-python3interp=yes --with-python3-command=python3.6
+make -j6
 make install
  
 cp /usr/local/bin/vim /usr/bin/vim
@@ -65,3 +65,159 @@ make[1]: Leaving directory '/root/soft/vim-8.1.2279/src'
 make: *** [Makefile:29: first] Error 2
 [root@weilaidb] ~/soft/vim-8.1.2279
 $
+
+
+
+
+
+
+
+
+
+
+
+
+
+$ vim .
+YouCompleteMe unavailable: unable to load Python.
+Vimspector unavailable: Requires Vim compiled with +python3
+Press ENTER or type command to continue
+
+
+
+
+
+[root@VM-0-10-centos] ~/.vim/bundle/YouCompleteMe
+$ /usr/bin/python3 install.py --all
+Forcing build with root privileges. If it breaks, keep the pieces.
+Generating ycmd build configuration...-- The C compiler identification is GNU 4.8.5
+-- The CXX compiler identification is GNU 4.8.5
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc - works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ - works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- NOTE: You appear to be on CentOS. In order to use this application, you require a more modern compiler than the default compiler on this platform. Please install the devtoolset-8 or greater. For example, see this link: https://www.softwarecollections.org/en/scls/rhscl/devtoolset-8/
+CMake Error at CMakeLists.txt:232 (message):
+  Your C++ compiler does NOT fully support C++17.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/tmp/ycm_build_dqoy7ndj/CMakeFiles/CMakeOutput.log".
+
+FAILED
+
+ERROR: the build failed.
+
+NOTE: it is *highly* unlikely that this is a bug but rather that this is a problem with the configuration of your system or a missing dependency. Please carefully read CONTRIBUTING.md and if you're sure that it is a bug, please raise an issue on the issue tracker, including the entire output of this script (with --verbose) and the invocation line used to run it.
+
+The installation failed; please see above for the actual error. In order to get more information, please re-run the command, adding the --verbose flag. If you think this is a bug and you raise an issue, you MUST include the *full verbose* output.
+
+For example, run:/usr/bin/python3 /root/.vim/bundle/YouCompleteMe/third_party/ycmd/build.py --all --verbose
+
+[root@VM-0-10-centos] ~/.vim/bundle/YouCompleteMe
+$ 
+[root@VM-0-10-centos] ~/.vim/bundle/YouCompleteMe
+$ 
+[root@VM-0-10-centos] ~/.vim/bundle/YouCompleteMe
+$ 
+[root@VM-0-10-centos] ~/.vim/bundle/YouCompleteMe
+$ /usr/bin/python3 install.py --all
+
+
+
+
+
+
+
+
+
+
+
+[root@VM-0-10-centos] ~/.vim/bundle/YouCompleteMe
+$ ls
+autoload     CODE_OF_CONDUCT.md  COPYING.txt  install.py  plugin          python     run_tests.py  third_party  vimrc_ycm_minimal
+codecov.yml  CONTRIBUTING.md     doc          install.sh  print_todos.sh  README.md  test          tox.ini
+[root@VM-0-10-centos] ~/.vim/bundle/YouCompleteMe
+$ /usr/bin/python3 install.py --all
+Forcing build with root privileges. If it breaks, keep the pieces.
+Generating ycmd build configuration...CMake Error at CMakeLists.txt:18 (cmake_minimum_required):
+  CMake 3.14 or higher is required.  You are running version 2.8.12.2
+
+
+-- Configuring incomplete, errors occurred!
+
+FAILED
+
+ERROR: the build failed.
+
+NOTE: it is *highly* unlikely that this is a bug but rather that this is a problem with the configuration of your system or a missing dependency. Please carefully read CONTRIBUTING.md and if you're sure that it is a bug, please raise an issue on the issue tracker, including the entire output of this script (with --verbose) and the invocation line used to run it.
+
+The installation failed; please see above for the actual error. In order to get more information, please re-run the command, adding the --verbose flag. If you think this is a bug and you raise an issue, you MUST include the *full verbose* output.
+
+For example, run:/usr/bin/python3 /root/.vim/bundle/YouCompleteMe/third_party/ycmd/build.py --all --verbose
+
+[root@VM-0-10-centos] ~/.vim/bundle/YouCompleteMe
+$ 
+
+
+-----更新cmake版本3.15.1，并重新编译安装YouCompleteMe
+
+
+
+
+
+[root@VM-0-10-centos] ~/.vim/bundle/YouCompleteMe
+$ /usr/bin/python3 install.py --all
+
+
+
+
+
+
+
+[root@VM-0-10-centos] ~/.vim/bundle/YouCompleteMe
+$ /usr/bin/python3 /root/.vim/bundle/YouCompleteMe/third_party/ycmd/build.py --all --verbose
+Forcing build with root privileges. If it breaks, keep the pieces.
+Searching Python 3.6 libraries...
+Found Python library: /usr/lib64/libpython3.6m.so
+Found Python headers folder: /usr/include/python3.6m
+-- The C compiler identification is GNU 4.8.5
+-- The CXX compiler identification is GNU 4.8.5
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc - works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ - works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- NOTE: You appear to be on CentOS. In order to use this application, you require a more modern compiler than the default compiler on this platform. Please install the devtoolset-8 or greater. For example, see this link: https://www.softwarecollections.org/en/scls/rhscl/devtoolset-8/
+CMake Error at CMakeLists.txt:232 (message):
+  Your C++ compiler does NOT fully support C++17.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/tmp/ycm_build_o9oazq6u/CMakeFiles/CMakeOutput.log".
+
+ERROR: the build failed.
+
+NOTE: it is *highly* unlikely that this is a bug but rather that this is a problem with the configuration of your system or a missing dependency. Please carefully read CONTRIBUTING.md and if you're sure that it is a bug, please raise an issue on the issue tracker, including the entire output of this script (with --verbose) and the invocation line used to run it.
+[root@VM-0-10-centos] ~/.vim/bundle/YouCompleteMe
+$ 
+
+
+
+
+

@@ -1,0 +1,66 @@
+ubuntu中编译安装gcc 9.2.0
+一切都和其他源码安装软件是一样的：
+
+一、下载源代码：
+
+　　http://ftp.gnu.org/gnu/gcc/gcc-9.2.0/gcc-9.2.0.tar.xz
+
+二、解压文件
+　　tar xvf gcc-9.2.0.tar.xz
+
+三、配置安装路径：sudo vim /etc/profile
+
+　　export PATH="/usr/local/gcc-9.2/bin:$PATH"
+
+四、源码自动配置：
+　　cd  gcc-9.2.0/
+
+　　./contrib/download_prerequisites
+
+　　一定要看到以下类似的结果：
+
+　　gmp-6.1.0.tar.bz2: 成功
+　　mpfr-3.1.4.tar.bz2: 成功
+　　mpc-1.0.3.tar.gz: 成功
+　　isl-0.18.tar.bz2: 成功
+　　All prerequisites downloaded successfully.
+五、准备编译目录：
+
+　　cd  ..
+
+　　mkdir temp_gcc9.2 && cd temp_gcc9.2
+
+六、设置编译选项，生成make文件：
+
+　　../gcc-9.2.0/configure --prefix=/usr/local/gcc-9.2 --enable-threads=posix --disable-checking --disable-multilib       //允许多线程，不允许32位等选项
+
+七、自动编译：
+
+　　make         //我这里生成的目录有6.3G, 没有空间的同学请绕道
+
+八、最后安装
+
+　　sudo  make  install
+
+九、做个链接：
+
+　　sudo ln -s /usr/local/gcc-9.2/bin/gcc     gcc-9
+
+　　写个hello world测试下吧。
+
+　　gcc-9就是使用gcc 9.2，还不错，收工。
+
+　　插入个tada68的固件，固件配置方法见下篇，链接: https://pan.baidu.com/s/1TAvQ_S-qnUl-ucEbdVAeTg 提取码: bqey 
+
+ 十、ubuntu中安装本地软件包，没有依赖时
+
+　　没有依赖问题时，使用sudo dpkg -i *.deb 直接加上文件名即可，多个可使用统配符
+
+　　有依赖问题时，使用sudo apt-get -f -y install 解决依赖问题后再执行dpkg安装deb软件即可
+
+　　
+
+ 
+
+人就像是被蒙着眼推磨的驴子，生活就像一条鞭子；当鞭子抽到你背上时，你就只能一直往前走，虽然连你也不知道要走到什么时候为止，便一直这么坚持着。
+分类: Linux应用, 编程工具
