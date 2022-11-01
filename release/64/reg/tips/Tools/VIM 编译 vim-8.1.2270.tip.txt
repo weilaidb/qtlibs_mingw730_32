@@ -1,3 +1,21 @@
+$ vim .
+Error detected while processing /root/.vimrc:
+line  533:
+E185: Cannot find color scheme 'industry'
+YouCompleteMe unavailable: requires Vim 8.1.2269+.
+Error detected while processing /root/.vim/bundle/vim-translator/plugin/translator.vim:
+line   14:
+E121: Undefined variable: v:false
+E116: Invalid arguments for function get(g:, 'translator_history_enable', v:false)
+E15: Invalid expression: get(g:, 'translator_history_enable', v:false)
+UltiSnips requires Vim >= 8.0
+Vimspector unavailable: Requires Vim compiled with +python3
+Press ENTER or type command to continue
+
+
+==========================================================
+
+
 下载代码
 https://hub.fastgit.xyz/vim/vim/releases/tag/v8.1.2270
 
