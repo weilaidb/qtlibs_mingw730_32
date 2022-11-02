@@ -206,6 +206,7 @@ alias gitpushcurbranch="CURBR=`git branch| awk '{print $2}'` && git push origin 
 #for  PATH and other define
 export PATH=$PATH:~/bin
 export PATH=$PATH:/opt/libreoffice6.4/program
+export PATH=$PATH:/usr/local/gcc-9.2/bin
 
 export PS1="[\u@\h] \w\n$ "
 alias killyum="sudo rm -f /var/run/yum.pid"
