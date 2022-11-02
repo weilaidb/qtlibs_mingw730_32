@@ -141,6 +141,8 @@ alias gitsubmoduleinit="git submodule update --init --recursive "
 alias gitpushsetupstream="git push --set-upstream origin "
 alias gitmergeabort="git merge --abort "
 alias gitmerge="git merge "
+alias gitconfigpushdefaultmatching="git config --global push.default matching "
+alias gitconfigpushdefaultsimple="git config --global push.default simple "
 
 
 alias findgitlist="find . -name \.git "

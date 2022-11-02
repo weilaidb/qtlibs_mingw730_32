@@ -292,6 +292,10 @@ yumcleanpackages;yum clean packages
 
 websshstart;python3 manage.py runserver 0.0.0.0:8000
 
+
+gitconfigpushdefaultmatching;git config --global push.default matching
+gitconfigpushdefaultsimple;git config --global push.default simple
+
 gitremotev;git remote -v
 gitpullprogress;git pull --progress -v --no-rebase "origin"
 gitclean;git clean -df
