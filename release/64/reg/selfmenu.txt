@@ -1870,6 +1870,7 @@ LINUX/命令行/nano
 LINUX/命令行/net/route default默认路由
 LINUX/命令行/nm
 LINUX/命令行/nohup
+LINUX/命令行/nohup scp
 LINUX/命令行/pkill
 LINUX/命令行/realpath
 LINUX/命令行/realpath help

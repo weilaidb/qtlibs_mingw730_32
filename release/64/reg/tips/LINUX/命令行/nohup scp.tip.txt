@@ -1,0 +1,5 @@
+后台传递文件
+nohup sshpass -p "dajia1230..." scp root@101.201.79.164:~/work/git.bak/linux.7z ~/ &
+
+
+49.234.85.12(centos7.6)
