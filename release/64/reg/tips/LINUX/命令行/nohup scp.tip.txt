@@ -6,3 +6,7 @@ nohup sshpass -p "dajia1230..." scp root@101.201.79.164:~/work/git.bak/linux.7z 
 
 
 nohup sshpass -p "dajia1230..." scp root@101.201.79.164:~/work/git.bak/FFmpeg.7z ~/ &
+
+
+nohup sshpass -p "dajia1230..." scp root@101.201.79.164:~/soft/web_notebook_online.7z ~/ &
+
