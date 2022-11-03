@@ -1838,6 +1838,8 @@ LINUX/qemu/arm
 LINUX/qemu/arm sh
 LINUX/telnetd
 LINUX/uboot
+LINUX/ulimit -a
+LINUX/ulimit linux设置进程最大内存,修改limit配置限制linux最大文件描述符和最大进程数
 LINUX/命令行/Centos 7 搭建samba
 LINUX/命令行/Centos version
 LINUX/命令行/Linux 忘记密码解决方法

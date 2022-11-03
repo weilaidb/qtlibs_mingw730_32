@@ -2,6 +2,8 @@ doxygendocdotcreate;doxygen -g doc.dot
 doxygendocdot;doxygen doc.dot 
 doxygendocdotcreateshort;doxygen -s -g doc.dot
 
+tailvarlogmessages;tail /var/log/messages
+tailvarlogmessages300;tail /var/log/messages -n 300
 
 deployweilax1;tomcatstop && cd ../webapps/&& ls&& rm -rf weilaix1*&& mv ~/weilaix1.war .&& sleep 10 && tomcatstart
 
