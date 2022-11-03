@@ -2704,6 +2704,7 @@ data/开发板/AX7010 初始化打印
 data/开发板/AX7010/flash
 doxygen/doc.dot FFmpeg
 doxygen/doc.dot basecpp
+doxygen/doc.dot linux
 doxygen/doxygen-template
 doxygen/doxygen-template gen
 doxygen/linux
