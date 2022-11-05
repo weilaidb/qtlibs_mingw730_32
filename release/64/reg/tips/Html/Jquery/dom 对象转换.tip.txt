@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery对象转换为DOM对象</title>
+    <script src="../lib/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var $jQueryObj = $("#testP");
+            alert("使用DOM方法获取p节点的内容:" + $jQueryObj.html());
+
+            var $jQueryObj1 = $("#testP1");
+            alert("使用DOM方法获取p1节点的内容:" + $jQueryObj1.html());
+
+            var domObj = $jQueryObj[0];
+            alert("使用DOM方法获取p节点的内容:" + domObj.innerHTML);
+
+            var domObj1 = $jQueryObj1[0];
+            alert("使用DOM方法获取p1节点的内容:" + domObj1.innerHTML);
+
+
+
+        });
+    </script>
+</head>
+<body>
+
+<p id="testP">What's this?</p>
+<p id="testP1">text 1</p>
+
+</body>
+</html>

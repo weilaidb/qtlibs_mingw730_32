@@ -843,9 +843,12 @@ Html/JS/Move.html 左右滑动
 Html/JS/Move.html 左右滑动 代码管理系统
 Html/JS/table 2 excel 表格下载
 Html/JS/富文本编辑器的xss问题
+Html/Jquery/dom 对象转换
 Html/Jquery/eg
+Html/Jquery/important要点
 Html/Jquery/include src
 Html/Jquery/input
+Html/Jquery/input2
 Html/Jquery/selector
 Html/Jquery/warp JQuery自身对象
 Html/Layui/CSS 内置公共基础类

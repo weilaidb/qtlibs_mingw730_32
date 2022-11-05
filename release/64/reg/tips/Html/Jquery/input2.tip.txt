@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQueryTest Input</title>
+    <script src="../lib/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("input[type='button']").click(function(){
+                var inputValue = $("#testInput").val();//获取文本输入框的值
+                alert(inputValue);
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<input type="text" id="testInput" name="test" value=""/>
+<input type="button" value="输入的值为"/>
+
+
+</body>
+</html>

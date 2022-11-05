@@ -1,11 +1,23 @@
-<script>
-    var array = new Array();
-    var myArray = [];
-    var myArray1 = ['Monday','Tuesday','Wednesday'];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQueryTest </title>
+    <script src="../lib/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var domObj = document.getElementById("testP");
+            alert("使用DOM方法获取p节点的内容:" + domObj.innerHTML);
 
+            var $jqueryObj = $(domObj);
+            alert("使用DOM方法获取p节点的内容:" + $jqueryObj.html());
 
-    var testArray = [];
-    testArray[0] = 'Monday';
-    testArray[2] = 'Wednesday';
-    testArray[1] = 'Tuesday';
-</script>
+        });
+    </script>
+</head>
+<body>
+
+<p id="testP">What's this?</p>
+
+</body>
+</html>

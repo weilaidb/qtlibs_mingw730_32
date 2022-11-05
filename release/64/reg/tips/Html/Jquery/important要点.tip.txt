@@ -1,0 +1,14 @@
+要点:
+1.$('#id') 代替 document.getElementById("id")
+2.$('tagTagName')代替document.getElementsByTagName
+
+
+
+
+
+
+
+
+
+
+
