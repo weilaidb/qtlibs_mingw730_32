@@ -1,0 +1,80 @@
+专栏首页技术进阶之路使用 IDEA 搭建 Vue 项目
+1
+0
+
+
+使用 IDEA 搭建 Vue 项目
+发布于2020-07-31 15:38:07阅读 6.1K0
+;
+安装插件
+查看你的 IDEA 的版本号
+ 
+
+;
+
+ 然后下载对应版本的 Vue 插件，可能需要梯子。
+
+https://plugins.jetbrains.com/plugin/9442-vue-js/versions
+
+也可以从 CSDN 下载：https://download.csdn.net/download/weixin_43941364/12384707
+
+;
+
+ 然后进入插件设置页面，选择从本地磁盘安装插件。
+ 
+
+;
+
+ 安装成功之后重启 IDE 即可。
+
+安装 Vue
+我们使用 Vue Cli3 脚手架工具，所以要先安装该工具。
+
+前提是你已经学了 NodeJs 等工具。
+
+npm install -g @vue/cli
+或者使用 cnpm, 建议使用 cnpm
+复制
+创建项目
+有三种方式：
+
+方法一：
+首先新建一个文件夹，比如我这里就叫做 vue-demo01，然后进入该文件夹，执行vue create hello-world创建项目，然后使用 IDEA 打开项目，最后再 IDEA 的Terminal 中执行npm run serve 运行。
+
+总结一下就两句：
+
+vue create hello-world
+npm run serve
+复制
+;
+方法二：
+当然你也可以使用图形化界面创建项目：
+
+在命令行窗口执行命令vue ui，然后他会自动打开浏览器窗口。
+
+;
+
+ 选择创建即可。
+ 
+
+;
+方法三：
+使用 IDEA 直接创建。
+ 
+
+;
+
+ 配置相关软件的地址，只要你电脑上面有环境，IDEA 就会智能检测，你只需点击下三角选择即可。
+
+;
+
+ 他会自动执行相关命令，就代替你执行了 vue create demo的命令了。
+ 
+
+;
+;
+本文参与 腾讯云自媒体分享计划 ，欢迎热爱写作的你一起参与！
+本文分享自作者个人站点/博客：https://blog.csdn.net/weixin_43941364
+复制
+如有侵权，请联系 cloudcommunity@tencent.com 删除。
+IDEVue.jshttps网络安全

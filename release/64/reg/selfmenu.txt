@@ -918,9 +918,12 @@ Html/Layui/在线测试
 Html/Layui/时间线 timeline
 Html/Layui/栅格系统
 Html/TOOL/HTML编码解码
+Html/Vue/0 run
+Html/Vue/1/vue init webpack
 Html/Vue/eg
 Html/Vue/know/【vue】创建第一个vue+element ui项目（全网最详细）
 Html/Vue/know/【vue】在windows中搭建vue开发环境（全网最详细）
+Html/Vue/know/使用 IDEA 搭建 Vue 项目
 Html/Vue/know/新建vue项目错误提示Sorry, name can no longer contain capital letters.
 Html/Vue/know/解决vue-cli插件下载慢的问题
 Html/button/Reload Refresh刷新
@@ -2058,6 +2061,7 @@ OS/Ubuntu/硬盘安装后引导
 OS/WIN10/mcafee占用磁盘100%怎么办？mcafee占用磁盘的完美解决方法
 OS/WIN10/安装系统常见问题
 OS/WIN10/安装系统常见问题 the error code is 2503, 2502的解决办法
+OS/WIN10/打印机 Epson L360 打印不出黑色
 OS/WIN10/打印机 m7605d
 OS/WIN7/安装系统常见问题
 Office/Excel/Macro/SpellNumber
@@ -2741,6 +2745,7 @@ go/install/添加代理
 go/test/eg
 go/test/hello
 npm/install
+npm/install -g
 path路径/Android手机拷贝路径
 path路径/常用文件夹
 人格品行/五戒十善

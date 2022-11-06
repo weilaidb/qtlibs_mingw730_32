@@ -1,0 +1,5 @@
+PS D:\code\jquery_eg\src\main\vuetest\myproject>  npm run dev   
+
+
+运行
+ npm run dev   
