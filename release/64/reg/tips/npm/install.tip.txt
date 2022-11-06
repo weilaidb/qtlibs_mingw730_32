@@ -2,3 +2,6 @@ express mysql body-parser
 eslint
 vue-router
 element-ui
+
+vue-cli
+
