@@ -24,6 +24,7 @@ https://github.com/weilaidb/linux_driver
 【doxygen basecpp】http://49.234.85.12:8081/basecpp/index.html
 【doxygen ffmpeg】http://49.234.85.12:8081/ffmpeg/
 【help basecpp】http://101.201.79.164:8081/basecpp/
+【layui】http://layui.org.cn/index.html
 【下载视频】C:\Users\dell\dwhelper
 【双拼练习】https://dazi.91xjr.com/typing/train/shuang.html
 【吾爱破解】https://www.52pojie.cn/
