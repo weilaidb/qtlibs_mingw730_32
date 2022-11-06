@@ -843,8 +843,11 @@ Html/JS/Move.html 左右滑动
 Html/JS/Move.html 左右滑动 代码管理系统
 Html/JS/table 2 excel 表格下载
 Html/JS/富文本编辑器的xss问题
+Html/Jquery/class
 Html/Jquery/dom 对象转换
 Html/Jquery/eg
+Html/Jquery/element
+Html/Jquery/id
 Html/Jquery/important要点
 Html/Jquery/include src
 Html/Jquery/input

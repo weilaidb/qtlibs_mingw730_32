@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQueryTest Input 类名选择器</title>
+    <script src="../lib/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var $myClass = $(".myClass");
+            $myClass.css("background-color", "#C50210");
+            $myClass.css("color","FFF");
+        });
+    </script>
+</head>
+<body>
+<div class="myClass">注意观察我的样式</div>
+<div >我的样式是默认的</div>
+
+</body>
+</html>

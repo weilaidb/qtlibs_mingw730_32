@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQueryTest Input 元素选择器</title>
+    <script src="../lib/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#button").click(function(){
+                $("div").eq(0).html("<img src='images/strawberry.jpg'/> 这里长出了一片草莓");
+                $("div").get(1).innerHTML = "<img src='images/fish1.jpg'/> 这里的鱼没有了";
+            });
+
+        });
+    </script>
+</head>
+<body>
+<div>
+    <img src="images/strawberry.jpg"/>
+    这里种植了一颗草莓
+</div>
+<div>
+    <img src="images/fish.jpg"/>
+    这里养殖了一条鱼
+</div>
+<input type="button"  id="button" value="若干年后"/>
+</body>
+</html>
