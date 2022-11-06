@@ -1,0 +1,20 @@
+新建vue项目错误提示Sorry, name can no longer contain capital letters.
+
+土生土长的IU
+
+于 2019-06-11 18:46:56 发布
+
+11362
+ 收藏 4
+分类专栏： vue.js 文章标签： vue
+版权
+
+vue.js
+专栏收录该内容
+83 篇文章1 订阅
+订阅专栏
+------>名字中不能有大写也不能用驼峰命名
+————————————————
+版权声明：本文为CSDN博主「土生土长的IU」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/AIB_Kasic/article/details/91455290
+

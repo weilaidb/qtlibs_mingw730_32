@@ -918,6 +918,11 @@ Html/Layui/在线测试
 Html/Layui/时间线 timeline
 Html/Layui/栅格系统
 Html/TOOL/HTML编码解码
+Html/Vue/eg
+Html/Vue/know/【vue】创建第一个vue+element ui项目（全网最详细）
+Html/Vue/know/【vue】在windows中搭建vue开发环境（全网最详细）
+Html/Vue/know/新建vue项目错误提示Sorry, name can no longer contain capital letters.
+Html/Vue/know/解决vue-cli插件下载慢的问题
 Html/button/Reload Refresh刷新
 Html/eg
 Html/know/frame,iframe,frameset之间的关系与区别

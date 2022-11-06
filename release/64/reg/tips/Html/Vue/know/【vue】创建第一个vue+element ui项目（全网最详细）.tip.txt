@@ -1,0 +1,172 @@
+【vue】创建第一个vue+element ui项目（全网最详细）
+
+一起来学吧
+
+于 2020-10-22 09:43:28 发布
+
+19022
+ 收藏 158
+分类专栏： VUE 文章标签： vue elementui vue+element
+版权
+
+VUE
+专栏收录该内容
+17 篇文章11 订阅
+订阅专栏
+前言
+在之前的篇章中咱们一起搭建了vue开发环境，接下来开始创建第一个vue+element项目吧（vue：前端JavaScript框架 element：前端UI框架）
+
+vue开发环境搭建请参考【vue】在windows中搭建vue开发环境（全网最详细）
+
+创建vue项目
+一、开发工具vs code
+1、创建一个存放项目的文件目录，如：C:\Project\VUE
+
+2、在文件目录空白处，右键点击“通过code打开”（推荐使用vs code 开发）
+
+
+
+3、通过以下截图打开终端（或快捷键 ctrl+shift+'），如下图
+
+
+
+
+
+ 二、开始创建项目
+1、在终端输入命令 vue init webpack 项目名称
+
+vue init webpack MyPortalProject
+ 按回车键后，根据下图进行选择（可以根据自身需求进行选择）
+
+
+
+选择NPM进行创建
+
+
+
+项目创建完成后，如下图
+
+
+
+三、运行项目
+按照提示，在终端运行cd MyPortalProject ，将路径指定到项目中
+
+cd MyPortalProject
+然后运行命令 npm run dev，启动项目看看最终效果吧
+
+ npm run dev
+
+
+执行命令后按照提示在浏览器中访问http://localhost:8080，效果如下
+
+
+
+至此，第一个vue项目就创建完成了，项目创建完了，接下来就需要考虑使用什么UI框架（element-UI， antd等），由于近期项目上使用element，所以接下来咱们一起来安装element-ui框架
+
+antd UI可以 参考如下文章：
+
+【vue】vue项目中使用antd UI框架，从创建新项目开始一步一步来探索吧
+
+四、安装element-ui框架
+说明：如果项目正在运行中，可以直接Ctrl+C，然后输入Y停止运行，然后再安装element
+
+
+
+好了，言归正传，开始安装element-ui（每次都说这么多废话，是不是太啰嗦了，大伙儿忍忍哈，哈哈）
+
+在终端输入命令
+
+cnpm i element-ui -S
+安装完成后效果如下 
+
+
+
+ 五、在项目中使用element-ui
+1、在main.js中引入element组件
+
+/*引入如下组件*/
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+main.js修改后的代码为
+
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+/*引入element组件*/
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+ 
+Vue.config.productionTip = false
+ 
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  components: { App },
+  template: '<App/>'
+})
+
+2、修改组件HelloWorld.vue代码如下（可以参考element ui官网）
+
+
+
+<template>
+  <div class="hello">
+    <h1>{{ msg }}</h1>
+    <el-row>
+      <el-button>默认按钮</el-button>
+      <el-button type="primary">主要按钮</el-button>
+      <el-button type="success">成功按钮</el-button>
+      <el-button type="info">信息按钮</el-button>
+      <el-button type="warning">警告按钮</el-button>
+      <el-button type="danger">危险按钮</el-button>
+    </el-row>
+  </div>
+</template>
+ 
+<script>
+export default {
+  name: "HelloWorld",
+  data() {
+    return {
+      msg: "使用element-ui测试",
+    };
+  },
+};
+</script>
+ 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1,
+h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>
+
+然后运行命令npm run dev看一下效果吧
+
+
+
+ 废话又来了，哈哈哈
+
+至此vue开发环境、vue项目的创建、vue前端ui框架的安装和使用就和大家一起了解了
+
+如上如有错漏，请大家及时指出，小生这厢有礼了
+————————————————
+版权声明：本文为CSDN博主「一起来学吧」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/liuzhenhe1988/article/details/109206169
