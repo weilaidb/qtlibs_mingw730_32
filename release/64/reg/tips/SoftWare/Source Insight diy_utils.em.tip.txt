@@ -47,6 +47,7 @@ deleteline         Ctrl + L 删除当前行
 enternewline       Ctrl + Enter 换一新行
 InsertFileHeader               插入文件头
 InsertFunHeader                插入函数头
+InsertFunHeader2               插入函数头(扩展)
 printvar()           Ctrl+6    打印变量
 addmultiline()       Ctrl+7    插入多行空行
 addxinghaocomment()  Ctrl+8    插入多行*号注释
