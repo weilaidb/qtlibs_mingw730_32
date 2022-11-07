@@ -1,4 +1,4 @@
-/* Utils.em - a small collection of useful editing macros */
+/* diy_utils.em - a small collection of useful editing macros */
 /*
 
 source insight 宏定义文件v2.1
