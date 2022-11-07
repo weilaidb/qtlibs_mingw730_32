@@ -1,0 +1,41 @@
+#include <iostream>
+#include <stdio.h>
+// #include <stdlib.h>
+// #include <unistd.h>
+// #include <string.h>
+// #include <sys/types.h>
+// #include <sys/time.h>
+// #include <sys/fcntl.h>
+
+// int main(int argc, char **argv)
+// {
+    // printf("hello world\n");
+    // return 0;
+// }
+
+
+#include <stdio.h>
+ 
+int a[50];
+ 
+int main( void )
+{
+         int i;
+         
+         //打印到 991正常，992就异常了，
+         //992 * 4 < 4096(一页)
+         /**
+         i:991
+/bin/sh: line 1: 17048 Segmentation fault      ./memorycrupt2.out
+make: *** [aaa] Error 139
+
+**/
+         for (i = 0; i < 1000 - 7; i++)
+         {
+                 a[i]=i;
+             printf("i:%u\n", i);
+         }
+ 
+         return 0;
+}
+

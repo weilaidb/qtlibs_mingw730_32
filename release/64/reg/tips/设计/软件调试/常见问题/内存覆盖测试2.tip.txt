@@ -1,0 +1,130 @@
+
+typedef char CHAR;
+typedef unsigned char BYTE;
+typedef unsigned char BOOLEAN;
+typedef unsigned char BOOL;
+typedef char INT8;
+typedef short INT16;
+typedef int INT32;
+typedef long long INT64;
+
+typedef unsigned char UINT8;
+typedef unsigned short UINT16;
+typedef unsigned int UINT32;
+typedef unsigned long long UINT64;
+
+typedef unsigned short WORD;
+typedef unsigned short WORD16;
+typedef unsigned int   WORD32;
+typedef unsigned long long WORD64;
+
+
+#include <stdio.h>
+ 
+WORD64 globalNum = 100;//全局变量
+WORD64 gAddr_for_static = 0; //用来保存函数里的静态变量地址
+ 
+void test_static_temp(){
+    static WORD64 value_static = 10;//局部静态变量
+    printf("<-> value_static,addr=%x,value=%d \n\n",&value_static,value_static);
+    gAddr_for_static = (WORD64)(&value_static);
+    
+}
+ 
+//通过指针修改任何全局变量!静态变量!
+void SetGlobalValue(WORD64 address,WORD64 v){
+    WORD64 *pt;
+    pt= (WORD64 *)address;
+    *pt = v;
+}
+ 
+int main(void) {
+    
+    test_static_temp();//从输出得到静态变量的地址
+    WORD64 addr = (WORD64)&globalNum;
+    printf("<1> 初始化全局变量globelNum=%d ,内存地址=%x \n\n" , globalNum,&globalNum);
+    SetGlobalValue(addr,1234);
+    printf("<2> 调用函数后globelNum=%d,内存地址=%x \n\n" , globalNum,&globalNum);
+    
+    addr = gAddr_for_static;//每个编译器得到的地址不同
+    SetGlobalValue(addr,4567);
+    test_static_temp();
+    
+    return 0;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+C语言中全局变量,静态变量的危险性
+
+wabil
+
+于 2020-07-09 19:38:35 发布
+
+657
+ 收藏 1
+版权
+全局变量和静态的危险性在于它的访问权限暴露在整个项目中,可能由于某个C文件的某个函数的异常(数组越界访问,野指针等等),导致全局变量,静态变量有时候会莫名的被修改了,而且比较难追踪到.这一点在多线程编程中尤其需要注意 ,看以下代码运行结果:
+
+#include <stdio.h>
+ 
+int globalNum = 100;//全局变量
+int gAddr_for_static = 0; //用来保存函数里的静态变量地址
+ 
+void test_static_temp(){
+    static int value_static = 10;//局部静态变量
+    printf("<-> value_static,addr=%x,value=%d \n\n",&value_static,value_static);
+    gAddr_for_static = &value_static;
+    
+}
+ 
+//通过指针修改任何全局变量!静态变量!
+void SetGlobalValue(int address,int v){
+    int *pt;
+    pt= address;
+    *pt = v;
+}
+ 
+int main(void) {
+    
+    test_static_temp();//从输出得到静态变量的地址
+    int addr = &globalNum;
+    printf("<1> 初始化全局变量globelNum=%d ,内存地址=%x \n\n" , globalNum,&globalNum);
+    SetGlobalValue(addr,1234);
+    printf("<2> 调用函数后globelNum=%d,内存地址=%x \n\n" , globalNum,&globalNum);
+    
+    addr = gAddr_for_static;//每个编译器得到的地址不同
+    SetGlobalValue(addr,4567);
+    test_static_temp();
+    
+    return 0;
+}
+ 
+ 
+用https://www.w3cschool.cn/tryrun/runcode?lang=c在线IDE编译器可以快速测试运行结果 (https://www.dooccn.com/)
+
+<-> value_static,addr=601038,value=10 
+ 
+<1> 初始化全局变量globelNum=100 ,内存地址=60103c 
+ 
+<2> 调用函数后globelNum=1234,内存地址=60103c 
+ 
+<-> value_static,addr=601038,value=4567 
+ 
+
+文章知识点与官方知识档案匹配，可进一步学习相关知识
+C技能树函数与程序结构局部变量和全局变量92379 人正在系统学习中
+————————————————
+版权声明：本文为CSDN博主「wabil」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/wabil/article/details/107236125
+
+
+ 

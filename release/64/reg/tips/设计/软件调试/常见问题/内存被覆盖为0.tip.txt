@@ -1,0 +1,70 @@
+有一个全局变量指针，打印指针发现保存的地址为0，正常是MALLOC的一个赋值。
+1.说明被前面的变量给覆盖了
+2.打印内存的符号表，看看这个内存的前面是哪个变量，知道找到正常地变量
+3.重点查看这个变量的操作有没有越界的
+4.tulip里如果XOS_MALLOC堆上的数据越界了，会影响保存指针地址后面的全局变量的数据吗？
+--这个不太理解，arm小端是个什么机制呢？
+
+
+示例
+WORD32 g_ptr1 = malloc(100);
+WORD32 g_dwTest1;
+WORD32 g_dwTest2;
+WORD32 g_ptr2 = malloc(300);
+
+--如果g_ptr1申请的堆内存数据写越界了，会影响g_ptr1 后面的数据吗？比如g_ptr2的地址会不会为0了？
+
+
+
+#include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/fcntl.h>
+#include <assert.h>
+#include <stdarg.h>
+
+#include "basetype.h"
+
+BYTE ucFlag1 = 0xFE;
+BYTE *pArr[2] = {0};
+BYTE *pNew = NULL;
+BYTE ucFlag = 0xFF;
+
+int main()
+{
+#define MAXNUM 202
+
+    BYTE ucBuf[MAXNUM] = {0};
+    memset(ucBuf, 0, MAXNUM);
+    pArr[0] = (BYTE *)malloc(100);
+    pArr[1] = (BYTE *)malloc(100);
+    pNew = (BYTE *)malloc(100);
+    // memcpy(pArr[0] + 101, ucBuf, MAXNUM);
+    memcpy(pArr[0] + 80, ucBuf, MAXNUM);
+    memcpy(pArr[0] + 100, ucBuf, MAXNUM);
+    memcpy(pArr[0] + 104, ucBuf, MAXNUM);
+    memcpy(pArr[0] + 108, ucBuf, MAXNUM);
+    memcpy(pArr[0] + 128, ucBuf, MAXNUM);
+    memcpy(pArr[0] + 228, ucBuf, MAXNUM);
+    memcpy(pArr[0] + 1228, ucBuf, MAXNUM);
+    memcpy(pArr[0] + 0x1000 * 4, ucBuf, MAXNUM);
+    memcpy(pArr[1], ucBuf, MAXNUM);
+    // memcpy(&pArr, ucBuf, MAXNUM);//这个操作会把指针地址覆写为0
+
+
+    printf("ucFlag1:%u\n", ucFlag1);
+    printf("ucFlag:%u\n", ucFlag);
+    printf("pArr[0]:%p\n", pArr[0]);
+    printf("pArr[1]:%p\n", pArr[1]);
+    printf("pNew:%p\n", pNew);
+    printf("Hello World!\n");
+    return 0;
+}
+
+
+
+
