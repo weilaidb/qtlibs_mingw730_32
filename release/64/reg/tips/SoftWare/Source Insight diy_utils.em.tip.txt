@@ -33,6 +33,10 @@ source insight 宏定义文件v2.7
 source insight 宏定义文件v2.8
 添加case break生成代码（C）
 
+source insight 宏定义文件v2.9
+添加函数注释 InsertFunHeader2
+
+
 
 
 常用规则           快捷键定义
@@ -896,6 +900,62 @@ macro InsertFunHeader()
 	SetBufIns(hbuf, ln + 1, strlen(szFunc) + strlen(szInf) + 8)
 }
 
+
+
+/******************************************************************************
+ * InsFunHeader2 -- insert function's information extend
+ *
+ * modification history
+ * --------------------
+ * 01a, 23mar2003, added DESCRIPTION by t357
+ * 01a, 05mar2003, t357 written
+ * --------------------
+ ******************************************************************************/
+macro InsertFunHeader2()
+{
+	// Get the owner's name from the environment variable: szMyName.
+	// If the variable doesn't exist, then the owner field is skipped.
+	/*#########################################################
+#########################################################
+#######  Set szMyName variable to your name    ########
+#######  for example    szMyName = "t357"     ########
+#########################################################
+#########################################################*/
+	szMyName = "" //empty
+	// Get a handle to the current file buffer and the name
+	// and location of the current symbol where the cursor is.
+	hbuf = GetCurrentBuf() //get file buffer
+	szFunc = GetCurSymbol() //get the curren symbol where the cursor is.
+	ln = GetSymbolLine(szFunc)
+	// Get current time
+	szTime = GetSysTime(1)
+	Day = szTime.Day
+	Month = szTime.Month
+	Year = szTime.Year
+	if (Day < 10)
+	szDay = "0@Day@"
+	else
+	szDay = Day
+	szMonth = (Month)
+	//szInf = Ask("Enter the information of function:")
+	//szDescription = Ask("Enter the description of function:")
+	// begin assembling the title string
+	sz = "/******************************************************************************"
+	InsBufLine(hbuf, ln, sz)
+	InsBufLine(hbuf, ln + 1, "* 函数名称:@szFunc@")
+	InsBufLine(hbuf, ln + 2, "* 功能描述:   ")
+	InsBufLine(hbuf, ln + 3, "* 输入参数: ")
+    InsBufLine(hbuf, ln + 4, "*           xx: ")
+	InsBufLine(hbuf, ln + 5, "* 输出参数: 无")
+	InsBufLine(hbuf, ln + 6, "* 返回结果: 0-成功,其它-失败")
+	InsBufLine(hbuf, ln + 7, "* 其它说明:")
+	InsBufLine(hbuf, ln + 8, "* 修改日期        版本号    修改人      修改内容")
+	InsBufLine(hbuf, ln + 9, "* ---------------------------------------------------------------------------")
+	InsBufLine(hbuf, ln + 10, "* @Year@/@szMonth@/@szDay@     v1.0             创建")
+	InsBufLine(hbuf, ln + 11, "******************************************************************************/")
+	// put the insertion point inside the header comment
+	SetBufIns(hbuf, ln + 1, strlen(szFunc) + strlen(szInf) + 8)
+}
 
 macro AskSysmbol()
 {
