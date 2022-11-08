@@ -1,0 +1,1 @@
+\1 = Ask("What symbol do you want to locate?")$NLsymbol = GetSymbolLocation(\1)$NLif (symbol == nil)$NL{$NL$TBMsg (\1 # " was not found")$NL}$NLelse$NL{$NL$NL}$NL
