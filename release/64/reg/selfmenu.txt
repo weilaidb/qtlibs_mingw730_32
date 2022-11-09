@@ -245,6 +245,7 @@ BAT/网络network/知识点/基于MPLS的VPN 2
 BAT/网络network/知识点/复习
 BAT/网络network/知识点/常用端口号大全 port
 BAT/网络network/问题列表/主控ping线卡偶发不通 ping不通
+BAT/网络network/问题列表/程序异常崩溃 全局指针变为0
 BAT/网络network/问题点/IS-IS
 BAT/网络network/问题点/OSPF
 BAT/网络network/防火墙
