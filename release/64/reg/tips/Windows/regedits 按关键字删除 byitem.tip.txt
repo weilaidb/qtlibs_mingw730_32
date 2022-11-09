@@ -1,0 +1,62 @@
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{DF4F5AE4-E795-4C12-BC26-7726C27F71AE}\InprocServer32
+    (默认)    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GTJICON\GTJICON64\GTJFileIcons64.dll
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\GTJFiles\DefaultIcon
+    OldDefIcon    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\logo.ico
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\GTJFiles\shell\Open\Command
+    (默认)    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GTJ2021.exe "%1"
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\GTJNewOpenURL\shell\open\command
+    (默认)    REG_SZ    "C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GMPWebLauncher.exe" GTJ2021.exe "%1"
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\GTJOpenURL\DefaultIcon
+    (默认)    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GTJOpen.exe
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\GTJOpenURL\shell\open\command
+    (默认)    REG_SZ    "C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GTJOpen.exe" "%1"
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\TypeLib\{7BFB61C2-CFAF-4441-B9C6-EEC1DA0DE182}\1.0\HELPDIR
+    (默认)    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GQT\
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\TypeLib\{B38D5D77-E50B-4327-B6F7-D281B5D7FA14}\1.0\0\win32
+    (默认)    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GNDB\GNDBComOuterService.exe
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\TypeLib\{B38D5D77-E50B-4327-B6F7-D281B5D7FA14}\1.0\HELPDIR
+    (默认)    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GNDB
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\TypeLib\{D38F3E3B-ED06-44A1-A198-7050B36AD9FD}\1.0\0\win32
+    (默认)    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GQT\GTJCollectDataExportCom.exe
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\TypeLib\{D38F3E3B-ED06-44A1-A198-7050B36AD9FD}\1.0\HELPDIR
+    (默认)    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GQT
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\TypeLib\{DB3FC9C3-5E83-489B-B17B-5E105B0232E5}\1.0\0\win32
+    (默认)    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GQT\GCLCollectDataExport.dll
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\TypeLib\{DB3FC9C3-5E83-489B-B17B-5E105B0232E5}\1.0\HELPDIR
+    (默认)    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GQT\
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\WOW6432Node\CLSID\{15C47884-5B77-48BE-B48F-8C5BECE8D7E7}\LocalServer32
+    (默认)    REG_SZ    "C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GQT\GTJCollectDataExportCom.exe"
+    ServerExecutable    REG_SZ    C:\Program Files (x86)\GrandSoft\GTJ2021\bin\GQT\GTJCollectDataExportCom.exe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

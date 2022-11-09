@@ -1,0 +1,1 @@
+reg query HKLM /f \1 /s $NLreg query HKCU /f \1 /s $NLreg query HKCR /f \1 /s $NLreg query HKU /f \1 /s $NLreg query HKCC /f \1 /s 

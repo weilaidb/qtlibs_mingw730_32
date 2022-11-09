@@ -2720,7 +2720,12 @@ Windows/Hosts
 Windows/Hosts guanglianda
 Windows/Hosts ip2localhost
 Windows/Hosts 在windows环境下如何屏蔽特定IP
+Windows/Hosts 广联达下载目录
 Windows/Hosts 广联达盗版环境清理方法
+Windows/Hosts 广联达盗版问题定位
+Windows/regedits 按关键字删除
+Windows/regedits 按关键字删除 byitem
+Windows/regedits 按关键字查询
 YAML/YAML 语法
 YAML/yml入门教程
 YAML/yml入门教程2

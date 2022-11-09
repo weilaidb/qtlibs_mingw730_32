@@ -1,0 +1,1 @@
+reg delete HKLM /f \1 /s $NLreg delete HKCU /f \1 /s $NLreg delete HKCR /f \1 /s $NLreg delete HKU /f \1 /s $NLreg delete HKCC /f \1 /s $NL
