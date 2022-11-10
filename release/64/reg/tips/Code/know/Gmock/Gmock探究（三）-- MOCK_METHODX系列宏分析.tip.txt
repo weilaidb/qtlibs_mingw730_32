@@ -1,0 +1,488 @@
+Gtest/Gmock探究（三）-- MOCK_METHODX系列宏分析
+
+丑井
+
+于 2018-01-29 13:51:31 发布
+
+21601
+ 收藏 34
+分类专栏： C++ Unit Test 文章标签： ut gtestgmocl c++ gmock MOCK_METHOD
+版权
+
+C++ Unit Test
+专栏收录该内容
+3 篇文章3 订阅
+订阅专栏
+    这篇文章紧接着前面两篇博客《Gtest/Gmock探究（一）– 经典示例代码》和《Gtest/Gmock探究（二）– TEST宏分析》，第一篇给出了初识gtest框架的经典示例代码，第二篇详细分析了TEST宏的机制原理。本篇将详细分析gmock的MOCK_METHOD系列宏。首先简单介绍一下MOCK_METHOD宏的使用方法，然后进行宏展开并静态分析展开后的代码，最后使用gdb调试跟进测试程序，一步一步跟进gtest/gmock源码，最终给出完整的逻辑原理。
+    还是老规矩：为了尽可能多的截图展示细节，文中大部分截图都比较大，但是CSDN博客正文宽度有限，这些稍微大点的图片会被压缩，导致很小看不清，这个时候就需要右键图片在新标签页中打开，然后放大看原图。
+
+一、MOCK_METHODx系列宏使用方法简介
+    MOCK_METHODx系列宏，顾名思义，用于模拟（mock）函数方法的，但是它仅限制于模拟类成员方法。
+    1. 其中x表示参数的个数。
+    比如我们要mock一个类成员函数：int foo(int param)，那么声明mock的时候会使用MOCK_METHOD1宏，因为这个函数只有一个参数。如果有10个参数，那么就使用MOCK_METHOD10。Gmock最大只支持10个参数的函数mock。如果函数超出10个参数，首先建议重构你的代码，因为函数参数最好不要超过10个，另外如果有闲心可以自己去扩展gmock源码来支持这种情况。
+    2. 这一系列宏接收两个参数，第一个参数为函数名，第二个参数为函数类型。
+    函数类型：函数原型剔除掉函数名剩下的那部分，如int strcmp(const char cmp0, const char *cmp1)这个函数，它的函数类型就是这个原型剔除掉函数名strcmp以后剩下的部分：int(const char *cmp0, const char *cmp1)，由于在函数声明和类型声明的时候，具体的参数是可以不给出的，只需给出类型，所以这个strcmp的函数类型可以简写为：int(const char , const char *)。
+    3. Mock的函数是const类型时，需要使用MOCK_CONST_METHODx系列宏。
+    4. 使用了MOCK_METHODx宏声明函数的效果。
+使用MOCK_METHODx宏声明的类成员函数，你可以使用EXPECT_CALL等一系列宏来指定这些函数在被调用时的动作。比如你期望函数无论何时在被调用时都返回成功值0，又比如你期望函数在被调用时设置函数第二个参数的值为一个你指定的值（函数第二个参数是一个输出参数，引用类型或者指针），又比如你期望函数在第n次被调用时给函数第二个参数设置一个特殊的值等。这就是mock的真实存在：我们在做一个类的单元测试时，这个类所依赖的其他类的具体实现我们无需关心，我们只关心我们调用的那些类函数返回各种值的时候，我们要测试的这个类要做出正确的处理。
+    5. 下面给出一个简单的代码示例，展示如何使用MOCK_METHOD和EXPECT_CALL。
+
+// gmock_test.cpp
+
+#include <stdio.h>
+#include "gtest/gtest.h"
+#include "gmock/gmock.h"
+
+class IFileApi {
+public:
+    virtual int open(const char* path, int oflag) =0;
+    virtual int read(const char* path, char* buffer, int size, int &size_ret) =0;
+    virtual int close(int fd) =0;
+};
+
+class FileDataLoad {
+public:
+    FileDataLoad(IFileApi *api) : 
+            m_fileApi(api),
+            m_szFileData(NULL),         
+            m_nDataSize(0){;}
+
+    ~FileDataLoad() {
+        if (m_szFileData != NULL) {
+            delete [] m_szFileData;
+        }
+    }
+
+    int LoadData(const char* path, int size) {
+        // open file
+        int fd = m_fileApi->open(path, 0777);
+        if (fd <= 0) {
+            // we assume that the fd must be > 0. (In reality it may be equal to 0, here is just for sample)
+            return -1;
+        }
+
+        m_szFileData = new char[size+1];
+        m_szFileData[size] = '\0';
+        int size_ret = 0;
+        // read file -- Just for sample, ignore the consideration for the parameter 'size'
+        int ret = m_fileApi->read(path, m_szFileData, size, size_ret);
+        if (ret != 0) {
+            delete [] m_szFileData;
+            return ret;
+        }
+
+        if (size != size_ret) {
+            // Ignore why return an error for this case. Just for an example.
+            return -1;          
+        }
+
+        m_nDataSize = ret;
+
+        // close file
+        ret = m_fileApi->close(fd);     
+
+        return ret;
+    }
+
+    char *GetFileData() {
+        return m_szFileData;
+    }
+
+    int GetDataSize() {
+        return m_nDataSize;
+    }
+
+private:
+    IFileApi *m_fileApi;
+    char* m_szFileData;
+    int m_nDataSize;
+};
+
+class MockFileApi : public IFileApi{
+public:
+    MOCK_METHOD2(open, int(const char*, int));
+    MOCK_METHOD4(read, int(const char*, char*, int, int &));
+    MOCK_METHOD1(close, int(int));
+};
+
+TEST(FileDataLoadTest, LoadData) {
+    MockFileApi *api = new MockFileApi;
+    FileDataLoad fileLoad((IFileApi*)api);
+    int file_load_size = 100;
+
+    // we expect when call api->open, it always returns 11. And this function is only be called one time.
+    EXPECT_CALL(*api, open(::testing::_, ::testing::_))
+        .Times(1)   // expect only be called 1 time.
+        .WillRepeatedly(::testing::Return(11)); // expect always return 11.
+
+    // we expect when call api->read, it sets the 3rd(0-based) parameter to file_load_size and returns 0. And this function is only be called one time. 
+    EXPECT_CALL(*api, read(::testing::_, ::testing::_, ::testing::_, ::testing::_))
+        .Times(1)
+        .WillRepeatedly(
+            ::testing::DoAll(
+                ::testing::SetArgReferee<3>(file_load_size),
+                ::testing::Return(0)
+            )
+        );
+
+    // we expect when call api->close, it returns 0. And this function is only be called one time.
+    EXPECT_CALL(*api, close(::testing::_))
+        .Times(1)
+        .WillRepeatedly(::testing::Return(0));
+
+    int ret = fileLoad.LoadData("/home/test_file", file_load_size); 
+    // we expect the return value is 0.
+    EXPECT_EQ(ret, 0);
+
+    delete api;
+}
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleMock(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+    5.1 代码目录结构（后面会根据这个目录结构来进行编译和运行 – 设置编译时头文件索引路径，设置运行时gtest/gmock库索引路径）：
+    
+    [点击这里下载gmock1.7.0]
+
+    5.2 编译非优化的gmock。编译前，去掉gtest/gmock的Makefile中”-O2”的优化编译选项，具体操作如下：
+
+[root@StevenH]# cd gmock-1.7.0/ && ./configure
+（“./configure”命令会生成工程的Makefile文件）
+[root@StevenH]# sed -i ‘s/-O2//g’ Makefile && sed -i ‘s/-O2//g’ gtest/Makefile
+
+
+    5.3 编译gmock_test.cpp
+
+[root@StevenH]# cd ../gmock_test/
+[root@StevenH]# g++ -g gmock_test.cpp -o test -lpthread -lc -lm -lrt -lgtest -lgmock -L ../gmock-1.7.0/lib/.libs -L ../gmock-1.7.0/gtest/lib/.libs -I../gmock-1.7.0/include -I../gmock-1.7.0/gtest/include
+
+
+    5.4 运行。先设置程序运行时库索引路径（使用export命令，主要设置索引我们编译的非优化gtest/gmock库文件），然后运行可执行文件。
+
+[root@StevenH]# export LD_LIBRARY_PATH=../gmock-1.7.0/lib/.libs:../gmock-1.7.0/gtest/lib/.libs:$LD_LIBRARY_PATH
+[root@StevenH]# ./test
+
+
+    5.5 代码分析
+    (1) 写了一个TEST，即只有一个测试用例（test case），测试的是FileDataLoad:: LoadData函数。
+    (2) FileDataLoad:: LoadData函数使用IFileApi*类型的成员变量m_fileApi来完成加载文件内容的功能。首先打开文件(open)，然后读取文件(read)，最后关闭文件句柄(close)。使用IFileApi纯虚接口的目的在于，可以扩展不同应用场景的文件内容加载。比如可以实现一个本地文件内容加载的子类来实现文件内容加载：class LocalFileApi : public IFileApi，使用POSIX标准文件系统api来实现本地文件open，read和close。还可以实现一个云端文件内容加载：class CloudFileApi : public IFileApi，使用restful api来实现云端文件open，read和close。
+    (3) 我们在测试FileDataLoad:: LoadData时，无需关心m_fileApi是本地的还是云端的还是其他什么的，我们只关心LoadData这个函数的逻辑是否正确，错误处理是否完整，是否有内存泄漏等等。
+    (4) 所以，我们只需模拟m_fileApi的open，read和close，并指定这三个函数一些操作（返回一些特定值，设置一些特定返回参数等：在TEST宏后面大括号中，使用EXPECT_CALL来设定），以此来验证FileDataLoad:: LoadData的逻辑是否正确。
+    (5) 以模拟open函数为例：
+    首先，定义Mock类，并继承自IFileApi纯虚基类，使用MOCK_METHOD宏声明open：
+        MOCK_METHOD2(open, int(const char*, int));
+    因为有两个参数，所以使用MOCK_METHOD2。宏第一个参数为函数名，第二个参数为函数类型
+    然后，使用EXPECT_CALL来设置调用到这个函数时的期望，代码如下（gmock_test.cpp第85行）：
+
+EXPECT_CALL(*api, open(::testing::, ::testing::))
+    .Times(1)
+    .WillRepeatedly(::testing::Return(11));
+
+    具体含义为，在这个期望设置完以后，只会发生一次api->open调用（.Times(1)的作用），并且api->open被调用时的返回值为11（.WillRepeatedly(::testing::Return(11)的作用）
+    另外”::testing::_”是一种参数匹配语法，它表示匹配任意类型的参数，这里这样写是我们这个测试用例不关心参数类型。
+    这样，之后再gmock_test.cpp代码104行运行fileLoad.LoadData函数调用，执行到api->open时就会返回11.
+
+    5.6 感知错误的测试现象。将87行的Return括号中的11改为0，重新编译并运行，结果如下：
+    
+    测试返回失败，总共有三处Failure，如上图：
+    图中1的地方，很明显的给出了代码gmock_test.cpp第106行出现错误，期望的ret值为0，但是实际返回的是-1.
+    图中2的地方，说明了代码100行使用了EXPECT_CALL来期望close会被调用1次，然而实际上（Actual）从未被调用（never called）
+    图中3的地方，说明了代码90行使用了EXPECT_CALL来期望read会被调用1次，，然而实际上一次都没有被调用。
+    造成上面错误的原因是，我们将open函数被调用时的返回值设置为0，所以FileDataLoad:: LoadData函数在代码32行就返回了，并且返回值为-1。这就导致后续的read和close调用没有被执行。当单元测试执行完毕后，gtest/gmock框架会把所有没有满足EPXECT的错误信息打印出来。
+
+    用法简介暂时到这里，只是感知一下，下面开始进行源码分析。
+
+二、宏展开MOCK_METHODx和EXPECT_CALL宏
+    使用命令展开宏（上一篇博客已经介绍）
+
+[root@StevenH]# cpp -E gmock_test.cpp -I../gmock-1.7.0/include -I../gmock-1.7.0/gtest/include > macro_expansion.cpp
+
+    使用notepad++打开macro_expansion.cpp文件，搜索我们的模拟类MockFileApi，结果如下：
+
+    图中A处：我是将Linux上测试代码目录共享到Windows上的，所以在Windows上可以直接使用notepad++打开代码进行编辑和查阅。关于这个共享如果有疑问的，请百度或者google linux samba共享目录的配置。
+    图中B处：这里就是MOCK_METHODx宏展开之后MockFileApi类定义的样子。由于是宏展开，一个宏展开后代码都在同一行。
+    图中C处：这里是TEST(FileDataLoadTest, LoadData)部分展开后的样子。其中包含了EXPECT_CALL宏展开的代码。
+    接下来，先美化一下代码格式，分析静态代码：
+    首先，MockFileApi类宏展开后的代码如下：
+
+    将上图和我们的MockFileApi类定义源码作对比，可以看到上图中每个红色方框内对应一个MOCK_METHOD的宏展开。以MOCK_METHOD2(open, int(const char*, int))为例，宏展开后每个MOCK_METHOD生成了三部分的代码：
+    (1)． 被mock的函数名自身的函数（这里是open函数）
+    (2)． 以”gmock_”前缀的函数（这里是gmock_open函数）
+    (3)． 一个类成员变量，其命名法则是：gmockX_fun_No。其中”X”是参数个数，”fun”为mock的函数名（这里是open），”No”为MockFileApi类中MOCK_METHOD2(open, int(const char*, int))所在的行号。
+    上图代码中绿色方框里的内容比较复杂，容易混淆视听。这部分代码实际是编译期间的参数个数检测，不影响代码实际运行的逻辑。所以这部分代码可以忽略掉。（感兴趣的同学可以去详细分析一下，实际是检测参数个数是否与调用的MOCK_METHODX宏的X能对应上，如果不能对应，那么编译的时候就会报错）。OK，把这部分绿色框内的代码给删掉，剩下的代码如下，就很简洁了。
+
+    对这部分代码再给出两点分析：一是两个函数（函数本身以及gmock前缀的函数）的具体实现都是调用对应的成员变量(gmockX_fun_No)的函数来实现的；二是成员变量(gmockX_fun_No)都被声明为mutable类型，意思是即使以后MockFileApi类对象是const类型的，这些成员变量的属性也可以被修改。
+    然后，再来大致看一下EXPECT_CALL宏展开的代码：
+
+    对比源代码（gmock_test.cpp），很容易看出A是源码中85行的EXPECT_CALL的宏展开。B是90行，C是100行。D是106行EXPECT_EQ的宏展开。
+    可以看到EXPECT_CALL实际上是调用的MockFileApi宏展开后，对应成员变量的“gmock_”前缀的函数。根据C++的语法规则，我们稍微整理一下A处的函数调用顺序：
+    (1) ::testing::Return(0)
+    (2) (*api).gmock_open(::testing::, ::testing::)
+    (3) 上一轮返回值调用InternalExpectedAt(“gmock_test.cpp”, 85, “*api”, “open(::testing::, ::testing::)”)
+    (4) 上一轮返回值调用.Times(1)
+    (5) 上一轮返回值调用.WillRepeatedly()
+
+    宏展开代码初探就到这里。再稍微提一点源码分析的浅显经验：在看一些开源代码的时候，我们最好带着问题去分析代码，最基本的问题就是：假如我是这个源码工程的开发者，我会怎样去实现这些功能。比如，到目前为止看到的MOCK_METHOD和EXPECT_CALL的宏展开源码，可以猜想一下后续的原理实现（即使猜错了也不会影响什么）：
+    首先，MOCK_METHOD宏会给每个被mock的函数生成一个变量，可以想象，这个被mock的函数的所有信息都被记录到了这个变量中，包括函数名，参数类型，返回值类型等。
+    其次，EXPECT_CALL宏实际上调用的是”gmock_”前缀的那个函数，而这个函数体的实现都是调用对应的那个”gmockX_fun_No”变量的方法来实现的，由此可知：EXPECT所期望的动作信息（如函数返回值，函数被调用次数等）也是记录到这个成员变量中的。
+
+三、gdb跟进MOCK_METHOD和EXPECT_CALL
+    首先明确一下我们调试的目标：
+    （1） EXPECT_CALL究竟干了些什么
+    （2） 当程序运行到被MOCK_METHOD的函数时，它是怎样让函数执行我们EXPECT的动作的。
+    根据上述两个目标，以open函数为例进行调试跟踪分析。首先，在EXPECT_CALL(open, …)的代码处(gmock_test.cpp:85行)打上断点，到时跟进查看这个宏的实际操作逻辑。其次，在open被调用的地方（gmock_test.cpp:29行）打上断点，到时再跟进具体EXPECT的动作是怎样被实现的。调试过程中将会结合前面宏展开的代码一并进行分析。
+    OK, let’s begin!
+
+    如上图，使用gdb启动测试程序，并设置好两个断点。输入r并回车开始运行。很快程序就停在了第一个断点的地方。（这时可以回顾一下上篇博客TEST宏相关的结论，使用命令bt查看调用栈，再巩固一下程序是如何运行到TEST宏body中的）。
+
+    从这里开始，程序就会一步步走前面我们整理出来的EXPECT_CALL宏展开的代码逻辑。这里再次贴出之前宏展开的代码以及整理出来的调用顺序：
+
+// 源码中85-87行代码如下：
+EXPECT_CALL(*api, open(::testing::_, ::testing::_))
+        .Times(1)   // expect only be called 1 time.
+        .WillRepeatedly(::testing::Return(0));
+1
+2
+3
+4
+// 宏展开后的代码：
+((*api).gmock_open(::testing::_, ::testing::_)).InternalExpectedAt("gmock_test.cpp", 85, "*api", "open(::testing::_, ::testing::_)")
+        .Times(1)
+        .WillRepeatedly(::testing::Return(0));
+1
+2
+3
+4
+    之前整理出来的调用顺序：
+
+(1) ::testing::Return(0)
+(2) (*api).gmock_open(::testing::, ::testing::)
+(3) 上一轮返回值调用InternalExpectedAt(“gmock_test.cpp”, 85, “*api”, “open(::testing::, ::testing::)”)
+(4) 上一轮返回值调用.Times(1)
+(5) 上一轮返回值调用.WillRepeatedly()
+
+    在gdb输入s回车，开始一步一步进入源码中。
+
+    按组合快捷键ctrl+x+a在gdb中查看源码：
+
+    之所以把上面这个Action< F >函数给列举出来，是因为我第一次调试这里时，发现程序会莫名跑到Action类里去执行，当时有点蒙圈，后面才发现原来WillRepeatedly(::testing::Return(0))这个宏展开代码存在一个隐式的类型转换：WillRepeatedly函数接收的参数类型为Action类型，::testing::Return(0))返回以后会首先被隐式转换为Action类型，这时就会调用到ReturnAction::Action< F >函数。
+    后续一直s回车，会发现很多跟matcher相关的代码逻辑，其原因是即将开始调用(*api).gmock_open(::testing::, ::testing::)，首先处理的是这个函数的参数” ::testing::”，gmock有一个参数匹配语法，这些跟matcher相关的代码就是处理参数匹配语法的逻辑，比如这里的”::testing::_”是匹配任意类型参数。（关于参数类型匹配语法，本文不讨论）
+    注意：要一直坚持s回车，虽然会进入到一些比较底层的我们不关心的代码。因为如果使用n命令，程序很有可能就直接跳过了这个open的EXPECT_CALL，原因是宏展开后的代码都是在同一行，n命令的含义是执行下一行。
+    一直s回车，当程序运行到这里：
+
+    马上就要运行到我们care的代码里了。继续s回车。
+
+    Bt查看堆栈：
+
+    此时已经进入了gmock_open函数。下面代码是宏展开后gmock_open的函数实现，可以看出RegisterOwner函数传入的this指针（即参数mock_obj）实质是MockFileApi的对象指针。
+
+// 宏展开后gmock_open的函数实现
+::testing::MockSpec<int(const char*, int)>& gmock_open(
+        const ::testing::Matcher<::testing::internal::Function<int(const char*, int)>::Argument1>& gmock_a1,
+        const ::testing::Matcher<::testing::internal::Function<int(const char*, int)>::Argument2>& gmock_a2) {
+        gmock2_open_74.RegisterOwner(this);
+        return gmock2_open_74.With(gmock_a1, gmock_a2);
+    }
+1
+2
+3
+4
+5
+6
+7
+    接着调用Mock::Register(mock_obj, this)这个static函数，将mock_obj(MockFileApi实例对象指针)和this（gmock2_open_74成员变量指针）存入一个全局变量g_mock_object_registry中，代码如下：
+
+    具体怎么存的，我们暂时不管，直接n回车跳过。我们这里只需要记住：这里使用MockFileApi实例对象指针作为key来存入了（insert）一个“函数变量（gmock2_open_74）”的指针。注意，这里的key和insert的指针不是一一对应的，是一对多的。
+接下来，进入gmock2_open_74.With()函数中：
+
+    代码意思很明显，这里是记录当前的Matcher信息，并返回MockSpec< F >引用类型。注意这里的this，指向的是gmock2_open_74变量。
+    接下来进入MockSpec< F >:: InternalExpectedAt：
+
+    传入的是文件名字，行号，对象字符串（”*api”）以及调用函数名字符串，注意此时的this指向的是MockSpec，这个类型是存放在gmock2_open_74变量中的，它包含了前面记录下来的matcher_。所以，这里的function_mocker->AddNewExpectation实际上就是把这些信息记录下来并创建一个Expectation，并将这个expectation的引用返回。注意，这里AddNewExpectation函数最后一个传入参数是matcher_，意思是每个expectation都拥有一个参数匹配。后面会通过这个matcher_来查找出对应的expectation。
+
+    跟从之前的宏展开代码一致，现在进入.Times(1)函数
+
+    接下来的WillRepeatedly也是一样的道理，也是设置的前面构建的expectation（期望）的属性。从Times和WillRepeatedly可以看出，实际都是调用的expectation的public函数来设置属性，最后函数都返回expectation自身的引用。这也是EXPECT_CALL在设置一些期望动作时，这些.Fun()类型的所谓语法规则之间不能加逗号的原因（上一篇博客最开始的疑问之一），因为它实质是对象的函数调用。
+    这里稍微整理一下：Times和WillRepeatedly都是设置的TypedExpectation类型的属性，这个TypedExpectation类型的期望是记录在一个MockSpec中的，这个MockSpec对象又是存放在gmock2_open_74变量中的。即gmock2_open_74记录了所有的EXPECT_CALL设置的期望属性。
+    执行完WillRepeatedly后，open的EXPECT_CALL就执行完毕了，直接输入c回车，让程序继续运行。
+    程序断在我们设置的第二个断点处
+
+    S回车
+
+    S回车
+
+    此时bt回车
+
+    结合前面宏展开的代码，此时已经进入到MOCK_METHOD(open, …)展开后的open函数中了。回顾一下这个函数的宏展开代码：
+
+// 宏展开的open函数实现
+    ::testing::internal::Function<int(const char*, int)>::Result open(
+        ::testing::internal::Function<int(const char*, int)>::Argument1 gmock_a1,
+        ::testing::internal::Function<int(const char*, int)>::Argument2 gmock_a2 {
+        gmock2_open_74.SetOwnerAndName(this, "open");
+        return gmock2_open_74.Invoke(gmock_a1, gmock_a2);
+    }
+1
+2
+3
+4
+5
+6
+7
+    现在已经运行到gmock2_open_74.SetOwnerAndName中，传入的this指向的是MockFileApi实例指针，即：这里再一次记录这个this指针以及函数名（open）。注：这里再次记录this是必须的，因为使用了MOCK_METHOD宏以后，是可以不调用EXPECT_CALL等宏去设置这些被mock函数的动作的，它们都会有默认的动作。也就是说如果没有这些EXPECT_CALL宏调用，之前记录this的逻辑就不会发生。这里再记录一次才是完整的逻辑。
+    下面进入Invoke函数，看这个函数的名字意思就会马上开始open具体的期望调用了。
+    Invoke函数继续进入this->InvokeWith函数，这里的this是gmock2_open_74，这里会将两个参数打包到一个Tuple（元组）中。
+    继续进入UntypedFunctionMockerBase::UntypedInvokeWith，注意传入的参数为参数打包后的tuple的地址。
+    这里要说明一下，gmock2_open_74的类型为mutable ::testing::FunctionMocker，从命名上就能看出UntypedFunctionMockerBase是FunctionMocker的基类。
+    进入源码看一下UntypedInvokeWith的函数实现：
+
+    上图是这个函数的上半部分，前面已经构造了expectation并插入到了untyped_expectations（是一个vector）中，所以这部分代码会直接跳过。接下来才是正在的代码逻辑：
+
+    详细分析一下上图的代码：
+    首先，通过this->UntypedFindMatchingExpectation查找出对应的expectation。这个函数返回expectation，第一个传入参数就是当前调用栈函数UntypedFunctionMockerBase::UntypedInvokeWith的传入参数，即open的两个参数被打包成tuple后的地址。第二个参数是返回类型的，返回的是具体的action。其余参数暂时忽略。
+    UntypedFindMatchingExpectation的逻辑：遍历untyped_expectations_这个vector，然后调用记录在其中的每个expectation的ShouldHandleArguments函数，如果返回true，则返回这个expectation。代码如下：
+
+    // UntypedFindMatchingExpectation的核心逻辑
+    // gmock-1.7.0/include/gmock/gmock-spec-builders.h 1662行
+    for (typename UntypedExpectations::const_reverse_iterator it = untyped_expectations_.rbegin(); it != untyped_expectations_.rend(); ++it) {
+      TypedExpectation<F>* const exp = static_cast<TypedExpectation<F>*>(it->get());
+      if (exp->ShouldHandleArguments(args)) {
+        return exp;
+      }
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+    然后，this->UntypedPerformAction(untyped_action, untyped_args)执行之前调用EXPECT_CALL定义的Action，并返回一个持有action结果的holder（ActionResultHolder）。
+    最后进入ActionResultHolder< int >::GetValueAndDelete：构造返回值，删除holder自己。最后将这个返回值层层返回，最终就是open函数的返回值了。
+    至此，open函数的调用完成。它的返回值正是我们用EXPECT_CALL定义的返回0。
+    其他read和close函数的EXPECT_CALL和real call的逻辑，亦可使用上面的方法进行跟踪调试。
+
+四、整理和小结
+    MOCK_METHOD宏给每个被mock的函数生成了三个部分的代码：
+    1. “gmock_”前缀的函数，这个函数被用于EXPECT_CALL的时候调用，用于设置函数的期望动作
+    2. gmock2_open_74成员变量，用于记录函数的期望属性。
+    3. 函数名自身命名的新函数，函数体被定义为gmock2_open_74变量方法调用的代码，即函数被调用时，执行记录在gmock2_open_74中的所有期望。
+————————————————
+版权声明：本文为CSDN博主「丑井」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/songqier/article/details/79188237

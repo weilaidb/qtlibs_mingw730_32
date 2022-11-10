@@ -1,0 +1,61 @@
+Bootstrap入门经典
+
+
+
+
+c．因为没有它，页面就容易遭到某些黑客攻击
+d．这一行不重要
+6．判断正误：X-UA-Compatible这一行使Bootstrap框架能够在Internet Explorer中工作。
+7．判断正误：viewport元标记使Bootstrap成为响应式设计。
+8．＜！——[if lt IE 9]＞代码起什么作用？
+a．没有作用，只是一行注释
+b．在Internet Explorer 8和更低版本的IE浏览器上激活下面的代码
+c．在Internet Explorer 9和更低版本的IE浏览器上激活下面的代码
+d．在任何版本的IE上激活下面的代码
+9．哪里是Bootstrap JavaScript文件的最佳位置？
+a．在文档的＜head＞部分
+b．文档＜body ＞部分中需要脚本的任何位置
+c．在＜/body＞标签之上，jQuery脚本之前
+d．在＜/body＞标签之上，jQuery脚本之后
+10．判断正误：bootstrap-theme.css是获得Bootstrap颜色和视觉增强的唯一途径。
+3.5.3　测验答案
+1．a。将Bootstrap添加到网页所需的最小化代码就是Bootstrap CSS文件。
+2．错误。Bootstrap用＜！doctype html＞文档类型表示它是HTML5。
+3．正确。Bootstrap JavaScript插件需要jQuery才能工作。
+4．错误。只要使用Bootstrap CSS 和JavaScript文件，就是使用Bootstrap。
+5．c。如果文档的＜head＞部分没有＜meta charset="utf-8"＞，网页就容易遭到某些黑客的攻击。
+6．错误。X-UA-Compatible行帮助IE更有效地工作，但不是Boostrap在该浏览器中工作的必要条件。
+7．错误。viewport元标记帮助设计在较小屏幕上获得更好的观感，但并不是响应式设计所必需的。
+8．b。＜！——[if lt IE 9]＞是条件注释，在Internet Explorer 9以下版本中激活后面的HTML。
+9．Bootstrap JavaScript文件的最佳位置是在＜/body＞标记之上，jQuery脚本之后。
+10．错误。Bootstrap主题CSS文件确保您获得所有颜色与视觉自定义设置，但是通常默认包含在标准Bootstrap CSS文件中。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
