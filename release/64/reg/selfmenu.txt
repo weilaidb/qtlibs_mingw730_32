@@ -2496,6 +2496,7 @@ SoftWare/Understand
 SoftWare/WPS/如何批量选中不同颜色的文字
 SoftWare/opengrok/md5sum
 SoftWare/vmware/16
+SoftWare/广联达
 TEST/RegExp/单个空格替换无
 TEST/RegExp/添加引号和末尾逗号
 TEST/RegExp/添加引号和末尾逗号-加一空行
