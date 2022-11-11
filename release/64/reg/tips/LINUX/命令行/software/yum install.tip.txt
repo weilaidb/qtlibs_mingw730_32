@@ -1,3 +1,7 @@
+glibc-static libstdc++-static
+devtoolset-8
+
+
 vim-X11
 
 

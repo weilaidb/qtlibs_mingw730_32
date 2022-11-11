@@ -1,3 +1,8 @@
+pythonuse2;unlink /usr/bin/python && ln -s /usr/bin/python2 /usr/bin/python
+pythonuse3;unlink /usr/bin/python && ln -s /usr/bin/python3 /usr/bin/python
+
+
+
 doxygendocdotcreate;doxygen -g doc.dot
 doxygendocdot;doxygen doc.dot 
 doxygendocdotcreateshort;doxygen -s -g doc.dot

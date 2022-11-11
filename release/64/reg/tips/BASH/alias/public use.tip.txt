@@ -1,3 +1,7 @@
+alias pythonuse2="unlink /usr/bin/python && ln -s /usr/bin/python2 /usr/bin/python "
+alias pythonuse3="unlink /usr/bin/python && ln -s /usr/bin/python3 /usr/bin/python "
+
+
 alias doxygendocdotcreate="doxygen -g doc.dot "
 alias doxygendocdot="doxygen doc.dot "
 alias doxygendocdotcreateshort="doxygen -s -g doc.dot "
