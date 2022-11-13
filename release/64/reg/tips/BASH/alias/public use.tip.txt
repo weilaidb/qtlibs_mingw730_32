@@ -1,3 +1,8 @@
+alias npmconfigtaobao="npm config set registry http://registry.npm.taobao.org/ "
+
+
+alias python3youcompleteverbose="/usr/bin/python3 /root/work/git.bak/jsp_exe.vim/vim/bundle/YouCompleteMe/third_party/ycmd/build.py --all --verbose "
+
 alias pythonuse2="unlink /usr/bin/python && ln -s /usr/bin/python2 /usr/bin/python "
 alias pythonuse3="unlink /usr/bin/python && ln -s /usr/bin/python3 /usr/bin/python "
 

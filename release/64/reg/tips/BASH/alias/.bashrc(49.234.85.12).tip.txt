@@ -37,3 +37,12 @@ complete -o default -F _pip_completion pip
 
 ##BEGOO
 GOPROXY=https://goproxy.cn
+
+#自动下载
+go env -w GO111MODULE=on
+
+#设置环境为国内代理
+go env -w GOPROXY=https://goproxy.cn,direct
+
+
+

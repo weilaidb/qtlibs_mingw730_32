@@ -625,8 +625,10 @@ Code/new/Gmock/assert/ASSERT_THROW
 Code/new/Gmock/assert/ASSERT_TRUE
 Code/new/Gmock/assert/EXPECT_CALL
 Code/new/Gmock/assert/MATCHER_P
+Code/new/Gmock/file/注意事项
 Code/new/Gmock/gtest_filter 过滤器
 Code/new/Gmock/gtest_filter 过滤器2
+Code/new/Gmock/know/gtest和gmock在C语言项目上的使用
 Code/new/Gmock/knowledge/MATCHER_P
 Code/new/Gmock/matcher/AllOf
 Code/new/Gmock/matcher/EndsWith
@@ -1803,6 +1805,8 @@ LINUX/Ubuntu/必备软件 necessary software dpkg -i
 LINUX/Vim/vim实用技巧
 LINUX/cat EOF
 LINUX/cat EOF 2 stdout
+LINUX/dnf
+LINUX/go
 LINUX/help/HZ
 LINUX/help/cgroup cgconfig
 LINUX/help/chrt
