@@ -275,6 +275,8 @@ C/API/argc usage
 C/API/atoi
 C/API/endian
 C/API/errno
+C/API/errno 错误对照表
+C/API/errno 错误码EAGAIN
 C/API/execvp
 C/API/fopen
 C/API/fstat
