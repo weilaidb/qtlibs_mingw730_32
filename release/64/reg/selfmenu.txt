@@ -1848,6 +1848,8 @@ LINUX/man/vmstat
 LINUX/man/手册说明 man1 man2
 LINUX/man/自定义self 自己编写linux的man手册
 LINUX/man/自定义手册 self
+LINUX/modinfo .ko
+LINUX/modinfo .ko 内核模块使用
 LINUX/qemu intr
 LINUX/qemu script/arm.sh
 LINUX/qemu script/build.sh

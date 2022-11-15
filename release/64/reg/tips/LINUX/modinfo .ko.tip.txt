@@ -1,0 +1,12 @@
+$ modinfo hello.ko 
+filename:       /root/work/git/linux_driver/hello/hello.ko
+alias:          A simplest example
+description:    This is a simple example!
+
+author:         edsionte Wu
+license:        GPL
+retpoline:      Y
+rhelversion:    7.9
+srcversion:     831DAD96BA4676C43D4B150
+depends:        
+vermagic:       3.10.0-1160.71.1.el7.x86_64 SMP mod_unload modversions 
