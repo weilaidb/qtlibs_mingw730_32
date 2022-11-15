@@ -1,0 +1,1 @@
+char *\1;$NL$NL\1 = kmalloc(\2, \3);$NLif (!kbuf)$NL$TBreturn -ENOMEM;$NL$NLmemset(\1, 0, \2);$NL$NL$NL$NL=======================================>>>>>>>>>>>$NL$NL

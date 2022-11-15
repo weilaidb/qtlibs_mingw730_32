@@ -1753,8 +1753,10 @@ KERNEL/module/模板
 KERNEL/module/模板 helloworld
 KERNEL/module/模板 here
 KERNEL/new/dup2
+KERNEL/new/kmalloc
 KERNEL/new/kmalloc kfree
 KERNEL/new/list_head
+KERNEL/new/spin_lock_init
 KERNEL/大小写/tolower toupper
 KERNEL/宏/_IO
 KERNEL/宏/__setup

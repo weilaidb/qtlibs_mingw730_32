@@ -1,0 +1,4 @@
+[指针;大小;标志]
+kbuf;count;GFP_KERNEL | __GFP_NOWARN
+
+n_tch;sizeof(struct n_touch);GFP_KERNEL

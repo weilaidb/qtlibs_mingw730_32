@@ -1,0 +1,2 @@
+[锁]
+ntch->touch_lock
