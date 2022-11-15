@@ -639,6 +639,9 @@ Code/new/Gmock/matcher/Ne
 Code/new/Gmock/matcher/StartsWith
 Code/new/Gmock/模拟/MOCK_CONST_METHOD1
 Code/new/Gmock/模拟/MOCK_METHOD0
+Code/new/mockcpp/know/MockCpp手册（英文）
+Code/new/mockcpp/know/mockcpp使用方法简明指导
+Code/new/mockcpp/know/mockcpp学习实践总结
 DBMS/MySql/cmd 登陆
 DBMS/MySql/database create
 DBMS/MySql/database drop

@@ -1,0 +1,125 @@
+mockcpp学习实践总结 原创
+smallpen2020-11-18 21:25:42
+文章标签mockcpp 测试文章分类软件测试软件研发阅读数8681
+
+<!-- TOC -->
+
+ 1. 前言
+ 2. mockcpp helloworld
+ 3.mockcpp简介
+ 4. mockcpp 规范介绍
+ 5. mockcpp 实例
+ 6. 参考列表
+<!-- /TOC -->
+
+1. 前言
+官网的手册，一切wiki的源头：  https://code.google.com/archive/p/mockcpp/wikis 。本文主要根据官网的一些介绍加上自己的实践，介绍如何使用mockcpp对C函数进行测试。主要的实验环境是Visual Studio + gtest + mockcpp，关于测试环境的搭建可以参考：
+
+ https://blog.51cto.com/iamokay/2554677
+ https://blog.51cto.com/iamokay/2553445
+2. mockcpp helloworld
+废话少说，先来个mockcpp helloworld，感受一下mockcpp的作用。
+
+bool print_helloworld(void)
+{
+    printf("mockcpp helloworld\n");
+    return true;
+}
+
+bool print_fake_helloworld(void)
+{
+    printf("Fake mockcpp helloworld\n");
+    return false;
+}
+
+bool mockcpp_helloworld(void)
+{
+    return print_helloworld();
+}
+
+TEST(mockercpp, helloworld) {
+    bool ret;
+    MOCKER(print_helloworld)
+        .stubs()
+        .will(invoke(print_fake_helloworld));
+    ret = mockcpp_helloworld();
+    EXPECT_EQ(false, ret);
+}
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
+11.
+12.
+13.
+14.
+15.
+16.
+17.
+18.
+19.
+20.
+21.
+22.
+23.
+24.
+25.
+运行上面的用例，会运行成功，且实际打印的是：
+
+mockcpp学习实践总结_mockcpp 测试
+
+mockcpp_helloworld()明明调用的是print_helloworld()，反而函数返回了False并打印了
+Fake mockcpp helloworld，这就是mockcpp用于打桩的神奇之处，也是其价值所在。
+
+3.mockcpp简介
+mockcpp是一个C/C++ 模仿(mock)框架。一个C/C++函数由三大部分组成，入参、行为、出参。在这个框架内你可以模仿函数的行为、检查入参、指定返回值，满足你的所有“造假”欲望。
+
+mockcpp 的主要功能就是“造假”(打桩)。核心中的核心：一旦某个函数被MOCKER后，就不会执行被MOCKER的真实函数了，当调用被MOCKER的函数时，被MOCKER函数的行为就由MOCKER后面的规范决定，包括函数的返回值，入参判断，执行次数，设置指针作为返回值的值，等等。基本上可以实现你所有的幻想。如下图所示，正常情况下，mockcpp_helloworld()函数会调用print_helloworld()函数，但是我们一旦MOCKER(print_helloworld)后，mockcpp_helloworld()调用的就不是真正的print_helloworld()函数，而是由MOCKER规范制定的函数。
+
+mockcpp学习实践总结_mockcpp 测试_02
+
+mockcpp的主要应用场景就是单元测试，在单元测试中，被依赖的模块可能处于不可用的状态或者行为难以控制，就像上图中的print_helloworld()的行为可能不好控制，或者本身就处于不可用，这时又需要测试mockcpp_helloworld()。就可以采用mockcpp 把print_helloworld()打桩掉，由MOCKER规范控制函数的行为。
+
+4. mockcpp 规范介绍
+TEST(mockcpp detail sample)
+{
+    MOCKER(function) / MOCK_METHOD(mocker, method)
+        .stubs() / defaults() / expects(never() | once() | exactly(3) | atLeast(3) | atMost(3) )
+        [.before("some-mocker-id")]
+        [.with( any() | eq(3) | neq(3) | gt(3) | lt(3) | spy(var_out) | check(check_func)
+                | outBound(var_out) | outBoundP(var_out_addr, var_size) | mirror(var_in_addr, var_size)
+                | smirror(string) | contains(string) | startWith(string) | endWith(string) )]
+        [.after("some-mocker-id")]
+        .will( returnValue(1) | repeat(1, 20) | returnObjectList(r1, r2)
+                | invoke(func_stub) | ignoreReturnValue()
+                | increase(from, to) | increase(from) | throws(exception) | die(3))
+        [.then(returnValue(2))]
+        [.id("some-mocker-id")]
+}
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
+11.
+12.
+13.
+14.
+15.
+5. mockcpp 实例
+test
+
+6. 参考列表
+ https://blog.csdn.net/xueyong4712816/article/details/34086649
+ https://blog.csdn.net/tony_wong/article/details/38752395
