@@ -580,6 +580,7 @@ CXX/knowledge/unordered_map C++ STL unordered_map容器用法详解
 CXX/knowledge/如何理解左操作数必须为左值
 CXX/new class operator=
 CXX/new class static instsance实例
+CXX/new class static instsance无实例
 CXX/new/charutil header
 CXX/new/charutil source
 CXX/new/stringutil header

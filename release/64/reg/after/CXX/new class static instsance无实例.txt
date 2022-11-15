@@ -1,0 +1,1 @@
+/*********类声明*********/$NL$NLclass \1$NL{$NLprotected:$NL$TB\1();$NL$TB~\1();$NL$NL$TBvoid init();$NL};$NL$NL$NL/*********类实现*********/$NL$NL\1::\1()$NL{$NL$NL$NL}$NL$NL\1::~\1()$NL{$NL$NL$NL}$NL$NLvoid  \1::init()$NL{$NL$NL}$NL$NL$NL$NL$NL$NL$NL
