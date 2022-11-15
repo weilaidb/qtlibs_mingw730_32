@@ -45,9 +45,8 @@ UnMultiLineComment Ctrl + Q  反多行注释
 duplicateselect    Ctrl + D 拷贝一份内容到当前选中内容后面
 deleteline         Ctrl + L 删除当前行
 enternewline       Ctrl + Enter 换一新行
-InsertFileHeader               插入文件头
-InsertFunHeader                插入函数头
-InsertFunHeader2               插入函数头(扩展)
+InsertFileHeader2              插入文件头
+InsertFunHeader2               插入函数头
 printvar()           Ctrl+6    打印变量
 addmultiline()       Ctrl+7    插入多行空行
 addxinghaocomment()  Ctrl+8    插入多行*号注释
@@ -111,7 +110,7 @@ Saves a file buffer to disk. Hbuf is the buffer handle.
    to your email name.  eg. set MYNAME=raygr
 */
 
-macro InsertFileHeader()
+macro InsertFileHeader2()
 {
     szMyName = getenv(MyName)
 
