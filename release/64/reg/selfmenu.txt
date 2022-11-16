@@ -2514,6 +2514,8 @@ SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
 SoftWare/Understand
+SoftWare/WPS/A4尺寸 大小
+SoftWare/WPS/A4纸张的大小和电脑如何一样
 SoftWare/WPS/如何批量选中不同颜色的文字
 SoftWare/opengrok/md5sum
 SoftWare/vmware/16
