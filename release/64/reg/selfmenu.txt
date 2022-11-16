@@ -178,7 +178,10 @@ BAT/网络network/tcpdump/capture order抓包命令 端口 数量 端口范围 �
 BAT/网络network/tcpdump/capture order抓包命令 进阶
 BAT/网络network/tcpdump/dhcp
 BAT/网络network/tcpdump/dhcp DHCP八种报文详解
+BAT/网络network/tcpdump/dhcp ack
 BAT/网络network/tcpdump/dhcp discover
+BAT/网络network/tcpdump/dhcp nak
+BAT/网络network/tcpdump/dhcp request
 BAT/网络network/tcpdump/help
 BAT/网络network/tcpdump/help 常用
 BAT/网络network/tcpdump/wireshark源地址
@@ -2889,6 +2892,7 @@ path路径/常用文件夹
 术语/网络/MSTP基本概念
 术语/网络/MSTP详解- 原理篇
 术语/网络/MSTP（多区域生成树协议）
+术语/网络/MTU MTU输入错误
 术语/网络/MTU Maximum Transmission Unit
 术语/网络/PCS
 术语/网络/PDU
@@ -2917,6 +2921,7 @@ path路径/常用文件夹
 术语/网络/服务访问点SAP
 术语/网络/模拟信号
 术语/网络/物理层 规程 procedure
+术语/网络/硬件NAT
 术语/网络/网络收敛
 术语/网络/网络流量 单播
 术语/网络/网络流量 广播

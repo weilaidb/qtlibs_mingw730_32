@@ -1,0 +1,146 @@
+Frame 46836: 342 bytes on wire (2736 bits), 342 bytes captured (2736 bits) on interface 0
+    Interface id: 0 (\Device\NPF_{0D133629-3E86-4133-9D89-4F7DF2E1C4F9})
+    Encapsulation type: Ethernet (1)
+    Arrival Time: Nov 16, 2022 18:28:40.102018000 中国标准时间
+    [Time shift for this packet: 0.000000000 seconds]
+    Epoch Time: 1668594520.102018000 seconds
+    [Time delta from previous captured frame: 0.153616000 seconds]
+    [Time delta from previous displayed frame: 40.068017000 seconds]
+    [Time since reference or first frame: 640.306987000 seconds]
+    Frame Number: 46836
+    Frame Length: 342 bytes (2736 bits)
+    Capture Length: 342 bytes (2736 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: eth:ethertype:ip:udp:bootp]
+    [Coloring Rule Name: UDP]
+    [Coloring Rule String: udp]
+Ethernet II, Src: weilaix.local (84:a9:38:5b:fd:53), Dst: bogon (54:75:95:17:b5:26)
+    Destination: bogon (54:75:95:17:b5:26)
+        Address: bogon (54:75:95:17:b5:26)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Source: weilaix.local (84:a9:38:5b:fd:53)
+        Address: weilaix.local (84:a9:38:5b:fd:53)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: weilaix.local (192.168.0.102), Dst: 192.168.0.104 (192.168.0.104)
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+        0000 00.. = Differentiated Services Codepoint: Default (0)
+        .... ..00 = Explicit Congestion Notification: Not ECN-Capable Transport (0)
+    Total Length: 328
+    Identification: 0x98f6 (39158)
+    Flags: 0x00
+        0... .... = Reserved bit: Not set
+        .0.. .... = Don't fragment: Not set
+        ..0. .... = More fragments: Not set
+    Fragment offset: 0
+    Time to live: 128
+    Protocol: UDP (17)
+    Header checksum: 0x0000 [validation disabled]
+    [Header checksum status: Unverified]
+    Source: weilaix.local (192.168.0.102)
+    Destination: 192.168.0.104 (192.168.0.104)
+    [Source GeoIP: Unknown]
+    [Destination GeoIP: Unknown]
+User Datagram Protocol, Src Port: bootpc (68), Dst Port: bootps (67)
+    Source Port: bootpc (68)
+    Destination Port: bootps (67)
+    Length: 308
+    Checksum: 0x8364 [unverified]
+    [Checksum Status: Unverified]
+    [Stream index: 1]
+Bootstrap Protocol (Request)
+    Message type: Boot Request (1)
+    Hardware type: Ethernet (0x01)
+    Hardware address length: 6
+    Hops: 0
+    Transaction ID: 0x66489af7
+    Seconds elapsed: 0
+    Bootp flags: 0x0000 (Unicast)
+        0... .... .... .... = Broadcast flag: Unicast
+        .000 0000 0000 0000 = Reserved flags: 0x0000
+    Client IP address: weilaix.local (192.168.0.102)
+    Your (client) IP address: 0.0.0.0 (0.0.0.0)
+    Next server IP address: 0.0.0.0 (0.0.0.0)
+    Relay agent IP address: 0.0.0.0 (0.0.0.0)
+    Client MAC address: weilaix.local (84:a9:38:5b:fd:53)
+    Client hardware address padding: 00000000000000000000
+    Server host name not given
+    Boot file name not given
+    Magic cookie: DHCP
+    Option: (53) DHCP Message Type (Request)
+        Length: 1
+        DHCP: Request (3)
+    Option: (61) Client identifier
+        Length: 7
+        Hardware type: Ethernet (0x01)
+        Client MAC address: weilaix.local (84:a9:38:5b:fd:53)
+    Option: (12) Host Name
+        Length: 7
+        Host Name: weilaix
+    Option: (81) Client Fully Qualified Domain Name
+        Length: 10
+        Flags: 0x00
+            0000 .... = Reserved flags: 0x0
+            .... 0... = Server DDNS: Some server updates
+            .... .0.. = Encoding: ASCII encoding
+            .... ..0. = Server overrides: No override
+            .... ...0 = Server: Client
+        A-RR result: 0
+        PTR-RR result: 0
+        Client name: weilaix
+    Option: (60) Vendor class identifier
+        Length: 8
+        Vendor class identifier: MSFT 5.0
+    Option: (55) Parameter Request List
+        Length: 14
+        Parameter Request List Item: (1) Subnet Mask
+        Parameter Request List Item: (3) Router
+        Parameter Request List Item: (6) Domain Name Server
+        Parameter Request List Item: (15) Domain Name
+        Parameter Request List Item: (31) Perform Router Discover
+        Parameter Request List Item: (33) Static Route
+        Parameter Request List Item: (43) Vendor-Specific Information
+        Parameter Request List Item: (44) NetBIOS over TCP/IP Name Server
+        Parameter Request List Item: (46) NetBIOS over TCP/IP Node Type
+        Parameter Request List Item: (47) NetBIOS over TCP/IP Scope
+        Parameter Request List Item: (119) Domain Search
+        Parameter Request List Item: (121) Classless Static Route
+        Parameter Request List Item: (249) Private/Classless Static Route (Microsoft)
+        Parameter Request List Item: (252) Private/Proxy autodiscovery
+    Option: (255) End
+        Option End: 255
+
+
+
+
+
+
+0000   54 75 95 17 b5 26 84 a9 38 5b fd 53 08 00 45 00  Tu...&..8[.S..E.
+0010   01 48 98 f6 00 00 80 11 00 00 c0 a8 00 66 c0 a8  .H...........f..
+0020   00 68 00 44 00 43 01 34 83 64 01 01 06 00 66 48  .h.D.C.4.d....fH
+0030   9a f7 00 00 00 00 c0 a8 00 66 00 00 00 00 00 00  .........f......
+0040   00 00 00 00 00 00 84 a9 38 5b fd 53 00 00 00 00  ........8[.S....
+0050   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+0060   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+0070   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+0080   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+0090   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00a0   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00b0   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00c0   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00d0   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00e0   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+00f0   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+0100   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+0110   00 00 00 00 00 00 63 82 53 63 35 01 03 3d 07 01  ......c.Sc5..=..
+0120   84 a9 38 5b fd 53 0c 07 77 65 69 6c 61 69 78 51  ..8[.S..weilaixQ
+0130   0a 00 00 00 77 65 69 6c 61 69 78 3c 08 4d 53 46  ....weilaix<.MSF
+0140   54 20 35 2e 30 37 0e 01 03 06 0f 1f 21 2b 2c 2e  T 5.07......!+,.
+0150   2f 77 79 f9 fc ff                                /wy...
+
+
