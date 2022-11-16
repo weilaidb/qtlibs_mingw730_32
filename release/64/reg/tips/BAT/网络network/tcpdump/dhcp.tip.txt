@@ -3,3 +3,13 @@ ipconfig /release 断开主机当前的网络连接
 ipconfig /renew   请求连接网络
 
 https://blog.csdn.net/qq_24421591/article/details/50936469
+
+
+
+
+dhcp过滤:
+bootp
+
+
+dhcp discover 过滤
+eth.addr == ff:ff:ff:ff:ff:ff
