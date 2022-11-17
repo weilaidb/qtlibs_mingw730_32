@@ -31,6 +31,7 @@ https://gitee.com/openharmony/ace_lite_jsfwk.git
 https://gitee.com/openharmony/communication_services_softbus_lite.git
 https://gitee.com/openharmony/distributedschedule_services_samgr_lite.git
 https://github.com/universal-ctags/ctags.git
+git@github.com:coolxv/cpp-stub.git
 https://github.com/paulsapps/gmock-1.7.0.git
 https://github.com/sinojelly/mockcpp.git
 https://gitee.com/sinojelly/mockcpp.git
