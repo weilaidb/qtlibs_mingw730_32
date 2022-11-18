@@ -1053,6 +1053,7 @@ Html/script/Timer clearInterval
 Html/script/Timer clearTimeout
 Html/script/Timer setInterval
 Html/script/Timer setTimeout
+Html/script/Timer setTimeout JS定时器执行不可靠的原因及解决方案
 Html/script/Timer setTimeout2
 Html/script/Timer textarea定时刷新 求和平均值
 Html/script/eg
