@@ -1,0 +1,36 @@
+java 对字符串驼峰转换_Java中将字符串转为驼峰格式
+
+丁石
+
+于 2021-03-07 09:00:10 发布
+
+1963
+ 收藏
+文章标签： java 对字符串驼峰转换
+版权
+使用CaseUtils 对Java字符串进行转换为驼峰格式：
+
+CaseUtils.toCamelCase(null, false) = null
+
+CaseUtils.toCamelCase("", false, *) = ""
+
+CaseUtils.toCamelCase(*, false, null) = *
+
+CaseUtils.toCamelCase(*, true, new char[0]) = *
+
+CaseUtils.toCamelCase("To.Camel.Case", false, new char[]{'.'}) = "toCamelCase"
+
+CaseUtils.toCamelCase(" to @ Camel case", true, new char[]{'@'}) = "ToCamelCase"
+
+CaseUtils.toCamelCase(" @to @ Camel case", false, new char[]{'@'}) = "toCamelCase"
+
+构造方法：public static String toCamelCase(String str,
+
+boolean capitalizeFirstLetter,
+
+char... delimiters)
+
+其中：str为要转换的字符串；capitalizeFirstLetter表示是否首字母大写；delimiters指定连词符。
+————————————————
+版权声明：本文为CSDN博主「丁石」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_32635501/article/details/115077241
