@@ -1,0 +1,57 @@
+Linux下自动生成c++ UML图
+
+Cross_Entropy
+
+于 2021-05-25 22:19:22 发布
+
+2200
+ 收藏 16
+分类专栏： Linux相关 文章标签： ubuntu linux uml doxygen
+版权
+
+Linux相关
+专栏收录该内容
+2 篇文章1 订阅
+订阅专栏
+对于一个庞大的项目，如果能搞清楚类的继承关系，并用图示的形式表示出来，那么可能会大大加快对项目的理解。
+
+要做到这一点其实也非常简单，首先，我们需要使用两个工具Graphviz + Doxygen。
+
+软件安装
+安装Graphviz
+
+sudo apt install graphviz 
+1
+安装Doxygen
+
+sudo apt install doxygen
+1
+使用
+进入项目文件根目录
+
+生成配置文件
+
+doxygen -g Doxygen.config
+1
+修改配置文件
+将配置文件中的下列配置进行修改，其他配置可以按照需求修改
+
+EXTRACT_ALL            = YES
+HAVE_DOT               = YES
+UML_LOOK               = YES
+RECURSIVE              = YES 
+1
+2
+3
+4
+运行
+
+doxygen Doxygen.config
+1
+最终效果
+
+
+文章知识点与官方知识档案匹配，可进一步学习相关知识
+————————————————
+版权声明：本文为CSDN博主「Cross_Entropy」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/Cross_Entropy/article/details/117265884

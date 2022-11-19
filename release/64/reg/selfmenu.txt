@@ -2542,6 +2542,7 @@ TEST/驼峰
 Tools/Astyle格式化代码
 Tools/CLion 快捷键
 Tools/CMD快捷键
+Tools/CamelCase Convert驼峰转换
 Tools/Cscope & CTags 快捷键
 Tools/Cscope用法
 Tools/Dreamweaver（DW）常用快捷键
@@ -2766,10 +2767,16 @@ YAML/yml入门教程2
 data/开发板/AX7010 初始化打印
 data/开发板/AX7010/flash
 doxygen/doc.dot FFmpeg
+doxygen/doc.dot FFmpeg uml
+doxygen/doc.dot JEEWMS uml
 doxygen/doc.dot basecpp
+doxygen/doc.dot basecpp uml
+doxygen/doc.dot boost_1_80_0 uml
 doxygen/doc.dot linux
 doxygen/doxygen-template
 doxygen/doxygen-template gen
+doxygen/know/Doxygen wizard - Expert - Dot
+doxygen/know/Linux下自动生成c++ UML图
 doxygen/linux
 go/1/For-each range
 go/1/eg

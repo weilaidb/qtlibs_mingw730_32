@@ -1,0 +1,326 @@
+Doxygen wizard - Expert - Dot
+
+丸子叮咚响
+
+于 2019-09-05 20:03:53 发布
+
+258
+ 收藏
+分类专栏： # Doxygen 文章标签： Doxygen
+版权
+
+Doxygen
+专栏收录该内容
+17 篇文章1 订阅
+订阅专栏
+写在前面
+Doxygen GUI为Doxygen界面操作工具。本篇为windows版Doxygen1.8.15 配置界面翻译， 翻译不当之处请谅解。
+本篇包含Doxygen wizard - Expert：Dot部分。
+
+Dot
+CLASS_DIAGRAMS
+If the CLASS_DIAGRAMS tag is set to YES, doxygen will generate a class diagram (in HTML and LaTeX) for classes with base or super classes. Setting the tag to NO turns the diagrams off. Note that this option also works with HAVE_DOT disabled, but it is recommended to install and use dot, since it yields more powerful graphs.
+
+The default value is: YES.
+
+如果CLASS_DIAGRAMS标记设置为yes，doxygen将为具有基类或超级类的类生成类图（在html和latex中）。将标记设置为“否”将关闭图表。请注意，此选项也适用于HAVE_DOT禁用时，但建议安装并使用dot，因为它会生成更强大的图形。
+
+MSCGEN_PATH
+You can define message sequence charts within doxygen comments using the \msc command. Doxygen will then run the mscgen tool) to produce the chart and insert it in the documentation. The MSCGEN_PATH tag allows you to specify the directory where the mscgen tool resides. If left empty the tool is assumed to be found in the default search path.
+
+可以使用\msc命令在doxygen注释中定义消息序列图。doxygen将运行mscgen工具）生成图表并将其插入文档中。MSCGEN_PATH标记允许您指定mscGen工具所在的目录。如果留空，则假定在默认搜索路径中找到该工具。
+
+DIA_PATH
+You can include diagrams made with dia in doxygen documentation. Doxygen will then run dia to produce the diagram and insert it in the documentation. The DIA_PATH tag allows you to specify the directory where the dia binary resides. If left empty dia is assumed to be found in the default search path.
+
+您可以在doxygen文档中包括使用dia制作的图表。然后doxygen将运行dia来生成图表并将其插入到文档中。DIA_PATH标记允许您指定dia二进制文件所在的目录。如果留空在默认搜索路径中寻找dia。
+
+HIDE_UNDOC_RELATIONS
+If set to YES the inheritance and collaboration graphs will hide inheritance and usage relations if the target is undocumented or is not a class.
+
+如果设置为“是”，则如果目标未记录或不是类，则继承和协作图将隐藏继承和使用关系。
+
+The default value is: YES.
+
+HAVE_DOT
+If you set the HAVE_DOT tag to YES then doxygen will assume the dot tool is available from the path. This tool is part of Graphviz, a graph visualization toolkit from AT&T and Lucent Bell Labs. The other options in this section have no effect if this option is set to NO
+
+The default value is: NO.
+
+如果将HAVE_DOT标记设置为yes，则doxygen将假定路径中有dot工具可用。这个工具是Graphviz的一部分，Graphviz是ATT和朗讯贝尔实验室的图形可视化工具包。如果此选项设置为“否”，则此部分中的其他选项无效
+
+DOT_NUM_THREADS
+The DOT_NUM_THREADS specifies the number of dot invocations doxygen is allowed to run in parallel. When set to 0 doxygen will base this on the number of processors available in the system. You can set it explicitly to a value larger than 0 to get control over the balance between CPU load and processing speed.
+
+Minimum value: 0, maximum value: 32, default value: 0.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+DOT_NUM_THREADS指定doxygen允许并行运行的点调用数。当设置为0时，doxygen将基于系统中可用的处理器数量。您可以显式地将其设置为大于0的值，以控制CPU负载和处理速度之间的平衡。
+最小值：0，最大值：32，默认值：0。
+
+DOT_FONTNAME
+When you want a differently looking font in the dot files that doxygen generates you can specify the font name using DOT_FONTNAME. You need to make sure dot is able to find the font, which can be done by putting it in a standard location or by setting the DOTFONTPATH environment variable or by setting DOT_FONTPATH to the directory containing the font.
+
+The default value is: Helvetica.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+当您希望doxygen生成的点文件中使用外观不同的字体时，可以使用点字体名指定字体名。您需要确保dot能够找到字体，这可以通过将其放置在标准位置，或通过设置DOTFONTPATH 环境变量，或通过将DOT_FONTPATH设置到包含字体的目录来完成。
+默认值为：helvetica。
+
+DOT_FONTSIZE
+The DOT_FONTSIZE tag can be used to set the size (in points) of the font of dot graphs.
+
+Minimum value: 4, maximum value: 24, default value: 10.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+DOT_FONTSIZE标记可用于设置点图形字体的大小（以点为单位）。
+最小值：4，最大值：24，默认值：10。
+
+DOT_FONTPATH
+By default doxygen will tell dot to use the default font as specified with DOT_FONTNAME . If you specify a different font using DOT_FONTNAME you can set the path where dot can find it using this tag.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+默认情况下，doxygen会告诉dot使用 DOT_FONTNAME指定的默认字体。如果使用 DOT_FONTNAME指定其他字体，则可以设置点使用此标记可以找到它的路径。
+此标记要求标记HAVE_DOT设置为yes。
+
+CLASS_GRAPH
+If the CLASS_GRAPH tag is set to YES then doxygen will generate a graph for each documented class showing the direct and indirect inheritance relations. Setting this tag to YES will force the CLASS_DIAGRAMS tag to NO.
+
+The default value is: YES.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果 CLASS_GRAPH标记设置为yes，那么doxygen将为每个记录的类生成一个显示直接和间接继承关系的图。将此标记设置为“是”将强制将CLASS_DIAGRAMS标记设置为“否”。
+
+COLLABORATION_GRAPH
+If the COLLABORATION_GRAPH tag is set to YES then doxygen will generate a graph for each documented class showing the direct and indirect implementation dependencies (inheritance, containment, and class references variables) of the class with other documented classes.
+
+The default value is: YES.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果 COLLABORATION_GRAPH标记设置为yes，那么doxygen将为每个文档化类生成一个图，显示该类与其他文档化类的直接和间接实现依赖关系（继承、包含和类引用变量）。
+
+GROUP_GRAPHS
+If the GROUP_GRAPHS tag is set to YES then doxygen will generate a graph for groups, showing the direct groups dependencies.
+
+The default value is: YES.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果GROUP_GRAPHS标记设置为yes，那么doxygen将为组生成一个图，显示直接组依赖关系。
+
+UML_LOOK
+If the UML_LOOK tag is set to YES, doxygen will generate inheritance and collaboration diagrams in a style similar to the OMG’s Unified Modeling Language.
+
+The default value is: NO.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果UML_LOOK 标记设置为yes，doxygen将以类似于omg的统一建模语言的样式生成继承和协作关系图。
+
+UML_LIMIT_NUM_FIELDS
+If the UML_LOOK tag is enabled, the fields and methods are shown inside the class node. If there are many fields or methods and many nodes the graph may become too big to be useful. The UML_LIMIT_NUM_FIELDS threshold limits the number of items for each type to make the size more manageable. Set this to 0 for no limit. Note that the threshold may be exceeded by 50% before the limit is enforced. So when you set the threshold to 10, up to 15 fields may appear, but if the number exceeds 15, the total amount of fields shown is limited to 10.
+
+Minimum value: 0, maximum value: 100, default value: 10.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果启用了 UML_LOOK标记，则字段和方法将显示在类节点中。如果有许多字段或方法和许多节点，则图形可能会变得太大而无法使用。UML_LIMIT_NUM_FIELDS 阈限制每种类型的项目数，以使大小更易于管理。将此值设为0表示没有限制。请注意，在执行限制之前，阈值可能会超过50%。因此，当您将阈值设置为10时，可能会出现多达15个字段，但如果数字超过15，则显示的字段总数将限制为10。
+最小值：0，最大值：100，默认值：10。
+
+TEMPLATE_RELATIONS
+If the TEMPLATE_RELATIONS tag is set to YES then the inheritance and collaboration graphs will show the relations between templates and their instances.
+
+The default value is: NO.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果TEMPLATE_RELATIONS标记设置为yes，那么继承和协作图将显示模板及其实例之间的关系。
+
+INCLUDE_GRAPH
+If the INCLUDE_GRAPH, ENABLE_PREPROCESSING and SEARCH_INCLUDES tags are set to YES then doxygen will generate a graph for each documented file showing the direct and indirect include dependencies of the file with other documented files.
+
+The default value is: YES.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果INCLUDE_GRAPH、ENABLE_PREPROCESSING和SEARCH_INCLUDES标记设置为yes，则doxygen将为每个文档文件生成一个图形，显示文件与其他文档文件的直接和间接include依赖关系。
+
+INCLUDED_BY_GRAPH
+If the INCLUDED_BY_GRAPH, ENABLE_PREPROCESSING and SEARCH_INCLUDES tags are set to YES then doxygen will generate a graph for each documented file showing the direct and indirect include dependencies of the file with other documented files.
+
+The default value is: YES.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果INCLUDED_BY_GRAPH、ENABLE_PREPROCESSING和SEARCH_INCLUDES 标记设置为yes，则doxygen将为每个文档文件生成一个图形，显示文件与其他文档文件的直接和间接include依赖关系。
+
+CALL_GRAPH
+If the CALL_GRAPH tag is set to YES then doxygen will generate a call dependency graph for every global function or class method.
+Note that enabling this option will significantly increase the time of a run. So in most cases it will be better to enable call graphs for selected functions only using the \callgraph command. Disabling a call graph can be accomplished by means of the command \hidecallgraph .
+
+The default value is: NO.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果CALL_GRAPH标记设置为yes，那么doxygen将为每个全局函数或类方法生成一个调用依赖关系图。
+请注意，启用此选项将显著增加运行时间。因此，在大多数情况下，最好只使用\callgraph命令为选定的函数启用调用图。禁用调用图可以通过命令\hidecallgraph来完成。
+
+CALLER_GRAPH
+If the CALLER_GRAPH tag is set to YES then doxygen will generate a caller dependency graph for every global function or class method.
+Note that enabling this option will significantly increase the time of a run. So in most cases it will be better to enable caller graphs for selected functions only using the \callergraph command. Disabling a caller graph can be accomplished by means of the command \hidecallergraph .
+
+The default value is: NO.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果CALLER_GRAPH标记设置为yes，那么doxygen将为每个全局函数或类方法生成一个调用方依赖关系图。
+请注意，启用此选项将显著增加运行时间。因此，在大多数情况下，最好只使用\callergraph命令为选定的函数启用调用方图。禁用调用方图可以通过命令\hideCallerGraph来完成。
+
+GRAPHICAL_HIERARCHY
+If the GRAPHICAL_HIERARCHY tag is set to YES then doxygen will graphical hierarchy of all classes instead of a textual one.
+
+The default value is: YES.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果 GRAPHICAL_HIERARCHY标记设置为yes，那么doxygen将以图形方式显示所有类的层次结构，而不是文本类的层次结构。
+
+DIRECTORY_GRAPH
+If the DIRECTORY_GRAPH tag is set to YES then doxygen will show the dependencies a directory has on other directories in a graphical way. The dependency relations are determined by the #include relations between the files in the directories.
+
+The default value is: YES.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果DIRECTORY_GRAPH标记设置为yes，那么doxygen将以图形方式显示目录对其他目录的依赖关系。依赖关系由目录中文件之间的#include关系确定。
+
+DOT_IMAGE_FORMAT
+The DOT_IMAGE_FORMAT tag can be used to set the image format of the images generated by dot. For an explanation of the image formats see the section output formats in the documentation of the dot tool (Graphviz).
+Note: If you choose svg you need to set HTML_FILE_EXTENSION to xhtml in order to make the SVG files visible in IE 9+ (other browsers do not have this requirement).
+
+Possible values are: png, jpg, gif, svg, png:gd, png:gd:gd, png:cairo, png:cairo:gd, png:cairo:cairo, png:cairo:gdiplus, png:gdiplus and png:gdiplus:gdiplus.
+
+The default value is: png.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+DOT_IMAGE_FORMAT标记可用于设置由dot生成的图像的图像格式。有关图像格式的说明，请参阅dot工具（graphviz）文档中的“输出格式”一节。
+注意：如果选择SVG，则需要将HTML_FILE_EXTENSION 设置为XHTML，以便使SVG文件在IE 9+中可见（其他浏览器不具有此要求）。
+可能的值为：png、jpg、gif、svg、png:gd、png:gd、png:cairo、png:cairo:gd、png:cairo:gdiplus、png:gdiplus和png:gdiplus:gdiplus。
+
+INTERACTIVE_SVG
+If DOT_IMAGE_FORMAT is set to svg, then this option can be set to YES to enable generation of interactive SVG images that allow zooming and panning.
+Note that this requires a modern browser other than Internet Explorer. Tested and working are Firefox, Chrome, Safari, and Opera.
+Note: For IE 9+ you need to set HTML_FILE_EXTENSION to xhtml in order to make the SVG files visible. Older versions of IE do not have SVG support.
+
+The default value is: NO.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果将DOT_IMAGE_FORMAT格式设置为SVG，则可以将此选项设置为“是”，以生成允许缩放和平移的交互式SVG图像。
+请注意，这需要Internet Explorer以外的现代浏览器。测试和工作的是Firefox、Chrome、Safari和Opera。
+注意：对于IE9+，您需要将 HTML_FILE_EXTENSION设置为XHTML，以便使SVG文件可见。旧版本的ie不支持svg。
+
+DOT_PATH
+The DOT_PATH tag can be used to specify the path where the dot tool can be found. If left blank, it is assumed the dot tool can be found in the path.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+DOT_PATH标记可用于指定可以找到点工具的路径。如果留空，则假定可以在路径中找到点工具。
+
+DOTFILE_DIRS
+The DOTFILE_DIRS tag can be used to specify one or more directories that contain dot files that are included in the documentation (see the \dotfile command).
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+DOTFILE_DIRS标记可用于指定一个或多个包含文档中包含的点文件的目录（请参阅\dotfile命令）。
+
+MSCFILE_DIRS
+The MSCFILE_DIRS tag can be used to specify one or more directories that contain msc files that are included in the documentation (see the \mscfile command).
+
+MSCFILE_DIRS标记可用于指定一个或多个目录，其中包含文档中包含的msc文件（请参阅\mscfile命令）。
+
+DIAFILE_DIRS
+The DIAFILE_DIRS tag can be used to specify one or more directories that contain dia files that are included in the documentation (see the \diafile command).
+
+DIAFILE_DIRS标记可用于指定包含文档中包含的dia文件的一个或多个目录（请参阅\diafile命令）。
+
+PLANTUML_JAR_PATH
+When using plantuml, the PLANTUML_JAR_PATH tag should be used to specify the path where java can find the plantuml.jar file. If left blank, it is assumed PlantUML is not used or called during a preprocessing step. Doxygen will generate a warning when it encounters a \startuml command in this case and will not generate output for the diagram.
+
+当使用PrutUML时，应使用PLANTUML_JAR_PATH 标签指定Java可以找到plantuml.jar文件的路径。如果留空，则假定在预处理步骤期间未使用或调用PlantUML。在这种情况下，doxygen遇到一个\startuml命令时将生成一个警告，并且不会生成关系图的输出。
+
+PLANTUML_CFG_FILE
+When using plantuml, the PLANTUML_CFG_FILE tag can be used to specify a configuration file for plantuml.
+
+使用plantuml时，PLANTUML_CFG_FILE 标记可用于指定plantuml的配置文件。
+
+PLANTUML_INCLUDE_PATH
+When using plantuml, the specified paths are searched for files specified by the !include statement in a plantuml block.
+
+使用plantuml时，将在在plantuml块中 !include 语句指定路径中搜索。
+
+DOT_GRAPH_MAX_NODES
+The DOT_GRAPH_MAX_NODES tag can be used to set the maximum number of nodes that will be shown in the graph. If the number of nodes in a graph becomes larger than this value, doxygen will truncate the graph, which is visualized by representing a node as a red box. Note that doxygen if the number of direct children of the root node in a graph is already larger than DOT_GRAPH_MAX_NODES then the graph will not be shown at all. Also note that the size of a graph can be further restricted by MAX_DOT_GRAPH_DEPTH .
+
+Minimum value: 0, maximum value: 10000, default value: 50.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+DOT_GRAPH_MAX_NODES标记可用于设置将在图形中显示的最大节点数。如果图中的节点数大于此值，doxygen将截断该图，该图通过将节点表示为红色框来显示。请注意，doxygen如果图中根节点的直接子节点数已经大于dot_graph_max_nodes，则根本不会显示该图。还要注意的是，图的大小可以进一步受到max_dot_graph_depth的限制。
+最小值：0，最大值：10000，默认值：50。
+
+MAX_DOT_GRAPH_DEPTH
+The MAX_DOT_GRAPH_DEPTH tag can be used to set the maximum depth of the graphs generated by dot. A depth value of 3 means that only nodes reachable from the root by following a path via at most 3 edges will be shown. Nodes that lay further from the root node will be omitted. Note that setting this option to 1 or 2 may greatly reduce the computation time needed for large code bases. Also note that the size of a graph can be further restricted by DOT_GRAPH_MAX_NODES . Using a depth of 0 means no depth restriction.
+
+Minimum value: 0, maximum value: 1000, default value: 0.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+MAX_DOT_GRAPH_DEPTH标记可用于设置由dot生成的图形的最大深度。深度值为3意味着将仅显示通过最多3条边从根路径可到达的节点。将忽略距根节点更远的节点。请注意，将此选项设置为1或2可能会大大减少大型代码基所需的计算时间。还要注意的是，图的大小可以进一步受到DOT_GRAPH_MAX_NODES的限制。使用深度0表示没有深度限制。
+
+DOT_TRANSPARENT
+Set the DOT_TRANSPARENT tag to YES to generate images with a transparent background. This is disabled by default, because dot on Windows does not seem to support this out of the box.
+Warning: Depending on the platform used, enabling this option may lead to badly anti-aliased labels on the edges of a graph (i.e. they become hard to read).
+
+The default value is: NO.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+将DOT_TRANSPARENT标记设置为yes以生成具有透明背景的图像。这在默认情况下是禁用的，因为windows上的dot似乎不支持这种开箱即用的方式。
+警告：根据使用的平台，启用此选项可能会导致图形边缘上的标签严重消除混叠（即，它们变得难以读取）。
+
+DOT_MULTI_TARGETS
+Set the DOT_MULTI_TARGETS tag to YES to allow dot to generate multiple output files in one run (i.e. multiple -o and -T options on the command line). This makes dot run faster, but since only newer versions of dot (>1.8.10) support this, this feature is disabled by default.
+
+The default value is: NO.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+将 DOT_MULTI_TARGETS 标记设置为yes，允许dot在一次运行中生成多个输出文件（即命令行上的多个-o和-t选项）。这使dot运行得更快，但由于只有较新版本的dot（>1.8.10）支持此功能，因此默认情况下禁用此功能。
+
+GENERATE_LEGEND
+If the GENERATE_LEGEND tag is set to YES doxygen will generate a legend page explaining the meaning of the various boxes and arrows in the dot generated graphs.
+
+The default value is: YES.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果GENERATE_LEGEND标记设置为yes，doxygen将生成一个图例页，解释点生成图中各种框和箭头的含义。
+
+DOT_CLEANUP
+If the DOT_CLEANUP tag is set to YES, doxygen will remove the intermediate dot files that are used to generate the various graphs.
+
+The default value is: YES.
+
+This tag requires that the tag HAVE_DOT is set to YES.
+
+如果doxygen将DOT_CLEANUP标记设置为yes，则doxygen将删除用于生成各种图形的中间点文件。
+————————————————
+版权声明：本文为CSDN博主「丸子叮咚响」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/luoshabugui/article/details/100565969

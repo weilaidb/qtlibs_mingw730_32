@@ -88,6 +88,10 @@ https://github.com/vim/vim/releases/tag/v8.2.0001
 
 C++库
 https://boostorg.jfrog.io/ui/native/main/release/1.77.0/source/boost_1_77_0.tar.bz2
+
+https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.gz
+
+
 QEMU
 wget https://download.qemu.org/qemu-2.11.1.tar.xz
 GCC
@@ -112,6 +116,8 @@ https://blog.csdn.net/hemin1003/article/details/82038244
 https://www.bilibili.com/video/BV1N4411m7zx/
 #SpringBoot HelloWorld
 http://c.biancheng.net/spring_boot/example.html
+
+https://gitee.com/erzhongxmu/JEEWMS.git
 
 本地库:
 #Web部署
