@@ -1,1 +1,30 @@
-filename
+CaseUtils 对Java字符串进行转换为驼峰格式
+maven依赖
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.9</version>
+        </dependency>
+1
+2
+3
+4
+5
+常用方法
+/*构造函数*/
+public static String toCamelCase(String str,
+                                 boolean capitalizeFirstLetter,
+                                 char... delimiters)
+其中：str为要转换的字符串；capitalizeFirstLetter表示是否首字母大写；delimiters指定连词符。
+
+/*使用方法*/
+ CaseUtils.toCamelCase(null, false)                                 = null
+ CaseUtils.toCamelCase("", false, *)                                = ""
+ CaseUtils.toCamelCase(*, false, null)                              = *
+ CaseUtils.toCamelCase(*, true, new char[0])                        = *
+ CaseUtils.toCamelCase("To.Camel.Case", false, new char[]{'.'})     = "toCamelCase"
+ CaseUtils.toCamelCase(" to @ Camel case", true, new char[]{'@'})   = "ToCamelCase"
+ CaseUtils.toCamelCase(" @to @ Camel case", false, new char[]{'@'}) = "toCamelCase"
+————————————————
+版权声明：本文为CSDN博主「耗子扛刀满街找猫gg」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_24863743/article/details/110927469
