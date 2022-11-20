@@ -1,0 +1,148 @@
+Serializable 接口（序列化）
+目录
+Serializable 接口（序列化）
+前言
+用途
+如何实现
+异常
+serialVersionUID
+transient关键字
+Serializable 接口（序列化）
+前言
+查看API文档时，就会发现Serializable接口是一个标记接口（没有成员方法和变量），那么他有什么用呢？
+
+序列化：可以将一个对象(标志对象的类型)及其状态转换为字节码，保存起来（可以保存在数据库，内存，文件等）,然后可以在适当的时候再将其状态恢复(也就是反序列化)
+一个类要想序列化就必须继承java.io.Serializable接口，同时它的子类也可以序列化（不用再继承Serializable接口）。
+Serializable接口，不仅可以本机，也可以网络操作，它自动屏蔽了操作系统的差异，字节顺序等。
+序列化只能保存对象的非静态成员变量，不能保存任何的成员方法和静态的成员变量，而且序列化保存的只是变量的值，对于变量的任何修饰符都不能保存。记住序列化是保存对象的状态。
+用途
+想把的内存中的对象状态保存到一个文件中或者数据库中时候。
+想把对象通过网络进行传播的时候。
+如何实现
+原理：Java 序列化技术可以使你将一个对象的状态写入一个Byte 流里（系列化），并且可以从其它地方把该Byte 流里的数据读出来（反序列化）。
+通过ObjectOutputStream 的writeObject()方法把这个类的对象写到一个地方（文件），再通过ObjectInputStream 的readObject()方法把这个对象读出来。
+先写一个实现序列化的类Person
+class Person implements Serializable{
+    
+    //序列化的关键常量
+	private static final long serialVersionUID = -3911255650485738676L;
+	private String name;
+	private int age;
+	
+	public Person() {
+		super();
+	}
+
+	public Person(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + "]";
+	}
+	
+}
+
+用ObjectOutputStream 的writeObject()方法把这个类的对象写到一个地方，再通过ObjectInputStream 的readObject()方法把这个对象读出来。
+public static void main(String[] args) throws Exception {
+		write();
+		read();
+	}
+
+	public static void read() throws Exception {
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("oos.txt"));
+		Object obj = ois.readObject();
+		System.out.println(obj);
+		ois.close();
+	}
+
+	public static void write() throws Exception {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("oos.txt"));
+		
+		Object obj = new Person("老王", 40);
+		oos.writeObject(obj);
+		
+		oos.close();
+	}
+}
+
+异常
+java.io.NotSerializableException
+
+名称：没有序列化异常
+原因：在将对象保存到文件系统的时候没有将对象实现序列化接口
+解决：针对需要写入到文件系统的对象实现对应的序列化接口
+InvalidClassException
+
+名称：无效类异常
+原因：文件中保存的流的序列化id和本地类文件的序列化id不匹配(serialVersionUID)
+解决：保证id一致性
+serialVersionUID
+serialVersionUID的取值是Java运行时环境根据类的内部细节自动生成的。如果对类的源代码作了修改，再重新编译，新生成的类文件的serialVersionUID的取值有可能也会发生变化。
+类的serialVersionUID的默认值完全依赖于Java编译器的实现，对于同一个类，用不同的Java编译器编译，有可能会导致不同的serialVersionUID，也有可能相同。一般给serialVersionUID赋予明确的值。
+当通过网络传输，因serialVersionUID不一致的时候就会报InvalidClassException
+transient关键字
+阻止实例中那些用此关键字声明的变量持久化；当对象被反序列化时（从源文件读取字节序列进行重构），这样的实例变量值不会被持久化和恢复。
+简单的说：当某些变量不想被序列化，同是又不适合使用static关键字声明，那么此时就需要用transient关键字来声明该变量。（不会再反序列化的时候被获取数据，只会取得初始值，如 int 型的是 0，对象型的是 null。）
+class Person implements Serializable{
+    
+    //序列化的关键常量
+	private static final long serialVersionUID = -3911255650485738676L;
+	private String name;
+    //反序列化时不会获取age值
+	private transient int age;
+	
+	public Person() {
+		super();
+	}
+
+	public Person(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + "]";
+	}
+	
+}
+以上
+
+@Fzxey

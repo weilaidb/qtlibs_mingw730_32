@@ -1400,6 +1400,8 @@ JAVA/css/include header
 JAVA/css/include header2
 JAVA/css/include引用
 JAVA/know/CaseUtils 对Java字符串进行转换为驼峰格式
+JAVA/know/Serializable 序列化
+JAVA/know/Serializable 接口（序列化）
 JAVA/new/enter to br
 JAVA/new/implements interface
 JAVA/new/interface
@@ -2771,6 +2773,7 @@ doxygen/doc.dot FFmpeg uml
 doxygen/doc.dot JEEWMS uml
 doxygen/doc.dot basecpp
 doxygen/doc.dot basecpp uml
+doxygen/doc.dot boost_1_80_0
 doxygen/doc.dot boost_1_80_0 uml
 doxygen/doc.dot linux
 doxygen/doxygen-template
