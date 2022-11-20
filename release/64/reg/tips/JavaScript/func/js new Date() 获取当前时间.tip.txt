@@ -1,0 +1,24 @@
+function currentDate() {
+    var date =new Date();
+    var obj = {
+        YYYY:date.getFullYear(),
+        MM:date.getMonth()+1,
+        DD:date.getDate(),
+        hh:date.getHours(),
+        mm:date.getMinutes(),
+        ss:date.getSeconds(),
+    }
+    var format = 'YYYY-MM-DD hh:mm:ss'
+    // 定义改变后的格式
+    for(var x in obj){
+        // 遍历对象 x为key
+        if(obj[x]<10){
+            // 当获取的值小于10 加一个0在前面
+            obj[x] = '0' +obj[x]
+        }
+        format = format.replace([x],obj[x])
+        // x 为键 replace[x]值，replace[x]替换成obj[x]
+    }
+
+    return  format;
+}

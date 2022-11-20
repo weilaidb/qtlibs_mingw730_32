@@ -1572,6 +1572,7 @@ JavaScript/func/form
 JavaScript/func/getElementById 获取值
 JavaScript/func/include 引用 src
 JavaScript/func/input text
+JavaScript/func/js new Date() 获取当前时间
 JavaScript/func/js new Date() 获取时间
 JavaScript/func/number
 JavaScript/func/script
@@ -2969,6 +2970,9 @@ path路径/常用文件夹
 测试用例/DCN/光监控/PING互通
 测试用例/TestCase/1
 测试用例/测试模板
+测试用例/测试模板1
+测试用例/测试模板2
+测试用例/测试模板3
 生活/位置/常用物品
 生活/医药/咳嗽 流鼻涕
 生活/医药/支原体感染
