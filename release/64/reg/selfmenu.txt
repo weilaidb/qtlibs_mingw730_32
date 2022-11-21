@@ -947,6 +947,7 @@ Html/eg
 Html/know/frame,iframe,frameset之间的关系与区别
 Html/know/frameset过时
 Html/new/table/eg
+Html/new/table/test1
 Html/script/Array
 Html/script/Array concat
 Html/script/Array eg1
@@ -1280,6 +1281,9 @@ JAVA/JSP/示例 eg
 JAVA/Org/StringUtils/base
 JAVA/RegExp/Pattern
 JAVA/RegExp/Pattern $H2D替换
+JAVA/RegExp/Pattern2
+JAVA/RegExp/Pattern3
+JAVA/RegExp/Pattern4
 JAVA/SpringBoot/Annotation
 JAVA/SpringBoot/Annotation JDK的元Annotation（修饰注解的注解）
 JAVA/SpringBoot/CLion 激活码
