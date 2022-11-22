@@ -1223,6 +1223,7 @@ JAVA/JSP/form/select option2
 JAVA/JSP/form/submit
 JAVA/JSP/form/table
 JAVA/JSP/form/taglib
+JAVA/JSP/form/target
 JAVA/JSP/form/text
 JAVA/JSP/form/textarea
 JAVA/JSP/form/textarea 浮动显示 保存刷新
@@ -2977,6 +2978,7 @@ path路径/常用文件夹
 测试用例/测试模板1
 测试用例/测试模板2
 测试用例/测试模板3
+测试用例/测试用例编写规范/1
 生活/位置/常用物品
 生活/医药/咳嗽 流鼻涕
 生活/医药/支原体感染

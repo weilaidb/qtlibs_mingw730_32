@@ -1,0 +1,11 @@
+HTML <form> target 属性
+HTML form 标签参考手册 HTML <form> 标签
+
+实例
+提交一个在新窗口或新选项卡中打开的表单，即在新窗口或新选项卡中显示接收到的响应：
+
+<form action="demo_form.html" method="get" target="_blank">
+  First name: <input type="text" name="fname"><br>
+  Last name: <input type="text" name="lname"><br>
+  <input type="submit" value="提交">
+</form>
