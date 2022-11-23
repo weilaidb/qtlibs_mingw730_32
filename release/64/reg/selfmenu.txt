@@ -184,6 +184,7 @@ BAT/网络network/tcpdump/dhcp nak
 BAT/网络network/tcpdump/dhcp request
 BAT/网络network/tcpdump/help
 BAT/网络network/tcpdump/help 常用
+BAT/网络network/tcpdump/wireshark在PC上的数据都没有分片
 BAT/网络network/tcpdump/wireshark源地址
 BAT/网络network/tcpdump/wireshark相关分析软件
 BAT/网络network/tcpdump/wireshark过滤条件
@@ -219,6 +220,7 @@ BAT/网络network/知识点/LSA Link-State Advertisement 链路状态通告
 BAT/网络network/知识点/LSA 完全末节区域(totally stub area)
 BAT/网络network/知识点/LSA 末节区域(stub area)
 BAT/网络network/知识点/Linux中iproute实现VRF
+BAT/网络network/知识点/MTU值为什么是1500
 BAT/网络network/知识点/NCP
 BAT/网络network/知识点/OSI七层功能
 BAT/网络network/知识点/P
@@ -226,8 +228,10 @@ BAT/网络network/知识点/PE
 BAT/网络network/知识点/PPP
 BAT/网络network/知识点/PPP chap
 BAT/网络network/知识点/PPPoE
+BAT/网络network/知识点/PPPoE 为啥家用路由器MTU值最大为1492？
 BAT/网络network/知识点/PPP协议和PPPoE协议
 BAT/网络network/知识点/PPP协议的帧格式
+BAT/网络network/知识点/Ping网关间歇性丢包，Ping同局域网电脑正常
 BAT/网络network/知识点/RIP Routing Information Protocol 路由信息协议
 BAT/网络network/知识点/VRF
 BAT/网络network/知识点/WAN
@@ -240,6 +244,10 @@ BAT/网络network/知识点/ospf hello
 BAT/网络network/知识点/ospf lsu
 BAT/网络network/知识点/ospf 路由协议 开放的最短路径优先协议 Open Shortest Path First
 BAT/网络network/知识点/ospf网络类型
+BAT/网络network/知识点/ping 为什么会偶发丢包
+BAT/网络network/知识点/ping 探测路径mtu大小
+BAT/网络network/知识点/什么是PPPoE？PPPoE解决了哪些问题？
+BAT/网络network/知识点/以太网最小字节为什么要求是64呢？
 BAT/网络network/知识点/协议卡(protocol card)/ARP
 BAT/网络network/知识点/协议卡(protocol card)/ICMP
 BAT/网络network/知识点/协议卡(protocol card)/IP
@@ -249,6 +257,7 @@ BAT/网络network/知识点/协议卡(protocol card)/以太帧
 BAT/网络network/知识点/基于MPLS的VPN
 BAT/网络network/知识点/基于MPLS的VPN 2
 BAT/网络network/知识点/复习
+BAT/网络network/知识点/家用tp-link路由器，默认MTU为什么是1480？
 BAT/网络network/知识点/常用端口号大全 port
 BAT/网络network/问题列表/主控ping线卡偶发不通 ping不通
 BAT/网络network/问题列表/程序异常崩溃 全局指针变为0
@@ -2913,6 +2922,8 @@ path路径/常用文件夹
 术语/网络/FDDI网络
 术语/网络/GRE隧道
 术语/网络/IDLE帧
+术语/网络/IEEE 802.3
+术语/网络/IEEE 802.3 Standard
 术语/网络/IGP
 术语/网络/LACP
 术语/网络/MLT
@@ -2941,6 +2952,8 @@ path路径/常用文件夹
 术语/网络/TCP_IP协议族
 术语/网络/万兆以太网
 术语/网络/二层协议和三层协议有哪些
+术语/网络/以太网(Ethernet)与802.3(IEEE 802.3)简史
+术语/网络/以太网最小帧长度
 术语/网络/信道(channel)
 术语/网络/协议
 术语/网络/基带信号

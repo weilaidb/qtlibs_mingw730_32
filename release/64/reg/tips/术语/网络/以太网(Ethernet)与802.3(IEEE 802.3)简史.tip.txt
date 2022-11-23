@@ -1,0 +1,78 @@
+以太网(Ethernet)与802.3(IEEE 802.3)简史
+
+wusimpl
+
+于 2019-10-15 11:35:35 发布
+
+11722
+ 收藏 47
+文章标签： Ethernet 以太网 以太网与802.3 802.3 以太网帧格式
+版权
+一. Experimetal Ethernet
+1973至1980年，是实验性以太网(Experimental Ethernet)研发阶段。这时的通信线路材质用的是同轴电缆，速度可达367k bytes/s
+
+二. Ethernet Version 1
+1980至1981年，第一代以太网技术被Digital,Intel,Xerox三家公司联合研发出来了,第一代以太网技术以这三家公司的首字母组合来命名，即DIX,版本1.0 。更为熟知的名字是 以太网可以工作在更粗的同轴电缆上，速度可达1.25M bytes/s 。
+
+三. Ethernet Version 2
+在1982年，DIX1.0被DIX2.0取代了，其标准一直沿用至今，也称。 第二代以太网的帧数据包格式如下：
+
+
+
+Preamble:表明一个帧数据包的开始
+
+Destination Address：目的Mac地址
+
+Source Address：源Mac地址
+
+EtherType Field：指明数据中的协议(网络层(上层)的协议)
+
+一些常用的协议所用的数值列表：
+
+
+
+
+
+Data：数据字段，封装的上层数据，最多1500字节，最少46个字节，如果上层数据不够46个字节，会自动填充到46个字节。46个字节的数据 + 12字节的Mac地址 + 2字节Type Field + 4字节校验和 = 64 字节。为什么Ethernet II 要规定一个帧数据包最小要为64字节呢?这个涉及到冲突检测的问题，具体原因可以自行搜索关键字“以太网最小帧长度”
+
+Frame Check Sum：校验和
+
+四. IEEE 802.3 Standard
+1983年，IEEE为推进所有的网络设备所使用的协议标准化，制定了802.3 以太网协议。英文称IEEE 802.3 Standard. 下面来看看802.3帧数据格式：
+
+
+
+Preamble：与Ethernet Version 2用8个字节来存储前导码不同的是，802.3只用其7个字节，剩余的一个字节当做帧的开始，其值固定为oxAB。
+
+DST Addr：与Ethernet II 相同
+
+SRC Addr：与Ethernet II 相同
+
+Length：该位置的长度为2个字节的字段含义与Ethernet II 有所不同。在Ethernet II 中，代表以太网协议类型(EtherType)。而在802.3中，有多种含义。当其值小于等于0x05DC,即十进制的1500时，代表这是个802.3 帧，且此帧的data长度为Length。这也规定了802.3帧中数据最大不能超过1500 Bytes；如果大于0x05DC，代表这是Ethernet II 格式的帧，而Ethernet II 格式的帧中此位置对应的字段为EtherType,代表以太网类型。回顾上面的EtherType那张图我们会发现那些个协议所代表的值全都大于0x05DC。IEEE如此规定应该是想要IEEE 802.3 Standard与Ethernet Version II 兼容。那么问题来了，802.3中Length代表帧数据长度，那哪个字段来规定以太网类型呢？这个以太网类型不是说是Ethernet还是802.3，是上层协议的类型。Internet协议栈中数据链路层上层为网络层，网络层的协议就有IP,ICMP，ARP等等，这个字段为哪个值，Data子弹中的数据就是上层哪种协议的包。为此，IEEE 802.3将EtherType放在了Data字段中，占用三个字节。这个字段在802.3中不叫EtherType了，而叫IEEE 802.2 LLC header,LLC全称Logical Link Control，中文可称为逻辑链路控制。IEEE 802.2标准详细情况请参考其他资料。
+
+三个字节的LLC字段分配如下：
+
+
+
+具体含义如下：
+
+DSAP：目标服务存取点（Destination Service Access Point）
+SSAP：源服务存取点（Source Service Access Point）
+控制：无连接或面向连接的LLC
+
+后面的字段就不说了，嘻嘻。
+
+部分图与数据来源:
+
+https://networkzblogger.com/2017/04/04/802-3-vs-ethernet-ii-which-is-what/
+
+Ethernet Version 2 Versus IEEE 802.3 Ethernet
+
+https://en.wikipedia.org/wiki/IEEE_802.3
+
+参考文档：
+
+Ethernet_II帧和802.3_Ethernet帧格式比较_bluelingt的博客-CSDN博客_ethernet ii帧
+————————————————
+版权声明：本文为CSDN博主「wusimpl」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_42131061/article/details/102561198
