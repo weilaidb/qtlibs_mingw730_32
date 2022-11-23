@@ -1,0 +1,80 @@
+SVLAN=Stack VLAN(就是所谓的QinQ)
+CVLAN=Customer VLAN =用户VLAN
+PVLAN =SVLAN=Service Provider VLAN =SPVLAN=服务商VLAN
+
+原文： http://blog.csdn.net/Solmyr_biti/archive/2010/11/07/5993130.aspx
+
+
+SVLAN,CVLAN,PVLAN区别
+
+lk519186921
+
+于 2013-05-30 13:10:45 发布
+
+26130
+ 收藏 30
+分类专栏： C语言应用篇
+
+C语言应用篇
+专栏收录该内容
+1 篇文章0 订阅
+订阅专栏
+ SVLAN,CVLAN,PVLAN是属于SVLAN(Stack VLAN)的观念
+
+应该要从Q-in-Q工作原理来看：QinQ采用的是层次化VLAN技术区分用户和运营商的 VLAN：C-VLAN和P-VLAN(S-VLAN)，数据在私网中传输时带一个私网的tag，定义为C－VLAN Tag (Customer VLAN tag=用户VLAN)，数据进入到服务商的骨干网后，在打上一层公网的VLAN tag，定义为P－VLAN Tag(Service Provider VLAN tag=S-VLAN=SPVLAN=服务商VLAN)。到目的私网后再把P－VLAN Tag剥除，为用户提供了一种较为简单的二层VPN隧道。
+
+
+SVLAN=Stack VLAN(就是所谓的QinQ)
+CVLAN=Customer VLAN =用户VLAN
+PVLAN =SVLAN=Service Provider VLAN =SPVLAN=服务商VLAN
+
+原文： http://blog.csdn.net/Solmyr_biti/archive/2010/11/07/5993130.aspx
+
+***********************************************************************************************************
+
+CLAN是一个802.q包头的以太网帧
+
+SVLAN是什么
+
+SVLAN技术通过在以太帧中堆叠两个802.1Q包头，有效地扩展了VLAN数目，使VLAN的数目最多可达 4096x4096个。同时，多个VLAN能够被复用到一个核心VLAN中。MSP通常为每个客户建立一个VLAN模型，用通用属性注册协议/通用 VLAN注册协议（GARP/GVRP）自动监控整个主干网络的VLAN，并通过扩展生成树协议（STP）来加快网络收敛速度，从而为网络提供弹性。 SVLAN技术作为初始的解决方案是不错的，但随着用户数量的增加，SVLAN模型也会带来可扩展性的问题。因为有些用户可能希望在分支机构间进行数据传输时可以携带自己的VLAN ID，这就使采用SVLAN技术的MSP面临以下两个问题：第一，第一名客户的VLAN标识可能与其他客户冲突；第二，服务提供商将受到客户可使用标识数量的严重限制。如果允许用户按他们自己的方式使用各自的VLAN ID空间，那么核心网络仍存在4096个VLAN的限制。
+
+PVLAN是什么
+
+pvlan配置举例
+
+
+PVLAN的应用：
+SW1（S3026）
+|
+------------------------------------
+|                                      |
+SW2（S2016A）         SW3（S2016A）
+在小区接入中要求下层交换机（SW2、SW3）的用户之间实现二层报文隔离，即在SW2、SW3上划分大量的VLAN，但是由于上层交换机SW1识别 VLAN的数目有限，此时可以使用PVLAN。即下层交换机（SW2、SW3）上存在多个primary-vlan和secondary-vlan。而一个primary-vlan可以包括多个secondary-vlan中包含的端口和上行端口。这样对于上层交换机（SW1）来说，认为下层交换机仅有几个primary-vlan，而不必关心primary-vlan中端口实际所属的vlan（即secondary-vlan）。
+华为设备中S2008/S2016/S3026支持PVLAN的特性。
+
+配置实例如下：
+S3526:
+[S3526]vlan 5
+[S3526-vlan5]port ethernet e0/1
+[S3526]vlan 6
+[S3526-vlan5]port ethernet e0/2
+S2008A:
+[S2008A]vlan 5
+[S2008A-vlan5]isolate-user-vlan enable
+[S2008A-vlan5]port ethernet e0/1
+[S2008A]vlan 1
+[S2008A-vlan1]port ethernet e0/3
+[S2008A]vlan 2
+[S2008A-vlan2]port ethernet e0/4
+[S2008A]isolate-user-vlan 5 secondary 1-2
+S2008B:
+[S2008B]vlan 6
+[S2008B-vlan5]isolate-user-vlan enable
+[S2008B-vlan5]port ethernet e0/1
+[S2008B]vlan 3
+[S2008B-vlan1]port ethernet e0/3
+[S2008B]vlan 4
+[S2008B-vlan2]port ethernet e0/4
+[S2008B]isolate-user-vlan 6 secondary 3-4
+这样配置完成后，S2008A和S2008B下面的PC1、PC2、PC3、PC4处于不同的VLAN，相互之间的二层报文是隔离的，而对于S3526来讲，下接的S2008都只有一个VLAN，即S2008A的VLAN 5和S2008B的VLAN 6。
+关于PVLAN的其他注意事项，参考华为的配置手册
