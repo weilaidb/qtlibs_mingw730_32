@@ -247,6 +247,7 @@ BAT/网络network/知识点/ospf网络类型
 BAT/网络network/知识点/ping 为什么会偶发丢包
 BAT/网络network/知识点/ping 探测路径mtu大小
 BAT/网络network/知识点/什么是PPPoE？PPPoE解决了哪些问题？
+BAT/网络network/知识点/什么是SDN？
 BAT/网络network/知识点/以太网最小字节为什么要求是64呢？
 BAT/网络network/知识点/协议卡(protocol card)/ARP
 BAT/网络network/知识点/协议卡(protocol card)/ICMP
