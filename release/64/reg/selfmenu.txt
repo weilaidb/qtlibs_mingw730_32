@@ -663,6 +663,10 @@ Code/new/Gmock/模拟/MOCK_METHOD0
 Code/new/mockcpp/know/MockCpp手册（英文）
 Code/new/mockcpp/know/mockcpp使用方法简明指导
 Code/new/mockcpp/know/mockcpp学习实践总结
+DBMS/MySql/MySQL 函数
+DBMS/MySql/MySQL 导入数据
+DBMS/MySql/MySQL 导出数据
+DBMS/MySql/MySQL 运算符
 DBMS/MySql/cmd 登陆
 DBMS/MySql/database create
 DBMS/MySql/database drop
