@@ -2102,6 +2102,7 @@ OS/Centos/8.3.2011 缺失yum安装顺序
 OS/Centos/8.3.2011 缺失yum安装顺序 脚本
 OS/MACOS/VMware16安装MacOS Big Sur系统
 OS/MACOS/VMware虚拟机安装macos Big Sur 11.0.1 (20B29)镜像CDR/ISO下载
+OS/MACOS/mac 输入法切换
 OS/MACOS/macOS系统下载
 OS/MACOS/macos_10_11 无法进入界面
 OS/MACOS/黑苹果/T14 gen1
