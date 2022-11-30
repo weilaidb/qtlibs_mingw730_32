@@ -54,6 +54,11 @@ http://101.201.79.164:8081/weilaix1/file/index.jsp
 网络知识
 https://info.support.huawei.com/info-finder/encyclopedia/zh/index
 
+三层转发原理
+http://www.h3c.com/cn/d_200911/655251_97665_0.htm
+
+
+
 
 
 
