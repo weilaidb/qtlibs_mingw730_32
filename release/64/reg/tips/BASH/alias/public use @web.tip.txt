@@ -1,9 +1,14 @@
 alias cdsoft='cd ~/soft'
 alias cdsoftweb='cd ~/soft/web_notebook_online'
-alias cdsoftwebapache='cd ~/soft/web_notebook_online/apache-tomcat-9.0.58'
-alias cdsoftwebapachebin='cd ~/soft/web_notebook_online/apache-tomcat-9.0.58/bin'
-alias cdsoftwebapachewebapps='cd ~/soft/web_notebook_online/apache-tomcat-9.0.58/webapps'
+#apache-tomcat-work
 
+#alias cdsoftwebapache='cd ~/soft/web_notebook_online/apache-tomcat-9.0.58'
+alias cdsoftwebapachebin='cd ~/soft/web_notebook_online/apache-tomcat-9.0.58/bin'
+#alias cdsoftwebapachewebapps='cd ~/soft/web_notebook_online/apache-tomcat-9.0.58/webapps'
+#apache-tomcat-work
+#alias cdsoftwebapache='cd ~/soft/web_notebook_online/apache-tomcat-work'
+alias cdsoftwebapachebin='cd ~/soft/web_notebook_online/apache-tomcat-work/bin'
+alias cdsoftwebapachewebapps='cd ~/soft/web_notebook_online/apache-tomcat-work/webapps'
 
 alias cdwork='cd ~/work'
 alias cdworkgit='cd ~/work/git'
