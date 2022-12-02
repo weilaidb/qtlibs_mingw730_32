@@ -1,0 +1,40 @@
+笔记模板
+☆标题
+测试
+
+
+☆内容
+《大江大河》是由上海广播电视台、东阳正午阳光影视有限公司、SMG尚世影业联合出品，侯鸿亮制片，孔笙、黄伟执导，袁克平、唐尧编剧，王凯、杨烁、董子健领衔主演的当代题材电视剧 [1-2]   [4]  。
+该剧根据阿耐所著小说《大江东去》改编，讲述了1978到1988年间改革开放的大背景下，以宋运辉、雷东宝、杨巡为代表的先行者们在变革浪潮中不断探索和突围的浮沉故事。 [3] 
+该剧于2018年12月10日在东方卫视、北京卫视首播，并在爱奇艺、腾讯视频、优酷同步播出 [4]  。
+
+
+[root@VM-0-10-centos] ~/soft/web_notebook_online/apache-tomcat-work
+$ tomcatstop 
+Using CATALINA_BASE:   /root/soft/web_notebook_online/apache-tomcat-work
+Using CATALINA_HOME:   /root/soft/web_notebook_online/apache-tomcat-work
+Using CATALINA_TMPDIR: /root/soft/web_notebook_online/apache-tomcat-work/temp
+Using JRE_HOME:        /usr
+Using CLASSPATH:       /root/soft/web_notebook_online/apache-tomcat-work/bin/bootstrap.jar:/root/soft/web_notebook_online/apache-tomcat-work/bin/tomcat-juli.jar
+Using CATALINA_OPTS:   
+NOTE: Picked up JDK_JAVA_OPTI
+☆附加信息
+[root@VM-0-10-centos] ~/soft/web_notebook_online/apache-tomcat-work
+$ tomcatstop 
+Using CATALINA_BASE:   /root/soft/web_notebook_online/apache-tomcat-work
+Using CATALINA_HOME:   /root/soft/web_notebook_online/apache-tomcat-work
+Using CATALINA_TMPDIR: /root/soft/web_notebook_online/apache-tomcat-work/temp
+Using JRE_HOME:        /usr
+Using CLASSPATH:       /root/soft/web_notebook_online/apache-tomcat-work/bin/bootstrap.jar:/root/soft/web_notebook_online/apache-tomcat-work/bin/tomcat-juli.jar
+Using CATALINA_OPTS:   
+NOTE: Picked up JDK_JAVA_OPTIONS:  --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+Error: Could not find or load main class org.apache.catalina.startup.Bootstrap
+Caused by: java.lang.ClassNotFoundException: org.apache.catalina.startup.Bootstrap
+[root@VM-0-10-centos] ~/soft/web_notebook_online/apache-tomcat-work/bin
+
+☆提交日期
+2022-12-02 20:34:51
+
+
+========================================================================
+========================================================================

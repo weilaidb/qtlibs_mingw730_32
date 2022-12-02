@@ -2585,6 +2585,7 @@ Tools/Tomcat/conf context.xml
 Tools/Tomcat/conf tomcat-users.xml
 Tools/UML/StartUML
 Tools/UML/常用软件
+Tools/UML/序列图 画时序图
 Tools/UML/教程
 Tools/UML/文字
 Tools/UML/表示法
@@ -3034,8 +3035,10 @@ path路径/常用文件夹
 电脑/装机/Ghost 备份还原
 电脑/装机/Ghost 备份还原(dell inspiron-15-7537)
 社会/专升本/政治课件
+笔记/测试
 笔记/笔记模板
 笔记/网络/三层路由ping过程
+笔记/软件/UML画序列图或时序图
 算法/C/冒泡排序
 算法/C/快速排序法
 算法/C/计数排序
