@@ -586,9 +586,12 @@ CXX/know/C++ explicit 关键字
 CXX/know/C++中list的erase 函数问题
 CXX/know/_MSC_VER
 CXX/know/eg
+CXX/know/nullptr 初始化空指针
 CXX/know/rbtree
 CXX/know/rbtree和set-map区别与联系
+CXX/know/shared_ptr 智能指针
 CXX/know/unique_ptr 智能指针
+CXX/know/weak_ptr 智能指针
 CXX/knowledge/C++ cout格式化输出
 CXX/knowledge/C++中operator关键字（重载操作符）
 CXX/knowledge/Int转String
