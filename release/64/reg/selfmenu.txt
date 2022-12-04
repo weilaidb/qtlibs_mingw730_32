@@ -588,6 +588,7 @@ CXX/know/_MSC_VER
 CXX/know/eg
 CXX/know/rbtree
 CXX/know/rbtree和set-map区别与联系
+CXX/know/unique_ptr 智能指针
 CXX/knowledge/C++ cout格式化输出
 CXX/knowledge/C++中operator关键字（重载操作符）
 CXX/knowledge/Int转String
