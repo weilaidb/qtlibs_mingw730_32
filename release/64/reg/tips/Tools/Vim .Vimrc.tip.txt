@@ -90,7 +90,7 @@ Plugin 'VundleVim/Vundle.vim'
 "美化状态栏"
 Plugin 'powerline/powerline'
 "类似IDE的补全插件(如果使用片段则需要把此插件临时注掉)" 
-Plugin 'ycm-core/YouCompleteMe'
+"Plugin 'ycm-core/YouCompleteMe'
 "添加一个树形目录"
 Plugin 'preservim/nerdtree'
 "缩进指示线"
@@ -167,7 +167,7 @@ Plugin 'vim-utils/vim-man'
 Plugin 'junegunn/vim-easy-align'
 
 "代码片段
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 
 Plugin 'honza/vim-snippets'
 
@@ -246,7 +246,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 
 "Vimspector是一个基于DAP(debug adapter protocol)的Vim多语言调试插件，理论上能够支持所有支持语言（只要有对应的 DAP）。这个插件仍在实验阶段，可能会有各种bug，但是对C/C++、Python 等流行的语言已经进行了充分的测试。
-Plugin 'puremourning/vimspector'
+"Plugin 'puremourning/vimspector'
 
 
 
