@@ -1,3 +1,6 @@
+gccversion;gcc --version
+
+
 npmconfigtaobao;npm config set registry http://registry.npm.taobao.org/
 
 python3youcompleteverbose;/usr/bin/python3 /root/work/git.bak/jsp_exe.vim/vim/bundle/YouCompleteMe/third_party/ycmd/build.py --all --verbose
