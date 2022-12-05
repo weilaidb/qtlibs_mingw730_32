@@ -1,0 +1,217 @@
+模板方法
+
+
+侯捷老师主讲C++设计模式教程：第3讲，模板方法 https://v.ixigua.com/hRWEFDq/
+
+
+
+
+
+设计模式详解：Template Method（模板方法）
+
+p_帽子戏法
+
+于 2021-01-19 16:45:39 发布
+
+524
+ 收藏 2
+分类专栏： 设计模式 文章标签： 设计模式 c++ 运维
+版权
+
+设计模式
+专栏收录该内容
+16 篇文章0 订阅
+订阅专栏
+Template Method: 模板方法
+设计模式学习：概述
+
+意图
+定义一个操作中算法的骨架，而将一些操作延迟到子类中。TemplateMethod使得子类可以不改变一个算法的结构，即可重定义该算法的某些特定步骤。（GOF: 《设计模式》）
+
+Template Method可以说是所有设计模式中最常用的一种了。常用到什么地步呢？就算你从来没接触过任何设计模式，你也一定使用过这种模式，只是自己没有意识到罢了。
+
+代码案例
+先上代码：
+
+class APP
+{
+    bool step2();
+    int step4();
+};
+
+class Framework
+{
+    void step1();
+    void step3();
+    void step5(int u);
+};
+
+int main()
+{
+    Framework pl;
+    APP app;
+    
+    //Process
+    pl.step1();
+    if(app.step2())
+        pl.step3();
+    
+    int s = app.step4();
+    for(int i=0; i<s; ++i)
+    	pl.step5(i);
+}
+//我们假装所有函数都已经实现
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+这里模拟了一个平台的启动流程：在main函数中，我们创建了Framework和APP两个对象，并按照特定的顺序调用了这两个对象的某些函数执行了一个特定的流程。现在，我们假设你是用户，即你是该main函数和APP这个类的编写者，你需要做什么？
+
+很显然，你必须严格地按照指定的流程（因为只有这样才能使得框架代码正确运行）在你的main中原封不动地写下上面的代码，并且补全你的Class APP。
+
+这听起来也是一种合理的做法。如果你对WINDOWS提供的图形化编程库MFC有所了解的话，你就知道，比如，在WINDOWS下申请一个窗口，你必须怎样怎样注册，怎样怎样给它指定参数，这套流程是框架代码编写方制定的，是稳定的。
+
+这就引出了我们接下来的问题：真的有必要让用户手敲这么一长串功能单一且完全不需要更改的代码吗？我们对这种写法的复用性表示质疑。
+
+现在，我们来看看改进后的代码：
+
+class Framework
+{
+private:
+    void step1();
+    void step3();
+    void step5(int u);
+protected:
+    virtual bool step2() = 0;
+    virtual int step4() = 0;
+public:
+    void run()
+    {
+        step1();
+        if(step2())
+            step3();
+        
+        int s = step4();
+    	for(int i=0; i<s; ++i)
+    		step5(i);
+    }
+};
+
+class APP: public Framework
+{
+    //override
+protected:
+    bool step2(){}
+    int step4(){}
+};
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+应用设计模式的出发点，就是要找到应用场景中的稳定点和变化点，在这一案例中，稳定点就是上述代码的run函数。既然程序主流程是定死的，那么就直接在Framewoek中将它实现。进而，我们只需要用我们自己的APP类来继承框架类，补全两个必要的函数，这样，在main中只需要写下以下代码：
+
+int main()
+{
+    APP app;
+    app.run();
+}
+1
+2
+3
+4
+5
+程序就可以正确运行了, 这就是Template Method模式。run函数就是所谓的Template（模板），它封装了使得框架正确运行的算法，用户只需要重写相应的函数即可。
+
+解释
+在第一种设计方案中，Framework和APP互相不干扰。而在应用Template Method的设计中，我们将稳定的算法封装到了Framework中，使得用户不需要了解这些代码，只需要重写相应的功能。
+
+我们讲过，考虑应用设计模式是，应当明确稳定点和变化点。在上面的案例中，稳定点是Framework中的算法，变化点就是APP应当重写的子过程。
+
+因此TemplateMethod适用于这种情况：框架代码稳定，而子过程会发生变化 。
+
+所以为什么说Template Method是最常见的设计方法呢？当你理解上面的这一过程后，你想必已经恍然大悟了。在C++编程者最爱的STL算法库中，就总是会使用到这种技术，比如下面的代码：
+
+class A
+{
+private:
+    int a, b ,c;
+public:
+    bool operator<(A a)
+    {
+        return a<a.a && b<a.b && c>a.c;
+    }
+};
+
+int main()
+{
+    vector<A> va;
+    sort(va.begin(), va.end());
+}
+用vector容器装自己编写的A类对象，并调用库函数sort对其进行排序。sort函数就相当于上文例子中被封装的run方法，而在类A中对‘ < ’进行重写，相当于类APP继承Framework并重写两个必要的虚函数。
+
+总结
+设计模式	Template Method(模板方法)
+稳定点：	程序的整体运行框架
+变化点：	某些子过程
+效果：	使得子类可以不改变整体算法而置重定义某些特定步骤。
+特点：	封装算法，重写子过程
+适用：	框架代码稳定，而子过程会发生变化
+（下图来自GOF 《设计模式》）
+
+AbstractClass
+TemplateMethod() PrimitiveOperation1() PrimitiveOperation2()
+ConcreteClass
+PrimitiveOperation1() PrimitiveOperation2()
+2020.1.19
+————————————————
+版权声明：本文为CSDN博主「p_帽子戏法」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/natrick/article/details/112846765
