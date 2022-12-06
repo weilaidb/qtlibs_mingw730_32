@@ -229,6 +229,7 @@ BAT/网络network/知识点/PPP
 BAT/网络network/知识点/PPP chap
 BAT/网络network/知识点/PPPoE
 BAT/网络network/知识点/PPPoE 为啥家用路由器MTU值最大为1492？
+BAT/网络network/知识点/PPPoE攻击 PADT断开连接
 BAT/网络network/知识点/PPP协议和PPPoE协议
 BAT/网络network/知识点/PPP协议的帧格式
 BAT/网络network/知识点/Ping网关间歇性丢包，Ping同局域网电脑正常
