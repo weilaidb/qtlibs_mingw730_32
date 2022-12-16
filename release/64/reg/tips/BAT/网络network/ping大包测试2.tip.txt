@@ -1,0 +1,107 @@
+$ ping 49.234.85.12 -s 65507 -c 10
+PING 49.234.85.12 (49.234.85.12) 65507(65535) bytes of data.
+65515 bytes from 49.234.85.12: icmp_seq=1 ttl=63 time=1.01 ms
+65515 bytes from 49.234.85.12: icmp_seq=2 ttl=63 time=1.04 ms
+65515 bytes from 49.234.85.12: icmp_seq=3 ttl=63 time=1.03 ms
+65515 bytes from 49.234.85.12: icmp_seq=6 ttl=63 time=1.00 ms
+65515 bytes from 49.234.85.12: icmp_seq=9 ttl=63 time=1.05 ms
+
+--- 49.234.85.12 ping statistics ---
+10 packets transmitted, 5 received, 50% packet loss, time 9005ms
+rtt min/avg/max/mdev = 1.004/1.029/1.053/0.027 ms
+[root@VM-0-10-centos] ~
+$ 
+
+
+
+IPV4表示的最大长度（2个字节的最大值）
+65535 -  20 - 8 = 65507
+2**16 - 1  - ipv4头长度 - icmp头长度
+
+即有效payload的最大值为65507
+
+
+
+
+
+[root@VM-0-10-centos] ~
+$ ping 49.234.85.12 -s 65507 -c 100
+PING 49.234.85.12 (49.234.85.12) 65507(65535) bytes of data.
+65515 bytes from 49.234.85.12: icmp_seq=1 ttl=63 time=1.01 ms
+65515 bytes from 49.234.85.12: icmp_seq=2 ttl=63 time=1.01 ms
+65515 bytes from 49.234.85.12: icmp_seq=4 ttl=63 time=1.07 ms
+65515 bytes from 49.234.85.12: icmp_seq=5 ttl=63 time=0.996 ms
+65515 bytes from 49.234.85.12: icmp_seq=6 ttl=63 time=1.06 ms
+65515 bytes from 49.234.85.12: icmp_seq=7 ttl=63 time=1.01 ms
+65515 bytes from 49.234.85.12: icmp_seq=8 ttl=63 time=0.984 ms
+65515 bytes from 49.234.85.12: icmp_seq=9 ttl=63 time=1.46 ms
+65515 bytes from 49.234.85.12: icmp_seq=14 ttl=63 time=1.05 ms
+65515 bytes from 49.234.85.12: icmp_seq=17 ttl=63 time=1.01 ms
+65515 bytes from 49.234.85.12: icmp_seq=18 ttl=63 time=1.02 ms
+65515 bytes from 49.234.85.12: icmp_seq=19 ttl=63 time=1.06 ms
+65515 bytes from 49.234.85.12: icmp_seq=20 ttl=63 time=1.04 ms
+65515 bytes from 49.234.85.12: icmp_seq=21 ttl=63 time=1.02 ms
+65515 bytes from 49.234.85.12: icmp_seq=23 ttl=63 time=0.974 ms
+65515 bytes from 49.234.85.12: icmp_seq=28 ttl=63 time=0.998 ms
+65515 bytes from 49.234.85.12: icmp_seq=29 ttl=63 time=1.91 ms
+65515 bytes from 49.234.85.12: icmp_seq=30 ttl=63 time=0.997 ms
+65515 bytes from 49.234.85.12: icmp_seq=31 ttl=63 time=1.01 ms
+65515 bytes from 49.234.85.12: icmp_seq=32 ttl=63 time=0.992 ms
+65515 bytes from 49.234.85.12: icmp_seq=33 ttl=63 time=1.21 ms
+65515 bytes from 49.234.85.12: icmp_seq=35 ttl=63 time=1.02 ms
+65515 bytes from 49.234.85.12: icmp_seq=36 ttl=63 time=0.977 ms
+65515 bytes from 49.234.85.12: icmp_seq=41 ttl=63 time=0.974 ms
+65515 bytes from 49.234.85.12: icmp_seq=42 ttl=63 time=1.03 ms
+65515 bytes from 49.234.85.12: icmp_seq=43 ttl=63 time=1.04 ms
+65515 bytes from 49.234.85.12: icmp_seq=46 ttl=63 time=1.09 ms
+65515 bytes from 49.234.85.12: icmp_seq=47 ttl=63 time=1.01 ms
+65515 bytes from 49.234.85.12: icmp_seq=48 ttl=63 time=0.995 ms
+65515 bytes from 49.234.85.12: icmp_seq=49 ttl=63 time=1.06 ms
+65515 bytes from 49.234.85.12: icmp_seq=50 ttl=63 time=1.01 ms
+65515 bytes from 49.234.85.12: icmp_seq=52 ttl=63 time=1.09 ms
+65515 bytes from 49.234.85.12: icmp_seq=53 ttl=63 time=1.10 ms
+65515 bytes from 49.234.85.12: icmp_seq=54 ttl=63 time=1.03 ms
+65515 bytes from 49.234.85.12: icmp_seq=55 ttl=63 time=1.08 ms
+65515 bytes from 49.234.85.12: icmp_seq=56 ttl=63 time=1.07 ms
+65515 bytes from 49.234.85.12: icmp_seq=57 ttl=63 time=1.00 ms
+65515 bytes from 49.234.85.12: icmp_seq=58 ttl=63 time=1.01 ms
+65515 bytes from 49.234.85.12: icmp_seq=59 ttl=63 time=1.04 ms
+65515 bytes from 49.234.85.12: icmp_seq=60 ttl=63 time=1.04 ms
+65515 bytes from 49.234.85.12: icmp_seq=61 ttl=63 time=1.03 ms
+65515 bytes from 49.234.85.12: icmp_seq=67 ttl=63 time=1.05 ms
+65515 bytes from 49.234.85.12: icmp_seq=68 ttl=63 time=0.960 ms
+65515 bytes from 49.234.85.12: icmp_seq=70 ttl=63 time=1.02 ms
+65515 bytes from 49.234.85.12: icmp_seq=71 ttl=63 time=0.986 ms
+65515 bytes from 49.234.85.12: icmp_seq=73 ttl=63 time=1.07 ms
+65515 bytes from 49.234.85.12: icmp_seq=74 ttl=63 time=0.978 ms
+65515 bytes from 49.234.85.12: icmp_seq=75 ttl=63 time=1.00 ms
+65515 bytes from 49.234.85.12: icmp_seq=79 ttl=63 time=1.02 ms
+65515 bytes from 49.234.85.12: icmp_seq=81 ttl=63 time=0.995 ms
+65515 bytes from 49.234.85.12: icmp_seq=82 ttl=63 time=1.01 ms
+65515 bytes from 49.234.85.12: icmp_seq=85 ttl=63 time=0.990 ms
+65515 bytes from 49.234.85.12: icmp_seq=86 ttl=63 time=0.968 ms
+65515 bytes from 49.234.85.12: icmp_seq=87 ttl=63 time=0.961 ms
+65515 bytes from 49.234.85.12: icmp_seq=88 ttl=63 time=1.02 ms
+65515 bytes from 49.234.85.12: icmp_seq=93 ttl=63 time=1.12 ms
+65515 bytes from 49.234.85.12: icmp_seq=96 ttl=63 time=1.00 ms
+65515 bytes from 49.234.85.12: icmp_seq=98 ttl=63 time=0.953 ms
+
+--- 49.234.85.12 ping statistics ---
+100 packets transmitted, 58 received, 42% packet loss, time 99066ms
+rtt min/avg/max/mdev = 0.953/1.049/1.919/0.142 ms
+[root@VM-0-10-centos] ~
+$ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

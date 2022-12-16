@@ -244,6 +244,7 @@ alias yumlistinstalledgrep="yum list installed | grep "
 alias yumcleanpackages="yum clean packages "
 alias yumcleanall="yum clean all "
 alias yummakecache="yum makecache "
+alias rpmrebuilddb="cd /var/lib/rpm && rpm --rebuilddb "
 
 alias rpmi="rpm -i "
 alias rpme="rpm -e "
