@@ -156,6 +156,8 @@ BAT/网络network/lacp
 BAT/网络network/lacp 链路聚合Eth-Trunk最佳总结
 BAT/网络network/nat
 BAT/网络network/ping大包
+BAT/网络network/ping大包测试
+BAT/网络network/ping大包测试（数据）
 BAT/网络network/route add
 BAT/网络network/route add if
 BAT/网络network/route change
