@@ -17,6 +17,22 @@ DSL（Domain Specified Language）领域专用语言
 Annotation:注解
 MetaData:元数据：描述数据的数据
 APT(Annotation processing tool)是一种处理注释的工具,它对源代码文件进行检测找出其中的Annotation，使用Annotation进行额外的处理。
+MVC（Model-View-Controller）
+JNDI是 Java 命名与目录接口（Java Naming and Directory Interface）
+Velocity:Velocity 是替代 JSP 的另一种表示层的视图解决方案，其最大的特点是以非常
+直观的表达式无缝嵌入 HTML 页面，避免了在 JSP 中由于大量标签的滥用而使得页面设
+计非常困难。
+Hibernate:Hibernate 是目前应用最广泛的开源对象/关系映射（O/R Mapping）框架，其强
+大的功能和优秀的性能受到了 Java 开发者的广泛欢迎。Live 在线书店的持久层采用
+Hibernate 3.2，配合 JPA 注解，最大程度地简化了数据访问逻辑。
+Lucene:Lucene 是一个完全基于 Java 的性能优秀的开源全文搜索引擎，不过考虑到
+Lucene 提供的 API 使用比较复杂，采用 Compass 这个封装了 Lucene API 的开源框架即
+可轻松实现全文搜索。
+Acegi:Acegi 是基于 Spring 开发的一个安全框架，能够实现完善的安全保护，但却能
+几乎避免对现有系统的改动。Live 在线书店采用 Acegi 作为安全框架，大大减少了实现
+安全逻辑的代码量。
+
+
 
 
 通过RMI，J2EE将EJB组件创建为远程对象。RMI将各种任务与功能的类放到不同的服务器上，然后通过各个服务器间建立的调用规则实现分布式的运算。通过RMI的通信（底层仍然是Socket),连接不同功能模块的服务器，以实现一个完整的功能。
@@ -57,6 +73,10 @@ Spring Boot核心特性如下:
 
 
 
+对象/关系映射 ORM（Object/Relational Mapping）模块封装了多种 ORM 解决方案。
+但是，Spring 自身并没有提供任何 ORM 方案，相反，Spring 的 ORM 是为了集成许多流
+行的 ORM 框架而设计的，例如，Hibernate、iBatis、TopLink、JDO 等。通过 Spring 提
+供的集成方案，可以非常方便地将其纳入到 Spring 的事务管理中。
 
 
 
