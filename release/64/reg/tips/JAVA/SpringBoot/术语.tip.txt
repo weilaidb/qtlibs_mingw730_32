@@ -58,6 +58,12 @@ JavaBean 既可以作为数据对象的载体，也可以被设计为业务组�
 
 
 
+BeanFactory： 仅仅提供了最简单的依赖注入支持
+ApplicationContext：则扩展了 BeanFactory，提供了更多的额外功能。和基本的 BeanFactory 相比，ApplicationContext 还提供了国际化支持、事件的发布
+和通知机制等。
+
+@Required 注解:例如，在 RefBean 的源代码中，写上@Required 注解就要求这个 basic 属性必须被注入。
+
 
 
 通过RMI，J2EE将EJB组件创建为远程对象。RMI将各种任务与功能的类放到不同的服务器上，然后通过各个服务器间建立的调用规则实现分布式的运算。通过RMI的通信（底层仍然是Socket),连接不同功能模块的服务器，以实现一个完整的功能。

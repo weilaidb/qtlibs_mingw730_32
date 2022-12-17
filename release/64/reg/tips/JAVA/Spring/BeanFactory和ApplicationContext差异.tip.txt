@@ -1,0 +1,15 @@
+3.4 Bean初始化
+在讨论了如何创建一个 Spring 的 IoC 容器后，我们要关注的是这个 XML 配置文件，
+因为 Spring 的 IoC 容器根据 XML 配置文件来初始化 Bean。需要注意的一点是，
+ApplicationContext 初始化 Bean 和基本的 BeanFactory 有所不同，基本的 BeanFactory 总
+是延迟加载 Bean，直到第一次调用 getBean("beanId")方法请求 Bean 的实例时，
+BeanFactory 才会创建这个 Bean，而 ApplicationContext 在自身初始化时就一次性创建了
+所有的 Bean，了解这一点区别非常重要，因为 ApplicationContext 在初始化时就能验证
+XML 配置文件的正确性，而使用基本的 BeanFactory，直到调用 getBean("beanId")方法
+获取 Bean 实例时，才可能会发现配置错误而导致抛出异常。
+只有在非常简单的情况下，使用基本的 BeanFactory 才可能满足我们的需求。绝大
+多数时候，ApplicationContext 是最佳选择。在启动的时候，ApplicationContext 就能检测
+出配置文件的错误，这比使用基本的 BeanFactory 在运行一段时间后调用 getBean()抛出
+异常要好得多。并且，延迟加载会带来性能上的损失。
+相对于基本的 BeanFactory，ApplicationContext 唯一的缺点是由于在启动时需要一
+次性实例化所有的 Bean，如果定义的 Bean 很多，则启动时间会较长。

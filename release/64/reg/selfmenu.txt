@@ -1315,6 +1315,7 @@ JAVA/RegExp/Pattern $H2D替换
 JAVA/RegExp/Pattern2
 JAVA/RegExp/Pattern3
 JAVA/RegExp/Pattern4
+JAVA/Spring/BeanFactory和ApplicationContext差异
 JAVA/Spring/FactoryMethod
 JAVA/Spring/IOC控制反转
 JAVA/SpringBoot/Annotation
