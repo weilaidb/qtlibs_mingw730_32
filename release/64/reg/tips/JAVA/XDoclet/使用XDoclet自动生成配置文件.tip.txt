@@ -1,0 +1,21 @@
+2.4 使用XDoclet自动生成配置文件
+由于 Spring 需要一个 XML 配置文件来正确组装所有的组件，而手动编写 XML 配
+置文件是相当烦琐的，而且随着应用程序的组件越来越多（在本书的 Live 在线书店应用
+中，共有 50 多个组件需要配置），XML 文件变得难以维护，并且改动源代码后要相应地
+修改 XML 文件。因此，需要一种自动生成 XML 配置文件的方式。
+XDoclet 是一个开源的自动化生成工具，可用于自动生成 Java 代码和各类配置文件，
+包括 Spring 的 XML 配置文件。XDoclet 通过提取源代码中的特殊的注释来生成配置文
+件，因此不必维护配置文件，只需在更改源代码后通过 XDoclet 重新生成一个新的配置
+文件即可，大大降低了开发和维护的难度。
+XDoclet 已经提供了对 Spring 的内置支持，并且很容易扩展，在第 3 章中，还将详
+细介绍如何在 Java 代码中编写 XDoclet 注释，然后自动生成 Spring 配置文件。
+可以从 http://xdoclet.sourceforge.net 下载最新的 XDoclet。截至本书写作时，XDoclet
+的最新版本是 1.2.3 版本。
+XDoclet 只能以 Ant 的扩展任务形式运行，因此只有使用 Ant 作为项目构建工具时，
+才能享受到 XDoclet 带来的便捷，这也是本书推荐的开发方式：依赖标准的项目构建工
+具 Ant，而非某个特定的 IDE。
+XDoclet 的核心是 XJavaDoc，这个库负责解析 Java 源代码。由于 XDoclet 1.2.3 版本
+的 XJavaDoc 还不能正确解析 Java 5 代码，因此需要手动更新 XJavaDoc。下载最新的
+XJavaDoc 1.5，然后将 XDoclet 目录下的 xjavadoc-1.2.3.jar 替换为 xjavadoc-1.5-snapshot 
+050611.jar，即可正确解析 Java 5 源代码。读者也可以在本书的配套光盘中找到支持 Java 
+5 的 XDoclet 版本，并直接使用。

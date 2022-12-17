@@ -1131,6 +1131,7 @@ JAVA/AJAX 教程/AJAX 实例
 JAVA/AJAX 教程/eg
 JAVA/AJAX 教程/简介
 JAVA/AJAX 示例/经典ajax实例-ajax实现输入时的自动提示jsp(转)
+JAVA/Ant/使用Ant构建项目
 JAVA/Base/forloop
 JAVA/Cloud/ECS
 JAVA/JAVA_HOME JRE_HOME
@@ -1314,6 +1315,8 @@ JAVA/RegExp/Pattern $H2D替换
 JAVA/RegExp/Pattern2
 JAVA/RegExp/Pattern3
 JAVA/RegExp/Pattern4
+JAVA/Spring/FactoryMethod
+JAVA/Spring/IOC控制反转
 JAVA/SpringBoot/Annotation
 JAVA/SpringBoot/Annotation JDK的元Annotation（修饰注解的注解）
 JAVA/SpringBoot/CLion 激活码
@@ -1430,6 +1433,7 @@ JAVA/SpringBoot/视图技术 FreeMarker
 JAVA/SpringBoot/视图技术 Thymealeaf
 JAVA/SpringMVC/知识/Spring MVC【入门】
 JAVA/SpringMVC/知识/下载特别慢
+JAVA/XDoclet/使用XDoclet自动生成配置文件
 JAVA/class/static
 JAVA/css/include header
 JAVA/css/include header2

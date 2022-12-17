@@ -4,7 +4,9 @@ DI:Dependency Injection,DI，依赖注入
 DL:Dependency Loopup
 AOP:面向切面编程
 IoC:Inversion of Control，控制反转
-JMS:Java Messaging Service
+JMS:Java Messaging Service，Java 消息服务 JMS（Java Message Service，Java 消息服务）是 JavaEE 应用的标准消息服务，使用
+JMS 能大大减少应用程序的耦合，从而提高应用程序的可维护性和可扩展性。
+
 CLI:Command Line Interface
 COC:Convention Over Configuration,约定优于配置
 ORM:对象关系映射
@@ -31,6 +33,29 @@ Lucene 提供的 API 使用比较复杂，采用 Compass 这个封装了 Lucene 
 Acegi:Acegi 是基于 Spring 开发的一个安全框架，能够实现完善的安全保护，但却能
 几乎避免对现有系统的改动。Live 在线书店采用 Acegi 作为安全框架，大大减少了实现
 安全逻辑的代码量。
+
+JPA:JPA（Java Persistent API） 在最新的JavaEE 5.0规范中，引入了一个新的Java持久化API——JPA（Java Persistent 
+API）。JPA 是 EJB 3.0 的重要规范之一，但却独立于 EJB 3.0。它为 JavaEE 应用定义了
+一个标准的持久化申明，使用了 Java 5 的申明。对于 Java 1.4 或更早版本，JPA 也支持
+使用传统的 XML 配置文件。
+
+Portlet:Portlet 是一种整合了多个视图的门户页面技术，用户可以自定义页面的布局。
+Portlet 不同于 Servlet 之处还在于 Portlet 运行于 Portal 容器中。Spring 2.0 完整地支持
+JSR-168 定义的 Portlet 规范，并提供了一个 Portlet MVC 框架。
+
+JRuby、Groovy 和 BeanShell:Spring 2.0 支持 JRuby、Groovy 和 BeanShell 这 3 种动态语言。
+
+EJB:EJB 容器为运行在其中的 EJB 组件提供生命周期管理、事务支持、安全控制等一系列重要的服务。
+
+Spring容器:Spring 容器就是要为普通的 JavaBean 组件提供一系列有价值的服务，它也是整个 Spring
+框架的基石。
+
+JavaBean:JavaBean 是一种符合特定规范的 Java 对象，也是最简单、最基本的 Java 组件。
+JavaBean具有一个无参数的构造方法和由getter/setter提供的标准属性供外部访问。因此，
+JavaBean 既可以作为数据对象的载体，也可以被设计为业务组件实现商业逻辑。和 EJB
+组件相比，JavaBean 组件的编写、测试要容易得多，占用的资源也较 EJB 少得多。因此，
+相对于 EJB 重量级组件而言，通常把 JavaBean 称为轻量级组件。
+
 
 
 

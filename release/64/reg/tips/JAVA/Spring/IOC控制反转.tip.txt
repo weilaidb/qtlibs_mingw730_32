@@ -1,0 +1,136 @@
+3.2.2 理解IoC的概念
+在最近几年盛行的一些软件开发的术语中，IoC 是出现频率较高的一个单词。IoC
+全称为 Inversion of Control，直译为控制反转。何谓 IoC？在解释 IoC 的概念之前，我们
+来看看通常的 Java 组件是如何协作的。假定一个 BookService 组件，有一个
+listBooksByAuthor 的方法，用于列出某个作者编写的所有书籍。
+public class BookService { 
+ private BookDao bookDao = new DbBookDao(); 
+ public List<Book> listBooksByAuthor(String author) { 
+ List<Book> books = bookDao.listAll(); 
+ Iterator<Book> it = books.iterator(); 
+ while(it.hasNext()) { 
+ if(!it.next().getAuthor().equals(author)) 
+ it.remove(); 
+ } 
+ return books; 
+ } 
+} 
+可以看到，listBooksByAuthor 的功能非常简单，即列出指定作者的书籍。而列出所
+有书籍的功能被委托给 bookDao 对象。考虑到书籍可能存储的多种形式，例如，数据库、
+XML 文件等，将 BookDao 申明为接口，并在某个子类中实现具体的功能符合面向对象
+编程的基本原则之一：针对抽象编程，因此，我们实现了一个具体的子类 DbBookDao。
+现在需要考虑的是，BookService 如何持有 bookDao 对象。最简单的方式是，在
+BookService 的内部持有一个 DbBookDao 的实例，上面的例子正是这么做的。
+31 
+Java 技术大系 Spring 2.0 核心技术与最佳实践
+考察一下这种“直接实例化并持有”的方式，会发现以下缺点。
+（1）在 BookService 中硬编码创建了 BookDao，如果需要另一种 BookDao 的实现，
+例如，XmlBookDao，则需要修改 BookService 的代码，换言之，BookService 组件不能
+脱离 BookDao 的具体实现。
+（2）BookDao 的实例无法被其他组件共享。假设其他组件也需要引用 BookDao，则
+多个组件很难共享同一个 BookDao 的实例，因为该实例的生命周期定义在了 BookService
+组件中，从而难以共享，实现一个 getBookDao()的方法以暴露 BookDao 虽然可行，却违
+反了组件之间的契约关系，因为 BookService 并非 BookDao 的工厂，两者不存在创建关系。
+（3）如果 DbBookDao 仍需要引用其他资源，例如，DataSource，则 BookService 可
+能还需要负责管理和维护一个 DataSource，而这完全不是作为上层组件的 BookService
+的职责。
+（4）测试 BookService 是复杂的，因为必须首先编写 DbBookDao，倘若 DbBookDao
+还依赖于 DataSource，则测试必须在真实的数据库环境下执行，而无法用模拟对象（Mock 
+Object）来代替。
+从以上几点可以看出，如果系统中有大量的组件，其生命周期和相互之间的依赖关
+系如果由组件自身来维护，不但大大增加了系统的复杂度，而且会导致组件之间极为紧
+密的耦合，继而给测试和维护带来极大的困难。
+现在的核心问题是如何组装大量的组件，使之互相配合完成复杂的系统功能？解决
+这一问题的方案正是使用 IoC。
+传统的应用程序中，控制权在应用程序本身，程序的控制流程完全由开发者控制。
+创建 BookService 组件，在创建 BookService 组件的过程中，又创建了 BookDao 组件，
+然后使用 BookService 组件为用户服务。
+在 IoC 模式下，控制权发生了反转：从应用程序转移到了 IoC 容器。组件不再由应
+用程序负责创建和配置，而是由 IoC 容器负责，应用程序只需直接使用已经创建并配置
+好的组件。为了让组件能在 IoC 容器中被“装配”出来，需要某种“注入”的机制，才
+能将一种组件“注入”到另一种组件中。
+在 Java 中，使用 set 方法可以非常简单地实现这一注入机制。将 BookService 修改
+如下。
+public class BookService { 
+ private BookDao bookDao; 
+ public void setBookDao(BookDao bookDao) { 
+ this.bookDao = bookDao; 
+ } 
+ public List<Book> listBooksByAuthor(String author) { 
+32 
+ 第 3 章 使用 Spring 的 IoC 容器管理 Bean
+ List<Book> books = bookDao.listAll(); 
+ Iterator<Book> it = books.iterator(); 
+ while(it.hasNext()) { 
+ if(!it.next().getAuthor().equals(author)) 
+ it.remove(); 
+ } 
+ return books; 
+ } 
+} 
+修改后的 bookDao 实例不再由 BookService 创建，而是由 IoC 容器负责将某个
+BookDao 实例通过 setBookDao()注入。
+以上对 BookService 的修改虽然非常简单，但是却带来了一系列的好处。
+（1）BookService 不必关心如何创建 BookDao 的实例，也不必关心 BookDao 的具体
+实现，只需要使用它就可以了，因此简化了 BookService 的编码。
+（2）BookDao 的实例由 IoC 容器管理，因此，可在多个组件之间共享，只要它们也
+实现了相应的 setBookDao()的方法。
+（3）测试 BookService 非常容易，因为可以自行实现一个 MockBookDao 模拟对象，然
+后注入到 BookService 中，即可测试 listBooksByAuthor 方法，而不需要真实的数据库环境。
+许多人认为使用 DI（Dependency Injection，依赖注入）来描述比 IoC 更合适。的确，
+依赖注入的描述更加准确。不过，本书不打算讨论使用哪个术语更合适，一律将其称之
+为“依赖注入”。在提到容器时，仍使用“IoC 容器”一词，因为它更为流行。
+简单来说，依赖注入解决了最主要的一个问题：将组件的配置与使用相分离，并且
+由 IoC 容器负责管理组件的生命周期。
+由于 IoC 容器负责实例化所有的组件，因此，需要告诉容器如何创建组件和各组件
+之间的依赖关系。最常见的配置方式是通过一个 XML 文件，例如，Spring 的 IoC 容器
+所采用的方式，上述组件用 XML 配置如下。
+<beans> 
+ <bean id="bookDao" class="DbBookDao" /> 
+ <bean id="bookService" class="BookService"> 
+ <property name="bookDao" ref="bookDao" /> 
+ </bean> 
+</beans> 
+配置 bookService 组件时，ref 指向的就是 bookDao 组件，Spring 的 IoC 容器就根据
+该配置自动调用 bookService 的 setBookDao()方法，将 bookDao 组件注入到 bookService
+组件中去。
+
+
+
+
+
+
+3.2.3 依赖注入的方式
+依赖注入的方式主要有 3 种：构造方法注入、设置属性注入和接口注入。3 种注入
+方式各有优劣。
+构造方法注入在构造方法中注入所需的依赖组件。若采用构造方法注入，上面的
+BookService 示例将被改写为如下形式。
+public class BookService { 
+ private BookDao bookDao; 
+ public BookService(BookDao bookDao) { 
+ this.bookDao = bookDao; 
+ } 
+} 
+构造方法注入的好处是在组件实例化时就同时设置了所有依赖的组件，不会漏掉某
+个依赖的组件，组件的初始化代码可以在构造方法中完成。缺点是如果有多个参数个数
+相同的构造方法，IoC 容器仅依赖参数可能无法区分它们，此外，XML 配置文件也不太
+直观。使用构造方法注入的 IoC 容器有 PicoContainer，Spring 的 IoC 容器也支持构造方
+法注入，不过，Spring 更推荐使用设置属性注入。
+设置属性注入通过简单的 set 方法注入一个符合参数类型的依赖组件。上面的示例
+采用的也是这种方法。这种方法的优点是 XML 配置非常直观，缺点是如果忘记注入某
+个组件，运行时将会抛出 NullPointerException。此外，要在所有注入完成后执行一些初
+始化代码，需要其他机制。Spring 采用的方法是指定初始化方法的名称，在所有注入完
+成后调用该方法。
+第 3 种注入方式是接口注入。这种注入方式是在接口中定义需要注入的信息。对于
+上面的示例，要注入 BookDao，首先需要定义一个接口。
+public interface InjectBookDao { 
+ void injectBookDao(BookDao bookDao); 
+} 
+对于需要注入的 BookService 组件，必须实现这个接口。然后，容器通过接口信息
+完成依赖注入。相对于构造方法注入或设置属性注入，接口注入的侵略性要强得多，而
+且需要更多额外的工作。使用接口注入的 IoC 容器有 Avalon。
+读者可能在一些资料中看到关于依赖注入的 3 种方式分别是 Type 1、Type 2 和 Type 
+3，实际上这 3 种方式正是指接口注入、设置属性注入和构造方法注入。
+
+
+

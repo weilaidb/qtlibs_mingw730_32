@@ -1,0 +1,78 @@
+2.2.1 编写Java代码
+以经典的“HelloWorld”为例，我们稍作扩展，实现一个标准的 Spring 组件。针对
+抽象编程是一种良好的面向对象设计原则，因此定义一个 HelloWorld 接口。
+public interface HelloWorld { 
+ void setName(String name); 
+ String say(); 
+} 
+然后针对接口编写实现类。
+public class HelloWorldImpl implements HelloWorld { 
+ private String name = null; 
+ public void setName(String name) {
+
+this.name = name; 
+ } 
+ public String say() { 
+ if(name==null) 
+ return "Hello, world!"; 
+ return "Hello, " + name + "!"; 
+ } 
+} 
+我们编写一个传统的命令行程序来调用 HelloWorld 组件。
+public class OldStartup { 
+ public static void main(String[] args) { 
+ HelloWorld hello = new HelloWorldImpl(); 
+ hello.setName("Spring"); 
+ System.out.println(hello.say()); 
+ } 
+}
+
+
+
+
+
+
+
+
+
+
+现在我们感兴趣的是如何以“Spring”的方式来调用 HelloWorld 组件。Spring 应用
+程序的运行流程一般如下。
+
+
+① 初始化 Spring 的 Bean 工厂。
+② 通过 Bean 工厂获得 Bean 实例。
+③ 调用 Bean 实例实现应用程序所需的功能。
+④ 销毁 Spring 的 Bean 工厂。
+典型的代码如下。
+public class SpringStartup { 
+ public static void main(String[] args) { 
+ XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource 
+("beans.xml")); 
+ HelloWorld hello = (HelloWorld)factory.getBean("hello"); 
+ System.out.println(hello.say()); 
+ factory.destroySingletons(); 
+ } 
+} 
+在运行这个 Spring 应用程序之前，还需要一个 Spring 配置文件。
+
+
+
+
+2.2.2 编写Spring配置文件
+正如前面所介绍的，Spring 框架依赖一个 XML 配置文件来管理和装配应用程序的
+所有 Bean 组件。启动 Spring 前，还需要准备一个 beans.xml 配置文件。
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+ "http://www.springframework.org/dtd/spring-beans.dtd"> 
+<beans> 
+ <bean id="hello" class="example.chapter1.helloworld.HelloWorldImpl"> 
+ <property name="name" value="Spring" /> 
+ </bean> 
+</beans> 
+XML 文件的根节点是<beans>，这是 Spring 配置文件必须的，在<beans>和</beans>
+之间通过<bean>节点定义所有的 Bean，每个 Bean 还可设置属性和依赖关系，具体的配
+置方法将在第 3 章详细讲解。本例中，注意到 bean 的 id 为“hello”，要在 Spring 的 Bean
+工厂获取这个 Bean 的实例，只需提供相应的 id。
+
+
