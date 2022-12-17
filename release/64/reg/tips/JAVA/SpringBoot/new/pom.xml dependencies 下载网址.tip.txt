@@ -1,3 +1,7 @@
+库查找
+https://maven.jeecg.org/nexus/#welcome
+
+
 #仓库
 https://mvnrepository.com/
 https://maven.jeecg.org/nexus/content/repositories/jeecg/

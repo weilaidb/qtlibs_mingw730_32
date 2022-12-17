@@ -1386,6 +1386,7 @@ JAVA/SpringBoot/new/pom.xml app description
 JAVA/SpringBoot/new/pom.xml dependencies
 JAVA/SpringBoot/new/pom.xml dependencies 下载网址
 JAVA/SpringBoot/new/pom.xml java version
+JAVA/SpringBoot/new/pom.xml jeewms jeecfg
 JAVA/SpringBoot/new/pom.xml parent
 JAVA/SpringBoot/new/pom.xml/bakcup/1
 JAVA/SpringBoot/new/pom.xml/spring-boot-starter-parent
@@ -3026,6 +3027,7 @@ path路径/常用文件夹
 生活/社保/114网上预约挂号统一平台
 生活/社保/北京市社会保险经办机构
 用户说明书/EC管理 dd-x.y-SNAPSHOT.jar
+用户说明书/JEEWMS 功能列表
 用户说明书/bugzilla
 用户说明书/代码集autocodesets weilaix.war
 用户说明书/代码集autocodesets weilaix.war Apache版本更新
