@@ -1930,6 +1930,7 @@ LINUX/命令行/Centos version
 LINUX/命令行/Linux 忘记密码解决方法
 LINUX/命令行/Linux 系统目录结构
 LINUX/命令行/SELinux配置文件
+LINUX/命令行/aircrack-ng
 LINUX/命令行/crontab
 LINUX/命令行/crontab eg
 LINUX/命令行/crontab tomcat
