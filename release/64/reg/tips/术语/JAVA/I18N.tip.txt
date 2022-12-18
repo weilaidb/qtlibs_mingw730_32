@@ -1,0 +1,111 @@
+I18N
+
+
+3.10.7 国际化支持
+国际化通常简称为 I18N，因为英文单词 Internationalization 中第一个字母 I 和最后
+一个字母 N 之间有 18 个字母。如果应用程序需要国际化支持（例如，对于不同国家或
+地区的用户显示不同的信息），就不能直接将文本硬编码在程序中。Java 平台本身就支
+持应用程序的国际化，它通过定义一个或多个属性文件保存应用程序中需要给用户显示
+的信息，每种语言或区域对应一个属性文件，从而实现根据用户语言及地区动态地绑定
+文本信息。语言和国家的代码与 ISO-639 及 ISO-3166 标准一致。
+例如，我们想设计一个根据当前时间自动向用户问候的 GreetBean 组件，对于英文
+用户，我们需要一个 greeting_en.properties 的属性文件来保存不同时间的问候语。
+morning=Good morning! 
+afternoon=Good afternoon! 
+evening=Good evening! 
+night=Good night! 
+而对于中国用户，则需要一个 greeting_zh_CN.properties 的属性文件来保存。
+morning=\u65e9\u4e0a\u597d\uff01 
+afternoon=\u4e0b\u5348\u597d\uff01 
+evening=\u665a\u4e0a\u597d\uff01 
+night=\u665a\u5b89\uff01 
+其中，“\u65e9”之类的文本是经过编码的中文字符，稍后我们会介绍如何使用 JDK
+提供的工具来实现编码转化。
+Spring 的 ApplicationContext 对国际化的支持也正是依赖于 Java 平台的国际化机制，
+不过，我们不需要与 Java 平台本身提供的 ResourceBundle 打交道，而是直接通过
+ApplicationContext 获得国际化信息。ApplicationContext 实现了 MessageSource 接口，为
+国际化提供了支持。
+71 
+Java 技术大系 Spring 2.0 核心技术与最佳实践
+String getMessage(MessageSourceResolvable resolvable, Locale locale); 
+String getMessage(String code, Object[] args, Locale locale); 
+String getMessage(String code, Object[] args, String defaultMessage, Locale 
+locale); 
+最常用的是后面两个 getMessage()方法，他们根据
+locale 返回相应的文本，参数 args 用于格式化文本，例如，
+用实际值替换文本信息中的“{0}”、“{1,date}”等。为了
+避免 NoSuchMessageException 异常，可以使用第 3 个
+getMessage()方法，提供一个默认的文本。
+我们以下面的 I18N 工程为例，演示如何使用 Spring 
+ApplicationContext 的国际化功能，如图 3-10 所示。
+在使用 Spring 提供的国际化支持之前，我们还需要做
+两件事。首先，ApplicationContext 需要一个 MessageSource
+的实例来实现国际化支持，它会在当前 XML 配置文件中
+查找一个名为“messageSource”的 Bean，因此，我们必须在 XML 配置文件中声明一个
+名为“messageSource”的 Bean。Spring 已经提供了一个 ResourceBundle MessageSource
+的实现类，这个类的作用就是通过 Java 标准库的 java.util.ResourceBundle 来解析国际化
+信息。在 config.xml 中添加如下配置。
+图 3-10 
+<bean id="messageSource" class="org.springframework.context.support. 
+ResourceBundleMessageSource"> 
+ <property name="basename" value="greeting" /> 
+</bean> 
+属性 basename 指定了国际化文本的“基本”文件名，对于本例的“greeting”而言，
+可能会有如下的几个文本文件。
+（1）greeting.properties：默认的属性文本，当无法获得用户当前的语言和区域信息
+时，就是用这个默认的文本。
+（2）greeting_en.properties：针对英语用户提供的国际化文本。
+（3）greeting_en_US.properties：针对区域为美国的英语用户提供的国际化文本。
+（4）greeting_zh_CN.properties：针对中国用户提供的国际化文本。
+还可以添加更多的国际化属性文件，例如，“de_DE”、“fr”等。下一步是编写 GreetBean
+组件，为了获取容器的引用，我们实现了 ApplicationContextAware 接口。
+public class GreetBean implements ApplicationContextAware { 
+ private ApplicationContext context; 
+ private Locale locale = Locale.getDefault(); 
+72 
+ 第 3 章 使用 Spring 的 IoC 容器管理 Bean
+ public void setApplicationContext(ApplicationContext context) throws 
+BeansException { 
+ this.context = context; 
+ } 
+ public void setLocale(Locale locale) { 
+ this.locale = locale; 
+ } 
+ public String greet() { 
+ Calendar c = Calendar.getInstance(); 
+ c.setTime(new Date()); 
+ int hour = c.get(Calendar.HOUR_OF_DAY); 
+ if(hour<6) 
+ return context.getMessage("night", null, "Good night!", locale); 
+ if(hour<12) 
+ return context.getMessage("morning", null, "Good morning!", locale); 
+ if(hour<18) 
+ return context.getMessage("afternoon", null, "Good afternoon", locale); 
+ return context.getMessage("evening", null, "Good evening!", locale); 
+ } 
+} 
+由于 Java 的 ResourceBundle 对属性文件的限制，只能读取基本的 ASCII 字符和编
+码后的 UNICODE，所以，对于中文属性文本，需要用 JDK 提供的一个 native2ascii 工具，
+该命令行工具使用方法如下。
+native2ascii -encoding encoding_name input output 
+我们编写一个 greeting_zh_CN.txt 文本文件，并且以 UTF-8 格式保存。
+morning=早上好！
+afternoon=下午好！
+evening=晚上好！
+night=晚安！
+然后，输入命令：
+native2ascii -encoding UTF-8 greeting_zh_CN.txt greeting_zh_CN.properties 
+现在，src 目录下自动生成了符合 ResourceBundle 要求的属性文件 greeting_zh_ 
+CN.properties。运行 main()方法测试，结果根据当前时间有所不同。如果计算机当前的
+Windows 语言设置为中文，区域设置为中国，则运行结果如下。
+2006-10-27 16:46:20 org.springframework.core.CollectionFactory <clinit> 
+信息: JDK 1.4+ collections available 
+73 
+Java 技术大系 Spring 2.0 核心技术与最佳实践
+... 
+下午好！
+如果要将 GreetingBean 的 Locale 强制设置为 en_US，则修改配置文件 config.xml。
+<bean id="greet" class="example.chapter3.GreetBean"> 
+ <property name="locale" value="en_US" /> 
+</bean> 
+再次运行，就可以看到打印出的信息已变为“Good afternoon!”。
