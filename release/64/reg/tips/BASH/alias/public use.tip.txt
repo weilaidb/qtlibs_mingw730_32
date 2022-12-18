@@ -1,5 +1,6 @@
 alias gccversion="gcc --version "
-
+alias loginfailed="grep \"Failed password for invalid user\" /var/log/secure | awk '{print \$13}' | sort | uniq -c | sort -nr "
+alias loginfailedwc="grep \"Failed password for invalid user\" /var/log/secure | awk '{print \$13}' | sort | uniq -c | sort -nr | wc -l"
 
 alias npmconfigtaobao="npm config set registry http://registry.npm.taobao.org/ "
 

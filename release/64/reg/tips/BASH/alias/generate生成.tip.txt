@@ -1,4 +1,6 @@
 gccversion;gcc --version
+loginfailed;grep "Failed password for invalid user" /var/log/secure | awk '{print $13}' | sort | uniq -c | sort -nr
+
 
 
 npmconfigtaobao;npm config set registry http://registry.npm.taobao.org/

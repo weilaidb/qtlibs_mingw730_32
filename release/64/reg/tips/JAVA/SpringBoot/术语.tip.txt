@@ -2,7 +2,7 @@ EJB:Enterprise Java Bean
 RMI:Remote Method Invocation,远程方法调用
 DI:Dependency Injection,DI，依赖注入
 DL:Dependency Loopup
-AOP:面向切面编程
+AOP:（Aspect Oriented Programming）面向切面编程
 IoC:Inversion of Control，控制反转
 JMS:Java Messaging Service，Java 消息服务 JMS（Java Message Service，Java 消息服务）是 JavaEE 应用的标准消息服务，使用
 JMS 能大大减少应用程序的耦合，从而提高应用程序的可维护性和可扩展性。
