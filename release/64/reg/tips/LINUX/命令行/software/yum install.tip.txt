@@ -1,5 +1,7 @@
 nc
 iftop
+fail2ban
+
 
 graphviz 
 doxygen
