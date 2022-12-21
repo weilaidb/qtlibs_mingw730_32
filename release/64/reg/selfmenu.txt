@@ -3044,6 +3044,7 @@ path路径/常用文件夹
 用户说明书/代码集autocodesets 菜单定义规范
 用户说明书/在线文档浏览 kkFileView-2.2.0
 用户说明书/更换服务器change server
+用户说明书/芝士错题本
 用户说明书/计算器Web(Python)
 用户说明书/超级记事本 weilaix.war
 电脑/ThinkPad/T14/常见
