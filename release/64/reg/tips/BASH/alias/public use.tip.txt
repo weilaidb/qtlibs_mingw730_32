@@ -2,7 +2,11 @@ alias gccversion="gcc --version "
 alias loginfailed="grep \"Failed password for invalid user\" /var/log/secure | awk '{print \$13}' | sort | uniq -c | sort -nr "
 alias loginfailedwc="grep \"Failed password for invalid user\" /var/log/secure | awk '{print \$13}' | sort | uniq -c | sort -nr | wc -l"
 
+alias findwc="find | wc -l "
+
+
 alias npmconfigtaobao="npm config set registry http://registry.npm.taobao.org/ "
+
 
 
 alias python3youcompleteverbose="/usr/bin/python3 /root/work/git.bak/jsp_exe.vim/vim/bundle/YouCompleteMe/third_party/ycmd/build.py --all --verbose "
