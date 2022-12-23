@@ -23,6 +23,7 @@ https://github.com/maomaoshu/jsBook
 
 
 常用git库:
+git@gitee.com:weilaidb/test.git
 https://github.com/torvalds/linux.git
 https://github.com/FFmpeg/FFmpeg.git
 https://gitee.com/openharmony/kernel_liteos_a.git
