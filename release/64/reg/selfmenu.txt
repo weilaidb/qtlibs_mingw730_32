@@ -299,6 +299,7 @@ C# cs/基础内容
 C/API/argc num
 C/API/argc usage
 C/API/atoi
+C/API/backtrace函数
 C/API/endian
 C/API/errno
 C/API/errno 错误对照表

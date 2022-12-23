@@ -1,0 +1,89 @@
+backtrace函数
+ 1、函数原型
+
+#include <execinfo.h>    
+int backtrace(void **buffer, int size);
+　　该函数获取当前线程的调用堆栈，获取的信息将会被存放在buffer中，它是一个指针数组，参数size用来指定buffer中可以保存多少个void*元素。函数的返回值是实际返回的void*元素个数。buffer中的void*元素实际是从堆栈中获取的返回地址。
+
+char **backtrace_symbols(void *const *buffer, int size);
+　　该函数将backtrace函数获取的信息转化为一个字符串数组，参数buffer是backtrace获取的堆栈指针，size是backtrace返回值。函数返回值是一个指向字符串数组的指针，它包含char*元素个数为size。每个字符串包含了一个相对于buffer中对应元素的可打印信息，包括函数名、函数偏移地址和实际返回地址。
+
+　　backtrace_symbols生成的字符串占用的内存是malloc出来的，但是是一次性malloc出来的，释放是只需要一次性释放返回的二级指针即可。
+
+void backtrace_symbols_fd(void *const *buffer, int size, int fd);
+　　该函数与backtrace_symbols函数功能相同，只是它不会malloc内存，而是将结果写入文件描述符为fd的文件中，每个函数对应一行。该函数可重入。
+
+2、函数使用注意事项
+
+backtrace的实现依赖于栈指针（fp寄存器），在gcc编译过程中任何非零的优化等级（-On参数）或加入了栈指针优化参数-fomit-frame-pointer后多将不能正确得到程序栈信息；
+backtrace_symbols的实现需要符号名称的支持，在gcc编译过程中需要加入-rdynamic参数；
+内联函数没有栈帧，它在编译过程中被展开在调用的位置；
+尾调用优化（Tail-call Optimization）将复用当前函数栈，而不再生成新的函数栈，这将导致栈信息不能正确被获取。
+3、捕获异常信号并打印堆栈
+
+　　当程序出现崩溃等异常时，会接收到内核发送给进程的异常信号，进程接收到异常信号后，可以在处理信号的时候将程序的堆栈信息打印出来，以便于程序调试。
+
+4、程序示例：
+
+复制代码
+#include <stdio.h>
+#include <execinfo.h>
+#include <unistd.h>
+#include <stdlib.h>
+#define BACKTRACE_SIZE 100
+
+void print_backtrace()
+{
+    void* buffer[BACKTRACE_SIZE]={0};
+    int pointer_num = backtrace(buffer, BACKTRACE_SIZE);
+    char** string_buffer = backtrace_symbols(buffer, pointer_num);
+    if(string_buffer == NULL)
+    {
+        printf("backtrace_symbols error");
+        exit(-1);
+    }
+    
+    printf("print backtrace begin\n");
+    for(int i = 0; i < pointer_num; i++)
+    {
+        printf("%s\n", string_buffer[i]);
+    }
+    printf("print backtrace end\n");
+
+    free(string_buffer);
+    
+    return;
+}
+
+void func(int num)
+{
+    if(num > 0)
+    {
+        func(--num);
+    }
+    else
+    {
+        print_backtrace();
+    }
+}
+
+int main(int argc, char* argv[])
+{
+    if(argc != 2)
+    {
+        printf("input param error");
+        return -1;
+    }
+    
+    int input_num = atoi(argv[1]);
+    func(input_num);
+
+    return 0;
+}
+复制代码
+执行结果如下，注意在编译时带-rdynamic参数
+
+ 
+
+分类: C++ , Linux
+标签: backtrace, backtrace_symbols, backtrace_symbols_fd
