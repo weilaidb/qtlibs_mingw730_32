@@ -53,7 +53,9 @@ https://github.com/jzaefferer/jquery-treeview
 https://github.com/doxygen/doxygen.git
 #tomcat
 https://github.com/apache/tomcat
+#atom
 git@github.com:atom/atom.git
+https://github.com/atom/atom/releases
 
 #仿真
 https://gitlab.com/qemu-project/qemu.git
