@@ -23,6 +23,7 @@ https://github.com/maomaoshu/jsBook
 
 
 常用git库:
+git@gitee.com:weilaidb/CheeseWrongQuestionBook.git
 git@gitee.com:weilaidb/test.git
 https://github.com/torvalds/linux.git
 https://github.com/FFmpeg/FFmpeg.git

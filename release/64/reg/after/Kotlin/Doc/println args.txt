@@ -1,0 +1,1 @@
+fun main(args: Array<String>) {$NL$TBprintln(\1)$NL}$NL
