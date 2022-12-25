@@ -1,0 +1,26 @@
+Android Studio报错——The application could not be installed: INSTALL_FAILED_USER_RESTRICTED的解决
+
+慕容靓柏
+
+于 2020-03-13 16:36:14 发布
+
+7401
+ 收藏
+分类专栏： Android 开发
+版权
+
+Android 开发
+专栏收录该内容
+1 篇文章0 订阅
+订阅专栏
+在使用Android Studio进行USB调试的时候，出现如下错误：
+Session 'app': Installation did not succeed. The application could not be installed: INSTALL_FAILED_USER_RESTRICTED
+
+这种情况一般是由于被调试手机拒绝安装app的请求。
+
+解决方法
+我是用的手机系统是MIUI11，只需要在开发者选项打开USB安装选项即可。
+再次安装app时，手机可能出现是否允许安装的提示，点击允许即可。
+————————————————
+版权声明：本文为CSDN博主「慕容靓柏」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_39157144/article/details/104843719
