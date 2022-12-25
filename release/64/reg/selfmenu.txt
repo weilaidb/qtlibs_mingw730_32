@@ -2833,6 +2833,7 @@ YAML/yml入门教程2
 android/know/Android Studio报错——The application could not be installed: INSTALL_FAILED_USER_RESTRICTED的解决
 android/know/miui10开发者选项在哪
 android/know/welcome screen 欢迎界面 迎接面
+android/know/welcome screen 欢迎界面 迎接面（示例代码）
 data/开发板/AX7010 初始化打印
 data/开发板/AX7010/flash
 doxygen/doc.dot FFmpeg

@@ -1,4 +1,292 @@
 welcome screen 欢迎界面 迎接面
-1.
-2.
+1.参考这个添加
+https://blog.csdn.net/huplion/article/details/52612098
+
+2.AndroidManifest.xml 中注册所有相关的Activity
+android:theme 在ScrollingActivity 中必须有（否则异常退出），在WelcomeActivity可以没有
+
 3.
+
+
+
+
+Android 欢迎界面停留3秒的实现
+
+胡大炮的妖孽人生
+
+于 2016-09-21 19:20:39 发布
+
+27217
+ 收藏 66
+分类专栏： android 文章标签： android
+版权
+
+android
+专栏收录该内容
+21 篇文章0 订阅
+订阅专栏
+0.写在前面
+在这篇教程中来实现一个类似于微信的的延迟3秒再进入主界面的效果。
+1.项目准备
+先新建一个空的android项目。里面只自带一个MainActivity，首先我们再新建一个Activity叫做WelcomeActivity继承自Activity。
+Activity代码如下：
+
+//package在此省略，根据实际自行添加
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
+/**
+ * Created by HUPENG on 2016/9/21.
+ */
+public class WelcomeActivity extends Activity {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_welcome);
+    }
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+布局文件代码如下：
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal"
+            android:src="@mipmap/welcome"/>
+            <!--android src属性指定imageView里面要显示的资源文件的来源路径，也就是在欢迎界面显示的图片，在这里我已经预先上传了一张图片了-->
+</LinearLayout>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+修改清单文件AndroidManifest.xml
+声明WelcomeActivity以及修改Activity的启动顺序，由MainActivity改成WelcomeActivity
+原来的xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="supershare.android.hupeng.me.supershare">
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+修改成
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="supershare.android.hupeng.me.supershare">
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
+
+    </application>
+
+</manifest>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+至此项目的布局已经完成了，现在来完成跳转部分源码
+在这里用到的核心函数为
+Handler.sendEmptyMessageDelayed
+
+主要用来发送延迟消息
+首先新建一个消息处理对象,负责发送与处理消息
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
+1
+2
+3
+4
+5
+6
+在handleMessage方法中处理消息，在这里接收到消息不做复杂处理以后直接执行跳转操作
+贴上WelcomeActivity全部代码
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.Nullable;
+import android.view.Window;
+import android.view.WindowManager;
+
+/**
+ * Created by HUPENG on 2016/9/21.
+ */
+public class WelcomeActivity extends Activity {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //隐藏标题栏以及状态栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        /**标题是属于View的，所以窗口所有的修饰部分被隐藏后标题依然有效,需要去掉标题**/
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_welcome);
+        handler.sendEmptyMessageDelayed(0,3000);
+    }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            getHome();
+            super.handleMessage(msg);
+        }
+    };
+
+    public void getHome(){
+        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+2.总结
+在这里主要利用了android.os.Handler的消息的延迟发送以及处理。
+————————————————
+版权声明：本文为CSDN博主「胡大炮的妖孽人生」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/huplion/article/details/52612098
