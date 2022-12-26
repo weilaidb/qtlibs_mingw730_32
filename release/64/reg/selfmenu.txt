@@ -1309,6 +1309,7 @@ JAVA/JSP/内置对象/session
 JAVA/JSP/动作标记
 JAVA/JSP/左右显示
 JAVA/JSP/常见问题点
+JAVA/JSP/生成测试用例、笔记、BUG管理、环境管理等
 JAVA/JSP/知识点
 JAVA/JSP/示例 eg
 JAVA/Org/StringUtils/base
@@ -2830,6 +2831,8 @@ Windows/regedits 按关键字查询
 YAML/YAML 语法
 YAML/yml入门教程
 YAML/yml入门教程2
+android/API/打印XML内容
+android/API/更换欢迎界面图片
 android/know/Android Studio报错——The application could not be installed: INSTALL_FAILED_USER_RESTRICTED的解决
 android/know/miui10开发者选项在哪
 android/know/welcome screen 欢迎界面 迎接面
@@ -3048,6 +3051,8 @@ path路径/常用文件夹
 测试用例/测试模板2
 测试用例/测试模板3
 测试用例/测试用例编写规范/1
+环境配置/环境1
+环境配置/环境配置模板
 生活/位置/常用物品
 生活/医药/know/川贝枇杷膏
 生活/医药/know/止咳原理

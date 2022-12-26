@@ -1,0 +1,21 @@
+更换欢迎界面图片
+修改android:src 指定的路径
+android:src="@mipmap/welcome"
+到
+android:src="@drawable/welcome"
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/welcome"/>
+    <!--android src属性指定imageView里面要显示的资源文件的来源路径，也就是在欢迎界面显示的图片，在这里我已经预先上传了一张图片了-->
+</LinearLayout>

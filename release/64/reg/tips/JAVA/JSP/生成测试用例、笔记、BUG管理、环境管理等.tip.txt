@@ -1,0 +1,5 @@
+[提示;变量名(大写);变量名(小写)]
+环境管理;ResourceManage;resourceManage
+
+
+笔记;NoteBook;noteBook

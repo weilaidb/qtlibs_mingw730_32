@@ -1,0 +1,5 @@
+打印XML内容
+使用Android Studio打印XML时，显示的是“图形”的格式
+1.在Component Tree中，右键Go To XML即可打开XML的内容
+2.或者点击右上角的Code
+3.点击Design是“图形”模式
