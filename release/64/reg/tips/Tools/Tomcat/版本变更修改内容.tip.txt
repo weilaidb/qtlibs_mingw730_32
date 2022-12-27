@@ -1,0 +1,112 @@
+apache-tomcat-9.0.58
+apache-tomcat-9.0.70
+变更点:
+
+Y:\soft\web_notebook_online\apache-tomcat-9.0.58\conf\tomcat-users.xml
+Y:\soft\web_notebook_online\tomcat-9.0.69\conf\tomcat-users.xml
+
+
+
+
+<!-- <role rolename="manager"/>   -->
+<!-- <role rolename="manager-gui"/>   -->
+<!-- <role rolename="admin"/>   -->
+<!-- <role rolename="admin-gui"/>   -->
+<!-- <role rolename="manager-script"/>   -->
+<!-- <role rolename="manager-jmx"/>   -->
+<!-- <role rolename="manager-status"/>   -->
+<!-- <user username="admin" password="1230..." roles="admin-gui,admin,manager-gui,manager,manager-script,manager-jmx,manager-status"/>  -->
+
+  <!-- <role rolename="manager"/> -->
+  <!-- <user username="admin" password="admin" roles="manager"/> -->
+
+
+
+
+<role rolename="manager"/>  
+<role rolename="manager-gui"/>   
+<role rolename="manager-jmx"/>  
+<role rolename="manager-status"/>  
+<role rolename="manager-script"/>  
+<user username="admin" password="1230..." roles="manager,manager-gui,manager-jmx,manager-status,manager-script"/>
+
+
+
+
+
+
+
+
+
+Y:\soft\web_notebook_online\apache-tomcat-9.0.58\conf\server.xml
+Y:\soft\web_notebook_online\tomcat-9.0.69\conf\server.xml
+
+    <Connector port="8081" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+
+    <Connector port="8082" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+
+    <Connector port="8083" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+
+    <Connector port="8084" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+
+
+
+
+
+
+
+
+Y:\soft\web_notebook_online\apache-tomcat-9.0.70\webapps\source\WEB-INF\web.xml
+    <display-name>OpenGrok</display-name>
+    <description>A wicked fast source browser</description>
+    <context-param>
+        <description>Full path to the configuration file where OpenGrok can read its configuration</description>
+        <param-name>CONFIGURATION</param-name>
+        <param-value>/var/opengrok/etc/configuration.xml</param-value>
+    </context-param>
+    
+    
+    
+    <display-name>OpenGrok</display-name>
+    <description>A wicked fast source browser</description>
+    <context-param>
+        <description>Full path to the configuration file where OpenGrok can read its configuration</description>
+        <param-name>CONFIGURATION</param-name>
+        <param-value>/root/soft/opengrok-1.5.12/etc/configuration.xml</param-value>
+    </context-param>
+    
+    
+    
+    
+    
+
+[root@VM-0-10-centos] ~/soft/web_notebook_online/apache-tomcat-9.0.58/webapps
+$ ll
+total 152476
+lrwxrwxrwx  1 root root       28 Nov  2 22:56 basecpp -> /root/work/git/basecpp/html/
+lrwxrwxrwx  1 root root       33 Nov 19 22:44 boost -> /root/work/git/boost_1_80_0/html/
+drwxrwxrwx 15 root root     4096 Nov  1 08:43 docs
+drwxrwxrwx  7 root root     4096 Nov  1 08:43 examples
+lrwxrwxrwx  1 root root       27 Nov  2 23:24 ffmpeg -> /root/work/git/FFmpeg/html/
+drwxrwxrwx  6 root root     4096 Nov  1 08:43 host-manager
+lrwxrwxrwx  1 root root       27 Nov 19 23:37 jeewms -> /root/work/git/JEEWMS/html/
+
+
+添加软链接，看代码
+
+ln -s /root/work/git/basecpp/html/ basecpp
+ln -s /root/work/git/boost_1_80_0/html/ boost
+ln -s /root/work/git/FFmpeg/html/ ffmpeg
+ln -s /root/work/git/JEEWMS/html/ jeewms
