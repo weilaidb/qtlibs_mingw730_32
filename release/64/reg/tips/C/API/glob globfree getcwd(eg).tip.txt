@@ -1,0 +1,81 @@
+[root@VM-0-10-centos] ~/work/git/test/glob
+$ 
+[root@VM-0-10-centos] ~/work/git/test/glob
+$ make 
+mkdir -p ./tmp
+ [LD]    (glob.out)
+now file is /root/work/git/test/glob
+g++  -o glob.out  ./tmp/./main.o -lpthread   
+current path is glob
+cp -f glob.out ../exelibtest
+mkdir -p ../exelibtest
+chmod +x  glob.out && ./glob.out
+/root/work/git/test/globbegin==
+list count:4
+/root/work/git/test/glob/Makefile
+/root/work/git/test/glob/glob.out
+/root/work/git/test/glob/main.cpp
+/root/work/git/test/glob/tmp
+end==
+bind ok
+
+--看结果像是没有递归下面的子目录
+[root@VM-0-10-centos] ~/work/git/test/glob
+$ 
+[root@VM-0-10-centos] ~/work/git/test/glob
+$ find
+.
+./main.cpp
+./Makefile
+./glob.out
+./tmp
+./tmp/main.o
+[root@VM-0-10-centos] ~/work/git/test/glob
+$ 
+[root@VM-0-10-centos] ~/work/git/test/glob
+$ cat main.cpp 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stddef.h>
+#include <glob.h>
+int main()
+{
+  char pat[1024];
+  char buff[1024];
+  glob_t globers;//定义glob_t结构体用于存放匹配的数据
+  int err,i;
+  char *cwd=getcwd(buff,1024);//将当前函数目录保存到cwd数组中
+  if(cwd==NULL)//函数调用失败
+  {
+    fprintf(stderr,"函数调用失败");
+    exit(1);
+  }
+  printf("%s",cwd);//调用成功打印出当前目录
+  sprintf(pat,"%s%s",cwd,"/*");//将当前目录与/*合并以便于打印出目录下文件
+  //*此时pat=/home/zhangyi/fb/*
+  err=glob(pat,0,NULL,&globers);//null表示不关注错误,调用成功返回0
+  if(err)//调用失败
+  {
+    printf("匹配失败\n");
+    exit(1);
+  }
+  printf("begin==\n");
+  printf("list count:%u\n",globers.gl_pathc);
+  for(i=0;i<globers.gl_pathc;i++)
+  {
+    // puts(globers.gl_pathv[i]);//打印出当前目录下文件名
+    printf("%s\n", globers.gl_pathv[i]);
+  }
+  globfree(&globers);
+  printf("end==\n");
+  //  puts(pat);
+  exit(0);
+}
+
+[root@VM-0-10-centos] ~/work/git/test/glob
+$ 
+[root@VM-0-10-centos] ~/work/git/test/glob
+$ 
+[root@VM-0-10-centos] ~/work/git/test/glob
+$ 

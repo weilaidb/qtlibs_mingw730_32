@@ -1,0 +1,132 @@
+    {
+	"put", TRUE, "upload a file from your local machine to the server",
+	    " [ -r ] [ -- ] <filename> [ <remote-filename> ]\n"
+	    "  Uploads a file to the server and stores it there under\n"
+	    "  the same name, or under a different one if you supply the\n"
+	    "  argument <remote-filename>.\n"
+	    "  If -r specified, recursively store a directory.\n",
+	    sftp_cmd_put
+    },
+
+
+
+int sftp_cmd_put(struct sftp_command *cmd)
+{
+    return sftp_general_put(cmd, 0, 0);
+}
+
+
+
+
+
+
+/*
+ * Send a file and store it at the remote end. We have three very
+ * similar commands here. The basic one is `put'; `reput' differs
+ * in that it checks for the existence of the destination file and
+ * starts from where a previous aborted transfer left off; `mput'
+ * differs in that it interprets all its arguments as files to
+ * transfer (never as a different remote name for a local file) and
+ * can handle wildcards.
+ */
+int sftp_general_put(struct sftp_command *cmd, int restart, int multiple)
+{
+    char *fname, *wfname, *origoutfname, *outfname;
+    int i, ret;
+    int recurse = FALSE;
+
+    if (back == NULL) {
+	not_connected();
+	return 0;
+    }
+
+    i = 1;
+    while (i < cmd->nwords && cmd->words[i][0] == '-') {
+	if (!strcmp(cmd->words[i], "--")) {
+	    /* finish processing options */
+	    i++;
+	    break;
+	} else if (!strcmp(cmd->words[i], "-r")) {
+	    recurse = TRUE;
+	} else {
+	    fzprintf(sftpError, "%s: unrecognised option '%s'", cmd->words[0], cmd->words[i]);
+	    return 0;
+	}
+	i++;
+    }
+
+    if (i >= cmd->nwords) {
+	fzprintf(sftpError, "%s: expects a filename", cmd->words[0]);
+	return 0;
+    }
+
+    ret = 1;
+    do {
+	WildcardMatcher *wcm;
+	fname = cmd->words[i++];
+
+	if (multiple && test_wildcard(fname, FALSE) == WCTYPE_WILDCARD) {
+	    wcm = begin_wildcard_matching(fname);
+	    wfname = wildcard_get_filename(wcm);
+	    if (!wfname) {
+		/* Politely warn the user that nothing matched. */
+		fzprintf(sftpError, "%s: nothing matched", fname);
+		finish_wildcard_matching(wcm);
+		continue;
+	    }
+	} else {
+	    wfname = fname;
+	    wcm = NULL;
+	}
+
+	while (wfname) {
+	    if (!multiple && i < cmd->nwords)
+		origoutfname = cmd->words[i++];
+	    else
+		origoutfname = stripslashes(wfname, 1);
+
+	    outfname = canonify(origoutfname, 0);
+	    if (!outfname) {
+		fzprintf(sftpError, "%s: canonify: %s", origoutfname, fxp_error());
+		if (wcm) {
+		    sfree(wfname);
+		    finish_wildcard_matching(wcm);
+		}
+		return 0;
+	    }
+	    ret = sftp_put_file(wfname, outfname, recurse, restart);
+	    sfree(outfname);
+
+	    if (wcm) {
+		sfree(wfname);
+		wfname = wildcard_get_filename(wcm);
+	    } else {
+		wfname = NULL;
+	    }
+	}
+
+	if (wcm)
+	    finish_wildcard_matching(wcm);
+
+	if (!ret)
+	    return ret;
+
+    } while (multiple && i < cmd->nwords);
+
+    if (ret != 0)
+	fznotify1(sftpDone, ret);
+    return ret;
+}
+
+
+
+
+
+
+int sftp_senddata(char *buf, int len)
+{
+    back->send(backhandle, buf, len);
+    return 1;
+}
+
+

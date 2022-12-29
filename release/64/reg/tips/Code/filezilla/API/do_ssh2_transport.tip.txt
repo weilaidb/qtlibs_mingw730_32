@@ -1,0 +1,1043 @@
+
+/*
+ * Handle the SSH-2 transport layer.
+ */
+static int do_ssh2_transport(Ssh ssh, void *vin, int inlen,
+			     struct Packet *pktin)
+{
+    unsigned char *in = (unsigned char *)vin;
+    struct do_ssh2_transport_state {
+	int nbits, pbits, warn_kex, warn_cscipher, warn_sccipher;
+	Bignum p, g, e, f, K;
+	void *our_kexinit;
+	int our_kexinitlen;
+	int kex_init_value, kex_reply_value;
+	const struct ssh_mac **maclist;
+	int nmacs;
+	const struct ssh2_cipher *cscipher_tobe;
+	const struct ssh2_cipher *sccipher_tobe;
+	const struct ssh_mac *csmac_tobe;
+	const struct ssh_mac *scmac_tobe;
+	const struct ssh_compress *cscomp_tobe;
+	const struct ssh_compress *sccomp_tobe;
+	char *hostkeydata, *sigdata, *rsakeydata, *keystr, *fingerprint;
+	int hostkeylen, siglen, rsakeylen;
+	void *hkey;		       /* actual host key */
+	void *rsakey;		       /* for RSA kex */
+	unsigned char exchange_hash[SSH2_KEX_MAX_HASH_LEN];
+	int n_preferred_kex;
+	const struct ssh_kexes *preferred_kex[KEX_MAX];
+	int n_preferred_ciphers;
+	const struct ssh2_ciphers *preferred_ciphers[CIPHER_MAX];
+	const struct ssh_compress *preferred_comp;
+	int userauth_succeeded;	    /* for delayed compression */
+	int pending_compression;
+	int got_session_id, activated_authconn;
+	struct Packet *pktout;
+        int dlgret;
+	int guessok;
+	int ignorepkt;
+    };
+    crState(do_ssh2_transport_state);
+
+    crBegin(ssh->do_ssh2_transport_crstate);
+
+    s->cscipher_tobe = s->sccipher_tobe = NULL;
+    s->csmac_tobe = s->scmac_tobe = NULL;
+    s->cscomp_tobe = s->sccomp_tobe = NULL;
+
+    s->got_session_id = s->activated_authconn = FALSE;
+    s->userauth_succeeded = FALSE;
+    s->pending_compression = FALSE;
+
+    /*
+     * Be prepared to work around the buggy MAC problem.
+     */
+    if (ssh->remote_bugs & BUG_SSH2_HMAC)
+	s->maclist = buggymacs, s->nmacs = lenof(buggymacs);
+    else
+	s->maclist = macs, s->nmacs = lenof(macs);
+
+  begin_key_exchange:
+    ssh->pkt_kctx = SSH2_PKTCTX_NOKEX;
+    {
+	int i, j, commalist_started;
+
+	/*
+	 * Set up the preferred key exchange. (NULL => warn below here)
+	 */
+	s->n_preferred_kex = 0;
+	for (i = 0; i < KEX_MAX; i++) {
+	    switch (ssh->cfg.ssh_kexlist[i]) {
+	      case KEX_DHGEX:
+		s->preferred_kex[s->n_preferred_kex++] =
+		    &ssh_diffiehellman_gex;
+		break;
+	      case KEX_DHGROUP14:
+		s->preferred_kex[s->n_preferred_kex++] =
+		    &ssh_diffiehellman_group14;
+		break;
+	      case KEX_DHGROUP1:
+		s->preferred_kex[s->n_preferred_kex++] =
+		    &ssh_diffiehellman_group1;
+		break;
+	      case KEX_RSA:
+		s->preferred_kex[s->n_preferred_kex++] =
+		    &ssh_rsa_kex;
+		break;
+	      case KEX_WARN:
+		/* Flag for later. Don't bother if it's the last in
+		 * the list. */
+		if (i < KEX_MAX - 1) {
+		    s->preferred_kex[s->n_preferred_kex++] = NULL;
+		}
+		break;
+	    }
+	}
+
+	/*
+	 * Set up the preferred ciphers. (NULL => warn below here)
+	 */
+	s->n_preferred_ciphers = 0;
+	for (i = 0; i < CIPHER_MAX; i++) {
+	    switch (ssh->cfg.ssh_cipherlist[i]) {
+	      case CIPHER_BLOWFISH:
+		s->preferred_ciphers[s->n_preferred_ciphers++] = &ssh2_blowfish;
+		break;
+	      case CIPHER_DES:
+		if (ssh->cfg.ssh2_des_cbc) {
+		    s->preferred_ciphers[s->n_preferred_ciphers++] = &ssh2_des;
+		}
+		break;
+	      case CIPHER_3DES:
+		s->preferred_ciphers[s->n_preferred_ciphers++] = &ssh2_3des;
+		break;
+	      case CIPHER_AES:
+		s->preferred_ciphers[s->n_preferred_ciphers++] = &ssh2_aes;
+		break;
+	      case CIPHER_ARCFOUR:
+		s->preferred_ciphers[s->n_preferred_ciphers++] = &ssh2_arcfour;
+		break;
+	      case CIPHER_WARN:
+		/* Flag for later. Don't bother if it's the last in
+		 * the list. */
+		if (i < CIPHER_MAX - 1) {
+		    s->preferred_ciphers[s->n_preferred_ciphers++] = NULL;
+		}
+		break;
+	    }
+	}
+
+	/*
+	 * Set up preferred compression.
+	 */
+	if (ssh->cfg.compression)
+	    s->preferred_comp = &ssh_zlib;
+	else
+	    s->preferred_comp = &ssh_comp_none;
+
+	/*
+	 * Enable queueing of outgoing auth- or connection-layer
+	 * packets while we are in the middle of a key exchange.
+	 */
+	ssh->queueing = TRUE;
+
+	/*
+	 * Flag that KEX is in progress.
+	 */
+	ssh->kex_in_progress = TRUE;
+
+	/*
+	 * Construct and send our key exchange packet.
+	 */
+	s->pktout = ssh2_pkt_init(SSH2_MSG_KEXINIT);
+	for (i = 0; i < 16; i++)
+	    ssh2_pkt_addbyte(s->pktout, (unsigned char) random_byte());
+	/* List key exchange algorithms. */
+	ssh2_pkt_addstring_start(s->pktout);
+	commalist_started = 0;
+	for (i = 0; i < s->n_preferred_kex; i++) {
+	    const struct ssh_kexes *k = s->preferred_kex[i];
+	    if (!k) continue;	       /* warning flag */
+	    for (j = 0; j < k->nkexes; j++) {
+		if (commalist_started)
+		    ssh2_pkt_addstring_str(s->pktout, ",");
+		ssh2_pkt_addstring_str(s->pktout, k->list[j]->name);
+		commalist_started = 1;
+	    }
+	}
+	/* List server host key algorithms. */
+	ssh2_pkt_addstring_start(s->pktout);
+	for (i = 0; i < lenof(hostkey_algs); i++) {
+	    ssh2_pkt_addstring_str(s->pktout, hostkey_algs[i]->name);
+	    if (i < lenof(hostkey_algs) - 1)
+		ssh2_pkt_addstring_str(s->pktout, ",");
+	}
+	/* List client->server encryption algorithms. */
+	ssh2_pkt_addstring_start(s->pktout);
+	commalist_started = 0;
+	for (i = 0; i < s->n_preferred_ciphers; i++) {
+	    const struct ssh2_ciphers *c = s->preferred_ciphers[i];
+	    if (!c) continue;	       /* warning flag */
+	    for (j = 0; j < c->nciphers; j++) {
+		if (commalist_started)
+		    ssh2_pkt_addstring_str(s->pktout, ",");
+		ssh2_pkt_addstring_str(s->pktout, c->list[j]->name);
+		commalist_started = 1;
+	    }
+	}
+	/* List server->client encryption algorithms. */
+	ssh2_pkt_addstring_start(s->pktout);
+	commalist_started = 0;
+	for (i = 0; i < s->n_preferred_ciphers; i++) {
+	    const struct ssh2_ciphers *c = s->preferred_ciphers[i];
+	    if (!c) continue; /* warning flag */
+	    for (j = 0; j < c->nciphers; j++) {
+		if (commalist_started)
+		    ssh2_pkt_addstring_str(s->pktout, ",");
+		ssh2_pkt_addstring_str(s->pktout, c->list[j]->name);
+		commalist_started = 1;
+	    }
+	}
+	/* List client->server MAC algorithms. */
+	ssh2_pkt_addstring_start(s->pktout);
+	for (i = 0; i < s->nmacs; i++) {
+	    ssh2_pkt_addstring_str(s->pktout, s->maclist[i]->name);
+	    if (i < s->nmacs - 1)
+		ssh2_pkt_addstring_str(s->pktout, ",");
+	}
+	/* List server->client MAC algorithms. */
+	ssh2_pkt_addstring_start(s->pktout);
+	for (i = 0; i < s->nmacs; i++) {
+	    ssh2_pkt_addstring_str(s->pktout, s->maclist[i]->name);
+	    if (i < s->nmacs - 1)
+		ssh2_pkt_addstring_str(s->pktout, ",");
+	}
+	/* List client->server compression algorithms,
+	 * then server->client compression algorithms. (We use the
+	 * same set twice.) */
+	for (j = 0; j < 2; j++) {
+	    ssh2_pkt_addstring_start(s->pktout);
+	    assert(lenof(compressions) > 1);
+	    /* Prefer non-delayed versions */
+	    ssh2_pkt_addstring_str(s->pktout, s->preferred_comp->name);
+	    /* We don't even list delayed versions of algorithms until
+	     * they're allowed to be used, to avoid a race. See the end of
+	     * this function. */
+	    if (s->userauth_succeeded && s->preferred_comp->delayed_name) {
+		ssh2_pkt_addstring_str(s->pktout, ",");
+		ssh2_pkt_addstring_str(s->pktout,
+				       s->preferred_comp->delayed_name);
+	    }
+	    for (i = 0; i < lenof(compressions); i++) {
+		const struct ssh_compress *c = compressions[i];
+		if (c != s->preferred_comp) {
+		    ssh2_pkt_addstring_str(s->pktout, ",");
+		    ssh2_pkt_addstring_str(s->pktout, c->name);
+		    if (s->userauth_succeeded && c->delayed_name) {
+			ssh2_pkt_addstring_str(s->pktout, ",");
+			ssh2_pkt_addstring_str(s->pktout, c->delayed_name);
+		    }
+		}
+	    }
+	}
+	/* List client->server languages. Empty list. */
+	ssh2_pkt_addstring_start(s->pktout);
+	/* List server->client languages. Empty list. */
+	ssh2_pkt_addstring_start(s->pktout);
+	/* First KEX packet does _not_ follow, because we're not that brave. */
+	ssh2_pkt_addbool(s->pktout, FALSE);
+	/* Reserved. */
+	ssh2_pkt_adduint32(s->pktout, 0);
+    }
+
+    s->our_kexinitlen = s->pktout->length - 5;
+    s->our_kexinit = snewn(s->our_kexinitlen, unsigned char);
+    memcpy(s->our_kexinit, s->pktout->data + 5, s->our_kexinitlen); 
+
+    ssh2_pkt_send_noqueue(ssh, s->pktout);
+
+    if (!pktin)
+	crWaitUntil(pktin);
+
+    /*
+     * Now examine the other side's KEXINIT to see what we're up
+     * to.
+     */
+    {
+	char *str, *preferred;
+	int i, j, len;
+
+	if (pktin->type != SSH2_MSG_KEXINIT) {
+	    bombout(("expected key exchange packet from server"));
+	    crStop(0);
+	}
+	ssh->kex = NULL;
+	ssh->hostkey = NULL;
+	s->cscipher_tobe = NULL;
+	s->sccipher_tobe = NULL;
+	s->csmac_tobe = NULL;
+	s->scmac_tobe = NULL;
+	s->cscomp_tobe = NULL;
+	s->sccomp_tobe = NULL;
+	s->warn_kex = s->warn_cscipher = s->warn_sccipher = FALSE;
+
+	pktin->savedpos += 16;	        /* skip garbage cookie */
+	ssh_pkt_getstring(pktin, &str, &len);    /* key exchange algorithms */
+
+	preferred = NULL;
+	for (i = 0; i < s->n_preferred_kex; i++) {
+	    const struct ssh_kexes *k = s->preferred_kex[i];
+	    if (!k) {
+		s->warn_kex = TRUE;
+	    } else {
+		for (j = 0; j < k->nkexes; j++) {
+		    if (!preferred) preferred = k->list[j]->name;
+		    if (in_commasep_string(k->list[j]->name, str, len)) {
+			ssh->kex = k->list[j];
+			break;
+		    }
+		}
+	    }
+	    if (ssh->kex)
+		break;
+	}
+	if (!ssh->kex) {
+	    bombout(("Couldn't agree a key exchange algorithm (available: %s)",
+		     str ? str : "(null)"));
+	    crStop(0);
+	}
+	/*
+	 * Note that the server's guess is considered wrong if it doesn't match
+	 * the first algorithm in our list, even if it's still the algorithm
+	 * we end up using.
+	 */
+	s->guessok = first_in_commasep_string(preferred, str, len);
+	ssh_pkt_getstring(pktin, &str, &len);    /* host key algorithms */
+	for (i = 0; i < lenof(hostkey_algs); i++) {
+	    if (in_commasep_string(hostkey_algs[i]->name, str, len)) {
+		ssh->hostkey = hostkey_algs[i];
+		break;
+	    }
+	}
+	s->guessok = s->guessok &&
+	    first_in_commasep_string(hostkey_algs[0]->name, str, len);
+	ssh_pkt_getstring(pktin, &str, &len);    /* client->server cipher */
+	for (i = 0; i < s->n_preferred_ciphers; i++) {
+	    const struct ssh2_ciphers *c = s->preferred_ciphers[i];
+	    if (!c) {
+		s->warn_cscipher = TRUE;
+	    } else {
+		for (j = 0; j < c->nciphers; j++) {
+		    if (in_commasep_string(c->list[j]->name, str, len)) {
+			s->cscipher_tobe = c->list[j];
+			break;
+		    }
+		}
+	    }
+	    if (s->cscipher_tobe)
+		break;
+	}
+	if (!s->cscipher_tobe) {
+	    bombout(("Couldn't agree a client-to-server cipher (available: %s)",
+		     str ? str : "(null)"));
+	    crStop(0);
+	}
+
+	ssh_pkt_getstring(pktin, &str, &len);    /* server->client cipher */
+	for (i = 0; i < s->n_preferred_ciphers; i++) {
+	    const struct ssh2_ciphers *c = s->preferred_ciphers[i];
+	    if (!c) {
+		s->warn_sccipher = TRUE;
+	    } else {
+		for (j = 0; j < c->nciphers; j++) {
+		    if (in_commasep_string(c->list[j]->name, str, len)) {
+			s->sccipher_tobe = c->list[j];
+			break;
+		    }
+		}
+	    }
+	    if (s->sccipher_tobe)
+		break;
+	}
+	if (!s->sccipher_tobe) {
+	    bombout(("Couldn't agree a server-to-client cipher (available: %s)",
+		     str ? str : "(null)"));
+	    crStop(0);
+	}
+
+	ssh_pkt_getstring(pktin, &str, &len);    /* client->server mac */
+	for (i = 0; i < s->nmacs; i++) {
+	    if (in_commasep_string(s->maclist[i]->name, str, len)) {
+		s->csmac_tobe = s->maclist[i];
+		break;
+	    }
+	}
+	ssh_pkt_getstring(pktin, &str, &len);    /* server->client mac */
+	for (i = 0; i < s->nmacs; i++) {
+	    if (in_commasep_string(s->maclist[i]->name, str, len)) {
+		s->scmac_tobe = s->maclist[i];
+		break;
+	    }
+	}
+	ssh_pkt_getstring(pktin, &str, &len);  /* client->server compression */
+	for (i = 0; i < lenof(compressions) + 1; i++) {
+	    const struct ssh_compress *c =
+		i == 0 ? s->preferred_comp : compressions[i - 1];
+	    if (in_commasep_string(c->name, str, len)) {
+		s->cscomp_tobe = c;
+		break;
+	    } else if (in_commasep_string(c->delayed_name, str, len)) {
+		if (s->userauth_succeeded) {
+		    s->cscomp_tobe = c;
+		    break;
+		} else {
+		    s->pending_compression = TRUE;  /* try this later */
+		}
+	    }
+	}
+	ssh_pkt_getstring(pktin, &str, &len);  /* server->client compression */
+	for (i = 0; i < lenof(compressions) + 1; i++) {
+	    const struct ssh_compress *c =
+		i == 0 ? s->preferred_comp : compressions[i - 1];
+	    if (in_commasep_string(c->name, str, len)) {
+		s->sccomp_tobe = c;
+		break;
+	    } else if (in_commasep_string(c->delayed_name, str, len)) {
+		if (s->userauth_succeeded) {
+		    s->sccomp_tobe = c;
+		    break;
+		} else {
+		    s->pending_compression = TRUE;  /* try this later */
+		}
+	    }
+	}
+	if (s->pending_compression) {
+	    logevent("Server supports delayed compression; "
+		     "will try this later");
+	}
+	ssh_pkt_getstring(pktin, &str, &len);  /* client->server language */
+	ssh_pkt_getstring(pktin, &str, &len);  /* server->client language */
+	s->ignorepkt = ssh2_pkt_getbool(pktin) && !s->guessok;
+
+	if (s->warn_kex) {
+	    ssh_set_frozen(ssh, 1);
+	    s->dlgret = askalg(ssh->frontend, "key-exchange algorithm",
+			       ssh->kex->name,
+			       ssh_dialog_callback, ssh);
+	    if (s->dlgret < 0) {
+		do {
+		    crReturn(0);
+		    if (pktin) {
+			bombout(("Unexpected data from server while"
+				 " waiting for user response"));
+			crStop(0);
+		    }
+		} while (pktin || inlen > 0);
+		s->dlgret = ssh->user_response;
+	    }
+	    ssh_set_frozen(ssh, 0);
+	    if (s->dlgret == 0) {
+		ssh_disconnect(ssh, "User aborted at kex warning", NULL,
+			       0, TRUE);
+		crStop(0);
+	    }
+	}
+
+	if (s->warn_cscipher) {
+	    ssh_set_frozen(ssh, 1);
+	    s->dlgret = askalg(ssh->frontend,
+			       "client-to-server cipher",
+			       s->cscipher_tobe->name,
+			       ssh_dialog_callback, ssh);
+	    if (s->dlgret < 0) {
+		do {
+		    crReturn(0);
+		    if (pktin) {
+			bombout(("Unexpected data from server while"
+				 " waiting for user response"));
+			crStop(0);
+		    }
+		} while (pktin || inlen > 0);
+		s->dlgret = ssh->user_response;
+	    }
+	    ssh_set_frozen(ssh, 0);
+	    if (s->dlgret == 0) {
+		ssh_disconnect(ssh, "User aborted at cipher warning", NULL,
+			       0, TRUE);
+		crStop(0);
+	    }
+	}
+
+	if (s->warn_sccipher) {
+	    ssh_set_frozen(ssh, 1);
+	    s->dlgret = askalg(ssh->frontend,
+			       "server-to-client cipher",
+			       s->sccipher_tobe->name,
+			       ssh_dialog_callback, ssh);
+	    if (s->dlgret < 0) {
+		do {
+		    crReturn(0);
+		    if (pktin) {
+			bombout(("Unexpected data from server while"
+				 " waiting for user response"));
+			crStop(0);
+		    }
+		} while (pktin || inlen > 0);
+		s->dlgret = ssh->user_response;
+	    }
+	    ssh_set_frozen(ssh, 0);
+	    if (s->dlgret == 0) {
+		ssh_disconnect(ssh, "User aborted at cipher warning", NULL,
+			       0, TRUE);
+		crStop(0);
+	    }
+	}
+
+	ssh->exhash = ssh->kex->hash->init();
+	hash_string(ssh->kex->hash, ssh->exhash, ssh->v_c, strlen(ssh->v_c));
+	hash_string(ssh->kex->hash, ssh->exhash, ssh->v_s, strlen(ssh->v_s));
+	hash_string(ssh->kex->hash, ssh->exhash,
+	    s->our_kexinit, s->our_kexinitlen);
+	sfree(s->our_kexinit);
+	if (pktin->length > 5)
+	    hash_string(ssh->kex->hash, ssh->exhash,
+		pktin->data + 5, pktin->length - 5);
+
+	if (s->ignorepkt) /* first_kex_packet_follows */
+	    crWaitUntil(pktin);                /* Ignore packet */
+    }
+
+    if (ssh->kex->main_type == KEXTYPE_DH) {
+        /*
+         * Work out the number of bits of key we will need from the
+         * key exchange. We start with the maximum key length of
+         * either cipher...
+         */
+        {
+            int csbits, scbits;
+
+            csbits = s->cscipher_tobe->keylen;
+            scbits = s->sccipher_tobe->keylen;
+            s->nbits = (csbits > scbits ? csbits : scbits);
+        }
+        /* The keys only have hlen-bit entropy, since they're based on
+         * a hash. So cap the key size at hlen bits. */
+        if (s->nbits > ssh->kex->hash->hlen * 8)
+            s->nbits = ssh->kex->hash->hlen * 8;
+
+        /*
+         * If we're doing Diffie-Hellman group exchange, start by
+         * requesting a group.
+         */
+        if (!ssh->kex->pdata) {
+            logevent("Doing Diffie-Hellman group exchange");
+            ssh->pkt_kctx = SSH2_PKTCTX_DHGEX;
+            /*
+             * Work out how big a DH group we will need to allow that
+             * much data.
+             */
+            s->pbits = 512 << ((s->nbits - 1) / 64);
+            s->pktout = ssh2_pkt_init(SSH2_MSG_KEX_DH_GEX_REQUEST);
+            ssh2_pkt_adduint32(s->pktout, s->pbits);
+            ssh2_pkt_send_noqueue(ssh, s->pktout);
+
+            crWaitUntil(pktin);
+            if (pktin->type != SSH2_MSG_KEX_DH_GEX_GROUP) {
+                bombout(("expected key exchange group packet from server"));
+                crStop(0);
+            }
+            s->p = ssh2_pkt_getmp(pktin);
+            s->g = ssh2_pkt_getmp(pktin);
+            if (!s->p || !s->g) {
+                bombout(("unable to read mp-ints from incoming group packet"));
+                crStop(0);
+            }
+            ssh->kex_ctx = dh_setup_gex(s->p, s->g);
+            s->kex_init_value = SSH2_MSG_KEX_DH_GEX_INIT;
+            s->kex_reply_value = SSH2_MSG_KEX_DH_GEX_REPLY;
+        } else {
+            ssh->pkt_kctx = SSH2_PKTCTX_DHGROUP;
+            ssh->kex_ctx = dh_setup_group(ssh->kex);
+            s->kex_init_value = SSH2_MSG_KEXDH_INIT;
+            s->kex_reply_value = SSH2_MSG_KEXDH_REPLY;
+            logeventf(ssh, "Using Diffie-Hellman with standard group \"%s\"",
+                      ssh->kex->groupname);
+        }
+
+	fzprintf(sftpKexAlgorithm, "Diffie-Hellman");
+	fzprintf(sftpKexHash, ssh->kex->hash->text_name);
+        logeventf(ssh, "Doing Diffie-Hellman key exchange with hash %s",
+                  ssh->kex->hash->text_name);
+        /*
+         * Now generate and send e for Diffie-Hellman.
+         */
+        set_busy_status(ssh->frontend, BUSY_CPU); /* this can take a while */
+        s->e = dh_create_e(ssh->kex_ctx, s->nbits * 2);
+        s->pktout = ssh2_pkt_init(s->kex_init_value);
+        ssh2_pkt_addmp(s->pktout, s->e);
+        ssh2_pkt_send_noqueue(ssh, s->pktout);
+
+        set_busy_status(ssh->frontend, BUSY_WAITING); /* wait for server */
+        crWaitUntil(pktin);
+        if (pktin->type != s->kex_reply_value) {
+            bombout(("expected key exchange reply packet from server"));
+            crStop(0);
+        }
+        set_busy_status(ssh->frontend, BUSY_CPU); /* cogitate */
+        ssh_pkt_getstring(pktin, &s->hostkeydata, &s->hostkeylen);
+        s->hkey = ssh->hostkey->newkey(s->hostkeydata, s->hostkeylen);
+        s->f = ssh2_pkt_getmp(pktin);
+        if (!s->f) {
+            bombout(("unable to parse key exchange reply packet"));
+            crStop(0);
+        }
+        ssh_pkt_getstring(pktin, &s->sigdata, &s->siglen);
+
+        s->K = dh_find_K(ssh->kex_ctx, s->f);
+
+        /* We assume everything from now on will be quick, and it might
+         * involve user interaction. */
+        set_busy_status(ssh->frontend, BUSY_NOT);
+
+        hash_string(ssh->kex->hash, ssh->exhash, s->hostkeydata, s->hostkeylen);
+        if (!ssh->kex->pdata) {
+            hash_uint32(ssh->kex->hash, ssh->exhash, s->pbits);
+            hash_mpint(ssh->kex->hash, ssh->exhash, s->p);
+            hash_mpint(ssh->kex->hash, ssh->exhash, s->g);
+        }
+        hash_mpint(ssh->kex->hash, ssh->exhash, s->e);
+        hash_mpint(ssh->kex->hash, ssh->exhash, s->f);
+
+        dh_cleanup(ssh->kex_ctx);
+        freebn(s->f);
+        if (!ssh->kex->pdata) {
+            freebn(s->g);
+            freebn(s->p);
+        }
+    } else {
+	fzprintf(sftpKexAlgorithm, "RSA");
+	fzprintf(sftpKexHash, ssh->kex->hash->text_name);
+	logeventf(ssh, "Doing RSA key exchange with hash %s",
+		  ssh->kex->hash->text_name);
+	ssh->pkt_kctx = SSH2_PKTCTX_RSAKEX;
+        /*
+         * RSA key exchange. First expect a KEXRSA_PUBKEY packet
+         * from the server.
+         */
+        crWaitUntil(pktin);
+        if (pktin->type != SSH2_MSG_KEXRSA_PUBKEY) {
+            bombout(("expected RSA public key packet from server"));
+            crStop(0);
+        }
+
+        ssh_pkt_getstring(pktin, &s->hostkeydata, &s->hostkeylen);
+        hash_string(ssh->kex->hash, ssh->exhash,
+		    s->hostkeydata, s->hostkeylen);
+	s->hkey = ssh->hostkey->newkey(s->hostkeydata, s->hostkeylen);
+
+        {
+            char *keydata;
+            ssh_pkt_getstring(pktin, &keydata, &s->rsakeylen);
+            s->rsakeydata = snewn(s->rsakeylen, char);
+            memcpy(s->rsakeydata, keydata, s->rsakeylen);
+        }
+
+        s->rsakey = ssh_rsakex_newkey(s->rsakeydata, s->rsakeylen);
+        if (!s->rsakey) {
+            sfree(s->rsakeydata);
+            bombout(("unable to parse RSA public key from server"));
+            crStop(0);
+        }
+
+        hash_string(ssh->kex->hash, ssh->exhash, s->rsakeydata, s->rsakeylen);
+
+        /*
+         * Next, set up a shared secret K, of precisely KLEN -
+         * 2*HLEN - 49 bits, where KLEN is the bit length of the
+         * RSA key modulus and HLEN is the bit length of the hash
+         * we're using.
+         */
+        {
+            int klen = ssh_rsakex_klen(s->rsakey);
+            int nbits = klen - (2*ssh->kex->hash->hlen*8 + 49);
+            int i, byte = 0;
+            unsigned char *kstr1, *kstr2, *outstr;
+            int kstr1len, kstr2len, outstrlen;
+
+            s->K = bn_power_2(nbits - 1);
+
+            for (i = 0; i < nbits; i++) {
+                if ((i & 7) == 0) {
+                    byte = random_byte();
+                }
+                bignum_set_bit(s->K, i, (byte >> (i & 7)) & 1);
+            }
+
+            /*
+             * Encode this as an mpint.
+             */
+            kstr1 = ssh2_mpint_fmt(s->K, &kstr1len);
+            kstr2 = snewn(kstr2len = 4 + kstr1len, unsigned char);
+            PUT_32BIT(kstr2, kstr1len);
+            memcpy(kstr2 + 4, kstr1, kstr1len);
+
+            /*
+             * Encrypt it with the given RSA key.
+             */
+            outstrlen = (klen + 7) / 8;
+            outstr = snewn(outstrlen, unsigned char);
+            ssh_rsakex_encrypt(ssh->kex->hash, kstr2, kstr2len,
+			       outstr, outstrlen, s->rsakey);
+
+            /*
+             * And send it off in a return packet.
+             */
+            s->pktout = ssh2_pkt_init(SSH2_MSG_KEXRSA_SECRET);
+            ssh2_pkt_addstring_start(s->pktout);
+            ssh2_pkt_addstring_data(s->pktout, (char *)outstr, outstrlen);
+            ssh2_pkt_send_noqueue(ssh, s->pktout);
+
+	    hash_string(ssh->kex->hash, ssh->exhash, outstr, outstrlen);
+
+            sfree(kstr2);
+            sfree(kstr1);
+            sfree(outstr);
+        }
+
+        ssh_rsakex_freekey(s->rsakey);
+
+        crWaitUntil(pktin);
+        if (pktin->type != SSH2_MSG_KEXRSA_DONE) {
+            sfree(s->rsakeydata);
+            bombout(("expected signature packet from server"));
+            crStop(0);
+        }
+
+        ssh_pkt_getstring(pktin, &s->sigdata, &s->siglen);
+
+        sfree(s->rsakeydata);
+    }
+
+    hash_mpint(ssh->kex->hash, ssh->exhash, s->K);
+    assert(ssh->kex->hash->hlen <= sizeof(s->exchange_hash));
+    ssh->kex->hash->final(ssh->exhash, s->exchange_hash);
+
+    ssh->kex_ctx = NULL;
+
+#if 0
+    debug(("Exchange hash is:\n"));
+    dmemdump(s->exchange_hash, ssh->kex->hash->hlen);
+#endif
+
+    if (!s->hkey ||
+	!ssh->hostkey->verifysig(s->hkey, s->sigdata, s->siglen,
+				 (char *)s->exchange_hash,
+				 ssh->kex->hash->hlen)) {
+	bombout(("Server's host key did not match the signature supplied"));
+	crStop(0);
+    }
+
+    /*
+     * Authenticate remote host: verify host key. (We've already
+     * checked the signature of the exchange hash.)
+     */
+    s->keystr = ssh->hostkey->fmtkey(s->hkey);
+    s->fingerprint = ssh->hostkey->fingerprint(s->hkey);
+    ssh_set_frozen(ssh, 1);
+    fzprintf(sftpHostkey, s->fingerprint);
+    if (ssh->knownkey && !strcmp(ssh->knownkey, s->keystr)) {
+	s->dlgret = 1;
+    }
+    else {
+	s->dlgret = verify_ssh_host_key(ssh->frontend,
+	                                ssh->savedhost, ssh->savedport,
+	                                ssh->hostkey->keytype, s->keystr,
+	                                s->fingerprint,
+	                                ssh_dialog_callback, ssh);
+	if (s->dlgret > 0) {
+	    sfree(ssh->knownkey);
+	    ssh->knownkey = dupstr(s->keystr);
+	}
+    }
+    if (s->dlgret < 0) {
+        do {
+            crReturn(0);
+            if (pktin) {
+                bombout(("Unexpected data from server while waiting"
+                         " for user host key response"));
+                    crStop(0);
+            }
+        } while (pktin || inlen > 0);
+        s->dlgret = ssh->user_response;
+    }
+    ssh_set_frozen(ssh, 0);
+    if (s->dlgret == 0) {
+	ssh_disconnect(ssh, "User aborted at host key verification", NULL,
+		       0, TRUE);
+        crStop(0);
+    }
+    if (!s->got_session_id) {     /* don't bother logging this in rekeys */
+	logevent("Host key fingerprint is:");
+	logevent(s->fingerprint);
+    }
+    sfree(s->fingerprint);
+    sfree(s->keystr);
+    ssh->hostkey->freekey(s->hkey);
+
+    /*
+     * The exchange hash from the very first key exchange is also
+     * the session id, used in session key construction and
+     * authentication.
+     */
+    if (!s->got_session_id) {
+	assert(sizeof(s->exchange_hash) <= sizeof(ssh->v2_session_id));
+	memcpy(ssh->v2_session_id, s->exchange_hash,
+	       sizeof(s->exchange_hash));
+	ssh->v2_session_id_len = ssh->kex->hash->hlen;
+	assert(ssh->v2_session_id_len <= sizeof(ssh->v2_session_id));
+	s->got_session_id = TRUE;
+    }
+
+    /*
+     * Send SSH2_MSG_NEWKEYS.
+     */
+    s->pktout = ssh2_pkt_init(SSH2_MSG_NEWKEYS);
+    ssh2_pkt_send_noqueue(ssh, s->pktout);
+    ssh->outgoing_data_size = 0;       /* start counting from here */
+
+    /*
+     * We've sent client NEWKEYS, so create and initialise
+     * client-to-server session keys.
+     */
+    if (ssh->cs_cipher_ctx)
+	ssh->cscipher->free_context(ssh->cs_cipher_ctx);
+    ssh->cscipher = s->cscipher_tobe;
+    ssh->cs_cipher_ctx = ssh->cscipher->make_context();
+
+    if (ssh->cs_mac_ctx)
+	ssh->csmac->free_context(ssh->cs_mac_ctx);
+    ssh->csmac = s->csmac_tobe;
+    ssh->cs_mac_ctx = ssh->csmac->make_context();
+
+    if (ssh->cs_comp_ctx)
+	ssh->cscomp->compress_cleanup(ssh->cs_comp_ctx);
+    ssh->cscomp = s->cscomp_tobe;
+    ssh->cs_comp_ctx = ssh->cscomp->compress_init();
+
+    /*
+     * Set IVs on client-to-server keys. Here we use the exchange
+     * hash from the _first_ key exchange.
+     */
+    {
+	unsigned char keyspace[SSH2_KEX_MAX_HASH_LEN * SSH2_MKKEY_ITERS];
+	assert(sizeof(keyspace) >= ssh->kex->hash->hlen * SSH2_MKKEY_ITERS);
+	ssh2_mkkey(ssh,s->K,s->exchange_hash,'C',keyspace);
+	assert((ssh->cscipher->keylen+7) / 8 <=
+	       ssh->kex->hash->hlen * SSH2_MKKEY_ITERS);
+	ssh->cscipher->setkey(ssh->cs_cipher_ctx, keyspace);
+	ssh2_mkkey(ssh,s->K,s->exchange_hash,'A',keyspace);
+	assert(ssh->cscipher->blksize <=
+	       ssh->kex->hash->hlen * SSH2_MKKEY_ITERS);
+	ssh->cscipher->setiv(ssh->cs_cipher_ctx, keyspace);
+	ssh2_mkkey(ssh,s->K,s->exchange_hash,'E',keyspace);
+	assert(ssh->csmac->len <=
+	       ssh->kex->hash->hlen * SSH2_MKKEY_ITERS);
+	ssh->csmac->setkey(ssh->cs_mac_ctx, keyspace);
+	memset(keyspace, 0, sizeof(keyspace));
+    }
+
+    fzprintf(sftpCipherClientToServer, ssh->cscipher->text_name);
+    fzprintf(sftpMacClientToServer, ssh->csmac->text_name);
+    logeventf(ssh, "Initialised %.200s client->server encryption",
+	      ssh->cscipher->text_name);
+    logeventf(ssh, "Initialised %.200s client->server MAC algorithm",
+	      ssh->csmac->text_name);
+    if (ssh->cscomp->text_name)
+	logeventf(ssh, "Initialised %s compression",
+		  ssh->cscomp->text_name);
+
+    /*
+     * Now our end of the key exchange is complete, we can send all
+     * our queued higher-layer packets.
+     */
+    ssh->queueing = FALSE;
+    ssh2_pkt_queuesend(ssh);
+
+    /*
+     * Expect SSH2_MSG_NEWKEYS from server.
+     */
+    crWaitUntil(pktin);
+    if (pktin->type != SSH2_MSG_NEWKEYS) {
+	bombout(("expected new-keys packet from server"));
+	crStop(0);
+    }
+    ssh->incoming_data_size = 0;       /* start counting from here */
+
+    /*
+     * We've seen server NEWKEYS, so create and initialise
+     * server-to-client session keys.
+     */
+    if (ssh->sc_cipher_ctx)
+	ssh->sccipher->free_context(ssh->sc_cipher_ctx);
+    ssh->sccipher = s->sccipher_tobe;
+    ssh->sc_cipher_ctx = ssh->sccipher->make_context();
+
+    if (ssh->sc_mac_ctx)
+	ssh->scmac->free_context(ssh->sc_mac_ctx);
+    ssh->scmac = s->scmac_tobe;
+    ssh->sc_mac_ctx = ssh->scmac->make_context();
+
+    if (ssh->sc_comp_ctx)
+	ssh->sccomp->decompress_cleanup(ssh->sc_comp_ctx);
+    ssh->sccomp = s->sccomp_tobe;
+    ssh->sc_comp_ctx = ssh->sccomp->decompress_init();
+
+    /*
+     * Set IVs on server-to-client keys. Here we use the exchange
+     * hash from the _first_ key exchange.
+     */
+    {
+	unsigned char keyspace[SSH2_KEX_MAX_HASH_LEN * SSH2_MKKEY_ITERS];
+	assert(sizeof(keyspace) >= ssh->kex->hash->hlen * SSH2_MKKEY_ITERS);
+	ssh2_mkkey(ssh,s->K,s->exchange_hash,'D',keyspace);
+	assert((ssh->sccipher->keylen+7) / 8 <=
+	       ssh->kex->hash->hlen * SSH2_MKKEY_ITERS);
+	ssh->sccipher->setkey(ssh->sc_cipher_ctx, keyspace);
+	ssh2_mkkey(ssh,s->K,s->exchange_hash,'B',keyspace);
+	assert(ssh->sccipher->blksize <=
+	       ssh->kex->hash->hlen * SSH2_MKKEY_ITERS);
+	ssh->sccipher->setiv(ssh->sc_cipher_ctx, keyspace);
+	ssh2_mkkey(ssh,s->K,s->exchange_hash,'F',keyspace);
+	assert(ssh->scmac->len <=
+	       ssh->kex->hash->hlen * SSH2_MKKEY_ITERS);
+	ssh->scmac->setkey(ssh->sc_mac_ctx, keyspace);
+	memset(keyspace, 0, sizeof(keyspace));
+    }
+    fzprintf(sftpCipherServerToClient, ssh->sccipher->text_name);
+    fzprintf(sftpMacServerToClient, ssh->scmac->text_name);
+    logeventf(ssh, "Initialised %.200s server->client encryption",
+	      ssh->sccipher->text_name);
+    logeventf(ssh, "Initialised %.200s server->client MAC algorithm",
+	      ssh->scmac->text_name);
+    if (ssh->sccomp->text_name)
+	logeventf(ssh, "Initialised %s decompression",
+		  ssh->sccomp->text_name);
+
+    /*
+     * Free shared secret.
+     */
+    freebn(s->K);
+
+    /*
+     * Key exchange is over. Loop straight back round if we have a
+     * deferred rekey reason.
+     */
+    if (ssh->deferred_rekey_reason) {
+	logevent(ssh->deferred_rekey_reason);
+	pktin = NULL;
+	ssh->deferred_rekey_reason = NULL;
+	goto begin_key_exchange;
+    }
+
+    /*
+     * Otherwise, schedule a timer for our next rekey.
+     */
+    ssh->kex_in_progress = FALSE;
+    ssh->last_rekey = GETTICKCOUNT();
+    if (ssh->cfg.ssh_rekey_time != 0)
+	ssh->next_rekey = schedule_timer(ssh->cfg.ssh_rekey_time*60*TICKSPERSEC,
+					 ssh2_timer, ssh);
+
+    /*
+     * If this is the first key exchange phase, we must pass the
+     * SSH2_MSG_NEWKEYS packet to the next layer, not because it
+     * wants to see it but because it will need time to initialise
+     * itself before it sees an actual packet. In subsequent key
+     * exchange phases, we don't pass SSH2_MSG_NEWKEYS on, because
+     * it would only confuse the layer above.
+     */
+    if (s->activated_authconn) {
+	crReturn(0);
+    }
+    s->activated_authconn = TRUE;
+
+    /*
+     * Now we're encrypting. Begin returning 1 to the protocol main
+     * function so that other things can run on top of the
+     * transport. If we ever see a KEXINIT, we must go back to the
+     * start.
+     * 
+     * We _also_ go back to the start if we see pktin==NULL and
+     * inlen negative, because this is a special signal meaning
+     * `initiate client-driven rekey', and `in' contains a message
+     * giving the reason for the rekey.
+     *
+     * inlen==-1 means always initiate a rekey;
+     * inlen==-2 means that userauth has completed successfully and
+     *   we should consider rekeying (for delayed compression).
+     */
+    while (!((pktin && pktin->type == SSH2_MSG_KEXINIT) ||
+	     (!pktin && inlen < 0))) {
+        wait_for_rekey:
+	crReturn(1);
+    }
+    if (pktin) {
+	logevent("Server initiated key re-exchange");
+    } else {
+	if (inlen == -2) {
+	    /* 
+	     * authconn has seen a USERAUTH_SUCCEEDED. Time to enable
+	     * delayed compression, if it's available.
+	     *
+	     * draft-miller-secsh-compression-delayed-00 says that you
+	     * negotiate delayed compression in the first key exchange, and
+	     * both sides start compressing when the server has sent
+	     * USERAUTH_SUCCESS. This has a race condition -- the server
+	     * can't know when the client has seen it, and thus which incoming
+	     * packets it should treat as compressed.
+	     *
+	     * Instead, we do the initial key exchange without offering the
+	     * delayed methods, but note if the server offers them; when we
+	     * get here, if a delayed method was available that was higher
+	     * on our list than what we got, we initiate a rekey in which we
+	     * _do_ list the delayed methods (and hopefully get it as a
+	     * result). Subsequent rekeys will do the same.
+	     */
+	    assert(!s->userauth_succeeded); /* should only happen once */
+	    s->userauth_succeeded = TRUE;
+	    if (!s->pending_compression)
+		/* Can't see any point rekeying. */
+		goto wait_for_rekey;       /* this is utterly horrid */
+	    /* else fall through to rekey... */
+	    s->pending_compression = FALSE;
+	}
+        /*
+	 * Now we've decided to rekey.
+	 *
+         * Special case: if the server bug is set that doesn't
+         * allow rekeying, we give a different log message and
+         * continue waiting. (If such a server _initiates_ a rekey,
+         * we process it anyway!)
+         */
+        if ((ssh->remote_bugs & BUG_SSH2_REKEY)) {
+            logeventf(ssh, "Server bug prevents key re-exchange (%s)",
+                      (char *)in);
+            /* Reset the counters, so that at least this message doesn't
+             * hit the event log _too_ often. */
+            ssh->outgoing_data_size = 0;
+            ssh->incoming_data_size = 0;
+            if (ssh->cfg.ssh_rekey_time != 0) {
+                ssh->next_rekey =
+                    schedule_timer(ssh->cfg.ssh_rekey_time*60*TICKSPERSEC,
+                                   ssh2_timer, ssh);
+            }
+            goto wait_for_rekey;       /* this is still utterly horrid */
+        } else {
+            logeventf(ssh, "Initiating key re-exchange (%s)", (char *)in);
+        }
+    }
+    goto begin_key_exchange;
+
+    crFinish(1);
+}

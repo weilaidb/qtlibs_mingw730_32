@@ -313,6 +313,9 @@ C/API/gettimeofday
 C/API/gettimeofday 说明
 C/API/glic/_dl_fixup _dl_runtime_resolve
 C/API/glic/深入理解-dl_runtime_resolve
+C/API/glob globfree getcwd
+C/API/glob globfree getcwd 递归所有文件
+C/API/glob globfree getcwd(eg)
 C/API/localtime 非线程安全
 C/API/localtime_r 线程安全
 C/API/memalign
@@ -326,6 +329,7 @@ C/API/nlcount
 C/API/oops
 C/API/pfile
 C/API/posix_memalign
+C/API/send
 C/API/snprintf
 C/API/snprintf 2
 C/API/srandom
@@ -481,6 +485,7 @@ C/enum/enum single withname typedef
 C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
 C/know/Linux中的软件安装进度条怎么搞?
+C/know/MSG_OOB linux平台MSG_OOB选项测试
 C/know/define/TEST_F实现
 C/know/ld-linux.so.X查找和加载共享动态库的顺序
 C/know/sigaction
@@ -488,6 +493,7 @@ C/know/signal/Linux 信号（signal）
 C/know/signal/segmentation fault (SIGSEGV) 定位方法
 C/know/signal/列表list
 C/know/二叉搜索树详解（附代码）
+C/know/什么是带外数据(MSG_OOB), 为什么这种方式不好呢?
 C/know/面试常问的 16 个 C 语言问题，你能答上来几个？
 C/knowledge/Centos下安装boost（笨蛋版）
 C/new/DEFINE/ifndef
@@ -630,6 +636,14 @@ CXX/编译 CMake eg
 CXX/编译动态库/LD_PRELOAD 劫持
 CXX/编译动态库/eg
 CXX/编译链接 预处理等
+Code/filezilla/API/do_ssh2_transport
+Code/filezilla/API/do_ssh_init
+Code/filezilla/API/file_type
+Code/filezilla/API/new_connection
+Code/filezilla/API/psftp_main
+Code/filezilla/API/sftp_cmd_put
+Code/filezilla/API/sftp_senddata
+Code/filezilla/API/sk_new
 Code/know/Gmock/Gmock探究（三）-- MOCK_METHODX系列宏分析
 Code/new/Gmock eg
 Code/new/Gmock fixture
@@ -3034,6 +3048,7 @@ path路径/常用文件夹
 术语/网络/路由协议RIP缺陷和OSPF概述
 术语/网络/路由协议的分类
 术语/网络/链路汇聚协议
+标准/RFC/TCP协议中最初的描述(RFC793)
 检查单/结算
 歌曲/列表
 正则表达式/Office/WORD替换

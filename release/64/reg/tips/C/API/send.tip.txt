@@ -1,0 +1,72 @@
+Linux网络编程基础：send函数
+
+摩罗果
+
+于 2020-02-22 12:52:30 发布
+
+3161
+ 收藏 6
+分类专栏： 网络
+版权
+
+网络
+专栏收录该内容
+13 篇文章1 订阅
+订阅专栏
+send函数
+1）头文件
+
+#include <sys/types.h>
+#include <sys/socket.h>
+1
+2）函数原型
+
+ssize_t send(int sockfd, const void *buf, size_t len, int flags);
+函数功能
+1）TCP协议一般用send函数发送数据
+
+函数返回
+1）成功：返回发送的字节数
+2）失败：返回-1
+
+函数参数
+sockfd参数
+1）用于通信的通信描述符
+2）对于服务器，就是指accept函数返回的通信描述符
+buf参数
+1）指向一片应用缓存，用于存放要发送的数据
+2）存放数据一般使用结构体变量
+len参数
+1）存放发送数据的缓存的大小
+flags参数
+1）一般设置为0，此时是阻塞发送的
+2）阻塞发送是指发送数据不成功会一直阻塞，直到被某信号中断或发送成功为止，不过发送数据一般不阻塞
+示例：服务器循环发送数据
+1）对于字节数大于一个字节的变量类型必须进行端序转换
+发送数据：主机端序转为网络端序
+接收数据：网络端序转为主机端序
+2）char类型的数据不需要转换端序，因为字节为1
+
+typedef struct data  //声明结构体变量用于存放发送数据
+{
+   unsigned int stu_num;
+   char stu_nam[50];
+}Data;
+Data stu_data = {0};  //定义结构体变量
+int tmp;  //定义中间变量
+while(1)  //循环发送
+{
+   printf("please input student number:\n");
+   scanf("%d",&tmp);
+   /*主机端序转为网络端序 */
+   stu_data.stu_num = htonl(tmp);
+   /*char类型的数据不需要转换端序 */
+   printf("please input student name:\n");
+   scanf("%s",stu_data.stu_nam);
+   /*用send函数发送数据 */
+   ret = send(cfd,(void *)&stu_data,sizeof(stu_data),0);
+   if(ret == -1)  print_err("send error",__LINE__,errno);
+  }
+————————————————
+版权声明：本文为CSDN博主「摩罗果」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_45644911/article/details/104439064

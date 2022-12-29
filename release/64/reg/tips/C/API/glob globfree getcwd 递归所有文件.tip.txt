@@ -1,0 +1,205 @@
+linux下使用glob()实现打开任意目录下的所有文件
+
+bboy_knowns
+
+于 2017-11-04 20:14:18 发布
+
+2259
+ 收藏 1
+分类专栏： Linux系统编程 文章标签： 函数 编程
+版权
+
+Linux系统编程
+专栏收录该内容
+1 篇文章0 订阅
+订阅专栏
+linux下使用glob()实现打开任意目录下的所有文件
+（使用递归）
+参考了linux glob函数详解的实例4
+
+编程思路：
+第一次调用glob获取当前目录下所有非隐藏文件，若此次目录文件下没有非隐藏文件，但却可能只有隐藏文件，接着第二次调用glob，此次将获取隐藏文件，若此次调用glob出错则返回一个非零值停止程序；未出错则开始循环遍历gl_pathv数组，判断此次文件是否是目录文件，若不是则直接打印此次文件名，若是目录文件则打印文件名加上这是目录文件提示信息，然后还得判断此次文件名是否是.（当前目录）或是..（上级目录），若是则跳过此次循环进入下一轮循环，若不是则递归调用此函数，并判断返回值，若是非零值则立即停止；循环遍历gl_pathv数组结束时，通过调用globfree释放glob产生的动态内存，最后返回零，表示此函数正常结束。
+代码：
+#include<unistd.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<sys/types.h>
+#include<sys/stat.h>
+#include<glob.h>
+#include<string.h>
+
+#define SIZE 100
+
+_Bool open_all_file(const char *dirname);
+
+int main(int argc, char **argv)
+{
+    if(2!=argc)
+    {
+        printf("invalid parameter!\n");
+        return 0;
+    }
+    if(open_all_file(*(argv+1)))
+        printf("open_all_file error!\n");
+    return 0;
+}
+
+_Bool open_all_file(const char *dirname)
+{
+    char path[SIZE];    //缓存路径 
+    glob_t glob_buf;
+    struct stat file_info;
+    int result=0; 
+    int path_len=0;
+    int i=0;
+
+    strcpy(path, dirname);
+    if('/'==*(path+strlen(path)-1))
+        strcat(path, "*");
+    else
+        strcat(path, "/*");
+    if(result=glob(path, 0, NULL, &glob_buf))
+    {
+        if(GLOB_NOMATCH==result)
+            ;   //此次目录下只有隐藏文件，不立即返回，而是继续去获取隐藏文件 
+        else
+            return 1;   //其他情况则退出 
+    }
+
+    memset(path, 0, strlen(path)+2);    //清空上次缓存的路径 +2是算上之前添加的*或/*  
+    strcpy(path, dirname);
+    if('/'==*(path+strlen(path)-1))      
+        strcat(path, ".*");
+    else
+        strcat(path, "/.*");
+    if(glob(path, GLOB_APPEND, NULL, &glob_buf))    //获取隐藏文件 
+    {
+        printf("glob 1 error\n");   //只要出错打印提示信息便立即退出 
+        return 1;
+    }
+    //for(i=0;i<glob_buf.gl_pathc;i++)
+    while(i<glob_buf.gl_pathc)
+    {
+        if(-1==lstat(*(glob_buf.gl_pathv+i), &file_info))    
+        {
+            perror("lstat");
+            return 1;
+        }
+        //if(1==S_ISDIR(file_info.st_mode))         //两种均可 
+        if(S_IFDIR==(file_info.st_mode&S_IFMT))     //判断是否是目录文件 
+        {
+            printf("\n%s :this is directoty!\n", *(glob_buf.gl_pathv+i));
+            path_len=strlen(*(glob_buf.gl_pathv+i));
+            if('.'==*(*(glob_buf.gl_pathv+i)+path_len-1))//此次文件名的最后一位是.便跳过，读取下一个文件 
+            {
+                i++;        //如果是for循环则不需要 
+                continue;
+            }
+            if(open_all_file(*(glob_buf.gl_pathv+i)))
+            {
+                printf("in open_all_file error!\n");
+                return 1;                       //出错立即退出 
+            }
+        }   
+        else
+            printf("%s\n", *(glob_buf.gl_pathv+i));
+        i++;                //如果是for循环则不需要 
+    }
+    globfree(&glob_buf);    
+    return 0;
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+PS：
+第一次写博客，还是学生，给自己做的笔记吧。。
+文章知识点与官方知识档案匹配，可进一步学习相关知
+————————————————
+版权声明：本文为CSDN博主「bboy_knowns」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/bboy_knowns/article/details/78445659

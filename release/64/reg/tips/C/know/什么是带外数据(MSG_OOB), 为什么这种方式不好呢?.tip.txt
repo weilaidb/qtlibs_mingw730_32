@@ -1,0 +1,33 @@
+什么是带外数据(MSG_OOB), 为什么这种方式不好呢?
+
+zhubo_1117
+
+于 2014-07-30 11:10:53 发布
+
+3156
+ 收藏 1
+分类专栏： 网络编程
+
+网络编程
+专栏收录该内容
+23 篇文章0 订阅
+订阅专栏
+2.15 什么是查看数据(MSG_PEEK), 为什么这不好?
+原文地址：http://tangentsoft.net/wskfaq/newbie.html#peeking
+
+Peeking 就是预先查看TCP数据流: 当你在recv()中使用MSG_PEEK的标签, 函数会返回栈缓冲中的数据大小而不从缓冲中移出数据.(你也可以通过用ioctlsocket()设置选项FIONREAD来实现另一种形式的数据查看).
+
+数据查看从根本上来讲并不是必须的: 你可以总是在自己的buffer中读取并处理数据.这种方式更好一些因为查看数据常常引起些问题.甚至这些问题都在"问题列表(http://tangentsoft.net/wskfaq/articles/lame-list.html#item12)"中都占据一席之位,并且出现在微软的基础文档中:你可以查看文档:Q192599(http://support.microsoft.com/default.aspx?scid=kb;en-us;192599),该文档描述了查看数据在Winsock堆栈中会引起的问题.
+
+2.16 什么是带外数据(MSG_OOB), 为什么这种方式不好呢?
+原文地址:http://tangentsoft.net/wskfaq/newbie.html#oobdata
+
+带外数据(OOB)就像是一个第二数据信道. 这样做的目的在于,对大多数数据都使用TCP数据流,而为紧急的数据使用带外数据. Telnet协议中使用带外数据来携带类似Ctrl-C的中断信号，因此他们就不需要在中断发生前，在远端等待常规的TCP数据。你可以通过在send()中使用MSG_OOB标签来发送带外数据,并在recv()中设置MSG_OOB标签来接收。 你也可以在setsockopt()设置SO_OOBINLINE标签来处理带外数据。
+
+带外数据是一个有用的概念，但不幸的是，对于关于如何在堆栈层上递交带外数据有两种互相矛盾的解释：TCP协议中最初的描述(RFC793)被"主机请求"文档(RFC 1122)所代替，但是依然有很多机器在使用基于RFC 793的OOB程序。在Winsock2文档的3.5节中讨论了带外数据，在3.5.2节中，有RFC793和RFC1122存在问题的细节。
+
+OOB并不是一个完全功能的第二数据信道：它是相当受限制的。 因此，除非当应用了类似Telnet的协议需要它，不要使用它。 你可以通过简单使用两条数据链路来实现类似带外数据的功能：一条是常规数据，另一条是紧急数据。
+
+2.17如果MSG_PEEK和MSG_OOB是不好的， 那么我该为send()和recv()的标签参数传递什么呢?
+原文地址：http://tangentsoft.net/wskfaq/newbie.html#srflags
+将 0 传 给send()和recv()的标签参数是完全有效的。

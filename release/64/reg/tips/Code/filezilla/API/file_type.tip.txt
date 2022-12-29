@@ -1,0 +1,33 @@
+/*
+ * Determine the type of a file: nonexistent, file, directory or
+ * weird. `weird' covers anything else - named pipes, Unix sockets,
+ * device files, fish, badgers, you name it. Things marked `weird'
+ * will be skipped over in recursive file transfers, so the only
+ * real reason for not lumping them in with `nonexistent' is that
+ * it allows a slightly more sane error message.
+ */
+enum {
+    FILE_TYPE_NONEXISTENT, FILE_TYPE_FILE, FILE_TYPE_DIRECTORY, FILE_TYPE_WEIRD
+};
+int file_type(char *name);
+
+
+
+int file_type(char *name)
+{
+    struct stat statbuf;
+
+    if (stat(name, &statbuf) < 0) {
+	if (errno != ENOENT)
+	    fprintf(stderr, "%s: stat: %s\n", name, strerror(errno));
+	return FILE_TYPE_NONEXISTENT;
+    }
+
+    if (S_ISREG(statbuf.st_mode))
+	return FILE_TYPE_FILE;
+
+    if (S_ISDIR(statbuf.st_mode))
+	return FILE_TYPE_DIRECTORY;
+
+    return FILE_TYPE_WEIRD;
+}

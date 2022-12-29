@@ -1,0 +1,172 @@
+Linux中glob（）、globfree（）、getcwd（）函数
+
+嵌入式学习~
+
+于 2022-10-16 21:15:33 发布
+
+157
+ 收藏 1
+文章标签： linux c++ 运维
+版权
+Linux中glob（）与globfree（）函数
+
+文章目录
+一、glob（）函数
+二、globfree（）函数
+三、getcwd（）函数：
+四、代码演示
+总结
+一、glob（）函数
+glob（）函数作用：
+
+glob（）函数用于文件系统中路径名称的模式匹配
+函数原型
+
+ #include <glob.h>
+int glob(const char *pattern, int flags,
+         int errfunc(const char *epath, int eerrno),
+                             glob_t *pglob);
+ 
+pglob的类型glob_t  //pathc与pathv类似于argc与argv
+typedef struct {
+    size_t    gl_pathc;    //匹配到的数量
+    char    **gl_pathv;    //匹配到的元素放在这里
+    size_t    gl_offs; 
+}glob_t;
+ 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+参数详情
+
+pattern：要分析的路径，如/*表示匹配根文件下的所有文件（不包括隐藏文件，要找的隐藏文件需要从新匹配，然后会将匹配出的结果存放到 pglob，即第4个参数中）
+flags：选择匹配模式，如是否排序，或者在函数第二次调用时，是否将匹配的内容追加到pglob中，不进行特殊模式匹配则写0
+errfunc：glob函数执行出错会执行的函数，出错的路径会回填到epath中，出错的原因回填到eerrno中。如不关注错误可设置为NULL
+pglob ： 解析出来的结果放在这个参数里
+返回值：成功 0 失败 非0
+
+二、globfree（）函数
+函数功能
+
+释放由glob（）函数调用的空间
+
+函数原型
+
+ void globfree(glob_t *pglob);
+       typedef struct {
+           size_t   gl_pathc;    /* Count of paths matched so far  */
+           char   **gl_pathv;    /* List of matched pathnames.  */
+           size_t   gl_offs;     /* Slots to reserve in gl_pathv.  */
+       } glob_t;
+1
+2
+3
+4
+5
+6
+三、getcwd（）函数：
+函数功能：
+
+获取当前工作目录
+
+函数原型
+
+#include <unistd.h>
+char *getcwd(char *buf, size_t size);
+1
+2
+参数详情
+
+buf：将当前工作目录的绝对路径复制到参数buf所指的内存空间中
+size：参数size为buf的空间大小。
+成功调用返回指向buf的指针，失败返回NULL。
+
+四、代码演示
+代码功能 利用glob与globfree实现打印当前目录下文件的功能，类似ls
+代码如下（示例）：
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stddef.h>
+#include <glob.h>
+int main()
+{
+  char pat[1024];
+  char buff[1024];
+  glob_t globers;//定义glob_t结构体用于存放匹配的数据
+  int err,i;
+  char *cwd=getcwd(buff,1024);//将当前函数目录保存到cwd数组中
+  if(cwd==NULL)//函数调用失败
+  {
+    fprintf(stderr,"函数调用失败");
+    exit(1);
+  }
+  printf("%s",cwd);//调用成功打印出当前目录
+  sprintf(pat,"%s%s",cwd,"/*");//将当前目录与/*合并以便于打印出目录下文件
+  //*此时pat=/home/zhangyi/fb/*
+  err=glob(pat,0,NULL,&globers);//null表示不关注错误,调用成功返回0
+  if(err)//调用失败
+  {
+    printf("匹配失败\n");
+    exit(1);
+  }
+  for(i=0;i<globers.gl_pathc;i++)
+  {
+    puts(globers.gl_pathv[i]);//打印出当前目录下文件名
+  }
+  globfree(&globers);
+  //  puts(pat);
+  exit(0);
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+运行结果如下
+
+成功打印出当前目录下的文件
+
+总结
+————————————————
+版权声明：本文为CSDN博主「嵌入式学习~」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qwerwqwe/article/details/127352229

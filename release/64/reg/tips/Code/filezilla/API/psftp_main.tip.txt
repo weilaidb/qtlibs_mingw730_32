@@ -1,0 +1,139 @@
+
+/*
+ * Main program. Parse arguments etc.
+ */
+int psftp_main(int argc, char *argv[])
+{
+    int i;
+    int portnumber = 0;
+    char *userhost, *user;
+    int mode = 0;
+    int modeflags = 0;
+    char *batchfile = NULL;
+
+    // FZ: Set proxy to none
+    cfg.proxy_type = PROXY_NONE;
+
+    fzprintf(sftpReply, "fzSftp started");
+
+#ifndef _WINDOWS
+    if (psftp_init_utf8_locale())
+	fzprintf(sftpVerbose, "Failed to select UTF-8 locale, filenames containing non-US-ASCII characters may cause problems.");
+#endif
+
+    flags = FLAG_STDERR | FLAG_INTERACTIVE
+#ifdef FLAG_SYNCAGENT
+	| FLAG_SYNCAGENT
+#endif
+	;
+    cmdline_tooltype = TOOLTYPE_FILETRANSFER;
+    sk_init();
+
+    userhost = user = NULL;
+
+    /* Load Default Settings before doing anything else. */
+    cfg.keyfile_list = 0;
+    do_defaults(NULL, &cfg);
+    loaded_session = FALSE;
+
+    for (i = 1; i < argc; i++) {
+	int ret;
+	if (argv[i][0] != '-') {
+            if (userhost)
+                usage();
+            else
+                userhost = dupstr(argv[i]);
+	    continue;
+	}
+	ret = cmdline_process_param(argv[i], i+1<argc?argv[i+1]:NULL, 1, &cfg);
+	if (ret == -2) {
+	    cmdline_error("option \"%s\" requires an argument", argv[i]);
+	} else if (ret == 2) {
+	    i++;	       /* skip next argument */
+	} else if (ret == 1) {
+	    /* We have our own verbosity in addition to `flags'. */
+	    if (flags & FLAG_VERBOSE)
+		verbose = 1;
+	} else if (strcmp(argv[i], "-h") == 0 ||
+		   strcmp(argv[i], "-?") == 0) {
+	    usage();
+        } else if (strcmp(argv[i], "-pgpfp") == 0) {
+            pgp_fingerprints();
+            return 1;
+	} else if (strcmp(argv[i], "-V") == 0) {
+	    version();
+	} else if (strcmp(argv[i], "-batch") == 0) {
+	    console_batch_mode = 1;
+	} else if (strcmp(argv[i], "-b") == 0 && i + 1 < argc) {
+	    mode = 1;
+	    batchfile = argv[++i];
+	} else if (strcmp(argv[i], "-bc") == 0) {
+	    modeflags = modeflags | 1;
+	} else if (strcmp(argv[i], "-be") == 0) {
+	    modeflags = modeflags | 2;
+	} else if (strcmp(argv[i], "--") == 0) {
+	    i++;
+	    break;
+	} else {
+	    cmdline_error("unknown option \"%s\"", argv[i]);
+	}
+    }
+    argc -= i;
+    argv += i;
+    back = NULL;
+
+    /*
+     * If the loaded session provides a hostname, and a hostname has not
+     * otherwise been specified, pop it in `userhost' so that
+     * `psftp -load sessname' is sufficient to start a session.
+     */
+    /* BEGIN FZ UNUSED
+    if (!userhost && cfg.host[0] != '\0') {
+	userhost = dupstr(cfg.host);
+    }
+    END FZ UNUSED */
+
+    /*
+     * If a user@host string has already been provided, connect to
+     * it now.
+     */
+    if (userhost) {
+	int ret;
+
+	fzprintf(sftpVerbose, "psftp: Using userhost passed on commandline: %s", userhost);
+	ret = psftp_connect(userhost, user, portnumber);
+	sfree(userhost);
+	if (ret)
+	    return 1;
+	if (do_sftp_init())
+	    return 1;
+    } else {
+//	printf("psftp: no hostname specified; use \"open host.name\""
+//	       " to connect\n");
+    }
+
+    do_sftp(mode, modeflags, batchfile);
+
+    if (back != NULL && back->connected(backhandle)) {
+	char ch;
+	back->special(backhandle, TS_EOF);
+	sftp_recvdata(&ch, 1);
+    }
+    do_sftp_cleanup();
+    random_save_seed();
+    cmdline_cleanup();
+    console_provide_logctx(NULL);
+    sk_cleanup();
+
+    {
+	Keyfile_list *list = cfg.keyfile_list;
+	while (list)
+	{
+	    Keyfile_list *next = list->next;
+	    sfree(list);
+	    list = next;
+	}
+    }
+
+    return 0;
+}
