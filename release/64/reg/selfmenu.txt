@@ -3018,10 +3018,13 @@ path路径/常用文件夹
 术语/网络/Qos保证
 术语/网络/RIB 路由选择信息库
 术语/网络/RJ45
+术语/网络/SDN(Software Define NetWork)
 术语/网络/STP
 术语/网络/SVLAN CVLAN
+术语/网络/TCAM（Ternary Content-Addressable Memory）
 术语/网络/TCP_IP协议族
 术语/网络/万兆以太网
+术语/网络/三态内容寻址存储器(TCAM)工作原理
 术语/网络/二层协议和三层协议有哪些
 术语/网络/以太网(Ethernet)与802.3(IEEE 802.3)简史
 术语/网络/以太网最小帧长度
