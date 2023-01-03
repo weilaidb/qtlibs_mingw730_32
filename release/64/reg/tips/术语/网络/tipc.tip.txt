@@ -1,0 +1,40 @@
+http://www.tipc.io/protocol.html
+
+
+透明进程间通信协议(Transparent Interprocess Communication)
+Transparent Inter Process Communication Protocol
+
+Abstract
+This document specifies TIPC, a protocol specially designed for efficient communication within clusters of loosely coupled nodes.
+
+TIPC provides two types of services to its applications:
+
+An "all-in-one" L2 or L3 based message transport service:
+
+Reliable datagram unicast, anycast and multicast.
+Reliable connections with stream or message transport.
+Location transparent service addressing.
+Multi-binding of addresses.
+Supervised node-to-node transport links with loss-free failover.
+A service and topology tracking function:
+
+Tracking nodes, processes, sockets, addresses and connections.
+Subscription/event function for service/functional addresses.
+Immediate feedback at service,topology or connectivity changes.
+Automatic neighbor discovery.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

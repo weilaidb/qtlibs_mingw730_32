@@ -3024,6 +3024,8 @@ path路径/常用文件夹
 术语/网络/SVLAN CVLAN
 术语/网络/TCAM（Ternary Content-Addressable Memory）
 术语/网络/TCP_IP协议族
+术语/网络/TIPC协议
+术语/网络/tipc
 术语/网络/万兆以太网
 术语/网络/三态内容寻址存储器(TCAM)工作原理
 术语/网络/二层协议和三层协议有哪些

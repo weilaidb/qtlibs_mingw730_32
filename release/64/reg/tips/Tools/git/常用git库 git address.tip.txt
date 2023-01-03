@@ -23,6 +23,9 @@ https://github.com/maomaoshu/jsBook
 
 
 常用git库:
+#tipc
+https://github.com/TIPC/tipcutils
+https://github.com/parbhu/tipcutils/tree/96413b283861d271bff23f3098565da58536c628
 #filezilla
 git@github.com:basvodde/filezilla.git
 https://svn.filezilla-project.org/svn/FileZilla3/trunk/
