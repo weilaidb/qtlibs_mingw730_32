@@ -1,0 +1,18 @@
+字符串处理
+middleware/utils/cstringpub/
+
+支持的功能有：
+1.报文内容转字符串,示例:msg:
+2.报文长度+报文内容转字符串，示例:[len:%u],msg:
+3.最大支持报文长度为1024，超过后提示"out of range"
+4.常见字符串定义，例如ERROR,WARNING,INFO
+5.
+
+
+
+==4.
+#define STR_OUTOFRANGE "out of range"
+#define STR_INVALIDLEN "invalid length"
+#define STR_ERROR "error"
+#define STR_WARNING "warning"
+#define STR_INFO "info"
