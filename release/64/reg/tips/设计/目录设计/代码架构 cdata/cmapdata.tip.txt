@@ -1,6 +1,11 @@
 数据存储组合(以模板来实现,不带互斥锁和带互斥锁)
 middleware/cdata/cmapdata/
 
+支持的功能有：
+1.以模板来实现存放的数据<T>
+2.支持 insert,delete,modify,query,show
+3.
+4.
 
 
 
