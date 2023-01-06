@@ -30,7 +30,7 @@ middleware/cdata/clistlockdata/
 
 
 
-
+使用MVC过搞一搞，将软件设计层次化
 
 
 
