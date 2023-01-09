@@ -23,6 +23,7 @@ https://github.com/maomaoshu/jsBook
 
 
 常用git库:
+git@github.com:weilaidb/sourceinsight.git
 #tipc
 https://github.com/TIPC/tipcutils
 https://github.com/parbhu/tipcutils/tree/96413b283861d271bff23f3098565da58536c628
