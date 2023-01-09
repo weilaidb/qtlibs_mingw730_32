@@ -1,0 +1,359 @@
+Skip to content
+Source Insight
+Home
+Features
+New Features in Version 4.0
+Trial
+Support
+Updates
+Downloads
+License
+Documentation
+Frequently Asked Questions
+Updates
+Contact
+Shop
+Find a Reseller
+Pricing
+View Shopping Cart
+Buy Now
+Need to Understand Code?
+Source Insight is a powerful project-oriented programming editor, code browser, and analyzer that helps you understand code, while you work and plan.
+ 
+
+Source Insight has built-in dynamic analysis for C/C++, C#, Java, Objective-C, and more.
+ 
+
+monitor-pers400-c
+ Buy Now
+ Try It!
+Understand Code
+Learn an existing code base quickly, and get up to speed on new projects. Evaluate the costs of potential changes by seeing where functions and objects are used. See class inheritance and function call trees.
+
+Quickly Navigate
+Source Insight parses your whole project and let's you navigate and edit code like a breeze, while showing you information automatically. Jump easily to callers of functions or references to variables.
+
+Discover
+See where functions and variables are used. Source Insight automatically shows references to functions, variables, classes, and more - almost instantly. Search across your project using advanced search features.
+
+Read More
+Code Analysis
+Source Insight has built-in dynamic analysis for C/C++, C#, Java, Objective-C, and more.
+
+Read More
+Powerful Editing
+Use powerful editing features, including code snippets, symbolic auto-completion, and smart-rename.
+
+Syntax Formatting
+See live references to variables and other declarations with Syntax Formatting. Identifiers are formatted based on their declaration, scope, and usage.
+
+Read More
+Key Benefits
+Helps to understand an existing code base.
+Quickly navigate function calls and callers.
+Find references to functions, variables, and more - almost instantly.
+See call graphs and class tree diagrams.
+Preview function and class definitions without having to open a file.
+See live references to variables and other declarations with Syntax Formatting.
+Powerful editing features, including code snippets, symbolic auto-completion, and smart-rename.
+Dynamic information panels work together to create a productive workflow.
+It's perfect for getting up to speed and understanding a new code base.
+
+mainappwide1130
+Feature Highlights
+See What's New in Version 4 
+Source Insight was designed for large, demanding, real world programming projects. In fact, Source Insight is being used today by important technology companies to develop some of the largest and most successful commercial hardware and software products.
+
+Code Analysis
+Source Insight parses your source code and maintains its own database of symbolic information dynamically while you work, and presents useful contextual information to you automatically. Source Insight also can display reference trees, class inheritance diagrams, and function call trees. Source Insight has a group of auxiliary panel windows that work together to give you quick and useful navigation of source code and source information.
+
+Read More
+relationoutline
+Always Up-To-Date Symbol Information
+Because programs are constantly under development, it’s important that even symbols in code that will not compile can be browsed in with up-to-date accuracy. Source Insight maintains its symbol database to provide browsing features instantly, without having to compile the project or having to depend on the compiler to provide browser files. Source Insight quickly and un-intrusively updates its information about your files, even while you edit code. Furthermore, the symbol features are built into each Source Insight project automatically. You don’t need to build any extra tag files.
+
+Call Graphs
+The Relation Window is a Source Insight innovation that shows interesting relationships between symbols. It runs in the background in its own panel window and tracks what symbols you have selected. It can show class hierarchies, call trees, reference trees, and more.
+
+Read More
+relationgraphoval
+Class Inheritance Display
+You get information automatically in the background while you work, but you can interact with the Relation window when you want to.
+
+The Relation Window can be viewed either graphically, or in outline format. You can also have several Relation Windows open, each showing different types of information.
+
+class-tree
+Project-wide Keyword Searches
+search-project
+ Like an Internet Search on Your Code Base
+You can use the Search Project command like a web search on your project. This lets you find sections of code that refer to one or more topics within a specified number of lines. It can even find matches on meaningful symbol name fragments. You can use Boolean expressions, and find word variations.
+
+For example, you might type “save disk (copy or duplicate)” and Source Insight will find all references to  “save”, “disk”, and either “copy” or “duplicate” that occur near each other (as well as word variations, such as “saves”, “saved”, and “saving”), including function and variable names such as SaveFile, or make_duplicate.
+
+Read More
+Find References
+lookup-ref
+Search quickly for references to symbols all across your project. Source Insight indexes your source code to make it fast.
+
+Smart Rename
+smart-rename-sm
+Source Insight’s context-sensitive Smart Rename allows you to effortlessly rename variables, functions, class members, and other identifiers in one simple step. Smart Rename is smart enough to rename local scope variables, as well as global or class scope identifiers. Indexing makes the operation fast.
+
+Symbolic Auto-Completion
+auto-complete
+Auto completion shows you a list of potential identifier names. Source Insight can show you function and variable names, as well as class and structure fields nested up to many levels of depth. Source Insight decodes the types of variables (including inheritance) on the fly. File names are also auto-completed.
+
+Automatic Display of Declarations
+Source Insight 2.0 introduced an innovative feature called the Context Window. The Context Window automatically displays symbol definitions based on what identifier your cursor is in, or what symbol or file is selected in any panel.
+
+The Context Window updates in the background and tracks what you are doing. You can click on an identifier, and the Context Window will automatically show the symbol’s definition. If the identifier is a variable, the Context Window will decode its declaration to show you its base structure or class type.
+
+The Context Window automatically previews files selected in the Project Window, references and symbols in the Relation Window, and more.
+
+Read More
+
+app-wide-2
+Contextual Syntax Formatting
+Syntax Formatting is an important Source Insight innovation that renders information in a dense, yet pleasing and useful way. It provides vastly improved display capabilities, including full rich text formatting with user-defined styles. Source Insight applies styles automatically based on lexical and symbolic information about your project. You can fully customize the style formatting.
+
+Read More
+syntax_fmt_members
+syntax_fmt_class
+Formatting Conveys Information
+Unlike simple syntax highlighting, the formatting applied to identifiers is based on their scope and declared types. In this example, you can tell the difference between class members and file-scope symbols due to the formatting.
+
+Customizable Styles
+You have control over Syntax Formatting styles, which are automatically applied to source code elements based on parsing and scoping rules. You can set formatting options for many types of syntax elements and identifiers. You can drammatically change the look of your source code.
+
+Read More
+
+style-prop
+Helpful Syntax Decorations
+Source Insight can automatically add extra decorations to your code to improve its display.
+
+Common operators, such as the pointer dereference right arrow (->), or the assignment operator (=) can be replaced with symbolic operators, such as arrows.
+
+Nested parentheses are shown in different sizes to make it easier to identify matching sets.
+
+An up or down arrow appears in goto statements, to point in the direction of the target label.
+
+Automatic "end brace" annotations are added to the closing curly brace in C/C++/C# and Java code. This makes it easier to understand nested if, while, switch, and other blocks of code.
+
+Read More
+
+Undecorated Code:
+
+With Syntax Decorations:
+
+Automatic Reference Highlighting
+ref-highlight
+Source Insight can highlight references to the symbol at the cursor position. For example, you can click in a variable name, and all references to the variable will be highlighted. The references are context sensitive, so a symbol in a different scope will not get highlighted. This works for variables, class members, functions, and so on. This is an option that is controlled by file type.
+
+Collapsible Code Blocks
+outline2
+Nested code blocks and regions can be collapsed and expanded to help you navigate and understand complex functions.
+
+Overview Scroller
+The Overview scroller bar is positioned like a scroll bar, but gives you a bird's eye view of your file. It can show you nesting, the boundaries of functions, bookmarks, and help to orient you within long functions.
+
+Read More
+overview-code
+Multiple Layouts
+Save multiple window layouts, and switch quickly between them.
+
+Read More
+multi-layout-2
+Multiple Visual Themes
+Source Insight comes with multiple Visual Themes for colors and fonts. You can switch themes quickly, or create your own. Visual Themes bundle all the color and font settings, plus syntax formatting styles.
+
+You can also selectively customize individual panels. Source Insight has many color and font options.
+
+Read More
+
+four-up-theme
+File Compare
+file-compare-panel
+Source Insight's built-in File Compare window is updated as you edit. It shows differences in two files side by side. You can quickly compare a file with an older version, using Compare with Backup File.
+
+Read More
+Directory Compare
+dir-compare-panel
+The Directory Compare window works alongside the File Compare window to compare the contents of two directories. Double click a file to show the file's differences.
+
+Read More
+Code Beautifier
+reformat-options
+Reformat your source with the built-in code beautifier that works on curly brace languages, such as C/C++ and C#, and Java.
+
+Read More
+Export Project Source to HTML
+export-html-600
+You can use this to export all the files to HTML versions that contain most of the same syntax formatting you see in Source Insight.
+
+It creates a snapshot of your source code project that can be viewed with a web browser for online browsing and refer­ence.
+
+Read More
+Code Snippets
+snippet-propsm
+Code Snippets are small chunks of commonly used source code that you can insert into your source files. Snippets can also be programming language-specific, or common to all languages, or common to certain sets of languages.
+
+Snippets can contain placeholder variables which are special identifiers that are automatically expanded when the snippet is inserted. For example, $date$ is a text variable that gets replaced with the current date.
+
+Read More
+Snippet Panel
+snippets_panel
+Use the Snippets panel to organize your snippets, and to quickly edit or insert snippets.
+
+Read More
+Project Orientation
+projsympal
+Entire source directory trees, even multiple directories across your network, can be added to a Source Insight Project. You can specify a file name quickly without having to know what directory it is in. When your source control program updates files in the project, Source Insight notices and incrementally updates the symbol information for you automatically.
+
+Read More
+Supports Teamwork
+gears1
+Changes made by any member of a programming team are reflected automatically because the entire code base is scanned and resynchronized as needed.
+
+You can keep a shared Master File List in your code repository to control the contents of your Source Insight projects.
+
+Programmers need not be concerned with the organization of the project and its files, because they can instantly jump to the definition or usages of any symbol, and can access modules and other symbols without having to know what directory, machine, or file they are in.
+
+Source Insight gives each programmer the leverage to easily understand and edit large, detailed projects created by groups of programmers.
+
+Import External Libraries and Assemblies
+Symbols from external libraries or assemblies show up in auto-completion lists, and get syntax formatted. Source Insight can import symbol declarations from external libraries and assemblies.
+
+Quick Access to All Symbols and Files
+With Source Insight, you can surf your project the way you would a web site. You can just double click on a local or global symbol, and Source Insight takes you to the definition, or can pop up a quick information window. You can click on a symbol, and within seconds, have a list of all references to that symbol anywhere in the project. A symbol-browsing dialog box allows you to perform regular expression searches to locate symbols.
+
+Bookmarks
+bookmark-panel
+Use persistent bookmarks to remember key locations within functions or classes. You can use the Relation window to create a reference tree and copy it to bookmarks for future use.
+
+Read More
+Backup File Management
+open-backup
+Source Insight automatically maintains backups of your source files when you save. It’s easy to open a backup version, or compare a backup version with the current version. You control how long backups are kept.
+
+Clip Window for Storing Multiple Clipboards and Boiler Plate Code
+You can easily rearrange code and insert boilerplate text by using the Clip Window. The Clip Window contains clips of text that you can keep handy for dropping into source files when needed. Clips are automatically saved and maintained across sessions. Clips also remember what function or symbol they came from.
+
+Two-Stage Line Revision Marks and Selective Line Restoration
+Source Insight displays line revision marks in the margin next to lines that have been changed, or where lines have been deleted. This makes it easy to see where you have made changes in your files. Not only can you see where you made changes, but also you can restore them to their original text with the Restore Line command. The Restore Line command is undo-able. This gives you powerful, out-of-order undo capabilities!
+
+The undo and change history for each file is preserved after you save the file. The line revision marks also change color when a file is saved. After saving a file, you can still see what lines were edited, and restore them, or perform undo operations.
+
+High DPI Display Support
+Source Insight supports high DPI resolution displays. Fonts and user interface buttons and images are scaled correctly.
+
+Customizable Menus and Keyboard	
+The keyboard, the mouse buttons, and the menus are fully configurable.
+
+Support for Remote Terminal Server
+Source Insight detects when you are using it in a remote Terminal Server or Remote Desktop session, and scales back its display-intensive features. You can customize Remote Session options.
+
+Designed for Large Projects
+Source Insight can handle projects with millions of lines of code and millions of declared symbols.
+
+Extensible File Types and Languages
+You can add new file types based on file name extensions or wildcards. This allows different editing, display, and language parsing options for different types of files.
+
+You can also add your own custom languages to Source Insight. A custom language specifies limited syntax rules, syntax formatting keywords, and simple parsing expressions.
+
+Crash Recovery for Full-Time Protection
+Source Insight saves your editing changes incrementally and transparently to a recovery file. In the event of a computer crash, Source Insight can recover all the changes made to files, even if you didn’t save them. This is not an auto-save feature, which interrupts you so that files can be saved. Only the changes you have made are stored in the recovery file.
+
+Summary of Features
+Language Parsing support for C/C++, C#, Objective-C++, Java, and more
+
+Always Up-To-Date Symbol Definition Information
+
+Quick Access to All Symbols and Files
+
+Call Graphs and Class Tree Diagrams
+
+Context Sensitive Dynamic Type Resolution
+
+Automatic Display of Declarations in the Context Window
+
+Syntax Formatting - Like Syntax Coloring but More
+
+Symbol Windows For Each File
+
+Context-Sensitive Smart Rename
+
+Finds References Quickly
+
+File and directory comparing (diff).
+
+Collapse code blocks
+
+Mixed Language Editing
+
+Code Beautifier
+
+Visual Themes
+
+Overview Scroller and enhanced scroll bar
+
+Multiple Layouts
+
+Project-wide Keyword Searches Like an Internet Search on Your Code Base
+
+Auto Completion
+
+Project Orientation
+
+Code Snippets
+
+Bookmarks
+
+Backup File Management
+
+Fast Project-Wide Search and Replace, and Reference Lookups
+
+Project Window with Multiple Views
+
+Integrates with External Compilers and Tools
+
+Clip Window for Storing Clipboards and Boiler Plate Code
+
+Two-Stage Line Revision Marks and Selective Line Restoration
+
+Extensible File Types and Languages
+
+Source Export to HTML
+
+Crash Recovery Offers Full-Time Protection
+
+High DPI Display support
+
+Special Support for Remote Terminal Server Sessions
+
+Import external symbols from other sources or assemblies
+
+Master file list for projects, so team members can share file lists
+
+Speedy and Convenient
+
+Runs on Windows 10/8/7/Vista, and Windows Server 2008+
+
+System Requirements:
+• Windows 10/8/7/Vista
+
+• Windows Server 2008, 2012
+
+Ready to try it for yourself? Get started today!
+Try Source Insight on your project for free and see what a difference it makes in your productivity. The Trial version runs for 30 days and is fully functional. No credit card is required.
+
+Download Trial
+Downloads
+Documentation
+Privacy Policy
+Source Insight Trial
+Shop
+Resellers
+Contact
+© 2022 Source Dynamics, Inc. • Source Insight ™ is a trademark of Source Dynamics, Inc. • info@sourceinsight.com
+This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
+This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies.OkRead more
