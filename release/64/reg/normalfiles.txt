@@ -19,8 +19,8 @@ https://github.com/weilaidb/linux_driver
 【CSDN】https://www.csdn.net/
 【StackOverFlow】https://stackoverflow.com/
 【VUE Demo】http://101.201.79.164:8080
-【Web计算器】http://101.201.79.164:8081/weilaipy/python/calculator.jsp
-【Web计算器（首页）】http://101.201.79.164:8081/weilaipy/
+【Web计算器】http://49.234.85.12:8081/weilaipy/python/calculator.jsp
+【Web计算器（首页）】http://49.234.85.12:8081/weilaipy/
 【doxygen basecpp】http://49.234.85.12:8081/basecpp/index.html
 【doxygen boost】http://49.234.85.12:8081/boost/
 【doxygen ffmpeg】http://49.234.85.12:8081/ffmpeg/
