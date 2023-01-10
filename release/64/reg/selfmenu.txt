@@ -2620,6 +2620,7 @@ TEST/RegExptest3
 TEST/RegExptest4
 TEST/RegExptest5
 TEST/RegExptest6
+TEST/RegExptest7
 TEST/驼峰
 Tools/Astyle格式化代码
 Tools/CLion 快捷键
