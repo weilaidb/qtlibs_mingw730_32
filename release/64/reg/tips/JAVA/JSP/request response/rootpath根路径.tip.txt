@@ -1,0 +1,4 @@
+跳转到根路径
+resp.sendRedirect(req.getContextPath()+"/login.jsp");
+
+response.sendRedirect(request.getContextPath()+"/login.jsp");

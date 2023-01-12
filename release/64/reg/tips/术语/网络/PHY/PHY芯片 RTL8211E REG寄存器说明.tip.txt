@@ -1,0 +1,7 @@
+RTL8211寄存器说明
+REG 1.5 =1 自协商完成
+0.15 = 1 PHY reset
+0.14 = 1 Loopback Mode for 10M &100M. 自环
+0.12 = 0 禁用自协商
+0.11 = 1 PWD Power Down
+0.9  =1 1: Restart Auto-Negotiation

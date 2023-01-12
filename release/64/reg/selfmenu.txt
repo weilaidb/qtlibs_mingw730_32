@@ -1293,6 +1293,8 @@ JAVA/JSP/navbar navagitor
 JAVA/JSP/new jsp
 JAVA/JSP/p 段落
 JAVA/JSP/page
+JAVA/JSP/request response/getRequestDispatcher 和sendRedirect区别及路径问题
+JAVA/JSP/request response/rootpath根路径
 JAVA/JSP/request.getParameter
 JAVA/JSP/request.getParameter only
 JAVA/JSP/request.referer
@@ -3016,8 +3018,11 @@ path路径/常用文件夹
 术语/网络/PHY/MDI
 术语/网络/PHY/MII
 术语/网络/PHY/PHY芯片 RTL8211E
+术语/网络/PHY/PHY芯片 RTL8211E REG寄存器说明
 术语/网络/PHY/RGMII
 术语/网络/PHY/RMII
+术语/网络/PHY/【以太网硬件十一】以太网端口自协商过程解密之一
+术语/网络/PHY/深入理解以太网PHY自协商及调试心得 自协商原理
 术语/网络/PMA
 术语/网络/PVST
 术语/网络/PVST Cisco PVST协议
