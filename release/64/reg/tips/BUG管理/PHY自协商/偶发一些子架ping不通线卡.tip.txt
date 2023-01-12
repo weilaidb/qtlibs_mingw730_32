@@ -10,32 +10,16 @@ PHY自协商/偶发一些子架ping不通线卡
 ☆项目模块
 
 ☆严重程度
-A-崩溃
 B-严重
-C-一般
-D-轻微
 
 ☆优先级
 
 ☆Bug类别
 代码错误
 设计缺陷
-界面优化
-性能问题
-配置相关
-安装部署
-安全相关
-标准规范
-其他划分
 
 ☆Bug状态
 New
-Open
-Reopen
-Fixed
-Closed
-Rejected
-Deferred
 
 ☆提交人
 ME
