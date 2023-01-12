@@ -1,4 +1,7 @@
-testservlet;bean.Testservlet;testservlet
+[servlet-name;servlet-class(带路径);url]
+userlogin;bean.UserLogin;/userlogin
+
+testservlet;bean.Testservlet;/testservlet
 hello;bean.Hello;/lookHello
 suggest;bean.SuggestAction;/suggest
 check;bean.Check;/check
