@@ -1,0 +1,1 @@
+<filter>$NL$TB<filter-name>\1</filter-name>$NL$TB<filter-class>\2</filter-class>$NL</filter>$NL<filter-mapping>$NL$TB<filter-name>\1</filter-name>$NL$TB<url-pattern>\3</url-pattern>$NL</filter-mapping>$NL

@@ -1,4 +1,6 @@
 [servlet-name;servlet-class(带路径);url]
+checklogin;filter.CheckLoginFilter;/*
+
 userlogin;bean.UserLogin;/userlogin
 
 testservlet;bean.Testservlet;/testservlet
