@@ -1,0 +1,5 @@
+[关键字;超时时间(秒);赋值]
+username;60 * 60 * 24;username
+password;60 * 60 * 24;password
+
+ipAddr;60 * 10;request.getRemoteAddr()

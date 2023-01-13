@@ -1,0 +1,1 @@
+Cookie \1Cookie = new Cookie("\1", "" + \3);$NL\1Cookie.setMaxAge(\2); //设置Cookie有效期\2 秒$NLresponse.addCookie(\1Cookie );$NL$NL$NL=======================================>>>>>>>>>>>$NL$NL$NL

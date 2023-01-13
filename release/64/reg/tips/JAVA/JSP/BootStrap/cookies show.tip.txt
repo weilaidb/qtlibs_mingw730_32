@@ -1,0 +1,22 @@
+protected void showRequestCookie(HttpServletRequest request) throws ServletException, IOException
+{
+    Cookie[] cookies=request.getCookies();
+    System.out.println("cookies.length: " + cookies.length);
+
+    for(int i=0;i<cookies.length;i++) {
+//            if(cookies[i].getName().equals("tips")) {
+//                findStr=cookies[i].getValue();
+//                break;
+//            }
+        System.out.println("i+ 1: " + i + 1);
+        System.out.println("cookies[i].getName(): " + cookies[i].getName());
+        System.out.println("cookies[i].getValue(): " + cookies[i].getValue());
+    }
+}
+
+protected void addCookie(String name, String value, int time, HttpServletResponse response) throws ServletException, IOException
+{
+    Cookie cookie = new Cookie(name, value);
+    cookie.setMaxAge(time); //设置Cookie有效期time 秒
+    response.addCookie(cookie );
+}
