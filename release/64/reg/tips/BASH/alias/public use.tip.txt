@@ -1,3 +1,6 @@
+alias dulhmax1="du -lh --max-depth=1 "
+alias dushmax1="du -lh --max-depth=1 "
+
 alias gccversion="gcc --version "
 alias loginfailed="grep \"Failed password for invalid user\" /var/log/secure | awk '{print \$13}' | sort | uniq -c | sort -nr "
 alias loginfailedwc="grep \"Failed password for invalid user\" /var/log/secure | awk '{print \$13}' | sort | uniq -c | sort -nr | wc -l"

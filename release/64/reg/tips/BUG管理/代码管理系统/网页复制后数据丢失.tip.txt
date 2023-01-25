@@ -1,0 +1,83 @@
+测试BUG模板
+☆Bug标题
+代码管理系统/网页复制后数据丢失
+
+☆Bug详细描述（含步骤）
+选择“生活/位置/xxx”，点击复制后，发现与“生活”相关的内容没有了
+☆项目模块
+
+☆严重程度
+A-崩溃
+
+
+☆优先级
+
+☆Bug类别
+设计缺陷
+安装部署
+
+
+☆Bug状态
+Fixed
+
+☆提交人
+ME
+
+☆提交日期
+2023-01-25 18:24:10
+
+☆附加信息
+[weixj@VM-0-10-centos ~]$ su
+Password: 
+'abrt-cli status' timed out
+[root@VM-0-10-centos] /home/weixj
+$ df  -lh
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        1.8G     0  1.8G   0% /dev
+tmpfs           1.9G     0  1.9G   0% /dev/shm
+tmpfs           1.9G   49M  1.8G   3% /run
+tmpfs           1.9G     0  1.9G   0% /sys/fs/cgroup
+/dev/vda1        99G   99G     0 100% /
+tmpfs           370M     0  370M   0% /run/user/0
+tmpfs           370M     0  370M   0% /run/user/1000
+[root@VM-0-10-centos] /home/weixj
+$ cd
+[root@VM-0-10-centos] ~
+$ cd wobash: cannot create temp file for here-document: No space left on device
+git
+bash: cd: wogit: No such file or directory
+[root@VM-0-10-centos] ~
+$ ls
+bak  mybuild  pubconfig  pythonscript  reg  soft  test_tools  work
+[root@VM-0-10-centos] ~
+$ rm -rf mybbash: cannot create temp file for here-document: No space left on device
+bash: cannot create temp file for here-document: No space left on device
+
+[root@VM-0-10-centos] ~
+$ 
+[root@VM-0-10-centos] ~
+$ ls
+bak  mybuild  pubconfig  pythonscript  reg  soft  test_tools  work
+[root@VM-0-10-centos] ~
+$ rm -rf mybuibash: cannot create temp file for here-document: No space left on device
+bash: cannot create temp file for here-document: No space left on device
+
+[root@VM-0-10-centos] ~
+$ 
+[root@VM-0-10-centos] ~
+$ 
+☆解决人
+ME
+☆解决日期
+2023年1月25日 18:31:26
+☆解决方式
+linux空间被占用完毕，没有可用的空间了，导致存储文件失败。
+删除无关内容，保证空间可用。
+（待开发）
+需要启动检测程序，空间不足时报警。
+第一个门限时(80%)，发短信告知
+第二个门限时(90%)，按设定的规则删除内容
+☆解决用时
+
+========================================================================
+========================================================================
