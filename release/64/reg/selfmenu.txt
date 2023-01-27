@@ -156,6 +156,7 @@ BAT/网络network/know/网络分析利器Tshark
 BAT/网络network/lacp
 BAT/网络network/lacp 链路聚合Eth-Trunk最佳总结
 BAT/网络network/nat
+BAT/网络network/ping Name or service not known
 BAT/网络network/ping大包
 BAT/网络network/ping大包测试
 BAT/网络network/ping大包测试2

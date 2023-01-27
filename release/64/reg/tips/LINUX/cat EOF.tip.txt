@@ -1,2 +1,3 @@
 [保存文件名]
 1.txt
+/etc/resolv.conf
