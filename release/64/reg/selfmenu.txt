@@ -2614,7 +2614,7 @@ SoftWare/FastStone Capture v9.7
 SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
-SoftWare/Source Insight know/Need to Understand Code?
+SoftWare/Source Insight know/Need to Understand Code
 SoftWare/Understand
 SoftWare/WPS/A4尺寸 大小
 SoftWare/WPS/A4纸张的大小和电脑如何一样
