@@ -1,0 +1,242 @@
+Linux中的软件安装进度条怎么搞?
+土豆居士 一口Linux 2022-09-23 11:40 发表于江苏
+点击左上方蓝色“一口Linux”，选择“设为星标”
+
+第一时间看干货文章 
+☞【干货】嵌入式驱动工程师学习路线
+☞【干货】Linux嵌入式知识点-思维导图
+
+
+图片
+
+ 1
+我们在平时的服务器运维工作中,要经常安装一些软件,经常会看到下面这种进度条,本文就用C语言来实现这种进度条。
+图片
+
+一、回车与换行
+
+
+
+
+换行是换到下一行的当前位置，一般用\n表示。回车是回到当前行的开始，一般用\r表示。
+
+
+
+但一般在语言，比如C语言中，用\n代表换行+回到开始。
+
+ 
+
+二、缓冲区
+
+
+ 
+
+先来看两段代码及其现象。
+
+
+
+第一段代码，代码很简单，主要是为了与第二段形成对比。
+
+#include <stdio.h>                                                                                         
+#include <unistd.h>   
+  
+int main()                                                                                         
+{                                                                                         
+  printf("I am a proc\n"); //有\n  
+  sleep(3);                                                                                                                                                                
+  return 0;                                                                                
+}
+
+
+先打印，再sleep持续3秒，很自然的结果。
+
+
+第二段代码：
+#include <stdio.h>                                                                                         
+#include <unistd.h>   
+  
+int main()                                                                                         
+{                                                                                         
+  printf("I am a proc"); //没有\n  
+  sleep(3);                                                                                                                                                                
+  return 0;                                                                                
+} 
+
+
+第二段代码运行结果如下，从结果看来是先sleep持续3s，然后才打印。
+
+
+事实上，上面的代码中由于printf在sleep之前，所以printf永远先于sleep执行，但是先执行printf不代表先打印。
+
+
+
+printf执行后，要打印的内容放入缓冲区，但不一定会被立即刷新到屏幕上。
+
+
+
+这里要提一下缓冲区的3种缓冲策略:
+无缓冲：数据不缓冲，直接打印到外设中（屏幕、磁盘等等）。
+行缓冲：先保存一行数据，后续刷新时按行刷新（遇到\n就把前面的内容刷新到外设）。
+全缓冲：直到把缓冲区全放满才会刷新。
+
+
+
+再结合上面两段代码及现象，可以得出上面打印时采用的是行缓冲（遇到\n就把要打印的内容打印在屏幕上）。
+
+ 
+
+三、倒计时的程序
+
+
+
+
+如果每次打印完都回车，就相当于在第一个位置打印一个数字后，又回到该位置，继续打印下一个数字。这样就可以实现倒计时的效果。
+
+#include <stdio.h>                                                                                         
+#include <unistd.h>   
+  
+int main()  
+{  
+  int count = 3;  
+  while(count >= 0)  
+  {  
+    printf("%d\r", count--);  
+    sleep(1);                                                                                                                                                              
+  }                                                                                                                                        
+  return 0;                                                                                                                                
+}
+
+
+但结果如下，并没有打印结果，想到行缓冲的规则，原来是因为打印的内容一直都没有换行，所以内容一直存在缓冲区内，不会打印出来。
+
+
+这里可以用fflush函数强行让屏幕刷新，就可以实现想要的效果了。
+
+
+
+使用fflush刷新stdout（即屏幕的文件流），使每次进入缓冲区的内容被立即打印出来。
+#include <stdio.h>                                                                                         
+#include <unistd.h>   
+  
+int main()  
+{  
+  int count = 3;  
+  while(count >= 0)  
+  {  
+    printf("%d\r", count--);  
+    fflush(stdout);  
+    sleep(1);                                                                                                                                                              
+  }                                                                                                                                        
+  return 0;                                                                                                                                
+}
+
+
+效果如下：
+
+
+但如果是两位或更多位的倒计时，就会出现如下的问题：
+
+#include <stdio.h>                                                                                         
+#include <unistd.h>   
+  
+int main()  
+{  
+  int count = 10;  
+  while(count >= 0)  
+  {  
+    printf("%d\r", count--);  
+    fflush(stdout);  
+    sleep(1);                                                                                                                                                              
+  }                                                                                                                                        
+  return 0;                                                                                                                                
+}
+
+
+因为每次回车都回到第一个字符，所以第二位的0一直没有改变。
+
+
+只需用printf的格式控制即可。
+#include <stdio.h>                                                                                         
+#include <unistd.h>   
+  
+int main()  
+{  
+  int count = 10;  
+  while(count >= 0)  
+  {  
+    //控制输出两位字符  
+    printf("%2d\r", count--);  
+    fflush(stdout);  
+    sleep(1);                                                                                                                                                              
+  }                                                                                                                                        
+  return 0;                                                                                                                                
+}
+
+
+运行效果如下：
+ 
+
+四、进度条程序
+
+
+ 
+
+#include <stdio.h>    
+#include <string.h>    
+#include <unistd.h>    
+    
+void ProcBar()    
+{    
+  int i = 0;    
+  char proc[102];  
+  memset(proc, '\0', sizeof(proc));    
+    
+  while(i <= 100)    
+  {  
+   //C语言格式控制时默认右对齐，所以要在前面加-变成左对齐    
+    printf("[%-100s] [%d%%]\r", proc, i);                                                                                                                                  
+    fflush(stdout);//刷新屏幕打印  
+    proc[i] = '#';  
+    usleep(100000);//以微秒为单位的sleep  
+    i++;  
+  }  
+  printf("\n");  
+}                                                                                                                                                   
+                                                                                                                                             
+int main()                                                                                                                                   
+{                                                                                                                                            
+  ProcBar();                                                                                                                              
+  return 0;                                                                                                                              
+}
+
+
+
+来源：入门小站
+
+文章转自网络，版权归原作者所有！如有侵权，请联系我删除！
+
+end
+
+
+一口Linux 
+
+
+
+关注，回复【1024】海量Linux资料赠送
+
+精彩文章合集
+
+
+
+文章推荐
+
+☞【专辑】ARM
+☞【专辑】粉丝问答
+☞【专辑】所有原创
+☞【专辑】linux入门
+☞【专辑】计算机网络
+☞【专辑】Linux驱动
+☞【干货】嵌入式驱动工程师学习路线
+☞【干货】Linux嵌入式所有知识点-思维导图
+阅读原文
+阅读 2573
