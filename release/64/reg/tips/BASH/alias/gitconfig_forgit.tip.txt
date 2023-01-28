@@ -1,0 +1,5 @@
+[alias]
+l0 = log --color --graph --decorate --pretty=oneline --abbrev-commit --date-order
+l1 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+l2 = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+l3 = log --graph --pretty=format:'%h -%d %s (%ci) <%an>' --abbrev-commit --date=relative

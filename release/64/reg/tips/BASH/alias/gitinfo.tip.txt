@@ -1,0 +1,7 @@
+alias gitlogl0="git log --color --graph --decorate --pretty=oneline --abbrev-commit --date-order "
+
+alias gitlogl1="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative "
+
+alias gitlogl2="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative "
+
+alias gitlogl3="git log --graph --pretty=format:'%h -%d %s (%ci) <%an>' --abbrev-commit --date=relative "

@@ -11,6 +11,8 @@ BASH/alias/bashrc deploy script
 BASH/alias/bashrc 加载配置 qtlibs_mingw730_32
 BASH/alias/bashrc 加载配置 ubuntu20.04
 BASH/alias/generate生成
+BASH/alias/gitconfig_forgit
+BASH/alias/gitinfo
 BASH/alias/public use
 BASH/alias/public use @ubuntu20.04
 BASH/alias/public use @web
