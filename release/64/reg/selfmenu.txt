@@ -2867,7 +2867,7 @@ YAML/yml入门教程
 YAML/yml入门教程2
 android/API/打印XML内容
 android/API/更换欢迎界面图片
-android/know/Android Studio报错——The application could not be installed: INSTALL_FAILED_USER_RESTRICTED的解决
+android/know/Android Studio报错——The application could not be installed INSTALL_FAILED_USER_RESTRICTED的解决
 android/know/miui10开发者选项在哪
 android/know/welcome screen 欢迎界面 迎接面
 android/know/welcome screen 欢迎界面 迎接面（示例代码）
