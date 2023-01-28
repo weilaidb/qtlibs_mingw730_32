@@ -1,0 +1,1 @@
+if (argc < \1){$NL    printf("\2");$NL    return 1;$NL} 

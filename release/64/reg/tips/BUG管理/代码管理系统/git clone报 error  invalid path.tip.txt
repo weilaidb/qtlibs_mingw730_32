@@ -1,0 +1,64 @@
+测试BUG模板
+☆Bug标题
+代码管理系统/git clone报 error  invalid path
+
+☆Bug详细描述（含步骤）
+git.exe clone --progress -v "git@github.com:weilaidb/qtlibs_mingw730_32.git" "D:\code\qtlibs_mingw730_32"
+Cloning into 'D:\code\qtlibs_mingw730_32'...
+remote: Enumerating objects: 37046, done.
+remote: Counting objects: 100% (5854/5854), done.
+remote: Compressing objects: 100% (1945/1945), done.
+remote: Total 37046 (delta 3732), reused 5684 (delta 3567), pack-reused 31192
+Receiving objects: 100% (37046/37046), 164.75 MiB | 9.66 MiB/s, done.
+Resolving deltas: 100% (23658/23658), done.
+error: invalid path 'release/64/reg/after/SoftWare/Source Insight know/Need to Understand Code?.txt'
+fatal: unable to checkout working tree
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with 'git status'
+and retry with 'git restore --source=HEAD :/'
+
+
+
+git did not exit cleanly (exit code 128) (22906 ms @ 2023/1/28 17:48:53)
+
+☆项目模块
+
+☆严重程度
+C-一般
+
+☆优先级
+
+☆Bug类别
+安装部署
+标准规范
+
+☆Bug状态
+New
+
+☆提交人
+ME
+
+☆提交日期
+2023-01-28 19:00:05
+
+☆附加信息
+windows文件名中不能有下列符号：“?”、“、”、“╲”、“/”、“*”、““”、“”“、“<”、“>”、“|”。
+　　详细命名规则如下：
+　　1、允许文件或者文件夹名称不得超过255个字符；
+
+　　2、 文件名除了开头之外任何地方都可以使用空格；
+　　3、文件名中不能有下列符号：“?”、“、”、“╲”、“/”、“*”、““”、“”“、“<”、“>”、“|”；
+
+　　4、 Windows 98文件名不区分大小写，但在显示时可以保留大小写格式；
+
+　　5、 文件名中可以包含多个间隔符，如“我的文件。我的图片。001”。
+☆解决人
+
+☆解决日期
+
+☆解决方式
+文件名命名时不添加特殊字符
+☆解决用时
+
+========================================================================
+========================================================================
