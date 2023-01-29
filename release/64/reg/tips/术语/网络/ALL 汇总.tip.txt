@@ -1,0 +1,19 @@
+STP Spanning Tree Protocol 生成树协议
+RSTP Rapid Spanning Tree Protocol 快速生成树协议
+MSTP Multiple Spanning Tree Protocol 多生成树协议
+BPDU Bridge Protocol Data Unit 网桥协议数据单元
+IPV4 Internet Protocol Version 4  网际协议版本4
+IPV6 Internet Protocol Version 6  网际协议版本6
+ARP Address Resolution Protocol 地址解析协议
+免费ARP Gratuitous ARP也称为免费ARP，无故ARP。Gratuitous ARP不同于一般的ARP请求，它并非期待得到ip对应的mac地址，而是当主机启动的时候，将发送一个Gratuitous arp请求，即请求自己的ip地址的mac地址。
+无故ARP 也称为免费ARP
+RARP Reverse Address Resolution Protocol
+VLAN Virtual Local Area Network 虚拟局域网
+MAC Media Access Control 媒体介入控制层
+LLC Logical Link Control 逻辑链路控制
+HDLC High-level Data Link Control
+PPP Point to Point Protocol
+P2P ETH
+IEEE802.3协议 主要指以太网协议，还可以包含其他协议
+LACP Link Aggregation Control Protocol 链路汇聚控制协议
+
