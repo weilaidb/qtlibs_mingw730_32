@@ -160,6 +160,13 @@ $MODE_NL 作为换行符
 11.添加登录校验，
 登陆名:weixj
 密码:123456
+如果不存在文件时，默认直接登录
+D:\software\apache-tomcat-9.0.58-windows-x64\apache-tomcat-9.0.58\bin\authorization.txt
+authorization.txt
+如果存在文件时，为里面提取用户名密码出来(从第一个提取到的为准
+内容就是：
+登陆名:weixj
+密码:123456
 
 
 

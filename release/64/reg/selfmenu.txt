@@ -1156,6 +1156,7 @@ JAVA/AJAX 教程/AJAX 实例
 JAVA/AJAX 教程/eg
 JAVA/AJAX 教程/简介
 JAVA/AJAX 示例/经典ajax实例-ajax实现输入时的自动提示jsp(转)
+JAVA/API/Java获取当前路径
 JAVA/Ant/使用Ant构建项目
 JAVA/Base/forloop
 JAVA/Cloud/ECS
