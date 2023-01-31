@@ -2964,6 +2964,7 @@ path路径/常用文件夹
 宏Macro/Source insight/new/Ask Symbol
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
+工作/年度计划/2023年度计划
 工作/祝福语句
 工作/祝福语句 乔海军
 工作/祝福语句 吴磊
@@ -3215,3 +3216,4 @@ path路径/常用文件夹
 设计/软件调试/常见问题/内存覆盖测试1
 设计/软件调试/常见问题/内存覆盖测试2
 设计/软件调试/联调过程中常见问题
+软件工程/行业/分析
