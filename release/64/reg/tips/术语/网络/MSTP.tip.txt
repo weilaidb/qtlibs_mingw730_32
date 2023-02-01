@@ -1,3 +1,9 @@
+十分钟理解MSTP多生成树 交换技术基础
+https://www.bilibili.com/video/BV1Ti4y1E7Un/?spm_id_from=333.337.search-card.all.click
+
+MSTP的原理与配置
+https://www.bilibili.com/video/BV1yV411v764/?spm_id_from=333.337.search-card.all.click
+
 5．MSTP
     多生成树协议MSTP（MultipleSpanningTreeProtocol）是IEEE802.1s中定义的一种新型生成树协议。MSTP与STP/RSTP一脉相承，三者有很好的兼容性。MSTP是在传统的STP、RSTP的基础上发展而来的新的生成树协议，使用RSTP进行快速收敛。
 
