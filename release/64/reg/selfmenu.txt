@@ -2186,6 +2186,7 @@ OS/WIN10/安装系统(新)记录
 OS/WIN10/安装系统常见问题
 OS/WIN10/安装系统常见问题 the error code is 2503, 2502的解决办法
 OS/WIN10/打印机 Epson L360 打印不出黑色
+OS/WIN10/打印机 Epson L360 打印有重影
 OS/WIN10/打印机 m7605d
 OS/WIN7/安装系统常见问题
 Office/Excel/Macro/SpellNumber

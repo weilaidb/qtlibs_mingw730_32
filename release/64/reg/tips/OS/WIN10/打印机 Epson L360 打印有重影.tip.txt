@@ -1,0 +1,25 @@
+打印有重影和异响
+win10
+1.大墨量冲洗第一次好使，连续不行
+2.重影估计和异响有关系
+3.
+
+解决办法：可能和照片的清晰度太高有关
+
+比如打印这个正常
+https://www.epson.com.cn/apps/tech_support/faq/QA-content.aspx?ColumnId=31749&ArticleId=44582&pg=&view=&columnid2=31749
+
+
+打印重影的照片清晰度为1125 * 2001像素，230K。
+
+
+
+
+
+
+
+
+
+
+
+
