@@ -1,3 +1,5 @@
 ()this is a packet: > 0053:43:438:2343f:88fd()
 aa
 bbb
+\s+
+\w+:
