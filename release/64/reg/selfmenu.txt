@@ -1479,6 +1479,7 @@ JAVA/know/Serializable 接口（序列化）
 JAVA/new/enter to br
 JAVA/new/implements interface
 JAVA/new/interface
+JAVA/new/进制转换 16进制 10进制
 JAVA/print/println
 JAVA/print/println 片段
 JAVA/基本语句/Atom 原子类

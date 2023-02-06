@@ -1,0 +1,111 @@
+JAVA 进制转换的几个方法
+
+过道
+
+于 2018-05-24 17:52:35 发布
+
+75495
+ 收藏 377
+分类专栏： java语言学习
+版权
+
+java语言学习
+专栏收录该内容
+30 篇文章3 订阅
+订阅专栏
+进制转化在JAVA中已经封装好了.
+
+无论是常规的10转2,8,16,还是相对应的2,8,16进制转化为10进制的方法,当然也包括10->n进制,n进制转10进制的常规方法.
+
+都被封装在Integer对象中.
+
+ 
+
+10进制转化其他进制	对应的方法,参数:n(原10进制数据),r(进制),	返回值
+10进制转2进制	Integer.toBinaryString(n);	一个二进制字符串.
+10进制转8进制	Integer.toOctalString(n);	一个八进制字符串
+10进制转16进制	Integer.toHexString(n);	一个16进制字符串
+10进制转 r 进制	Integer.toString(100, 16);	一个r进制字符串
+public class Main {
+	public static void main(String[] args) {
+		int n = 18;
+		Integer.toHexString(n);
+		System.out.println(n + "的二进制是:" + Integer.toBinaryString(n));
+		System.out.println(n + "的八进制是:" + Integer.toOctalString(n));
+		System.out.println(n + "的十六进制是:" + Integer.toHexString(n));
+		System.out.println(n + "的三进制是:" + Integer.toString(n, 3));
+	}
+}
+结果是:
+
+18的二进制是:10010
+
+18的八进制是:22
+18的十六进制是:12
+
+18的三进制是:200
+
+当然你也可以自己写一个算法：
+
+// 一个char[]对象
+private static char[] array = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            .toCharArray();
+ 
+    public static String myDec(int number, int n) {
+        // String 是不可变的，每次改变都要新建一个Strng，很浪费时间。
+        // StringBuilder是‘可变的String’ ,
+        StringBuilder result = new StringBuilder();
+        // 模拟计算进制的过程
+        while (number > 0) {
+            result.insert(0, array[number % n]);
+            number /= n;
+        }
+        return result.toString();
+    }
+可以通过这个水题去练习一下10进制转2进制哦.
+
+水题:查找输入整数二进制中1的个数
+
+ 
+
+下面是r进制转10进制
+
+r进制转10进制	方法
+radix进制的字符串s转10进制	Integer.parseInt((String) s,(int) radix);
+ 
+
+public class Main {
+	public static void main(String[] args) {
+		String s = "10101";//1+4+16==21
+		System.out.println(Integer.parseInt(s,2));//结果是21
+		 // Integer 中封装好了一个方法：
+                // 能够直接计算二进制中的1的个数，在竞赛中很有用.
+                // JDk8中的实现方法使用的是 & 操作，所以比正常的遍历要快的多.
+                System.out.println(Integer.bitCount(21));
+                // 上文是21的二进制，所以21的二进制中有 3 个‘1’,
+	}
+}
+真的不考虑看一下水题吗??
+水题:进制转化
+
+ 
+
+ 
+
+应评论要求贴上数字补前置0的解决方案.
+
+public class Main {
+    public static void main(String[] args) {
+        int a = 1;
+        System.out.printf("%04d\n", a);
+        //. 运行结果: 0001 (使用printf几乎完全兼容C语言输出格式,适合刷OJ用)
+ 
+        String str= String.format("%04d",a);
+        System.out.println(str);
+        // 也是0001 (感谢评论区提出的方法)
+    }
+}
+ 
+————————————————
+版权声明：本文为CSDN博主「过道」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/m0_37961948/article/details/80438113
