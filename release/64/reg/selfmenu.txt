@@ -2216,6 +2216,7 @@ PACKET Parse/test7
 PACKET Parse/报文处理成一行规则
 PACKET Parse/生成序号
 PACKET Parse/生成序号偏移
+PACKET Parse/生成序号偏移2
 PHP/API/EOF
 PHP/API/EOF variable
 PHP/API/array
