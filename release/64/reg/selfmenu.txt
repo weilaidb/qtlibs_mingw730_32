@@ -2876,6 +2876,7 @@ android/know/Android Studio报错——The application could not be installed IN
 android/know/miui10开发者选项在哪
 android/know/welcome screen 欢迎界面 迎接面
 android/know/welcome screen 欢迎界面 迎接面（示例代码）
+bjx/日记
 data/开发板/AX7010 初始化打印
 data/开发板/AX7010/flash
 doxygen/doc.dot FFmpeg
@@ -3148,7 +3149,7 @@ path路径/常用文件夹
 电脑/戴尔Inspiron 15 7000 Series - 7537/拆机3
 电脑/戴尔OptiPlex 7060台式电脑/配置
 电脑/文件传输 FTP
-电脑/目录设计 目录管理
+电脑/目录设计 目录管理(t14)
 电脑/装机/Ghost 备份还原
 电脑/装机/Ghost 备份还原(dell inspiron-15-7537)
 社会/专升本/政治课件
@@ -3207,6 +3208,7 @@ path路径/常用文件夹
 设计/软件框架/构建板类型（单板、逻辑初始化等）
 设计/软件框架/构建板类型（单板、逻辑初始化等） 示例代码
 设计/软件设计/ATDD
+设计/软件设计/ROS
 设计/软件设计/TDD
 设计/软件设计/TDD new/eg
 设计/软件设计/TDD new/suits
