@@ -1,0 +1,92 @@
+VScode替代Source insight的设置及常用快捷键
+
+aixueai
+
+于 2021-08-10 10:50:01 发布
+
+1859
+ 收藏 7
+分类专栏： vscode 文章标签： vscode
+版权
+
+vscode
+专栏收录该内容
+5 篇文章0 订阅
+订阅专栏
+最近发现windows下vscode在嵌入式c/c++编程中挺好用的，感觉配置好的话不比source insight差，有兴趣的可以试试，安装就不说了，自行下载安装即可，安装包下载地址：
+https://visual-studio-code.en.softonic.com/
+
+下面说说安装完成后的常用的插件：
+
+基本常用插件
+1、Chinese(Simplified) Language Pack for Visual Stidio Code 中文汉化包
+//F1调出命令面板，输入Configure Display Language，选择zh-ch，然后重启vs code
+2、C/C++ C/C++代码,智能感知,debugger,和代码浏览
+3、Auto Close Tag 自动闭合标签
+4、Git Graph或Git History Git合入历史日志查看
+5、Bracket Pair Colorizer 用不同颜色高亮显示匹配的括号
+6、code outline 显示函数列表
+7、Beautify 代码美化格式化
+
+根据个人需要可选
+Highlight Matching Tag 高亮显示匹配标签
+Vscode-icons VSCode 文件图标
+CSS Peek
+HTML CSS Support
+Icon Fonts
+Prettier - Code formatter
+HTML Boilerplate
+Color Info
+
+
+另外的
+Fuzzy Tag For C/C++
+c/c++ gnu
+
+
+
+
+
+快捷键汇总
+1、代码跳转
+
+跳转到定义处：F12
+定义处缩略图：只看一眼而不跳转过去 Alt+F12
+跳转后跳回：Alt+左右方向键
+列出所有的引用：Shift+F12
+同时修改本文件中所有匹配的：Ctrl+F12
+
+2、查找替换
+
+当前文件查找：Ctrl+F
+查找替换：Ctrl+H
+搜索文件名：Ctrl + P
+跳转到某一行：Ctrl + G
+搜索整个工程内的某个字符串：Ctrl+Shift+F （光标在左侧边栏有效）
+注释或者去注释代码：Ctrl + /
+文件之间切换：Ctrl+Tab
+关闭当前窗口：Ctrl+W
+
+3、代码编辑
+代码行向左或向右缩进: Ctrl+[ 、 Ctrl+]、Tab 和 back也可
+代码格式化: Shift+Alt+F
+向上或向下移动一行: Alt+Up 或 Alt+Down
+向上或向下复制一行: Shift+Alt+Up 或 Shift+Alt+Down
+
+4、光标相关
+移动到行首: Home
+移动到行尾: End
+移动到文件结尾: Ctrl+End
+移动到文件开头: Ctrl+Home
+下一个匹配的也被选中: Ctrl+D
+回退上一个光标操作: Ctrl+U
+撤销上一步操作: Ctrl+Z
+同时修改本文件中所有匹配的: Ctrl+F2
+手动保存: Ctrl+S
+放大或缩小(以编辑器左上角为基准): Ctrl +/-
+侧边栏显示或隐藏：Ctrl+B
+显示资源管理器(光标切到侧边栏中才有效): Ctrl+Shift+E
+显示搜索(光标切到侧边栏中才有效): Ctrl+Shift+F
+————————————————
+版权声明：本文为CSDN博主「aixueai」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/aixueai/article/details/119563721

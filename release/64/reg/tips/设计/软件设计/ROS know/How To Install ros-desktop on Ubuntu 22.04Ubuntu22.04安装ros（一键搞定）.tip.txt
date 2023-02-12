@@ -1,0 +1,112 @@
+Installati.one
+
+    About
+    Ubuntu
+    CentOS
+    Fedora
+    Kali Linux
+    Debian
+
+    Ubuntu
+        Ubuntu 18.04
+        Ubuntu 20.04
+        Ubuntu 21.04
+        Ubuntu 21.10
+        Ubuntu 22.10
+        Ubuntu 22.04
+
+    Introduction
+        What is ros-desktop
+    Install ros-desktop Using apt-get
+    Install ros-desktop Using apt
+    Install ros-desktop Using aptitude
+    How To Uninstall ros-desktop on Ubuntu 22.04
+        Uninstall ros-desktop And Its Dependencies
+        Remove ros-desktop Configurations and Data
+        Remove ros-desktop configuration, data, and all of its dependencies
+    References
+    Summary
+
+    Ubuntu
+    Ubuntu 22.04
+    ros-desktop
+
+How To Install ros-desktop on Ubuntu 22.04
+In this tutorial we learn how to install ros-desktop on Ubuntu 22.04. ros-desktop is Robot OS desktop metapackage
+Introduction
+
+In this tutorial we learn how to install ros-desktop on Ubuntu 22.04.
+What is ros-desktop
+
+ros-desktop is:
+
+    This package is part of Robot OS (ROS). It is a metapackage which provides the ROS desktop system (including ROS robot and viz).
+
+Different to upstream, this package does not provide: common_tutorials, geometry_tutorials, ros_tutorials, roslint, urdf_tutorial, visualization_tutorials. Please install them from source, if you need them.
+
+There are three ways to install ros-desktop on Ubuntu 22.04. We can use apt-get, apt and aptitude. In the following sections we will describe each method. You can choose one of them.
+Install ros-desktop Using apt-get
+
+Update apt database with apt-get using the following command.
+
+sudo apt-get update
+
+After updating apt database, We can install ros-desktop using apt-get by running the following command:
+
+sudo apt-get -y install ros-desktop
+
+Install ros-desktop Using apt
+
+Update apt database with apt using the following command.
+
+sudo apt update
+
+After updating apt database, We can install ros-desktop using apt by running the following command:
+
+sudo apt -y install ros-desktop
+
+Install ros-desktop Using aptitude
+
+If you want to follow this method, you might need to install aptitude first since aptitude is usually not installed by default on Ubuntu. Update apt database with aptitude using the following command.
+
+sudo aptitude update
+
+After updating apt database, We can install ros-desktop using aptitude by running the following command:
+
+sudo aptitude -y install ros-desktop
+
+How To Uninstall ros-desktop on Ubuntu 22.04
+
+To uninstall only the ros-desktop package we can use the following command:
+
+sudo apt-get remove ros-desktop
+
+Uninstall ros-desktop And Its Dependencies
+
+To uninstall ros-desktop and its dependencies that are no longer needed by Ubuntu 22.04, we can use the command below:
+
+sudo apt-get -y autoremove ros-desktop
+
+Remove ros-desktop Configurations and Data
+
+To remove ros-desktop configuration and data from Ubuntu 22.04 we can use the following command:
+
+sudo apt-get -y purge ros-desktop
+
+Remove ros-desktop configuration, data, and all of its dependencies
+
+We can use the following command to remove ros-desktop configurations, data and all of its dependencies, we can use the following command:
+
+sudo apt-get -y autoremove --purge ros-desktop
+
+References
+
+    ros-desktop website
+    ros-desktop on packages.ubuntu.com
+
+Summary
+
+In this tutorial we learn how to install ros-desktop package on Ubuntu 22.04 using different package management tools: apt, apt-get and aptitude.
+© 2023 installati.one All Rights Reserved
+
+About Installati.one

@@ -1,0 +1,17 @@
+Ubuntu22.04安装ros（一键搞定）
+霹雳小王子
+于 2022-11-14 21:33:46 发布 817
+收藏 7
+文章标签： vscode
+版权
+
+这几天在安装ros，然后发现可以一键安装，话不多说，直接终端输入如下指令
+
+回车之后系统会自动安装ros
+
+wget http://fishros.com/install -O fishros && . fishros
+
+详见鱼香ROS
+————————————————
+版权声明：本文为CSDN博主「霹雳小王子」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_41020389/article/details/127855675
