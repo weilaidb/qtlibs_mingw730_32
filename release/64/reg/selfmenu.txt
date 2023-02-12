@@ -3147,6 +3147,8 @@ path路径/常用文件夹
 电脑/戴尔Inspiron 15 7000 Series - 7537/拆机
 电脑/戴尔Inspiron 15 7000 Series - 7537/拆机3
 电脑/戴尔OptiPlex 7060台式电脑/配置
+电脑/文件传输 FTP
+电脑/目录设计 目录管理
 电脑/装机/Ghost 备份还原
 电脑/装机/Ghost 备份还原(dell inspiron-15-7537)
 社会/专升本/政治课件

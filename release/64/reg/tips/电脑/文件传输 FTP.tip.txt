@@ -1,0 +1,19 @@
+两台电脑之间传输时，都是Windows系统
+保证FTP传输的条件
+1.文件或文件夹的大小和空间必须相同！！！。（网上说的同样文件夹大小不同不太对）
+必须相同！！！
+必须相同！！！
+必须相同！！！
+
+2.FTP必须限速，最大速度有问题，会导致网络不稳定。
+上传 20000kBit/s
+下载 10000kBit/s
+
+
+FileZilla FTP Client
+FileZilla FTP Server
+
+"D:\Program Files\FileZilla FTP Client\filezilla.exe"
+
+3.传输过程必须使用复制，不要使用剪切，防止中间异常时无法完整恢复。
+比如断电、拷贝出现异常等不可预知的情况。
