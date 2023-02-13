@@ -1,0 +1,5 @@
+软件源（Repository
+
+
+1.2.2 配置系统软件源
+以软件源安装为例，首先需要配置Ubuntu系统允许restricted（不完全的自由软件）、universe（Ubuntu官方不提供支持与补丁，全靠社区支持）、multiverse（非自由软件，完全不提供支持和补丁)
