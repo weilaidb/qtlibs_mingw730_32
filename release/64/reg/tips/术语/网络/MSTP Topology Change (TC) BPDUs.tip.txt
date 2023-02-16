@@ -1,0 +1,84 @@
+剪刀石头布Cheers
+Absence makes the heart grow fonder!
+博客园首页新随笔管理随笔 - 322  文章 - 0  评论 - 31  阅读 - 39万
+Topology Change (TC) BPDUs
+TC BPDU说明和问题：
+
+When a device receives topology change (TC) BPDUs (the BPDUs that notify devices of topology changes), it flushes its forwarding address entries. If someone uses TC-BPDUs to attack the device, the device will receive a large number of TC-BPDUs within a short time and be busy with forwarding address entry flushing.
+
+这句说明了，TC BPDU虽然发出来通告拓扑改变，但是如果有“不法分子”攻击设备，让我们的设备收到了大量的TC BPDU，就会让设备在转发条目的刷新（会执行MAC地址表项和ARP表项的删除操作）上耗费大量的资源和时间。于是，我们需要有机制来保护我们的设备，在收到过多的TC BPDU时，免于苦难。
+
+拓扑变化传播
+当网桥从邻居收到设置了 TC 位的 BPDU 时，会发生以下情况：
+
+它清除在其所有端口上学习的 MAC 地址，除了接收topology change的端口。
+它启动 TC While 计时器并在其所有指定端口和根端口上发送TC 置位的 BPDU（RSTP 不再使用特定的 TCN BPDU，除非需要通知传统网桥）。
+这样，TCN 在整个网络中的泛洪速度非常快。 TC 传播现在是一个一步过程。 事实上，topology change的发起者会在整个网络中泛洪此信息，而 802.1D 中只有根会这样做。 这种机制比 802.1D 等效机制要快得多。 无需等待根桥通知，然后为整个网络保持<max age + forward delay>秒的拓扑变化状态。
+
+TC BPDU防护：
+
+对于思科的交换机。有BPDU防护、BPDU过滤、还有根防护等机制，另外还有环路检测和UDLD等功能。所以TC BPDU更多的是针对华为，华三等厂商来说的。
+
+交换机频繁的发出TCN BPDU，导致交换机MAC地址老化时间长时间保持为15秒，MAC地址的频繁刷新会导致网络中充斥有大量未知单播造成的广播报文，严重影响网络性能。
+
+BPDU防护：span portfast edge bpduguard default
+BPDU过滤：全局或端口启用 spann portfast bpdufilter default/spann bpdufilter enable
+ROOT防护：int <inter-name>   →  spann guard root
+环路防护：panning-tree loopguard default
+单向链路检测UDLD：udld enable
+
+关于RSTP的一篇典型文档：
+
+https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/24062-146.html
+
+ 
+
+针对华三的设备：
+
+交换机会在收到TC-BPDU报文后，进行一次删除MAC地址表和ARP表项的操作，并同时启动周期为10秒的定时器。在此周期时间内，如果交换机再次收到TC-BPDU报文，则交换机最多可以进行1次删除MAC地址表项和ARP表项的操作。从而避免频繁的删除MAC地址表和ARP表项，给交换机进行STP计算以及网络稳定性带来恶劣的影响。
+
+命令：stp tc-protection enable
+
+缺省情况下，防止TC-BPDU报文攻击的保护功能处于启动状态。
+
+交换机在接收到TC-BPDU报文后，会执行MAC地址表项和ARP表项的删除操作。在有人伪造TC-BPDU报文恶意攻击交换机时，交换机短时间内会收到很多的TC-BPDU报文，频繁的删除操作给交换机带来很大负担，给网络的稳定带来很大隐患。
+
+防止TC-BPDU报文攻击的保护功能使能后，交换机在收到TC-BPDU报文后的一定时间内（一般为15秒），只进行一次删除操作，同时监控该时间段内是否收到TC-BPDU报文。如果在该时间段内收到了TC-BPDU报文，则交换机在该时间超时后再进行一次删除操作。这样可以避免频繁的删除MAC地址表项和ARP表项。
+
+<H3C> system-view
+
+System View: return to User View with Ctrl+Z.
+
+[H3C] stp tc-protection enable
+
+配置转发延迟：
+
+stp timer forward-delay centi-senconds
+
+centi-senconds：Forward Delay时间参数，取值为400～3000，单位为厘秒。缺省情况下，交换机的Forward Delay时间参数取值为1500厘秒。
+
+ 
+
+针对华为的设备：
+
+在运行MSTP的二层网络中，交换设备在接收到拓扑变化报文后，会执行MAC地址表项和ARP表项的删除操作，如果频繁操作则会对CPU的冲击很大，可能造成CPU占用率过高。此时，可以通过使用命令stp tc-protection使能防拓扑变化报文攻击的保护功能。
+
+通过执行命令stp tc-protection启用防拓扑变化攻击功能后，在单位时间内，交换设备处理拓扑变化报文的次数可配置（缺省的单位时间是2秒，缺省的处理次数是1次）。如果在单位时间内，交换设备在收到拓扑变化报文数量大于配置的阈值，那么设备只会处理阈值指定的次数。对于其他超出阈值的拓扑变化报文，定时器到期后设备只对其统一处理一次。这样可以避免频繁的删除MAC地址表项和ARP表项，从而达到保护设备的目的。(比如阈值为5，时间为10秒，意思是在10秒内，交换机最多删除5次。对于超出阈值的TC-BPDU报文，不论有多少，计时器到期后只删除一次，然后进入下一个10秒周期。)
+
+
+
+ 
+
+From:https://zhuanlan.zhihu.com/p/143587852
+
+The stp tc-protection command enables TC BPDU protection.
+
+修改阈值：stp tc-protection threshold 3（1-255） //配置命令stp tc-protection后，可通过执行命令stp tc-protection threshold配置交换设备处理拓扑变化报文的次数。
+
+TC保护针对连接终端的接口（一般为边缘端口），在系统视图下配置TC保护，表明在周期内发送有限的TC-BPDU，从而遏制大批量的TC-BPDU发送到网络中，影响网络的稳定性，超过设定的阈值次数就不再接收TC BPDU,周期一到统一处理一次。
+
+ https://support.huawei.com/enterprise/zh/doc/EDOC1100008289/b3ebf61b?idPath=24030814|21782164|21782201|21782208|9740454
+
+好好学习，天天向上！
+分类: H3C RS&Sec, Cisco Switch
+标签: STP

@@ -1,0 +1,235 @@
+华为交换机之生成树协议（MSTP）配置详解
+
+@ Ray
+
+于 2019-07-31 07:16:30 发布
+
+34494
+ 收藏 96
+版权
+博文大纲：
+
+一、什么是MSTP？
+二、MSTP的基本原理是什么？
+1.MSTP的网络层次。
+2.MST域。
+3.MSTI。
+4.端口角色。
+5.MSTP的端口状态。
+三、MSTP的保护功能。
+1.BPDU保护。
+2.根保护。
+3.环路保护。
+4.TC保护。
+四、MSTP的配置过程。
+一、什么是MSTP？
+MSTP是一个共有的生成树协议，在实际生产环境中得到广泛的应用。
+MSTP（Multiple Spanning tree Algorithm and protocol）是多生成树技术，允许在一个交换环境中运行多个生成树，每个生成树称为一个实例（instance）。实例时间的生成树彼此独立，如一个实例下的阻塞接口在另一个实例上可能是一个转发端口。和Cisco私有的PVST技术不同，MSTP允许多个vlan运行一个生成树实例，相比较Cisco的PVST技术，这是一个优势，因为在Cisco交换机中，运行PVST技术，是一个实例一棵树，实例越多，生成树越多，交换机维护这些生成树，也是需要消耗硬件资源及网络开销的。大部分情况下，运行多个生成树实例的好处就在于链路的负载分担，但是当只有一条冗余链路时，运行两个生成树实例完全可以实现负载均衡，同时又能节约系统开销，如下图所示：
+
+
+
+上图的网络环境中存在两个生成树实例，不同实例的根网桥在不同的物理交换机上，不但可以实现负载分担，而且不会因为过多的实例而占用系统资源。
+
+MSTP将环路网络修剪成一个无环的树形网络，避免广播风暴的产生，同时还提供了数据转发的多个冗余路径，在数据转发过程中实现vlan数据的负载均衡。MSTP还兼容STP和RSTP。
+
+MSTP把一个交换网络划分成多个域，每个域内形成多个生成树，生成树之间彼此独立。每颗生成树称为一个多生成树实例（Multiple spanning tree instance，MSTI），每个域称为一个MST域。
+
+MSTP通过设置vlan映射表（就是vlan和MSTI的对应关系表），把vlan和MSTP联系起来。每个vlan只能对应一个MSTI，即同一vlan的数据只能在一个MSTI中传输，而一个MSTI可以对应多个vlan。
+
+二、MSTP的基本原理是什么？
+在MSTP中，通过把整个互联的二层网络划分成若干个域。在域内，把其中的vlan分成若干组，每组具有相同的拓扑结构，然后定义若干个MSTI，并把这些生成树实例和不同的vlan映射起来。
+
+所谓实例就是多个vlan的一个集合。通过将多个vlan映射到一个实例，可以节省通信开销和资源占用率。MSTP各个实例拓扑的计算相互独立，在这些实例上可以实现负载均衡。可以把多个相同拓扑结构的vlan映射到同一个实例里，这些vlan在接口上的转发状态取决于接口在对应MSTP实例的状态。
+
+如果仅仅是为了防止广播风暴等环路问题，运行CST（CST也是一种生成树协议，关于CST技术自行查阅相关资料，这里不叙述了）已经足够。运行多实例的主要目的在于使其负载分担链路负载。所以运行的生成树实例数量一般取决于冗余线路的数量，如果只有一条冗余链路，那么最好运行两个实例。如果有两条冗余链路，那么运行三个实例将是最好的选择，并尽可能保证每个实例中流量相差不大。
+
+1、MSTP的网络层次。
+一个二层交换网络可以划分多个MST域（多生成树域），每个生成树域可以划分多个MSTI，每个实例中可以映射多个vlan。
+
+在下图中的MSTP网络包含3个MST域，分别是A、B、C。每个MST域中包含一个或多个MSTI。MST域B中包含两个MSTI，分别是instance 1和instance 2。instance 1和vlan 1-5映射，instance 2和vlan 6-10映射。
+
+
+
+2、MST域。
+MST域是多生成树域，由局域网中的多台交换机及它们之间的网段构成。一个局域网可以存在多个MST域。各MST域之间在物理上直接或间接相连。用户可以通过MSTP配置命令把多台交换机划分在同一个MST域内，MST域中的交换机都启用了MSTP，配置了相同的域名及vlan映射表（vlan映射表是MST域的属性，它描述的是vlan和MSTI之间的映射关系）。
+
+3、MSTI。
+一个MST域内可以运行多个MSTI，MSTI之间彼此独立，MSTI可以与一个或者多个vlan对应，但每个vlan只能与一个MSTI对应。（有没有感觉有点像父子关系？哈哈，一个儿子只能有一个亲爹，但一个爸爸可以有好多儿子）。
+
+4、端口角色。
+MSTP中的端口角色主要有根端口、指定端口、预备端口、备份端口和边缘端口。除边缘端口外，其他端口角色都参与MSTP的计算过程，同一端口在不同的MSTI中可以担任不同的角色。（下面解释下相关端口的作用，了解即可，因为这些端口角色是由生成树协议自动协商的，不需要人为指定。）
+
+
+
+根端口：非根交换机上到根交换机开销最小的端口就是该交换机的根端口，根端口能够转发数据流量到根交换机。上图中的P3、P4和P8为根端口。
+指定端口：该交换机向下游交换机发送BPDU（一种桥协议数据单元，用来交换网桥ID、根路径成本等信息，用来选举交换机端口角色）或者数据流量的端口。在上图中，P1、P2和P6为指定端口（当S3优先级高于S2时）。
+边缘端口：位于网络最边缘处，不参与生成树计算，一般连接非交换机设备，如终端服务器、PC、路由器等。
+预备端口：从转发数据流量的角度来看，预备端口提供了到达根交换机的一条备份链路，其接口状态为阻塞，不转发数据流量，当根端口被阻塞时，预备端口将成为新的根端口。在上图中P5为预备端口。
+备份端口：当同一台交换机的两个端口互相连接时就存在一个环路（聚合链路除外），此时，交换机就会将其中一个端口阻塞，备份端口就是被阻塞的那个端口。从发送BPDU来看，备份端口就是由于学习到本设备上其他端口发送的BPDU而被阻塞的端口。从转发数据流量来看，备份端口作为指定端口的备份，提供了一条从根交换机到非根交换机的备份链路，在上图中，P7就是备份端口。
+5、MSTP的端口状态。
+MSTP的端口状态只有如下三种（了解端口状态，才可以熟练的排除生成树故障）：
+
+forwarding：在这种状态下，端口即转发用户流量，又接收/发送BPDU报文。
+learning：这是一种过渡状态。在该状态下，交换机会根据收到的用户流量，学习MAC地址表，但是不转发用户流量，所以称为学习状态。learning状态的端口接受/发送BPDU报文，不转发用户流量。
+Discarding：在这种状态下，端口只接收BPDU报文。
+三、MSTP的保护功能。
+在面对一些二层生成树***时，下面四个技术可以增加生成树的安全性。
+
+1、BPDU保护。
+在交换机上，通常将直接与用户终端（如PC机）或服务器等非交换机设备相连的端口配置为边缘接口，以实现这些端口的快速收敛，正常情况下，这些端口是不会接收到BPDU。如果有人伪造BPDU恶意***交换机，当这些端口收到BPDU时，交换机会自动将这些端口设置为非边缘端口，并重新进行生成树计算，从而引起网络震荡。
+
+启用BPDU保护功能后，如果接口收到BPDU报文，那么该接口将被自动关闭，从而避免了后续的***及由此带来的网络震荡。
+
+配置命令如下：
+
+[Huawei]stp bpdu-protection              #开启BPDU保护
+2、根保护。
+由于网络管理人员失误或人为恶意攻 击，网络中的合法交换机端口可能会收到优先级更高的BPDU，这将使目前网络中的根失去根地位，之后将重新计算生成树，引起网络震荡，还有可能将网络流量从高速链路上转移到低俗链路中，造成网络拥塞。为了防止这种情况出现，交换机提供根保护功能。根保护功能通过维持指定端口的角色来保护根交换机的地位。配置了根保护功能的端口，在所有实例上的端口角色都保持为指定端口。当端口接收到优先级更高的BPDU时，端口角色不会变为非指定端口，而是进入侦听状态，不再转发报文。经过足够长的时间，如果端口一直没有再收到优先级较高的BPDU，端口会恢复到原来的正常状态。
+
+配置命令：
+
+[Huawei]in g0/0/1            #进入指定端口
+[Huawei-GigabitEthernet0/0/1]stp root-protection              #开启根保护
+3、环路保护。
+根端口和其他阻塞端口状态会周期性地接收来自上游交换机（在本博文的第三张配图中，R1就是R2和R3的上游交换机，R4就是R2和R3的下游交换机）的BPDU。当链路拥塞或者单向链路故障时，这些端口无法接收来自上游交换机的BPDU，交换机会重新选择根端口。原先的根端口会转变为指定端口，而原先的阻塞端口会迁移到转发状态，从而造成交换网络中可能产生环路。环路保护功能会抑制这种环路产生。在启动了环路保护功能后，如果根端口收不到来自上游的BPDU，根端口会被设置进入阻塞状态；而阻塞端口则会一直保持在阻塞状态，不转发报文，从而不会在网络中形成环路 。
+
+配置命令：
+
+[Huawei]in g0/0/1                #进入根端口
+[Huawei-GigabitEthernet0/0/1]stp loop-protection              #启用环路保护功能
+4、TC保护。
+交换机在接收到TC-BPDU报文后，会执行MAC地址表项和ARP表项的删除操作，如果有人伪造TC-BPDU报文恶意***交换机，交换机短时间内会收到很多TC-BPDU报文，频繁的删除操作会给交换机造成很大的负担，给网络的稳定性带来很大的隐患，启用TC保护功能后，在固定的时间内，MSTP进程处理TC类型BPDU报文的次数可配置。如果在固定的时间内，MSTP进程收到TC类型的BPDU报文数量大于配置的阈值，那么MSTP进程只会处理阈值指定的次数。对于其他超出阈值的TC类型BPDU报文，定时器到期后，MSTP进程对其统一处理一次。这样可以避免频繁地删除MAC地址表项和ARP表项，从而达到保护交换机的目的。
+
+配置命令：
+
+[Huawei]stp tc-protection threshold 3               #指定阈值为3。
+四、MSTP的配置过程。
+网络环境如下：
+
+
+需求如下：
+VLAN10和VLAN20互访
+VLAN10：S3->S1->R1
+VLAN20：S3->S2->R1
+实现思路：
+1、配置PC及路由器的IP地址。
+2、配置交换机的vlan及trunk。
+3、交换机开启MSTP协议，配置相同区域名称。
+4、交换机建立两个实例，分别将vlan 10 和vlan 20加入到不同的实例中，并为两个实例指定不同的根网桥，实例1的根网桥在S1上，实例2的根网桥在S2上。
+
+开始配置：
+1、配置路由器IP地址（PC机的IP地址自行配置）：
+
+[R1]in g0/0/0
+[R1-GigabitEthernet0/0/0]ip add 10.1.10.254 24
+[R1-GigabitEthernet0/0/0]in g0/0/1
+[R1-GigabitEthernet0/0/1]ip add 10.1.20.254 24
+[R1-GigabitEthernet0/0/1]un shut    <!--接口默认为开启状态，若为关闭状态，可使用该命令开启-->
+2、配置各个交换机的VLAN及Trunk：
+
+我这里将所有和客户机连接的接口配置为Access接口，交换机和交换机连接的接口配置为trunk接口。交换机和路由器连接的接口配置为Hybrid接口。
+
+S1的配置如下：
+
+[S1]vlan ba 10 20                     <!--创建vlan10 和vlan20-->
+[S1]in g0/0/2                     <!--进入该接口-->
+[S1-GigabitEthernet0/0/2]port link-type trunk                      <!--配置接口模式为trunk-->
+[S1-GigabitEthernet0/0/2]port trunk allow-pass vlan all           <!--放行所有vlan流量通过-->
+[S1-GigabitEthernet0/0/2]in g0/0/1                      <!--进入该接口-->
+[S1-GigabitEthernet0/0/1]port link-type trunk                      <!--配置接口模式为trunk-->
+[S1-GigabitEthernet0/0/1]port trunk allow-pass vlan all            <!--放行所有vlan流量通过-->
+[S1-GigabitEthernet0/0/1]in g0/0/3                     <!--进入该接口-->
+[S1-GigabitEthernet0/0/3]port link-type hybrid                <!--配置接口模式为Hybrid-->
+[S1-GigabitEthernet0/0/3]port hybrid untagged vlan 10 <!--将vlan 10 添加到该接口的untag列表-->
+[S1-GigabitEthernet0/0/3]port hybrid pvid vlan 10             <!--配置接口PVID为vlan 10-->
+S2的配置如下：
+
+[S2]vlan ba 10 20                     <!--创建vlan10 和vlan20-->
+[S2]in g0/0/2                     <!--进入该接口-->
+[S2-GigabitEthernet0/0/2]port link-type trunk                       <!--配置接口模式为trunk-->
+[S2-GigabitEthernet0/0/2]port trunk allow-pass vlan all           <!--放行所有vlan流量通过-->
+[S2-GigabitEthernet0/0/2]in g0/0/1                     <!--进入该接口-->
+[S2-GigabitEthernet0/0/1]port link-type trunk                      <!--配置接口模式为trunk--> 
+[S2-GigabitEthernet0/0/1]port trunk allow-pass vlan all           <!--放行所有vlan流量通过-->
+[S2-GigabitEthernet0/0/1]in g0/0/3                     <!--进入该接口-->
+[S2-GigabitEthernet0/0/3]port link-type hybrid                <!--配置接口模式为Hybrid-->
+[S2-GigabitEthernet0/0/3]port hybrid untagged vlan 20 <!--将vlan 12 添加到该接口的untag列表-->
+[S2-GigabitEthernet0/0/3]port hybrid pvid vlan 20            <!--配置接口PVID为vlan 20-->
+S3的配置如下：
+
+[S3]vlan ba 10 20                     <!--创建vlan10 和vlan20-->
+[S3]in g0/0/3                     <!--进入该接口-->
+[S3-GigabitEthernet0/0/3]port link-type access                 <!--配置接口模式为access-->
+[S3-GigabitEthernet0/0/3]port default vlan 10          <!--将接口添加到vlan 10中-->
+[S3-GigabitEthernet0/0/3]in g0/0/4                     <!--进入该接口-->
+[S3-GigabitEthernet0/0/4]port link-type access                <!--配置接口模式为access-->
+[S3-GigabitEthernet0/0/4]port default vlan 20           <!--将接口添加到vlan 20中-->
+[S3-GigabitEthernet0/0/4]in g0/0/1                     <!--进入该接口-->
+[S3-GigabitEthernet0/0/1]port link-type trunk                       <!--配置接口模式为trunk-->
+[S3-GigabitEthernet0/0/1]port trunk allow-pass vlan all           <!--放行所有vlan流量通过-->
+[S3-GigabitEthernet0/0/1]in g0/0/2                     <!--进入该接口-->
+[S3-GigabitEthernet0/0/2]port link-type trunk                      <!--配置接口模式为trunk-->
+[S3-GigabitEthernet0/0/2]port trunk allow-pass vlan all           <!--放行所有vlan流量通过-->
+3、配置MSTP
+
+上面的需求是要求vlan 10的客户端通过S3和S1到达网关，vlan 20的客户端通过S3和S2到达网关，从而实现链路的负载分担。在接下来的配置中，把S1配置为instance 1的根，而instance 1实例和vlan 10关联，那么vlan的流量因为S2和S3之间的链路阻塞而通过左边到达网关。同理，instance 2实例中配置S2为根，并通过右边到达网关。
+
+S1的配置如下：
+
+[S1]stp mo mstp                     <!--将交换机配置成MSTP模式--> 
+[S1]stp region-configuration                       <!--进入MSTP配置模式-->
+[S1-mst-region]region-name lv                     <!--配置域名为“lv”-->
+[S1-mst-region]revision-level 1                     <!--配置版本等级为“1”-->
+[S1-mst-region]instance 1 vlan 10                     <!--将vlan 10加入实例1中-->
+[S1-mst-region]instance 2 vlan 20                     <!--将vlan 20加入实例2中-->
+[S1-mst-region]active region-configuration                      <!--激活配置（必须配置）-->
+[S1-mst-region]quit                     <!--退出配置模式-->
+[S1]stp instance 1 root primary                      <!--配置此交换机为实例1的主根-->
+[S1]stp instance 2 root secondary                  <!--配置此交换机为实例2的备根-->
+S2的配置如下：
+
+[S2]stp mode mstp                     <!--将交换机配置成MSTP模式--> 
+[S2]stp region-configuration                        <!--进入MSTP配置模式-->
+[S2-mst-region]region-name lv                     <!--配置域名为“lv”-->
+[S2-mst-region]revision-level 1                     <!--配置版本等级为“1”-->
+[S2-mst-region]instance 1 vlan 10                    <!--将vlan 10加入实例1中-->
+[S2-mst-region]instance 2 vlan 20                    <!--将vlan 20加入实例2中-->
+[S2-mst-region]active region-configuration                      <!--激活配置（必须配置）-->
+[S2-mst-region]quit                    <!--退出配置模式-->
+[S2]stp instance 1 root secondary                      <!--配置此交换机为实例1的备根-->
+[S2]stp instance 2 root primary                  <!--配置此交换机为实例2的主根-->
+S3的配置如下：
+
+[S3]stp mode mstp                     <!--将交换机配置成MSTP模式--> 
+[S3]stp region-configuration                        <!--进入MSTP配置模式-->
+[S3-mst-region]region-name lv                     <!--配置域名为“lv”-->
+[S3-mst-region]revision-level 1                    <!--配置版本等级为“1”-->
+[S3-mst-region]instance 1 vlan 10                    <!--将vlan 10加入实例1中-->
+[S3-mst-region]instance 2 vlan 20                   <!--将vlan 20加入实例2中-->
+[S3-mst-region]active region-configuration                      <!--激活配置（必须配置）-->
+4、验证：
+
+在S3上查看STP接口角色及状态信息，结果如下（其中MSTID列表示实例）：
+
+[S3]dis stp brief              #查看STP接口角色及状态信息
+ MSTID  Port                        Role  STP State     Protection
+   0    GigabitEthernet0/0/1        DESI  FORWARDING      NONE
+   0    GigabitEthernet0/0/2        ROOT  FORWARDING      NONE
+   0    GigabitEthernet0/0/3        DESI  FORWARDING      NONE
+   0    GigabitEthernet0/0/4        DESI  FORWARDING      NONE
+   1    GigabitEthernet0/0/1        ROOT  FORWARDING      NONE
+   1    GigabitEthernet0/0/2        ALTE  DISCARDING      NONE
+   1    GigabitEthernet0/0/3        DESI  FORWARDING      NONE
+   2    GigabitEthernet0/0/1        ALTE  DISCARDING      NONE
+   2    GigabitEthernet0/0/2        ROOT  FORWARDING      NONE
+   2    GigabitEthernet0/0/4        DESI  FORWARDING      NONE
+可以看到实例 1中的GigabitEthernet0/0/2和实例 2中的GigabitEthernet0/0/1处于阻塞状态。同时，两个实例之间相互独立，彼此不受影响。而且现在vlan 10中的客户端可以和vlan 20中的客户端进行通信。
+
+5、总结：
+
+从上面的配置中发现，若要将所有实例配置在同一个域中，只需要配置同样的域名即可，但版本等级需一致，域中各个vlan对应的实例也需要一致。同一个生成树实例中，只能有一个主根和备根。需要注意的是，生成树协议无法实现互为备份（即主设备宕机，备份设备立马接替主设备的工作），它只能实现负载均衡，若需要实现互为备份，还需要使用VRRP技术，该技术将在后续博文写出。
+
+————本文至此结束，感谢阅读。
+————————————————
+版权声明：本文为CSDN博主「@ Ray」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/lvjianzhaoa/article/details/98259199

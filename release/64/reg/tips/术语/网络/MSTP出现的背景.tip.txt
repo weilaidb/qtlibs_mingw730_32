@@ -1,0 +1,27 @@
+MSTP出现的背景
+STP/RSTP的缺陷
+RSTP在STP基础上进行了改进，实现了网络拓扑快速收敛。但RSTP和STP还存在同一个缺陷：由于局域网内所有的VLAN共享一棵生成树，因此无法在VLAN间实现数据流量的负载均衡，链路被阻塞后将不承载任何流量，还有可能造成部分VLAN的报文无法转发。
+
+如图15-1所示网络中，在局域网内应用STP或RSTP，生成树结构在图中用虚线表示，S6为根交换设备。S2和S5之间、S1和S4之间的链路被阻塞，图中标注的“VLAN”为链路允许通过的VLAN报文。
+
+图15-1 STP/RSTP的缺陷示意图
+
+HostA和HostB同属于VLAN2，由于S2和S5之间的链路被阻塞，S3和S6之间的链路又不允许VLAN2的报文通过，因此HostA和HostB之间无法互相通讯。
+
+MSTP对STP和RSTP的改进
+为了弥补STP和RSTP的缺陷，IEEE于2002年发布的802.1s标准定义了MSTP。MSTP兼容STP和RSTP，既可以快速收敛，又提供了数据转发的多个冗余路径，在数据转发过程中实现VLAN数据的负载均衡。
+
+MSTP把一个交换网络划分成多个域，每个域内形成多棵生成树，生成树之间彼此独立。每棵生成树叫做一个多生成树实例MSTI（Multiple Spanning Tree Instance），每个域叫做一个MST域（MST Region：Multiple Spanning Tree Region）。
+
+
+所谓生成树实例就是多个VLAN的一个集合。通过将多个VLAN捆绑到一个实例，可以节省通信开销和资源占用率。MSTP各个实例拓扑的计算相互独立，在这些实例上可以实现负载均衡。可以把多个相同拓扑结构的VLAN映射到一个实例里，这些VLAN在端口上的转发状态取决于端口在对应MSTP实例的状态。
+
+如图15-2所示，MSTP通过设置VLAN映射表（即VLAN和MSTI的对应关系表），把VLAN和MSTI联系起来。每个VLAN只能对应一个MSTI，即同一VLAN的数据只能在一个MSTI中传输，而一个MSTI可能对应多个VLAN。
+
+图15-2 MST域内的多棵生成树示意图
+
+经计算，最终生成两棵生成树：
+MSTI1以S4为根交换设备，转发VLAN2的报文。
+MSTI2以S6为根交换设备，转发VLAN3的报文。
+这样所有VLAN内部可以互通，同时不同VLAN的报文沿不同的路径转发，实现了负载分担。
+
