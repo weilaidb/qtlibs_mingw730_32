@@ -1,0 +1,11 @@
+$ crontab -l
+*/5 * * * * flock -xn /tmp/stargate.lock -c '/usr/local/qcloud/stargate/admin/start.sh > /dev/null 2>&1 &'
+
+
+0 */2 * * * sh /root/soft/web_notebook_online/script/updategit.atwork.sh ~/work/git/
+0 */2 * * * sh /root/soft/web_notebook_online/script/commitgit.atwork.sh
+59 23 * * * cd ~/work/git/qtlibs_mingw730_32/script.ln && ./opengrok.run.ext.sh 1.5.12 ~/work/git/ 8080 /usr/local/bin/ctags
+
+
+
+0 */2 * * *  cd ~/soft/web_notebook_online/apache-tomcat-work/bin && sh startup.sh
