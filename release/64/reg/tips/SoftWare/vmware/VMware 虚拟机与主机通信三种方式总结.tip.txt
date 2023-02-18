@@ -1,0 +1,47 @@
+VMware 虚拟机与主机通信三种方式总结
+
+小新安
+
+于 2018-08-03 14:28:05 发布
+
+19061
+ 收藏 43
+版权
+背景：ubuntu16.04安装vmware14pro ，开了两台ubuntu12.04的虚拟机。第一台基于NAT方式连接，第二台基于Bridged方式连接。主机IP：192.168.100.163
+
+问题：第一台ping第二台能ping通（NAT能ping通Bridge），第二台ping第一台显示Time to live exceeded（Bridge不能ping通NAT），现总结学习如下：
+
+
+
+VMware与主机的三种连接方式：
+桥接模式（Bridegd）：Windows gets an IP from the same place your MAC does（虚拟机得到一个与主机相同网段的IP地址）可以看看到上图左侧虚拟机（虚拟机2）IP地址为192.168.100.244与主机网段相同，子网掩码相同。
+对于虚拟机这端，桥接模式是一个总体，在一开始就虚拟了一个交换机，所有采用桥接模式的虚拟机都连接在这个交换机上。
+对于主机这端，将主机网卡看做一个交换机，主机连接在这个交换机上。同时，网桥模式虚拟的交换机通过网桥的方式连接在这个交换机上。
+总而言之，相当于有了两层的交换机结构，但只涉及二层，所以处于主机这一交换机下的所有设备都在相同的网段。（下图转自：https://www.cnblogs.com/linjiaxin/p/6476480.html）
+
+
+ 
+
+NAT（Network Address Translation,网络地址转换），网上玄乎的解释是：把内部私有网络地址（IP地址）转化成合法的IP地址的技术。（黑人问号脸）通俗理解如下：
+众所周知，IP地址为4字节32位地址，被分为ABC类，用4个十进制数字点号分开等等等。但是现在网络四通八达，这些IP地址的数目是有限的，但设备仍然在剧烈的增长，IP地址肯定不够用呀。
+所以就有这种“打包”这种概念。也就是说，我给你们这一群人只分配一个IP，然后你们内部再使用三种私有地址（192.168.0~255 / 10.0~255 / 172.16~31 ）再进行对每个人的标识。那你们相当于有了两层的IP地址。但是你在主机上看的看的时候只看得到最后的一层私有地址。你拿这个私有地址可以访问和你在一个网络的其他主机，但是如果你想去访问外部，那是不合法的，所以当你想访问外部时，需要先采用一种NAT机制，把你的地址转化成最初分给你们这群人的IP。
+你可能想问了，那我怎么区分不同的主机呢？其实NAT也分为三种：静态NAT、动态NAT、PAT（端口地址复用），上述我说的给一群人分配一个IP地址也就是PAT。也就是说NAT在进行地址转换时，会根据一些能唯一标识主机的东西比如说端口(TCP/UDP)，sessionID(ICMP)等东西来区分不同的主机。
+现在回归正题，VMware的NAT连接模式：Windows gets an IP address from one of the Fusion background service。Puts Windows on a different subnet than the Mac, so the VM can't talk to the same things on the Mac's network that the Mac can talk with.  It sort of puts a router between the Mac and the VM。 （下图来源于：https://www.cnblogs.com/linjiaxin/p/6476480.html）
+
+
+可以明显的看到，此时虚拟机已经不在主机网段（192.168.1.*）上了。可以这样理解，虚拟机连在NAT的虚拟交换机上后，这个交换机通过一个虚拟的NAT和DHCP设备连接到主机网卡上。也就相当于，主机网卡分配了一个IP给这一系列NAT连接的虚拟机，然后这组虚拟机再进行内部IP设置。这也就解释了 puts Windows on a different subnet than the Mac，即形成了一个子层。也就相当于在MAC和NAT虚拟机组中设置了一个路由器。
+
+这种情况下也就解决了万一主机所在局域网里的IP资源比较紧张的问题。
+以上我们就能解释，为什么Bridged模式不能ping通NAT模式，而NAT模式能ping通bridge了。因为NAT模式下的你查看得到的IP是在主机IP下一层所形成的内网IP呀。而Bridge模式得到的IP是与主机在一层的IP。
+Host-only:Makes the VM isolated from the world except the MAC.(useful in development and testing setups)也就是说Host-only模式下，虚拟机只与主机进行通信与外网隔开。
+
+
+ 
+
+总结：
+在IP地址不够的情况下，可以运用NAT技术（事实上家用路由器也正在这么做）。
+在网段下面形成更小的子网，除了要有DHCP动态分配IP地址外，一定要有NAT设备在联网时将这些地址转化为合法的IP地址才能与外部进行通信。（也就是说家用的路由器一定会有NAT功能）
+在网络中形成子网是可以任意实现的，这个在子网中形成的IP地址是任意的，可重复的，你不能直接用这个IP地址定位到它。
+————————————————
+版权声明：本文为CSDN博主「小新安」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/dandandean_96/article/details/81381551

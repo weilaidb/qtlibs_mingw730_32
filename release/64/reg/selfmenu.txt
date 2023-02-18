@@ -279,6 +279,7 @@ BAT/网络network/问题点/OSPF
 BAT/网络network/防火墙
 BAT/网络network/防火墙工作原理
 BUG管理/BUG类别
+BUG管理/MSTP/长时PING大包丢包
 BUG管理/PHY自协商/偶发一些子架ping不通线卡
 BUG管理/代码管理系统/git clone报 error  invalid path
 BUG管理/代码管理系统/网页复制后数据丢失
@@ -2633,6 +2634,7 @@ SoftWare/WPS/如何显示文档批注
 SoftWare/firefox/firefox显示书签栏
 SoftWare/opengrok/md5sum
 SoftWare/vmware/16
+SoftWare/vmware/VMware 虚拟机与主机通信三种方式总结
 SoftWare/广联达
 SoftWare/流程图/亿图图示/离线安装文件
 TEST/RegExp/单个空格替换无
