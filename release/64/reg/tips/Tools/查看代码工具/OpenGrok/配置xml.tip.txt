@@ -1,0 +1,2 @@
+[目标路径;修改文件]
+\/home\/weilaidb\/soft\/opengrok-1.7.40\/etc\/configuration.xml;~/soft/tomcat/apache-tomcat-9.0.64/webapps/source/WEB-INF/web.xml

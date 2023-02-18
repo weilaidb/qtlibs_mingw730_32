@@ -494,6 +494,7 @@ C/enum/enum single withname
 C/enum/enum single withname typedef
 C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
+C/know/C 两个叹号的含义!!
 C/know/Linux中的软件安装进度条怎么搞
 C/know/MSG_OOB linux平台MSG_OOB选项测试
 C/know/define/TEST_F实现
@@ -2807,6 +2808,7 @@ Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12 (ubuntu 22.02)
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.7.21
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.7.34(报错)
+Tools/查看代码工具/OpenGrok/配置xml
 Tools/查看代码工具/测试/测试用例管理工具
 Tools/生成文件名 filename
 UNITTEST/GTEST/ASSERT_EQ

@@ -1,0 +1,1 @@
+echo "before:" && cat \2$NL$NLsed -i "s/\/var\/opengrok\/etc\/configuration\.xml/\1/g" \2$NLecho "after:" && cat \2$NL$NL$NL$NL$NL$NL

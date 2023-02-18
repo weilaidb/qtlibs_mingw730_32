@@ -1,0 +1,41 @@
+C: 两个叹号的含义
+
+mzhan017
+
+已于 2023-01-02 16:13:05 修改
+
+67
+ 收藏
+分类专栏： c/c++ 文章标签： c语言
+版权
+
+c/c++
+专栏收录该内容
+189 篇文章0 订阅
+订阅专栏
+文章目录
+说明
+举例
+说明
+bool local_rcv；
+local_rcv = !!(br->dev->flags & IFF_PROMISC);
+
+这里的两个叹号的含义，就是：先将一个整数取反，转换成真假值（bool值），然后再来一次取反，取值之前整数的真假值。那为什么要这样做，可能和汇编效率有关系。真假值的判断使用的汇编指令会更高效一些。
+
+举例
+/*
+ * user_mode(regs) determines whether a register set came from user
+ * mode.  On x86_32, this is true if V8086 mode was enabled OR if the
+ * register set was from protected mode with RPL-3 CS value.  This
+ * tricky test checks that with one comparison.
+ *
+ * On x86_64, vm86 mode is mercifully nonexistent, and we don't need
+ * the extra check.
+ */
+static inline int user_mode(struct pt_regs *regs)
+{
+	return !!(regs->cs & 3);
+}
+————————————————
+版权声明：本文为CSDN博主「mzhan017」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_36428903/article/details/126513024
