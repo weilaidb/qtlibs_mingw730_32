@@ -10,6 +10,7 @@ alias cdsoftwebapachebin='cd ~/soft/web_notebook_online/apache-tomcat-9.0.58/bin
 alias cdsoftwebapachebin='cd ~/soft/web_notebook_online/apache-tomcat-work/bin'
 alias cdsoftwebapachewebapps='cd ~/soft/web_notebook_online/apache-tomcat-work/webapps'
 
+alias cddata="cd ~/data "
 alias cdwork='cd ~/work'
 alias cdworkgit='cd ~/work/git'
 alias cdworkgitbak="cd ~/work/git.bak "

@@ -287,6 +287,7 @@ cdfdir;cd `dirname
 mkdirx;mkdir -p `dirname 
 
 
+cddata;cd ~/data
 cdworkgittdd;cd ~/work/git/tdd
 cdworkgittest;cd ~/work/git/test
 cdworkgitpython;cd ~/work/git/test/python

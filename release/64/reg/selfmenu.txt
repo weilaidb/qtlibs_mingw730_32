@@ -1900,6 +1900,7 @@ LINUX/Printk/KERN_NOTICE
 LINUX/Printk/KERN_WARNING
 LINUX/Printk/many equal signs
 LINUX/Printk/说明
+LINUX/Ubuntu/Ubuntu下deb包的安装方法
 LINUX/Ubuntu/apt install
 LINUX/Ubuntu/apt install 22.02
 LINUX/Ubuntu/apt list
@@ -1907,6 +1908,7 @@ LINUX/Ubuntu/ubuntu中编译安装gcc 9.2.0
 LINUX/Ubuntu/update
 LINUX/Ubuntu/vrf
 LINUX/Ubuntu/五笔输入法
+LINUX/Ubuntu/五笔输入法  ubuntu22.04 五笔输入法的问题
 LINUX/Ubuntu/国内源
 LINUX/Ubuntu/国内源 Ubuntu 20.04 Linux更换源教程
 LINUX/Ubuntu/国内源 Ubuntu 22.04
@@ -2077,8 +2079,10 @@ LINUX/命令行/wget
 LINUX/命令行/屏蔽主机的ping命令
 LINUX/命令行/快捷键 shortcut
 LINUX/命令行/磁盘disk/e2label set labelname
+LINUX/命令行/磁盘disk/etc fstab eg
 LINUX/命令行/磁盘disk/etc fstab自动挂载
 LINUX/命令行/磁盘disk/fdisk -l
+LINUX/命令行/磁盘disk/linux之fstab文件详解
 LINUX/命令行/磁盘disk/查看dev设备的uuid和labelname
 LINUX/命令行/系统终端命令提示符设置 PS1
 LINUX/命令行/输出/dmesg
@@ -3161,6 +3165,7 @@ path路径/常用文件夹
 电脑/戴尔OptiPlex 7060台式电脑/配置
 电脑/文件传输 FTP
 电脑/目录设计 目录管理(t14)
+电脑/虚拟机vm/目录管理
 电脑/装机/Ghost 备份还原
 电脑/装机/Ghost 备份还原(dell inspiron-15-7537)
 社会/专升本/政治课件
@@ -3221,7 +3226,9 @@ path路径/常用文件夹
 设计/软件设计/ATDD
 设计/软件设计/ROS
 设计/软件设计/ROS know/How To Install ros-desktop on Ubuntu 22.04Ubuntu22.04安装ros（一键搞定）
+设计/软件设计/ROS know/ROS 安装详细教程 —— Ubuntu22.0.4 LTS 安装
 设计/软件设计/ROS know/Ubuntu22.04安装ros（一键搞定）
+设计/软件设计/ROS know/ubuntu22.04安装ROS2 详细教程
 设计/软件设计/TDD
 设计/软件设计/TDD new/eg
 设计/软件设计/TDD new/suits

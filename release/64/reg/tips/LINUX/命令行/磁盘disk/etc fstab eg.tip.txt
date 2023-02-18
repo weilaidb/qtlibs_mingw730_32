@@ -1,0 +1,45 @@
+==============new 
+root@weilaidb-virtual-machine:/home/weilaidb# cat /etc/fstab 
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda3 during installation
+UUID=18713e1b-e642-43c0-b3bc-65c20b1454c7 /               ext4    errors=remount-ro 0       1
+# /boot/efi was on /dev/sda2 during installation
+UUID=0E87-6E79  /boot/efi       vfat    umask=0077      0       1
+/swapfile                                 none            swap    sw              0       0
+
+#add by self
+#/home/weilaidb/data was on /dev/sdb1 during installation
+UUID=c59d0c3c-5169-406d-bc0c-a2170c751754 /home/weilaidb/data               ext4    defaults,noatime  0       1
+
+
+
+============old
+
+root@weilaidb-virtual-machine:/home/weilaidb# cat /etc/fstab 
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda3 during installation
+UUID=18713e1b-e642-43c0-b3bc-65c20b1454c7 /               ext4    errors=remount-ro 0       1
+# /boot/efi was on /dev/sda2 during installation
+UUID=0E87-6E79  /boot/efi       vfat    umask=0077      0       1
+/swapfile                                 none            swap    sw              0       0
+
+#add by self
+#/home/weilaidb/data was on /dev/sdb1 during installation
+UUID=49c3e96a-5732-419a-97df-17b39e8522ee /home/weilaidb/data               ext4    defaults,noatime  0       1
+
+
+
+#
+chown -R weilaidb.weiladb ~/data

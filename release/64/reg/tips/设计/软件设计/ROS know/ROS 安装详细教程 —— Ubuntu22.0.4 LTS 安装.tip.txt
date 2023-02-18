@@ -1,0 +1,114 @@
+ROS 安装详细教程 —— Ubuntu22.0.4 LTS 安装
+ppqppl
+于 2023-01-05 01:40:00 发布 415
+收藏 4
+文章标签： ubuntu linux 运维 服务器
+版权
+ROS 安装详细教程 —— Ubuntu22.0.4 LTS 安装
+ROS 简介
+
+官方文档对 ROS 的介绍如下：
+
+The Robot Operating System (ROS) is a set of software libraries and tools that help you build robot applications. From drivers to state-of-the-art algorithms, and with powerful developer tools, ROS has what you need for your next robotics project. And it's all open source.
+
+简单来说 ROS 就是一款开源的机器人操作系统，可以实现在 Linux 或 Dock 下安装并进行使用。这里我们选择在 Ubuntu 22.04LTS 下进行安装。
+版本选择
+
+ROS 目前主要支持 Linux 和 MacOS 系统，新发布的 ROS2 也支持 Windows 和 RTOS 系统。
+
+对 ROS 兼容性最好的当属 Ubuntu 系统。从 ROS 发布以来，每版的 Ubuntu 系统版本都有与之对应 ROS 版本的，每一版 ROS 都有其对应版本的 Ubuntu 版本，切记不可随便装。
+
+ROS 和 Ubuntu 之间的版本对应关系如下:
+Ubuntu	ROS 1.0	ROS 2.0
+16.04 LTS	Kinetic LTS	Ardent
+18.04 LTS	Melodic LTS	Dashing LTS
+20.04 LTS	Noetic LTS	Foxy LTS
+22.04 LTS	Noetic Ninjemys	Humble Hawksbill
+
+这里我们使用的是 Ubuntu 22.04 LTS 系统，所以这里我们选择 Humble Hawksbill 系统进行安装
+安装过程
+设置编码
+
+安装代码如下：
+
+    sudo apt update
+    sudo apt install locales
+    sudo locale-gen en_US en_US.UTF-8
+    sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+    export LANG=en_US.UTF-8
+
+只有我们设置为 UTF-8 的英文编码才能正常安装运行于显示，设置后显示如下：
+添加镜像源
+
+    ## 通过检查此命令的输出，确保已启用Ubuntu Universe存储库。
+    apt-cache policy | grep universe
+
+输出应如下：
+
+若没有看到像上面这样的输出行，依次执行如下命令：
+
+    sudo apt install software-properties-common
+    sudo add-apt-repository universe
+
+这里的命令就是添加 apt 软件源，这里会基本添加好所有的国内的 apt 软件源
+
+然后继续执行上面的命令即可，在全部命令执行成功后，执行如下命令：
+
+    ## 继续执行如下命令：
+    sudo apt update && sudo apt install curl gnupg lsb-release
+    sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+这里如果出现如下界面：
+
+就需要执行如下命令：
+
+    sudo rm /var/chche/apt/archives/lock
+    sudo rm /var/lib/dpkg/lock-frontend  #注意自己无法获得锁的路径
+    sudo apt install -y gcc nasm
+
+如果报错：ubuntu curl: (56) Recv failure: 连接被对方重设，说明已有程序占用该端口，我们直接重启即可
+
+我们把所有的环境准备做好，就可以开始安装 ROS2 了
+安装 ROS2
+
+    sudo apt update
+    sudo apt upgrade
+    ## 推荐桌面版，比较推荐。
+    sudo apt install ros-humble-desktop
+    ## 安装时间可能较长，安心等待。
+
+在我们安装好之后，需要设置以下环境变量：
+
+    source /opt/ros/humble/setup.bash
+    echo " source /opt/ros/humble/setup.bash" >> ~/.bashrc
+
+到此，我们已经完整安装了 ROS2 ，我们就可以直接使用了
+示例测试
+示例一：通信测试
+
+首先我们来测试以下 ROS2 最为重要的底层通信系统 DDS 是否正常，我们启动一个终端并通过命令新建一个数据的发布者节点：
+
+ros2 run demo_nodes_cpp talker
+
+接下来，在这个终端不关闭进程的情况下，打开第二个终端,通过以下命令启动一个数据的订阅者节点：
+
+ros2 run demo_nodes_py listener
+
+这里可以看出来，我们的 Hello World 字符串在两个终端中正常传输，说明通信系统没有问题
+示例二：小海龟仿真测试
+
+这里我们需要用到两个终端，分别使用如下命令：
+
+    # 终端一
+    ros2 run turtlesim turtlesim_node
+    # 终端二
+    ros2 run turtlesim turtle_teleop_key
+
+第一句指令将启动一个蓝色背景的海龟仿真器，第二句指令将启动一个键盘控制节点，在该终端中点击键盘上的“上下左右”按键，就可以控制小海龟运动了
+参考资料
+
+    ubuntu22.04安装ROS2 详细教程
+————————————————
+版权声明：本文为CSDN博主「ppqppl」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/m0_59161987/article/details/128557068

@@ -1,0 +1,6 @@
+虚拟机目录管理
+总目录
+D:\vm
+
+D:\vm\ubuntu-22.04-desktop-amd64  -- ubuntu 2204
+ubuntu-22.04-desktop-amd64-data.vmdk  -- 专门存储数据，比如linux git库，soft等关键数据

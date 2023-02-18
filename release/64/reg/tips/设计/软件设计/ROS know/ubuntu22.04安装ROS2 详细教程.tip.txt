@@ -1,0 +1,144 @@
+ubuntu22.04安装ROS2 详细教程
+shenliu128
+已于 2022-10-14 09:12:00 修改 4640
+收藏 47
+分类专栏： ROS 文章标签： ubuntu
+版权
+ROS 专栏收录该内容
+5 篇文章 1 订阅
+订阅专栏
+
+在这里插入图片描述
+1：ROS 系统安装版本选择
+ROS 目前主要支持Linux和MacOS系统，新发布的 ROS2 也支持 Windows和RTOS 系统。
+对ROS兼容性最好的当属Ubuntu系统。从ROS发布以来，每版的Ubuntu系统版本都有与之对应ROS版本的，每一版ROS都有其对应版本的Ubuntu版本，切记不可随便装。
+ROS 和Ubuntu之间的版本对应关系:
+在这里插入图片描述
+目前最新的Ubuntu 22.04 支持的ROS2版本为Humble Hawksbill，可以从这个网站查看ROS2的各个发行版本的介绍信息。
+
+2：ROS2 系统安装 【ubuntu 22.04】
+1）：设置编码
+
+$ sudo apt update 
+$ sudo apt install locales
+$ sudo locale-gen en_US en_US.UTF-8
+$ sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+$ export LANG=en_US.UTF-8
+
+    1
+    2
+    3
+    4
+    5
+
+2):添加源
+
+## 通过检查此命令的输出，确保已启用Ubuntu Universe存储库。
+$ apt-cache policy | grep universe
+## 输出应如下：
+500 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages
+     release v=22.04,o=Ubuntu,a=jammy-security,n=jammy,l=Ubuntu,c=universe,b=amd64
+## 若没有看到像上面这样的输出行，依次执行如下命令：
+$ sudo apt install software-properties-common
+$ sudo add-apt-repository universe
+
+
+## 继续执行如下命令：
+$ sudo apt update && sudo apt install curl gnupg lsb-release
+$ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+    11
+    12
+    13
+    14
+    15
+
+如果遇到报错“ailed to connect to raw.githubusercontent.com port 443 after 13 ms: 拒绝连接”
+可参考https://www.guyuehome.com/37844
+
+处理方法：
+
+sudo vi /etc/hosts
+#####################
+127.0.0.1	localhost
+127.0.1.1	iron-virtual-machine
+###增加下面的解析
+185.199.108.133  raw.githubusercontent.com
+
+    1
+    2
+    3
+    4
+    5
+    6
+
+3）安装ROS2
+
+$ sudo apt update
+$ sudo apt upgrade
+## 推荐桌面版，比较推荐。
+$ sudo apt install ros-humble-desktop
+## 安装时间可能较长，安心等待。
+
+    1
+    2
+    3
+    4
+    5
+
+4）设置环境变量
+
+$ source /opt/ros/humble/setup.bash
+$ echo " source /opt/ros/humble/setup.bash" >> ~/.bashrc
+
+    1
+    2
+
+至此，ROS2就已经在系统中安装好了。
+
+5）ROS2 示例测试
+示例一：
+先来试试ROS2最为重要的底层通信系统DDS是否正常吧。
+启动第一个终端，通过以下命令启动一个数据的发布者节点：
+
+$ ros2 run demo_nodes_cpp talker
+
+    1
+
+在这里插入图片描述
+启动第二个终端，通过以下命令启动一个数据的订阅者节点：
+
+$ ros2 run demo_nodes_py listener
+
+    1
+
+在这里插入图片描述如果“Hello World”字符串在两个终端中正常传输，说明通信系统没有问题。
+
+示例二：小海龟仿真示例
+再来试一试ROS中的经典示例——小海龟仿真器。
+启动两个终端，分别运行如下指令：
+
+$ ros2 run turtlesim turtlesim_node
+$ ros2 run turtlesim turtle_teleop_key
+
+    1
+    2
+
+第一句指令将启动一个蓝色背景的海龟仿真器，第二句指令将启动一个键盘控制节点，在该终端中点击键盘上的“上下左右”按键，就可以控制小海龟运动了。
+在这里插入图片描述
+关于小海龟中蕴藏的ROS奥义，我们在后续教程中将持续探索。
+至此，ROS2安装成功。
+————————————————
+版权声明：本文为CSDN博主「shenliu128」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/shenliu128/article/details/127296318
