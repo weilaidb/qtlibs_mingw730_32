@@ -1,0 +1,226 @@
+ubuntu14.04搭建openGrok 1.7.40 + Java17+tomcat10.0.27阅读android系统代码
+junglyfine
+于 2022-12-10 11:49:15 发布 539
+收藏 1
+分类专栏： Android 文章标签： android git opengrok ubuntu
+版权
+Android 专栏收录该内容
+24 篇文章 0 订阅
+订阅专栏
+
+为了快速阅读android系统代码，首选openGrok，其它SI或understand估计不适合了。
+
+话不多说，工欲善其事必先利其器，先下载源码和工具.
+
+以下命令默认使用root，防止权限问题
+
+一、下载android 代码 
+
+还是清华的镜像比较牛逼，直接访问https://mirrors.tuna.tsinghua.edu.cn/help/AOSP/
+
+1、先下载repo工具
+
+    mkdir ~/bin
+    PATH=~/bin:$PATH
+    curl -k https://mirrors.tuna.tsinghua.edu.cn/git/git-repo > ~/bin/repo
+    chmod a+x ~/bin/repo
+     
+    #以上命令也可替换为
+    curl -k https://mirrors.tuna.tsinghua.edu.cn/git/git-repo -o ~/bin/repo
+     
+    #curl命令需要加上-k， 不然会出现以下错误而无法下载
+    #curl: (60) SSL certificate problem: certificate has expired
+
+   2、下载android代码
+
+    mkdir ~/work
+    cd ~/work
+    wget -c https://mirrors.tuna.tsinghua.edu.cn/aosp-monthly/aosp-latest.tar # 下载初始化包
+    tar xf aosp-latest.tar
+    cd AOSP   # 解压得到的 AOSP 工程目录
+    # 这时 ls 的话什么也看不到，因为只有一个隐藏的 .repo 目录
+    repo sync # 正常同步一遍即可得到完整目录
+    # 或 repo sync -l 仅checkout代码
+     
+    #这里我是直接用浏览器下载了一个晚上才下载下来^^
+
+到这里android源码是下载下来了
+
+二、搭建opengrok
+
+1、先下载相关工具包, 全部放在~/work/tools目录
+
+ (1)下载jdk-17_linux-x64_bin.tar.gz
+
+Java Downloads | Oracle
+
+https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+
+(2)下载apache-tomcat-10.0.27.tar.gz
+
+Apache Tomcat® - Apache Tomcat 10 Software Downloads
+
+https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
+
+(3)下载Python-3.6.4.tgz     ps:下载其它高版本也是可以的
+
+https://www.python.org/downloads/release/python-364/
+
+https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz
+
+(4)下载opengrok-1.7.40.tar.gz
+
+Releases · oracle/opengrok · GitHub
+
+https://github.com/oracle/opengrok/releases/download/1.7.40/opengrok-1.7.40.tar.gz
+
+下载不了可以在这里下载opengrok-1.7.40.tar.gz-Java文档类资源-CSDN下载
+
+2、安装工具
+
+(1)安装Java17
+
+    mkdir /usr/local/java
+    tar -zxvf jdk-17_linux-x64_bin.tar.gz -C /usr/local/java
+     
+    #接着就是配置环境变量，即在/etc/profile文件中添加变量JAVA_HOME、变量CLASSPATH ，path中追加jdk可执行文件路径：$JAVA_HOME/bin
+     
+    1、打开文件
+    vim /etc/profile
+    #在末尾添加
+    export JAVA_HOME=/usr/local/java/jdk-17.0.5
+    export JRE_HOME=${JAVA_HOME}/jre
+    export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+    export PATH=${JAVA_HOME}/bin:$PATH
+     
+    2、使环境变量生效
+    source /etc/profile
+     
+    3、添加软链接
+    ln -s /usr/local/java/jdk-17.0.5/bin/java /usr/bin/java
+     
+    4、检查版本
+    java -version
+     
+    PS：经过以上步骤，如果仍安装不成功，可以尝试这样做：
+     
+        1.删除系统自带的java环境命令
+        rm /usr/bin/java
+     
+        2.重新建立软连接：
+        ln -s /usr/local/jdk-17.0.5/bin/java /usr/bin/java
+     
+        3、再检查版本
+        java -version
+     
+
+(2)安装tomcat-10.0.27
+
+    cd ~/work
+    mkdir tools
+    tar -zxvf apache-tomcat-10.0.27.tar.gz
+    cd apache-tomcat-10.0.27/bin
+    ./startup.sh #打开服务
+     
+    #./shutdown.sh  #关闭服务
+
+打开浏览器，在地址栏输入：http://localhost:8080
+
+ tomcat安装成功。
+
+(3)安装Python3.6
+
+【不要卸载系统自带的python2.7和python3.4】（由于多个系统应用依赖自动安装的python，卸载将会卸载所有依赖应用，导致系统出问题或崩溃）
+
+    tar -xvf Python-3.6.4.tgz 
+     
+    cd Python-3.6.4
+    ./configure --with-ssl
+    make
+    make install
+     
+    #执行python3 如果版本不是3.6.4，则软链接安排上
+    rm /usr/bin/python3
+    ln -s /usr/bin/python3.6 /usr/bin/python3
+     
+    rm /usr/bin/python3m
+    ln -s /usr/bin/python3.6m /usr/bin/python3m
+
+检查一下版本：
+
+ (4)安装universal-ctags
+不要再使用 Exuberant ctags，因为已经不再维护更新，对于新版本的Opengrok支持度不好，所以先卸载掉:
+sudo apt-get remove --purge exuberant-ctags
+github地址：https://github.com/universal-ctags/ctags
+下载完成后，进入ctags文件夹，依次执行以下命令，完成编译和安装：
+
+    apt install autoconf
+    cd ~/work/tools
+    git clone https://github.com/universal-ctags/ctags  #下载源码
+    cd ctags
+    ./autogen.sh
+    ./configure --prefix=~/bin/universal-ctags  # 安装路径, 后面索引就是这个路径
+    make -j4
+    make install
+
+ (5)安装opengrok
+
+    cd ~/work/tools
+    tar -xvzf opengrok-1.7.40.tar.gz
+    mv opengrok-1.7.40 opengrok
+    cd opengrok
+    mkdir src data etc    //src 源码路径   // etc 配置    //data 索引
+
+<1>指定android源码位置
+原本需要把源码放到src下，因为我的android源代码放在了~/work/aosp，没必要把它整个移动到src下，所以在src下建了个enginner的软连接指向它：
+
+ln -s ~/work/aosp ~/work/tools/opengrok/src #(~/work/tools/opengrok/src : 需要链接的源码路径  ~/work/tools/opengrok/src: src下的链接  
+
+<2>复制source.war到tomcat中：(不用解压，会自动解压)
+
+    cp ~/work/tools/opengrok/lib/source.war ~/work/tools/apache-tomcat-10.0.27/webapps/
+     
+    #如果source.war没有自动解压，则执行以下
+    mv source.war source.zip
+    unzip source.zip
+
+编辑source\WEB-INF\web.xml文件，指定要存放configuration.xml的路径。
+
+注意：configuration.xml 目前还是不存在的，只有部署之后程序自动生成。
+
+ (6)开始部署opengrok
+
+    java -Xmx4g -jar ~/work/tools/opengrok/lib/opengrok.jar     
+    -c ~/bin/universal-ctags/bin/ctags     
+    -s ~/work/tools/opengrok/src     
+    -d ~/work/tools/opengrok/data -H -P -S -G -v     
+    -W ~/work/tools/opengrok/etc/configuration.xml     
+    -U http://localhost:8080/source     -m 256
+
+#-Xmx4g：配置Java 最大堆内存为4g，防止内存溢出。
+#-jar：指定opengrok.jar包。
+#-c：指定universal-ctags的路径，configure配置的路径，此时使用which ctags得到的路径是/usr/bin/ctags，是会报错的
+#-s：指定源码路径，就是上面的新建的src。
+#-d：指定索引文件存放路径，就是上面新建的data。
+#-W：指定configuration.xml的路径，就是上面新建的etc。
+#-m：指定opengrok索引时的缓存大小，默认只有16M。
+
+把如上命令写入openGrok.sh，使用./openGrok.sh运行就可以
+ 
+
+部署需要的时间比较长，完成后如下图
+
+ 
+
+ 
+
+ps: 
+
+    安装pip3
+        curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        sudo python3 get-pip.py
+
+
+————————————————
+版权声明：本文为CSDN博主「junglyfine」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/junglyfine/article/details/128261598

@@ -138,8 +138,10 @@ git@github.com:layui/layui.git
 
 
 本地库:
-#Web部署
+#Web部署,2为扩展版本
 git@gitee.com:weilaidb/web_notebook_online.git
+git@gitee.com:weilaidb/web_notebook_online2.git
+
 #autocodeset
 git@github.com:weilaidb/qtlibs_mingw730_32.git
 git@github.com:weilaidb/linux_driver.git
