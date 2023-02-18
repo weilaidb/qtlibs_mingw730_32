@@ -1,0 +1,8 @@
+PC ip 192.168.0.110
+vm ip 192.168.0.107
+
+
+vm下可以ping通网关，也可以ping通手机IP，但无法ping通PC IP
+PC下可以ping通VM IP
+
+-- 原来是PC的防火墙限制了

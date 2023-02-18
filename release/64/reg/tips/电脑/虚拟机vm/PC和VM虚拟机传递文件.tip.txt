@@ -1,0 +1,6 @@
+虚拟机和PC间传递文件比较麻烦
+1.使用虚拟机自带的共享
+
+2.直接复制粘贴
+
+3.filezilla client 和filezilla server
