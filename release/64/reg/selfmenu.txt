@@ -2620,6 +2620,7 @@ RegExp/replace/H2D
 Setting/网页显示常用Tab切换
 SoftWare/AutoCad 2022
 SoftWare/FastStone Capture v9.7
+SoftWare/FileZilla Server 新版配置教程，550错误解决
 SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address

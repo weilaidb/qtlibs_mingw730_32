@@ -1,3 +1,7 @@
+函数列表 crtl + Shift + O 
+文件列表: ctrl + p
+查看键盘配置 ctrl+k ctrl+s
+
 Video outline#
 Download and install VS Code.
 From https://code.visualstudio.com/download
@@ -48,3 +52,4 @@ User Interface - View the documentation for VS Code.
 Setup Overview - Documentation for getting up and running with VS Code, including platform specific setup.
 IntelliSense -VS Code brings smart code completions as you type.
 Was this documentation helpful?
+

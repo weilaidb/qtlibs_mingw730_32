@@ -1,0 +1,71 @@
+FileZilla Server 新版配置教程，550错误解决
+
+FileZilla Server 新版配置教程，550错误解决
+现在 FileZilla Server 最新版 1.2.0，配置界面跟之前有点不一样了。
+
+新版 FileZilla Server 用户目录采用挂载的方式，我刚开始配置的时候有 550 Couldn't open the file or directory 错误 
+
+下载地址：https://filezilla-project.org/download.php?type=server
+
+使用手册：https://share.weiyun.com/Ev3VNOJn
+
+ 
+
+默认端口修改
+FileZilla Server 默认端口修改
+
+这里修改默认的 21 端口
+
+ 
+
+被动端口设置
+FileZilla Server 被动端口修改
+
+ 自己选择合适的端口
+
+ 
+
+管理密码及端口设置
+
+
+ 
+
+用户目录设置
+FileZilla Server 用户目录设置
+
+Virtual path：是FTP用户将看到的路径
+
+Native path：是映射到服务器的物理路径
+
+Virtual path 必须有一个根目录 / ，
+
+
+
+ 像这样就会有 550 Couldn't open the file or directory 错误
+
+ 如果只有一条映射就直接是根目录 /
+
+
+
+ 
+
+修改 FileZilla Server 服务启动账户
+默认是以系统账户启动服务，权限太高
+
+新建 ftp 账户，删除所属用户组，加入 Guests 组
+
+
+
+以 ftp 账户启动 FileZilla Server 服务
+
+
+
+ 还要给 FileZilla Server 安装目录、站点文件加上 ftp 账户权限（刚新建的账户）
+
+
+
+站点文件要勾选修改权限
+
+ 
+
+标签: FileZilla Server, ftp
