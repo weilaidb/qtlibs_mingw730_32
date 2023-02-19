@@ -1902,9 +1902,11 @@ LINUX/Printk/KERN_NOTICE
 LINUX/Printk/KERN_WARNING
 LINUX/Printk/many equal signs
 LINUX/Printk/说明
+LINUX/Ubuntu/Ubuntu 22.04换国内源 清华源 阿里源 中科大源 163源
 LINUX/Ubuntu/Ubuntu下deb包的安装方法
 LINUX/Ubuntu/apt install
 LINUX/Ubuntu/apt install 22.02
+LINUX/Ubuntu/apt install 22.04
 LINUX/Ubuntu/apt list
 LINUX/Ubuntu/ubuntu中编译安装gcc 9.2.0
 LINUX/Ubuntu/update
