@@ -1,0 +1,3 @@
+【查询路径"sound/core"路径下使用函数"sprintf"】
+sprintf;sound\/core\/
+snprintf;sound\/core\/

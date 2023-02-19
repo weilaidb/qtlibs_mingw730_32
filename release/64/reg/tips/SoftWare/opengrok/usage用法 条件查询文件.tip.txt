@@ -1,0 +1,5 @@
+【 条件查询文件】
+【如从路径/usr/perl查询perl文件，但不查询路径为”/usr/bin/perl"下的perl文件。】
+【包含的文件；不包含的文件】
+lib/Makefile;arm/lib/Makefile
+

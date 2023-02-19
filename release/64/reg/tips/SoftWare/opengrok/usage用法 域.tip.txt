@@ -1,0 +1,21 @@
+2.2 域
+2.2.1 full
+全量搜索，包括字符串，数字，标识符等。
+
+2.2.2 defs
+定义搜索，主要对变量，函数进行查询等。 
+
+2.2.3 refs
+引用搜索，主要指符号如函数，类，变量。
+
+2.2.4 path
+资源文件路径搜索，如"src/mypath"。
+
+2.2.5 hist
+历史记录，日志注释搜索
+
+2.26 type
+类型查搜索，指定查询的文件，其中ada=Ada, asm=Asm, bzip2=Bzip(2), c=C, clojure=Clojure, csharp=C#, cxx=C++, eiffel=Eiffel, elf=ELF, erlang=Erlang, file=Image file, fortran=Fortran, golang=Golang, gzip=GZIP, haskell=Haskell, hcl=HCL, jar=Jar, java=Java, javaclass=Java class, javascript=JavaScript, json=Json, kotlin=Kotlin, lisp=Lisp, lua=Lua, mandoc=Manual pages, pascal=Pascal, perl=Perl, php=PHP, plain=Plain Text, plsql=PL/SQL, powershell=PowerShell script, python=Python, r=R, ruby=Ruby, rust=Rust, scala=Scala, sh=Shell script, sql=SQL, swift=Swift, tar=Tar, tcl=Tcl, terraform=Terraform, troff=Troff, typescript=TypeScript, uuencode=UUEncoded, vb=Visual Basic, verilog=Verilog, xml=XML, zip=Zip。
+————————————————
+版权声明：本文为CSDN博主「高桐@BILL」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/huangyabin001/article/details/123940389

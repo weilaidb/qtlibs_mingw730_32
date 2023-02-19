@@ -1,0 +1,119 @@
+【OpenGrok代码搜索引擎】四、OpenGrok使用指南
+
+高桐@BILL
+
+已于 2022-04-04 10:54:52 修改
+
+1969
+ 收藏 7
+分类专栏： Opengrok代码搜索引擎 文章标签： Opengrok
+版权
+
+Opengrok代码搜索引擎
+专栏收录该内容
+4 篇文章3 订阅
+订阅专栏
+一、使用案例
+1.1 查询函数"start_kernel"的定义
+def:start_kernel
+
+案例如下：
+
+
+
+1.2 查询路径"sound/core"路径下使用函数"sprintf"
+refs:sprintf  path:sound\/core\/
+
+案例如下：
+
+
+
+1.3 查询变量"cmdline"赋值
+"command_line ="
+
+
+
+1.4 查询Makefiles，二进制文件“init-mm.o”构建信息 
+"init-mm.o" path:Makefile
+
+
+
+1.5 查询字符“command line” 
+"command line" 
+
+
+
+1.6 使用通配符查询字符串"strart_*"
+start_*
+
+
+
+ 1.7 条件查询文件
+如从路径/usr/perl查询perl文件，但不查询路径为”/usr/bin/perl"下的perl文件。
+
+-"arm/lib/Makefile" +“lib/Makefile”
+
+
+
+ 
+
+ 1.8 查找所有包含". c"的文件
+". c"
+
+
+
+ 1.9 查找以“ma”开头的文件
+path:/ma[a-zA-Z]*/
+
+
+
+ 1.10 查找所有c文件中的main函数 
+main type:c
+
+
+二、使用技巧
+一次查询就是一系列的子句组合，一个子句的前缀可能包括如下：
+
+“+”表示查询子句内容是必须的；形如+“clause”
+“-”表示查询子句内容是忽略的；形如-“clause”
+“:”表示查询子句针对一个域的搜索；形如文件类型type:c
+一个子句也有可能是下面这些形式：
+
+一个词语，表示查询所有包含该词语的文档；形如“term”
+一个词组；表示查询所有包含该词组的文档，形如“hello term”
+嵌套或组合查询；如通过“+”“-”的组合或者形如"term1""term2"...
+逻辑运算查询；opengrok支持AND(&&),"+",OR(||),NOT(!),"-".注意，这些运算符必须要大写。
+一个字句也支持诸如正则表达式，通配符，模糊查询，近似查询，范围搜索等。
+
+正则表达式；形如/[mb]an/，将会查询形如man或ban的字符等。
+通配符；形如"te?t"，将会擦汗寻到text，test等。
+模糊查询；使用“~”进行模糊或近似查询，例如res~；
+范围查询；
+2.1 特殊字符
+opengrok在查询语法中支持转义字符；这些特殊字符如“+ - && || ! ( ) { } [ ] ^ " ~ * ? : \ /”。转义这些字符需要使用反斜杠\。例如搜索(1+1):2，完整的搜索字符串如下：
+
+1\+1\+\:2
+
+需要特别注意的是索引字符主要是数字，字母和下划线，一个字符是无法进行索引。
+
+2.2 域
+2.2.1 full
+全量搜索，包括字符串，数字，标识符等。
+
+2.2.2 defs
+定义搜索，主要对变量，函数进行查询等。 
+
+2.2.3 refs
+引用搜索，主要指符号如函数，类，变量。
+
+2.2.4 path
+资源文件路径搜索，如"src/mypath"。
+
+2.2.5 hist
+历史记录，日志注释搜索
+
+2.26 type
+类型查搜索，指定查询的文件，其中ada=Ada, asm=Asm, bzip2=Bzip(2), c=C, clojure=Clojure, csharp=C#, cxx=C++, eiffel=Eiffel, elf=ELF, erlang=Erlang, file=Image file, fortran=Fortran, golang=Golang, gzip=GZIP, haskell=Haskell, hcl=HCL, jar=Jar, java=Java, javaclass=Java class, javascript=JavaScript, json=Json, kotlin=Kotlin, lisp=Lisp, lua=Lua, mandoc=Manual pages, pascal=Pascal, perl=Perl, php=PHP, plain=Plain Text, plsql=PL/SQL, powershell=PowerShell script, python=Python, r=R, ruby=Ruby, rust=Rust, scala=Scala, sh=Shell script, sql=SQL, swift=Swift, tar=Tar, tcl=Tcl, terraform=Terraform, troff=Troff, typescript=TypeScript, uuencode=UUEncoded, vb=Visual Basic, verilog=Verilog, xml=XML, zip=Zip。
+————————————————
+版权声明：本文为CSDN博主「高桐@BILL」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/huangyabin001/article/details/123940389

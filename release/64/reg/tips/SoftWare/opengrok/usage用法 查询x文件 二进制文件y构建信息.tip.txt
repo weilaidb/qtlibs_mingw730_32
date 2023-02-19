@@ -1,0 +1,4 @@
+【查询Makefiles，二进制文件“init-mm.o”构建信息 】
+init-mm.o;Makefile
+
+memblock.o;Makefile

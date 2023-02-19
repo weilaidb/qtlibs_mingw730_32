@@ -1,0 +1,189 @@
+【OpenGrok代码搜索引擎】二、Windows10下基于Linux子系统搭建Opengrok代码搜索引擎
+
+高桐@BILL
+
+已于 2022-05-15 10:01:21 修改
+
+2506
+ 收藏 2
+分类专栏： Opengrok代码搜索引擎 文章标签： opengrok
+版权
+
+Opengrok代码搜索引擎
+专栏收录该内容
+4 篇文章3 订阅
+订阅专栏
+写在前面
+无论是android asop、linux kernel，harmony os，rtos，还是alios，代码量成万上亿行；无论用什么IDE都无法秒级找到我们想要的函数或者变量。
+
+OpenGrok为一个方便快速的源码搜索及交叉引用查询引擎。 它以Java编写，可用于源码搜索、交叉引用查询、以及源码树定位。 它支持多种编码语言和多种代码版本控制引擎系统。
+
+一、安装Linux子系统
+1.1 启用或关闭Windows功能
+
+
+1.2 适用于Linux的Windows子系统
+ 
+
+1.3 MicroSoft Store下载安装Ubuntu
+
+
+1.4  Ubuntu on Windows
+
+
+二、安装Opengrok工具链
+2.1 下载安装OpenGrok
+2.1.1 OpenGrok简介
+官网链接：{OpenGrok by OpenGrok
+
+如上我们了解到，OpenGrok安装环境以来以下软件：
+
+Java（11及以上版本）
+Tomcat (10.x 及以上版本) 
+Universal ctags
+2.1.2 下载Opengrok 
+下载链接:https://github.com/oracle/opengrok/releases/
+
+
+
+2.2 下载安装Java
+下载链接：Java Downloads | Oracle
+
+dpkg -i jdk-11.0.14_linux-x64_bin.deb
+2.3 下载安装ctags
+下载链接：https://github.com/universal-ctags/ctags
+
+    $ git clone https://github.com/universal-ctags/ctags.git
+    $ cd ctags
+    $ ./autogen.sh
+    $ ./configure --prefix=/where/you/want # defaults to /usr/local
+    $ make
+    $ make install # may require extra privileges depending on where to install
+三、配置Opengrok
+
+
+3.1 创建目录层级
+为了方便管理，opengrok建议将源码，配置文件，日志，数据，工具等统一放到opengrok目录下，如下：
+
+mkdir /opengrok/{src,data,dist,etc,log}
+tar -C /opengrok/dist --strip-components=1 -xzf opengrok-X.Y.Z.tar.gz
+3.2 日志配置
+cp /opengrok/dist/doc/logging.properties /opengrok/etc
+
+
+修改日志配置文件，内容如下：
+
+handlers= java.util.logging.FileHandler, java.util.logging.ConsoleHandler
+ 
+java.util.logging.FileHandler.pattern = /opengrok/log/opengrok%g.%u.log
+java.util.logging.FileHandler.append = false
+java.util.logging.FileHandler.limit = 0
+java.util.logging.FileHandler.count = 30
+java.util.logging.FileHandler.level = ALL
+java.util.logging.FileHandler.formatter = org.opengrok.indexer.logger.formatter.SimpleFileLogFormatter
+ 
+java.util.logging.ConsoleHandler.level = WARNING
+java.util.logging.ConsoleHandler.formatter = org.opengrok.indexer.logger.formatter.SimpleFileLogFormatter
+ 
+org.opengrok.level = FINE
+3.3 设置源码数据
+基于我们之前建立的目录结构，将我们需要建立索引的代码放置到/opengrok/src目录下，如下：
+
+
+
+3.4 安装管理工具（可选）
+# 将会安装opengrok管理工具，路径如opengrok/dist/tools/opengrok-tools.tar.gz
+$ cd tools
+$ python3 -m venv env
+$ . ./env/bin/activate
+$ pip install opengrok-tools.tar.gz
+该管理工具主要封装了OpenGrok's创建索引等相关命令，管理工具的安装需要系统已安装Pyton环境。
+
+
+3.4.1 安装管理工具命令解析
+python3 -m venv env
+
+创建见python3的venv环境，环境创建后需进行激活进入evn环境，才可以使用opengrok管理工具。
+
+
+
+此时，env下还没有安装opengrok工具，目录结构如下：
+
+
+
+激活env环境，如下命令：
+
+ . ./env/bin/activate
+
+激活后，命令终端前面会多一个（env）标记，如下图：
+
+
+
+ 接下来我们安装管理工具到env环境下，如下：
+
+pip install opengrok-tools.tar.gz
+
+
+
+注意！后面使用opengrok管理工具如opengrok-indexer都需要在env环境下进行哦。
+3.5 部署web应用程序
+3.5.1 拷贝opengrok下的source.war到tomcat目录下的webapps目录下
+cp opengrok/dist/lib/source.war xxx/01_apache-tomcat-10.0.18/webapps/
+3.5.2 配置web.xml
+vim xxx/01_apache-tomcat-10.0.18/webapps/source/WEB-INF/web.xml
+修改param-name为CONFIGURATION的值内容如下：
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+ 
+    <display-name>OpenGrok</display-name>
+    <description>A wicked fast source browser</description>
+    <context-param>
+        <description>Full path to the configuration file where OpenGrok can read its configuration</description>
+        <param-name>CONFIGURATION</param-name>
+        <param-value>xxx/opengrok/etc/configuration.xml</param-value>
+    </context-param>
+...
+
+
+
+四、初始化索引
+java11 \
+    -Djava.util.logging.config.file=/root/workspace/opengrok/etc/logging.properties \
+    -jar /root/workspace/opengrok/dist/lib/opengrok.jar \
+    -c /usr/local/bin/ctags \
+    -s /root/workspace/opengrok/src -d /root/workspace/opengrok/data -H -P -S -G \
+    -W /root/workspace/opengrok/etc/configuration.xml -U http://localhost:8080/source
+
+
+五、FAQ
+5.1 Error: A JNI error has occurred, please check your installation and try again Exception in thread "main" java.lang.UnsupportedClassVersionError: org/opengrok/indexer/index/Indexer has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versionsup to 52.0
+
+
+ 解决方案：java版本过低，使用java11+；
+
+5.2 16:45:51 SEVERE: Couldn't notify the webapp on http://localhost:8080/source.jakarta.ws.rs.NotFoundException: HTTP 404 Not Found
+
+
+ 
+
+ 解决方案：java版本过低，使用java11+；
+
+5.2 提示“autoreconf: not found”，没有生成configure文件
+
+
+ 解决方案：
+
+需要安装autoreconf工具，安装命令如下：
+
+sudo apt install autoconf
+
+文章知识点与官方知识档案匹配，可进一步学习相关知识
+CS入门技能树Linux入门初识Linux26815 人正在系统学习中
+————————————————
+版权声明：本文为CSDN博主「高桐@BILL」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/huangyabin001/article/details/123765976

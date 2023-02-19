@@ -1,0 +1,11 @@
+【 常用查询】
+defs:start_kernel type:c path:init\/main.c
+
+refs:early  path:\/linux\/include\/linux\/
+
+
+"later" path:\/linux\/include\/linux\/
+refs:start_kernel  path:\/linux\/include\/linux\/
+
+
++"__cpu_present_mask"

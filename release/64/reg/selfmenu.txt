@@ -2635,6 +2635,21 @@ SoftWare/WPS/如何批量选中不同颜色的文字
 SoftWare/WPS/如何显示文档批注
 SoftWare/firefox/firefox显示书签栏
 SoftWare/opengrok/md5sum
+SoftWare/opengrok/usage用法
+SoftWare/opengrok/usage用法 freq
+SoftWare/opengrok/usage用法 xx路径下使用函数func
+SoftWare/opengrok/usage用法 以ma开头的文件
+SoftWare/opengrok/usage用法 函数定义
+SoftWare/opengrok/usage用法 域
+SoftWare/opengrok/usage用法 所有c文件中的main函数
+SoftWare/opengrok/usage用法 所有包含.c的文件
+SoftWare/opengrok/usage用法 条件查询文件
+SoftWare/opengrok/usage用法 查询x文件 二进制文件y构建信息
+SoftWare/opengrok/usage用法 查询变量xx赋值
+SoftWare/opengrok/usage用法 查询字符
+SoftWare/opengrok/usage用法 正则表达式
+SoftWare/opengrok/usage用法 特殊字符
+SoftWare/opengrok/usage用法 通配符查询字符串xx
 SoftWare/vmware/16
 SoftWare/vmware/VMware 虚拟机与主机通信三种方式总结
 SoftWare/广联达
@@ -2803,6 +2818,8 @@ Tools/双拼输入法快捷键 打字练习
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/help Requirements安装要求
 Tools/查看代码工具/OpenGrok/openGrok 1.7.40 + Java17+tomcat10.0.27
+Tools/查看代码工具/OpenGrok/【OpenGrok代码搜索引擎】二 Windows10下基于Linux子系统搭建Opengrok代码搜索引擎
+Tools/查看代码工具/OpenGrok/【OpenGrok代码搜索引擎】四、OpenGrok使用指南
 Tools/查看代码工具/OpenGrok/配置
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.2.22
 Tools/查看代码工具/OpenGrok/配置 opengrok-1.5.12
@@ -3073,7 +3090,8 @@ path路径/常用文件夹
 术语/网络/TCAM（Ternary Content-Addressable Memory）
 术语/网络/TCP_IP协议族
 术语/网络/TIPC协议
-术语/网络/VRP术语/网络/VRF
+术语/网络/VRF
+术语/网络/VRP
 术语/网络/VRRP
 术语/网络/fcs
 术语/网络/fcs error
@@ -3176,6 +3194,7 @@ path路径/常用文件夹
 电脑/虚拟机vm/PC和VM虚拟机传递文件
 电脑/虚拟机vm/桥接模式ping不通主机IP
 电脑/虚拟机vm/目录管理
+电脑/虚拟机vm/目录管理 windows10 microsoft store安装ubuntu
 电脑/装机/Ghost 备份还原
 电脑/装机/Ghost 备份还原(dell inspiron-15-7537)
 社会/专升本/政治课件
