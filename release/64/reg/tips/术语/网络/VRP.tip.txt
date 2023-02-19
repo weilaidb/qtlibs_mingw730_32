@@ -1,0 +1,2 @@
+VRP Versatile Routing Platform 通用路由平台
+是华为公司数据通信产品的通用网络操作系统平台，包括路由器、交换机、防火墙、WLAN等众多系列产品。
