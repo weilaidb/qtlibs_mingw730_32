@@ -1,4 +1,3 @@
-
 ##TOMCAT路径
 
 /mnt/e/software/apache-tomcat-10.1.5/webapps
@@ -10,6 +9,8 @@
 #代码路径
 /home/weilaidb/workspace/opengrok/src
 
+#.bashrc路径
+/mnt/d/code/qtlibs_mingw730_32
 
 
 ###执行命令
