@@ -121,7 +121,6 @@ fi
 
 
 
-
 dos2unix /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
 source /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
 
