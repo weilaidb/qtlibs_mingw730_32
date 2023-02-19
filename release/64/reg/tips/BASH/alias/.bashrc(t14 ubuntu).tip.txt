@@ -40,6 +40,23 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
+
+#
+
+###############
+dos2unix /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
+source /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
+
+dos2unix /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/gitinfo.tip.txt > /dev/null 2>&1
+source /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/gitinfo.tip.txt > /dev/null 2>&1
+
+
+dos2unix /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt > /dev/null 2>&1
+source /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt > /dev/null 2>&1
+
+
+
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -71,7 +88,6 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -116,20 +132,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-
-
-###############
-dos2unix /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
-source /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
-
-dos2unix /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/gitinfo.tip.txt > /dev/null 2>&1
-source /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/gitinfo.tip.txt > /dev/null 2>&1
-
-
-dos2unix /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt > /dev/null 2>&1
-source /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt > /dev/null 2>&1
-
-
-
-
