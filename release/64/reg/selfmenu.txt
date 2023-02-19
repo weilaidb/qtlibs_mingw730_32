@@ -6,6 +6,7 @@ AutoTest/python/telnet
 AutoTest/python/telnet read_until
 BASH/alias/.bashrc(101.201.79.164)
 BASH/alias/.bashrc(49.234.85.12)
+BASH/alias/.bashrc(t14 ubuntu)
 BASH/alias/.bashrc加载反引号问题
 BASH/alias/bashrc deploy script
 BASH/alias/bashrc 加载配置 qtlibs_mingw730_32
