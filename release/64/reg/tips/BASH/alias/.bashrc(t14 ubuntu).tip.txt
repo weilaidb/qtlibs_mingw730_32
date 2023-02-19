@@ -47,12 +47,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
     else
-        color_prompt=
+	color_prompt=
     fi
 fi
 
@@ -115,12 +115,15 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+<<<<<<< HEAD
 
 
 
 
 
 
+=======
+>>>>>>> 2cd5fd2bb457b931b9c417e7641d51b07051467d
 dos2unix /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
 source /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
 
