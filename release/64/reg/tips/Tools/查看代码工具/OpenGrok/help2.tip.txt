@@ -1,0 +1,245 @@
+root@weilaixnew:/home/weilaidb/workspace/opengrok/src# java -jar /opengrok/dist/lib/opengrok.jar -h
+Feb 19, 2023 10:13:01 PM org.opengrok.indexer.index.Indexer parseOptions
+INFO: Indexer options: [-h]
+
+Usage: java -jar opengrok.jar [options] [subDir1 [...]]
+
+  -h, -?, --help [mode]
+        With no mode specified, display this usage summary. Or specify a mode:
+          config - display configuration.xml examples.
+           ctags - display ctags command-line.
+            guru - display AnalyzerGuru details.
+           repos - display enabled repositories.
+
+  --annotationCache on|off
+        Annotation cache provides speedup when getting annotation
+        for files in the webapp at the cost of significantly increased
+        indexing time (multiple times slower) and slightly increased
+        disk space (comparable to history cache size).
+        Can be enabled per project.
+
+  --apiTimeout number
+        Set timeout for asynchronous API requests.
+
+  --connectTimeout number
+        Set connect timeout. Used for API requests.
+
+  -A, --analyzer (.ext|prefix.):(-|analyzer)
+        Associates files with the specified prefix or extension (case-
+        insensitive) to be analyzed with the given analyzer, where 'analyzer'
+        may be specified using a class name (case-sensitive e.g. RubyAnalyzer)
+        or analyzer language name (case-sensitive e.g. C). Option may be
+        repeated.
+          Ex: -A .foo:CAnalyzer
+              will use the C analyzer for all files ending with .FOO
+          Ex: -A bar.:Perl
+              will use the Perl analyzer for all files starting with
+              "BAR" (no full-stop)
+          Ex: -A .c:-
+              will disable specialized analyzers for all files ending with .c
+
+  -c, --ctags /path/to/ctags
+        Path to Universal Ctags. Default is ctags in environment PATH.
+
+  --canonicalRoot /path/
+        Allow symlinks to canonical targets starting with the specified root
+        without otherwise needing to specify -N,--symlink for such symlinks. A
+        canonical root must end with a file separator. For security, a canonical
+        root cannot be the root directory. Option may be repeated.
+
+  --checkIndex
+        Check index, exit with 0 on success,
+        with 1 on failure.
+
+  -d, --dataRoot /path/to/data/root
+        The directory where OpenGrok stores the generated data.
+
+  --depth number
+        Scanning depth for repositories in directory structure relative to
+        source root. Default is 2.
+
+  --disableRepository type_name
+        Disables operation of an OpenGrok-supported repository. See also
+        -h,--help repos. Option may be repeated.
+          Ex: --disableRepository git
+              will disable the GitRepository
+          Ex: --disableRepository MercurialRepository
+
+  -e, --economical
+        To consume less disk space, OpenGrok will not generate and save
+        hypertext cross-reference files but will generate on demand, which could
+        be slightly slow.
+
+  -G, --assignTags
+        Assign commit tags to all entries in history for all repositories.
+
+  -H
+        Enable history.
+
+  --historyBased on|off
+        If history based reindex is in effect, the set of files
+        changed/deleted since the last reindex is determined from history
+        of the repositories. This needs history, history cache and
+        projects to be enabled. This should be much faster than the
+        classic way of traversing the directory structure.
+        The default is on. If you need to e.g. index files untracked by
+        SCM, set this to off. Currently works only for Git.
+        All repositories in a project need to support this in order
+        to be indexed using history.
+
+  --historyThreads number
+        The number of threads to use for history cache generation on repository level.
+        By default the number of threads will be set to the number of available CPUs.
+        Assumes -H/--history.
+
+  --historyFileThreads number
+        The number of threads to use for history cache generation
+        when dealing with individual files.
+        By default the number of threads will be set to the number of available CPUs.
+        Assumes -H/--history.
+
+  -I, --include pattern
+        Only files matching this pattern will be examined. Pattern supports
+        wildcards (example: -I '*.java' -I '*.c'). Option may be repeated.
+
+  -i, --ignore pattern
+        Ignore matching files (prefixed with 'f:' or no prefix) or directories
+        (prefixed with 'd:'). Pattern supports wildcards (example: -i '*.so'
+        -i d:'test*'). Option may be repeated.
+
+  -l, --lock on|off|simple|native
+        Set OpenGrok/Lucene locking mode of the Lucene database during index
+        generation. "on" is an alias for "simple". Default is off.
+
+  --leadingWildCards on|off
+        Allow or disallow leading wildcards in a search. Default is on.
+
+  -m, --memory number
+        Amount of memory (MB) that may be used for buffering added documents and
+        deletions before they are flushed to the directory (default 16.0).
+        Please increase JVM heap accordingly too.
+
+  --mandoc /path/to/mandoc
+        Path to mandoc(1) binary.
+
+  -N, --symlink /path/to/symlink
+        Allow the symlink to be followed. Other symlinks targeting the same
+        canonical target or canonical children will be allowed too. Option may
+        be repeated. (By default only symlinks directly under the source root
+        directory are allowed. See also --canonicalRoot)
+
+  -n, --noIndex
+        Do not generate indexes and other data (such as history cache and xref
+        files), but process all other command line options.
+
+  --nestingMaximum number
+        Maximum depth of nested repositories. Default is 1.
+
+  --reduceSegmentCount
+        Reduce the number of segments in each index database to 1. This might
+        (or might not) bring some improved performance. Anyhow, this operation
+        takes non-trivial time to complete.
+
+  -o, --ctagOpts path
+        File with extra command line options for ctags.
+
+  -P, --projects
+        Generate a project for each top-level directory in source root.
+
+  -p, --defaultProject path/to/default/project
+        Path (relative to the source root) to a project that should be selected
+        by default in the web application (when no other project is set either
+        in a cookie or in parameter). Option may be repeated to specify several
+        projects. Use the special value __all__ to indicate all projects.
+
+  --profiler
+        Pause to await profiler or debugger.
+
+  --progress
+        Print per-project percentage progress information.
+
+  -Q, --quickScan on|off
+        Turn on/off quick context scan. By default, only the first 1024KB of a
+        file is scanned, and a link ('[..all..]') is inserted when the file is
+        bigger. Activating this may slow the server down. (Note: this setting
+        only affects the web application.) Default is on.
+
+  -q, --quiet
+        Run as quietly as possible. Sets logging level to WARNING.
+
+  -R /path/to/configuration
+        Read configuration from the specified file.
+
+  -r, --remote on|off|uionly|dirbased
+        Specify support for remote SCM systems.
+              on - allow retrieval for remote SCM systems.
+             off - ignore SCM for remote systems.
+          uionly - support remote SCM for user interface only.
+        dirbased - allow retrieval during history index only for repositories
+                   which allow getting history for directories.
+
+  --renamedHistory on|off
+        Enable or disable generating history for renamed files.
+        If set to on, makes history indexing slower for repositories
+        with lots of renamed files. Default is off.
+
+  --repository [path/to/repository|@file_with_paths]
+        Path (relative to the source root) to a repository for generating
+        history (if -H,--history is on). By default all discovered repositories
+        are history-eligible; using --repository limits to only those specified.
+        File containing paths can be specified via @path syntax.
+        Option may be repeated.
+
+  -S, --search [path/to/repository|@file_with_paths]
+        Search for source repositories under -s,--source, and add them. Path
+        (relative to the source root) is optional.
+        File containing paths can be specified via @path syntax.
+        Option may be repeated.
+
+  -s, --source /path/to/source/root
+        The root directory of the source tree.
+
+  --style path
+        Path to the subdirectory in the web application containing the requested
+        stylesheet. The factory-setting is: "default".
+
+  -T, --threads number
+        The number of threads to use for index generation, repository scan
+        and repository invalidation.
+        By default the number of threads will be set to the number of available
+        CPUs. This influences the number of spawned ctags processes as well.
+
+  -t, --tabSize number
+        Default tab size to use (number of spaces per tab character).
+
+  --token string|@file_with_string
+        Authorization bearer API token to use when making API calls
+        to the web application
+
+  -U, --uri SCHEME://webappURI:port/contextPath
+        Send the current configuration to the specified web application.
+
+  --updateConfig
+        Populate the web application with a bare configuration, and exit.
+
+  --userPage URL
+        Base URL of the user Information provider.
+        Example: "https://www.example.org/viewProfile.jspa?username=".
+        Use "none" to disable link.
+
+  --userPageSuffix URL-suffix
+        URL Suffix for the user Information provider. Default: "".
+
+  -V, --version
+        Print version, and quit.
+
+  -v, --verbose
+        Set logging level to INFO.
+
+  -W, --writeConfig /path/to/configuration
+        Write the current configuration to the specified file (so that the web
+        application can use the same configuration).
+
+  --webappCtags on|off
+        Web application should run ctags when necessary. Default is off.
+
