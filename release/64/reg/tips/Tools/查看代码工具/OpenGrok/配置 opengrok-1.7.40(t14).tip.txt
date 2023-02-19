@@ -1,0 +1,22 @@
+
+##TOMCAT路径
+
+/mnt/e/software/apache-tomcat-10.1.5/webapps
+
+
+##opengrok 路径
+/mnt/e/software/opengrok-1.7.40/etc
+
+#代码路径
+/home/weilaidb/workspace/opengrok/src
+
+
+
+###执行命令
+java \
+    -Djava.util.logging.config.file=/opengrok/etc/logging.properties \
+    -jar /opengrok/dist/lib/opengrok.jar \
+    -c /usr/bin/ctags \
+    -s /home/weilaidb/workspace/opengrok/src -d /opengrok/data -H -P -S -G \
+    -W /mnt/e/software/opengrok-1.7.40/etc/configuration.xml -U http://localhost:8080/source
+    
