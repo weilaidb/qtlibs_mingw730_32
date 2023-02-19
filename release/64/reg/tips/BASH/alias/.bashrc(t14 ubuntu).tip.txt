@@ -57,7 +57,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\w\n\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -71,6 +71,7 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -115,15 +116,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-<<<<<<< HEAD
 
 
 
-
-
-
-=======
->>>>>>> 2cd5fd2bb457b931b9c417e7641d51b07051467d
+###############
 dos2unix /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
 source /mnt/d/code/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
 
