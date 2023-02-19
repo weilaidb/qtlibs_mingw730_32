@@ -138,8 +138,9 @@ git@github.com:layui/layui.git
 
 
 本地库:
-#Web部署,2为扩展版本
+#Web部署,2为扩展版本(tomcat10),1为复制web_notebook_online
 git@gitee.com:weilaidb/web_notebook_online.git
+git@gitee.com:weilaidb/web_notebook_online1.git
 git@gitee.com:weilaidb/web_notebook_online2.git
 
 #autocodeset
