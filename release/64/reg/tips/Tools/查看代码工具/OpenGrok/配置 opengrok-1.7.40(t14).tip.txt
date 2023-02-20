@@ -2,6 +2,11 @@
 
 /mnt/e/software/apache-tomcat-10.1.5/webapps
 
+启动
+cd /mnt/e/software/apache-tomcat-10.1.5/bin && sh startup.sh
+
+关闭
+cd /mnt/e/software/apache-tomcat-10.1.5/bin && sh shutdown.sh
 
 ##opengrok 路径
 /mnt/e/software/opengrok-1.7.40/etc

@@ -2797,7 +2797,7 @@ Tools/git/tig blame filename
 Tools/git/tig help
 Tools/git/删除文件不删除本地 delete
 Tools/git/删除文件不删除本地 delete2
-Tools/git/常用git库 git address
+Tools/git/常用git库 git address gitaddress
 Tools/git/常见问题汇总
 Tools/hex to dec 十六进制转十进制
 Tools/ico生成在线工具
@@ -3003,6 +3003,7 @@ path路径/常用文件夹
 宏Macro/Source insight/new buffer
 宏Macro/Source insight/new macro
 宏Macro/Source insight/new/Ask Symbol
+宏Macro/Source insight/new/insert line many
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
 工作/年度计划/2023年度计划
@@ -3155,6 +3156,7 @@ path路径/常用文件夹
 环境配置/环境配置模板
 生活/位置/出版社地址
 生活/位置/常用物品
+生活/健身养生/脖子僵硬
 生活/医药/know/川贝枇杷膏
 生活/医药/know/止咳原理
 生活/医药/咳嗽 流鼻涕
