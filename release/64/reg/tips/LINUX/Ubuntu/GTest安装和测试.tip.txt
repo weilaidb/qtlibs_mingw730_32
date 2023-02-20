@@ -1,0 +1,81 @@
+[Ubuntu]GTest安装和测试
+
+PangCoder
+
+于 2018-12-28 11:47:10 发布
+
+8960
+ 收藏 39
+分类专栏： Linux编程
+版权
+
+Linux编程
+专栏收录该内容
+1 篇文章0 订阅
+订阅专栏
+1.Ubuntu直接通过控制台安装
+
+sudo apt-get install libgtest-dev
+2.编译链接库
+
+   2.1进入gtest文件夹
+
+cd /usr/src/gtest
+    2.2编译
+
+#没有安装Cmake的请先安装cmake
+sudo mkdir build 
+cd build
+sudo cmake ..  #一定要以sudo的方式运行，否则没有写入权限
+sudo make      #这个也一样要以sudo的方式
+3.将生成的libgtest.a 和 libgtest_main.a 拷贝到系统的lib路径下
+
+sudo cp libgtest*.a /usr/local/lib
+到此为止，环境已经搭建完毕，接下来是代码测试
+
+去你自己的文件夹生成一个test.cpp
+
+vi test.cpp
+然后写入以下代码
+
+#include <gtest/gtest.h>//注意斜杠方向，左斜杠有可能找不到头文件
+int Foo(int a,int b)
+{
+   if(0 == a||0 == b)
+   throw "don't do that";
+   int c = a%b;
+   if (0 == c)
+  {
+     return b;
+  }
+  return Foo(b,c);
+}
+ 
+TEST(FooTest,HandleNoneZeroInput)//名称随便
+{
+   EXPECT_EQ(2,Foo(4,10));
+   EXPECT_EQ(6,Foo(30,18));
+}
+int main(int argc,char*argv[])
+{
+   testing::InitGoogleTest(&argc,argv);
+   return RUN_ALL_TESTS();
+}
+编译，这次采用简单的g++命令，需要注意的是 后面需要加上"-lgtest"和"-lpthread"
+
+g++ test.cpp -lgtest -lpthread
+运行效果如下
+
+
+
+附上断言使用说明
+
+ 
+
+
+PangCoder
+关注
+
+————————————————
+版权声明：本文为CSDN博主「PangCoder」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_36251561/article/details/85319547
