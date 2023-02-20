@@ -36,6 +36,11 @@ source insight 宏定义文件v2.8
 source insight 宏定义文件v2.9
 添加函数注释 InsertFunHeader2
 
+source insight 宏定义文件v3.0
+添加GTest用例函数 TEST_F,提示用例集名
+InsertGtestCase123
+InsertGtestCase1_6
+
 
 
 
@@ -859,6 +864,207 @@ macro UnMultiLineComment()
     }
     SetWndSel(hwnd, selection)
 
+}
+
+macro InsertGtestCase123()
+{
+	// Get the owner's name from the environment variable: szMyName.
+	// If the variable doesn't exist, then the owner field is skipped.
+	/*#########################################################
+#########################################################
+#######  Set szMyName variable to your name    ########
+#######  for example    szMyName = "t357"     ########
+#########################################################
+#########################################################*/
+	szMyName = "" //empty
+	// Get a handle to the current file buffer and the name
+	// and location of the current symbol where the cursor is.
+	hbuf = GetCurrentBuf() //get file buffer
+	ln = GetBufLnCur(hbuf)
+	
+	szGtestCaseKey = Ask("Enter Gtest Case KeyWord, eg TestAbc!!")
+	if("" == szGtestCaseKey)
+	{
+		Msg ("input is empty")
+		return
+	}
+	full_name = "An" # szGtestCaseKey
+
+	InsBufLine(hbuf, ln + 1, "TEST_F(" #full_name # ", T1)")
+
+	InsBufLine(hbuf, ln + 2, "{")
+
+	InsBufLine(hbuf, ln + 3, "")
+
+	InsBufLine(hbuf, ln + 4, "ASSERT_TRUE(1==1);")
+
+	InsBufLine(hbuf, ln + 5, "ASSERT_FALSE(1==0);")
+
+	InsBufLine(hbuf, ln + 6, "ASSERT_THAT(1,Eq(1));")
+
+	InsBufLine(hbuf, ln + 7, "}")
+
+	InsBufLine(hbuf, ln + 8, "")
+
+	InsBufLine(hbuf, ln + 9, "TEST_F(" #full_name # ", T2)")
+
+	InsBufLine(hbuf, ln + 10, "{")
+
+	InsBufLine(hbuf, ln + 11, "")
+
+	InsBufLine(hbuf, ln + 12, "ASSERT_TRUE(1==1);")
+
+	InsBufLine(hbuf, ln + 13, "ASSERT_FALSE(1==0);")
+
+	InsBufLine(hbuf, ln + 14, "ASSERT_THAT(1,Eq(1));")
+
+	InsBufLine(hbuf, ln + 15, "}")
+
+	InsBufLine(hbuf, ln + 16, "")
+
+	InsBufLine(hbuf, ln + 17, "TEST_F(" #full_name # ", T3)")
+
+	InsBufLine(hbuf, ln + 18, "{")
+
+	InsBufLine(hbuf, ln + 19, "")
+
+	InsBufLine(hbuf, ln + 20, "ASSERT_TRUE(1==1);")
+
+	InsBufLine(hbuf, ln + 21, "ASSERT_FALSE(1==0);")
+
+	InsBufLine(hbuf, ln + 22, "ASSERT_THAT(1,Eq(1));")
+
+	InsBufLine(hbuf, ln + 23, "}")
+
+
+	// put the insertion point inside the header comment
+	//SetBufIns(hbuf, ln + 1, strlen(szFunc) + strlen(szInf) + 8)
+}
+
+
+macro InsertGtestCase1_6()
+{
+	// Get the owner's name from the environment variable: szMyName.
+	// If the variable doesn't exist, then the owner field is skipped.
+	/*#########################################################
+#########################################################
+#######  Set szMyName variable to your name    ########
+#######  for example    szMyName = "t357"     ########
+#########################################################
+#########################################################*/
+	szMyName = "" //empty
+	// Get a handle to the current file buffer and the name
+	// and location of the current symbol where the cursor is.
+	hbuf = GetCurrentBuf() //get file buffer
+	ln = GetBufLnCur(hbuf)
+	
+	szGtestCaseKey = Ask("Enter Gtest Case KeyWord, eg TestAbc!!")
+	if("" == szGtestCaseKey)
+	{
+		Msg ("input is empty")
+		return
+	}
+	full_name = "An" # szGtestCaseKey
+
+
+	InsBufLine(hbuf, ln + 1, "TEST_F(" #full_name # ", T1)")
+
+	InsBufLine(hbuf, ln + 2, "{")
+
+	InsBufLine(hbuf, ln + 3, "")
+
+	InsBufLine(hbuf, ln + 4, "ASSERT_TRUE(1==1);")
+
+	InsBufLine(hbuf, ln + 5, "ASSERT_FALSE(1==0);")
+
+	InsBufLine(hbuf, ln + 6, "ASSERT_THAT(1,Eq(1));")
+
+	InsBufLine(hbuf, ln + 7, "}")
+
+	InsBufLine(hbuf, ln + 8, "")
+
+	InsBufLine(hbuf, ln + 9, "TEST_F(" #full_name # ", T2)")
+
+	InsBufLine(hbuf, ln + 10, "{")
+
+	InsBufLine(hbuf, ln + 11, "")
+
+	InsBufLine(hbuf, ln + 12, "ASSERT_TRUE(1==1);")
+
+	InsBufLine(hbuf, ln + 13, "ASSERT_FALSE(1==0);")
+
+	InsBufLine(hbuf, ln + 14, "ASSERT_THAT(1,Eq(1));")
+
+	InsBufLine(hbuf, ln + 15, "}")
+
+	InsBufLine(hbuf, ln + 16, "")
+
+	InsBufLine(hbuf, ln + 17, "TEST_F(" #full_name # ", T3)")
+
+	InsBufLine(hbuf, ln + 18, "{")
+
+	InsBufLine(hbuf, ln + 19, "")
+
+	InsBufLine(hbuf, ln + 20, "ASSERT_TRUE(1==1);")
+
+	InsBufLine(hbuf, ln + 21, "ASSERT_FALSE(1==0);")
+
+	InsBufLine(hbuf, ln + 22, "ASSERT_THAT(1,Eq(1));")
+
+	InsBufLine(hbuf, ln + 23, "}")
+
+	InsBufLine(hbuf, ln + 24, "")
+
+	InsBufLine(hbuf, ln + 25, "TEST_F(" #full_name # ", T4)")
+
+	InsBufLine(hbuf, ln + 26, "{")
+
+	InsBufLine(hbuf, ln + 27, "")
+
+	InsBufLine(hbuf, ln + 28, "ASSERT_TRUE(1==1);")
+
+	InsBufLine(hbuf, ln + 29, "ASSERT_FALSE(1==0);")
+
+	InsBufLine(hbuf, ln + 30, "ASSERT_THAT(1,Eq(1));")
+
+	InsBufLine(hbuf, ln + 31, "}")
+
+	InsBufLine(hbuf, ln + 32, "")
+
+	InsBufLine(hbuf, ln + 33, "TEST_F(" #full_name # ", T5)")
+
+	InsBufLine(hbuf, ln + 34, "{")
+
+	InsBufLine(hbuf, ln + 35, "")
+
+	InsBufLine(hbuf, ln + 36, "ASSERT_TRUE(1==1);")
+
+	InsBufLine(hbuf, ln + 37, "ASSERT_FALSE(1==0);")
+
+	InsBufLine(hbuf, ln + 38, "ASSERT_THAT(1,Eq(1));")
+
+	InsBufLine(hbuf, ln + 39, "}")
+
+	InsBufLine(hbuf, ln + 40, "")
+
+	InsBufLine(hbuf, ln + 41, "TEST_F(" #full_name # ", T6)")
+
+	InsBufLine(hbuf, ln + 42, "{")
+
+	InsBufLine(hbuf, ln + 43, "")
+
+	InsBufLine(hbuf, ln + 44, "ASSERT_TRUE(1==1);")
+
+	InsBufLine(hbuf, ln + 45, "ASSERT_FALSE(1==0);")
+
+	InsBufLine(hbuf, ln + 46, "ASSERT_THAT(1,Eq(1));")
+
+	InsBufLine(hbuf, ln + 47, "}")
+
+
+
+	// put the insertion point inside the header comment
+	//SetBufIns(hbuf, ln + 1, strlen(szFunc) + strlen(szInf) + 8)
 }
 
 
