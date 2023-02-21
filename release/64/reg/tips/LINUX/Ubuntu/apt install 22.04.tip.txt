@@ -6,3 +6,5 @@ doxygen
 
 
 pip3 install --upgrade pip
+
+ros-desktop

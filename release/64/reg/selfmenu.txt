@@ -211,6 +211,7 @@ BAT/网络network/三层交换机 L3 Switch
 BAT/网络network/二层交换机 L2Switch
 BAT/网络network/什么是LACP
 BAT/网络network/什么是vlan
+BAT/网络network/内网环境搭建之DNS服务器
 BAT/网络network/常见问题/光模块拔掉后二层交换芯片仍LINKUP
 BAT/网络network/常见问题/光模块拔掉后二层交换芯片仍LINKUP GE自协商
 BAT/网络network/常见问题/光模块拔掉后二层交换芯片仍LINKUP IEEE 802.3-2018 中文目录
