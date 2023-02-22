@@ -163,6 +163,10 @@ BAT/网络network/lacp
 BAT/网络network/lacp 链路聚合Eth-Trunk最佳总结
 BAT/网络network/nat
 BAT/网络network/ping Name or service not known
+BAT/网络network/ping 批量ping网段
+BAT/网络network/ping 批量ping网段命令再升级
+BAT/网络network/ping 批量ping网段命令升级
+BAT/网络network/ping 批量ping网段命令终极方法
 BAT/网络network/ping大包
 BAT/网络network/ping大包测试
 BAT/网络network/ping大包测试2
@@ -3107,6 +3111,7 @@ path路径/常用文件夹
 术语/网络/VRRP
 术语/网络/fcs
 术语/网络/fcs error
+术语/网络/know/一口气Ping1000个IP地址，会发生什么事情？
 术语/网络/know/二层、三层、 四层交换机都有什么不一样？
 术语/网络/tipc
 术语/网络/万兆以太网
