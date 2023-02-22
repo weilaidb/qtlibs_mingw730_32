@@ -1,0 +1,23 @@
+#include "cmapfloattest.h"
+
+
+CMapFloatTest::CMapFloatTest()
+{
+
+}
+
+unsigned int CMapFloatTest::init()
+{
+    return 0;
+}
+
+unsigned int CMapFloatTest::print()
+{
+    return 0;
+}
+
+unsigned int CMapFloatTest::clear()
+{
+    return 0;
+}
+

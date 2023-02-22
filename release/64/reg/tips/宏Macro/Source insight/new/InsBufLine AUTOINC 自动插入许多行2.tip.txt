@@ -1,0 +1,15 @@
+#include <iostream>
+#include <string>
+#include <map>
+
+class full_name
+{
+public:
+    full_name();
+    static unsigned int init();
+    static unsigned int clear();
+    static unsigned int print();
+
+#private:
+
+};
