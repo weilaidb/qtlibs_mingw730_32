@@ -1,3 +1,7 @@
+InsertGetter
+InsertSetter
+InsertGetterSetter
+
 InsertCxxClassImplement
 
 InsertCxxClassDeclare
