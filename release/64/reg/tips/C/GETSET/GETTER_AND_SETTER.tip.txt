@@ -1,1 +1,1 @@
-int abc = 0;
+unsigned int abc = 0;
