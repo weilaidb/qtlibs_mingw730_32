@@ -1,0 +1,115 @@
+Linux c - 利用JMP指令打动态桩
+
+Linux c - 利用JMP指令打动态桩
+
+k117470154
+
+于 2018-11-24 23:35:55 发布
+
+723
+ 收藏 5
+分类专栏： linux c 文章标签： linux c 单元测试 打桩
+版权
+
+linux c
+专栏收录该内容
+6 篇文章0 订阅
+订阅专栏
+代码开发时，本模块的代码经常会用到外部模块的某些函数，这些外部函数在进行单元测试时一般会进行打桩。
+
+这种一般称之为静态打桩，比如：
+
+void func()
+{
+    exfunc();  // 本模块的func函数调用了外部模块的exfunc函数
+}
+//在进行本模块的单元测试时 exfunc在编译时会提示未定义 所以一般会进行如下打桩
+ 
+int exfunc()
+{
+    return 0; // 空函数直接返回 或 做某些特定的实现
+}
+对于一些函数，我们希望在正式版本中做一些处理，而在单元测试中做另外一些处理。
+
+这时我们一般会使用编译宏，比如：
+
+void function()
+{
+    #ifdef _UNIT_TEST
+    call_unittest_func();
+    #else
+    call_normal_func();
+    #endif
+}
+这种使用编译宏来区分单元测试版本和正式版本的方法很简单，但是会使代码中存在很多的编译宏，使得代码不容易阅读。
+
+下面介绍一种利用JMP指令，打动态桩的方法。
+
+所谓动态桩是指，代码中调用函数A时，不改变代码流程，却能够不执行A，而去执行B函数。
+
+代码如下：
+
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/mman.h>
+ 
+ 
+#define JMP_OFFSET_LEN  5   //JMP指令的长度
+ 
+//JMP相对跳转
+void install_stub(void* src_func, void* dst_func)
+{
+    int pagesize = sysconf(_SC_PAGESIZE);                                          // 系统页大小
+    unsigned long srcpage = (unsigned long)((unsigned long)src_func & 0xFFFFF000); // 计算原函数地址所在的页 的首地址
+    mprotect((void*)srcpage, pagesize, PROT_READ | PROT_WRITE | PROT_EXEC);        // 使用mprotect函数使该页的内存可读可写可执行
+    unsigned char jmpcmd[JMP_OFFSET_LEN] = {0};
+    unsigned int offset = (unsigned long)dst_func - (unsigned long)src_func - JMP_OFFSET_LEN;
+    jmpcmd[0] = 0xE9;                                                              // JMP指令
+    memcpy(&jmpcmd[1], &offset, sizeof(offset));                                   // 偏移
+    memcpy(src_func, jmpcmd, JMP_OFFSET_LEN);                                      // 将原函数的地址替换为JMP指令 跳转到目的函数
+}
+ 
+//JMP绝对跳转
+void install_stub2(void* src_func, void* dst_func)
+{
+    int pagesize = sysconf(_SC_PAGESIZE);                                          // 系统页大小
+    unsigned long srcpage = (unsigned long)((unsigned long)src_func & 0xFFFFF000); // 计算原函数地址所在的页 的首地址
+    mprotect((void*)srcpage, pagesize, PROT_READ | PROT_WRITE | PROT_EXEC);        // 使用mprotect函数使该页的内存可读可写可执行
+    unsigned char jmpcmd[14] = {0};                                                // JMP远跳只支持32位程序 64位程序地址占8个字节 寻址有问题
+    jmpcmd[0] = 0xFF;                                                              // 当JMP指令为 FF 25 00 00 00 00时，会取下面的8个字节作为跳转地址
+    jmpcmd[1] = 0x25;                                                              // 因此可以使用14个字节作为指令 (FF 25 00 00 00 00) + dstaddr
+    jmpcmd[2] = 0x00;                                                              
+    jmpcmd[3] = 0x00;
+    jmpcmd[4] = 0x00;
+    jmpcmd[5] = 0x00;
+    unsigned long dstaddr = (unsigned long)dst_func;
+    memcpy(&jmpcmd[6], &dstaddr, sizeof(dstaddr));                                 
+    memcpy(src_func, jmpcmd, sizeof(jmpcmd));   
+}
+ 
+void test_funcA()
+{
+    printf("call funcA\n");
+}
+ 
+void test_funcB()
+{
+    printf("call funcB\n");
+}
+ 
+int main()
+{
+    install_stub2((void*)test_funcA, (void*)test_funcB);  // 添加动态桩 用B替换A
+    test_funcA();                                        // 执行A函数
+    return 0;
+}
+编译执行会发现，调用test_funcA函数，实际执行的是test_funcB。
+
+这种不改变A函数的实现，不改变调用A函数的代码流程，通过JMP指令跳转到执行B函数，即称之为动态打桩。
+
+ 
+————————————————
+版权声明：本文为CSDN博主「k117470154」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/k117470154/article/details/84454975
