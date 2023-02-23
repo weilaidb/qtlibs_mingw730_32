@@ -289,6 +289,7 @@ BUG管理/MSTP/长时PING大包丢包
 BUG管理/PHY自协商/偶发一些子架ping不通线卡
 BUG管理/代码管理系统/git clone报 error  invalid path
 BUG管理/代码管理系统/网页复制后数据丢失
+BUG管理/单元测试/进程PROTOCOL Debug版本桩正常,Release版本桩打不上
 BUG管理/异常挂起/LACP弹出消息失败
 BUG管理/异常挂起/LACP弹出消息失败2
 BUG管理/测试BUG模板
@@ -3223,6 +3224,7 @@ path路径/常用文件夹
 电脑/装机/Ghost 备份还原
 电脑/装机/Ghost 备份还原(dell inspiron-15-7537)
 社会/专升本/政治课件
+笔记/单元测试/打桩原理 Stub Install Remove
 笔记/想法/测试设计(FT or UT)
 笔记/测试
 笔记/笔记模板
