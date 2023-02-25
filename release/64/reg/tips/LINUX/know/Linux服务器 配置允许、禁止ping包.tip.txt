@@ -1,0 +1,42 @@
+Linux服务器 配置允许、禁止ping包
+
+IT-Andy
+
+于 2020-09-02 15:21:42 发布
+
+994
+ 收藏 4
+分类专栏： 服务器
+版权
+
+服务器
+专栏收录该内容
+20 篇文章0 订阅
+订阅专栏
+Linux服务器默认是允许ping包的，但是在某些情况下为了安全起见，我们都把服务器设置为禁ping。
+
+1、检查Linux服务器当前是否禁ping，执行命令：cat /proc/sys/net/ipv4/icmp_echo_ignore_all
+
+
+
+备注： 0----代表允许ping包               1-----代表禁止ping包
+
+2、修改配置文件/etc/sysctl.conf，在sysctl.conf文件最后以后添加以下内容：
+
+      net.ipv4.icmp_echo_ignore_all = 1
+
+
+
+
+3、执行命令 (配置文件才能生效)：sysctl -p
+
+4、找一个域名，解析到该服务器上，ping包即可测试
+
+
+
+ 
+
+文章知识点与官方知识
+————————————————
+版权声明：本文为CSDN博主「IT-Andy」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_39188306/article/details/108362737

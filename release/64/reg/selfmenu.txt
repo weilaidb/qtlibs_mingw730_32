@@ -1956,6 +1956,7 @@ LINUX/help/top
 LINUX/help/tr
 LINUX/help/vmstat
 LINUX/know/Linux下为什么有的文件名后带个星号
+LINUX/know/Linux服务器 配置允许、禁止ping包
 LINUX/know/epoll
 LINUX/know/find paths must precede expression
 LINUX/know/glibc/glibc unlink触发机制解析（pwn unlink）

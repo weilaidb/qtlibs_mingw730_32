@@ -51,3 +51,8 @@ go env -w GOPROXY=https://goproxy.cn,direct
 
 
 
+
+
+
+
+cd ~/soft/web_notebook_online/apache-tomcat-work/bin && sh startup.sh
