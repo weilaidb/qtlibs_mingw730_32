@@ -1,0 +1,67 @@
+ 完美解决 github 访问速度慢和访问不通的问题 [复制链接]
+	
+[版主推荐]
+zhangdaiscott
+	
+电梯直达
+跳转到指定楼层
+楼主
+发表于 2022-11-25 09:48:04 | 只看该作者 回帖奖励
+
+Ghips工具，完美解决github访问速度慢和访问不通的问题。
+
+        原理：自动获取 GitHub 最快 IP，一键刷新 hosts，这个小工具还是不错的，建议大家尝试下！ 尝试过很多方案，比如自己查询ip，修改host都无效，这个还是比较好用的。
+
+
+使用步骤
+
+点这里下载 Ghips | 用网盘下载
+https://pan.baidu.com/s/1aWVvosFZieCphbqJZtPYgQ?pwd=g7ct
+
+
+        良心玩家，绿色版免安装
+        体积仅 601 KB
+        支持 Win7，Win8，Win10，Win11 等操作系统。
+
+
+Ghips
+在这里插入图片描述
+
+刷新间隔时间设为非 0 则定时获取最快 IP 并自动刷新域名解析。
+
+        更新 IP 后首次访问 GitHub 可能会略慢，稍等就快了。
+
+
+本程序需要以管理权限运行才能修改 hosts。 建议右键点 Ghips 托盘图标，在弹出菜单中勾选「开机启动」。
+
+这样开机就会静默获取管理权限启动，不会再弹出警告。
+
+Ghips github地址：https://github.com/aardio/Ghips
+
+
+
+
+示例
+HOSTS:
+20.27.177.113 avatars1.githubusercontent.com
+20.27.177.113 www.github.com
+20.27.177.113 camo.githubusercontent.com
+20.27.177.113 avatars7.githubusercontent.com
+20.27.177.113 raw.github.com
+20.27.177.113 avatars8.githubusercontent.com
+20.27.177.113 avatars0.githubusercontent.com
+20.27.177.113 avatars3.githubusercontent.com
+20.27.177.113 avatars4.githubusercontent.com
+20.27.177.113 avatars5.githubusercontent.com
+20.27.177.113 marketplace-screenshots.githubusercontent.com
+20.27.177.113 gist.githubusercontent.com
+20.27.177.113 cloud.githubusercontent.com
+20.27.177.113 repository-images.githubusercontent.com
+20.27.177.113 user-images.githubusercontent.com
+20.27.177.113 assets-cdn.github.com
+20.27.177.113 avatars2.githubusercontent.com
+20.27.177.113 raw.githubusercontent.com
+20.27.177.113 avatars6.githubusercontent.com
+20.27.177.113 desktop.githubusercontent.com
+20.27.177.113 github.com
+

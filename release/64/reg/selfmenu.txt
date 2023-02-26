@@ -2800,6 +2800,7 @@ Tools/git/git server
 Tools/git/gitclone下载失败方法
 Tools/git/know/git中子模块/子仓库的使用 submodule
 Tools/git/know/如何在 Linux 上设置私有 Git 服务器
+Tools/git/know/完美解决 github 访问速度慢和访问不通的问题
 Tools/git/order
 Tools/git/problems/git dangling commit
 Tools/git/problems/github Network error Software caused connection abort
@@ -3180,6 +3181,7 @@ path路径/常用文件夹
 生活/医药/know/止咳原理
 生活/医药/咳嗽 流鼻涕
 生活/医药/支原体感染
+生活/医药/脾胃虚弱
 生活/后续/过节
 生活/图书馆/50家出版社投稿邮箱大全
 生活/图书馆/国家图书馆
@@ -3231,6 +3233,7 @@ path路径/常用文件夹
 笔记/测试
 笔记/笔记模板
 笔记/网络/三层路由ping过程
+笔记/读书笔记/ROS机器人开发实践
 笔记/软件/UML画序列图或时序图
 算法/C/冒泡排序
 算法/C/快速排序法
