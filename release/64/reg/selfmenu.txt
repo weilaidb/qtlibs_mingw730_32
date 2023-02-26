@@ -2708,15 +2708,19 @@ Tools/VIM 编译 vim-8.1.2270
 Tools/VIM常用快捷键
 Tools/VIM常用快捷键 ctags
 Tools/VS Visual Studio快捷键
+Tools/VSCode/base/背景色 护眼色
 Tools/VSCode/know/VScode替代Source insight的设置及常用快捷键
+Tools/VSCode/know/【提高效率】VScode快速生成代码片段（代码模板）
 Tools/VSCode/know/资深工程师 VSCode C/C++ 必备开发插件
 Tools/VSCode/模板/00snippet 中可以使用的一些变量
 Tools/VSCode/模板/cmain
 Tools/VSCode/模板/cxxmain
 Tools/VSCode/模板/header
+Tools/VSCode/模板/help 位置 复制
 Tools/VSCode/模板/insertfileheader
 Tools/VSCode/模板/insertfilesource
 Tools/VSCode/模板/头文件#ifndef #define #endif
+Tools/VSCode/背景色 护眼色
 Tools/VSCode快捷键
 Tools/VSCode快捷键2
 Tools/Vim .Vimrc
