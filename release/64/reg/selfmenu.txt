@@ -297,6 +297,7 @@ BUG管理/测试BUG记录模板（供参考）
 Books/常用书籍列表
 Books/常用书籍列表 学校
 Books/常用书籍列表 已经购买
+Books/常用书籍列表(文学)
 Books/常用代码
 Books/常用网址
 Books/常用网址（https develop）
