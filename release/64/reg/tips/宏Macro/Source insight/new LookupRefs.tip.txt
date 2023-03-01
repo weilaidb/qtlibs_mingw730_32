@@ -1,0 +1,8 @@
+macro LookupRefs (symbol)
+{
+   hbuf = NewBuf("Results") // create output buffer
+   if (hbuf == 0)
+      stop
+   SearchForRefs(hbuf, symbol, 0)
+   SetCurrentBuf(hbuf) // put buffer in a window
+}

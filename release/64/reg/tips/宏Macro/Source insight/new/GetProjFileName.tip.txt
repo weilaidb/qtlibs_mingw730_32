@@ -1,0 +1,38 @@
+##从工程中找到findGTestFileName 这个文件并打开
+
+hprj = GetCurrentProj()
+
+//从工程中找这个文件
+ifileMax = GetProjFileCount (hprj)
+ifile = 0
+bFindFlag = 0
+findFile = ""
+while (ifile < ifileMax)
+{
+   findFile = GetProjFileName (hprj, ifile)
+   //Msg ("filename:" # filename )
+   if(findGTestFileName == findFile)
+   {
+   		bFindFlag = 1
+   		hCurOpenBuf = OpenBuf(findFile)
+		if(hCurOpenBuf != hNil)
+		{
+			SetCurrentBuf(hCurOpenBuf)
+			break 
+		}
+		else
+		{
+			//Msg("打开失败")
+		}
+		break
+   }
+
+   ifile = ifile + 1
+}
+
+
+if(0 == bFindFlag)
+{
+	Msg ("Cannot find File:" # findGTestFileName )
+
+}

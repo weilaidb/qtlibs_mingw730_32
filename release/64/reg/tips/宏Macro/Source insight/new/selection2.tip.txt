@@ -1,0 +1,8 @@
+// get window, sel, and buffer handles
+hwnd = GetCurrentWnd()
+if (hwnd == 0)
+stop
+sel = GetWndSel(hwnd)
+if (sel.ichFirst == 0)
+stop
+hbuf = GetWndBuf(hwnd)

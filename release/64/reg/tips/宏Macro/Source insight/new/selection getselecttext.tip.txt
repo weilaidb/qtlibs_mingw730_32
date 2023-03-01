@@ -1,0 +1,11 @@
+//插入当前选择的内容，在上一行。
+macro getselecttext()
+{
+	hbufCur = GetCurrentBuf();
+	lnCur = GetBufLnCur(hbufCur)
+	selecttext = GetBufSelText (hbufCur)
+	sz = cat("    printk(\"", selecttext)
+	sz = cat(sz, "\\n\");");
+
+	InsBufLine(hbufCur, lnCur, sz)
+}

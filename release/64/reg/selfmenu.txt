@@ -3008,6 +3008,7 @@ path路径/常用文件夹
 宏Macro/Source insight/JumpToSymbolDef 跳转到符号
 宏Macro/Source insight/ListAllSiblings
 宏Macro/Source insight/LoadSearchPattern
+宏Macro/Source insight/LookupRefs
 宏Macro/Source insight/NewBuf
 宏Macro/Source insight/OpenBuf
 宏Macro/Source insight/PutBufLine
@@ -3022,15 +3023,24 @@ path路径/常用文件夹
 宏Macro/Source insight/filename
 宏Macro/Source insight/msg 打印内容
 宏Macro/Source insight/msg 打印内容2
+宏Macro/Source insight/new GetCurrentProj
+宏Macro/Source insight/new LookupRefs
 宏Macro/Source insight/new buffer
 宏Macro/Source insight/new macro
 宏Macro/Source insight/new macro2
 宏Macro/Source insight/new macro3 ask
 宏Macro/Source insight/new/Ask Symbol
+宏Macro/Source insight/new/GetProjFileName
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行2
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行3
+宏Macro/Source insight/new/Msg
+宏Macro/Source insight/new/Msg var
 宏Macro/Source insight/new/filename
+宏Macro/Source insight/new/filename lastline
+宏Macro/Source insight/new/selection
+宏Macro/Source insight/new/selection getselecttext
+宏Macro/Source insight/new/selection2
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
 工作/年度计划/2023年度计划

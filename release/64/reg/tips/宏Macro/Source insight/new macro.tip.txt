@@ -1,1 +1,1 @@
-InsertCxxDeclare
+InsertGTestCasesAutoBySelect
