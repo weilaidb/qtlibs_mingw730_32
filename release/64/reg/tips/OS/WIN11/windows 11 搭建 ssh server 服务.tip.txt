@@ -1,0 +1,52 @@
+《windows 11 搭建 ssh server 服务》
+
+yk-ddm
+
+于 2021-09-18 19:35:11 发布
+
+1686
+ 收藏 2
+分类专栏： 计算机基础 文章标签： windows ssh openssh
+版权
+
+计算机基础
+专栏收录该内容
+6 篇文章0 订阅
+订阅专栏
+目录
+windows 11
+openssh server 工具下载
+执行命令
+常见问题
+windows 11
+openssh server 工具下载
+openssh server 下载地址
+
+执行命令
+在 OpenSSH 目录下以管理员的身份 执行 powershell.exe -ExecutionPolicy Bypass -File install-sshd.ps1
+
+
+
+执行命令 netsh advfirewall firewall add rule name=sshd dir=in action=allow protocol=TCP localport=22
+
+
+
+开启 sshd 服务 —> net start sshd
+
+
+
+设置服务自启动 —> Set-Service sshd -StartupType Automatic
+
+常见问题
+SSH服务器拒绝了密码
+
+
+
+分析原因：ssh配置文件的配置不允许root用户进行远程登录
+
+
+
+用户名 输入 root 试试
+————————————————
+版权声明：本文为CSDN博主「yk-ddm」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/yk_ddm/article/details/120372840
