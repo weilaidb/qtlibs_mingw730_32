@@ -1,0 +1,6 @@
+Home > Macro Language Guide > String Functions > strmid (s, ichFirst, ichLim)
+
+strmid (s, ichFirst, ichLim)
+
+Returns the middle string of s in the range from ichFirst up to, but not including ichLim. That is, s[ichFirst] through s[ichLim - 1]. If ichFirst equals ichLim, then an empty string range is specified.
+

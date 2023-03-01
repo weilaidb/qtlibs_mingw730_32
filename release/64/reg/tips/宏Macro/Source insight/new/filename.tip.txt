@@ -1,0 +1,22 @@
+macro InsertFileHeader2()
+{
+    szMyName = getenv(MyName)
+
+    hbuf = GetCurrentBuf()
+
+    InsBufLine(hbuf, 0, "/***************************************************************************")
+    InsBufLine(hbuf, 1, "** 版权所有:  WeiLai Copyright (c) 2010-2015  ******************************")
+    fPath = GetBufName(hbuf)
+	if (fPath != hNil)
+	{
+		fLen = strlen(fPath)
+
+		len = fLen
+		while(StrMid(fPath, len - 1, len) != "\\")
+		{
+		    len = len - 1
+		}
+		fileName = StrMid(fPath, len, fLen)
+	}
+
+    InsBufLine(hbuf, 2, "** 文件名称:  @fileName@  [@fPath@]")

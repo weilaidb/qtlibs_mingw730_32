@@ -3016,7 +3016,9 @@ path路径/常用文件夹
 宏Macro/Source insight/SetCurrentBuf
 宏Macro/Source insight/SetWndSel
 宏Macro/Source insight/StrMid
+宏Macro/Source insight/api/StrMid
 宏Macro/Source insight/cat
+宏Macro/Source insight/filename
 宏Macro/Source insight/msg 打印内容
 宏Macro/Source insight/msg 打印内容2
 宏Macro/Source insight/new buffer
@@ -3027,6 +3029,7 @@ path路径/常用文件夹
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行2
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行3
+宏Macro/Source insight/new/filename
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
 工作/年度计划/2023年度计划
