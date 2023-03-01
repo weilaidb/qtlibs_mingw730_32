@@ -1,0 +1,40 @@
+gtest 字符串比较
+
+bobo_cava
+
+于 2012-05-09 22:18:33 发布
+
+5166
+ 收藏 1
+文章标签： string c
+
+The assertions in this group compare two C strings. If you want to compare two string objects, use EXPECT_EQ, EXPECT_NE, and etc instead.
+
+Fatal assertion	Nonfatal assertion	Verifies
+ASSERT_STREQ(expected_str, actual_str);	EXPECT_STREQ(expected_str, actual_str);	the two C strings have the same content
+ASSERT_STRNE(str1, str2);	EXPECT_STRNE(str1, str2);	the two C strings have different content
+ASSERT_STRCASEEQ(expected_str, actual_str);	EXPECT_STRCASEEQ(expected_str, actual_str);	the two C strings have the same content, ignoring case
+ASSERT_STRCASENE(str1, str2);	EXPECT_STRCASENE(str1, str2);	the two C strings have different content, ignoring case
+Note that "CASE" in an assertion name means that case is ignored.
+
+*STREQ* and *STRNE* also accept wide C strings (wchar_t*). If a comparison of two wide strings fails, their values will be printed as UTF-8 narrow strings.
+
+A NULL pointer and an empty string are considered different.
+
+
+http://code.google.com/p/googletest/wiki/Primer#Binary_Comparison
+
+翻译：
+
+本组断言用于比较C字符串。如果你想比较两个字符串对象，你可以使用 EXPECT_EQ, EXPECT_NE等等。
+
+注名断言	不注名断言	检验
+ASSERT_STREQ(expected_str, actual_str);	EXPECT_STREQ(expected_str, actual_str);	检查两个字符串内容是否相同
+ASSERT_STRNE(str1, str2);	EXPECT_STRNE(str1, str2);	检查两个字符串内容是否不同
+ASSERT_STRCASEEQ(expected_str, actual_str);	EXPECT_STRCASEEQ(expected_str, actual_str);	检查两个字符串内容是否相同，忽略大小写
+ASSERT_STRCASENE(str1, str2);	EXPECT_STRCASENE(str1, str2);	检查两个字符串内容是否相同，忽略大小写
+注意带“CASE"的断言名表示该断言不区分大小写
+
+*STREQ* 和 *STRNE* 也可以用于比较宽字符串 (wchar_t*)。如果两个宽字符串比较失败，它们的值会以UTF-8 窄字符串打印出来。
+
+空指针和0长度的字符串被认为是不同的。

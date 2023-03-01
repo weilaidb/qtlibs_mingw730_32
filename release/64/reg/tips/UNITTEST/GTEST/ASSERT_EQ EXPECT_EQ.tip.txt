@@ -1,0 +1,46 @@
+gtest里面的断言EXPECT_EQ和ASSERT_EQ的区别
+
+努力向上的小白
+
+于 2020-07-01 11:45:44 发布
+
+17993
+ 收藏 10
+文章标签： c++ gtest c语言 后端 cmake
+版权
+tips:主要用于记录工作中遇到的问题及解决方案
+
+ 
+
+最近刚开始使用gtest，对里面的断言EXPECT_EQ和ASSERT_EQ的区别有疑惑，故记录下来，以备后续查看
+
+TEST(Binary, test){
+ 
+  std::string strPath = "./";
+  OCROutputItem ocrOutputItem;
+ 
+  IOcrPostAlg* p_ocr_post_alg = CreateIOcrPostAlg();
+ 
+  EXPECT_EQ(true, IsCreateSucessAlg(p_ocr_post_alg)) <<
+  "The Output of IsCreateSucessAlg(p_ocr_post_alg) must is true"<< std::endl;
+ 
+  p_ocr_post_alg->Init(strPath);
+  bool is_init = p_ocr_post_alg->IsInit();
+ 
+  ASSERT_EQ(true, p_ocr_post_alg->IsInit()) <<
+   "The Output of p_ocr_post_alg->IsInit() must is true"<< std::endl;;
+ 
+  p_ocr_post_alg->OcrPostProcessRun(ocrOutputItem);
+  std::cout << "执行结束......" << std::endl;
+ 
+}
+
+EXPECT_EQ表示：如果运行到EXPECT_EQ，断言条件不成立，那么后面的代码继续执行（除了断言代码），所以可以执行显示：
+
+std::cout << "执行结束......" << std::endl;
+ASSERT_EQ表示：如果运行到ASSERT_EQ，断言条件不成立，立即跳出当前的函数，所以不会执行显示：
+
+std::cout << "执行结束......" << std::endl;
+————————————————
+版权声明：本文为CSDN博主「努力向上的小白」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_42227520/article/details/107060073

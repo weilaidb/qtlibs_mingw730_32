@@ -1,1 +1,30 @@
 GetBufLineCount (hbuf)
+
+
+//在文件末尾添加GTEST用例，selecttext为选中关键字名称
+macro InsertGTestCaseAtFileEnd(hbuf, caseSetName, selecttext)
+{
+	total = GetBufLineCount (hbuf)
+	//InsBufLine(hbuf, total, selecttext)
+	//Msg ("total:" # total )
+
+	full_name = "An" # caseSetName
+
+	if(total >= 2)
+	{
+		total = total - 2
+	}
+	else
+	{
+		total = total - 1
+	}
+
+	InsBufLine(hbuf, total + 1, "TEST_F(" #full_name # ", " # selecttext # ")")
+	InsBufLine(hbuf, total + 2, "{")
+	InsBufLine(hbuf, total + 3, "")
+	InsBufLine(hbuf, total + 4, "    ASSERT_TRUE(1==1);")
+	InsBufLine(hbuf, total + 5, "    ASSERT_FALSE(1==0);")
+	InsBufLine(hbuf, total + 6, "    ASSERT_THAT(1,Eq(1));")
+	InsBufLine(hbuf, total + 7, "}")
+	InsBufLine(hbuf, total + 8, "")
+}

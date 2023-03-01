@@ -2855,6 +2855,7 @@ Tools/查看代码工具/OpenGrok/配置xml
 Tools/查看代码工具/测试/测试用例管理工具
 Tools/生成文件名 filename
 UNITTEST/GTEST/ASSERT_EQ
+UNITTEST/GTEST/ASSERT_EQ EXPECT_EQ
 UNITTEST/GTEST/ASSERT_FALSE
 UNITTEST/GTEST/ASSERT_GE
 UNITTEST/GTEST/ASSERT_GT
@@ -2871,6 +2872,7 @@ UNITTEST/GTEST/class/TEST_F 6
 UNITTEST/GTEST/class/TEST_F 6(pointer)
 UNITTEST/GTEST/class/eg
 UNITTEST/GTEST/class/gtestmakefile
+UNITTEST/GTEST/gtest 字符串比较
 UNITTEST/GTEST/gtest说明
 UNITTEST/GTEST/header
 UNITTEST/GTEST/make
@@ -3041,6 +3043,7 @@ path路径/常用文件夹
 宏Macro/Source insight/new/selection
 宏Macro/Source insight/new/selection getselecttext
 宏Macro/Source insight/new/selection2
+宏Macro/Source insight/new/switch SwitchHeaderSourceForCpp C或CPP头文件和源文件切换
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
 工作/年度计划/2023年度计划
