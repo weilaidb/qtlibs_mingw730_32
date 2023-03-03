@@ -348,6 +348,7 @@ C/API/oops
 C/API/pfile
 C/API/posix_memalign
 C/API/send
+C/API/setvbuf
 C/API/snprintf
 C/API/snprintf 2
 C/API/srandom
@@ -3046,6 +3047,8 @@ path路径/常用文件夹
 宏Macro/Source insight/new/switch SwitchHeaderSourceForCpp C或CPP头文件和源文件切换
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
+实验/网线做法 交叉线 T568A and T568B
+实验/网线做法 直通线 T568B线序 橙白-橙-绿白-蓝-蓝白-绿-棕白-棕
 工作/年度计划/2023年度计划
 工作/招聘/智联招聘
 工作/祝福语句
@@ -3151,6 +3154,7 @@ path路径/常用文件夹
 术语/网络/以太网(Ethernet)与802.3(IEEE 802.3)简史
 术语/网络/以太网最小帧长度
 术语/网络/信道(channel)
+术语/网络/傻傻分不清楚：裸纤、专线、SDH、MSTP、MSTP+、OTN、PTN、IP-RAN
 术语/网络/协议
 术语/网络/基带信号
 术语/网络/实体(entity)

@@ -1,0 +1,57 @@
+C 库函数 - setvbuf()
+C 标准库 - <stdio.h> C 标准库 - <stdio.h>
+
+描述
+C 库函数 int setvbuf(FILE *stream, char *buffer, int mode, size_t size) 定义流 stream 应如何缓冲。
+
+声明
+下面是 setvbuf() 函数的声明。
+
+int setvbuf(FILE *stream, char *buffer, int mode, size_t size)
+参数
+stream -- 这是指向 FILE 对象的指针，该 FILE 对象标识了一个打开的流。
+buffer -- 这是分配给用户的缓冲。如果设置为 NULL，该函数会自动分配一个指定大小的缓冲。
+mode -- 这指定了文件缓冲的模式：
+模式	描述
+_IOFBF	全缓冲：对于输出，数据在缓冲填满时被一次性写入。对于输入，缓冲会在请求输入且缓冲为空时被填充。
+_IOLBF	行缓冲：对于输出，数据在遇到换行符或者在缓冲填满时被写入，具体视情况而定。对于输入，缓冲会在请求输入且缓冲为空时被填充，直到遇到下一个换行符。
+_IONBF	无缓冲：不使用缓冲。每个 I/O 操作都被即时写入。buffer 和 size 参数被忽略。
+size --这是缓冲的大小，以字节为单位。
+返回值
+如果成功，则该函数返回 0，否则返回非零值。
+
+实例
+下面的实例演示了 setvbuf() 函数的用法。
+
+实例
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+int main()
+{
+ 
+   char buff[1024];
+ 
+   memset( buff, '\0', sizeof( buff ));
+ 
+   fprintf(stdout, "启用全缓冲\n");
+   setvbuf(stdout, buff, _IOFBF, 1024);
+ 
+   fprintf(stdout, "这里是 runoob.com\n");
+   fprintf(stdout, "该输出将保存到 buff\n");
+   fflush( stdout );
+ 
+   fprintf(stdout, "这将在编程时出现\n");
+   fprintf(stdout, "最后休眠五秒钟\n");
+ 
+   sleep(5);
+ 
+   return(0);
+}
+让我们编译并运行上面的程序，这将产生以下结果。在这里，程序把缓冲输出保存到 buff，直到首次调用 fflush() 为止，然后开始缓冲输出，最后休眠 5 秒钟。它会在程序结束之前，发送剩余的输出到 STDOUT。
+
+启用全缓冲
+这里是 runoob.com
+该输出将保存到 buff
+这将在编程时出现
+最后休眠五秒钟
