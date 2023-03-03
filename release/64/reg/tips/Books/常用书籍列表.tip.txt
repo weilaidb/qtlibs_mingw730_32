@@ -60,3 +60,24 @@ http://rutracker.org/forum/index.php
 比较对象 beyondcompare
 E:\f2a9293555a9bf7c16e66d3dc548fbc9\hls\y3026wxq7al.322012.hls
 E:\movie\楞严经
+
+
+
+
+
+
+其它高校开源
+■    北京大学课程资料整理：
+https://github.com/lib-pku/libpku
+
+■    浙江大学课程攻略共享计划：
+https://github.com/QSCTech/zju-icicles
+
+■    清华大学计算机系课程攻略：
+https://github.com/PKUanonym/REKCARC-TSC-UHT
+
+■    中国科学技术大学课程资源：
+https://github.com/USTC-Resource/USTC-Course
+
+■    上海交通大学课程分享：
+https://github.com/CoolPhilChen/SJTU-Courses/
