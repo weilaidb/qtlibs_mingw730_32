@@ -17,7 +17,8 @@ Linux服务器默认是允许ping包的，但是在某些情况下为了安全�
 
 1、检查Linux服务器当前是否禁ping，执行命令：cat /proc/sys/net/ipv4/icmp_echo_ignore_all
 
-
+echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all
+echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_all
 
 备注： 0----代表允许ping包               1-----代表禁止ping包
 

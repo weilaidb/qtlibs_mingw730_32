@@ -1,0 +1,12 @@
+传输层
+OSPF协议报文封装在IP数据包中，理论上属于传输层，功能是为IP提供路由服务。
+为啥RIP是应用层协议，OSPF是网络层协议? - 知乎
+
+
+
+作者：网络工程师阿龙
+链接：https://www.zhihu.com/question/342428840/answer/1168541878
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+我画个图，给你看一下，你就知道了：<img src="https://pic1.zhimg.com/50/v2-5d802c3f8b5afe4c2a5ac99ba8d2c552_720w.jpg?source=1940ef5c" data-caption="" data-size="normal" data-rawwidth="535" data-rawheight="397" data-default-watermark-src="https://picx.zhimg.com/50/v2-cee7ea298eed4a12fdd77531359d6ed1_720w.jpg?source=1940ef5c" class="origin_image zh-lightbox-thumb" width="535" data-original="https://picx.zhimg.com/v2-5d802c3f8b5afe4c2a5ac99ba8d2c552_r.jpg?source=1940ef5c"/>应该来说,OSPF 属于传输层合理些。OSPF 可以直接用IP承载是因为它有包含确认机制，LSAck报文，可以作为确认，类似TCP的确认机制。RIP是基于UDP，没有确认机制的，所以依靠定时器。发布于 2020-04-21 09:28​赞同 17​​添加评论​分享​收藏​喜欢BI4VMR通信工程师​ 关注18 人赞同了该回答理论上A协议的报文封装在B协议中传输，A协议就是比B协议高一层的协议，但是这种分类毫无意义，从来就没有标准规定协议必须属于哪一层，重点是协议本身实现的功能。RIP和OSPF都可以路由IP数据包，设计协议的人或团体只是为了实现这个功能，不同的团体肯定有不同的理念，设计细节自然会有区别。RIP协议报文封装在UDP报文中，理论上属于应用层，功能是为IP提供路由服务。OSPF协议报文封装在IP数据包中，理论上属于传输层，功能是为IP提供路由服务。IS-IS协议报文封装在链路层帧中，理论上属于网络层，功能是为IP提供路由服务。BGP协议报文封装在TCP报文中，理论上属于应用层，功能是为IP提供路由服务。EIGRP协议报文封装在IP数据包中，理论上属于传输层，功能是为IP提供路由服务。现在还活着的五大路由协议理论上所属的层次各不相同，但这种分类并没有什么用处，它们的功能都是为IP提供路由服务。发布于 2020-08-12 12:29

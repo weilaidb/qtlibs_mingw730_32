@@ -199,6 +199,7 @@ BAT/网络network/tcpdump/dhcp nak
 BAT/网络network/tcpdump/dhcp request
 BAT/网络network/tcpdump/help
 BAT/网络network/tcpdump/help 常用
+BAT/网络network/tcpdump/help2
 BAT/网络network/tcpdump/wireshark在PC上的数据都没有分片
 BAT/网络network/tcpdump/wireshark源地址
 BAT/网络network/tcpdump/wireshark相关分析软件
@@ -3105,6 +3106,8 @@ path路径/常用文件夹
 术语/网络/IEEE 802.3
 术语/网络/IEEE 802.3 Standard
 术语/网络/IGP
+术语/网络/IP协议 IP包头格式
+术语/网络/IP协议 IP包头格式 ping 65535长度如何分片
 术语/网络/LACP
 术语/网络/MLT
 术语/网络/MSTP
@@ -3147,6 +3150,7 @@ path路径/常用文件夹
 术语/网络/fcs error
 术语/网络/know/一口气Ping1000个IP地址，会发生什么事情？
 术语/网络/know/二层、三层、 四层交换机都有什么不一样？
+术语/网络/ospf是几层协议
 术语/网络/tipc
 术语/网络/万兆以太网
 术语/网络/三态内容寻址存储器(TCAM)工作原理
