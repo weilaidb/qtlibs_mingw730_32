@@ -2047,6 +2047,8 @@ LINUX/命令行/setenforce
 LINUX/命令行/shutdown
 LINUX/命令行/software/CentOS安装mysql
 LINUX/命令行/software/Linux安装LibreOffice
+LINUX/命令行/software/PLINK
+LINUX/命令行/software/PLINK 1.9
 LINUX/命令行/software/RPM的强制安装和强制卸载
 LINUX/命令行/software/RedHat7配置yum源
 LINUX/命令行/software/install
@@ -2128,6 +2130,7 @@ LINUX命令/objcopy
 LINUX命令/readelf
 Lisp/know/LISP - 程序结构
 Lisp/know/LISP基本构建块
+Lisp/know/Lisp IDE
 Lisp/know/Lisp教程
 Makefile/CMake/eg
 Makefile/CMake/v1.0(gtest gmock)
@@ -2654,6 +2657,7 @@ SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address
 SoftWare/Source Insight know/Need to Understand Code
+SoftWare/Source Insight know/source insight 4.0 使用make命令编译
 SoftWare/Understand
 SoftWare/WPS/A4尺寸 大小
 SoftWare/WPS/A4纸张的大小和电脑如何一样
@@ -3278,6 +3282,7 @@ path路径/常用文件夹
 笔记/网络/三层路由ping过程
 笔记/读书笔记/ROS机器人开发实践
 笔记/软件/UML画序列图或时序图
+笔记/进程链接动态库中Gtest用例成功 ，链接静态库却失败
 算法/C/冒泡排序
 算法/C/快速排序法
 算法/C/计数排序

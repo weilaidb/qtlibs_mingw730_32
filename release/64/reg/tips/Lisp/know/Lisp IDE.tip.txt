@@ -1,0 +1,154 @@
+http://www.lispworks.com/products/ide.html
+
+
+Products
+Success Stories
+Support
+Documentation
+Search
+BUY
+DOWNLOAD
+You are here: Home > Products > LispWorks IDE 
+
+LispWorks IDE
+The LispWorks IDE provides a smooth and comfortable workflow, allowing you to incrementally write, test, and extend your software while it is running. It is included in LispWorks on all supported platforms. The LispWorks IDE is written using the CAPI portable GUI toolkit and therefore it runs natively on macOS, Windows®, GTK+ and Motif®.
+
+Debugger
+The Debugger tool offers an intuitive graphical view of the stack, allows modification of variables and offers all the restarts. You can jump directly from a stack frame to point reached within the function's definition in an Editor tool displaying the source code.
+
+The Debugger tool on macOS.	 	
+The Debugger tool on Windows.	Click image to enlarge.
+The Debugger tool on Windows.
+ 	
+The Debugger tool on GTK+.	Click image to enlarge.
+The Debugger tool on GTK+.
+The Debugger tool on macOS.	 	 
+Listener
+The Listener tool allows you to interact with the Lisp interpreter. You can easily transfer Lisp objects to other tools such as the Inspector, or invoke the graphical Debugger tool .
+
+The Listener tool on macOS.	 	
+The Listener tool on Windows.	Click image to enlarge.
+The Listener tool on Windows.
+ 	
+The Listener tool on GTK+.	Click image to enlarge.
+The Listener tool on GTK+.
+The Listener tool on macOS.	 	 
+Editor
+This is a powerful Lisp-aware code editor with built-in source location and syntax coloring. Commonly-used commands are accessible by menus and a wide range of commands is accessible either by Emacs keys or familiar platform-standard keys, all of which are customizable.
+
+The Editor tool text view on macOS.	 	
+The Editor tool text view on Windows.	Click image to enlarge.
+The Editor tool text view on Windows.
+ 	
+The Editor tool text view on GTK+.	Click image to enlarge.
+The Editor tool text view on GTK+.
+The Editor tool text view on macOS.Click image to enlarge.	 	 
+Inspector
+The Inspector tool is a graphical interface for the Common Lisp function inspect. It is used for speedy exploration of Lisp objects - just double click on a slot to inspect the value in the slot - and can also modify the values. Further, the Inspector can be configured with new views on your own data structures.
+
+The Inspector tool on macOS.	 	
+The Inspector tool on Windows.	Click image to enlarge.
+The Inspector tool on Windows.
+ 	
+The Inspector tool on GTK+.	Click image to enlarge.
+The Inspector tool on GTK+.
+The Inspector tool on macOS.	 	 	 
+The LispWorks IDE tools all work together smoothly. For example, a frequent operation is to transfer the inspected object to the Listener tool, achieved by the command Object > Listen.
+
+Other Features
+Other features of the LispWorks IDE include:
+
+Stepper and tracer.
+Browsers for classes, generic functions, and compilation errors.
+Execution time profiler.
+Supports an external EMACS editor via SLIME.
+System tool supporting LispWorks defsystem and ASDF.
+Incremental compiler and dynamic loader.
+Source code location and cross-referencing tool.
+On-line documentation in hypertext format.
+ProductsLispWorksLispWorks Personal EditionLispWorks for Mobile Runtime New!FeaturesRuntimesLispWorks ORBKnowledgeWorksTechnologiesCompany     Contact     Privacy Policy     Terms of Use
+Copyright © 2001-23 LispWorks Ltd. All rights reserved.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Products
+Success Stories
+Support
+Documentation
+Search
+BUY
+DOWNLOAD
+You are here: Home > Downloads  
+
+LispWorks Personal Edition
+System Requirements
+Before downloading LispWorks Personal Edition, please first check the system requirements for Windows, Macintosh, Linux, FreeBSD or x86/x64 Solaris.
+
+The download size is between 42MB and 65MB, depending on the platform.
+
+Current Version
+The current version is LispWorks 8.0.1 Personal Edition. It includes the new features announced here.
+
+Personal Edition Limitations
+Please note that the LispWorks Personal Edition, distributed free of charge, has the following intentional limitations:
+
+There is a heap size limit which, if exceeded, causes the image to exit. A warning is provided when the limit is approached.
+There is a time limit of 5 hours for each session, after which LispWorks Personal exits, possibly without saving your work or performing cleanups such as removing temporary files. You are warned after 4 hours of use.
+The functions save-image, deliver, and load-all-patches are not available.
+Initialization files are not loaded.
+Layered products that are part of LispWorks Professional and Enterprise Editions (CLIM, KnowledgeWorks, Common SQL and LispWorks ORB) are not included.
+Downloading LispWorks® Personal Edition
+Please provide us with some information about yourself.
+
+Download LispWorks for *	
+Please choose platform
+Your name *	
+Organization	
+Email address *	
+Subscribe to the LispWorks user group?	
+(You will receive a confirmation message, which you should reply to.)
+How long is it since you first used Lisp?	
+Please choose one
+How did you hear about LispWorks?	
+Please choose one
+What will you use LispWorks for?	
+Please choose one
+
+Any other comments you would like to make?
+
+Items marked * are required.
+
+
+
+
+Downloads
+LispWorks Personal EditionPatchesDownloadable documentationCompany     Contact     Privacy Policy     Terms of Use
+Copyright © 2001-23 LispWorks Ltd. All rights reserved.

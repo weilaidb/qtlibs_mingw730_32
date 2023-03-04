@@ -1,0 +1,325 @@
+https://zzz.bwh.harvard.edu/plink/index.shtml
+
+
+
+plink...Last original PLINK release is v1.07 (10-Oct-2009); PLINK 1.9 is now available for beta-testing
+Whole genome association analysis toolset
+Introduction | Basics | Download | Reference | Formats | Data management | Summary stats | Filters | Stratification | IBS/IBD | Association | Family-based | Permutation | LD calcualtions | Haplotypes | Conditional tests | Proxy association | Imputation | Dosage data | Meta-analysis | Result annotation | Clumping | Gene Report | Epistasis | Rare CNVs | Common CNPs | R-plugins | SNP annotation | Simulation | Profiles | ID helper | Resources | Flow chart | Misc. | FAQ | gPLINK
+1. Introduction
+2. Basic information
+Citing PLINK
+Reporting problems
+What's new?
+PDF documentation
+3. Download and general notes
+Stable download
+Development code
+General notes
+MS-DOS notes
+Unix/Linux notes
+Compilation
+Using the command line
+Viewing output files
+Version history
+4. Command reference table
+List of options
+List of output files
+Under development
+5. Basic usage/data formats
+Running PLINK
+PED files
+MAP files
+Transposed filesets
+Long-format filesets
+Binary PED files
+Alternate phenotypes
+Covariate files
+Cluster files
+Set files
+6. Data management
+Recode
+Reorder
+Write SNP list
+Update SNP map
+Update allele information
+Force reference allele
+Update individuals
+Write covariate files
+Write cluster files
+Flip strand
+Scan for strand problem
+Merge two files
+Merge multiple files
+Extract SNPs
+Remove SNPs
+Zero out sets of genotypes
+Extract Individuals
+Remove Individuals
+Filter Individuals
+Attribute filters
+Create a set file
+Tabulate SNPs by sets
+SNP quality scores
+Genotypic quality scores
+7. Summary stats
+Missingness
+Obligatory missingness
+IBM clustering
+Missingness by phenotype
+Missingness by genotype
+Hardy-Weinberg
+Allele frequencies
+LD-based SNP pruning
+Mendel errors
+Sex check
+Pedigree errors
+8. Inclusion thresholds
+Missing/person
+Allele frequency
+Missing/SNP
+Hardy-Weinberg
+Mendel errors
+9. Population stratification
+IBS clustering
+Permutation test
+Clustering options
+IBS matrix
+Multidimensional scaling
+Outlier detection
+10. IBS/IBD estimation
+Pairwise IBD
+Inbreeding
+Runs of homozygosity
+Shared segments
+11. Association
+Case/control
+Fisher's exact
+Full model
+Stratified analysis
+Tests of heterogeneity
+Hotelling's T(2) test
+Quantitative trait
+Quantitative trait means
+Quantitative trait GxE
+Linear and logistic models
+Set-based tests
+Multiple-test correction
+12. Family-based association
+TDT
+ParenTDT
+Parent-of-origin
+DFAM test
+QFAM test
+13. Permutation procedures
+Basic permutation
+Adaptive permutation
+max(T) permutation
+Ranked permutation
+Gene-dropping
+Within-cluster
+Permuted phenotypes files
+14. LD calculations
+2 SNP pairwise LD
+N SNP pairwise LD
+Tagging options
+Haplotype blocks
+15. Multimarker tests
+Imputing haplotypes
+Precomputed lists
+Haplotype frequencies
+Haplotype-based association
+Haplotype-based GLM tests
+Haplotype-based TDT
+Haplotype imputation
+Individual phases
+16. Conditional haplotype tests
+Basic usage
+Specifying type of test
+General haplogrouping
+Covariates and other SNPs
+17. Proxy association
+Basic usage
+Refining a signal
+Multiple reference SNPs
+Haplotype-based SNP tests
+18. Imputation (beta)
+Making reference set
+Basic association test
+Modifying parameters
+Imputing discrete calls
+Verbose output options
+19. Dosage data
+Input file formats
+Association analysis
+Outputting dosage data
+20. Meta-analysis
+Basic usage
+Misc. options
+21. Annotation
+Basic usage
+Misc. options
+22. LD-based results clumping
+Basic usage
+Verbose reporting
+Combining multiple studies
+Best single proxy
+23. Gene-based report
+Basic usage
+Other options
+24. Epistasis
+SNP x SNP
+Case-only
+Gene-based
+25. Rare CNVs
+File format
+MAP file construction
+Loading CNVs
+Check for overlap
+Filter on type
+Filter on genes
+Filter on frequency
+Burden analysis
+Geneset enrichment
+Mapping loci
+Regional tests
+Quantitative traits
+Write CNV lists
+Write gene lists
+Grouping CNVs
+26. Common CNPs
+CNPs/generic variants
+CNP/SNP association
+27. R-plugins
+Basic usage
+Defining the R function
+Example of debugging
+Installing Rserve
+28. Annotation web-lookup
+Basic SNP annotation
+Gene-based SNP lookup
+Annotation sources
+29. Simulation tools
+Basic usage
+Resampling a population
+Quantitative traits
+30. Profile scoring
+Basic usage
+SNP subsets
+Dosage data
+Misc options
+31. ID helper
+Overview/example
+Basic usage
+Consistency checks
+Aliases
+Joint IDs
+Lookups
+Replace values
+Match files
+Quick match files
+Misc.
+32. Resources
+HapMap (PLINK format)
+Teaching materials
+Multimarker tests
+Gene-set lists
+Gene range lists
+SNP attributes
+33. Flow-chart
+Order of commands
+34. Miscellaneous
+Command options/modifiers
+Association output modifiers
+Different species
+Known issues
+35. FAQ & Hints
+36. gPLINK
+gPLINK mainpage
+Tour of gPLINK
+Overview: using gPLINK
+Local versus remote modes
+Starting a new project
+Configuring gPLINK
+Initiating PLINK jobs
+Viewing PLINK output
+Integration with Haploview
+Downloading gPLINK
+ 
+New (15-May-2014): PLINK 1.9 is now available for beta-testing!
+
+PLINK is a free, open-source whole genome association analysis toolset, designed to perform a range of basic, large-scale analyses in a computationally efficient manner.
+The focus of PLINK is purely on analysis of genotype/phenotype data, so there is no support for steps prior to this (e.g. study design and planning, generating genotype or CNV calls from raw data). Through integration with gPLINK and Haploview, there is some support for the subsequent visualization, annotation and storage of results.
+PLINK (one syllable) is being developed by Shaun Purcell whilst at the Center for Human Genetic Research (CHGR), Massachusetts General Hospital (MGH), and the Broad Institute of Harvard & MIT, with the support of others.  
+ 
+New in 1.07: meta-analysis, result annotation and analysis of dosage data.  
+Quick links
+PLINK tutorial
+gPLINK
+Join e-mail list
+Resources
+FAQs | PDF
+Citing PLINK
+Bugs, questions?
+Data management
+Read data in a variety of formats
+Recode and reorder files
+Merge two or more files
+Extracts subsets (SNPs or individuals)
+Flip strand of SNPs
+Compress data in a binary file format
+Summary statistics for quality control
+Allele, genotypes frequencies, HWE tests
+Missing genotype rates
+Inbreeding, IBS and IBD statistics for individuals and pairs of individuals
+non-Mendelian transmission in family data
+Sex checks based on X chromosome SNPs
+Tests of non-random genotyping failure
+Population stratification detection
+Complete linkage hierarchical clustering
+Handles virtually unlimited numbers of SNPs
+Multidimensional scaling analysis to visualise substructure
+Significance test for whether two individuals belong to the same population
+Constrain cluster solution by phenotype, cluster size and/or external matching criteria
+Perform subsequent association analyses conditional on cluster solution
+Basic association testing
+Case/control
+Standard allelic test
+Fisher's exact test
+Cochran-Armitage trend test
+Mantel-Haenszel and Breslow-Day tests for stratified samples
+Dominant/recessive and general models
+Model comparison tests (e.g. general versus multiplicative)
+Family-based association (TDT, sibship tests)
+Quantitative traits, association and interaction
+Association conditional on one or more SNPs
+Asymptotic and empirical p-values
+Flexible clustered permutation scheme
+Analysis of genotype probability data and fractional allele coounts (post-imputation)
+Multimarker predictors, haplotypic tests
+Suite of flexible, conditional haplotype tests
+Case/control and TDT association on the probabilistic haplotype phase
+A set of proxy associaiton" methods to study single SNP associations in their local haplotypic context
+Imputation heuristic, to test untyped SNPs given a reference panel
+Copy number variant analysis
+Joint SNP and CNV tests for common copy number variants
+Filtering and summary procedures for segmental (rare) CNV data
+Case/control comparison tests for global CNV properties
+Permutation-based association procedure for identifying specific loci
+Additional tests
+Gene-based tests of association
+Screen for epistasis
+Gene-environment interaction with continuous and dichotomous environments
+Meta-analysis
+Automatically combine several generically-formatted summary files, for millions of SNPs
+Fixed and random effects models
+Result annotation and reporting
+Post-analysis annotation of result files
+LD-based and region-based grouping of results across multiple studies
+Additional features
+Extensible with via R function plug-ins
+Web-based SNP and gene annotation lookup feature
+Simple SNP simulation feature
+ID helper tools, for tracking and working with project data
+See the main documentation for full list of features
+ 
+This document last modified Wednesday, 25-Jan-2017 11:39:27 EST

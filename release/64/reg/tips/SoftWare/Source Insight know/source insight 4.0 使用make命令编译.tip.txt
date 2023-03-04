@@ -1,0 +1,187 @@
+source insight 4.0 使用make命令编译
+
+zhendongzd
+
+于 2019-10-26 23:16:59 发布
+
+5933
+ 收藏 15
+分类专栏： Algorithm
+版权
+
+Algorithm
+专栏收录该内容
+22 篇文章0 订阅
+订阅专栏
+1、新建SI工程，在SI工程的代码目录为makefile所在的目录，如下图
+
+
+
+2、显示build toolbar工具栏
+
+
+
+显示效果如下
+
+
+
+点击上图的第一个图标，弹出如下图所示的窗口
+
+
+
+3、选择Build Project，在右侧的Run窗口中输入“make”，目的是调用makefile文件，进行编译
+
+4、点击 Run Project，在右侧的Run窗口输入要运行的程序的路径，该路径为相对路径，
+
+
+
+此时点击对应的图标就可以直接调用命令进行代码编译和运行
+
+可以使用的source insight的命令有如下：
+
+The Run text box can contain meta-characters that cause the following items to be substituted in the string.
+
+Character
+
+Expands to
+
+Example
+
+%f
+
+当前文件的完整路径名 【*】
+
+c:\myproj\file.c
+
+%r
+
+当前文件相对于工程源码目录的相对路径名 【*】
+
+file.c
+
+%n
+
+leaf name of the current file 【*】
+
+file.c
+
+%d
+
+当前文件所在的完整路径名
+
+c:\myproj
+
+%h
+
+当前文件的路径名(无磁盘驱动器字符)
+
+\myproj
+
+%b
+
+当前文件名(无后缀名) 【*】
+
+file
+
+%e
+
+当前文件的后缀名
+
+c (file.c 的文件后缀名为 c)
+
+%c
+
+当前文件所在的磁盘驱动器字符
+
+c: (表示当前文件在磁盘驱动器C:下)
+
+%p
+
+当前项目名称(包含完整路径)
+
+c:\myproj\myproj
+
+%j
+
+当前项目的源码路径
+
+c:\myproj
+
+%J
+
+当前项目的数据路径
+
+C:\Documents and Settings\Jim Smith\My Documents\Source Insight\Projects\Base
+
+%v
+
+当前项目源码所在的磁盘驱动器字符
+
+c:
+
+%o
+
+当前项目的名称(不包含路径)
+
+myproj
+
+%l
+
+当前行号
+
+行号
+
+%w
+
+选择区域的第一个单词，或者光标处的单词
+
+任何单词
+
+%s
+
+自定义命令运行时，保存当前选择的临时文件名.
+
+d:\tmp\vt0004.
+
+%a
+
+当前日期
+
+05-12-02
+
+%t
+
+当前时间
+
+08:23
+
+%1 - %9
+
+提示用户输入参数
+
+any strings
+
+You can also postfix any of the above characters marked with * with either of the following modifier characters.
+
+Character
+
+Expands to
+
+Example
+
+%o
+
+所有打开的文件
+
+%f%o
+
+%m
+
+所有修改的文件
+
+%f%m
+
+
+————————————————
+版权声明：本文为CSDN博主「zhendongzd」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/zhendongzd/article/details/101578630
