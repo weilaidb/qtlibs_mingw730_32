@@ -2126,6 +2126,9 @@ LINUX命令/Gmock/Qt编译
 LINUX命令/Gmock/简介
 LINUX命令/objcopy
 LINUX命令/readelf
+Lisp/know/LISP - 程序结构
+Lisp/know/LISP基本构建块
+Lisp/know/Lisp教程
 Makefile/CMake/eg
 Makefile/CMake/v1.0(gtest gmock)
 Makefile/CMake/v1.0(gtest gmock) 说明

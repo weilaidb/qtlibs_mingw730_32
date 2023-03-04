@@ -1,0 +1,161 @@
+LISP基本构建块
+
+	Lisp程序是由三个基本构建块：
+
+	
+		
+			atom
+	
+	
+		
+			list
+	
+	
+		
+			string
+	
+
+
+	一个原子是一个数字连续字符或字符串。它包括数字和特殊字符。
+
+	以下是一些有效的原子的例子：
+hello-from-tutorials-yiibai
+name
+123008907
+*hello*
+Block#221
+abc123
+
+	列表是包含在括号中的原子和/或其他列表的序列。以下是一些有效的列表的示例：
+( i am a list)
+(a ( a b c) d e fgh)
+(father tom ( susan bill joe))
+(sun mon tue wed thur fri sat)
+( )
+
+	字符串是一组括在双引号字符。以下是一些有效的字符串的例子：
+" I am a string"
+"a ba c d efg #$%^&!"
+"Please enter the following details :"
+"Hello from 'Tutorials Yiibai'! "
+
+
+	添加注释
+
+	分号符号(;)是用于表示一个注释行。
+
+	例如，
+(write-line "Hello World") ; greet the world
+; tell them your whereabouts
+(write-line "I am at 'Tutorials Yiibai'! Learning LISP")
+
+	当单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+Hello World
+I am at 'Tutorials Yiibai'! Learning LISP
+
+	移动到下一节之前的一些值得注意的要点
+
+	以下是一些要点需要注意：
+
+	
+		
+			在LISP语言的基本数学运算是 +, -, *, 和 /
+	
+	
+		
+			Lisp实际上是一个函数调用f(x)为 (f x)，例如 cos(45)被写入为 cos 45
+	
+	
+		
+			LISP表达式是不区分大小写的，cos 45 或COS 45是相同的。
+	
+	
+		
+			LISP尝试计算一切，包括函数的参数。只有三种类型的元素是常数，总是返回自己的值：
+		
+			
+				
+					数字
+			
+			
+				
+					字母t，即表示逻辑真
+			
+			
+				
+					该值为nil，这表示逻辑false，还有一个空的列表。
+			
+		
+	
+
+
+	稍微介绍一下LISP形式
+
+	在前面的章节中，我们提到LISP代码计算过程中采取以下步骤：
+
+	
+		
+			读取器转换字符到LISP对象的字符串或 s-expressions.
+	
+	
+		
+			求值器定义为那些从s-表达式内置的Lisp语法形式。计算第二个级别定义的语法决定了S-表达式是LISP语言形式。
+	
+
+
+	现在，一个LISP的形式可以是：
+
+	
+		
+			一个原子
+	
+	
+		
+			空或非名单
+	
+	
+		
+			有符号作为它的第一个元素的任何列表
+	
+
+
+	求值器可以作为一个函数，它接受一个有效的LISP语言的形式作为参数，并返回一个值。这个就是为什么我们把括号中的LISP语言表达，因为我们要发送的整个表达式/形式向求值作为参数的原因。
+
+	LISP命名约定
+
+	名称或符号可以包含任意数量的空白相比，开放和右括号，双引号和单引号，反斜杠，逗号，冒号，分号和竖线其他字母数字字符。若要在名称中使用这些字符，需要使用转义字符（）。
+
+	一个名字可以包含数字，但不能全部由数字组成，因为那样的话它会被解读为一个数字。同样的名称可以具有周期，但周期不能完全进行。
+
+	使用单引号
+
+	LISP计算一切，包括函数的参数和列表的成员。
+
+	有时，我们需要采取原子或列表字面上，不希望他们求值或当作函数调用。
+
+	要做到这一点，我们需要先原子或列表中带有单引号。
+
+	下面的例子演示了这一点：
+
+	创建一个名为main.lisp文件，并键入下面的代码进去：
+
+									
+									
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									
+									
+									
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									(write-line "single quote used, it inhibits evaluation")
+(write '(* 2 3))
+(write-line " ")
+(write-line "single quote not used, so expression evaluated")
+(write (* 2 3))
+
+	当单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+single quote used, it inhibits evaluation
+(* 2 3) 
+single quote not used, so expression evaluated
+6
+//更多请阅读：https://www.yiibai.com/lisp/lisp_basic_syntax.html#article-start
+
