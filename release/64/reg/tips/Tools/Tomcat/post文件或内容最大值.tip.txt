@@ -1,0 +1,41 @@
+$ git diff conf/
+diff --git a/apache-tomcat-9.0.70/conf/server.xml b/apache-tomcat-9.0.70/conf/server.xml
+index e2750f0..55e17a3 100644
+--- a/apache-tomcat-9.0.70/conf/server.xml
++++ b/apache-tomcat-9.0.70/conf/server.xml
+@@ -68,21 +68,25 @@
+     -->
+     <Connector port="8081" protocol="HTTP/1.1"
+                connectionTimeout="20000"
++               maxPostSize="16777216"
+                redirectPort="8443" />
+ 
+ 
+     <Connector port="8082" protocol="HTTP/1.1"
+                connectionTimeout="20000"
++               maxPostSize="16777216"
+                redirectPort="8443" />
+ 
+ 
+     <Connector port="8083" protocol="HTTP/1.1"
+                connectionTimeout="20000"
++               maxPostSize="16777216"
+                redirectPort="8443" />
+ 
+ 
+     <Connector port="8084" protocol="HTTP/1.1"
+                connectionTimeout="20000"
++               maxPostSize="16777216"
+                redirectPort="8443" />
+ 
+ 
+@@ -92,6 +96,7 @@
+     <Connector executor="tomcatThreadPool"
+                port="80" protocol="HTTP/1.1"
+                connectionTimeout="20000"
++               maxPostSize="16777216"
+                redirectPort="8443" />
+     -->
+     <!-- Define an SSL/TLS HTTP/1.1 Connector on port 8443
+[root@VM-0-10-centos] ~/soft/web_notebook_online/apache-tomcat-work
+$ 
