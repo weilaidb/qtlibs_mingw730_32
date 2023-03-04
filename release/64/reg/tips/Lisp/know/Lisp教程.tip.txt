@@ -1,5 +1,15 @@
 Lisp教程
 
+来源：BootWiki
+链接：https://www.bootwiki/lisp/lisp-overview.html
+著作权归作者所有
+商业转载请联系作者获得授权，非商业转载请注明出处
+
+
+
+
+Lisp教程
+
 
 Lisp是Fortran语言之后第二古老的高级编程语言，自成立之初已发生了很大变化，和一些方言一直存在在它的历史。今天，最广为人知的通用的是Lisp方言：Common Lisp和Scheme。
 

@@ -1,0 +1,212 @@
+LISP - 数据类型
+	在LISP中，变量没有类型的，但有数据对象。
+
+	LISP数据类型可分类为：
+
+	
+		
+			标量类型 - 例如，数字类型，字符，符号等。
+	
+	
+		
+			数据结构 - 例如，列表，向量，比特向量和字符串。
+	
+
+
+	任何变量都可以采取任何的Lisp对象作为它的值，除非明确地声明它。
+
+	虽然，这是没有必要指定一个Lisp变量的数据类型，但是，它有助于在一定的循环扩展，在方法声明和其他一些情况下，我们将在后面的章节中讨论。 
+
+	该数据类型被布置成层次结构。数据类型是一组LISP对象和多个对象可能属于这样的一套。
+
+	typep谓词用于发现一个对象是否属于一个特定的类型。
+
+	type-of函数，返回给定对象的数据类型的类型。
+
+	在LISP类型说明符
+
+	类型说明符是数据类型的系统定义的符号。
+
+	
+		
+			
+				array
+			
+				fixnum
+			
+				package
+			
+				simple-string
+		
+		
+			
+				atom
+			
+				float
+			
+				pathname
+			
+				simple-vector
+		
+		
+			
+				bignum
+			
+				function
+			
+				random-state
+			
+				single-float
+		
+		
+			
+				bit
+			
+				hash-table
+			
+				ratio
+			
+				standard-char
+		
+		
+			
+				bit-vector
+			
+				integer
+			
+				rational
+			
+				stream
+		
+		
+			
+				character
+			
+				keyword
+			
+				readtable
+			
+				string
+		
+		
+			
+				[common]
+			
+				list
+			
+				sequence
+			
+				[string-char]
+		
+		
+			
+				compiled-function
+			
+				long-float
+			
+				short-float
+			
+				symbol
+		
+		
+			
+				complex
+			
+				nill
+			
+				signed-byte
+			
+				t
+		
+		
+			
+				cons
+			
+				null
+			
+				simple-array
+			
+				unsigned-byte
+		
+		
+			
+				double-float
+			
+				number
+			
+				simple-bit-vector
+			
+				vector
+		
+	
+
+
+	除了这些系统定义的类型，可以创建自己的数据类型。当一个结构类型是使用defstruct函数定义，结构类型的名称将成为一个有效的类型符号。>/p>
+
+	示例1
+
+	创建一个名为main.lisp新的源代码文件，并在其中输入如下代码：
+(setq x 10)
+(setq y 34.567)
+(setq ch nil)
+(setq n 123.78)
+(setq bg 11.0e+4)
+(setq r 124/2)
+(print x)
+(print y)
+(print n)
+(print ch)
+(print bg)
+(print r)
+
+	当单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+10 
+34.567 
+123.78 
+NIL 
+110000.0 
+62
+
+	实例2
+
+	接下来让我们看看前面的例子中使用的变量的类型。创建一个名为main.lisp新的源代码文件，并在其中输入如下代码：
+
+
+									
+									
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									
+
+
+
+									
+									
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									
+
+(setq x 10)
+(setq y 34.567)
+(setq ch nil)
+(setq n 123.78)
+(setq bg 11.0e+4)
+(setq r 124/2)
+(print (type-of x))
+(print (type-of y))
+(print (type-of n))
+(print (type-of ch))
+(print (type-of bg))
+(print (type-of r))
+
+	当您单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+(INTEGER 0 281474976710655) 
+SINGLE-FLOAT 
+SINGLE-FLOAT 
+NULL 
+SINGLE-FLOAT 
+(INTEGER 0 281474976710655)
+
+来源：BootWiki
+链接：https://www.bootwiki/lisp/lisp-data-types.html
+著作权归作者所有
+商业转载请联系作者获得授权，非商业转载请注明出处
+

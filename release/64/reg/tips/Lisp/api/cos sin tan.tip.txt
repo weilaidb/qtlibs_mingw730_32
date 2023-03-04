@@ -1,0 +1,4 @@
+cos 45
+sin 45
+tan 90
+sqrt 2

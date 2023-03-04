@@ -1,0 +1,502 @@
+LISP - 运算符
+	运算符是一个符号，它告诉编译器执行特定的数学或逻辑操作。 LISP允许在众多的数据业务，通过各种函数，宏和其他结构的支持。
+
+	允许对数据的操作都可以归类为：
+
+	
+		
+			算术运算
+	
+	
+		
+			比较操作
+	
+	
+		
+			逻辑运算
+	
+	
+		
+			位运算
+	
+
+
+	算术运算
+
+	下表列出了所有支持的LISP算术运算符。假设变量A=10和变量B=20则：
+
+	
+		
+			
+				运算符
+			
+				描述
+			
+				Example
+		
+		
+			
+				+
+			
+				增加了两个操作数
+			
+				(+ A B) = 30
+		
+		
+			
+				-
+			
+				从第一数减去第二个操作数
+			
+				(- A B)= -10
+		
+		
+			
+				*
+			
+				乘两个操作数
+			
+				(* A B) = 200
+		
+		
+			
+				/
+			
+				通过取消分子除以分子
+			
+				(/ B A) = 2
+		
+		
+			
+				mod,rem
+			
+				模运算符和其余整数除法后
+			
+				(mod B A ) = 0
+		
+		
+			
+				incf
+			
+				递增运算符，所指定的第二个参数增加整数值
+			
+				(incf A 3) = 13
+		
+		
+			
+				decf
+			
+				递减操作符，通过指定的第二个参数减小整数值
+			
+				(decf A 4) = 9
+		
+	
+
+
+	例子
+
+	创建一个名为main.lisp一个新的源代码文件，并在其中输入如下代码：
+(setq a 10)
+(setq b 20)
+(format t "~% A + B = ~d" (+ a b))
+(format t "~% A - B = ~d" (- a b))
+(format t "~% A x B = ~d" (* a b))
+(format t "~% B / A = ~d" (/ b a))
+(format t "~% Increment A by 3 = ~d" (incf a 3))
+(format t "~% Decrement A by 4 = ~d" (decf a 4))
+
+	当您单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+A + B = 30
+A - B = -10
+A x B = 200
+B / A = 2
+Increment A by 3 = 13
+Decrement A by 4 = 9
+
+	比较操作
+
+	下表列出了所有支持的LISP关系运算符的数字之间进行比较。然而不像其他语言的关系运算符，LISP的比较操作符可能需要超过两个操作数，他们在只有数字工作。
+
+	假设变量A=10和变量B=20，则：
+
+	
+		
+			
+				Operator
+			
+				描述
+			
+				Example
+		
+		
+			
+				=
+			
+				检查如果操作数的值都相等与否，如果是的话那么条件为真。
+			
+				(= A B)= true.
+		
+		
+			
+				/=
+			
+				检查如果操作数的值都不同，或没有，如果值不相等，则条件为真。
+			
+				(/= A B) =true.
+		
+		
+			
+				>
+			
+				检查如果操作数的值单调递减。
+			
+				(> A B) !=true.
+		
+		
+			
+				<
+			
+				检查如果操作数的值单调递增。
+			
+				(< A B) = true.
+		
+		
+			
+				>=
+			
+				如有左操作数的值大于或等于下一个右操作数的值，如果是则条件检查为真。
+			
+				(>= A B) !=true.
+		
+		
+			
+				<=
+			
+				如有左操作数的值小于或等于其右操作数的值，如果是，则条件检查为真。
+			
+				(<= A B) = true.
+		
+		
+			
+				max
+			
+				它比较两个或多个参数，并返回最大值。
+			
+				(max A B) 返回20
+		
+		
+			
+				min
+			
+				它比较两个或多个参数，并返回最小值。
+			
+				(min A B) 返回 20
+		
+	
+
+
+	示例
+
+	创建一个名为main.lisp一个新的源代码文件，并在其中输入如下代码：
+(setq a 10)
+(setq b 20)
+(format t "~% A = B is ~a" (= a b))
+(format t "~% A /= B is ~a" (/= a b))
+(format t "~% A > B is ~a" (> a b))
+(format t "~% A < B is ~a" (< a b))
+(format t "~% A >= B is ~a" (>= a b))
+(format t "~% A <= B is ~a" (<= a b))
+(format t "~% Max of A and B is ~d" (max a b))
+(format t "~% Min of A and B is ~d" (min a b))
+
+	当您单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+A = B is NIL
+A /= B is T
+A > B is NIL
+A < B is T
+A >= B is NIL
+A <= B is T
+Max of A and B is 20
+Min of A and B is 10
+
+	布尔值逻辑操作
+
+	Common Lisp中提供了三种逻辑运算符：AND，OR，而不是运算符的布尔值。假定A=nil，B=5，那么
+
+	
+		
+			
+				运算符
+			
+				描述
+			
+				示例
+		
+		
+			
+				and
+			
+				这需要任意数量的参数。该参数是从左向右计算。如果所有参数的计算结果为非零，那么最后一个参数的值返回。否则就返回nil。
+			
+				(and A B) = NIL.
+		
+		
+			
+				or
+			
+				这需要任意数量的参数。该参数是从左向右计算的，直到一个计算结果为非零，则此情况下返回参数值，否则返回nil。
+			
+				(or A B) = 5.
+		
+		
+			
+				not
+			
+				它接受一个参数，并返回t，如果参数的计算结果为nil。
+			
+				(not A) = T.
+		
+	
+
+
+	示例
+
+	创建一个名为main.lisp一个新的源代码文件，并在其中输入如下代码：
+(setq a 10)
+(setq b 20)
+(format t "~% A and B is ~a" (and a b))
+(format t "~% A or B is ~a" (or a b))
+(format t "~% not A is ~a" (not a))
+(terpri)
+(setq a nil)
+(setq b 5)
+(format t "~% A and B is ~a" (and a b))
+(format t "~% A or B is ~a" (or a b))
+(format t "~% not A is ~a" (not a))
+(terpri)
+(setq a nil)
+(setq b 0)
+(format t "~% A and B is ~a" (and a b))
+(format t "~% A or B is ~a" (or a b))
+(format t "~% not A is ~a" (not a))
+(terpri)
+(setq a 10)
+(setq b 0)
+(setq c 30)
+(setq d 40)
+(format t "~% Result of and operation on 10, 0, 30, 40 is ~a" (and a b c d))
+(format t "~% Result of and operation on 10, 0, 30, 40 is ~a" (or a b c d))
+(terpri)
+(setq a 10)
+(setq b 20)
+(setq c nil)
+(setq d 40)
+(format t "~% Result of and operation on 10, 20, nil, 40 is ~a" (and a b c d))
+(format t "~% Result of and operation on 10, 20, nil, 40 is ~a" (or a b c d))
+
+	当您单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+A and B is 20
+A or B is 10
+not A is NIL
+
+A and B is NIL
+A or B is 5
+not A is T
+
+A and B is NIL
+A or B is 0
+not A is T
+
+Result of and operation on 10, 0, 30, 40 is 40
+Result of and operation on 10, 0, 30, 40 is 10
+
+Result of and operation on 10, 20, nil, 40 is NIL
+Result of and operation on 10, 20, nil, 40 is 10
+
+	请注意，逻辑运算工作，布尔值，其次，数字为零，NIL不是一样的。
+
+	对数位运算
+
+	位运算符位工作并进行逐位操作。对于按位与，或，和XOR运算的真值表如下：
+
+	
+		
+			
+				p
+			
+				q
+			
+				p and q
+			
+				p or q
+			
+				p xor q
+		
+		
+			
+				0
+			
+				0
+			
+				0
+			
+				0
+			
+				0
+		
+		
+			
+				0
+			
+				1
+			
+				0
+			
+				1
+			
+				1
+		
+		
+			
+				1
+			
+				1
+			
+				1
+			
+				1
+			
+				0
+		
+		
+			
+				1
+			
+				0
+			
+				0
+			
+				1
+			
+				1
+		
+	
+
+Assume if A = 60; and B = 13; now in binary format they will be as follows:
+A = 0011 1100
+B = 0000 1101
+-----------------
+A and B = 0000 1100
+A or B = 0011 1101
+A xor B = 0011 0001
+not A  = 1100 0011
+
+
+	通过LISP支持位运算符列于下表中。假设变量A=60和变量B=13，则：
+
+	
+		
+			
+				操作符
+			
+				描述
+			
+				Example
+		
+		
+			
+				logand
+			
+				这将返回位逻辑的参数和。如果没有给出参数，则结果为-1，这是该操作的标识。
+			
+				(logand a b)) = 12
+		
+		
+			
+				logior
+			
+				这将返回位逻辑包括它的参数或。如果没有给出参数，那么结果是零，这是该操作的标识。
+			
+				(logior a b) = 61
+		
+		
+			
+				logxor
+			
+				这将返回其参数的按位逻辑异或。如果没有给出参数，那么结果是零，这是该操作的标识。
+			
+				(logxor a b) = 49
+		
+		
+			
+				lognor
+			
+				这不返回的逐位它的参数。如果没有给出参数，则结果为-1，这是该操作的标识。
+			
+				(lognor a b) = -62,
+		
+		
+			
+				logeqv
+			
+				这将返回其参数的逐位逻辑相等（也称为异或非）。如果没有给出参数，则结果为-1，这是该操作的标识。
+			
+				(logeqv a b) = -50
+		
+	
+
+
+	示例
+
+	创建一个名为main.lisp一个新的源代码文件，并在其中输入如下代码：
+
+
+									
+									
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									
+
+
+
+									
+									
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									
+
+(setq a 60)
+(setq b 13)
+(format t "~% BITWISE AND of a and b is ~a" (logand a b))
+(format t "~% BITWISE INCLUSIVE OR of a and b is ~a" (logior a b))
+(format t "~% BITWISE EXCLUSIVE OR of a and b is ~a" (logxor a b))
+(format t "~% A NOT B is ~a" (lognor a b))
+(format t "~% A EQUIVALANCE B is ~a" (logeqv a b))
+(terpri)
+(terpri)
+(setq a 10)
+(setq b 0)
+(setq c 30)
+(setq d 40)
+(format t "~% Result of bitwise and operation on 10, 0, 30, 40 is ~a" (logand a b c d))
+(format t "~% Result of bitwise or operation on 10, 0, 30, 40 is ~a" (logior a b c d))
+(format t "~% Result of bitwise xor operation on 10, 0, 30, 40 is ~a" (logxor a b c d))
+(format t "~% Result of bitwise eqivalance operation on 10, 0, 30, 40 is ~a" (logeqv a b c d))
+
+
+	当您单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+BITWISE AND of a and b is 12
+BITWISE INCLUSIVE OR of a and b is 61
+BITWISE EXCLUSIVE OR of a and b is 49
+A NOT B is -62
+A EQUIVALANCE B is -50
+
+
+Result of bitwise and operation on 10, 0, 30, 40 is 0
+Result of bitwise or operation on 10, 0, 30, 40 is 62
+Result of bitwise xor operation on 10, 0, 30, 40 is 60
+Result of bitwise eqivalance operation on 10, 0, 30, 40 is -61
+
+来源：BootWiki
+链接：https://www.bootwiki/lisp/lisp-operators.html
+著作权归作者所有
+商业转载请联系作者获得授权，非商业转载请注明出处
+

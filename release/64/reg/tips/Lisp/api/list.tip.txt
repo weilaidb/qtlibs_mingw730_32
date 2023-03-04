@@ -1,0 +1,5 @@
+( i am a list)
+(a ( a b c) d e fgh)
+(father tom ( susan bill joe))
+(sun mon tue wed thur fri sat)
+( )

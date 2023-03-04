@@ -1,0 +1,26 @@
+LISP - 常量
+	在LISP中，常量变量在程序执行期间，从来没有改变它们的值。常量使用defconstant结构声明。
+
+	例子
+
+	下面的例子显示了声明一个全局常量PI和以后使用的函数命名area-circle计算圆的面积的值。
+
+	该函数defun结构用于定义一个函数，我们将看看它在“函数”一章。
+
+	创建一个名为main.lisp一个新的源代码文件，并在其中输入如下代码：
+(defconstant PI 3.141592)
+(defun area-circle(rad)
+  (terpri)
+  (format t "Radius: ~5f" rad)
+  (format t "~%Area: ~10f" (* PI rad rad)))
+  (area-circle 10)
+
+	当您单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+Radius:  10.0
+Area:   314.1592
+
+来源：BootWiki
+链接：https://www.bootwiki/lisp/lisp-constants.html
+著作权归作者所有
+商业转载请联系作者获得授权，非商业转载请注明出处
+

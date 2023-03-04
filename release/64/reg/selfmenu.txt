@@ -2128,7 +2128,23 @@ LINUX命令/Gmock/Qt编译
 LINUX命令/Gmock/简介
 LINUX命令/objcopy
 LINUX命令/readelf
+Lisp/api/const
+Lisp/api/cos sin tan
+Lisp/api/datatype
+Lisp/api/define
+Lisp/api/helloworld
+Lisp/api/list
+Lisp/api/单引号
+Lisp/api/四则运算
+Lisp/api/注释
+Lisp/know/LISP - 决策
+Lisp/know/LISP - 变量
+Lisp/know/LISP - 宏
+Lisp/know/LISP - 常量
+Lisp/know/LISP - 循环
+Lisp/know/LISP - 数据类型
 Lisp/know/LISP - 程序结构
+Lisp/know/LISP - 运算符
 Lisp/know/LISP基本构建块
 Lisp/know/Lisp IDE
 Lisp/know/Lisp教程

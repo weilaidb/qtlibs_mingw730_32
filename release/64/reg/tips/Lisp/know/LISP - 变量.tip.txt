@@ -1,0 +1,101 @@
+LISP - 变量
+	在LISP中，每个变量由一个'符号'表示。变量的名称是符号的名字，并将其存储在码元的存储单元。
+
+	全局变量
+
+	全局变量有永久值在整个LISP系统，并保持有效，直到指定的新值。
+
+	全局变量是使用defvar结构一般声明。
+
+	例如：
+(defvar x 1234)
+(write x)
+
+	当您单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+234
+
+	由于没有类型声明在LISP变量，可直接用setq一样构建一个符号指定一个值
+
+	例如，
+->(setq x 10)
+
+	上面的表达式的值10赋给变量x，也可以使用符号本身作为一个表达式来引用该变量。
+
+	符号值函数允许提取存储在符号存储位置的值。
+
+	示例
+
+	创建一个名为main.lisp新的源代码文件，并在其中输入如下代码：
+(setq x 10)
+(setq y 20)
+(format t "x = ~2d y = ~2d ~%" x y)
+(setq x 100)
+(setq y 200)
+(format t "x = ~2d y = ~2d" x y)
+
+	当单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+x = 10 y = 20 
+x = 100 y = 200
+
+	局部变量
+
+	局部变量在给定的过程中定义。被命名为一个函数定义中参数的参数也是局部变量。局部变量只能访问内相应的功能。
+
+	像的全局变量，也可以使用本setq一样构建体被创建的局部变量。
+
+	还有其他两种结构- let和prog创建局部变量。
+
+	该let结构的语法如下：
+(let ((var1  val1) (var2  val2).. (varn  valn))<s-expressions>)
+
+	其中var1, var2, ..varn 是变量名和val1, val2, .. valn是分配给相应的变量的初始值。
+
+	当执行let，每个变量被分配了各自的值，最后的s-expression。则返回最后一个表达式的值。
+
+	如果不包括的变量的初始值，它被分配到nil。
+
+	例子
+
+	创建一个名为main.lisp新的源代码文件，并在其中输入如下代码：
+(let ((x 'a)
+         (y 'b)
+         (z 'c))
+(format t "x = ~a y = ~a z = ~a" x y z))
+
+	当单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+x = A y = B z = C
+
+	该编结构也有局部变量作为第一个参数，它后面是prog的主体，以及任意数量s-expressions的列表。
+
+	该编函数执行s-expressions序列的列表，并返回零，除非遇到函数调用名返回。然后函数参数计算并返回。
+
+	例子
+
+	创建一个名为main.lisp新的源代码文件，并在其中输入如下代码：
+
+
+									
+									
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									
+
+
+
+									
+									
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									
+
+(prog ((x '(a b c))
+        (y '(1 2 3))
+        (z '(p q 10)))
+(format t "x = ~a y = ~a z = ~a" x y z))
+
+	当单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+x = (A B C) y = (1 2 3) z = (P Q 10)
+
+来源：BootWiki
+链接：https://www.bootwiki/lisp/lisp-variables.html
+著作权归作者所有
+商业转载请联系作者获得授权，非商业转载请注明出处
+

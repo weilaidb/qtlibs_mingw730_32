@@ -1078,6 +1078,8 @@ macro InsertGTestCaseAtFileEnd(hbuf, caseSetName, selecttext)
 	ScrollWndToLine (hwnd, oldTotal)
 }
 
+//从a.c切换到atest.c或者atest.cpp
+//但是无法解决atest.c自身的内容
 macro InsertGTestCasesAutoBySelect()
 {
 	hprj = GetCurrentProj()
@@ -1129,10 +1131,23 @@ macro InsertGTestCasesAutoBySelect()
 		//Msg ("onlyName:" # onlyName)
 		//Msg ("sufix:" # sufix )
 
+		onlyNameLen = strlen(onlyName)
 		//如果此为头文件，则找不到，使用.c
 		if(StrMid(sufix, 0, 2) == ".h")
 		{
 			findGTestFileName = onlyName # "test" # ".c"
+		}
+		//如果本身在test文件中
+		else if(onlyNameLen >= 4)
+		{
+			if((StrMid(onlyName, onlyNameLen - 4, onlyNameLen) == "test"))
+			{
+				findGTestFileName = onlyName # sufix
+			}
+			else
+			{
+				findGTestFileName = onlyName # "test" # sufix
+			}
 		}
 		else
 		{
@@ -1387,10 +1402,23 @@ macro InsertGTestCasesAutoBySelectMore()
 		//Msg ("onlyName:" # onlyName)
 		//Msg ("sufix:" # sufix )
 
+		onlyNameLen = strlen(onlyName)
 		//如果此为头文件，则找不到，使用.c
 		if(StrMid(sufix, 0, 2) == ".h")
 		{
 			findGTestFileName = onlyName # "test" # ".c"
+		}
+		//如果本身在test文件中
+		else if(onlyNameLen >= 4)
+		{
+			if((StrMid(onlyName, onlyNameLen - 4, onlyNameLen) == "test"))
+			{
+				findGTestFileName = onlyName # sufix
+			}
+			else
+			{
+				findGTestFileName = onlyName # "test" # sufix
+			}
 		}
 		else
 		{

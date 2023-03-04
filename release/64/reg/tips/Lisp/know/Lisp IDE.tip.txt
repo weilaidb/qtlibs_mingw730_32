@@ -152,3 +152,36 @@ Items marked * are required.
 Downloads
 LispWorks Personal EditionPatchesDownloadable documentationCompany     Contact     Privacy Policy     Terms of Use
 Copyright © 2001-23 LispWorks Ltd. All rights reserved.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You are here: Downloads 
+
+Download LispWorks Personal Edition (64-bit) for Windows
+Thank you for choosing to download LispWorks Personal Edition (64-bit) for Windows.
+
+The installer can be downloaded here:
+
+LispWorksPersonal80-64bit.exe
+
+The installer is fairly simple but if you need help then please refer to the Installation Guide (available in pdf).
+
+Enjoy using LispWorks Personal Edition!
+
+Please send any feedback to lisp-feedback@lispworks.com using the guidelines at www.lispworks.com/support/bug-report.html.
+
+Copyright © 2001-23 LispWorks Ltd. All rights reserved

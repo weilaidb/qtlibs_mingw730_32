@@ -1,0 +1,48 @@
+LISP - 宏
+	宏可以扩展标准LISP的语法。
+
+	从技术上讲，宏是一个函数，它接受一个s-expression作为参数，并返回一个LISP的形式，然后进行评估计算。
+
+	定义一个宏
+
+	在LISP中，一个名为宏使用另一个名为defmacro宏定义。定义一个宏的语法：
+(defmacro macro-name (parameter-list)
+ "Optional documentation string."
+ body-form)
+
+	宏定义包含宏的名称，参数列表，可选的文档字符串，和Lisp表达式的体，它定义要由宏执行的任务。
+
+	实例
+
+	让我们写了一个名为setTo10简单的宏，将采取一系列并将其值设置为10。
+
+	创建一个名为main.lisp新的源代码文件，并在其中输入如下代码：
+
+
+									
+									
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									
+
+
+
+									
+									
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									
+
+defmacro setTo10(num)
+ (setq num 10)(print num))
+ (setq x 25)
+ (print x)
+ (setTo10 x)
+
+	当您单击Execute按钮，或按下Ctrl+ E，LISP立即执行它，返回的结果是：
+25 
+10
+
+来源：BootWiki
+链接：https://www.bootwiki/lisp/lisp-macros.html
+著作权归作者所有
+商业转载请联系作者获得授权，非商业转载请注明出处
+
