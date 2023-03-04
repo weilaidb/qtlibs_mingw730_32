@@ -1,0 +1,2 @@
+[设置]
+/the/path/you/want/set

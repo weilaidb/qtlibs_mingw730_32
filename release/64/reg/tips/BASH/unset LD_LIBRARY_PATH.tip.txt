@@ -1,0 +1,2 @@
+unset LD_LIBRARY_PATH
+unset -v LD_LIBRARY_PATH

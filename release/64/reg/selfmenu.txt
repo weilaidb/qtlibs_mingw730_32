@@ -4,6 +4,7 @@ Algorithm 算法/大数进制转换
 AutoCad/三等分圆
 AutoTest/python/telnet
 AutoTest/python/telnet read_until
+BASH/LD_LIBRARY_PATH
 BASH/alias/.bashrc(101.201.79.164)
 BASH/alias/.bashrc(49.234.85.12)
 BASH/alias/.bashrc(t14 ubuntu)
@@ -58,6 +59,8 @@ BASH/tr
 BASH/tr help
 BASH/trap
 BASH/trap exit
+BASH/unset
+BASH/unset LD_LIBRARY_PATH
 BASH/usage
 BASH/usage para1
 BASH/usage para2
@@ -97,6 +100,7 @@ BASH/注释/单行
 BASH/注释/多行
 BASH/注释/多行2
 BASH/自增1 自加1
+BASH/设置和清除LD_LIBRARY_PATH
 BASH/语句/case语句
 BASH/语句/case语句2
 BASH/语句/case语句string
