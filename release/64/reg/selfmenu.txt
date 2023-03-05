@@ -2757,6 +2757,7 @@ Tools/VSCode/模板/insertfilesource
 Tools/VSCode/模板/snippet generator
 Tools/VSCode/模板/snippets/c/enter
 Tools/VSCode/模板/snippets/c/gtest1to6withclass
+Tools/VSCode/模板/snippets/c/gtestcase1to6only
 Tools/VSCode/模板/snippets/c/helloworld
 Tools/VSCode/模板/头文件#ifndef #define #endif
 Tools/VSCode/背景色 护眼色
@@ -2906,6 +2907,9 @@ UNITTEST/GTEST/TEST_F
 UNITTEST/GTEST/TEST_P
 UNITTEST/GTEST/class/TEST_F 4
 UNITTEST/GTEST/class/TEST_F 6
+UNITTEST/GTEST/class/TEST_F 6 0simple
+UNITTEST/GTEST/class/TEST_F 6 more
+UNITTEST/GTEST/class/TEST_F 6 more simple
 UNITTEST/GTEST/class/TEST_F 6(pointer)
 UNITTEST/GTEST/class/eg
 UNITTEST/GTEST/class/gtestmakefile
