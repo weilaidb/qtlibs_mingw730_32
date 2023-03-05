@@ -1,0 +1,7 @@
+"enter": {
+  "prefix": "enter",
+  "body": [
+    "printf(\"\\n\");"
+  ],
+  "description": "enter"
+}

@@ -509,6 +509,9 @@ C/enum/enum single withname typedef
 C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
 C/know/C 两个叹号的含义!!
+C/know/C语言中 typeof（）函数的用法
+C/know/C语言高级用法---typeof()关键字
+C/know/Extensions to the C Language Family typeof
 C/know/Linux中的软件安装进度条怎么搞
 C/know/MSG_OOB linux平台MSG_OOB选项测试
 C/know/define/TEST_F实现
@@ -2751,6 +2754,10 @@ Tools/VSCode/模板/header
 Tools/VSCode/模板/help 位置 复制
 Tools/VSCode/模板/insertfileheader
 Tools/VSCode/模板/insertfilesource
+Tools/VSCode/模板/snippet generator
+Tools/VSCode/模板/snippets/c/enter
+Tools/VSCode/模板/snippets/c/gtest1to6withclass
+Tools/VSCode/模板/snippets/c/helloworld
 Tools/VSCode/模板/头文件#ifndef #define #endif
 Tools/VSCode/背景色 护眼色
 Tools/VSCode快捷键
@@ -3007,6 +3014,7 @@ path路径/常用文件夹
 人格品行/弟子规 翻译
 人格品行/每日训诫检查
 人格品行/永嘉证道歌
+创业/小技能，大创业系列之三：别人是如何通过软件开发创业的？
 单元测试/know/Linux c - 利用JMP指令打动态桩
 图片/常用网址
 字符/方向
@@ -3076,6 +3084,13 @@ path路径/常用文件夹
 宏Macro/Source insight/new/switch SwitchHeaderSourceForCpp C或CPP头文件和源文件切换
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
+宏Macro/UltraEdit/IDM PowerTips Scripting Techniques
+宏Macro/UltraEdit/New 脚本命令
+宏Macro/UltraEdit/New 脚本演示和教程
+宏Macro/UltraEdit/new messageBox
+宏Macro/UltraEdit/new num
+宏Macro/UltraEdit/new num2
+宏Macro/UltraEdit/new write
 实验/网线做法 交叉线 T568A and T568B
 实验/网线做法 直通线 T568B线序 橙白-橙-绿白-蓝-蓝白-绿-棕白-棕
 工作/年度计划/2023年度计划

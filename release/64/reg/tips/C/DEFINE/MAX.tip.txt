@@ -1,2 +1,9 @@
 #undef MAX
 #define MAX(a,b) ((a)>(b)?(a):(b))
+
+
+
+#define max(a,b) \
+    ({ typeof (a) _a = (a); \
+       typeof (b) _b = (b); \
+     _a > _b ? _a : _b; })

@@ -1,0 +1,219 @@
+ UltraEdit
+Products
+ 
+Pricing
+ 
+Resources
+ 
+About us
+IDM PowerTips
+Scripting Techniques
+The built-in scripting engine is a powerful feature that allows you to automate your text-editing operations. As you can see from the examples posted by users in the scripting section in our user-to-user forum, there are a great variety of ways to use scripting. Below are a few techniques to keep “on-hand” that can get you started using the scripting engine.
+Note: Some techniques may require knowledge of programming concepts such as variables, if/then statements, and loops.
+
+Create a new file
+The below script creates a new (empty) file in the editor.
+UltraEdit.newFile();
+Write to a File
+The below script writes to the active document.
+
+UltraEdit.activeDocument.write(“test”);
+Write to the Output Window
+The below script writes to the output window.
+
+UltraEdit.outputWindow.write(“Hello World!”)
+(You may want to check out our power tip on writing to the output window via scripting.)
+
+Select, Copy, Paste a Line
+The below script selects the active line then jumps to the top of the file and pastes it.
+
+UltraEdit.activeDocument.selectLine();
+UltraEdit.activeDocument.copy();
+UltraEdit.activeDocument.top();
+UltraEdit.activeDocument.paste();
+Cursor Movement and Selection
+The below script selects the word next to the cursor and the line that follow (below) the word.
+
+UltraEdit.activeDocument.startSelect();
+UltraEdit.activeDocument.key(“CTRL+RIGHT ARROW”);
+UltraEdit.activeDocument.key(“DOWN ARROW”);
+UltraEdit.activeDocument.key(“DOWN ARROW”);
+UltraEdit.activeDocument.endSelect();
+Place selected text into a variable
+This script places the selected text into a variable called text.
+
+var text = UltraEdit.activeDocument.selection;
+Replace spaces in the selected text with underscores
+This script places the selected text in a variable and replaces all spaces with an underscore.
+
+Example input:
+
+Hello world welcome to scripting
+
+Converts to:
+
+Hello_world_welcome_to_scripting
+
+var str = UltraEdit.activeDocument.selection;
+str = str.replace(/ /g, “_”);
+Note: The “replace” text is enclosed within the backslashes.
+
+Parse selected lines into an array.
+This script takes a selection of lines and parses them into an array. Notice the line terminator variable is defined as \r\n. This may need to be changed depending on the file type you are using.
+
+var lineTerminator = “\r\n”;
+var str = UltraEdit.activeDocument.selection;
+var resultArr = new Array();resultArr = str.split(lineTerminator);
+After parsing the lines into an array, you can loop through the array to perform actions to each value in the array. For example, the code below will loop through the array and write the value to the output window in the following format:
+
+Value: [number] “[Text]”
+
+for (var i = 0; i < resultArr.length; i++) {
+UltraEdit.outputWindow.write(“Value: ” + i + ” \”” + resultArr[i] + “\”\r\n”);
+}
+Append multiple lines
+The following script will append (write) multiple lines into a single line.
+
+If you have a file such as:
+
+abc
+123
+def
+345
+
+It will produce:
+
+abc123def345
+
+var strings; //variable which holds selection
+var stringArray = new Array(); //create array to hold string values
+var arrayLength = 0; //array length
+var lineTerminator = “\r\n”; //line terminator character you may need to change this depending on the file type
+
+ 
+
+//Get user selection
+strings = UltraEdit.activeDocument.selection;
+
+//split string at line terminator characters
+stringArray = strings.split(lineTerminator);
+arrayLength = stringArray.length
+
+for (var x = 0; x < arrayLength; ++x) {
+UltraEdit.activeDocument.write(stringArray[x]);
+}
+
+Find selected text
+This script performs a search for the selected text.
+
+var text = UltraEdit.activeDocument.selection;
+UltraEdit.activeDocument.findReplace.regExp = false;
+UltraEdit.activeDocument.findReplace.find(text);
+Replace Text in Selection
+This script will replace all occurrences of “abc” with “ABC” in a specific selection.
+
+UltraEdit.activeDocument.findReplace.regExp=false;
+UltraEdit.activeDocument.findReplace.selectText=true;
+UltraEdit.activeDocument.findReplace.replaceAll=false;
+
+ 
+
+Replace Text in Selection – Define selection
+This script is similar to the above script except that it defines the selection from the top of the file, down through the end of the 4th line (beginning of line 5 of the file).
+
+UltraEdit.activeDocument.top();
+UltraEdit.activeDocument.gotoLineSelect(5,1);
+UltraEdit.activeDocument.findReplace.regExp=false;
+UltraEdit.activeDocument.findReplace.selectText=true;
+UltraEdit.activeDocument.findReplace.replaceAll=false;
+UltraEdit.activeDocument.findReplace.replace(“abc”,”ABC”);
+Replace All Occurrences of a string in a file
+The below script uses the UltraEdit Find/Replace to replace all instances of specific find string in a file. This example replaces & with & – the HTML entity.
+
+UltraEdit.activeDocument.top();
+UltraEdit.activeDocument.findReplace.replaceAll=true;
+UltraEdit.activeDocument.findReplace.matchCase=true;
+UltraEdit.activeDocument.findReplace.replace(“&”, “&amp;”);
+Find Specific Occurence of text
+The below script finds the third instance of the text (“abc”) in a given file.
+
+var text = “abc”;
+var x = 3;
+UltraEdit.activeDocument.findReplace.regExp = false;
+for (i=1;i<=x;++i) {
+UltraEdit.activeDocument.findReplace.find(text);
+}
+Note: The above script assumes there are at least 3 instances of “abc”. If the file does not include at least 3, you can add additional logic to test how many instances occur in the file.
+
+How many files are open in the Editor
+The script below will tell you the amount of files that are open in the editor. The number is written to the output window.
+
+var num = UltraEdit.document.length;
+UltraEdit.outputWindow.write(“number ” + num);
+GoTo a specific line/column number
+The following script will position the cursor at line number 2, column 12.
+
+var lineNum = 2;
+var colNum = 12;
+UltraEdit.activeDocument.gotoLine(lineNum, colNum);
+Select all text in a document, copy it, and return to cursor position
+The following script selects all text in the file, copies it, then positions the cursor back where it was prior to the select all/copy.
+
+var lineNum = UltraEdit.activeDocument.currentLineNum;
+var colNum = UltraEdit.activeDocument.currentColumnNum;
+UltraEdit.activeDocument.selectAll();
+UltraEdit.activeDocument.copy();
+UltraEdit.activeDocument.gotoLine(lineNum, colNum);
+Traverse through all open files in the editor
+The script below will traverse through all open files in the editor and will add a “comment”. This is similar to the header.js script available for download from our site.
+
+var num = UltraEdit.document.length;
+var index;
+for (index = 0; index < num; index++) {
+UltraEdit.document[index].top();
+UltraEdit.document[index].write(“// Edited by IDM”);
+}
+You can also use this to perform an action such as Trim Trailing Spaces for all open files.
+
+Is HEX mode active?
+The following script will check to see if HEX mode is enabled, and if so it will toggle out of HEX mode.
+
+var hexActive = UltraEdit.activeDocument.hexMode;
+if (hexActive) UltraEdit.activeDocument.hexOff();
+Got a script you want to publish for other users? Send us your scripts…
+
+What’s your language?
+Code editor (General)
+Text editor
+Hex
+HTML
+PHP
+CSS
+XML
+Markdown
+C++
+SAS
+Unix shell scripts
+PL/SQL
+Visual Basic
+What type of user are you?
+Programmer / Developer
+Web Developer
+Database Manager
+System Administrator
+Technical Writer
+Editor / Publisher
+Medical / Pharmaceutical
+General
+Contact
+License Agreement (EULA)
+End of Life Policy
+Libraries and Patents
+Information Policy
+Privacy Policy
+Uninstall Instructions
+Sitemap
+Legal
+
+
+©2023 UltraEdit. All rights reserved

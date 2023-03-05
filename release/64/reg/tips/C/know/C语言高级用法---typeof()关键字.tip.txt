@@ -1,0 +1,187 @@
+C语言高级用法---typeof()关键字
+
+sweird
+
+于 2019-06-02 17:46:55 发布
+
+64988
+ 收藏 163
+分类专栏： C语言基础 C语言高级用法 文章标签： typeof()
+版权
+
+C语言基础
+同时被 2 个专栏收录
+11 篇文章5 订阅
+订阅专栏
+
+C语言高级用法
+3 篇文章8 订阅
+订阅专栏
+前言
+typeof() 是GUN C提供的一种特性，可参考C-Extensions，它可以取得变量的类型，或者表达式的类型。
+
+本文总结了typeof()关键字的常见用法，并给出了相应的例子，以加深理解 。
+
+typeof()关键字常见用法
+typeof()关键字常见用法一共有以下几种。
+
+不用知道函数返回什么类型，可以使用typeof()定义一个用于接收该函数返回值的变量
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct apple{
+    int weight;
+    int color;
+};
+
+struct apple *get_apple_info()
+{
+    struct apple *a1;
+    a1 = malloc(sizeof(struct apple));
+    if(a1 == NULL)
+    {
+        printf("malloc error.\n");
+        return;
+    }
+
+    a1->weight = 2;
+    a1->color = 1;
+
+    return a1;
+}
+
+int main(int argc, char *argv[])
+{
+    typeof(get_apple_info()) r1;//定义一个变量r1,用于接收函数get_apple_info()返回的值，由于该函数返回的类型是：struct apple *，所以变量r1也是该类型。注意，函数不会执行。
+
+    r1 = get_apple_info();
+
+    printf("apple weight:%d\n", r1->weight);
+    printf("apple color:%d\n", r1->color);
+
+    return 0;
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+在宏定义中动态获取相关结构体成员的类型
+
+如下代码，定义一个和变量x相同类型的临时变量_max1，定义一个和变量y相同类型的临时变量_max2，再判断两者类型是否一致，不一致给出一个警告，最后比较两者。
+
+#define max(x, y) ({                \
+    typeof(x) _max1 = (x);          \
+    typeof(y) _max2 = (y);          \
+    (void) (&_max1 == &_max2);      \//如果调用者传参时，两者类型不一致，在编译时就会发出警告。
+    _max1 > _max2 ? _max1 : _max2; })
+1
+2
+3
+4
+5
+如下代码，传入的a和b不是同一类型。
+
+int main(int argc, char *argv[])
+{
+    int a=3;
+    float b = 4.0;
+    int r = max(a, b);
+
+    printf("r:%d\n", r);
+
+    return 0;
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+此时编译就会出现警告
+
+[root@xx c_base]# gcc test.c
+test.c: 在函数‘main’中:
+test.c:43: 警告：比较不相关的指针时缺少类型转换
+1
+2
+3
+也可直接取得已知类型
+
+如下代码，定义了一个int类型的指针p，像这种用法主没什么太大的意义了。
+
+    int a = 2;
+    typeof (int *) p;
+    p = &a;
+    printf("%d\n", *p);
+1
+2
+3
+4
+其它用法
+
+	//其它用法1
+	char *p1;
+    typeof (*p1) ch = 'a'; //ch为char类型，不是char *类型。
+    printf("%d, %c\n", sizeof(ch), ch);//1, a
+
+	//其它用法2
+	char *p2;
+    typeof (p2) p = "hello world";//此时的p才是char *类型，由于在64位机器上，所以指针大小为8字节
+    printf("%d, %s\n", sizeof(p), p);//8, hello world
+1
+2
+3
+4
+5
+6
+7
+8
+9
+总结
+以上例子并没有穷举所有的情况，但其核心用法基本上就会了，其它的例子也可参考网上的例子。
+
+参考文章
+C语言中typeof()函数的用法
+
+C-Extensions
+————————————————
+版权声明：本文为CSDN博主「sweird」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/rosetta/article/details/90741468

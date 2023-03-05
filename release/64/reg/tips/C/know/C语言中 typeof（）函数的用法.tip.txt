@@ -1,0 +1,83 @@
+C语言中 typeof（）函数的用法
+
+wichace
+
+于 2015-07-08 21:39:41 发布
+
+19435
+ 收藏 27
+分类专栏： C语言基础类
+
+C语言基础类
+专栏收录该内容
+1 篇文章0 订阅
+订阅专栏
+前言：
+    typeof关键字是C语言中的一个新扩展，这个特性在linux内核中应用非常广泛。
+
+
+
+一，说明
+    typeof的参数可以是两种形式： 表达式 或 类型 。
+
+     1，表达式的的例子：
+        typeof(x[0](1)
+        这里假设x是一个函数指针数组，这样就可以得到这个函数返回值的类型了。
+        如果将typeof用于表达式，则该表达式不会执行。只会得到该表达式的类型。
+        以下示例声明了int类型的var变量，因为表达式foo()是int类型的。由于表达式不会被执行，所以不会调用foo函数。
+            extern int foo();
+            typeof(foo()) var;
+
+     2，参数的例子：
+        typeof(int *) a,b;
+            等价于：
+            int *a,*b;
+
+
+二，实例
+    1，把y定义成x指向的数据类型：
+           typeof(*x) y;
+    2， 把y定义成x指向数据类型的数组：
+           typeof(*x) y[4];
+    3， 把y定义成一个字符指针数组：
+            typeof(typeof(char *)[4] y;
+    这与下面的定义等价：
+            char *y[4];
+
+    4， typeof(int *) p1,p2; /* Declares two int pointers p1, p2 */
+            int *p1, *p2;
+
+    5， typeof(int) *p3,p4;/* Declares int pointer p3 and int p4 */
+            int *p3, p4;
+
+    6， typeof(int [10]) a1, a2;/* Declares two arrays of integers */
+            int a1[10], a2[10];
+
+
+
+    7，定义一个宏返回一个最大值，为避免因为重复调用同一个变量，可以这样     
+
+       把     MAX（x,y）  ((x)>(y)?(x):(y))
+
+
+
+       改成   MAX（x,y）   ({   typeof(x) _x=x;\
+
+typeof(x) _y=y;\
+
+_x>_y?_x:_y;\
+
+    })
+
+
+
+三 ，局限
+    typeof构造中的类型名 不能 包含存储类说明符，如 extern 或 static 。不过允许包含类型限定符，如 const 或 volatile 。
+    例如，下列代码是无效的，因为它在typeof构造中声明了extern：
+        typeof(extern int) a;
+
+
+
+四，文件参考
+    1，http://blog.csdn.net/wslong/article/details/7728811
+    2，http://gcc.gnu.org/onlinedocs/gcc/Typeof.html#Typeof

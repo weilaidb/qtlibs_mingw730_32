@@ -1,0 +1,2074 @@
+ 
+
+脚本命令  
+Previous Topic  Next Topic  
+
+
+脚本在UltraEdit/UEStudio的是通过嵌入JavaScript引擎启用。这使得用户可以享受全面JavaScript语言的强大功能和灵活性
+
+而使用以下指定的命令专门与编辑器交互（应用程序对象命令）或文件编辑器（文档对象命令）开放。
+
+脚本可以在UltraEdit/UEStudio的编辑，集成语法高亮在默认wordfile JavaScript的：
+
+ 
+
+
+
+ 
+
+脚本引擎支持JavaScript1.7的核心功能。进一步JavaScript的信息，请参考相关的Mozilla网站 (http://developer.mozilla.org/en/docs/JavaScript)。
+
+ 
+
+例如，该脚本将生成一个数字序列，并将其写入活动文档：
+
+ 
+
+function recall(num) {
+
+  UltraEdit.activeDocument.write(num+ "\r\n");
+
+}
+
+function num() {
+
+  var i = 0, j =1, n = 0;
+
+  while (n <10) {
+
+    recall(i);
+
+    vart = i;
+
+    i= j;
+
+    j+= t;
+
+    n++;
+
+  }
+
+}
+
+num();
+
+ 
+
+进一步的演示脚本可以在安装目录中找到的“脚本”子目录。对于一个简短的脚本的教程，请 点击这里。
+
+ 
+
+包括在脚本中的脚本
+
+如果需要的话，用户可以包括在由参考脚本外部脚本所示下面：
+
+ 
+
+// includeexternalScript.js
+
+ 
+
+要么
+
+ 
+
+// includeC:\full path\to external\script\externalScript.js
+
+ 
+
+include命令必须由一行注释之前。如果一个用户希望排除为了调试的目的所包含的脚本中，包括应该由一个前翻了一倍行注释，即：
+
+ 
+
+// // include externalScript.js
+
+ 
+
+请注意，脚本一旦列入被处理执行，但是夹杂物之前激活的脚本处理。如果包括插入
+
+脚本文件的中间，它实际上将执行前的脚本被包括在哪里的用户希望从较小的以模块化的方式来构建复杂的脚本
+
+脚本，最好的做法是创建调用主脚本文件包括脚本，即：
+
+ 
+
+// include script1.js
+
+// include script2.js
+
+// include script3.js
+
+ 
+
+的var_dump
+
+这个功能包括用于在UltraEdit脚本中定义的其他对象之外。它显示有关参考信息，包括类型的结构化信息
+
+和价值。数组和对象与缩进显示值递归探索结构体。
+
+ 
+
+例：
+
+var_dump(UltraEdit.frInFiles);
+
+ 
+
+默认变量值
+
+UltraEdit的支持默认情况下，每一个初始化几个变量值时间的脚本在UltraEdit开始：
+
+ 
+
+ColumnMode 始终关闭。
+
+HexMode 始终关闭。
+
+InsertMode 始终打开。
+
+正则表达式引擎总是被设置为Perl的。
+
+ 
+
+这些项目都设置每一个脚本运行的时间。
+
+ 
+
+应用程序对象命令
+
+UltraEdit是全部UltraEdit操作将基于应用程序对象。以下命令作用于编辑器而非活动文档。
+
+除非其他参数都指出，所有应用程序对象命令必须调用使用以下格式：
+    
+UltraEdit.commandName();
+
+ 
+
+下表显示了应用程序对象命令：
+
+ 
+
+
+命令
+ 
+参数*
+ 
+描述
+ 
+
+activeDocumentIdx
+ 
+**这是只读属性。
+ 
+文档数组中的活动文档的回报指标。例如：
+
+varadI = UltraEdit.activeDocumentIdx;
+ 
+
+clearClipboard
+   
+清除当前剪贴板。
+ 
+
+clipboardContent
+ 
+文本如果用来设置剪贴板中的内容引号（“”）。
+ 
+返回当前剪贴板内容。例如：
+
+varclip = UltraEdit.clipboardContent;
+
+也可用于设置当前剪贴板中的内容。例如：
+
+UltraEdit.clipboardContent= "Hello World!";
+ 
+
+clipboardIdx
+ 
+**这是只读属性。
+ 
+当前剪贴板的回报指标。例如：
+
+varclip = UltraEdit.clipboardIdx;
+ 
+
+closeFile
+ 
+文件路径
+
+省电模式
+
+  0 - 提示保存
+
+  1 - 保存并关闭
+
+  2 - 关闭不保存
+ 
+关闭活动的文件。例如：
+
+ 
+
+UltraEdit.closeFile("C:\\temp\\test.txt",2);
+
+ 
+
+*注：如上图所示的参数中使用的任何反斜线必须进行转义（即“\\”而不是 ”\”）。
+ 
+
+columnMode
+ 
+**这是只读属性。
+ 
+返回表示如果列模式有效布尔值。例如：
+
+varcolumnActive = UltraEdit.columnMode;
+ 
+
+columnModeOff
+ 
+ 
+ 
+关闭列模式关闭。例如：
+
+UltraEdit.columnModeOff();
+
+*注意：一旦脚本已经完成，当前列模式状态将恢复处理。
+ 
+
+columnModeOn
+ 
+ 
+ 
+打开列模式。例如：
+
+UltraEdit.columnModeOn();
+ 
+
+decryptFilePrompt
+ 
+ 
+ 
+目前解密文件对话框。例如：
+
+UltraEdit.decryptFilePrompt();
+ 
+
+encryptFilePrompt
+ 
+ 
+ 
+目前加密文件对话框。例如：
+
+UltraEdit.encryptFilePrompt();
+ 
+
+frInFiles
+ 
+.directoryStart 串 
+的完整路径
+ 
+
+目录中搜索应该开始
+ 
+.encoding int 
+值：
+ 
+
+ 
+ 
+要用于搜索编码值
+ 
+.filesToSearch int 
+值：
+ 
+
+ 
+    0 - 文件中列出
+   1 - 打开文件
+   2 - 喜爱的文件
+   3 - 项目文件
+   4 - 解决方案文件 
+.ignoreHiddenSubs 布尔 true/false 
+.matchCase 布尔 true/false 
+.matchWord 布尔 true/false 
+.openMatchingFiles 布尔 true/false 
+.regExp 布尔 true/false 
+.searchSubs 布尔 true/false 
+.unicodeSearch 布尔 true/false 
+.useEncoding 布尔 true/false 
+.searchInFilesTypes   串 
+文件/类型
+ 
+
+ 
+ 
+搜索在
+ 
+.find("stringto find"); 
+.replace("stringto find", "string to replace"); 
+  
+** Only used with replace ** 
+.logChanges 布尔 true/false 
+.preserveCase 布尔 true/false 
+  
+** Only used without replace ** 
+.displayLinesDoNotMatch 
+
+ 
+ 布尔 true/false 
+.reverseSearch 布尔 true/false 
+.useOutputWindow 布尔 true/false 
+ 
+通过特定的文件搜索来查找引号括起来的“，”基于参数指定。
+
+在文件中查找示例：
+
+UltraEdit.frInFiles.directoryStart= "c:\\temp\\";
+
+UltraEdit.frInFiles.searchInFilesTypes= "*.txt";
+
+UltraEdit.frInFiles.useOutputWindow= true;
+
+UltraEdit.frInFiles.find("3939");
+
+ 
+
+在文件中替换示例：
+
+UltraEdit.frInFiles.directoryStart= "c:\\temp\\";
+
+UltraEdit.frInFiles.searchInFilesTypes= "*.txt";
+
+UltraEdit.frInFiles.useOutputWindow= true;
+
+UltraEdit.frInFiles.replace("3939","7878");
+
+ 
+
+ 
+ 
+
+getString
+ 
+字符串位于引号（“”）在提示对话框中使用
+
+ 
+
+可选标志：
+
+0     int 
+
+1     int    返回值
+ 
+提示用户输入字符串在当前位置插入。 “提示”是提示
+
+或脚本运行时显示给用户的问题。例子：
+
+ 
+
+UltraEdit.getString("Whatis your name?");
+
+ 
+
+要么
+
+ 
+
+var str = UltraEdit.getString("Whatis your name?",1);
+
+ 
+
+如果int值“1”是用来输入将不被写入到活性字符串
+
+文件，但会另存为变量值并在运行的脚本中使用。
+ 
+
+getValue
+ 
+字符串中的引号（“”）的提示对话框中使用
+
+ 
+
+可选标志：
+
+0     int 
+
+1     int    返回值
+ 
+提示用户输入一个值，在当前位置插入。 “提示”是提示
+
+或脚本运行时显示给用户的问题。例子：
+
+ 
+
+UltraEdit.getValue("Howold are you?");
+
+ 
+
+要么
+
+ 
+
+var str = UltraEdit.getValue("Howold are you?",1);
+
+如果int值“1”是用来输入将不被写入到活性字符串
+
+文件，但会另存为变量int值并在运行的脚本中使用。
+ 
+
+insertMode
+ 
+ 
+ 
+更改文本编辑模式插入模式输入的字符。
+ 
+
+insOvrMode
+ 
+**这是只读属性。
+ 
+返回指示是否插入模式是布尔值。例如：
+
+varinsertActive = UltraEdit.insOvrMode;
+ 
+
+messageBox
+ 
+在引号消息文本（“”）
+
+在引号标题文本（“”）（可选）
+ 
+呈现“确定”按钮的消息对话框。例如：
+
+UltraEdit.messageBox("Can'tcomplete process", "Process Abort");
+ 
+
+newFile
+ 
+ 
+ 
+Open a new blank file.
+ 
+
+open
+ 
+在报价文件名（“”）
+ 
+打开指定的文件。文件名必须在引号。 “^ C”可以使用且UltraEdit
+
+将与剪贴板中的内容来替换它。例如：
+
+UltraEdit.open("c:\\temp\\test.txt");
+
+要么
+
+UltraEdit.open('^c');
+
+要么
+
+UltraEdit.open("c:\\temp\\^c");
+
+要么
+
+UltraEdit.open("FTP::myserver.com\\/home/mypath/
+
+public_html|index.html");
+ 
+
+overStrikeMode
+ 
+ 
+ 
+更改文本编辑模式改写模式中的字符输入。
+ 
+
+perlReOn
+ 
+ 
+ 
+正则表达式切换到Perl样式的正则表达式。
+ 
+
+regexMode
+ 
+** This is a READ ONLYproperty.
+ 
+返回数值表示活动的正则表达式类型。  
+
+0= UltraEdit的表情
+
+1= Unix的表情
+
+2= Perl的表达式
+
+例：
+
+varregexType = UltraEdit.regexMode;
+ 
+
+runTool
+ 
+字符串位于引号（“”），指定要运行的工具的区分大小写的菜单名。
+ 
+运行的工具。该工具必须从被配置 配置工具 下的高级选项卡中的用户工具下拉菜单。例如：
+
+UltraEdit.runTool("ScriptTool");
+ 
+
+save
+ 
+ 
+ 
+保存活动文件。
+ 
+
+saveAll
+ 
+ 
+ 
+保存所有活动文件。
+ 
+
+saveAs
+ 
+在报价文件名（“”）
+ 
+保存活动文件中指定的文件名。文件名必须在引号。 “^的”
+
+可在文件名中使用。 UltraEdit将与当前选定替换此
+
+文字在活动窗口。同样地，“^ C”可以被使用，并且UltraEdit将替换
+
+这与剪贴板中的内容。
+
+UltraEdit.saveAs("c:\\temp\\test.txt");
+
+要么
+
+UltraEdit.saveAs("^s");
+
+要么
+
+UltraEdit.saveAs("^c");
+ 
+
+selectClipboard
+ 
+剪贴板数字（0-9）
+ 
+选择指定的剪贴板0= Windows剪贴板和1-9指定用户剪贴板。
+
+例如：UltraEdit.selectClipboard(2);
+ 
+
+ueReOn
+ 
+ 
+ 
+正则表达式切换到UltraEdit的风格正则表达式。
+ 
+
+unixReOn
+ 
+ 
+ 
+正则表达式切换为Unix风格的正则表达式。
+ 
+
+ 
+
+文档对象命令
+
+文档是一个JavaScript数组对象是UltraEdit应用程序的属性目的。这是当前打开的所有文档的数组。该的ActiveDocument参数可以被用于指定输出应写入到活动档案或者用户可能会根据文件选项卡顺序指定文件的索引（即文献[0]，...
+
+文献[8]）。例如：
+
+ 
+
+UltraEdit.activeDocument.write("test");
+
+ 
+
+会写到活动文件中的“测试”一词，而以下几点：
+
+ 
+
+UltraEdit.document[4].write("test");
+
+ 
+
+将允许用户打开多个文件，并写入指定的文本第五个文件（根据文件标签的顺序）打开进行编辑。
+
+ 
+
+脚本可以被评价为用“//”测试或文档。
+
+ 
+
+一旦脚本被创建，其可以进行编辑。请注意，“^ c”和“^的”可能在很多脚本命令中使用，将与中的内容被替换剪贴板（^ c）和文本当前所选（^多个）一起使用时。这允许用户创建引用特定字符串，并请换一个这样的脚本
+
+这两个项目的以允许串被动态“指定的”的脚本运行。以下命令作用于当前打开的文档进行编辑。除非其他参数说明，所有文档对象命令都必须使用被调用格式如下：
+  
+UltraEdit.activeDocument.commandName();
+
+ 
+
+下表显示了文档对象命令：
+
+ 
+
+
+命令
+ 
+参数*
+ 
+描述
+ 
+
+ansiToOem
+   
+文件从ANSI转换为OEM。例如：
+
+UltraEdit.activeDocument.ansiToOem();
+ 
+
+ASCIIToUnicode
+ 
+ 
+ 
+从ASCII文件转换为Unicode。
+ 
+
+ASCIIToUTF8
+ 
+ 
+ 
+从ASCII文件转换为UTF-8。
+ 
+
+bottom
+ 
+ 
+ 
+跳转到文件末尾。
+ 
+
+cancelSelect
+ 
+ 
+ 
+清除活动文档中的任何选择。例如：
+
+UltraEdit.activeDocument.cancelSelect();
+ 
+
+clearAllBookmarks
+ 
+ 
+ 
+清除活动文档中的所有书签。例如：
+
+UltraEdit.activeDocument.clearAllBookmarks();
+ 
+
+codePage
+
+ 
+ 
+**这是活动/指定文档的属性。
+
+ 
+ 
+返回活动文档的代码页值。例如：
+
+varcp = UltraEdit.activeDocument.codePage;
+
+可被用来设置代码页要用于活动文档。例如：
+
+UltraEdit.open("C:\\temp\\korean_file.txt")
+
+UltraEdit.activeDocument.codePage= 949;
+ 
+
+collapseAll
+ 
+ 
+ 
+折叠活动文件中所有可折叠的文本。例如：
+
+UltraEdit.activeDocument.collapseAll();
+ 
+
+columnCenterJustify
+ 
+ 
+ 
+中心对齐选定列。
+ 
+
+columnCut
+ 
+切列的数值
+ 
+切列模式中选定的列或从当前指定列数光标定位到该文件的底部。值“0”，必须用于切割所选列。
+ 
+
+columnDelete
+ 
+删除列的数值
+ 
+列模式下删除选中的列或从指定的列数当前光标位置到文件底部。值“0”，必须使用来删除选定列。
+ 
+
+columnInsert
+ 
+字符串位于引号（“”）
+ 
+Insert string betweenquotes into selected columns.
+ 
+
+columnInsertNum
+ 
+
+起始编号
+ int 
+ 
+ 
+增量 int 
+ 
+ 
+LeadingZero    boolean    true/false 
+HEX boolean true/false 
+ 
+插入选定的列数。如果没有选择插入运行从光标位置到文件的最后一行。例如：
+
+UltraEdit.activeDocument.columnInsertNum(2,3 , false, true);
+ 
+
+columnLeftJustify
+ 
+ 
+ 
+左对齐选定列。
+ 
+
+columnRightJustify
+ 
+ 
+ 
+右对齐选定列。
+ 
+
+commentAdd
+ 
+ 
+ 
+将行注释字符串中使用的语法高亮语言定义要突出当前文件在每个选定行的开始或当前行
+
+如果没有选择。这个命令对文件没有任何影响不突出一个语法高亮语言或当语言没有行注释的定义。
+
+光标位置不改变，并且在选择保持。
+ 
+
+commentRemove
+ 
+ 
+ 
+删除行注释字符串中使用的语法高亮语言定义要突出当前文件在每个选定行的开始或当前行
+
+如果没有选择。这个命令对文件没有任何影响不突出一个语法高亮语言或当语言没有行注释的定义。
+
+该行注释字符串必须在该行的开始（第1列），而没有前面空白。经过一个或多个空格或制表符的行注释字符串被忽略，
+
+不会被删除。光标位置不改变，并且在选择保持。
+ 
+
+CommentSelectionAdd
+ 
+ 
+ 
+将字符串在启动和字符串“关块注释”，“块注释”在选择结束作为用来突出语法高亮语言定义
+
+当前文件。如果不上命令的执行选择，两个字符串被插入在当前光标位置。此命令对文件不是没有影响
+
+用语法高亮的语言强调或当语言没有块评论的定义。如果选定的块已经包含块注释和
+
+语言不支持嵌套块注释，命令CommentAdd是自动执行该命令，而不是在开始插入行注释字符串
+
+每个选定行如果语言支持行注释。光标移动到启动字符串插入“关于块注释”和选择后取出
+
+执行插入块注释字符串时。
+ 
+
+CommentSelectionRemove
+ 
+ 
+ 
+删除字符串开始和字符串“关块注释”，“块注释”在选择结束作为用来突出语法高亮语言定义
+
+当前文件。如果在执行未选中任何命令有没有影响该命令。和命令，如果当前选择与开始仅
+
+字符串“关于块注释”，并用绳子“关块注释”结束。空白字符串或“块注释关”后，“关于块注释”之前里面选择
+
+字符串不忽略并导致不删除块注释字符串。该光标移动到开始的选择和选择被执行后，取出
+
+当块注释字符串被删除。
+ 
+
+copy
+ 
+ 
+ 
+选定的文本复制到剪贴板。如果没有选择，在当前的行光标位置将被复制，如果 启用复制/追加当前行的时候没有选择激活 配置。
+ 
+
+copyAllBookmarkLines
+ 
+ 
+ 
+所有的书签行复制活动文档中到剪贴板
+ 
+
+copyAppend
+ 
+ 
+ 
+复制选中的文本并将其追加到剪贴板。如果没有选择在当前光标位置线将被复制，如果 启用复制/追加当前行的时候没有选择激活 配置。
+ 
+
+copyFilePath
+ 
+ 
+ 
+活动文件路径/名称复制到剪贴板。
+ 
+
+currentChar
+ 
+**这是活动/指定文档的只读属性。
+ 
+在光标处返回字符值。例如：
+
+varchar = UltraEdit.activeDocument.currentChar;
+ 
+
+currentColumnNum
+ 
+**这是活动/指定文档的只读属性。
+ 
+当前列号的返回值。第一列被编号为“1”。例如：
+
+varcol = UltraEdit.activeDocument.currentColumnNum;
+ 
+
+currentLineNum
+ 
+**这是活动/指定文档的只读属性。
+ 
+当前行号的返回值。例如：
+
+varlineNum = UltraEdit.activeDocument.currentLineNum;
+ 
+
+currentPos
+ 
+**这是活动/指定文档的只读属性。
+ 
+从该文件的开始处返回以字节当前位置的值。例如：
+
+varpos = UltraEdit.activeDocument.currentPos;
+ 
+
+cut
+ 
+ 
+ 
+从文件剪切到剪贴板中选定的文本。如果没有选择在当前光标位置线将被削减。
+ 
+
+cutAllBookmarkLines
+ 
+ 
+ 
+切割所有书签行活动文档中到剪贴板
+ 
+
+cutAppend
+ 
+ 
+ 
+从文件剪切选中的文本，并追加到剪贴板。如果有没有选择在当前光标位置所在的行将被削减。
+ 
+
+decodeBase64
+ 
+ 
+ 
+从Base64编码转换选定的文本。例如：
+
+UltraEdit.activeDocument.decodeBase64();
+ 
+
+delAllBookmarkLines
+ 
+ 
+ 
+删除活动文档中当前书签行。例如：
+
+UltraEdit.activeDocument.delAllBookmarkLines();
+ 
+
+delAllEmptyAndWhitespaceOnlyLines
+ 
+ 
+ 
+删除活动文档中没有内容的所有行以及所有仅含空白字符的行
+ 
+
+delAllEmptyLines
+ 
+ 
+ 
+删除活动文档中没有内容的所有行（包括空白字符）
+ 
+
+delAllHiddenLines
+ 
+ 
+ 
+删除活动文档中的折叠线当前隐藏/。例如：
+
+UltraEdit.activeDocument.delAllHiddenLines();
+ 
+
+deleteText
+ 
+ 
+ 
+删除当前字符或选中的文本。
+ 
+
+deleteLine 
+   
+删除当前行。
+ 
+
+deleteToEndOfLine 
+   
+从当前光标位置到该行的末尾删除。
+ 
+
+deleteToStartOfLine 
+   
+从当前光标位置到行的开始删除。
+ 
+
+dosToMac 
+   
+转换的文件（行终止符）到MAC格式。
+ 
+
+dosToUnix 
+   
+转换的文件（行终止符）到UNIX格式。
+ 
+
+dupeLine
+   
+重复插入光标下方有效行。
+ 
+
+encodeBase64
+ 
+ 
+ 
+转换选定的文本为Base64。例如：
+
+UltraEdit.activeDocument.encodeBase64();
+ 
+
+encoding
+ 
+**这是活动/指定文档的只读属性。
+ 
+返回活动文档的编码值。例如：
+
+varenc = UltraEdit.activeDocument.encoding;
+ 
+
+endSelect 
+ 
+ 
+ 
+停止选择文本（信息请参见startSelect详情）。
+ 
+
+expandAll
+ 
+ 
+ 
+展开活动文件中所有折叠的文本。例如：
+
+UltraEdit.activeDocument.expandAll();
+ 
+
+fileSize
+ 
+**这是活动/指定文档的只读属性。
+ 
+返回的大小以字节为单位引用的文件中。例如：
+
+varsize = UltraEdit.activeDocument.fileSize;
+ 
+
+findReplace 
+ 
+.matchCase boolean    true/false 
+ 
+ 
+.matchWord boolean true/false 
+ 
+ 
+.mode int value: 
+ 
+ 
+
+ 
+    0 - Current File
+   1 - In Selection
+   2 - All Open Files 
+ 
+ 
+.regExp boolean true/false 
+ 
+ 
+.searchAscii boolean true/false 
+ 
+ 
+.searchDown boolean true/false 
+ 
+ 
+.searchInColumn boolean true/false 
+ 
+ 
+.fromCol int default: 0 
+ 
+ 
+.toCol int default:-1 
+ 
+ 
+.find("string to find"); 
+ 
+ 
+.replace("stringto find", "string to replace"); 
+ 
+ 
+  
+** Only used with replace ** 
+ 
+ 
+.preserveCase   boolean true/false 
+ 
+ 
+.replaceAll boolean true/false 
+ 
+ 
+.replaceInAllOpen boolean true/false 
+ 
+ 
+   *supersedes .modein replace 
+ 
+ 
+.selectText boolean true/false 
+ 
+ 
+   *replaces only inselected text 
+ 
+ 
+ 
+查找引号括起来的“，”基于指定的参数。例如：
+
+ 
+
+UltraEdit.activeDocument.findReplace.matchWord= true;
+
+UltraEdit.activeDocument.findReplace.find("3939");
+
+ 
+
+要么
+
+ 
+
+UltraEdit.document[0].findReplace.matchWord= true;
+
+UltraEdit.document[0].findReplace.matchCase= true;
+
+UltraEdit.document[0].findReplace.replace("Copper","Silver")
+
+;请注意：一旦设置的所有属性都积极为所有后续查找和替换直到属性再次被设置为不同的值。
+ 
+
+fromEBCDIC
+   
+从EBCDIC格式转换文本。
+ 
+
+gotoBookmark
+ 
+书签索引跳转到或-1转到下一个书签
+ 
+跳转到下一个/指定的书签。如果用户输入的索引从0开始。指数大于书签的实际数量，然后插入符号是自动
+
+设置为下一个书签使用时-1作为书签号码等。例：
+
+UltraEdit.activeDocument.gotoBookmark(0);
+ 
+
+gotoBookmarkSelect
+ 
+书签索引跳转到或-1转到下一个书签
+ 
+跳转到下一个/指定的书签并选择从光标位置到书签的文本。如果用户输入的索引是比实际更大的索引从0开始。
+
+书签的编号，然后插入符会自动设置为下一个书签就像当使用-1为书签号。例如：
+
+UltraEdit.activeDocument.gotoBookmarkSelect(0);
+ 
+
+gotoEndOfNextWord
+ 
+ 
+ 
+跳转到下一个单词的结尾。例如：
+
+UltraEdit.activeDocument.gotoEndOfNextWord();
+ 
+
+gotoEndOfNextWordSelect
+ 
+ 
+ 
+跳转到下一个单词的末尾，然后从当前插入符位置的所有文本。例如：
+
+UltraEdit.activeDocument.gotoEndOfNextWordSelect();
+ 
+
+gotoEndOfPrevWord
+ 
+ 
+ 
+跳转到前一个单词的结尾。例如：
+
+UltraEdit.activeDocument.gotoEndOfPrevWord();
+ 
+
+gotoEndOfPrevWordSelect
+ 
+ 
+ 
+跳转到前一个单词的末尾，然后从当前插入符位置的所有文本。例如：
+
+UltraEdit.activeDocument.gotoEndOfPrevWordSelect();
+ 
+
+gotoLine
+ 
+的行和列数的数值跳转至
+ 
+跳转到指定的行和列数。使用的线路数0跳转到指定的在当前行的列。例如：
+
+UltraEdit.activeDocument.gotoLine(1,5);
+ 
+
+gotoLineSelect 
+ 
+的行和列数的数值跳转至
+ 
+跳转到指定的行数和列数，并选择从光标位置的文本以行/列。使用的线路数0跳转到指定列中的当前
+
+行同时选择文本。例如：
+
+UltraEdit.activeDocument.gotoLineSelect(1,5);
+ 
+
+gotoPage
+ 
+跳转到页面的数值
+ 
+跳转到特定的页码。例如：
+
+UltraEdit.activeDocument.gotoPage(5);
+ 
+
+gotoPageSelect 
+ 
+跳转到页面的数值
+ 
+跳转到特定的页码，并选择从光标位置文本页码。例如：
+
+UltraEdit.activeDocument.gotoPageSelect(5);
+ 
+
+gotoPos
+ 
+数值在指定的字符数位置与文件开头
+ 
+跳转到指定的位置
+ 
+
+gotoPosSelect
+ 
+数值在指定的字符数位置与文件开头
+ 
+跳转到指定的位置（参数从开始的字符数通过文件），而进行选择
+ 
+
+hexDelete
+ 
+字节删除的数值，指定号码
+ 
+从文件中删除指定的字节数。
+ 
+
+hexInsert 
+ 
+插入的字节数值，指定号码。
+ 
+插入指定的字节数到文件中。这将插入空格（HEX20）。
+ 
+
+hexMode
+ 
+**这是活动/指定文档的只读属性。
+ 
+返回指示是否十六进制模式被激活一个布尔值。例如：
+
+var hexActive = UltraEdit.activeDocument.hexMode;
+ 
+
+hexOff 
+ 
+ 
+ 
+关闭十六进制模式 - 切换到文本模式。
+ 
+
+hexOn 
+   
+打开十六进制模式。
+ 
+
+hideOrShowLines 
+   
+隐藏选中的行，或者隐藏，显示隐藏在光标所在行的行。
+ 
+
+insertLine
+ 
+ 
+ 
+下面插入当前光标位置的空行。
+ 
+
+insertPageBreak
+ 
+ 
+ 
+将在文件中当前光标所在位置换页/换页字符。
+ 
+
+insertTemplate
+ 
+在引号后面跟着一个点（“格洛”）模板组的名称（可选）
+
+在报价模板的名称（“TEMPLATENAME”）
+
+全局模板指数（传统）
+ 
+将指定的模版到文件中。全球模板可以用插入具有或不具有模板组名称中指定模板名称。例如：
+
+UltraEdit.activeDocument.insertTemplate("userTime");
+
+ 
+
+如果需要，用户可以指定全局（“GLO”或“全球”），布局（“ENV”和“环境”，
+
+原环境），语言（“LNG”或“语言”）和项目（名为“prj”或“项目”）团体以及模板名称。 例子：
+
+UltraEdit.activeDocument.insertTemplate("glo.userTime");
+
+UltraEdit.activeDocument.insertTemplate("global.userTime");
+
+UltraEdit.activeDocument.insertTemplate("env.Power1");
+
+UltraEdit.activeDocument.insertTemplate("environment.Power1");
+
+UltraEdit.activeDocument.insertTemplate("lng.class");
+
+UltraEdit.activeDocument.insertTemplate("language.class");
+
+UltraEdit.activeDocument.insertTemplate("prj.noDesc");
+
+UltraEdit.activeDocument.insertTemplate("project.noDesc");
+
+ 
+
+如果愿意，用户可以指定基于其指数全局模板。例：
+
+UltraEdit.activeDocument.insertTemplate(0);
+ 
+
+invertCase
+ 
+ 
+ 
+反转选定文本的情况。
+ 
+
+isChar
+ 
+“串”
+ 
+这种检查是否在光标位置当前字符是指定的字符。例如：
+ 
+
+if(UltraEdit.document[1].isChar('k')){
+
+ //dothese commands...
+
+}else {
+
+ //dothese commands...
+
+}
+ 
+
+isCharGt 
+ 
+“字符”
+ 
+这种检查是否在光标位置当前字符比指定较大
+字符。例如：  
+if (UltraEdit.document[1].isCharGt('k')){   
+ //dothese commands...
+
+}else {
+
+ //dothese commands...
+
+} 
+ 
+
+isColNum 
+ 
+数
+ 
+这用来检查当前光标位置是指定的列号。例如：
+ 
+if (UltraEdit.activeDocument.isColNum(13)){
+
+ //dothese commands...
+
+}else {
+
+ //dothese commands...
+
+}
+ 
+
+isColNumGt
+ 
+数
+ 
+这用来检查当前光标位置是不是指定的列号更大。例如：
+ 
+if (UltraEdit.activeDocument.isColNumGt(13)){
+
+ //dothese commands...
+
+}else {
+
+ //dothese commands...
+
+}
+ 
+
+isEof 
+   
+这用来检查当前光标位置是在文件的结尾。例如：
+ 
+
+(UltraEdit.document[1].isEof()){
+
+ //dothese commands...
+
+}else {
+
+ //dothese commands...
+
+}
+ 
+
+isExt
+ 
+“串”
+ 
+这用来检查活动文件的文件扩展名指定的字符串相匹配。例：
+ 
+
+if(UltraEdit.document[1].isExt("txt")){
+
+ //dothese commands...
+
+}else {
+
+ //dothese commands...
+
+}
+ 
+
+isFound 
+   
+这将检查从上次找到的命令结果的脚本，可有条件地执行根据该结果进一步的命令。例如：
+ 
+
+UltraEdit.activeDocument.findReplace.find("string");
+
+if(UltraEdit.activeDocument.isFound()){
+
+ //dothese commands...
+
+}else {
+
+ //dothese commands...
+
+}
+ 
+
+isFTP 
+   
+这种检查当前文件是否为通过FTP/ SFTP载入的文件，而不是本地/网络文件。
+ 
+
+if(UltraEdit.document[1].isFTP()){
+
+ //dothese commands...
+
+}else {                             
+
+ //dothese commands...
+
+}
+ 
+
+isHexModeOn
+ 
+ 
+ 
+这种检查活动文件当前设置为十六进制/二进制模式。
+ 
+
+if(UltraEdit.activeDocument.isHexModeOn()){
+
+ //dothese commands...
+
+}else {                             
+
+ //dothese commands...
+
+}
+ 
+
+isName 
+ 
+“串”
+ 
+该检查活动的文件名（不是路径或扩展名）指定的匹配串。 例：
+
+if(UltraEdit.document[1].isName("foo")){
+
+ //dothese commands...
+
+}else {                             
+
+ //do these commands...
+
+}
+ 
+
+isNotFound 
+   
+这将检查从上次找到的命令结果的脚本，可有条件地执行根据该结果进一步的命令。例如：
+ 
+
+UltraEdit.activeDocument.findReplace.find("string");
+
+if(UltraEdit.activeDocument.isNotFound()){
+
+ //dothese commands...
+
+}else {
+
+ //dothese commands...
+
+}
+ 
+
+isReadOnly
+   
+此命令检查活动文件设置为只读。 例：
+
+if(UltraEdit.activeDocument.isReadOnly()){
+
+ //dothese commands...
+
+}else {                             
+
+ //dothese commands...
+
+}
+ 
+
+isSel 
+   
+这种检查是否有当前活动文件中的任何选定的文本。例如：
+
+if (UltraEdit.document[1].isSel()){
+
+ //dothese commands...
+
+}else {                             
+
+ //dothese commands...
+
+}
+ 
+
+isWordWrap
+ 
+ 
+ 
+此命令检查活动文档的自动换行状态。 例：
+
+if(UltraEdit.activeDocument.isWordWrap()){
+
+ //dothese commands...
+
+}else {                             
+
+ //dothese commands...
+
+}
+ 
+
+key
+ 
+BACKSPACE
+DEL
+DOWN ARROW
+END
+HOME
+LEFT ARROW
+PGDN
+PGUP
+RIGHT ARROW
+UP ARROW
+CTRL+END
+CTRL+HOME
+CTRL+LEFT ARROW
+CTRL+RIGHT ARROW
+ 
+插入一个关键命令到活动文件。一般用于导航的文件中和退格键或删除。的“Ctrl +”改性剂可以被用作与普通编辑
+
+修改命令。对于文本输入“写”命令，而不使用“钥匙”命令。 例子：
+
+ 
+
+UltraEdit.activeDocument.key("BACKSPACE");
+
+UltraEdit.activeDocument.key("CTRL+RIGHT ARROW");
+ 
+
+length
+ 
+**这是活动/指定文档的只读属性。
+ 
+返回活动文档的数量。例如：
+
+varnum_of_docs = UltraEdit.document.length;
+ 
+
+lineTerminator
+ 
+**这是活动/指定文档的只读属性。
+ 
+返回一个数字值，表明当前文档中线路终端类型。例如：
+
+varlt = UltraEdit.activeDocument.lineTerminator;
+
+ 
+
+支持的值：
+
+-2 = MAC  但文件内容目前包括DOS行结束
+
+-1= UNIX 但文件内容目前包括DOS行结束
+
+0= DOS
+
+1= UNIX
+
+2= MAC
+ 
+
+matchBrace 
+ 
+ 
+ 
+查找下一个匹配的括号，选择它们之间的文本。
+ 
+
+moveLineDown
+ 
+ 
+ 
+移动当前行向下一行活动文档英寸例如：
+
+UltraEdit.activeDocument.moveLineDown();
+ 
+
+moveLineUp
+ 
+ 
+ 
+移动当前行向上一行活动文档英寸例如：
+
+UltraEdit.activeDocument.moveLineUp();
+ 
+
+oemToAnsi 
+ 
+ 
+ 
+从OEM转换活动文件为ANSI。
+ 
+
+paste 
+   
+将剪贴板中的内容粘贴到文件中。
+ 
+
+path
+ 
+**这是活动/指定文档的只读属性。
+ 
+返回指定文件的完整路径。例如：
+
+vartext = UltraEdit.activeDocument.path;
+ 
+
+previousBookmark
+ 
+ 
+ 
+跳转到上一个书签。例如：
+
+UltraEdit.activeDocument.previousBookmark();
+ 
+
+previousBookmarkSelect
+ 
+ 
+ 
+跳转到上一个书签并选择从光标位置到书签的文本。例如：
+
+UltraEdit.document[1].previousBookmarkSelect();
+ 
+
+readOnlyOff
+ 
+ 
+ 
+设置活动文档的可写
+ 
+
+readOnlyOn
+ 
+ 
+ 
+设置活动文档为只读
+ 
+
+reIndentSelection
+ 
+ 
+ 
+重新缩进当前选中的文本。例如：
+
+UltraEdit.activeDocument.reIndentSelection();
+ 
+
+returnToWrap 
+ 
+ 
+ 
+在转换当前选择很难返回到自动换行。
+ 
+
+selectAll 
+   
+选择该文件中的所有文本。
+ 
+
+selection
+ 
+**这是活动/指定文档的只读属性。
+ 
+返回当前选中的文本。例如：
+
+vartext = UltraEdit.activeDocument.selection;
+ 
+
+selectLine
+ 
+ 
+ 
+选择活动行中的所有文本。
+ 
+
+selectToBottom 
+   
+从当前位置到文件末尾的所有文本。
+ 
+
+selectToTop 
+   
+从当前位置到文件开头的所有文本。
+ 
+
+selectWord
+   
+选中当前词语（与双击一个字）。
+ 
+
+setActive
+ 
+ 
+ 
+设置指定文件作为活动文档。例如：
+
+UltraEdit.document[1].setActive();
+ 
+
+sort
+ 
+.ascending boolean   true/false 
+.col1Start int   start column key 1 
+.col1End int   end column key 1 
+.col2Start int   start column key 2 
+.col2End int   end column key 2 
+.col3Start int   start column key 3 
+.col3End int   end column key 3 
+.col4Start int   start column key 4 
+.col4End int   end column key 4 
+.ignoreCase boolean   true/false 
+.removeDuplicates   
+int    0 - false
+   1 - all keys match
+   2 - any keys match 
+ 
+.remKey1 boolean   true/false 
+.remKey2 boolean   true/false 
+.remKey3 boolean   true/false 
+.remKey4 boolean   true/false 
+.type 
+int    0 - characterorder
+   1 - numeric sort
+   2 - use locale
+   3 - alt. sort 
+ 
+ 
+根据指定的参数排序的文件或选定的文本。例：
+
+UltraEdit.activeDocument.sort.ascending = true;
+
+UltraEdit.activeDocument.sort.ignoreCase = false;
+
+UltraEdit.activeDocument.sort.removeDuplicates= 1;
+
+UltraEdit.activeDocument.sort.remKey1 = true;
+
+UltraEdit.activeDocument.sort.remKey2 = true;
+
+UltraEdit.activeDocument.sort.type= 0;
+
+UltraEdit.activeDocument.sort.col1Start= 1;
+
+UltraEdit.activeDocument.sort.col1End = 15;
+
+UltraEdit.activeDocument.sort.col2Start = 35;
+
+UltraEdit.activeDocument.sort.col2End = 50;
+
+UltraEdit.activeDocument.sort.sort();
+ 
+
+sortAsc 
+
+ 
+
+sortDes
+ 
+排序类型
+
+0 - 排序基于字符顺序。
+
+1- 排序基于数值，而不是字符顺序。
+
+2 - 指定的排序应该是具体的语言环境。
+
+3 - 指定排序应使用备用排序方法。与备用
+
+唯一的排序方法可用于单个排序项。
+
+Ignore Case               boolean true/false
+
+Remove Duplicates  boolean true/false
+
+Sort Keys    int   最多四对开始/结束键可能被指定。
+ 
+排序文件，或者以升序或降序排列选中的文本。例：
+
+UltraEdit.activeDocument.sortAsc(0, true, true, 1, -1);
+
+ 
+
+例：
+
+UltraEdit.activeDocument.sortDes(1, true, false, 4, 8);
+ 
+
+spacesToTabs 
+   
+将文件转换为标签内（首）空格。这是基于在选项卡停止在数值定义 自动换行/制表符设置 在配置。如果制表符值设置为3，三个一组空间同时将需要转换为一个标签。少于三个的连续空格将不被转换。
+ 
+
+spacesToTabsAll 
+   
+将文件转换为选项卡中的所有空间。这是基于对制表位数值下定义 自动换行/制表符设置 在配置。如果制表符值设置为3，三个一组空间同时将需要转换为一个标签。少于三个的连续空格将不被转换。
+ 
+
+startSelect 
+   
+开始的选择。这将打开选择模式。任何光标的移动或定位将与上并选择上述文本选择。 ENDSELECT将停止选择
+
+模式。选定的文本将保持选中状态，直到其他命令导致其不被选择为与正常编辑。
+ 
+
+tabsToSpaces 
+   
+将文件转换为空间中所有选项卡。
+ 
+
+timeDate 
+   
+插入时间和日期成光标位置的文件。
+ 
+
+toCaps 
+   
+在大写所选文本的每个字。
+ 
+
+toEBCDIC
+   
+将文本转换为EBCDIC格式。
+ 
+
+toggleBookmark 
+   
+设置或在当前行删除书签。
+ 
+
+toLower 
+   
+将选中文本转换为小写。
+ 
+
+top 
+   
+跳到文件顶部。
+ 
+
+toUpper 
+   
+选定的文本转换为大写。
+ 
+
+trimLeadingSpaces
+   
+从当前文件中的每一行剪裁前导空格
+ 
+
+trimTrailingSpaces
+   
+剪掉当前文件每行尾部的空格。
+ 
+
+unicodeToASCII
+   
+从Unicode将文件转换为ASCII。
+ 
+
+unixMacToDos 
+   
+从Mac/Unix的活动文件（行终止符）转换为DOS格式。
+ 
+
+UTF8ToASCII
+ 
+ 
+ 
+从文件转换成UTF-8ASCII。
+ 
+
+wordWrapOff
+ 
+ 
+ 
+关闭的活动文档自动换行
+ 
+
+wordWrapOn
+ 
+ 
+ 
+打开自动换行的活动文档
+ 
+
+wrapToReturn 
+ 
+在该包装被执行列号。零的列数字表示
+
+包裹是在窗口边界发生。
+ 
+从自动换行到硬回车转换的选择。例如：
+
+UltraEdit.activeDocument.wrapToReturn(60);
+ 
+
+write
+
+ 
+ 
+文中写引号（“”）
+ 
+写在光标所在位置的特定文本。例如：
+
+ 
+
+UltraEdit.activeDocument.write("Thisis a test.");
+
+ 
+
+要么
+
+ 
+
+UltraEdit.activeDocument.write("^c");
+
+ 
+
+这将使用剪贴板中的内容写入命令。
+ 
+
+xmlConvertToCRLF
+ 
+ 
+ 
+将单行的XML文件转换为缩进的XML格式。
+ 
+
+ 
+
+输出窗口对象命令
+
+outputWindow是一个JavaScript数组对象是UltraEdit应用程序的属性目的。除非其他参数说明，所有输出窗口对象命令都必须使用以下格式调用：
+  
+UltraEdit.outputWindow.commandName();
+
+ 
+
+下表显示了输出窗口对象命令：
+
+
+命令
+ 
+参数*
+ 
+描述
+ 
+
+clear
+   
+清除输出窗口的内容。例如：
+
+UltraEdit.outputWindow.clear();
+ 
+
+copy
+ 
+ 
+ 
+副本输出窗口的内容到活动剪贴板。例如：
+
+UltraEdit.outputWindow.copy();
+ 
+
+showOutput
+ 
+boolean   true/false
+ 
+确定被写入到输出窗口用户专用数据的可视性。目前，只有包括outputWindow.write（）。例如：
+
+UltraEdit.outputWindow.showOutput=false;
+ 
+
+showStatus
+ 
+boolean    true/false
+ 
+确定在输出窗口的所有状态信息的可见性（脚本的名称，成功/失败脚本，errror信息）。例如：
+
+UltraEdit.outputWindow.showStatus=true;
+ 
+
+showWindow
+ 
+boolean    true/false
+ 
+切换输出窗口的可见性。例如：
+
+UltraEdit.outputWindow.showWindow(true);
+ 
+
+visible
+ 
+**这是只读属性。
+ 
+返回指示如果输出窗口是可见的一个布尔值。例如：
+
+UltraEdit.outputWindow.visible;
+ 
+
+write
+ 
+文中写引号（“”）
+ 
+写具体文本输出窗口。这将只支持一条线路在同一时间并且可能不包括行终止。例如：
+
+UltraEdit.outputWindow.write("Thisis a test.");
+ 
+
+ 

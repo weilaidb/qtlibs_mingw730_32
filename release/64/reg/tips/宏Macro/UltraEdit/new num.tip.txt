@@ -1,0 +1,22 @@
+function recall(num) {
+
+  UltraEdit.activeDocument.write(num+ "\r\n");
+
+}
+
+function num() {
+
+  var i = 0, j =1, n = 0;
+
+  while (n < 10) {
+
+    recall(i);
+
+    i += 1;
+    n++;
+
+  }
+
+}
+
+num();

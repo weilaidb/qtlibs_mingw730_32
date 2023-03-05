@@ -1,0 +1,7 @@
+"helloworld": {
+  "prefix": "helloworld",
+  "body": [
+    "printf(\"hello world\\n\");"
+  ],
+  "description": "helloworld"
+}
