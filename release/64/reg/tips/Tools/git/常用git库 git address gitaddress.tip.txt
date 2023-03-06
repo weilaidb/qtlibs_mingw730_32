@@ -19,7 +19,8 @@ http://101.201.79.164/bugzilla/
 http://www.broadview.com.cn/
 超实用的JavaScript代码段
 https://github.com/maomaoshu/jsBook
-
+#snippet-generator
+git@github.com:pawelgrzybek/snippet-generator.git
 
 
 常用git库:
