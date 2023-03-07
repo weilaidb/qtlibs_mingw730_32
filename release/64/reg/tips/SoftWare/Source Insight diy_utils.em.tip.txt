@@ -936,16 +936,36 @@ macro SwitchHeaderSourceForCpp()
 		//LookupRefs(findGTestFileName)
 		
 		//从工程中找这个文件
+		
 		ifileMax = GetProjFileCount (hprj)
+		//Msg ("ifileMax:" # ifileMax )
 		ifile = 0
 		bFindFlag = 0
-		findFile = ""
+		loopFile = ""
 		while (ifile < ifileMax)
 		{
-			findFile = GetProjFileName (hprj, ifile)
+			loopFile = GetProjFileName (hprj, ifile)
 			//Msg ("filename:" # filename )
+			//findFile 带路径
+			//Msg ("filename:" # findFile # ", ifile:" # ifile# ", lenmin:" # lenmin)
+			
+			//处理findFile带路径问题，解析出只带名称 begin
+			fLen2 = strlen(loopFile)
+			len2 = fLen2
+			while(StrMid(loopFile, len2 - 1, len2) != "\\")
+			{
+				len2 = len2 - 1
+				if(0 == len2)
+				{
+					break;
+				}
+			}
+			loopFileTrim = StrMid(loopFile, len2, fLen2)
+			//Msg ("Whole loopFile:" # fileName)
+			//处理findFile带路径问题，解析出只带名称 end
+
 			len1 = strlen(findFileName)
-			len2 = strlen(findFile)
+			len2 = strlen(loopFileTrim)
 			lenmin = 0
 			if(len1 > len2)
 			{
@@ -958,10 +978,10 @@ macro SwitchHeaderSourceForCpp()
 			
 			//a.c可以中atest.c或者atest.cpp
 			//strmid (s, ichFirst, ichLim)
-			if(strmid (findFileName, 0, lenmin) == strmid (findFile, 0, lenmin))
+			if(strmid (findFileName, 0, lenmin) == strmid (loopFileTrim, 0, lenmin))
 			{
 				bFindFlag = 1
-				hCurOpenBuf = OpenBuf(findFile)
+				hCurOpenBuf = OpenBuf(loopFile)
 				if(hCurOpenBuf != hNil)
 				{
 					SetCurrentBuf(hCurOpenBuf)
@@ -1146,12 +1166,12 @@ macro InsertGTestCasesAutoBySelect()
 			}
 			else
 			{
-				findGTestFileName = onlyName # "test" # sufix
+				findGTestFileName = onlyName # "test" # ".c"
 			}
 		}
 		else
 		{
-			findGTestFileName = onlyName # "test" # sufix
+			findGTestFileName = onlyName # "test" # ".c"
 		}
 		
 		//Msg ("findGTestFileName:" # findGTestFileName )
@@ -1162,13 +1182,28 @@ macro InsertGTestCasesAutoBySelect()
 		ifileMax = GetProjFileCount (hprj)
 		ifile = 0
 		bFindFlag = 0
-		findFile = ""
+		loopFile = ""
 		while (ifile < ifileMax)
 		{
-			findFile = GetProjFileName (hprj, ifile)
-			//Msg ("filename:" # filename )
+			loopFile = GetProjFileName (hprj, ifile)
+
+			//处理findFile带路径问题，解析出只带名称 begin
+			fLen2 = strlen(loopFile)
+			len2 = fLen2
+			while(StrMid(loopFile, len2 - 1, len2) != "\\")
+			{
+				len2 = len2 - 1
+				if(0 == len2)
+				{
+					break;
+				}
+			}
+			loopFileTrim = StrMid(loopFile, len2, fLen2)
+			//Msg ("Whole loopFile:" # fileName)
+			//处理findFile带路径问题，解析出只带名称 end
+
 			len1 = strlen(findGTestFileName)
-			len2 = strlen(findFile)
+			len2 = strlen(loopFileTrim)
 			lenmin = 0
 			if(len1 > len2)
 			{
@@ -1181,10 +1216,10 @@ macro InsertGTestCasesAutoBySelect()
 			
 			//a.c可以中atest.c或者atest.cpp
 			//strmid (s, ichFirst, ichLim)
-			if(strmid (findGTestFileName, 0, lenmin) == strmid (findFile, 0, lenmin))
+			if(strmid (findGTestFileName, 0, lenmin) == strmid (loopFileTrim, 0, lenmin))
 			{
 				bFindFlag = 1
-				hCurOpenBuf = OpenBuf(findFile)
+				hCurOpenBuf = OpenBuf(loopFile)
 				if(hCurOpenBuf != hNil)
 				{
 					SetCurrentBuf(hCurOpenBuf)
@@ -1433,13 +1468,30 @@ macro InsertGTestCasesAutoBySelectMore()
 		ifileMax = GetProjFileCount (hprj)
 		ifile = 0
 		bFindFlag = 0
-		findFile = ""
+		loopFile = ""
 		while (ifile < ifileMax)
 		{
-			findFile = GetProjFileName (hprj, ifile)
-			//Msg ("filename:" # filename )
+			loopFile = GetProjFileName (hprj, ifile)
+
+
+
+			//处理findFile带路径问题，解析出只带名称 begin
+			fLen2 = strlen(loopFile)
+			len2 = fLen2
+			while(StrMid(loopFile, len2 - 1, len2) != "\\")
+			{
+				len2 = len2 - 1
+				if(0 == len2)
+				{
+					break;
+				}
+			}
+			loopFileTrim = StrMid(loopFile, len2, fLen2)
+			//Msg ("Whole loopFile:" # fileName)
+			//处理findFile带路径问题，解析出只带名称 end
+
 			len1 = strlen(findGTestFileName)
-			len2 = strlen(findFile)
+			len2 = strlen(loopFileTrim)
 			lenmin = 0
 			if(len1 > len2)
 			{
@@ -1452,10 +1504,10 @@ macro InsertGTestCasesAutoBySelectMore()
 			
 			//a.c可以中atest.c或者atest.cpp
 			//strmid (s, ichFirst, ichLim)
-			if(strmid (findGTestFileName, 0, lenmin) == strmid (findFile, 0, lenmin))
+			if(strmid (findGTestFileName, 0, lenmin) == strmid (loopFileTrim, 0, lenmin))
 			{
 				bFindFlag = 1
-				hCurOpenBuf = OpenBuf(findFile)
+				hCurOpenBuf = OpenBuf(loopFile)
 				if(hCurOpenBuf != hNil)
 				{
 					SetCurrentBuf(hCurOpenBuf)
