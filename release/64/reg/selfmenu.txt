@@ -3375,6 +3375,7 @@ path路径/常用文件夹
 设计/软件设计/ROS know/ROS 安装详细教程 —— Ubuntu22.0.4 LTS 安装
 设计/软件设计/ROS know/Ubuntu22.04安装ros（一键搞定）
 设计/软件设计/ROS know/ubuntu22.04安装ROS2 详细教程
+设计/软件设计/ROS know/终于有人把ROS机器人操作系统讲明白了
 设计/软件设计/TDD
 设计/软件设计/TDD new/eg
 设计/软件设计/TDD new/suits

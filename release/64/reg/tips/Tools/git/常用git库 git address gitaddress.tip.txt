@@ -21,6 +21,10 @@ http://www.broadview.com.cn/
 https://github.com/maomaoshu/jsBook
 #snippet-generator
 git@github.com:pawelgrzybek/snippet-generator.git
+#ROS
+git@github.com:ros/ros.git
+git@github.com:ros2/ros2.git
+git@github.com:HuangCongQing/ROS.git
 
 
 常用git库:
