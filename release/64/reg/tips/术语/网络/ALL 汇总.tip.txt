@@ -16,4 +16,20 @@ PPP Point to Point Protocol
 P2P ETH
 IEEE802.3协议 主要指以太网协议，还可以包含其他协议
 LACP Link Aggregation Control Protocol 链路汇聚控制协议
+RTTE round-trip-time estimation  往返时间估计
+RTT round-trip-time 往返时间
+UM urgent mechanism 紧急机制
+CO connection-oriented 面向连接的
+
+
+
+
+
+
+
+
+
+
+
+
 
