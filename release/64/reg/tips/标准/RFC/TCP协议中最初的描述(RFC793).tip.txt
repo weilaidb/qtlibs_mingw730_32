@@ -1,2 +1,16 @@
 RFC793
 https://www.rfc-editor.org/rfc/rfc793
+
+
+Internet协议版本4(IPV4)   RFC791
+RFC省略
+ST数据报(Datagram)模式   1190
+IPV6 1883
+TP/LX  1475
+P Internet协议(PIP)  1621
+使用更大地址的TCP和UDP(TUBA)  1347
+TOS（Type of Service服务类型）  1340 and 1349
+DS Filed ,Differentiated Services Field  2474
+
+
+
