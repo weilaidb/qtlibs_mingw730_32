@@ -25,7 +25,9 @@ git@github.com:pawelgrzybek/snippet-generator.git
 git@github.com:ros/ros.git
 git@github.com:ros2/ros2.git
 git@github.com:HuangCongQing/ROS.git
-
+#wireshark
+https://github.com/wireshark/wireshark.git
+git@github.com:wireshark/wireshark.git
 
 常用git库:
 git@github.com:weilaidb/sourceinsight.git

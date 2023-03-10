@@ -1,0 +1,79 @@
+笔记模板
+☆标题
+Wireshark 2.6.8 64-bit The visual C++ Redistributable installer failed with error 1603
+
+
+☆内容
+下载Wireshark软件时遇到The Visual C++ Redistributable installer failed with error 5.安装失败问题
+极音战歌
+于 2022-11-02 19:58:10 发布 1782
+收藏 1
+分类专栏： 问题整理 文章标签： wireshark 测试工具 网络
+版权
+问题整理 专栏收录该内容
+2 篇文章 0 订阅
+订阅专栏
+
+1、下载Wireshark软件时安装失败
+
+2、提示The Visual C++ Redistributable installer failed with error 5.Unable to continue installation.
+
+原因分析：
+
+电脑缺少安装C++运行环境和缺少系统补丁
+
+解决方法：
+
+下载目前网上比较热门的各种的驱动软件检查下载安装C++组件运行库（如驱动精灵、驱动人生等等）
+
+这里推荐一款DirectX Repair修复的软件，可以一键检测并修复电脑主机缺少的组件，方便快捷，亲测有效！
+
+下载方式百度一下都有，我之前只在这下的，
+
+下载地址：DirectX Repair下载_DirectX Repair官方版下载[运行库修复]-下载之家
+
+下载后需要设置一下（不设置的话时不会更新下载C++组件运行库的）
+
+扩展程序之后才能下载C++组件运行库，扩展成功之后回到主页面点击检测并修复即可。
+
+可能会出现的安装失败情况1：
+
+下载安装C++ 2012\2013\2015-2022组件时失败
+
+随后本人去Microsoft官网下载对应安装失败的C++组件手动安装也是一样安装失败，显示以下问题。
+
+ 查看了日志文件，发现比较重要错误信息：
+
+e000: Error 0x80070005: Failed to write run key value.
+e000: Error 0x80070005: Failed to update resume mode.
+e000: Error 0x80070005: Failed to begin registration session.
+e000: Error 0x80070005: Failed to begin registration session in per-machine process.
+e000: Error 0x80070005: Failed to register bundle.
+
+ 
+
+原因分析：
+
+此问题是由病毒防护应用程序阻止安装程序写入密钥引起的。暂时禁用病毒检查工具(在我的例子中是McAfee)解决了这个问题。
+
+说白了就是安装C++组件程序需要权限对注册表进行修改值，结果被麦咖啡（McAfee）这个牛逼的杀毒软件给拦截了，不给安装程序修改注册表。
+
+ 
+
+解决方法：
+
+把麦咖啡这个软件关闭或者不让它拦截就可以了，这样的话C++组件运行库就可以正常安装成功。
+————————————————
+版权声明：本文为CSDN博主「极音战歌」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_50019298/article/details/127656007
+
+
+☆附加信息
+
+
+☆提交日期
+2023-03-10 08:10:52
+
+
+========================================================================
+========================================================================
