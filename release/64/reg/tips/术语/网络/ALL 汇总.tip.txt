@@ -20,6 +20,7 @@ RTTE round-trip-time estimation  往返时间估计
 RTT round-trip-time 往返时间
 UM urgent mechanism 紧急机制
 CO connection-oriented 面向连接的
+ISN:initial sequence number 初始序列号
 
 
 
