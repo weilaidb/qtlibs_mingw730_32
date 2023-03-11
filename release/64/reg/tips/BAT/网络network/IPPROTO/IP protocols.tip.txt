@@ -1,3 +1,19 @@
+常见的有：
+协议号   主机到主机层协议
+1       Internet消息控制协议（ICMP）
+2       Internet组管理协议(IGMP)
+4       被IP协议封装的IP
+6       传输控制协议(TCP)
+17      用户数据报协议(UDP)
+45      域间路由选择协议（IDRP）
+46      资源预留协议(RSVP)
+47      通用路由选择封装(GRE)
+54      NBMA下一跳解析协议(NHRP)
+88      Cisco Internet网关路由选择协议(IGRP)
+89      开放式最短路径优先(OSPF)
+
+
+
 linux/include/uapi/linux/in.h
 
 

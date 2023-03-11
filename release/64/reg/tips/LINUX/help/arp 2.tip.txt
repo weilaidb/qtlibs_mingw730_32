@@ -1,0 +1,2 @@
+$ arp -s 10.233.100.100 00:ab:cd:ef:aa:99
+SIOCSARP: Network is unreachable
