@@ -1,12 +1,3 @@
-cookies.length
-
-i+ 1
-cookies[i].getName()
-cookies[i].getValue()
-
-Integer.parseInt(n)
-copylist.size()
-name
-item
-selectitem
-readFileNameAf
+toDealTxt
+contentBf
+contentAf
