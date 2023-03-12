@@ -39,7 +39,7 @@ SNAP Subnetwork Access Control 子网接入控制
 HDLC High-level Data Link Control 高速数据链路控制
 ATM Asynchronous Transfer Mode 异步传输模式
 RFC (Request For Comments)-意即“请求注解”
-
+IRDP ICMP路由发现协议
 
 
 
