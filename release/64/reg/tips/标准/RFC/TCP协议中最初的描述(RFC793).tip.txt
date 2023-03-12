@@ -14,4 +14,14 @@ DS Filed ,Differentiated Services Field  2474
 代理ARP 或者 混杂ARP 925 and 1027
 ICMP指定多种消息类型  792
 ICMP列出多种数据包类型和代码 1700
+TCP 793
+
+
+
+
+
+
+
+
+
 
