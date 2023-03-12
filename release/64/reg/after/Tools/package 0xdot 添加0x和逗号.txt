@@ -1,4 +1,1 @@
-$SP
-$NL
-0x\1,
-unsigned char aucBuf[] = {$NL$NL\1$NL$NL};
+ $NL$NL0x\1,$NLunsigned char aucBuf[] = {$MODE_NL$MODE_NL\1$MODE_NL};$NL

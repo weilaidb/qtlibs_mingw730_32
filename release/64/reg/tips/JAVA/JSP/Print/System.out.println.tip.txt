@@ -1,3 +1,4 @@
 toDealTxt
 contentBf
 contentAf
+afPattern

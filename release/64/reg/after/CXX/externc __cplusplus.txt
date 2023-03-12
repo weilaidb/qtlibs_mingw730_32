@@ -1,1 +1,1 @@
-#ifdef __cplusplus$NLextern "C" {$NL#endif$NL$NL\1$NL$NL#ifdef __cplusplus$NL}$NL#endif$NL$NL$NL
+#ifdef __cplusplus$MODE_NLextern "C" {$MODE_NL#endif$MODE_NL$MODE_NL\1$MODE_NL$MODE_NL#ifdef __cplusplus$MODE_NL}$MODE_NL#endif$MODE_NL$MODE_NL$MODE_NL$MODE_NL

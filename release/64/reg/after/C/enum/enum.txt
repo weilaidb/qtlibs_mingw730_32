@@ -1,1 +1,1 @@
-enum {$NL\1$NL};
+enum {$MODE_NL\1$MODE_NL};$NL$NL$NL
