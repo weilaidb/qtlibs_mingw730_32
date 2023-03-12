@@ -32,9 +32,12 @@ ECN Explicit Congestion Notification 显示拥塞通知
 MTU Maximum Transmission Unit   最大传输单元
 TTL Time To Live 生存时间
 八位组 八个bit
-
-
-
+RS Recommended Standard  推荐标准
+CAN Controller Area Network 控制器局域网总线
+ECU Electric Controller Unit 电控单元
+SNAP Subnetwork Access Control 子网接入控制
+HDLC High-level Data Link Control 高速数据链路控制
+ATM Asynchronous Transfer Mode 异步传输模式
 
 
 

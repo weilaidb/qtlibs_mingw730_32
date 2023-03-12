@@ -11,8 +11,8 @@ ip route 0.0.0.0 0.0.0.0 20.1.1.2
 do sh ip int b
 #显示路由
 do show ip route
-
-
+#显示ARP
+do show arp
 
 
 
