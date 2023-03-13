@@ -1500,6 +1500,7 @@ JAVA/know/CaseUtils 对Java字符串进行转换为驼峰格式
 JAVA/know/MVC框架
 JAVA/know/Serializable 序列化
 JAVA/know/Serializable 接口（序列化）
+JAVA/know/java string replace和replaceAll的区别以及用法
 JAVA/new/enter to br
 JAVA/new/implements interface
 JAVA/new/interface
@@ -2869,7 +2870,7 @@ Tools/git/order
 Tools/git/problems/git dangling commit
 Tools/git/problems/github Network error Software caused connection abort
 Tools/git/problems/github Remote side unexpectedly closed network connection
-Tools/git/problems/github 推送不上去
+Tools/git/problems/github 推送不上去 Could not read from remote repository.
 Tools/git/tig blame filename
 Tools/git/tig help
 Tools/git/删除文件不删除本地 delete
@@ -3271,6 +3272,8 @@ path路径/常用文件夹
 正则表达式/Office/WORD替换
 正则表达式/去除开头的数字
 正则表达式/去除空行
+正则表达式/所有转一行_$MODE_NL
+正则表达式/所有转一行_include source
 正则表达式/所有转一行_替换为NL
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号

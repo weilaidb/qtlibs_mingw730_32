@@ -1,0 +1,19 @@
+先下载pull下试试
+等pull成功了，
+再推送push
+
+
+
+
+
+git.exe push --progress "origin" war.weilaix:war.weilaix
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+
+git did not exit cleanly (exit code 128) (5250 ms @ 2023/3/13 6:58:03)
+
+
+----------可能git库太大了，有资源限制？

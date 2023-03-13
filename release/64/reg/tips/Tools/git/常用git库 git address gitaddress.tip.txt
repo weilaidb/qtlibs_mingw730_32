@@ -149,6 +149,8 @@ git@github.com:layui/layui.git
 git@gitee.com:weilaidb/web_notebook_online.git
 git@gitee.com:weilaidb/web_notebook_online1.git
 git@gitee.com:weilaidb/web_notebook_online2.git
+#deploy software 发布软件库（比如weilaix.war）
+git@gitee.com:weilaidb/deploysoftware.git
 
 #autocodeset
 git@github.com:weilaidb/qtlibs_mingw730_32.git
