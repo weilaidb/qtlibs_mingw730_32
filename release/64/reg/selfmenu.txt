@@ -296,6 +296,7 @@ BUG管理/MSTP/长时PING大包丢包
 BUG管理/PHY自协商/偶发一些子架ping不通线卡
 BUG管理/代码管理系统/git clone报 error  invalid path
 BUG管理/代码管理系统/网页复制后数据丢失
+BUG管理/内存改写/新建的静态全局变量初始化为0，但是读写不是0，被篡改
 BUG管理/单元测试/进程PROTOCOL Debug版本桩正常,Release版本桩打不上
 BUG管理/异常挂起/LACP弹出消息失败
 BUG管理/异常挂起/LACP弹出消息失败2
@@ -1915,6 +1916,8 @@ LINUX/CentOS/必备命令 order
 LINUX/CentOS/必备软件 necessary software
 LINUX/Code/ERROR
 LINUX/Makefile
+LINUX/Netcat
+LINUX/Netcat help
 LINUX/Printk/KERN_ALERT
 LINUX/Printk/KERN_CRIT
 LINUX/Printk/KERN_DEBUG
