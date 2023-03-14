@@ -310,6 +310,7 @@ Books/常用代码
 Books/常用网址
 Books/常用网址（https develop）
 Books/读后感/Linux Tcp IP协议栈 Linux2.6协议栈源代码分析
+Books/读后感/ROS机器人开发实践
 Books/读后感/奔跑吧 Linux内核
 Books/读后感/奔跑吧 Linux内核 内存管理
 Books/读后感/奔跑吧 Linux内核 内存管理 用户态内存管理相关的API
@@ -3357,6 +3358,7 @@ path路径/常用文件夹
 笔记/网络/三层路由ping过程
 笔记/读书笔记/ROS机器人开发实践
 笔记/软件/UML画序列图或时序图
+笔记/软件开发思想 想法
 笔记/进程链接动态库中Gtest用例成功 ，链接静态库却失败
 算法/C/冒泡排序
 算法/C/快速排序法
