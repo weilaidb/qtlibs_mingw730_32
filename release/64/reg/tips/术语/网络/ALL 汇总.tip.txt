@@ -54,6 +54,11 @@ PMD Path MTU Discovery 路径MTU发现
 ESP Encapsulating Security Payload 封装安全有效载荷
 AH  Authentication Header认证报头
 NDP Neighor Discovery Protocol 邻居发现协议
+EOL End of Option List 选项列表结束
+NOP No Operation 无操作
+MSS Maximm Segment Size 最大段大小
+PAWS Protection Against Wrapped Sequence numbers 防回绕序列号
+
 
 
 
