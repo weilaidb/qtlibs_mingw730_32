@@ -42,12 +42,18 @@ RFC (Request For Comments)-意即“请求注解”
 IRDP ICMP路由发现协议
 NAT Network Address Translation 网络地址转换
 
+TLA Top Level Aggregator 顶级聚合
+NLA Next Level Aggregator次级聚合
 
-
-
-
-
-
+IANA Interne Assigned Numbers Authority Internet地址授权委员会
+RIR Regional Internet Registries 地区Internet注册机构
+LIR Local Internet Registries 本地Internet注册机构
+ISP Internet Service Provider Internet服务提供商
+IETF（The Internet Engineering Task Force）互联网工程任务组
+PMD Path MTU Discovery 路径MTU发现
+ESP Encapsulating Security Payload 封装安全有效载荷
+AH  Authentication Header认证报头
+NDP Neighor Discovery Protocol 邻居发现协议
 
 
 
