@@ -1,0 +1,151 @@
+热门频道
+
+首页
+
+
+博客
+
+
+研修院
+
+
+VIP
+
+
+APP
+
+
+问答
+
+
+下载
+
+
+社区
+
+推荐频道
+
+活动
+
+
+招聘
+
+
+专题
+
+打开CSDN APP
+Copyright © 1999-2020, CSDN.NET, All Rights Reserved
+
+
+打开APP
+
+TCP Window Full 和 TCP ZeroWindow 原创
+ 2022-10-19 14:56:10
+ 1点赞
+
+mayue_csdn 
+
+码龄6年
+
+关注
+文章目录
+描述
+参考资料
+描述
+项目现场遇到车在地图上丢失/跳点问题，通过日志发现是OBU给车发送阻塞导致（OBU给车发数据发不动），这里OBU 是TCP Server，车和平板APP是Client。
+
+通过抓包发现如下现象：
+在这里插入图片描述
+
+192.168.86.110 是OBU，TCP Server 会一直给车/APP发数据。
+192.168.86.11 是车。
+TCP Window Full ：接收方接收缓冲区满了后，导致发送方的发送缓冲区装满待确认数据，此时发送方会发送一个TCP Window Full消息。
+TCP ZeroWindow：谁发送表示谁的socket缓冲区满了没有读。可能原因：没有读/读的慢/发送方发送过快。
+参考资料
+TCP ZeroWindow与TCP window Full
+几个特殊TCP报文及TCP
+TCP窗口：Windows如果Full会影响传输效率吗？
+文章知识点与官方知识档案匹配
+网络技能树首页概览
+27920 人正在系统学习中
+打开CSDN APP，看更多技术内容
+
+TCP ZeroWindow与TCP window Full_qq1273753254的博客_tcp...
+【TCP ZeroWindow】与【TCP window Full】1、作为接收方,有接收窗口,也就是接收缓冲区,win=xxx 告诉对方,我的接收窗口大小。2、当我的接收窗口满了,也就是win=0,Wireshark显示【TCP ZeroWindow】,这个时候,对方不能再发送数据。3...
+继续访问
+从TCP协议之滑动窗口分析应用性能_wireshark中窗口大小-2_鸨哥学JAVA...
+1、TCP Window Full 是站在发送端角度说的,表示此时发送端不能再发数据给对方,除非发送的数据包得到ACK。 2、TCP zero window 是站在接收端角度来说的,是接收端接收窗口满,自动告知对方不能再发送数据给自己。
+继续访问
+最新发布 TCP的三个窗口：发送窗口swnd、接收窗口rwnd、拥塞窗口cwnd
+TCP的三个窗口：发送窗口swnd、接收窗口rwnd、拥塞窗口cwnd， 慢启动门限，拥塞避免算法，快重传算法和快恢复算法
+继续访问
+
+【TCP ZeroWindow】与【TCP window Full】
+1、作为接收方，有接收窗口，也就是接收缓冲区，win=xxx 告诉对方，我的接收窗口大小。 2、当我的接收窗口满了，也就是win=0，Wireshark显示【TCP ZeroWindow】，这个时候，对方不能再发送数据。 3、作为发送方，有发送窗口，发送窗口可以理解为，一口气可以发送多少数据。发送窗口不光要考虑对方的接收窗口，还要考虑网络情况，也就是拥塞窗口，等于它们的最小值。 　　发送窗口数据分...
+继续访问
+Wireshark的常见提示_wireshark常见问题_ethnicitybeta的博客-CSDN博 ...
+TCP zerowindow:表示这个包的发送方暂时无法接受数据TCP window Full:表示这个包的发送方暂时无法发送数据 提示十:[TCP segment of a reassembled PDU] 此提示说明重组PDU的TCP协议分段。表示Wireshark可以把属于同一个应用层PDU的TCP包虚...
+继续访问
+如何解决TCP窗口与拥塞？ TCP窗口与拥塞控制的解决办法
+主要为大家介绍了如何解决TCP窗口大小的调节与拥塞控制的办法，有图有步骤，很详细，需要的朋友可以参考下
+关于TCP window full/TCP zero window
+关于TCP window full/TCP zero window TCP window full, 是指的发送端发送的数据已经达到的接受窗口的上限。 继而停止发送，等待新的接收窗口的通告 此时接收端返回的是TCP zero window，表示接收端窗口为0，从抓包可以看出 接收端在清除缓存后窗口不再为0时，更新了其窗口大小 出现该情况是可考虑将TCP socket中的设置TCP_NODELAY选项。 setsockopt( s, IPPROTO_TCP, TCP_NODELAY, (char*) &amp
+继续访问
+TCP ZeroWindow 会关闭TCP
+记录一个经历： VC2010，Socket编程：通过TCP发送心跳包，如果只Send心跳数据，而不Recv心跳数据的话，会导致TCP ZeroWindow，导致双方无法继续发送数据，一段时间后TCP会中断。 感谢抓包工具wireshark和度娘 参考文章： http://blog.csdn.net/jhcsdb/article/details/44086565
+继续访问
+关于 TCP 窗口满/TCP 零窗口
+TCP window full 是指发送方发送的数据已经达到的接收窗口的上限。 然后停止发送，等待新的接收窗口的通知 此时接收端返回TCP零窗口，表示接收端窗口为0，从抓包中可以看出,当清除缓存后窗口不再为0时，接收端更新其窗口大小.在这种情况下，请考虑在 TCP 套接字中设置 TCP_NODELAY 选项。在编译器头文件中找到这个宏的定义，编译ldap也发现这个宏是一直开启的，也就是默认不使用Nagle算法.代码中没有找到TCP_NODELAY宏是在哪里定义的，所以在编译器头文件中找到了这个宏 ...
+继续访问
+热门推荐 TCP window Full
+TCP window full, 是指的发送端发送的数据已经达到的接受窗口的上限。继而停止发送，等待新的接收窗口的通告。 发生TCPwindow Full 的情况分析，下面得包是抓取的FTP的streamflow.  当时的情况是正在发生在客户端上传文件到服务器。 本地主机：146.11.2.87 远端服务器：147.128.6.103 1， 首先看第28406个包，服务器通告本段A
+继续访问
+从TCP协议之滑动窗口分析应用性能
+去年我师傅推荐了两本林沛满写的关于wireshark抓包的书，分别是《wireshark就是这么简单》和《wireshark分析的艺术》，写的真心不错。 TCP协议是一个很有意思的内容，这半年对TCP协议有了更多的认识，于是想重新更新一些对TCP协议的内容。今天先从TCP协议里面的滑动窗口说起。 1、先说原理 就发送端来说，一般如下所示： 主要分为：已发送已确认的包（应用层未读取）。发送未确认的包，未发送可发送的包，未发送不可发送的包。其中，滑动窗口指的是发送未确认和未发送可发送区域的大小。 2、滑动窗口
+继续访问
+Wireshark中[TCP Window Full] 和 [Zero Window]帧的含义
+TCP/IP协议为流控制协议，TCP窗口是其中一个重要的概念。在TCP接受和发送端都有缓存区，用户缓存数据，当缓存区满的时候就不能在向缓存区中写入数据了。发送缓存区满表现为send的返回值不再是指定的字节数，而小于该值的一个值；而接收缓存区满表现为对端发送收到影响。 [TCP Window Full] ：服务端向客户端发送的一种窗口警告，表示已经发送到数据接收端的极限了。 [TCP Window Update]：缓冲区已释放为所示的大小，因此请恢复传输。 [Zero Window] ：客户端向服务端发送的一
+继续访问
+TCP中的Zero Window
+TCP—Zero Window Zero Window is something to investigate. TCP Zero Window is when the Window size in a machine remains at zero for a specified amount of time. This means that a client is not able to...
+继续访问
+TCP window full和TCP zerowindow问题
+问题描述： 此前在对接视频平台过程中，获取的视频超过7路，会出现TCP window full的错误，然后获取的视频流会断掉。 产生问题的原因： 业务处理过程中速度不够，导致客户端向服务端发送零窗口的错误，最终导致服务端端口卡死。只有等到socket关闭，服务器端的业务才会恢复。 现象：出现断流后，从客户端获取的视频平台码流也断了，说明端口被堵住了。重启程序或客户端（关闭socket连接）后视频业...
+继续访问
+什么是TCP Window
+TCP Window可能是需要理解的数据传输过程里最重要的部分了, 尤其是对于数据中心而言, 因为备份工作是每天都要进行的. 在今天的数据中心中, 高带宽的高可用性和高速连接使得提供应用程序服务器和备份服务器之间的几个G吞吐量变得更容易了. 随着WAN(wide area network)连接增大, 更快, 更高效, 终端用户比从前能访问到更大的吞吐量. 随着所有这些尖端科技的可用, 很多人不了解
+继续访问
+几个特殊TCP报文及TCP
+TCP Window Full： 接收方接收缓冲区满了后，导致发送方的发送缓冲区装满待确认数据，此时发送方会发送一个TCP Window Full消息。 TCP ZeroWindow： 接收方应用没有及时recv消息，导致接收缓冲满，即滑动窗口为0，接收方发送TCP Zero Window告知发送方不能继续发送消息。 TCP ZeroWindowProbe： 零窗口探测报文---滑动窗口
+继续访问
+TCP零窗口探测实战
+当接收端的接收窗口被完全占用后，此时再来新的数据包就无处安放了，同时接收方回复给发送方的ACK中，Win也已经归零。上一文的示例中，接收端接收到消息后，并不处理，所以会一直占用接收端的接收窗口，一直到最后，完全占用了接收窗口。当接收方重新获取可用空间时，会给发送端传输一个窗口更新，发送端接收到该数据包之后，继续发送数据。假设一种情况，接收方发送窗口更新包丢失了，那么发送端就一直无法得到窗口更新的消息，一直在等待。为了避免这种互相等待的死锁情况，发送端会采用一个持续计时器，间歇性的查询接收端的窗口信息。...
+继续访问
+TCP ZeroWindow问题
+为什么80%的码农都做不了架构师？>>> ...
+继续访问
+传输层协议（10）：滑动窗口（4）
+5.3.1.5 Zero Window（0窗口） Zero Window（0窗口）指的是 TCP 发送方的滑动窗口大小为0，其本质上是因为 TCP 接收方的接收缓存已经满了，没有空间再接收数据。 当处于Zero Window 时，TCP 发送方是不能向对方发送数据的——即使发送也会被对方给怼回来，如图5-107所示： 图5-107Zero Window 示意 图5-10...
+继续访问
+通过对TCPWindowSize的调整对网络流量的性能优化
+1. TCP参数简述 为改善终端用户对数据流量的要求，现对TCP的参数做简单的分析，并通过TCP参数的调整，以期达到提高用户使用感知度的目的。 TCP参数如下: • MTU─The Maximum Transfer Unit • TCP1323Opts─ RFC 1323 TCP options: window scaling and timestamp • MaxDupAcks─Maximum duplicate acknowledgements • TCPWindow...
+继续访问
+关于TCP Zero Window Update感知的非常棒的优化
+本文从“然而有一种丢包...”开始步入正题。此前的胡扯可以直接跳过。这个周末是搬入新家的第二个周末，感觉整个人比在罗湖时状态更加好了。也许这个房子的色调跟我上海的家更像吧...不管怎么说，这是我到深圳以后第一个感到振作的地方，以前曾经好几次都想离开了，但是这个家让我决定可以继续坚持。说实话我并不喜欢深圳，虽然我比较喜欢下雨，但是喜欢的是那种持续不断的雨，而不是亚热带雨林式的十分钟暴雨十分钟烈日那种
+继续访问
+tcp window full
+tcp/ip
+网络
+写评论
+
+评论
+
+1
+
+1
+
+踩
+
+分享
+
+前往
