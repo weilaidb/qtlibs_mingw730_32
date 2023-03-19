@@ -1,0 +1,62 @@
+cmake编译本目录所有文件
+
+王log
+
+于 2020-03-06 15:18:49 发布
+
+5595
+ 收藏 4
+分类专栏： Makefile&amp;shell linux编程
+版权
+
+Makefile&shell
+同时被 2 个专栏收录
+7 篇文章0 订阅
+订阅专栏
+
+linux编程
+7 篇文章1 订阅
+订阅专栏
+目录结构如下：
+
+示例如下：
+
+cmake_minimum_required(VERSION 2.8)
+project(FILTER_SERVER)
+#设置编译器
+set(CMAKE_C_COMPILER g++)
+
+#添加编译选项
+add_definitions(-g -fpermissive -std=c++0x)
+#添加宏定义
+add_definitions(-DWITH_OPENSSL -DWITH_DOM -D__STDC_CONSTANT_MACROS -DHAS_AUDIO)
+
+#添加头文件包含路径
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+#ffmpeg
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdpart/ffmpeg/include)
+
+#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/FFmpegPusher)
+#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StreamSource)
+
+#添加动态或静态库包含路径
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdpart/ffmpeg/lib)
+#添加需要使用的库名称
+set(FFMPEG_LIBRARIES avutil avcodec avformat swscale postproc avfilter)
+
+#添加cpp或c文件路径
+aux_source_directory(./ SRC_MAIN)
+#aux_source_directory(./StreamSource STREAM_SOURCE)
+
+#输出可执行文件配置
+add_executable(filter_demo ${SRC_MAIN}  )
+#库连接选项
+target_link_libraries(filter_demo ${FFMPEG_LIBRARIES} pthread)
+
+#配置第二个输出可执行文件，cmake之后可同时产生多个可执行文件
+#add_executable(filter_demo simplest_ffmpeg_video_filter.cpp  )
+#target_link_libraries(filter_demo ${FFMPEG_LIBRARIES} pthread)
+
+————————————————
+版权声明：本文为CSDN博主「王log」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/FPGATOM/article/details/104696543

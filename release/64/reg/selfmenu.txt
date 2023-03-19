@@ -2947,6 +2947,7 @@ UNITTEST/GTEST/make
 UNITTEST/GTEST/make compile problem编译问题
 UNITTEST/GTEST/异常挂起/strftime
 UNITTEST/GTEST/异常挂起/解决办法(参考)
+UNITTEST/know/cmake编译本目录所有文件
 UNITTEST/know/linux下C/C++代码覆盖率工具gcov、lcov
 UNITTEST/know/linux下C/linux下cmake代码覆盖率
 VBScript/Excel new
