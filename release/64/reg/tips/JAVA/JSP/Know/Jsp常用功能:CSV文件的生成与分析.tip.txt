@@ -1,0 +1,398 @@
+Jsp常用功能:CSV文件的生成与分析
+
+hyyyer
+
+于 2015-01-22 17:19:14 发布
+
+230
+ 收藏
+文章标签： java
+版权
+CSV文件是指Excel可以识别的后缀名为CSV的文件，网站系统后台用来存储分析数据的时候有可能会用到它。其实CSV文件的读取和做成比较简单，主要的技术点是文件的读写。不过CSV文件的分析和生成有一定的代表性，可以通过对CSV文件的生成和分析的实现，来了解后台处理批量数据的简单思路。
+
+打开Excel，新建一个文件，在里面随便输入一些数据，然后另存为一个CSV文件，再次用Excel打开的时候，发现只有一个sheet。用一个记事本打开这个文件，可以看到类似如下的数据。
+aaa,bbb,ccc,ddd
+aaa2,bbb2,,ddd2
+aaa3,bbb3,ccc3,
+aaa4,bbb4,ccc4,ddd4
+
+仔细观察数据，可以确定以下几点：
+
+CSV文件是文本型文件(非二进制)
+文件中的一行在Excel中显示的一行
+同一行中的数据用半角逗号分隔
+发现以上的规律，我们可以自己也生成一个CSV文件。也可以简单的分析CSV文件。
+现在给CSV文件的生成和分析写个简单的例子。(如果对文件处理类不熟悉，可以看一下java的文件处理，或者看一下JDK中关于java.io.File类的帮助信息)
+生成CSV文件。(HelloCsvCreater.java)
+
+package com.vogoal.test;
+import java.io.FileWriter;
+import java.io.IOException;
+/**
+* @author SinNeR
+*
+* create a CSV file
+*/
+public class HelloCsvCreater {
+public static void main(String[] args) {
+try {
+FileWriter fw = new FileWriter("C:\\helloCsv.csv");
+fw.write("aaa,bbb,ccc,ddd,eee,fff,ggg,hhh\r\n");
+fw.write("aa1,bb1,cc1,dd1,ee1,ff1,gg1,hh1\r\n");
+fw.write("aaa\r\n");
+fw.write("aa2,bb2,cc2,dd2,ee2,ff2,gg2,hh2\r\n");
+fw.close();
+
+
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+这个类编译后运行，可以看到在C盘根目录下生成了一个名字为helloCsv.csv的CSV文件，双击打开，如下的样子。
+
+分析CSV文件
+
+package com.vogoal.test;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+/**
+* @author SinNeR
+*
+* analysis a CSV file
+*/
+public class HelloCSVAnalysis {
+public static void main(String[] args) {
+InputStreamReader fr = null;
+BufferedReader br = null;
+try {
+fr = new InputStreamReader(new FileInputStream(
+"C:\\helloCsv.csv"));
+br = new BufferedReader(fr);
+String rec = null;
+String[] argsArr = null;
+while ((rec = br.readLine()) != null) {
+System.out.println(rec);
+argsArr = rec.split(",");
+for (int i = 0; i < argsArr.length; i++) {
+System.out.println("num " + (i + 1) + ":" + argsArr[i]);
+}
+}
+} catch (IOException e) {
+e.printStackTrace();
+}finally{
+try{
+if ( fr != null )
+fr.close();
+if ( br != null )
+br.close();
+}catch(IOException ex){
+ex.printStackTrace();
+}
+}
+
+
+}
+}
+这里将刚才生成的csv文件读取并分析。编译后运行，正常情况下，可以看到刚才生成的CSV文件的内容。
+
+至此，CSV文件的生成与分析其实已经完成。如果要写适合自己需要的CSV文件分析类，完全可以根据自己的业务逻辑和需要来自己实现。因为CSV文件的分析确实很简单。
+
+不过上面的程序还是存在一些问题的。这些问题在开发的过程中应当注意，不然可能出现致命的错误。
+
+比较2个类中对资源的释放问题。CSV生成类中FileWriter对象的关闭(close()方法)是在try中执行的。而CSV分析类中InputStreamReader，BufferedReader对象的关闭(close()方法)是在finally中执行的。CSV生成类是错误的。因为在文件和流的生成过程中，是有可能产生IO异常的，如果在对象close前发生IO异常，那么close方法永远不会被调用，这样资源不会及时释放，会产生致命错误的。而在finally中的程序，是一定会被执行的语句，所以即使操作中途发生问题，也会在最后执行close方法。(try-catch-finally是java语法中基本而重要的部分，不熟悉的可查阅相关资料。)
+在CSV文件的操作过程中，我们是按照半角逗号来分隔数据的，如果某个数据中正好有半角逗号，那么数据不是出错了？
+如果分析的数据有全角字符，是否能够正确分析。(乱码问题)
+以上的第二个问题时必须考虑的。在写一个类的时候，不要相信这个类要操作的数据或者得到的数据是好数据(完全符合要求的正确的数据)，写好的一个类用完全正确的数据测试完，很有可能一个小小的数据错误的问题，就有可能导致程序处理崩溃。所以，细节问题要充分考虑并对应到，使自己编写的类具有一定的健壮性。
+对于2的问题的讨论：
+
+如果我们用Excel文件生成CSV文件，其中数据有半角逗号，Excel会怎么处理呢？试一下，可以看到类似如下的数据。
+aaa,bbb,ccc,ddd
+aaa2,bbb2,,ddd2
+aaa3,bbb3,ccc3,
+aaa4,"bb,b4",ccc4,ddd4
+bb,b4被用双引号包围了，这样，我们自己在生成CSV文件的时候，可以模仿EXCEL的操作，把所有的数据都用双引号包围。这时候又出现一个问题，如果数据中有双引号，会怎么样？再次尝试一下。这次输入的数据是bb,b"4"，结果是：
+aaa,bbb,ccc,ddd
+aaa2,bbb2,,ddd2
+aaa3,bbb3,ccc3,
+aaa4,"bb,b""4""",ccc4,ddd4
+双引号被用2个双引号替换了。Excel是这么处理的，我们在生成Excel文件的时候可以模仿处理。这样分析数据的时候，就要有一个严格的算法来进行分析。
+由于做的这个类是给web开发用的，我们可以考虑用web常用的转意，将"这个字符转换成"来避免这样的冲突，这样处理的好处是分析字符串的时候，处理简单化了。但是这又引发了别的问题，就是如果数据中原来就有"这样的字符，在将"反转义为"的时候，容易把这些原有的字符也转化了。所以&符号也需要转义。
+现在将2个方法折衷，即CSV数据以半角逗号分隔，以"包围。数据中的&，"符号进行转义。
+这样的处理，将分析数据的算法难度降低，同时也解决了数据中含有半角逗号，引号的问题。
+
+经过以上的分析，我们可以写CSV生成分析文件的类了。
+首先，写出简单的转意静态方法。
+
+public static String CSVEncode(String in){
+if ( in == null )
+return "";
+in.replaceAll("&","&");
+in.replaceAll("\"",""");
+return in;
+}
+
+public static String CSVDecode(String in){
+if ( in == null )
+return "";
+in.replaceAll(""","\"");
+in.replaceAll("&","&");
+return in;
+}
+
+CSV文件生成类：
+
+package com.vogoal.util.csv;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import com.vogoal.util.UtilCla;
+/**
+* @author SinNeR
+* http://bbs.blueidea.com
+*
+* CSVCreater
+*/
+public class CSVCreater {
+private FileOutputStream fos = null;
+private StringBuffer sb = null;
+private boolean convertFlag = false;
+public static final String DEL_CHAR = ",";
+public static final String AV_CHAR = "\"";
+public CSVCreater(String arg) throws IOException {
+fos = new FileOutputStream(arg, false);
+sb = new StringBuffer();
+}
+public void setData(String data) {
+if (convertFlag)
+data = UtilCla.CSVEncode(data);
+
+
+sb.append(AV_CHAR);
+sb.append(data);
+sb.append(AV_CHAR);
+sb.append(DEL_CHAR);
+}
+public void setConvertFlag(boolean b) {
+convertFlag = b;
+}
+public void writeLine() {
+if (sb.charAt(sb.length() - 1) == ',')
+sb.delete(sb.length() - 1, sb.length());
+sb.append("\r\n");
+}
+public void writeDataByLine(String[] args) {
+for (int i = 0; i < args.length; i++)
+setData(args[i]);
+writeLine();
+}
+public void close() throws IOException {
+try {
+fos.write(sb.toString().getBytes());
+} catch (IOException e) {
+throw e;
+} finally {
+fos.close();
+}
+}
+public static void main(String[] args) {
+try {
+CSVCreater csvCre = new CSVCreater("C:\\test.csv");
+csvCre.setConvertFlag(true);
+csvCre.setData("aaa");
+csvCre.setData("aa,a");
+csvCre.writeLine();
+csvCre.setData("aa\"a");
+csvCre.setData("aa,a");
+csvCre.setData("aa,a");
+csvCre.writeLine();
+csvCre.setData("aa\"a");
+csvCre.setData("aa,\"a");
+csvCre.setData("aa,\"a");
+csvCre.setData("aa,\"a");
+csvCre.setData("aa,\"a");
+csvCre.writeLine();
+csvCre.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+CSV文件分析类：
+
+package com.vogoal.util.csv;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import com.vogoal.util.UtilCla;
+/**
+* @author SinNeR
+* http://bbs.blueidea.com
+*
+* CSVAnalysis
+*/
+public class CSVAnalysis {
+private InputStreamReader fr = null;
+private boolean convertFlag = false;
+private ArrayList dataContainer = new ArrayList();
+public static final String DEL_CHAR = ",";
+public static final String AV_CHAR = "\"";
+public CSVAnalysis(String f) throws IOException {
+fr = new InputStreamReader(new FileInputStream(f));
+}
+public void setConvertFlag(boolean b) {
+convertFlag = b;
+}
+public ArrayList analysis() throws IOException {
+BufferedReader br = new BufferedReader(fr);
+String rec = null;
+try {
+while ((rec = br.readLine()) != null) {
+ArrayList alLine = analysisLine(rec);
+dataContainer.add(alLine);
+}
+} catch (IOException e) {
+throw e;
+} finally {
+br.close();
+
+
+}
+return dataContainer;
+}
+private ArrayList analysisLine(String strLine) {
+System.out.println(strLine);
+ArrayList al = new ArrayList();
+String[] dataArr = strLine.split(AV_CHAR);
+for (int i = 1; i < dataArr.length; i = i + 2) {
+if (convertFlag)
+al.add(UtilCla.CSVDecode(dataArr[i]));
+else
+al.add(dataArr[i]);
+}
+return al;
+}
+public void close() throws IOException {
+fr.close();
+}
+public static void main(String[] args) {
+try {
+CSVAnalysis csvAna = new CSVAnalysis("C:\\test.csv");
+csvAna.setConvertFlag(true);
+ArrayList al = csvAna.analysis();
+for (int i = 0; i < al.size(); i++) {
+ArrayList al1 = (ArrayList) al.get(i);
+for (int j = 0; j < al1.size(); j++) {
+System.out.println(al1.get(j));
+}
+}
+csvAna.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+写好这些类之后，就可以开始着手测试了。
+写一个测试CSV文件生成的jsp文件。如：
+
+<%@ page contentType="text/html" import="com.vogoal.util.*,com.vogoal.util.csv.*,java.io.IOException" %>
+create a csv file
+<%
+try {
+CSVCreater csvCre = new CSVCreater("C:\\test.csv");
+csvCre.setConvertFlag(true);
+csvCre.setData("aaa");
+csvCre.setData("aa,a");
+csvCre.writeLine();
+csvCre.setData("aa\"a");
+csvCre.setData("aa,a");
+csvCre.setData("aa,a");
+
+
+csvCre.writeLine();
+csvCre.setData("aa\"a");
+csvCre.setData("aa,\"a");
+csvCre.setData("aa,\"a");
+csvCre.setData("aa,\"a");
+csvCre.setData("aa,\"a");
+csvCre.writeLine();
+csvCre.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+%>
+写一个测试CSV文件分析的jsp文件。如：
+
+<%@ page contentType="text/html" import="com.vogoal.util.*,com.vogoal.util.csv.*,java.io.IOException,
+java.util.ArrayList" %>
+analysis a csv file<br>
+<%
+try {
+CSVAnalysis csvAna = new CSVAnalysis("C:\\test.csv");
+csvAna.setConvertFlag(true);
+ArrayList al = csvAna.analysis();
+for (int i = 0; i < al.size(); i++) {
+out.println( (i + 1) + " line start<br>");
+ArrayList al1 = (ArrayList) al.get(i);
+for (int j = 0; j < al1.size(); j++) {
+
+
+out.println(al1.get(j));
+out.println("<br>");
+}
+out.println( (i + 1) + " line end<br>");
+}
+csvAna.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
+%>
+将编译后的class拷贝到TOMCAT自己的应用的WEB-INF下。将jsp文件放到自己的应用下。
+然后启动TOMCAT，访问jsp文件，当访问creCSV.jsp的时候，正常情况下可以看到C盘根目录下生成了一个test.csv文件。然后访问anaCSV.jsp文件，可以看到分析后的数据被打印出来。
+
+至此，csv生成，分析类做成。
+
+使用帮助：
+
+CSVCreater.java类，用来生成CSV文件的类。
+构造函数public CSVCreater(String arg) throws IOException
+参数：arg 要生成的csv文件的绝对路径
+使用例CSVCreater csvCre = new CSVCreater("C:\\test.csv");
+
+public void setConvertFlag(boolean b)
+是否转义设定函数(将半角双引号进行转义处理)
+参数：true 需要转义(推荐) false 不转义
+
+public void setData(String data)
+添加单个数据的函数
+
+public void writeLine()
+结束换行函数
+
+public void writeDataByLine(String[] args)
+将一个数组的元素添加到一行并换行函数
+
+public void close() throws IOException
+必须调用的函数，写入文件并关闭文件处理的对象。
+
+例子可参考jsp文件中的代码，但是jsp文件中的close()方法是在try块中执行的，不推荐，使用的时候还是在finally块中执行要安全一些。
+这个类涉及到了文件的操作，有可能出现IOException，出现异常的时候会抛出给使用者。
+
+CSVAnalysis.java
+构造函数 public CSVAnalysis(String f) throws IOException
+参数是要分析的文件的绝对路径。
+
+public ArrayList analysis() throws IOException
+分析流处理的方法，返回ArrayList对象。返回的ArrayList的数据格式是
+ArrayList中存放着ArrayList对象，存放的每个ArrayList对象对应csv文件的一行。
+一行对应的ArrayList中存放着String对象，为该行中所有的数据。
+
+public void close() throws IOException
+必须调用的函数，关闭文件处理的对象。
+同样，这个方法应在finally块中执行要安全一些。
+————————————————
+版权声明：本文为CSDN博主「hyyyer」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/hyyyer/article/details/84697693
