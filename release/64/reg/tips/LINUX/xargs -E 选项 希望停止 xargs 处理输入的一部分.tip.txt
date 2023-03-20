@@ -1,0 +1,33 @@
+[weixj@VM-0-10-centos xargs]$ seq 10
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+[weixj@VM-0-10-centos xargs]$ seq 10 | xargs -I {} -E 5 echo {}
+1
+2
+3
+4
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ seq 10 | xargs -I {} -E 2 echo {} 
+1
+[weixj@VM-0-10-centos xargs]$ seq 10 | xargs -I {} -E 9 echo {} 
+1
+2
+3
+4
+5
+6
+7
+8
+[weixj@VM-0-10-centos xargs]$ 

@@ -1,0 +1,118 @@
+[weixj@VM-0-10-centos xargs]$ seq 10
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ seq 1 5
+1
+2
+3
+4
+5
+[weixj@VM-0-10-centos xargs]$ seq 1 2 10
+1
+3
+5
+7
+9
+[weixj@VM-0-10-centos xargs]$ seq -s + 1 10
+1+2+3+4+5+6+7+8+9+10
+[weixj@VM-0-10-centos xargs]$ seq -s - 1 10 
+1-2-3-4-5-6-7-8-9-10
+[weixj@VM-0-10-centos xargs]$ seq -s * 1 10 
+seq: extra operand ‘documents’
+Try 'seq --help' for more information.
+[weixj@VM-0-10-centos xargs]$ seq -s / 1 10 
+1/2/3/4/5/6/7/8/9/10
+[weixj@VM-0-10-centos xargs]$ seq -s \* 1 10 
+1*2*3*4*5*6*7*8*9*10
+[weixj@VM-0-10-centos xargs]$ seq -s "`echo -e "\t"`" 9 11
+9       10      11
+[weixj@VM-0-10-centos xargs]$ seq -2 8 11
+-2
+6
+[weixj@VM-0-10-centos xargs]$ seq -2 8 11 
+-2
+6
+[weixj@VM-0-10-centos xargs]$ seq -w 8 11 
+08
+09
+10
+11
+[weixj@VM-0-10-centos xargs]$ seq -w 99 103
+099
+100
+101
+102
+103
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ seq 8 11
+8
+9
+10
+11
+[weixj@VM-0-10-centos xargs]$ seq -f '%g' 8 11
+8
+9
+10
+11
+[weixj@VM-0-10-centos xargs]$ seq -f '%g:' 8 11
+8:
+9:
+10:
+11:
+[weixj@VM-0-10-centos xargs]$ seq -f '%g:xx' 8 11
+8:xx
+9:xx
+10:xx
+11:xx
+[weixj@VM-0-10-centos xargs]$ seq -w -f '%g:xx' 8 11
+seq: format string may not be specified when printing equal width strings
+Try 'seq --help' for more information.
+[weixj@VM-0-10-centos xargs]$ seq -f '%g' 8 11
+8
+9
+10
+11
+[weixj@VM-0-10-centos xargs]$ seq -f '%3g' 8 11
+  8
+  9
+ 10
+ 11
+[weixj@VM-0-10-centos xargs]$ seq -f '%-3g' 8 11
+8  
+9  
+10 
+11 
+[weixj@VM-0-10-centos xargs]$ seq -f '%03g' 8 11 
+008
+009
+010
+011
+[weixj@VM-0-10-centos xargs]$ seq -f '%05g' 8 11 
+00008
+00009
+00010
+00011
+[weixj@VM-0-10-centos xargs]$ seq -f 'dir%02g' 8 11  
+dir08
+dir09
+dir10
+dir11
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ mkdir $(seq -f 'dir%03g' 1 10)
+[weixj@VM-0-10-centos xargs]$ ls
+a.txt  b.txt  c.txt  data.txt  dir001  dir002  dir003  dir004  dir005  dir006  dir007  dir008  dir009  dir010  documents
+[weixj@VM-0-10-centos xargs]$ seq -f 'dirb%03g' 1 5 | xargs mkdir 
+[weixj@VM-0-10-centos xargs]$ ls
+a.txt  b.txt  c.txt  data.txt  dir001  dir002  dir003  dir004  dir005  dir006  dir007  dir008  dir009  dir010  dirb001  dirb002  dirb003  dirb004  dirb005  documents
+[weixj@VM-0-10-centos xargs]$ 

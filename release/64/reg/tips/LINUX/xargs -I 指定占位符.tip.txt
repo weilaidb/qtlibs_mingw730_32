@@ -1,0 +1,40 @@
+[weixj@VM-0-10-centos xargs]$ ls
+a.txt  b.txt  c.txt  documents
+[weixj@VM-0-10-centos xargs]$ find . -name '*.txt' | xargs -I {} mv {} documents/
+[weixj@VM-0-10-centos xargs]$ ls
+documents
+[weixj@VM-0-10-centos xargs]$ find documents/
+documents/
+documents/b.txt
+documents/a.txt
+documents/c.txt
+
+
+
+
+
+
+
+[weixj@VM-0-10-centos xargs]$ echo "hello world" | xargs -n1 -t -0 -I {} echo "argument : {}"
+echo argument : hello world
+ 
+argument : hello world
+
+[weixj@VM-0-10-centos xargs]$ echo "hello world" | xargs -n1 -t -0 -I {} echo "argument : {} haha nice day "
+echo argument : hello world
+ haha nice day  
+argument : hello world
+ haha nice day 
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ echo "hello world" | xargs -t -0 -I {} echo "argument : {} haha nice day "    
+echo argument : hello world
+ haha nice day  
+argument : hello world
+ haha nice day 
+[weixj@VM-0-10-centos xargs]$ echo "hello world" | xargs -0 -I {} echo "argument : {} haha nice day "   
+argument : hello world
+ haha nice day 
+[weixj@VM-0-10-centos xargs]$ echo "hello world" | xargs -I {} echo "argument : {} haha nice day "   
+argument : hello world haha nice day 
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ 

@@ -1,0 +1,50 @@
+[weixj@VM-0-10-centos xargs]$ ls
+a.txt  b.txt  c.txt  documents
+[weixj@VM-0-10-centos xargs]$ find . -name "*.txt" | xargs -n 1 cp -v -t documents
+cp: omitting directory ‘./b.txt’
+cp: omitting directory ‘./a.txt’
+cp: omitting directory ‘./c.txt’
+[weixj@VM-0-10-centos xargs]$ find . -name "*.txt" | xargs -n 1 cp -afv -t documents
+‘./b.txt’ -> ‘documents/b.txt’
+‘./a.txt’ -> ‘documents/a.txt’
+‘./c.txt’ -> ‘documents/c.txt’
+[weixj@VM-0-10-centos xargs]$ ls documents/
+a.txt  b.txt  c.txt
+[weixj@VM-0-10-centos xargs]$ ls
+a.txt  b.txt  c.txt  documents
+
+
+
+
+
+
+
+
+
+
+
+
+[weixj@VM-0-10-centos xargs]$ cat data.txt 
+a,1,33333333,4444
+bbbbb
+cccc
+ddddddd
+[weixj@VM-0-10-centos xargs]$ cat data.txt | xargs 
+a,1,33333333,4444 bbbbb cccc ddddddd
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ cat data.txt | xargs -n1
+a,1,33333333,4444
+bbbbb
+cccc
+ddddddd
+[weixj@VM-0-10-centos xargs]$ cat data.txt | xargs -n2
+a,1,33333333,4444 bbbbb
+cccc ddddddd
+[weixj@VM-0-10-centos xargs]$ cat data.txt | xargs -n3
+a,1,33333333,4444 bbbbb cccc
+ddddddd
+[weixj@VM-0-10-centos xargs]$ cat data.txt | xargs -n4
+a,1,33333333,4444 bbbbb cccc ddddddd
+[weixj@VM-0-10-centos xargs]$ cat data.txt | xargs -n5
+a,1,33333333,4444 bbbbb cccc ddddddd
+[weixj@VM-0-10-centos xargs]$ 

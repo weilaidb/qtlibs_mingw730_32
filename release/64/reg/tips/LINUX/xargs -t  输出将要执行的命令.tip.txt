@@ -1,0 +1,8 @@
+[weixj@VM-0-10-centos xargs]$ ls
+a.txt  b.txt  c.txt  documents
+[weixj@VM-0-10-centos xargs]$ find . -name "*.txt" | xargs -t -I {} mv {} documents
+mv ./b.txt documents 
+mv ./a.txt documents 
+mv ./c.txt documents 
+[weixj@VM-0-10-centos xargs]$ ls
+documents

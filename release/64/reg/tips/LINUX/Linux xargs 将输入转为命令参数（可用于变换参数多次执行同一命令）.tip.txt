@@ -1,0 +1,353 @@
+【Linux 命令】xargs 将输入转为命令参数（可用于变换参数多次执行同一命令）
+
+oceanweave
+
+于 2023-03-20 16:48:02 发布
+
+3
+ 收藏
+分类专栏： linux命令 文章标签： linux bash 运维
+版权
+
+linux命令
+专栏收录该内容
+15 篇文章0 订阅
+订阅专栏
+参考
+xargs 给其他命令传递参数的一个过滤器
+
+Linux那点事-xargs命令详解 困惑点解答
+
+xargs 命令教程
+
+xargs命令详解，xargs与管道的区别
+
+linux xargs 命令详解
+
+xargs原理剖析及用法详解
+
+linux中xargs命令的使用方式
+
+介绍
+作用
+xargs命令的作用，是将标准输入转为命令行参数。
+
+$ echo "hello world" | xargs echo
+hello world
+1
+2
+上面的代码将管道左侧的标准输入，转为命令行参数hello world，传给第二个echo命令。
+
+xargs命令的格式如下。
+
+$ xargs [-options] [command]
+1
+真正执行的命令，紧跟在xargs后面，接受xargs传来的参数。
+
+xargs的作用在于，大多数命令（比如rm、mkdir、ls）与管道一起使用时，都需要xargs将标准输入转为命令行参数。
+
+$ echo "one two three" | xargs mkdir
+1
+上面的代码等同于mkdir one two three。如果不加xargs就会报错，提示mkdir缺少操作参数。
+
+部分常用参数
+参数	参数解释	
+xargs处理的优先级或顺序	先分割，在分批，然后传递到参数位	
+分割	默认情况下，xargs使用空格来切分数据。	
+-d	xargs -d可以指定分割符，可以是单个符号、字母或者数字。如指定o为分割符：xargs -d "o"；	
+-0 （等同于 --null）	和xargs -d基本一样，只是-d是指定分割符，-0是指定固定的\0作为分割符。等价于xargs -d "\0"。	
+分批行为	指定一次获取多少数量的数据	
+-n	按空格分段划批的，若有 10 个数据， -n 2，就是每次获取 2 个，因此会执行 5 次	
+-L	按段划批	
+-i、-L、-n选项都是分批选项，他们的生效规则是：谁指定在后面，谁就生效	
+指定参数位置	接收传来的数据	
+-i	-i默认使用大括号作为替换符号	
+-I（大写i）	-I可以指定其他符号、字母、数字作为替换符号，但是必须用引号包起来（好像不用引号也行）	
+观察命令的执行过程		
+-p	-p选项是交互询问式的，只有每次询问的时候输入y（或者yes）才会执行，直接按entry键是不会执行的	
+-t	-t选项是在每次执行xargs后面的命令都会先在stderr上打印一遍命令的执行过程然后才正式执行	
+并发处理		
+- P	xargs提供了-P选项，用于指定并发执行的数量（默认是只要一个处理进程，不会提供效率，
+但是可以指定为N个子进程，或者指定为0表示尽可能多的利用CPU）。这样就能将让分批操作
+更好的利用多核CPU，从而提升效率。例如上面分成了两批，指定-P 2可以并发执行两批，
+而并非执行完第一批之后再执行第二批	
+-d 参数与分隔符	$ echo -e “a\tb\tc” | xargs -d “\t” echo
+a b c	
+文档
+Mandatory arguments to long options are mandatory for short options too.
+Non-mandatory arguments are indicated by [square brackets]
+  -0, --null                   Items are separated by a null, not whitespace.
+                               Disables quote and backslash processing
+  -a, --arg-file=FILE          Read arguments from FILE, not standard input
+  -d, --delimiter=CHARACTER    Input items are separated by CHARACTER, not by
+                               blank space. Disables quote and backslash
+                               processing
+  -E END                       If END occurs as a line of input, the rest of
+                               the input is ignored.
+  -e [END], --eof[=END]        Equivalent to -E END if END is specified.
+                               Otherwise, there is no end-of-file string
+  --help                       Print a summary of the options to xargs.
+  -I R                         same as --replace=R (R must be specified)
+  -i,--replace=[R]             Replace R in initial arguments with names
+                               read from standard input. If R is
+                               unspecified, assume {}
+  -L,-l, --max-lines=MAX-LINES Use at most MAX-LINES nonblank input lines per
+                               command line
+  -l                           Use at most one nonblank input line per
+                               command line
+  -n, --max-args=MAX-ARGS      Use at most MAX-ARGS arguments per command
+                               line
+  -P, --max-procs=MAX-PROCS    Run up to max-procs processes at a time
+  -p, --interactive            Prompt before running commands
+  --process-slot-var=VAR       Set environment variable VAR in child
+                               processes
+  -r, --no-run-if-empty        If there are no arguments, run no command.
+                               If this option is not given, COMMAND will be
+                               run at least once.
+  -s, --max-chars=MAX-CHARS    Limit commands to MAX-CHARS at most
+  --show-limits                Show limits on command-line length.
+  -t, --verbose                Print commands before executing them
+  --version                    Print the version number
+  -x, --exit                   Exit if the size (see -s) is exceeded
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+实际应用
+比较 - 与 xargs
+# 初始内容
+$ ls
+bin       downloads env       go        versions
+# 了解 -，最后指定 -  则表示从标准输入中读取
+$ echo 'main' | cat -
+main
+# 用 - 承接 ls 传递的信息，发现无法打印，暂不清楚原因（可能 echo 无法承接这么多参数）
+$ ls | echo -
+
+# xargs 可以打印，相当于 将 ls 的输出，作为输入参数，传递给 echo 进行打印
+$ ls | xargs echo
+bin downloads env go versions
+
+# xargs -n 相当于将 ls 传递的信息进行分割后，指定每次传输的数量
+$ ls | xargs -n 1 echo
+bin
+downloads
+env
+go
+versions
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+任意位置打印(- I 大写的 i)
+# 初始内容
+$ ls
+bin       downloads env       go        versions
+# 我们想打印的格式为 xx is a dir
+# 但是 xargs 传递的参数，默认会填充到最后，因此不满足要求
+$ ls | xargs -n 1  echo "is a dir"
+is a dir bin
+is a dir downloads
+is a dir env
+is a dir go
+is a dir versions
+# 通过 -I 参数，指定可以替换的标志为 {}, 之后的 {} 将会替换 xargs 传来的内容，满足要求
+$ ls | xargs -n 1 -I {} echo {} "is a dir"
+bin is a dir
+downloads is a dir
+env is a dir
+go is a dir
+versions is a dir
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+分割（-d）与指定传输数量(-n)
+# xargs 默认就带打印，可以理解为 xargs echo
+$ echo "nameXnameXnameXname" | xargs 
+nameXnameXnameXname
+# -d 制定分割符为 X
+$ echo "nameXnameXnameXname" | xargs -d X
+name name name name
+# -n 指定，每次传输多少个数据
+$ echo "nameXnameXnameXname" | xargs -d X -n 2
+name name
+
+# 带双引号，也可以分割
+$ echo '11@22@33' | xargs -d '@' echo
+11 22 33
+# 不带双引号，也可以
+$ echo '11@22@33' | xargs -d @ echo
+11 22 33
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+指定多少行(-L)
+$ echo -e "a\nb\nc" | xargs -L 1 echo
+a
+b
+c
+$ echo -e "a\nb\nc" | xargs -L 2 echo
+a b
+c
+1
+2
+3
+4
+5
+6
+7
+导入多个 docker 镜像
+# 这里有三个镜像
+$ ls
+calico-0.45.tar  calico-bird.tar  calico-bpftool.tar
+# docker load -i 只能每次导入一个 镜像
+# 这里通过 xargs 实现导入 3个镜像
+$ ls | xargs -n 1 -I {} docker load -i {}
+1
+2
+3
+4
+5
+6
+xargs 与 find 联合使用
+由于xargs默认将空格作为分隔符，所以不太适合处理文件名，因为文件名可能包含空格。
+
+find命令有一个特别的参数-print0，指定输出的文件列表以null分隔。然后，xargs命令的-0参数表示用null当作分隔符。
+
+示例1 —— 移除众多文件
+删除/log路径下的所有文件。由于分隔符是null，所以处理包含空格的文件名，也不会报错。
+
+还有一个原因，使得xargs特别适合find命令。有些命令（比如rm）一旦参数过多会报错"参数列表过长"，而无法执行，改用xargs就没有这个问题，因为它可以指定执行的参数的个数
+
+# 创建实例文件
+$ mkdir log
+$ touch 1.log 2.log
+# -print 0 作用，是文件已 null 分隔开
+# -t 是显示执行的命令，此处可以看到是 一条命令执行删除所有文件
+# --null 是指定 null 为分隔符，此处也可以用 -0
+$ find log/ -type f -print0|xargs -t --null rm
+rm log/1.log log/2.log 
+# 假如要删除的文件是 1000 个，可能就会报 参数过长 错误
+# 因此可以使用 -n 指定一次处理的个数，如 此处一次处理一个文件
+$ find log/ -type f -print0|xargs -t --null -n 1 rm
+rm log/1.log 
+rm log/2.log 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+示例2 —— 根据内容查找文件
+找出所有 TXT 文件以后，对每个文件搜索一次是否包含字符串abc。
+
+$ find . -name "*.txt" | xargs grep "abc"
+1
+实例3 —— 批量压缩文件
+xargs通常与find命令结合使用。您可以使用find搜索特定文件，然后使用xargs对这些文件执行操作。
+
+若要避免包含换行符或其他特殊字符的文件名出现问题，请始终使用find的-print0选项，这样可以使find打印完整的文件名，配合xargs命令使用-0或者–null选项可以正确的解释。
+
+下面例子中，查找log文件夹下面的类型为file的所有文件，打包压缩起来：
+
+$ find log/ -type f -print0|xargs -t --null tar -zcvf logs.tar.gz 
+tar -zcvf logs.tar.gz log/1.log log/2.log 
+log/1.log
+log/2.log
+1
+2
+3
+4
+文章已被收录至官方知识档案
+Linux技能树Linux实用命令grep命令5841 人正在系统学习中
+————————————————
+版权声明：本文为CSDN博主「oceanweave」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_24433609/article/details/129670894

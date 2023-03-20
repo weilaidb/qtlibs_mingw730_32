@@ -1,0 +1,10 @@
+[weixj@VM-0-10-centos xargs]$ cat data.txt 
+a,1,33333333,4444
+bbbbb
+cccc
+ddddddd
+[weixj@VM-0-10-centos xargs]$ cat data.txt | xargs -d ',' echo
+a 1 33333333 4444
+bbbbb
+cccc
+ddddddd

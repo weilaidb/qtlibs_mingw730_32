@@ -1,0 +1,31 @@
+[weixj@VM-0-10-centos xargs]$ ls
+a.txt  b.txt  c.txt  documents
+[weixj@VM-0-10-centos xargs]$ find
+.
+./documents
+./b.txt
+./a.txt
+./c.txt
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ find . -name "*.txt" | xargs -r cp -v -t documents  
+cp: omitting directory ‘./b.txt’
+cp: omitting directory ‘./a.txt’
+cp: omitting directory ‘./c.txt’
+[weixj@VM-0-10-centos xargs]$ find . -name "*.txt" | xargs -r cp -vaf -t documents
+‘./b.txt’ -> ‘documents/b.txt’
+‘./a.txt’ -> ‘documents/a.txt’
+‘./c.txt’ -> ‘documents/c.txt’
+[weixj@VM-0-10-centos xargs]$ ls documents/
+a.txt  b.txt  c.txt
+[weixj@VM-0-10-centos xargs]$ ls
+a.txt  b.txt  c.txt  documents
+[weixj@VM-0-10-centos xargs]$ find
+.
+./documents
+./documents/b.txt
+./documents/a.txt
+./documents/c.txt
+./b.txt
+./a.txt
+./c.txt
+[weixj@VM-0-10-centos xargs]$ 

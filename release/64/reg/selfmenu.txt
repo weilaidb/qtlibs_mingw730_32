@@ -1917,6 +1917,9 @@ LINUX/7z
 LINUX/CentOS/必备命令 order
 LINUX/CentOS/必备软件 necessary software
 LINUX/Code/ERROR
+LINUX/Linux xargs help
+LINUX/Linux xargs 命令介绍
+LINUX/Linux xargs 将输入转为命令参数（可用于变换参数多次执行同一命令）
 LINUX/Makefile
 LINUX/Netcat
 LINUX/Netcat help
@@ -2015,10 +2018,21 @@ LINUX/qemu 虚拟机的使用
 LINUX/qemu 虚拟机的安装
 LINUX/qemu/arm
 LINUX/qemu/arm sh
+LINUX/seq
+LINUX/seq eg
 LINUX/telnetd
 LINUX/uboot
 LINUX/ulimit -a
 LINUX/ulimit linux设置进程最大内存,修改limit配置限制linux最大文件描述符和最大进程数
+LINUX/xargs -E 选项 希望停止 xargs 处理输入的一部分
+LINUX/xargs -I 指定占位符
+LINUX/xargs -J 选项 整个输入作为单个参数传递（目前可以使用-I试试）
+LINUX/xargs -d 用于指定用于分隔参数的分隔符
+LINUX/xargs -n 用于指定每个命令使用的最大参数数
+LINUX/xargs -p 用于在执行每个命令之前询问用户
+LINUX/xargs -r 用于避免在没有输入时执行命令
+LINUX/xargs -t  输出将要执行的命令
+LINUX/xargs 常用选项
 LINUX/命令行/Centos 7 搭建samba
 LINUX/命令行/Centos version
 LINUX/命令行/Linux 忘记密码解决方法

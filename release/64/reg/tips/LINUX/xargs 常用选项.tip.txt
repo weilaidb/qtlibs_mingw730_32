@@ -1,0 +1,124 @@
+常用选项
+-I: 用于指定占位符。默认占位符是{}，如果你使用-I选项，则指定自己的占位符。例如：
+
+find . -name "*.txt" | xargs -I {} mv {} ~/documents
+-t: 输出将要执行的命令。
+
+find . -name "*.txt" | xargs -t -I {} mv {} ~/documents
+-n: 用于指定每个命令使用的最大参数数。
+
+find . -name "*.txt" | xargs -n 1 cp -v -t ~/documents
+-p: 用于在执行每个命令之前询问用户。
+
+find . -name "*.txt" | xargs -p -n 1 cp -v -t ~/documents
+-r: 用于避免在没有输入时执行命令。
+
+find . -name "*.txt" | xargs -r cp -v -t ~/documents
+-d：用于指定用于分隔参数的分隔符。默认情况下，xargs 使用空格和制表符作为分隔符。使用 -d 选项，您可以指定任何分隔符。
+
+例如，假设有一个包含逗号分隔值的文件 data.txt，您可以使用以下命令将这些值传递给 echo 命令：
+
+$ cat data.txt | xargs -d ',' echo
+在上面的示例中，-d ',' 选项告诉 xargs 使用逗号作为参数分隔符，而不是默认的空格和制表符。
+
+需要注意的是，如果您的参数包含空格或其他特殊字符，xargs 可能会分割它们。在这种情况下，您需要使用引号或转义字符来处理参数。
+
+高级用法
+
+1. 使用 -J 选项
+默认情况下，xargs 将输入分割为多个参数，并将其传递给命令。有时，您可能需要将整个输入作为单个参数传递。可以使用 -J 选项来实现这一点。例如：
+
+$ echo "hello world" | xargs -J % echo "Argument: %"
+Argument: hello world
+在上面的示例中，-J 选项告诉 xargs 将整个输入作为单个参数传递给命令。
+
+2. 使用 -E 选项
+有时，您可能希望停止 xargs 处理输入的一部分。可以使用 -E 选项来实现这一点。例如：
+
+$ seq 10 | xargs -I {} -E 5 echo {}
+1
+2
+3
+4
+在上面的示例中，-E 选项告诉 xargs 停止处理输入的一部分。
+
+3. 从文件中读取参数
+有时，您可能需要从文件中读取参数并将它们传递给命令。可以使用 xargs 和命令替代符 ({}) 来实现这一点。例如：
+
+$ cat args.txt
+one
+two
+three
+
+$ cat args.txt | xargs -I {} echo "Argument: {}"
+Argument: one
+Argument: two
+Argument: three
+在上面的示例中，xargs 从文件中读取参数，并使用命令替代符将它们传递给 echo 命令。
+
+4. 与 find 命令结合使用
+xargs 可以与 find 命令结合使用，以执行一些高级操作，例如查找特定类型的文件并对它们执行操作。例如：
+
+$ find . -name "*.txt" -print0 | xargs -0 -I {} echo "File: {}"
+File: ./file1.txt
+File: ./file2.txt
+File: ./file3.txt
+在上面的示例中，find 命令查找所有 *.txt 文件，并使用 -print0 选项将它们的名称与 null 字符分隔。然后，xargs 使用 -0 选项将 null 字符视为参数分隔符，并使用命令替代符将每个文件的名称传递给 echo 命令。
+
+5. 使用 -a 选项
+有时，您可能需要从文件中读取参数并将它们传递给命令。可以使用 -a 选项来实现这一点。例如
+
+$ cat args.txt
+one
+two
+three
+
+$ xargs -a args.txt echo "Argument: "
+Argument: one
+Argument: two
+Argument: three
+在上面的示例中，-a 选项告诉 xargs 从 args.txt 文件
+
+读取参数，并将它们传递给 echo 命令。
+
+6. 并行处理
+xargs 还可以用于并行处理命令。可以使用 -P 选项指定要运行的进程数。例如：
+
+$ seq 10 | xargs -P 4 -I {} sh -c 'echo "Processing {}"; sleep 1; echo "Done {}"'
+Processing 1
+Processing 2
+Processing 3
+Processing 4
+Done 1
+Done 2
+Processing 5
+Processing 6
+Done 3
+Done 4
+Processing 7
+Processing 8
+Done 5
+Done 6
+Processing 9
+Processing 10
+Done 7
+Done 8
+Done 9
+Done 10
+在上面的示例中，-P 选项告诉 xargs 并行运行 sh 命令，最多同时运行 4 个进程。每个进程处理一个参数，并在处理完参数后输出 Done。
+
+7. 使用 -r 选项
+有时，输入可能为空，并且您不希望命令运行。可以使用 -r 选项来防止这种情况。例如：
+
+$ echo "" | xargs -r echo "Arguments: "
+在上面的示例中，由于输入为空，xargs 不会运行 echo 命令。
+
+8. 使用 -t 选项
+使用 -t 选项，可以在运行命令之前打印 xargs 将要运行的命令。例如：
+
+$ echo "hello world" | xargs -t echo "Argument: "
+echo Argument:  hello world
+Argument:  hello world
+在上面的示例中，-t 选项告诉 xargs 在运行 echo 命令之前打印将要运行的命令。
+
+这些都是 xargs 的一些高级用法。通过了解这些用法，您可以更好地掌握 xargs 命令，并使用它来更有效地处理命令行参数。
