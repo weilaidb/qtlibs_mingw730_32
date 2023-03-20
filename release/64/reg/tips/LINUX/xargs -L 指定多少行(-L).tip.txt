@@ -1,0 +1,25 @@
+[weixj@VM-0-10-centos xargs]$ echo -e "a\nb\nc" | xargs -L 1 echo
+a
+b
+c
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ echo -e "a\nb\nc" | xargs -L 2 echo
+a b
+c
+
+
+
+
+
+
+
+
+
+[weixj@VM-0-10-centos xargs]$ echo -e "a\nb\nc" | xargs -n 1 echo  
+a
+b
+c
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]$ echo -e "a\nb\nc" | xargs -n 2 echo
+a b
+c

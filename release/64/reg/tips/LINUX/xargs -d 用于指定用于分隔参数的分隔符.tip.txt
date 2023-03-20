@@ -8,3 +8,56 @@ a 1 33333333 4444
 bbbbb
 cccc
 ddddddd
+
+
+
+
+
+
+
+
+
+
+[weixj@VM-0-10-centos xargs]$ echo "nameXnameXnameXname" | xargs -d X
+name name name name
+
+
+[weixj@VM-0-10-centos xargs]$ echo "nameXnameXnameXname" | xargs -d X -n1
+name
+name
+name
+name
+
+[weixj@VM-0-10-centos xargs]$ echo "nameXnameXnameXname" | xargs -d X -n2
+name name
+name name
+
+[weixj@VM-0-10-centos xargs]$ echo "nameXnameXnameXname" | xargs -d X -n3
+name name name
+name
+
+[weixj@VM-0-10-centos xargs]$ echo "nameXnameXnameXname" | xargs -d X -n4
+name name name name
+
+
+
+
+
+
+
+[weixj@VM-0-10-centos xargs]$ echo '11@22@33' | xargs -d '@' echo
+11 22 33
+
+[weixj@VM-0-10-centos xargs]$ echo '11@22@33' | xargs -d @ echo
+11 22 33
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+xargs 与 find 联合使用
+由于xargs默认将空格作为分隔符，所以不太适合处理文件名，因为文件名可能包含空格。
+
+find命令有一个特别的参数-print0，指定输出的文件列表以null分隔。然后，xargs命令的-0参数表示用null当作分隔符。
+
+示例1 —— 移除众多文件
+删除/log路径下的所有文件。由于分隔符是null，所以处理包含空格的文件名，也不会报错。
+
+还有一个原因，使得xargs特别适合find命令。有些命令（比如rm）一旦参数过多会报错"参数列表过长"，而无法执行，改用xargs就没有这个问题，因为它可以指定执行的参数的个数
+
+# 创建实例文件
+$ mkdir log
+$ touch 1.log 2.log
+# -print 0 作用，是文件已 null 分隔开
+# -t 是显示执行的命令，此处可以看到是 一条命令执行删除所有文件
+# --null 是指定 null 为分隔符，此处也可以用 -0
+$ find log/ -type f -print0|xargs -t --null rm
+rm log/1.log log/2.log 
+# 假如要删除的文件是 1000 个，可能就会报 参数过长 错误
+# 因此可以使用 -n 指定一次处理的个数，如 此处一次处理一个文件
+$ find log/ -type f -print0|xargs -t --null -n 1 rm
+rm log/1.log 
+rm log/2.log 
+————————————————
+版权声明：本文为CSDN博主「oceanweave」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_24433609/article/details/129670894

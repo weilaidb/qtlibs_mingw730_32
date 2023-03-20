@@ -1,0 +1,145 @@
+[weixj@VM-0-10-centos xargs]$ cd log/
+[weixj@VM-0-10-centos log]$ ls
+1.log  2.log
+[weixj@VM-0-10-centos log]$ rm -rf *
+[weixj@VM-0-10-centos log]$ touch 1.log 2.log
+[weixj@VM-0-10-centos log]$ seq 10
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[weixj@VM-0-10-centos log]$ seq 10 | xargs -n1 -I {} touch {}.log
+[weixj@VM-0-10-centos log]$ ls
+10.log  1.log  2.log  3.log  4.log  5.log  6.log  7.log  8.log  9.log
+[weixj@VM-0-10-centos log]$ seq 100 | xargs -n1 -I {} touch {}.log
+[weixj@VM-0-10-centos log]$ ls
+100.log  13.log  17.log  20.log  24.log  28.log  31.log  35.log  39.log  42.log  46.log  4.log   53.log  57.log  60.log  64.log  68.log  71.log  75.log  79.log  82.log  86.log  8.log   93.log  97.log
+10.log   14.log  18.log  21.log  25.log  29.log  32.log  36.log  3.log   43.log  47.log  50.log  54.log  58.log  61.log  65.log  69.log  72.log  76.log  7.log   83.log  87.log  90.log  94.log  98.log
+11.log   15.log  19.log  22.log  26.log  2.log   33.log  37.log  40.log  44.log  48.log  51.log  55.log  59.log  62.log  66.log  6.log   73.log  77.log  80.log  84.log  88.log  91.log  95.log  99.log
+12.log   16.log  1.log   23.log  27.log  30.log  34.log  38.log  41.log  45.log  49.log  52.log  56.log  5.log   63.log  67.log  70.log  74.log  78.log  81.log  85.log  89.log  92.log  96.log  9.log
+[weixj@VM-0-10-centos log]$ ls
+100.log  13.log  17.log  20.log  24.log  28.log  31.log  35.log  39.log  42.log  46.log  4.log   53.log  57.log  60.log  64.log  68.log  71.log  75.log  79.log  82.log  86.log  8.log   93.log  97.log
+10.log   14.log  18.log  21.log  25.log  29.log  32.log  36.log  3.log   43.log  47.log  50.log  54.log  58.log  61.log  65.log  69.log  72.log  76.log  7.log   83.log  87.log  90.log  94.log  98.log
+11.log   15.log  19.log  22.log  26.log  2.log   33.log  37.log  40.log  44.log  48.log  51.log  55.log  59.log  62.log  66.log  6.log   73.log  77.log  80.log  84.log  88.log  91.log  95.log  99.log
+12.log   16.log  1.log   23.log  27.log  30.log  34.log  38.log  41.log  45.log  49.log  52.log  56.log  5.log   63.log  67.log  70.log  74.log  78.log  81.log  85.log  89.log  92.log  96.log  9.log
+[weixj@VM-0-10-centos log]$ cd ..
+[weixj@VM-0-10-centos xargs]$ find log/ -type f -print0|xargs -t --null rm
+rm log/81.log log/60.log log/43.log log/62.log log/5.log log/16.log log/79.log log/14.log log/33.log log/4.log log/85.log log/78.log log/54.log log/74.log log/12.log log/59.log log/98.log log/41.log log/68.log log/15.log log/45.log log/93.log log/92.log log/72.log log/20.log log/40.log log/11.log log/18.log log/82.log log/90.log log/58.log log/63.log log/87.log log/13.log log/75.log log/77.log log/47.log log/19.log log/36.log log/34.log log/83.log log/84.log log/32.log log/46.log log/23.log log/52.log log/70.log log/53.log log/49.log log/6.log log/51.log log/97.log log/7.log log/37.log log/10.log log/56.log log/80.log log/48.log log/27.log log/89.log log/91.log log/24.log log/96.log log/86.log log/73.log log/39.log log/8.log log/1.log log/9.log log/42.log log/69.log log/35.log log/94.log log/71.log log/3.log log/76.log log/44.log log/99.log log/30.log log/67.log log/65.log log/61.log log/25.log log/21.log log/57.log log/95.log log/31.log log/88.log log/50.log log/64.log log/28.log log/22.log log/29.log log/17.log log/66.log log/55.log log/38.log log/100.log log/26.log log/2.log 
+[weixj@VM-0-10-centos xargs]$ ls log/
+[weixj@VM-0-10-centos xargs]$ cd log/
+[weixj@VM-0-10-centos log]$ seq 100 | xargs -n1 -I {} touch {}.log
+[weixj@VM-0-10-centos log]$ ls
+100.log  13.log  17.log  20.log  24.log  28.log  31.log  35.log  39.log  42.log  46.log  4.log   53.log  57.log  60.log  64.log  68.log  71.log  75.log  79.log  82.log  86.log  8.log   93.log  97.log
+10.log   14.log  18.log  21.log  25.log  29.log  32.log  36.log  3.log   43.log  47.log  50.log  54.log  58.log  61.log  65.log  69.log  72.log  76.log  7.log   83.log  87.log  90.log  94.log  98.log
+11.log   15.log  19.log  22.log  26.log  2.log   33.log  37.log  40.log  44.log  48.log  51.log  55.log  59.log  62.log  66.log  6.log   73.log  77.log  80.log  84.log  88.log  91.log  95.log  99.log
+12.log   16.log  1.log   23.log  27.log  30.log  34.log  38.log  41.log  45.log  49.log  52.log  56.log  5.log   63.log  67.log  70.log  74.log  78.log  81.log  85.log  89.log  92.log  96.log  9.log
+[weixj@VM-0-10-centos log]$ cd ..
+[weixj@VM-0-10-centos xargs]$ find log/ -type f -print0|xargs -t --null -n 1 rm
+rm log/81.log 
+rm log/60.log 
+rm log/43.log 
+rm log/62.log 
+rm log/5.log 
+rm log/16.log 
+rm log/79.log 
+rm log/14.log 
+rm log/33.log 
+rm log/4.log 
+rm log/85.log 
+rm log/78.log 
+rm log/54.log 
+rm log/74.log 
+rm log/12.log 
+rm log/59.log 
+rm log/98.log 
+rm log/41.log 
+rm log/68.log 
+rm log/15.log 
+rm log/45.log 
+rm log/93.log 
+rm log/92.log 
+rm log/72.log 
+rm log/20.log 
+rm log/40.log 
+rm log/11.log 
+rm log/18.log 
+rm log/82.log 
+rm log/90.log 
+rm log/58.log 
+rm log/63.log 
+rm log/87.log 
+rm log/13.log 
+rm log/75.log 
+rm log/77.log 
+rm log/47.log 
+rm log/19.log 
+rm log/36.log 
+rm log/34.log 
+rm log/83.log 
+rm log/84.log 
+rm log/32.log 
+rm log/46.log 
+rm log/23.log 
+rm log/52.log 
+rm log/70.log 
+rm log/53.log 
+rm log/49.log 
+rm log/6.log 
+rm log/51.log 
+rm log/97.log 
+rm log/7.log 
+rm log/37.log 
+rm log/10.log 
+rm log/56.log 
+rm log/80.log 
+rm log/48.log 
+rm log/27.log 
+rm log/89.log 
+rm log/91.log 
+rm log/24.log 
+rm log/96.log 
+rm log/86.log 
+rm log/73.log 
+rm log/39.log 
+rm log/8.log 
+rm log/1.log 
+rm log/9.log 
+rm log/42.log 
+rm log/69.log 
+rm log/35.log 
+rm log/94.log 
+rm log/71.log 
+rm log/3.log 
+rm log/76.log 
+rm log/44.log 
+rm log/99.log 
+rm log/30.log 
+rm log/67.log 
+rm log/65.log 
+rm log/61.log 
+rm log/25.log 
+rm log/21.log 
+rm log/57.log 
+rm log/95.log 
+rm log/31.log 
+rm log/88.log 
+rm log/50.log 
+rm log/64.log 
+rm log/28.log 
+rm log/22.log 
+rm log/29.log 
+rm log/17.log 
+rm log/66.log 
+rm log/55.log 
+rm log/38.log 
+rm log/100.log 
+rm log/26.log 
+rm log/2.log 
+[weixj@VM-0-10-centos xargs]$ 
+[weixj@VM-0-10-centos xargs]
