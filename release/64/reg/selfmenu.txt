@@ -1997,6 +1997,8 @@ LINUX/knowledge/diff 命令(比较文件的差异)
 LINUX/knowledge/diff 文件夹
 LINUX/knowledge/writev
 LINUX/knowledge/writev函数
+LINUX/linux zgrep 查找压缩文件里的内容 tar zip
+LINUX/linux解压zip、bz、bz2、z、gz、tar(解包）
 LINUX/man/chrt
 LINUX/man/chrt --fifo
 LINUX/man/chrt -m

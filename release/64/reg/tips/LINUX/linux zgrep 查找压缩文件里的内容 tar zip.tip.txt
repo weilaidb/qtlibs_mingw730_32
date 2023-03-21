@@ -1,0 +1,19 @@
+[weixj@VM-0-10-centos bzip2]$ echo "abc" >> abc.txt 
+[weixj@VM-0-10-centos bzip2]$ tar -cvjf abc.tar.bz2 
+tar: Cowardly refusing to create an empty archive
+Try `tar --help' or `tar --usage' for more information.
+[weixj@VM-0-10-centos bzip2]$ tar -cvjf abc.tar.bz2 abc.txt 
+abc.txt
+[weixj@VM-0-10-centos bzip2]$ ls
+abc.tar.bz2  abc.txt
+[weixj@VM-0-10-centos bzip2]$ zgrep abc abc.tar.bz2 
+[weixj@VM-0-10-centos bzip2]$ tar -cvzf abc.tar abc.txt 
+abc.txt
+[weixj@VM-0-10-centos bzip2]$ ll
+total 12
+-rw-rw-r-- 1 weixj weixj 125 Mar 21 08:34 abc.tar
+-rw-rw-r-- 1 weixj weixj 122 Mar 21 08:34 abc.tar.bz2
+-rw-rw-r-- 1 weixj weixj   4 Mar 21 08:33 abc.txt
+[weixj@VM-0-10-centos bzip2]$ zgrep "abc" abc.tar
+Binary file (standard input) matches
+[weixj@VM-0-10-centos bzip2]$ 

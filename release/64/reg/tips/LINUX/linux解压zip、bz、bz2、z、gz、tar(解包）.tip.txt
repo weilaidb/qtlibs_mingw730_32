@@ -1,0 +1,111 @@
+linux解压zip、bz、bz2、z、gz、tar(解包）
+
+nichng
+
+于 2017-10-13 23:26:42 发布
+
+18698
+ 收藏 10
+分类专栏： Linux 解包
+
+Linux 解包
+专栏收录该内容
+1 篇文章0 订阅
+订阅专栏
+linux解压zip、bz、bz2、z、gz、tar(解包）   (2012-07-29 20:29:08)转载▼
+标签：  杂谈	分类： Linux/Unix
+zip:
+
+压缩：
+
+  zip [-AcdDfFghjJKlLmoqrSTuvVwXyz$][-b <工作目录>][-ll][-n <字尾字符串>][-t <日期时间>][-<压缩效率>][压缩文件][文件...][-i <范本样式>][-x <范本样式>]
+解压：
+
+    unzip [选项] 压缩文件名.zip
+
+    选项：
+
+　　   -x 文件列表 解压缩文件，但不包括指定的file文件。
+
+　   　-v 查看压缩文件目录，但不解压。
+
+　　   -t 测试文件有无损坏，但不解压。
+
+　　   -d 目录 把压缩文件解到指定目录下。
+
+　   　-z 只显示压缩文件的注解。
+
+　　   -n 不覆盖已经存在的文件。
+
+　　   -o 覆盖已存在的文件且不要求用户确认。
+
+　　   -j 不重建文档的目录结构，把所有文件解压到同一目录下。
+
+   例子：
+
+      例1：将压缩文件text.zip在当前目录下解压缩。
+
+　  　$ unzip text.zip
+
+　  　例2：将压缩文件text.zip在指定目录/tmp下解压缩，如果已有相同的文件存在，要求unzip命令不覆盖原先的文件。
+
+　  　$ unzip -n text.zip -d /tmp
+
+  　　例3：查看压缩文件目录，但不解压。
+
+　  　$ unzip -v text.zip
+
+　  　zgrep命令
+
+　  　这个命令的功能是在压缩文件中寻找匹配的正则表达式，用法和grep命令一样，只不过操作的对象是压缩文件。如果用户想看看在某个压缩文件中有没有某一句话，便可用zgrep命令。
+
+ 
+
+ 
+
+bz:
+
+bzip2 -d FileName.bz
+
+bunzip2 FileName.bz
+
+ 
+
+bz2:
+
+使用 bunzip2 linux-2-4-2.tar.bz2 生成 linux-2-4-2.tar 
+使用tar xvf linux-2-4-2.tar 得到最终文件。 
+
+或者直接使用 
+tar jxvf linux-2-4-2.tar.bz2
+
+ 
+
+z:
+
+uncompress FileName.Z   --解压
+
+compress FileName   --压缩
+
+gz:
+
+*.gz 用 gzip -d或者gunzip 解压
+
+ 
+
+tar:(打包，不是解压）
+
+tar –xvf file.tar //解压 tar包
+
+ 
+
+ 总结
+1、*.tar 用 tar –xvf 解压
+2、*.gz 用 gzip -d或者gunzip 解压
+3、*.tar.gz和*.tgz 用 tar –xzf 解压
+4、*.bz2 用 bzip2 -d或者用bunzip2 解压
+5、*.tar.bz2用tar –xjf 解压
+6、*.Z 用 uncompress 解压
+7、*.tar.Z 用tar –xZf 解压
+8、*.rar 用 unrar e解压
+9、*.zip 用 unzip 解压
