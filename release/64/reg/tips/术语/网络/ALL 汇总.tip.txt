@@ -59,6 +59,12 @@ NOP No Operation 无操作
 MSS Maximm Segment Size 最大段大小
 PAWS Protection Against Wrapped Sequence numbers 防回绕序列号
 SWS Silly Window Syndrome 糊涂窗口综合征
+RIB Routing Table, Routing Info Base 路由表
+FIB Forwarding Info Base  转发表
+
+
+
+
 
 
 
