@@ -3016,6 +3016,8 @@ Windows/know/config systemprofile Desktop 不可用
 Windows/regedits 按关键字删除
 Windows/regedits 按关键字删除 byitem
 Windows/regedits 按关键字查询
+XML/know/XML VS. CSV
+XML/know/csv、xml和json
 YAML/YAML 语法
 YAML/yml入门教程
 YAML/yml入门教程2
