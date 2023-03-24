@@ -1,0 +1,4 @@
+toupper (s)
+
+Returns the uppercase version of the given string.
+

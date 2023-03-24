@@ -1,0 +1,7 @@
+sufix
+findGTestFileName
+filename
+selection
+IchFirst
+selecttext
+total

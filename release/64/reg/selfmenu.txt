@@ -3139,6 +3139,8 @@ path路径/常用文件夹
 宏Macro/Source insight/new/selection getselecttext
 宏Macro/Source insight/new/selection2
 宏Macro/Source insight/new/switch SwitchHeaderSourceForCpp C或CPP头文件和源文件切换
+宏Macro/Source insight/new/tolower
+宏Macro/Source insight/new/toupper
 宏Macro/Source insight/strmid
 宏Macro/Source insight/toupper
 宏Macro/UltraEdit/IDM PowerTips Scripting Techniques

@@ -1,0 +1,4 @@
+tolower (s)
+
+Returns the lowercase version of the given string.
+
