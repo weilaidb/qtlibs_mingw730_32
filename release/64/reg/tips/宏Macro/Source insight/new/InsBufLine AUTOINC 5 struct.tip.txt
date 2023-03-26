@@ -1,0 +1,4 @@
+typedef struct T_DoolSet{
+    WORD32 dwAbc;
+
+}T_DoolSet;

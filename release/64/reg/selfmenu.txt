@@ -2953,6 +2953,8 @@ UNITTEST/GTEST/ASSERT_TRUE
 UNITTEST/GTEST/ASSERT_xxx
 UNITTEST/GTEST/TEST
 UNITTEST/GTEST/TEST_F
+UNITTEST/GTEST/TEST_F 123
+UNITTEST/GTEST/TEST_F 123more
 UNITTEST/GTEST/TEST_P
 UNITTEST/GTEST/class/TEST_F 4
 UNITTEST/GTEST/class/TEST_F 6
@@ -3130,6 +3132,7 @@ path路径/常用文件夹
 宏Macro/Source insight/new macro3 ask
 宏Macro/Source insight/new/Ask Symbol
 宏Macro/Source insight/new/GetProjFileName
+宏Macro/Source insight/new/InsBufLine AUTOINC 5 struct
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行2
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行3

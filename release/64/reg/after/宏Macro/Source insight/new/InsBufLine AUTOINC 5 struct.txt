@@ -1,0 +1,1 @@
+InsBufLine(hbuf, ln + $AUTOINC<<<1>>>, "\1")$NL$NL$NL$NL$NL$NL

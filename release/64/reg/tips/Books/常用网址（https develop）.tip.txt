@@ -32,3 +32,9 @@ http://bbs.jeecg.com/
 
 ROS
 http://wiki.ros.org/cn/ROS/Tutorials
+
+
+LXR(Linux Cross Reference) 源代码浏览工具
+http://lxr.linux.no
+https://lxr.linux.no/linux-old+v2.4.31/init/
+
