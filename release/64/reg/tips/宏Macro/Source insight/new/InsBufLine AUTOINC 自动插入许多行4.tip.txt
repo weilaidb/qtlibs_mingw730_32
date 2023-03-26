@@ -1,0 +1,56 @@
+TEST_F(AnCar, T1)
+{
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+
+//string judge
+    //ASSERT_STREQ(expected_str, actual_str);
+    //ASSERT_STRNE(str1, str2);
+    //ASSERT_STRCASEEQ(expected_str, actual_str);
+    //ASSERT_STRCASENE(str1, str2);
+
+//float judge
+    //ASSERT_FLOAT_EQ(1.0000001f, 1.0f);
+    //ASSERT_NEAR(1.009f,1.0f,0.01f);
+    //ASSERT_STRCASEEQ(expected_str, actual_str);
+    //ASSERT_STRCASENE(str1, str2);
+}
+
+TEST_F(AnCar, T2)
+{
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+
+//string judge
+    //ASSERT_STREQ(expected_str, actual_str);
+    //ASSERT_STRNE(str1, str2);
+    //ASSERT_STRCASEEQ(expected_str, actual_str);
+    //ASSERT_STRCASENE(str1, str2);
+
+//float judge
+    //ASSERT_FLOAT_EQ(1.0000001f, 1.0f);
+    //ASSERT_NEAR(1.009f,1.0f,0.01f);
+    //ASSERT_STRCASEEQ(expected_str, actual_str);
+    //ASSERT_STRCASENE(str1, str2);
+}
+
+TEST_F(AnCar, T3)
+{
+    ASSERT_TRUE(1==1);
+    ASSERT_FALSE(1==0);
+    ASSERT_THAT(1,Eq(1));
+
+//string judge
+    //ASSERT_STREQ(expected_str, actual_str);
+    //ASSERT_STRNE(str1, str2);
+    //ASSERT_STRCASEEQ(expected_str, actual_str);
+    //ASSERT_STRCASENE(str1, str2);
+
+//float judge
+    //ASSERT_FLOAT_EQ(1.0000001f, 1.0f);
+    //ASSERT_NEAR(1.009f,1.0f,0.01f);
+    //ASSERT_STRCASEEQ(expected_str, actual_str);
+    //ASSERT_STRCASENE(str1, str2);
+}    

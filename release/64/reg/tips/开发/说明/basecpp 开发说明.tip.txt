@@ -1,0 +1,4 @@
+basecpp开发说明
+1.获取元素地址和大小 CVarRootLen
+CVarRoot获取元素根地址
+CVarLen获取元素大小
