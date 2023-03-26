@@ -2770,6 +2770,7 @@ Tools/CamelCase Convert驼峰转换
 Tools/Cscope & CTags 快捷键
 Tools/Cscope用法
 Tools/Dreamweaver（DW）常用快捷键
+Tools/Eclipse 下载地址
 Tools/Eclipse快捷键
 Tools/Eclipse镜像mirror
 Tools/Emacs快捷键
