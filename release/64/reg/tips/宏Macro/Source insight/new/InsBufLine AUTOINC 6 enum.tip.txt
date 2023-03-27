@@ -1,0 +1,5 @@
+typedef enum E_DoolSet{
+    ID_CAR,
+    ID_TREE,
+
+}E_DoolSet;

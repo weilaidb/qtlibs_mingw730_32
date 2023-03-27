@@ -3133,6 +3133,9 @@ path路径/常用文件夹
 宏Macro/Source insight/new/Ask Symbol
 宏Macro/Source insight/new/GetProjFileName
 宏Macro/Source insight/new/InsBufLine AUTOINC 5 struct
+宏Macro/Source insight/new/InsBufLine AUTOINC 6 enum
+宏Macro/Source insight/new/InsBufLine AUTOINC 7 header std
+宏Macro/Source insight/new/InsBufLine AUTOINC 8 header cxx
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行2
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行3
