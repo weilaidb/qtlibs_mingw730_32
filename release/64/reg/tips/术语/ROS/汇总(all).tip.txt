@@ -1,0 +1,6 @@
+ROS - Robot Operating System. 机器人操作系统
+ --一个实现机器人编程和开发复杂机器人应用程序的开源软件框架。
+
+meta-operating system 元操作系统
+
+LXC Linux Containers 一种可以在单个主机上创建和运行多个隔离Linux虚拟环境(VE)的操作系统级虚拟技术。
