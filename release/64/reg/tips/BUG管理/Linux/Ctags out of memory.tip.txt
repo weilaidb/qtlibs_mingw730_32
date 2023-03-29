@@ -1,0 +1,69 @@
+测试BUG模板
+☆Bug标题
+Linux/Ctags out of memory
+
+☆Bug详细描述（含步骤）
+[root@VM-0-10-centos] ~/work/git/linux
+$ ctagscscope 
+cscope: cannot find file tools/testing/selftests/powerpc/mce/vas-api.h
+cscope: cannot find file tools/testing/selftests/powerpc/vphn/asm/lppaca.h
+cscope: cannot find file tools/testing/selftests/powerpc/vphn/vphn.c
+cscope: cannot find file tools/testing/selftests/powerpc/nx-gzip/include/vas-api.h
+cscope: cannot find file tools/testing/selftests/powerpc/primitives/word-at-a-time.h
+cscope: cannot find file tools/testing/selftests/powerpc/primitives/asm/extable.h
+cscope: cannot find file tools/testing/selftests/powerpc/primitives/asm/asm-compat.h
+cscope: cannot find file tools/testing/selftests/powerpc/primitives/asm/feature-fixups.h
+cscope: cannot find file tools/testing/selftests/powerpc/primitives/asm/asm-const.h
+cscope: cannot find file tools/testing/selftests/powerpc/primitives/asm/ppc_asm.h
+cscope: cannot find file include/dt-bindings/clock/qcom,dispcc-sm8350.h
+cscope: cannot find file include/dt-bindings/clock/qcom,dispcc-sm8150.h
+cscope: cannot find file include/dt-bindings/input/linux-event-codes.h
+ctags: out of memory
+[root@VM-0-10-centos] 
+
+☆项目模块
+
+☆严重程度
+A-崩溃
+
+
+☆优先级
+
+☆Bug类别
+代码错误
+设计缺陷
+界面优化
+性能问题
+配置相关
+安装部署
+安全相关
+标准规范
+其他划分
+
+☆Bug状态
+New
+Open
+Reopen
+Fixed
+Closed
+Rejected
+Deferred
+
+☆提交人
+ME
+
+☆提交日期
+2023-03-29 08:20:00
+
+☆附加信息
+
+☆解决人
+
+☆解决日期
+
+☆解决方式
+
+☆解决用时
+
+========================================================================
+========================================================================

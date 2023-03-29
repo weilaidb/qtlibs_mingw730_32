@@ -73,6 +73,13 @@ function! LCovGenTest()
 endfunction
 
 
+"Generate tags and cscope.out from FileList.txt (c, cpp, h, hpp)
+nmap <C-@> :!find -name "*.c" -o -name "*.cpp" -o -name "*.h" -o -name "*.hpp" > FileList.txt<CR>
+                       \ :!ctags -L -< FileList.txt<CR>
+                       \ :!cscope -bkq -i FileList.txt<CR>
+
+
+
 "=============================================安装插件==============================
 "=============================================安装插件==============================
 "=============================================安装插件==============================
@@ -641,7 +648,19 @@ if has("cscope")
     nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
     nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
     nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+    nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+	
+"use this
+    "nmap zs :cs find s <C-R>=expand("<cword>")<CR><CR>
+    "nmap zg :cs find g <C-R>=expand("<cword>")<CR><CR>
+    "nmap zc :cs find c <C-R>=expand("<cword>")<CR><CR>
+    "nmap zt :cs find t <C-R>=expand("<cword>")<CR><CR>
+    "nmap ze :cs find e <C-R>=expand("<cword>")<CR><CR>
+    "nmap zf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    "nmap zi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    "nmap zd :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+
 
 
     " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
