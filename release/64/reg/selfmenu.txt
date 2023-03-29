@@ -88,6 +88,7 @@ BASH/字符串/拼接字符串
 BASH/字符串/提取子字符串
 BASH/字符串/查找字符串长度
 BASH/常用命令/find
+BASH/常用命令/find help
 BASH/常用命令/tree
 BASH/引号
 BASH/打印/变量名
@@ -2082,6 +2083,7 @@ LINUX/命令行/samba/passwd
 LINUX/命令行/samba/连接不上
 LINUX/命令行/save write 提升权限 w
 LINUX/命令行/sed
+LINUX/命令行/sed 批量替换
 LINUX/命令行/setenforce
 LINUX/命令行/shutdown
 LINUX/命令行/software/CentOS安装mysql
