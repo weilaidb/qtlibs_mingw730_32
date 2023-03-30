@@ -1,0 +1,166 @@
+利用googletest命令行参数简化单元测试
+
+FlushHip
+
+于 2019-02-26 18:05:35 发布
+
+5910
+ 收藏 7
+分类专栏： C/C++技巧 Windows 文章标签： gtest
+版权
+
+C/C++技巧
+同时被 2 个专栏收录
+28 篇文章7 订阅
+订阅专栏
+
+Windows
+17 篇文章4 订阅
+订阅专栏
+首先看看gtest如何写：
+
+#include <gtest/gtest.h>
+
+int main(int argc, char **argv)
+{
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
+TEST(main, minor)
+{
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+可以看到，main中的命令行参数传入了gtest单元测试框架，那么就意味着单元测试程序支持命令行参数，那么支持哪些命令行参数呢？编译一下这个程序，生成gtest.exe，在Windows平台上然后运行gtest.exe /?，可以得出下列输出：
+
+
+这里简单说下几个参数的作用，其实看英文基本上都知道了。
+
+而且，通过设置环境变量同样可以达到命令行参数的效果。
+
+gtest_list_tests
+不执行单元测试用例，只是列出所有测试用例
+
+例如测试用例如下：
+
+TEST(Network, Connect) {}
+TEST(Network, Close) {}
+TEST(Thread, Multi) {}
+TEST(Thread, Single) {}
+TEST(Other, main) {}
+1
+2
+3
+4
+5
+
+
+gtest_filter
+测试用例过滤器，挺有用，可以指定一些特定的测试用例执行，同时也可以指定一些测试用例不执行，同时还支持通配符，*匹配任何字串串，?匹配任何字符，:模式分隔符。
+
+例如测试用例如下：
+
+TEST(FlushHip, Hip) {}
+TEST(FlushHip, Pih) {}
+TEST(OrzFly, a) {}
+TEST(FlyOrz, a) {}
+TEST(FaF, 1) {}
+TEST(FbF, 1) {}
+1
+2
+3
+4
+5
+6
+
+
+这两张图片已经演示详细用法，同时，这个参数可以和gtest_list_tests组合利用，可以用来grep特定测试用例的功能。
+
+gtest_also_run_disabled_tests
+在gtest中，有一些单元测试出现了问题，你可以用gtest_filter过滤掉；在代码中可以过滤掉不要的单元测试用例，只要在加上前缀DISABLED_就可以过滤掉了，如果通过bugfix解决掉了相关问题，又要重新把禁用掉的单元测试跑起来，这个时候就可以用gtest_also_run_disabled_tests开启所有被disabled的用例。
+
+例如测试用例如下：
+
+TEST(DISABLED_FlushHip, Hip) {}
+TEST(FlushHip, Pih) {}
+TEST(OrzFly, DISABLED_a) {}
+TEST(FlyOrz, a) {}
+1
+2
+3
+4
+
+
+gtest_repeat
+这个最有用了，假设一个用例需要跑很多次才能测试出问题，又或者一个单元测试程序中有很多用例，而你只想跑其中一个用例很多遍，都可以这么用gtest_filter加gtest_repeat搞定；
+
+用负数指定次数表示死循环跑测试用例。
+
+gtest_shuffle, gtest_random_seed
+gtest中的用例执行的顺序是按照定义的顺序执行的，利用着两个参数可以打乱顺序。
+
+例如用例如下：
+
+TEST(b, 1) {}
+TEST(a, 1) {}
+TEST(c, 1) {}
+1
+2
+3
+
+
+gtets_color
+需要五彩斑斓的颜色不。
+
+
+
+gtest_print_time=0
+如果不需要每个测试用例的执行时间和总共的执行时间，可以关闭掉。
+
+
+
+gtest_break_on_failure，gtest_throw_on_failure
+可以让单元测试用例在失败的时候断点或者抛出异常，这对于使用VS开发来说非常重要，可以把代码停下来，看看各条线程正在做什么，对于命令行来说没什么用。
+
+在Linux上用GDB也是可以的。
+
+例如测试用例如下：
+
+
+
+
+
+
+
+gtest_catch_exceptions=0
+在单元测试用例中抛出异常，gtest框架是可以捕获的，使用这条参数就可以让异常终止程序的运行。
+
+例如用例如下：
+
+TEST(main, minor)
+{
+    throw std::exception();
+}
+1
+2
+3
+4
+
+
+参考：
+
+stackoverflow - googletest-how-to-skip-a-test
+GitHub - googletest
+————————————————
+版权声明：本文为CSDN博主「FlushHip」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/FlushHip/article/details/87936876

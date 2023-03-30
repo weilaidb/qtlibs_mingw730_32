@@ -713,6 +713,7 @@ Code/new/Gmock/assert/MATCHER_P
 Code/new/Gmock/file/注意事项
 Code/new/Gmock/gtest_filter 过滤器
 Code/new/Gmock/gtest_filter 过滤器2
+Code/new/Gmock/know/gtest 利用googletest命令行参数简化单元测试
 Code/new/Gmock/know/gtest和gmock在C语言项目上的使用
 Code/new/Gmock/knowledge/MATCHER_P
 Code/new/Gmock/matcher/AllOf
@@ -3140,6 +3141,8 @@ path路径/常用文件夹
 宏Macro/Source insight/new/InsBufLine AUTOINC 6 enum
 宏Macro/Source insight/new/InsBufLine AUTOINC 7 header std
 宏Macro/Source insight/new/InsBufLine AUTOINC 8 header cxx
+宏Macro/Source insight/new/InsBufLine AUTOINC 9 function nopara
+宏Macro/Source insight/new/InsBufLine AUTOINC 9 function pointer
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行2
 宏Macro/Source insight/new/InsBufLine AUTOINC 自动插入许多行3

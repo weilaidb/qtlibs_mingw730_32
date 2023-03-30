@@ -1,0 +1,5 @@
+WORD32 TestAbc()
+{
+
+    return 0;
+}

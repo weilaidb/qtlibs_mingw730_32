@@ -1,0 +1,10 @@
+WORD32 TestAbc(BYTE *pt, WORD32 dwLen)
+{
+if( NULL == pt)
+{
+    return WORD32_MAX;
+}
+
+
+    return 0;
+}
