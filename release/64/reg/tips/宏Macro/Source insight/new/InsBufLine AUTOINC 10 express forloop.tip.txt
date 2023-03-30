@@ -1,0 +1,22 @@
+//变量的
+WORD32 dwLp =  0;
+for(dwLp = 0;dwLp < Count;dwLp++)
+{
+
+
+}
+
+
+//数组的
+#undef ARRAYSIZE
+#define ARRAYSIZE(A) ((unsigned int)(sizeof(A)/sizeof((A)[0])))
+
+
+
+WORD32 dwLp =  0;
+for(dwLp = 0;dwLp < ARRAYSIZE(uacArray);dwLp++)
+{
+    //printf("No:%-03u -- %-03u\n", dwLp+1, uacArray[dwLp]);
+
+}
+
