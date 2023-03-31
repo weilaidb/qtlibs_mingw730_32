@@ -3283,7 +3283,9 @@ path路径/常用文件夹
 术语/网络/know/PPP 区别 P2P
 术语/网络/know/TCP Window Full 和 TCP ZeroWindow
 术语/网络/know/一口气Ping1000个IP地址，会发生什么事情？
+术语/网络/know/为什么需要序列化
 术语/网络/know/二层、三层、 四层交换机都有什么不一样？
+术语/网络/know/序列化的优势
 术语/网络/know/路由表 (RIB) 与转发表 (FIB)
 术语/网络/ospf是几层协议
 术语/网络/tipc
