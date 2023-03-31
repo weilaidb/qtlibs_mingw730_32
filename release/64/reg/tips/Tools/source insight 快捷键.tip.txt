@@ -1,0 +1,10 @@
+source insight 快捷键
+
+跳转到工程符号表(Project Symbols)
+View:Activate Project Symbol List  F7/Alt+G
+跳转到文件 Ctrl+O
+跳转到当前文件的符号表(Symbol Name)  Alt + L
+View:Activate Snippet Window  Ctrl + Alt +S
+Synchronize Files Alt +Shift +S
+Close File Ctrl+W
+File:Show File in Explorer... 打开文件所在路径 Ctrl+T
