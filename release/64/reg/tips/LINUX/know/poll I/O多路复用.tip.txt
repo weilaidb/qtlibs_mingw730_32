@@ -1,0 +1,40 @@
+阻塞型I/O相对于非阻塞形I/O来说，最大的优点是在设备资源不可用时，进程主动放弃CPU，让其他的进程运行，而不用不同地轮询，有助于提高整个系统的效率。
+缺点也比较明显，进程阻塞后，不能做其他的操作，这在一个进程要同时对多个设备进行操作时非常不方便。
+解决办法有多种，比如多进程、多线程和I/O多路复用。
+方式:select、poll以及Linux所特有的epoll三种方式。
+
+int poll(struct pollfd *fds, nfds_t nfds,int timeout);
+
+structd pollfd{
+    int fd;/* file descriptor */
+    short events;/* requested events */
+    short revents; /* returned events */
+
+};
+
+
+POLLIN There is data to read 
+POLLOUT Writing now will not block 
+POLLRDNORM Equivalent to POLLIN
+POLLWRNORM Equivalent to POLLOUT
+
+poll
+第一个参数：要监听的文件描述符集合，类型为指向struct pollfd的指针，
+struct pollfd 有三个成员，
+fd是要监听的文件描述符
+events是监听的事件
+revents是返回的事件
+
+常见的事件有POLLIN、POLLOUT，分别表示设备可以无阻塞地读、写。
+第二个参数是要监听的文件描述符的个数
+第三个参数是毫秒的超时值，负数表示一直监听，直到被监听的文件描述符集合中的任意一个设备发生了事件才会返回。
+
+
+
+
+
+
+
+
+
+

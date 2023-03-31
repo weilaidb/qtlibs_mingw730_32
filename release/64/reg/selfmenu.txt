@@ -1995,6 +1995,8 @@ LINUX/know/epoll
 LINUX/know/find paths must precede expression
 LINUX/know/glibc/glibc unlink触发机制解析（pwn unlink）
 LINUX/know/glibc/glibc中malloc源码分析
+LINUX/know/poll I/O多路复用
+LINUX/know/poll I/O多路复用 test
 LINUX/know/红黑树 什么是红黑树
 LINUX/knowledge/diff 命令(比较文件的差异)
 LINUX/knowledge/diff 文件夹
