@@ -62,7 +62,7 @@ SWS Silly Window Syndrome 糊涂窗口综合征
 RIB Routing Table, Routing Info Base 路由表
 FIB Forwarding Info Base  转发表
 RPC（Remote Procedure Call）远程过程调用协议
-
+VLSM Variable Length Subnet Mask 可变长子网掩码
 
 
 

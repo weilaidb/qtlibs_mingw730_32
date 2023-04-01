@@ -2803,6 +2803,7 @@ Tools/VSCode/base/背景色 护眼色
 Tools/VSCode/know/VScode替代Source insight的设置及常用快捷键
 Tools/VSCode/know/【提高效率】VScode快速生成代码片段（代码模板）
 Tools/VSCode/know/资深工程师 VSCode C/C++ 必备开发插件
+Tools/VSCode/know/远程开发ssh 利用VScode连接远程服务器进行代码调试及可视化界面
 Tools/VSCode/模板/00snippet 中可以使用的一些变量
 Tools/VSCode/模板/cmain
 Tools/VSCode/模板/cxxmain
