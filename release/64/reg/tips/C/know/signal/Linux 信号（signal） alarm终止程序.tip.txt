@@ -1,0 +1,31 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+ 
+void sig_alarm(int sig) 
+{ 
+    printf("exit for sig:%d\n", sig); 
+    exit(0); 
+}
+int main(int argc, char *argv[]) 
+{ 
+    signal(SIGALRM, sig_alarm); 
+    alarm(10); 
+    sleep(15); 
+    printf("Hello World!\n"); 
+    return 0; 
+}
+
+
+
+
+
+
+
+
+
+mkdir -p ../exelibtest
+chmod +x  alarm.out && ./alarm.out
+exit for sig:14
+bind ok

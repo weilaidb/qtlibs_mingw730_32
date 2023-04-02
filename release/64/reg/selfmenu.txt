@@ -524,6 +524,8 @@ C/know/define/TEST_F实现
 C/know/ld-linux.so.X查找和加载共享动态库的顺序
 C/know/sigaction
 C/know/signal/Linux 信号（signal）
+C/know/signal/Linux 信号（signal） alarm终止程序
+C/know/signal/Linux 信号（signal） 小记——linux定时器之alarm
 C/know/signal/segmentation fault (SIGSEGV) 定位方法
 C/know/signal/列表list
 C/know/二叉搜索树详解（附代码）
@@ -2799,6 +2801,8 @@ Tools/VIM常用快捷键
 Tools/VIM常用快捷键 ctags
 Tools/VIM常用快捷键 vim + ctags + cscope = 强大的IDE
 Tools/VS Visual Studio快捷键
+Tools/VSCode/C C++ 必备开发插件
+Tools/VSCode/C C++ 必备开发插件 remote development
 Tools/VSCode/base/背景色 护眼色
 Tools/VSCode/know/VScode替代Source insight的设置及常用快捷键
 Tools/VSCode/know/【提高效率】VScode快速生成代码片段（代码模板）

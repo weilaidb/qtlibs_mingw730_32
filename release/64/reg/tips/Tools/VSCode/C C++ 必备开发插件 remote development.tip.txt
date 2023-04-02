@@ -1,0 +1,44 @@
+SSH远程开发
+
+remote development
+
+安装好后，出现图标 REMOE EXPLORER
+添加
+ssh weixj@49.234.85.12
+
+重新打开一个文件夹
+1.重新打开一个VSCODE
+2.Open一个新路径
+
+
+
+
+
+
+
+
+
+
+
+
+示例 .ssh/config
+Host 49.234.85.12
+  HostName 49.234.85.12
+  User weixj
+
+
+Host 49.234.85.12
+  HostName 49.234.85.12
+  User weixj
+  ForwardAgent yes
+  
+Host 101.201.79.164
+  HostName 101.201.79.164
+  User root
+  ForwardAgent yes
+
+Host 101.201.79.164
+  HostName 101.201.79.164
+  User root
+  ForwardAgent yes
+
