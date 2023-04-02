@@ -67,6 +67,7 @@ systemtap-runtime
 kernel-devel
 kernel-debug
 gcc
+gcc gcc-c++ kernel-devel
 
 yasm
 
