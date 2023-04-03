@@ -11,8 +11,9 @@ ssh weixj@49.234.85.12
 2.Open一个新路径
 
 
-
-
+3.安装remote explorer，可以远程查看文件
+weixj@49.234.85.12
+4.F1 ssh 点击connect to remote
 
 
 
