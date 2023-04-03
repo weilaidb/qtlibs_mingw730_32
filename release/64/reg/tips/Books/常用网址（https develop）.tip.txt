@@ -11,6 +11,11 @@ https://www.ixigua.com/6804249883344634380?id=6803643064515559944&logTag=b74333a
 设计模式(适配器)
 https://www.ixigua.com/6804249883344634380?id=6803643938335883779&logTag=a5a9fd893e92d45a6e9c
 
+rt thread
+https://www.rt-thread.org/
+论坛
+https://club.rt-thread.org/index.html
+
 
 
 
