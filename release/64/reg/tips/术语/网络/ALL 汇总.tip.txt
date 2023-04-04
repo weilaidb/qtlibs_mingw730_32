@@ -1,3 +1,5 @@
+CEF Cisco Express Forwarding Cisco急速转发
+
 STP Spanning Tree Protocol 生成树协议
 RSTP Rapid Spanning Tree Protocol 快速生成树协议
 MSTP Multiple Spanning Tree Protocol 多生成树协议
