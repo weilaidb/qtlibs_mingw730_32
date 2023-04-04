@@ -1,0 +1,3 @@
+怎么让clangd找到你的头文件目录？如何设置你的代码格式？这里来配置
+
+https://www.bilibili.com/video/BV1RM411U7hr/?spm_id_from=autoNext

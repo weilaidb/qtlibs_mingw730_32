@@ -1,0 +1,27 @@
+vscode左下角显示大纲（显示所有函数方法）
+
+shuipaopaoJin
+
+于 2019-07-15 09:56:30 发布
+
+50188
+ 收藏 44
+分类专栏： 工具
+版权
+
+工具
+专栏收录该内容
+1 篇文章1 订阅
+订阅专栏
+方法一：Shift+Ctl+O(显示在顶部，不方便查看)
+
+
+
+方法二：显示大纲(在编辑器左下角显示，方便查看)
+
+Shift+Ctl+P -> View: Quick Open View -> 大纲
+
+
+————————————————
+版权声明：本文为CSDN博主「shuipaopaoJin」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/shuipaopaojin/article/details/95939081

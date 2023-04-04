@@ -1,0 +1,186 @@
+https://github.com/clangd/clangd/releases
+
+
+
+切换模式
+写文章
+登录/注册
+借助clangd实现VSCode C++代码补全
+知乎用户aZ99ZG
+知乎用户aZ99ZG
+52 人赞同了该文章
+YCM推荐选项
+由于C++语言的复杂性，根据语义对C++进行代码补全并非易事。最近浏览YouCompleteMe项目，发现它已经开始向用户推荐使用clangd作为C++ Completer。与libclang相比，YCM列举了不少clangd的优势（如下图所示）。简单讲，clangd的好处有：全项目索引、代码跳转、变量重命名、更快的代码补全、提示信息、格式化代码等。
+
+
+图1 YCM列举的clangd优势
+YCM的建议也呼应了2018年XCode团队将目光从libclang转向clangd的动作。尽管YCM的install.py脚本依旧将clang completer列为测试功能。但看过clangd的优点，让人不禁期待尝试一番。
+
+
+图2 YCM依旧讲clangd-completer标注为测试功能
+谈到clangd，就不得不提及LSP（Language Server Protocol）。为了减少插件作者在不同编辑器上的重复工作，LSP协议定义了补全器前端和补全器后端的接口。这就使得插件作者只需要针对某款编辑器开发LSP前端插件，保证其能够跟类似clangd的补全器后端进程通信接口。一般情况下，当编辑器打开后，补全器后端进程便会被创建。当编辑器关闭后，补全器后端进程也会随着终止。clangd就是LLVM团队开发的C系语言补全器，可以为C、C++、Objective-C等语言提供代码补全、跳转等服务。
+
+作为知名C++ completer，可以与clangd配合工作的编辑器插件不在少数。在Vim编辑器上就有YCM、vim-lsp等插件，在VSCode上也有LLVM团队提供的clangd同名插件。下面，我将介绍在VSCode上使用clangd完成C++代码补全的过程。
+
+安装clangd
+由于clangd的工作原理与代码编译过程联系紧密，所以我建议大家在可以对项目进行编译的环境安装clangd程序。根据LLVM的官方说明，大部分Linux开发版都提供了clangd二进制包。在Ubuntu 19.10和Ubuntu 20.04上，只需要执行如下指令便可以安装clangd。
+
+sudo apt install clangd
+在安装好clangd后，还需要安装与clangd交互的LSP前端。我这里选择以VSCode Remote-SSH方式安装clangd插件。
+
+
+图3 VSCode插件clangd
+远程安装成功后，我们可以在~/.vscode-server/extensions/目录下看到插件llvm-vs-code-extensions。
+
+配置Compilation Database
+接下来，就需要为目标项目配置Compilation Database。由于clangd依赖编译器前端提供索引和AST信息，这也注定了clangd在提供高准确跳转/补全的同时，也要用户配置好项目的“编译说明”，这个“编译说明”便被称为Compilation Database。
+
+在clangd看来，Compilation Database是一个名为compile_commands.json的JSON文件，它会记录每个.c/.cpp文件的编译依赖和编译选项（如图4所示）。如果一个项目源码文件较多，可以借助bear等工具在项目编译过程中记录相关编译选项。
+
+# 为使用GNU make的项目创建Compilation Database
+sudo apt install bear
+bear make
+
+图4 Compilation Database中某.c文件的编译信息
+在Compilation Database创建成功后，便可以通过VSCode Remote-SSH打开某C/C++项目代码。启动后端clangd进程会主动寻找项目根目录下的compile_commands.json文件，并根据文件中记录的编译信息，在项目根目录下的.clangd文件夹中生成相关索引文件。下面是clangd前后端配合，为用户提供的类似Visual Studio IntelliSense功能。
+
+动图封面
+图5 clangd提供帮助信息、代码补全、引用查看等功能
+资源消耗
+目前看来，在配置好Compilation Database后，clangd的各项功能运转正常、反应灵敏，其能够实现跨Translation Unit（TU）的补全/跳转。但其资源占用也同样可观。对于一个32MB源码量的C语言项目，compile_commands.json文件达到了526KB（当然这个跟项目中源代码文件数有关），而后台clangd进程则占用了127MB物理内存。
+
+
+图6 top显示的clangd资源占用情况
+综合来看，通过clangd实现C++代码补全的方案还是值得尝试的。与VSCode提供的C/C++ Extension相比，clangd的优势应该是在开源可控，满足大家DIY的需求。
+
+发布于 2020-05-10 20:14
+C++
+clangd
+Visual Studio Code
+​赞同 52​
+​31 条评论
+​分享
+​喜欢
+​收藏
+​申请转载
+​
+写下你的评论...
+
+31 条评论
+默认
+最新
+Tiny Wang
+Tiny Wang
+clangd的性能和代码补全功能比巨硬cpp插件好很多，错误提示比巨硬更全，唯一不足的是代码高亮有问题
+2020-05-15
+​6
+Jupiter小哥
+Jupiter小哥
+Sirius
+可以说 clangd秒杀 cpptools
+2022-04-03
+​1
+Tiny Wang
+Tiny Wang
+Sirius
+clangd，尤其是低配机上clangd的效率要远高于cpptool，
+不过还是要自己两个都用用，选择自己顺手的
+2021-08-02
+​1
+查看全部 13 条回复​
+知乎用户aZ99ZG
+知乎用户aZ99ZG
+作者
+C/C++ Extension安装时会下载微软的二进制文件，跟clangd功能相近，是闭源的
+
+.vscode-server/extensions/ms-vscode.cpptools-0.27.1/bin/cpptools(-srv)
+
+2020-05-10
+​3
+赵臣又
+赵臣又
+为啥在vscode上用remote SSH的方式安装clangd插件？
+2020-05-28
+​赞
+Miracle
+Miracle
+因为作者的开发环境在服务器上，你也可以在本机搞
+2020-06-07
+​2
+赵臣又
+赵臣又
+Miracle
+这样子
+2020-06-07
+​赞
+chen
+chen
+推荐楼主试试coc.nvim和ccls
+2020-05-25
+​赞
+爬山的JJ
+爬山的JJ
+没有datebase的时候就尴尬了
+2021-10-25
+​1
+谭九鼎
+谭九鼎
+C/C++ Extension是开源的
+
+2020-05-10
+​赞
+锅瓢
+锅瓢
+老哥，建议b站可以出个视频，感觉这个东西比较好
+
+2020-12-18
+​赞
+izlyforever
+izlyforever
+你们不觉得 clangd 自动加同文件，限制函数参数，这些自作聪明的行为很烦吗。虽然确实比 c/c++ 提示更好，效率更高
+
+2022-09-09
+​赞
+小宇不吃鱼
+小宇不吃鱼
+--header-insertion=never，就可以取消自动添加头文件了
+
+2022-10-09
+​4
+izlyforever
+izlyforever
+utyutyu
+我也不清楚，之前在mac上有类似问题，但是后面vscode修复了。但是可以考虑曲线救国，比如用wsl，然后vscode就不会跳到msvc了
+01-29
+​赞
+查看全部 7 条回复​
+悟磐
+悟磐
+刚看了下，compile_commands.json文件达到了1.5M，cpptool每次reference要先喝杯咖啡等一下，clangd极大提高了我的效率，论能力的话cpptool在2022年已经集成了compile_commands.json读取和clang-tidy了，能力不弱但是卡顿让人难受
+2022-05-07
+​赞
+写下你的评论...
+
+推荐阅读
+使用clangd替代c/c++配置vscode c++项目
+背景：最近从Clion切换到了vscode来进行代码开发，发现vscode自带的c/c++插件除了能够使用debug功能，其余代码补全，跳转等功能都和基于clangd的clion有较大差距，经常出现匹配不上或者跳转…
+
+smallsunsun
+15分钟 VSCode配置C/C++环境
+十五分钟快速把VSCode配置成C/C++开发IDE搭配 点击 详细搭建步骤视频 观看效果更佳哟~一. MinGW安装 安装下载地址https://sourceforge.net/projects/mingw/files/latest/download 1 下载一…
+
+在下小神仙
+【详细版】VsCode搭建C++环境
+【详细版】VsCode搭建C++环境
+新小白01
+VSCODE 运行调试c++程序
+前置要求安装好了vscode 安装了 C/C++ 扩展安装好了Mingw-w64工具，并设置好了环境变量Mingw-w64是Windows下的GCC工具，检查是否安装好可以用以下命令： cmd 打开命令行界面g++ -vgdb -v如…
+
+明天会更好
+
+
+选择语言
+选择语言
+登录即可查看 超5亿 专业优质内容
+超 5 千万创作者的优质提问、专业回答、深度文章和精彩视频尽在知乎。
+立即登录/注册
