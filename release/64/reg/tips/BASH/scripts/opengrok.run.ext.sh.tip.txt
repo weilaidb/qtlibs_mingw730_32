@@ -76,6 +76,6 @@ time $JAVA_BIN \
 -c $CTAGS_BIN \
 -s $OPENGROK_INDEX_EXT \
 -d $OPENGROK_DATA \
--H -P -S -G \
+-H -P -S -G -v \
 -W $OPENGROK_GENERATE_XML \
 -U http://localhost:$HTTP_PORT/source

@@ -2947,6 +2947,7 @@ Tools/十六进制颜色码转换成RGB颜色值2
 Tools/双拼输入法快捷键
 Tools/双拼输入法快捷键 小鹤双拼
 Tools/双拼输入法快捷键 打字练习
+Tools/查看代码工具/OpenGrok/error/The source root path has not been configured! Please configure your webapp.
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/help Requirements安装要求
 Tools/查看代码工具/OpenGrok/help2
