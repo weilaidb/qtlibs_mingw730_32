@@ -1,0 +1,27 @@
+它不仅仅是一个实时内核，还具备丰富的中间层组件，它具体包括以下部分：
+1）内核层
+
+2）组件和服务层
+
+3）RT-Thread软件包
+
+
+
+其中
+1）内核层
+RT-Thread内核，是RT-Thread的核心部分，包括内核系统中对象的实现，例如多线程及其调度、信号量、邮箱、消息队列、内存管理、定时器等；libcpu/BSP（芯片移植相关文件/板级支持包）与硬件密切有关，由外设驱动和CPU移植构成。
+2）组件和服务层
+组件是基于RT-Thread内核之上的上层软件，例如虚拟文件系统、FinSH命令行界面、网络框架、设备框架等。这一层采用模块化设计，做到组件内部高内聚，组件之间低耦合。
+3）RT-Thread软件包
+运行于RT-Thread物联网操作系统平台上，面向于不同应用领域的通用软件组件，由描述信息、源代码或库文件组成。
+RT-Thread提供了开放的软件包平台，这里存放了官方提供或开发者提供的软件包，该平台为开发者提供了众多可重用软件包的选择，这也是RT-Thread生态的重要组成部分。软件包生态对于操作系统的选择至关重要，因为这些软件包具有很强的可重用性，模块化程度很高，极大方便了应用开发者在最短时间内打造出自己想要的系统。
+RT-Thread已经支持的软件包数量已经达到60多个，举例如下：
+a)物联网相关的软件包：Paho MQTT、WebClient、Mongoose、WebTerminal等。
+
+b)脚本语言相关的软件包：目前支持JerryScript、MicroPython。
+c)多媒体相关的软件包：OpenMV、MuPDF。
+d)工具类软件包：CmBachtrace、EasyFlash、EasyLogger、SystemView。
+e)系统相关的软件包：RTGUI、Persimmon UI、lwext4、partition、SQLITE等。
+f)外设库与驱动类软件包：RealTek RTL8710BN SDK。
+g)其他。
+

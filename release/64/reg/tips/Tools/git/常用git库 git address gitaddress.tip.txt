@@ -28,6 +28,9 @@ git@github.com:HuangCongQing/ROS.git
 #wireshark
 https://github.com/wireshark/wireshark.git
 git@github.com:wireshark/wireshark.git
+RT-Thread源代码
+https://github.com/RT-Thread/rt-thread/
+git@github.com:RT-Thread/rt-thread.git
 
 常用git库:
 https://github.com/git/git/tags?after=v2.23.4
