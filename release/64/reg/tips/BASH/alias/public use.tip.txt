@@ -365,6 +365,8 @@ alias diffdir="diff -urNa "
 #VIM
 alias ctagscscope="rm -rf cscope.* tags && find . -name '*.[ch]' -o -name '*.cpp' > cscope.files  && cscope -Rkb && ctags -R "
 
+alias ctagscscopejava="rm -rf cscope.* tags && find . -name '*.[jsp]' -o -name '*.java' > cscope.files  && cscope -Rkb && ctags -R "
+
 
 alias ctt="ctagscscope "
 
