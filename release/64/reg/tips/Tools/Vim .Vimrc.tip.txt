@@ -91,7 +91,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 "安装的插件列表"
 
-
 "核心插件，用于安装其他所有插件"
 Plugin 'VundleVim/Vundle.vim'
 "美化状态栏"
@@ -257,6 +256,8 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 
 
+"git history
+Plugin 'tpope/vim-fugitive.vim'
 
 
 
