@@ -128,3 +128,8 @@ source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\
 
 ##load ros2
 source /opt/ros/humble/setup.bash
+
+
+#self environment
+source ~/work/git/ros_dev_ws/install/local_setup.sh 
+

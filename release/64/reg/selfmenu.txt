@@ -1942,6 +1942,7 @@ LINUX/Printk/KERN_NOTICE
 LINUX/Printk/KERN_WARNING
 LINUX/Printk/many equal signs
 LINUX/Printk/说明
+LINUX/ROS2/guyueju 古月居
 LINUX/ROS2/simple order 小海龟
 LINUX/ROS2/simple order基本命令
 LINUX/Ubuntu/GTest安装和测试
@@ -1950,7 +1951,7 @@ LINUX/Ubuntu/Ubuntu下deb包的安装方法
 LINUX/Ubuntu/apt install
 LINUX/Ubuntu/apt install 22.02
 LINUX/Ubuntu/apt install 22.04
-LINUX/Ubuntu/apt install 22.04(pip3)
+LINUX/Ubuntu/apt install 22.04(pip3 ros)
 LINUX/Ubuntu/apt list
 LINUX/Ubuntu/ubuntu中编译安装gcc 9.2.0
 LINUX/Ubuntu/update

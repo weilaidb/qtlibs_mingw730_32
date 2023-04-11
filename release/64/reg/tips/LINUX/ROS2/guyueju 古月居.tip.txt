@@ -1,0 +1,29 @@
+##########git clone git@gitee.com:guyuehome/ros_21_tutorials.git
+
+
+https://gitee.com/guyuehome/ros_21_tutorials
+
+sudo rosdepc init & rosdepc update
+sudo rosdep init & rosdep update
+
+
+#ros2
+ROSROOT=~/work/git/ros_dev_ws
+cd $ROSROOT/src
+git clone git@gitee.com:guyuehome/ros2_21_tutorials.git
+cd ..
+sudo rosdepc install -i --from-path src --rosdistro humble -y
+
+#编译
+colcon build
+
+#记载环境变量
+source ~/work/git/ros_dev_ws/install/local_setup.sh 
+
+
+
+
+
+
+
+

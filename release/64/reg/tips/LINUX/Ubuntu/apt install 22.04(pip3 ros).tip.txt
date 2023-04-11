@@ -1,0 +1,19 @@
+[#ros related
+
+
+python3-pip
+
+
+rosdepc
+python3-colcon-ros
+
+
+
+
+
+
+
+
+
+
+
