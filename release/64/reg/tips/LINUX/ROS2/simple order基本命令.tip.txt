@@ -13,4 +13,25 @@ ros2 run turtlesim turtle_teleop_key
 
 
 
+#########基本
+mkdir -p build install log src
+python3-pip
+#ros编译器
+python3-colcon-ros
+
+pip3 install rosdepc
+
+
+cd ~/dev_ws/src
+sudo rosdepc init & rosdepc update
+cd ..
+rosdepc install -i --from-path src --rosdistro humble -y
+
+#编译
+cd ~/dev_ws/
+colcon bulid
+
+
+
+
 

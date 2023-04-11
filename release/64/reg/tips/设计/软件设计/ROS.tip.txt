@@ -4,3 +4,7 @@ Robot OS 机器人操作系统
 https://blog.csdn.net/Leslie___Cheung/article/details/109591426
 经典系统
 https://www.ros.org/blog/why-ros/
+
+
+【古月居】古月·ROS2入门21讲 | 带你认识一个全新的机器人操作系统
+https://www.bilibili.com/video/BV16B4y1Q7jQ?p=6&spm_id_from=pageDriver&vd_source=8e54df84922718f7a026e954aaa26251

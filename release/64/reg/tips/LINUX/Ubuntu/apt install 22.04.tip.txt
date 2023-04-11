@@ -9,3 +9,5 @@ pip3 install --upgrade pip
 
 #ros-desktop
 ros-humble-desktop
+python3-pip
+python3-colcon-ros

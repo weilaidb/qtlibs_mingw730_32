@@ -5,3 +5,22 @@ remote development
 安装好后，出现图标 REMOE EXPLORER
 添加
 ssh weixj@49.234.85.12
+
+
+
+chinese
+python
+c
+cmake 
+icons
+ros
+msg
+urdf
+IntelliCode
+markdown
+
+
+
+
+
+

@@ -1,3 +1,4 @@
+mkdirrosworkspace;mkdir -p build install log src
 cddownload;cd ~/Downloads
 gitlogl0;git log --color --graph --decorate --pretty=oneline --abbrev-commit --date-order
 gitlogl1;git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative

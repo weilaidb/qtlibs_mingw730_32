@@ -1,3 +1,8 @@
+#ros related
+alias mkdirrosworkspace="mkdir -p build install log src "
+
+
+
 alias dulhmax1="du -lh --max-depth=1 "
 alias dushmax1="du -lh --max-depth=1 "
 
