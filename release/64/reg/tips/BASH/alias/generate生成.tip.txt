@@ -1,3 +1,7 @@
+#ros2
+ros2colonbuild;colcon build
+ros2run;ros2 run
+
 mkdirrosworkspace;mkdir -p build install log src
 cddownload;cd ~/Downloads
 gitlogl0;git log --color --graph --decorate --pretty=oneline --abbrev-commit --date-order

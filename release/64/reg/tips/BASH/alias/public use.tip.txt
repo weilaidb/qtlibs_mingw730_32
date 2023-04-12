@@ -1,5 +1,7 @@
 #ros related
 alias mkdirrosworkspace="mkdir -p build install log src "
+alias ros2colonbuild="colcon build "
+alias ros2run="ros2 run "
 
 
 

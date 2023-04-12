@@ -20,6 +20,19 @@ colcon build
 #记载环境变量
 source ~/work/git/ros_dev_ws/install/local_setup.sh 
 
+#创建功能包
+cd $ROSROOT/src
+ros2 pkg create --build-type ament_cmake learning_pkg_c
+ros2 pkg create --build-type ament_python learning_pkg_python
+
+
+第一个节点（面向过程编程）
+。编程接口初始化
+。创建节点并初始化
+。实现节点功能
+。销毁节点并关闭接口
+
+
 
 
 
