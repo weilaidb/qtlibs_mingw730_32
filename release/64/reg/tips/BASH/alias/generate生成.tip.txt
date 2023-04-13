@@ -1,6 +1,9 @@
 #ros2
 ros2colonbuild;colcon build
 ros2run;ros2 run
+cdworkgitros;cd ~/work/git/ros_dev_ws/
+cdworkgitrossrc;cd ~/work/git/ros_dev_ws/src/
+
 
 mkdirrosworkspace;mkdir -p build install log src
 cddownload;cd ~/Downloads

@@ -2,6 +2,8 @@
 alias mkdirrosworkspace="mkdir -p build install log src "
 alias ros2colonbuild="colcon build "
 alias ros2run="ros2 run "
+alias cdworkgitros="cd ~/work/git/ros_dev_ws/ "
+alias cdworkgitrossrc="cd ~/work/git/ros_dev_ws/src/ "
 
 
 
