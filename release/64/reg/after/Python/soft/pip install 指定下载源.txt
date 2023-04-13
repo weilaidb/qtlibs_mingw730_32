@@ -1,0 +1,1 @@
+pip3 install \1  -i https://pypi.tuna.tsinghua.edu.cn/simple$NL$NL

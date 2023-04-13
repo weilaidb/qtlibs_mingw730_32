@@ -1952,6 +1952,7 @@ LINUX/Ubuntu/apt install
 LINUX/Ubuntu/apt install 22.02
 LINUX/Ubuntu/apt install 22.04
 LINUX/Ubuntu/apt install 22.04(pip3 ros)
+LINUX/Ubuntu/apt install 22.04(pip3 ros) 指定源 下载源
 LINUX/Ubuntu/apt list
 LINUX/Ubuntu/ubuntu中编译安装gcc 9.2.0
 LINUX/Ubuntu/update
@@ -2558,6 +2559,7 @@ Python/scripts/xmlcheckok.py
 Python/soft/pip install -Ur requirements.txt
 Python/soft/pip install 安装
 Python/soft/pip install 安装 with http
+Python/soft/pip install 指定下载源
 Python/soft/pip jupyter notebook
 Python/soft/pip qt5目录及相关
 Python/soft/pip uninstall 卸载
