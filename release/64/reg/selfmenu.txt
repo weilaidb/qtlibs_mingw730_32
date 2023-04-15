@@ -1164,6 +1164,7 @@ JAVA/AJAX new/JSON 实例
 JAVA/AJAX new/eg
 JAVA/AJAX new/jsp/eg
 JAVA/AJAX new/jsp/onblur
+JAVA/AJAX new/jsp/request response path
 JAVA/AJAX new/jsp/输入内容显示下拉菜单
 JAVA/AJAX new/onreadystatechange
 JAVA/AJAX new/onreadystatechange 回调函数
@@ -1248,6 +1249,8 @@ JAVA/JSP/JavaBean/setProperty
 JAVA/JSP/JavaBean/useBean
 JAVA/JSP/JavaBean/介绍
 JAVA/JSP/Know/Jsp常用功能:CSV文件的生成与分析
+JAVA/JSP/Know/[JSP] 07 JSP 路径问题
+JAVA/JSP/Know/jsp页面 登录成功后自动返回到登录前页面
 JAVA/JSP/Print/PrintWriter
 JAVA/JSP/Print/System.err
 JAVA/JSP/Print/System.in
@@ -1339,8 +1342,10 @@ JAVA/JSP/new jsp
 JAVA/JSP/new/regexp eg H2D
 JAVA/JSP/p 段落
 JAVA/JSP/page
+JAVA/JSP/request response/[JSP] 07 JSP 路径问题
 JAVA/JSP/request response/getRequestDispatcher 和sendRedirect区别及路径问题
 JAVA/JSP/request response/rootpath根路径
+JAVA/JSP/request response/rootpath根路径 basepath
 JAVA/JSP/request.getParameter
 JAVA/JSP/request.getParameter only
 JAVA/JSP/request.referer

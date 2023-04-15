@@ -1,0 +1,9 @@
+homePath:http://localhost:8082/HelloJavaEE4/login.jsp
+req.getServletContext(): org.apache.catalina.core.ApplicationContextFacade@67754c22
+req.getScheme(): http
+req.getContextPath(): /HelloJavaEE4
+req.getHeaderNames(): org.apache.tomcat.util.http.NamesEnumerator@7d38d981
+req.getRequestURI(): /HelloJavaEE4/file/index.jsp
+req.getServletPath(): /file/index.jsp
+req.getAuthType(): null
+req.getMethod(): GET

@@ -1,0 +1,180 @@
+
+首发于
+java
+切换模式
+写文章
+登录/注册
+[JSP] 07 JSP  路径问题
+[JSP] 07 JSP 路径问题
+Balmy
+Balmy
+首先先明确一下下列URL的
+
+假设一个URL是这样的losthost:8080/myservlet/path
+
+服务器根路径:losthost:8080/
+
+项目根路径:losthost:8080/myservlet/
+
+明确了服务器根路径和项目根路径之后,我们就可以开始学习后面的知识了
+servlet路径问题
+请求转发和重定向的相对路径写法总结:
+
+Servlet重定向jsp
+resp.sendRedirect("jsp的相对路径/servlet的别名");//重定向jsp页面
+Servlet请求转发jsp
+req.getRequestDispatcher("jsp的相对路径/servlet的别名")
+.forward(req, resp);//请求转发到jsp页面
+服务器根目录
+服务器的webapps目录路径 localhost:8080/
+
+项目根目录
+服务器的webapps目录下项目路径 localhost:8080/jsp/
+
+注意：
+
+以上两种写法其实都是相对路径，相对路径指的是从当前请求路径查找jsp所经过的路径。
+
+请求转发和重定向的绝对路径写法总结:
+重定向:
+在重定向中的路径中第一个/表示服务器根目录。
+
+示例：
+
+resp.sendRedirect("/虚拟项目名/资源路径");//重定向jsp页面
+请求转发：
+在请求转发中第一个/表示项目根目录
+
+示例:
+
+tDispatcher("/资源路径").forward(req, resp);//请求转发到jsp页面
+jsp路径问题
+精华总结:
+
+在jsp页面中进行资源之间的跳转时，使用绝对路径 。
+在jsp中路径中的第一个/表示服务器根目录。
+在Myeclipse中创建的jsp页面会自动生成路径处理代码basePath而basePath的值为当前项目 根目录。
+request.getSchema()返回的是当前连接使用的协议，一般应用返回的是http、SSL返回的是https；
+request.getServerName()返回当前页面所在的服务器的名字；
+request.getContextPath()返回当前页面所在的应用的名字。
+问题：
+在jsp页面中进行资源之间的跳转时，如果书写的是相对路径这样会造成如果当前文件的路径发生变更，从当前路径查找资源的相对路径都要重新进行书写。
+
+解决：
+将相对路径编程绝对路径
+
+使用:
+在jsp中路径中的第一个/表示服务器根目录。
+
+示例：
+<a href="/虚拟项目名/资源路径">访问关键字</a>
+注意：
+Myeclipse
+创建的jsp页面会自动生成路径处理代码basePath
+
+而basePath的值为当前项目根目录，并且在head标签中使用了
+
+<base href="<%=basePath%>">
+相当于将当前页面的资源全部默认定位为从项目根目录开始查找，我们就不需要写第一个/了
+
+IDEA
+需要手动输入或者更改模板
+
+
+页面报错处理
+
+
+注意：
+basePath方式和添加/方法只能二选一。
+
+
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+System.out.println(basePath);
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+     <base href="<%=basePath%>">
+    <title>My JSP 'path.jsp' starting page</title>
+
+	<!-- 
+		问题：
+			在jsp页面中进行资源之间的跳转时，如果书写的是相对路径
+			这样会造成如果当前文件的路径发生变更，从当前路径查找资源的相对路径
+			都要重新进行书写。
+		解决：
+			将相对路径编程绝对路径
+		使用:
+			在jsp中路径中的第一个/表示服务器根目录。
+		示例：
+				<a href="/虚拟项目名/资源路径">访问关键字</a>
+	
+		注意：
+			在Myeclipse中创建的jsp页面会自动生成路径处理代码basePath
+			而basePath的值为当前项目根目录，并且在head标签中使用了<base href="<%=basePath%>">
+			相当于将当前页面的资源全部默认定位为从项目根目录开始查找，我们就不需要写第一个/了
+		注意：
+			basePath方式和添加/方法只能二选一。
+	 -->
+  </head>
+  
+  <body>
+   	我是path.jsp
+   	<a href="a/a.jsp">a.jsp</a>
+   	
+  </body>
+</html>
+Balmy：[Servlet] 17 Servlet 路径问题
+0 赞同 · 0 评论文章
+
+编辑于 2020-05-01 10:39
+JSP
+Servlet
+JSP+TOMCAT
+​赞同​
+​添加评论
+​分享
+​喜欢
+​收藏
+​申请转载
+​
+
+赞同
+
+​
+分享
+写下你的评论...
+
+还没有评论，发表第一个评论吧
+文章被以下专栏收录
+java
+java
+web技术
+web技术
+java程序员的web修养
+推荐阅读
+JS实现多任务并发请求问题
+JS实现多任务并发请求问题
+Bello
+JS实用技巧断点调试详解
+JS实用技巧断点调试详解
+千锋前端学习营
+一个朋友跟我说：js 居然有 Set 结构？！
+一个朋友跟我说：js 居然有 Set 结构？！
+聪明de克...
+发表于中国前端的...
+JSP的原理、JSP的执行过程
+Jsp的本质是servlet， 通过response的printWriter返回，response的getOutputStream只能调用一次，返回流就不能返回页面刷新。JSP起源在很多动态网页中，绝大部分内容都是固定不变的，只有局…
+
+永恒之魂
+发表于JAVA ...
+
+
+选择语言
+登录即可查看 超5亿 专业优质内容
+超 5 千万创作者的优质提问、专业回答、深度文章和精彩视频尽在知乎。
+立即登录/注册

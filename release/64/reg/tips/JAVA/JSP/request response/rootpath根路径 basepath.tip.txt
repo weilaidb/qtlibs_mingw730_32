@@ -1,0 +1,44 @@
+<%@ page import="weilaidb.sql.SqlProc" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%
+    String app_basePath = application.getContextPath();
+    String app_path = request.getContextPath();
+    String app_docBase = application.getRealPath("/");
+    String app_CurrentPath = request.getServletPath();
+    String app_basePath2 = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + app_path + "/";
+    System.out.println("app_path          :" + app_path);
+    System.out.println("app_basePath      :" + app_basePath);
+    System.out.println("app_basePath2     :" + app_basePath2);
+    System.out.println("app_CurrentPath   :" + app_CurrentPath);
+    System.out.println("getServletPath:" + request.getServletPath());
+%>
+
+
+
+<%
+	String path = request.getContextPath();
+	String basePath = request.getServerName() + ":" + request.getServerPort() + path + "/";
+	String baseUrlPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
+————————————————
+版权声明：本文为CSDN博主「探索丶挑战丶突破」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_36698956/article/details/93725245
+
+
+
+
+
+
+
+
+
+
+
+
+        //basepath
+        String path = req.getContextPath();
+        String basePath = req.getServerName() + ":" + req.getServerPort() + path + "/";
+        String baseUrlPath = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + path + "/";
+
