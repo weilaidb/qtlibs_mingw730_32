@@ -1250,6 +1250,7 @@ JAVA/JSP/JavaBean/useBean
 JAVA/JSP/JavaBean/介绍
 JAVA/JSP/Know/Jsp常用功能:CSV文件的生成与分析
 JAVA/JSP/Know/[JSP] 07 JSP 路径问题
+JAVA/JSP/Know/getRequestDispatcher 和sendRedirect区别及路径问题
 JAVA/JSP/Know/jsp页面 登录成功后自动返回到登录前页面
 JAVA/JSP/Print/PrintWriter
 JAVA/JSP/Print/System.err

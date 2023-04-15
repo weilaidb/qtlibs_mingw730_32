@@ -1,0 +1,62 @@
+系订阅管理随笔 - 298  文章 - 0  评论 - 0  阅读 - 86万
+getRequestDispatcher 和sendRedirect区别及路径问题
+getRequestDispatcher 和sendRedirect区别
+ 
+getRequestDispatcher是服务器内部跳转，地址栏信息不变，只能跳转到web应用内的网页。 
+sendRedirect是页面重定向，地址栏信息改变，可以跳转到任意网页。 
+这两条网上都查得到，但看着比较乱，现提供我测试的结果（仅供参考）： 
+1.getRequestDispatcher分成两种，可以用request调用，也可以用getServletContext()调用 
+   不同的是request.getRequestDispatcher(url)的url可以是相对路径也可以是绝对路径。 
+   而this.getServletContext().getRequestDispatcher(url)的url只能是绝对路径。 
+ 
+注：request.getRequestDispatcher(url)之所以可以使用相对路劲，是因为在getRequestDispatcher(url)方法中封装了ServletContext.getRealPath()以获得相应的项目根路径，再通过字符串相加，从而可以获得一个完整的路径
+ 
+ 
+Java代码  收藏代码
+SecondServlet  
+   request.setAttribute("lover", "tom");  
+   request.getSession().setAttribute("lovered", "joe");  
+  
+   request.getRequestDispatcher("/third?name=jay").forward(request, response);  
+   或  
+   request.getRequestDispatcher("third?name=jay").forward(request, response);  
+   或  
+   this.getServletContext().getRequestDispatcher("/third?name=jay").forward(request, response);  
+   
+
+ 
+ThirdServlet  
+   PrintWriter out = response.getWriter();  
+   String name = request.getParameter("name");  
+   out.println(request.getContextPath()+"<hr/>");  
+   out.println("name="+name+"<hr/>");  
+   out.println("lover="+request.getAttribute("lover")+"<hr/>");  
+   out.println("lovered="+request.getSession().getAttribute("lovered")+"<hr/>");  
+   
+
+   结果显示，地址栏信息仍为http://localhost:8080/Test/second，这三种方式都可以传值到第二个Servlet。 
+
+2.sendRedirect只能用response调用，可以用相对路径（直接用），也可以用相对路径（需加应用路径） 
+SecondServlet  
+   request.setAttribute("lover", "tom");  
+   request.getSession().setAttribute("lovered", "joe");  
+  
+   response.sendRedirect("third?name=jay");  
+   或  
+   response.sendRedirect(request.getContextPath()+"/third?name=jay");  
+   
+
+ 
+ThirdServlet  
+   PrintWriter out = response.getWriter();  
+   String name = request.getParameter("name");  
+   out.println(request.getContextPath()+"<hr/>");  
+   out.println("name="+name+"<hr/>");  
+   out.println("lover="+request.getAttribute("lover")+"<hr/>");  
+   out.println("lovered="+request.getSession().getAttribute("lovered")+"<hr/>");  
+   
+
+   结果显示，地址栏信息变为http://localhost:8080/Test/third?name=jay，只有request.getAttribute("lover")获取不到值，session范围及url路径后的传值在第二个Servlet都可以获取到值。 
+
+response.sendRedirect("http://www.baidu.com"); 
+分类: Servilet---SPL, URL
