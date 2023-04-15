@@ -1,0 +1,19 @@
+使用session在filter中存储路径，在登录成功后在跳转一下登录之前的页面
+
+//使用session存储当前路径位置
+req.getSession().setAttribute("forwardpath", req.getRequestURI());
+
+
+
+
+
+
+// 验证登录成功，如果转发路径为空，则跳转到index.jsp主页，否则跳转到转发路径
+String forwardpath = request.getSession().getAttribute("forwardpath").toString();
+if(forwardpath.trim().isEmpty()){
+    request.getRequestDispatcher("index.jsp").forward(request, response);
+}
+else {
+    response.sendRedirect(forwardpath);
+}
+

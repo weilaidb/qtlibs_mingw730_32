@@ -1,0 +1,123 @@
+JSP登录后自动返回到登录前页面
+
+jojoy_828
+
+于 2008-08-20 12:53:00 发布
+
+4294
+ 收藏
+分类专栏： J2se 文章标签： jsp null filter user import object
+
+J2se
+专栏收录该内容
+15 篇文章0 订阅
+订阅专栏
+Filter Code:
+ 
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+ 
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+import com.hacongz.framework.util.GlobalConstant;
+import com.hacongz.system.web.form.SysUserForm;
+ 
+public class LogInFilter implements Filter{
+ protected FilterConfig filterConfig;
+ 
+    public void init(FilterConfig config) throws ServletException {
+        this.filterConfig = config;
+    }
+ 
+    public void doFilter(ServletRequest srequest, ServletResponse sresponse,
+            FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest request = (HttpServletRequest) srequest;
+        HttpServletResponse response = (HttpServletResponse) sresponse;
+ 
+        SysUserForm user=(SysUserForm)request.getSession().getAttribute(GlobalConstant.SESSION_USER_OBJECT);//取出用户对象
+   if(user==null) {
+            StringBuffer sUrl = new StringBuffer("");
+            if (request.getRequestURI() != null) {
+                sUrl
+                        .append(URLEncoder.encode(request.getRequestURI(),
+                                "UTF-8"));
+            }
+            if (request.getQueryString() != null) {
+                sUrl.append("?");
+                sUrl.append(URLEncoder
+                        .encode(request.getQueryString(), "UTF-8"));
+            }
+           
+            String retUrl = (URLDecoder.decode(sUrl.toString(), "UTF-8")).substring(6);
+ 
+            System.out.println("URL=============================" + retUrl);
+            response.sendRedirect("../index/loginAlone.jsp?" +"test=" + retUrl);
+        } else {
+            chain.doFilter(request, response);
+        }
+ 
+    }
+ 
+    public void setFilterConfig(final FilterConfig filterConfig) {
+        this.filterConfig = filterConfig;
+    }
+ 
+    public void destroy() {
+        this.filterConfig = null;
+    }
+ 
+}
+ 
+web.xml config:
+ 
+<filter>
+  <filter-name>loginFilter</filter-name>
+  <filter-class>com.hacongz.framework.web.filter.LogInFilter</filter-class>
+  
+ </filter>
+ <filter-mapping>
+  <filter-name>loginFilter</filter-name>
+  <url-pattern>/page/shopping/*</url-pattern>
+ </filter-mapping>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+使用session在filter中存储路径，在登录成功后在跳转一下
+
+//使用session存储当前路径位置
+req.getSession().setAttribute("forwardpath", req.getRequestURI());
+
+
+
+
+
+
+// 验证登录成功，如果转发路径为空，则跳转到index.jsp主页，否则跳转到转发路径
+String forwardpath = request.getSession().getAttribute("forwardpath").toString();
+if(forwardpath.trim().isEmpty()){
+    request.getRequestDispatcher("index.jsp").forward(request, response);
+}
+else {
+    response.sendRedirect(forwardpath);
+}
+

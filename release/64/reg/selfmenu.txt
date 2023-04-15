@@ -1248,6 +1248,7 @@ JAVA/JSP/JavaBean/parseInt Long Float Double
 JAVA/JSP/JavaBean/setProperty
 JAVA/JSP/JavaBean/useBean
 JAVA/JSP/JavaBean/介绍
+JAVA/JSP/Know/JSP登录后自动返回到登录前页面
 JAVA/JSP/Know/Jsp常用功能:CSV文件的生成与分析
 JAVA/JSP/Know/[JSP] 07 JSP 路径问题
 JAVA/JSP/Know/getRequestDispatcher 和sendRedirect区别及路径问题
@@ -1340,6 +1341,7 @@ JAVA/JSP/mysql/prepareStatement insert eg
 JAVA/JSP/mysql/prepareStatement select eg
 JAVA/JSP/navbar navagitor
 JAVA/JSP/new jsp
+JAVA/JSP/new 跳转到原路径
 JAVA/JSP/new/regexp eg H2D
 JAVA/JSP/p 段落
 JAVA/JSP/page
@@ -1376,6 +1378,7 @@ JAVA/JSP/内置对象/response函数/sendRedirect
 JAVA/JSP/内置对象/response函数/setContentType
 JAVA/JSP/内置对象/response函数/setStatus
 JAVA/JSP/内置对象/session
+JAVA/JSP/内置对象/session 存储
 JAVA/JSP/动作标记
 JAVA/JSP/左右显示
 JAVA/JSP/常见问题点
