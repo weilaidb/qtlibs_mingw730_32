@@ -655,6 +655,8 @@ CXX/knowledge/string C++string类的常用方法
 CXX/knowledge/string startsWith endswith
 CXX/knowledge/unordered_map C++ STL unordered_map容器用法详解
 CXX/knowledge/如何理解左操作数必须为左值
+CXX/new /read file
+CXX/new /write file
 CXX/new class operator=
 CXX/new class static instsance实例
 CXX/new class static instsance无实例
@@ -2184,6 +2186,7 @@ LINUX命令/GDB/C linux gdb symbol 加载运行
 LINUX命令/GDB/C linux gdb symbol 生成符号表
 LINUX命令/GDB/C linux gdb tui
 LINUX命令/GDB/C linux gdb tui2
+LINUX命令/GDB/GDB 有哪些常用命令
 LINUX命令/GDB/Gmock
 LINUX命令/GDB/Gmock b
 LINUX命令/GDB/Linux下可执行程序调试信息的分离及release程序的调试
@@ -3449,7 +3452,11 @@ path路径/常用文件夹
 电脑/装机/Ghost 备份还原
 电脑/装机/Ghost 备份还原(dell inspiron-15-7537)
 社会/专升本/政治课件
+笔记/CAN 总线协议
+笔记/RS485和RS232区别
 笔记/Wireshark 2.6.8 64-bit The visual C++ Redistributable installer failed with error 1603
+笔记/csv解析, XML解析，JSON解析各自的优缺点
+笔记/gtest 和cppunit哪个更好
 笔记/单元测试/打桩原理 Stub Install Remove
 笔记/想法/测试设计(FT or UT)
 笔记/测试

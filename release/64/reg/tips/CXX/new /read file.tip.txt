@@ -1,0 +1,48 @@
+
+C++读取文件的方法：
+
+1. 打开文件：使用 `fstream` 类打开文件，其中 `ios::in` 参数表示打开文件以读取方式打开。
+
+```cpp
+#include <fstream>
+
+std::ifstream file("./example.txt", std::ios::in);
+
+if (file) {
+    // 文件打开成功
+} else {
+    // 文件打开失败
+}
+```
+
+2. 读取文件：使用 `getline()` 函数逐行读取文件内容。
+
+```cpp
+std::ifstream file("./example.txt", std::ios::in);
+
+std::string line;
+while (std::getline(file, line)) {
+    // 处理每一行内容
+}
+```
+
+另外，还可以使用 `get()` 函数逐个字符读取文件内容。
+
+```cpp
+std::ifstream file("./example.txt", std::ios::in);
+
+char c;
+while (file.get(c)) {
+    // 处理每个字符
+}
+```
+
+3. 关闭文件：使用 `close()` 函数关闭文件。
+
+```cpp
+std::ifstream file("./example.txt", std::ios::in);
+
+// ...
+
+file.close();
+``` ♨
