@@ -1,0 +1,223 @@
+https://developer.harmonyos.com/cn/develop/deveco-studio#download
+
+
+
+
+简体中文 
+登录
+注册
+华为鸿蒙应用开发官网logo
+设计开发分发文档开发者社区
+请输入关键词
+HUAWEI DevEco Studio
+面向全场景多设备，提供一站式的分布式应用开发平台，支持分布式多端开发、分布式多端调测、多端模拟仿真，全方位的质量与安全保障。
+
+立即下载
+查看文档
+鸿蒙HUAWEI DevEco Studio
+
+建议反馈
+
+智能客服
+
+常见问题
+如何获取DevEco Studio？		
+如何获取HarmonyOS版本变更？
+如何获取更多参考内容？
+DevEco Studio FAQ总结帖
+应用开发FAQ总结帖
+DevEco Studio 3.1
+DevEco Studio 3.1配套支持HarmonyOS 3.1版本的应用及服务开发，提供了代码智能编辑、低代码开发、双向预览、全新构建工具等功能，持续提升应用及服务开发效率。
+
+版本简介
+DevEco Studio 3.1 Beta1 新增特性
+
+编辑器更加智能
+提供ArkTS/TS高性能编程规范检查，代码重构、智能代码补全能力；支持从JS或ArkTS跳转到C/C++查看代码。
+
+低代码开发个性化
+丰富了组件类型，支持自定义组件；支持将设计稿转换为可视化设计页面。
+
+端云一体化开发
+可向导式创建端云一体化工程；支持使用TS进行云函数开发；支持云侧代码部署以及本地调用云侧新部署的接口。
+关键特性
+
+智能代码编辑
+支持代码高亮、代码智能补齐、代码错误检查、代码自动跳转、代码格式化、代码查找，提升代码编写效率。
+
+低代码开发
+丰富的UI界面编辑能力，支持自由拖拽组件和可视化数据绑定，可快速预览效果，所见即所得，同时支持卡片零码化开发，提升界面开发效率。
+
+多端双向实时预览
+支持UI界面代码的双向预览、实时预览，动态预览、组件预览以及多端设备预览，便于快速查看代码运行效果。
+
+多端模拟仿真
+提供HarmonyOS本地模拟器、远程模拟器、超级终端模拟器，支持手机、智慧屏、智能穿戴等多端设备的模拟仿真，便捷获取调试环境。
+DevEco Studio 3.1 Beta1
+platform
+
+DevEco Studio Package
+
+Size
+
+SHA-256 checksum
+
+Download
+
+Windows(64-bit)
+
+devecostudio-windows-tool-3.1.0.200.zip
+
+876M
+
+a4fc8f9cef996f014f04d0636e67cafa4ee75a858896e3cece6ada5d44e7f397
+
+
+Mac(X86)
+
+devecostudio-mac-tool-3.1.0.200.zip
+
+1.02G
+
+10e31e4c1de7e1361d956f0585703b66f9d7b5bb263ffefab0fd2b87fb01d380
+
+
+Mac(ARM)
+
+devecostudio-mac-arm-tool-3.1.0.200.zip
+
+1.01G
+
+1e2ce49674c9bad99380a65065b30da325828597032ef84695984016ca6bb14e
+
+
+该版本适用HarmonyOS和OpenHarmony应用及服务开发，您可尝鲜体验HarmonyOS 3.1 Beta版本的开发能力，在使用过程中如遇到问题请积极反馈，我们将在后续版本中进行优化，点击查看版本说明。
+Command Line Tools for HarmonyOS
+platform
+
+Package
+
+Size
+
+SHA-256 checksum
+
+Download
+
+Windows(64-bit)
+
+commandlinetools-windows-tool-1.0.0.600.zip
+
+6.3M
+
+e138360f860e9236c43aad164a95585611e68fc5bed1fdabdbe8a43693065c64
+
+
+Mac
+
+commandlinetools-mac-tool-1.0.0.600.zip
+
+6.3M
+
+ed5b0e67a3e563211bfacf2f26e8220c8c2c05bc1dbf80c27cd3cf5df3d37765
+
+
+Linux
+
+commandlinetools-linux-tool-1.0.0.600.zip
+
+6.3M
+
+cb310af30f97cd792b6fcc0d76f29b8c7acee908c9f3f1c359135f1e626ac411
+
+
+该版本适用于HarmonyOS开发，Command Line Tools for HarmonyOS是一系列开发工具的集合，可通过其中的sdkmgr工具查看、安装/更新和卸载多个HarmonyOS SDK包，支持通过自动化构建脚本调用。点击查看使用指导。
+Command Line Tools for OpenHarmony
+Platform
+
+Package
+
+Size
+
+SHA-256
+
+Download
+
+Windows(64-bit)
+
+ohcommandlinetools-windows-tool-1.0.0.400.zip
+
+6.3M
+
+16827def2d3a92fbd48d2058abce99d19e40a10de46ff7da59cddd029a727cc2
+
+
+Mac
+
+ohcommandlinetools-mac-tool-1.0.0.400.zip
+
+6.3M
+
+b371daf68155be512626be674ceb87f80174f1fea7a2fcbb440a453c77f26602
+
+
+Linux
+
+ohcommandlinetools-linux-tool-1.0.0.400.zip
+
+6.3M
+
+b371daf68155be512626be674ceb87f80174f1fea7a2fcbb440a453c77f26602
+
+
+该版本适用于OpenHarmony开发，Command Line Tools for OpenHarmony 是一系列开发工具的集合，可通过其中的sdkmgr工具查看、安装/更新和卸载多个OpenHarmony SDK包，支持通过自动化构建脚本调用。点击查看使用指导。
+系统要求
+
+Windows
+操作系统：Windows 10/11 64 位
+内存：8GB 及以上
+硬盘：100GB 及以上
+分辨率：1280*800 像素及以上
+
+
+macOS
+操作系统：macOS(X86) 10.15/11/12/13 macOS(ARM) 11/12/13
+内存：8GB 及以上
+硬盘：100GB 及以上
+分辨率：1280*800 像素及以上
+
+历史版本
+DevEco Studio历史版本存档了2021年6月至今已存档的版本，您可以通过版本说明查看相关特性。
+
+更多版本
+
+开发
+DevEco Studio
+设计
+设计指南
+设计资源
+开发
+HarmonyOS SDK
+DevEco Studio
+DevEco Service
+ArkUI
+ArkTS
+ArkCompiler
+分发
+华为应用市场
+文档
+开发指南
+示例代码
+Codelabs
+API参考
+HarmonyOS学堂
+开发者社区
+应用/服务开发论坛
+博客
+学堂
+友情链接
+HarmonyOS 官网
+HarmonyOS 设备开发
+华为开发者联盟
+Global - 简体中文关注我们
+HarmonyOS 网站版权所有 ©2022-2023
+网站地图 |粤ICP备19015064号 |使用条款 |关于 HarmonyOS 网站与隐私的声明 |cookies |开源软件声明

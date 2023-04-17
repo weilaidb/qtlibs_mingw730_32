@@ -1,0 +1,36 @@
+Skip to content
+
+媒体报道
+插件介绍
+V起来⦁应用扩展介绍
+V起来包含丰富的应用扩展（适用于浏览器、IDEA 和 VSCode）
+
+V起来，为您增添工作乐趣，让您工作生活更加轻松。
+Edge 应用扩展
+『 VBot搜：AI助手（V起来®）』
+
+微软 Microsoft Edge 浏览器适用
+
+添加进 Microsoft Edge 浏览器 
+
+Chrome 应用扩展
+『 VBot搜索：ChatGPT搜索助理（V起来®）』
+
+谷歌 Google Chrome 浏览器适用
+
+添加进 Google Chrome 浏览器 
+
+IDEA 应用扩展
+『 NexChatGPT 』
+
+JetBrains IDEA 全家桶适用
+
+查看安装教程
+
+VSCode 应用扩展
+『 ChatGPT中文版·开箱即用（免账号免翻墙）- V起来·NexChatGPT 』
+
+Visual Studio Code 适用
+
+查看安装教程 
+
