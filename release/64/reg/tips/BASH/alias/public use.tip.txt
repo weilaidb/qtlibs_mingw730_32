@@ -4,6 +4,8 @@ alias ros2colonbuild="colcon build "
 alias ros2run="ros2 run "
 alias cdworkgitros="cd ~/work/git/ros_dev_ws/ "
 alias cdworkgitrossrc="cd ~/work/git/ros_dev_ws/src/ "
+alias ros2nodelist="ros2 node list "
+alias ros2nodeinfo="ros2 node info "
 
 
 

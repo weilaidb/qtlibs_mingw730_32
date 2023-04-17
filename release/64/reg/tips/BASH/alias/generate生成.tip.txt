@@ -3,6 +3,8 @@ ros2colonbuild;colcon build
 ros2run;ros2 run
 cdworkgitros;cd ~/work/git/ros_dev_ws/
 cdworkgitrossrc;cd ~/work/git/ros_dev_ws/src/
+ros2nodelist;ros2 node list
+ros2nodeinfo;ros2 node info
 
 
 mkdirrosworkspace;mkdir -p build install log src
