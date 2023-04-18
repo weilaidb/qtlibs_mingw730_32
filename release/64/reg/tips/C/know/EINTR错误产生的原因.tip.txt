@@ -1,0 +1,303 @@
+linux系统中socket编程错误码：eintr和eagain的处理方法
+linux
+linux
+19 人赞同了该文章
+1、什么是慢系统调用？
+
+该术语适用于那些可能永远阻塞的系统调用。永远阻塞的系统调用是指调用永远无法返回，多数网络支持函数都属于这一类。如：若没有客户连接到服务器上，那么服务器的accept调用就会永远阻塞。
+
+慢系统调用可以被永久阻塞，包括以下几个类别：
+
+（1）读写‘慢’设备（包括pipe，终端设备，网络连接等）。读时，数据不存在，需要等待；写时，缓冲区满或其他原因，需要等待。
+
+（2）当打开某些特殊文件时，需要等待某些条件，才能打开。例如：打开中断设备时，需要等到连接设备的modem响应才能完成。
+
+（3）pause和wait函数。pause函数使调用进程睡眠，直到捕获到一个信号。wait等待子进程终止。
+
+（4）某些ioctl操作。
+
+（5）某些IPC操作。
+
+2、EINTR错误产生的原因-（阻塞的系统调用、或者非阻塞的系统调用）
+
+如果进程在一个慢系统调用(slow system call)中阻塞时，当捕获到某个信号且相应信号处理函数返回时，这个系统调用不再阻塞而是被中断，就会调用返回错误（一般为-1）&&设置errno为EINTR（相应的错误描述为“Interrupted system call”）。
+
+如下表所示的系统调用就会产生EINTR错误，当然不同的函数意义也不同。
+
+
+
+
+
+
+3、解决办法
+
+既然系统调用会被中断，那么别忘了要处理被中断的系统调用。有三种处理方式：
+
+解决方法1：重启被中断的系统调用
+
+当碰到EINTR错误的时候，有一些可以重启的系统调用要进行重启，而对于有一些系统调用是不能够重启的。例如：accept、read、write、select、和open之类的函数来说，是可以进行重启的。不过对于套接字编程中的connect函数是不能重启的，若connect函数返回一个EINTR错误的时候，我们不能再次调用它，否则将立即返回一个错误。针对connect不能重启的处理方法是，必须调用select来等待连接完成。
+
+理解“重启”？一些IO系统调用执行时，如 read 等待输入期间，如果收到一个信号，系统将中断read， 转而执行信号处理函数. 当信号处理返回后， 系统遇到了一个问题： 是重新开始这个系统调用? 还是让系统调用失败?早期UNIX系统的做法是：中断系统调用，并让系统调用失败， 比如read返回 -1， 同时设置 errno 为EINTR中断了的系统调用是没有完成的调用，它的失败是临时性的，如果再次调用则可能成功，这并不是真正的失败，所以要对这种情况进行处理， 典型的方式为“重启”，采用accept函数为例子，代码如下
+
+需要C/C++ Linux服务器架构师学习资料私信“资料”（资料包括C/C++，Linux，golang技术，Nginx，ZeroMQ，MySQL，Redis，fastdfs，MongoDB，ZK，流媒体，CDN，P2P，K8S，Docker，TCP/IP，协程，DPDK，ffmpeg等），免费分享
+
+
+
+
+
+
+ACCEPT:
+    clifd = accept(srvfd,(struct sockaddr*)&cliaddr,&cliaddrlen);
+ 
+    if (clifd == -1) {
+        if (errno == EINTR) {
+            goto ACCEPT;
+        } else {
+            fprintf(stderr, "accept fail,error:%s\n", strerror(errno));
+            return -1;
+        }
+    }
+解决方法2：安装信号时设置 SA_RESTART属性（该方法对有的系统调用无效）
+
+struct sigaction action;  
+     
+  action.sa_handler = handler_func;  
+  sigemptyset(&action.sa_mask);  
+  action.sa_flags = 0;  
+  /* 设置SA_RESTART属性 */  
+  action.sa_flags |= SA_RESTART;  
+     
+  sigaction(SIGALRM, &action, NULL);
+解决方法3： 忽略信号（让系统不产生信号中断）
+
+struct sigaction action;  
+     
+  action.sa_handler = SIG_IGN;  
+  sigemptyset(&action.sa_mask);  
+     
+  sigaction(SIGALRM, &action, NULL);
+EAGAIN-（一般用于非阻塞的系统调用）
+
+非阻塞的系统调用，由于资源限制/不满足条件，导致返回值为EAGAIN
+
+在Linux环境下开发经常会碰到很多错误(设置errno)，其中EAGAIN是其中比较常见的一个错误(比如用在非阻塞操作中)。
+
+如：首先是把套接字设置为异步的了，然后在使用write发送数据时采取的方式是循环发送大量的数据；由于是异步的，write\send将要发送的数据提交到发送缓冲区后是立即返回的，并不需要对端确认数据已接收。在这种情况下是很有可能出现发送缓冲区被填满，导致write\send无法再向缓冲区提交要发送的数据。因此就产生了Resource temporarily unavailable的错误（资源暂时不可用），EAGAIN 的意思也很明显，就是要你再次尝试。
+
+从字面上来看，是提示再试一次。这个错误经常出现在当应用程序进行一些非阻塞(non-blocking)操作(对文件或socket)的时候。
+
+如：以 O_NONBLOCK的标志打开文件/socket/FIFO，如果连续做read操作而没有数据可读。此时程序不会阻塞起来等待数据准备就绪返回，read函数会返回一个错误EAGAIN，提示你的应用程序现在没有数据可读请稍后再试。
+
+又例如，当一个系统调用(比如fork)因为没有足够的资源(比如虚拟内存)而执行失败，返回EAGAIN提示其再调用一次(也许下次就能成功)。
+
+Linux - 非阻塞socket编程处理EAGAIN错误
+
+在linux进行非阻塞的socket接收数据时经常出现Resource temporarily unavailable，errno代码为11(EAGAIN)，这是什么意思？ ⇒ ⇒ ⇒ 这表明在非阻塞模式下调用了阻塞操作，在该操作没有完成就返回这个错误，这个错误不会破坏socket的同步，不用管它，下次循环接着recv就可以。对非阻塞socket而言，EAGAIN不是一种错误。在VxWorks和Windows上，EAGAIN的名字叫做EWOULDBLOCK。
+
+iReadSizeOnce=read(iOpenCom,RxBuf+iReadSize,1024);
+if (iReadSizeOnce != ZERO)
+{
+    if (iReadSizeOnce != EAGAIN)
+    {
+        continue;
+    }
+    else
+    {
+        //stCComApiLog.LogError("读串口操作错误");
+        return(FUN_ERROR);
+    }
+}
+慢系统调用：可能永远阻塞的系统调用，这很关键，不适用于非诸塞的情况。永远阻塞的系统调用是指调用永远无法返回，多数网络支持函数都属于这一类。如：若没有客户连接到服务器上，那么服务器的accept调用就会一直阻塞。
+
+EINTR说明：如果进程在一个慢系统调用(slow system call)中阻塞时，当捕获到某个信号且相应信号处理函数返回时，这个系统调用被中断，调用返回错误，设置errno为EINTR（相应的错误描述为“Interrupted system call”）。
+
+怎么看哪些系统条用会产生EINTR错误呢？man 7 signal，在ubuntu 10.04上可以查看，哪些系统调用会产生 EINTR错误。
+
+如何处理被中断的系统调用
+
+既然系统调用会被中断，那么别忘了要处理被中断的系统调用。有三种处理方式：
+
+◆ 人为重启被中断的系统调用
+
+◆ 安装信号时设置 SA_RESTART属性（该方法对有的系统调用无效）
+
+◆ 忽略信号（让系统不产生信号中断）
+
+人为重启被中断的系统调用
+
+人为当碰到EINTR错误的时候，有一些可以重启的系统调用要进行重启，而对于有一些系统调用是不能够重启的。例如：accept、read、write、select、和open之类的函数来说，是可以进行重启的。不过对于套接字编程中的connect函数我们是不能重启的，若connect函数返回一个EINTR错误的时候，我们不能再次调用它，否则将立即返回一个错误。针对connect不能重启的处理方法是，必须调用select来等待连接完成。
+
+这里的“重启”怎么理解？
+
+一些IO系统调用执行时，如 read 等待输入期间，如果收到一个信号，系统将中断read， 转而执行信号处理函数. 当信号处理返回后， 系统遇到了一个问题： 是重新开始这个系统调用， 还是让系统调用失败？早期UNIX系统的做法是， 中断系统调用，并让系统调用失败， 比如read返回 -1， 同时设置 errno 为EINTR中断了的系统调用是没有完成的调用，它的失败是临时性的，如果再次调用则可能成功，这并不是真正的失败，所以要对这种情况进行处理， 典型的方式为：
+
+connect处理方式，抄袭3原文，没有测试过，处理方法是对的。
+
+connect的问题，当connect遇到EINTR错误时，不能向上面那样重新进入循环处理，原因是，connect的请求已经发送向对方，正在等待对方回应，这是如果重新调用connect，而对方已经接受了上次的connect请求，这一次的connect就会被拒绝，因此，需要使用select或poll调用来检查socket的状态，如果socket的状态就绪，则connect已经成功，否则，视错误原因，做对应的处理。
+
+
+
+
+
+
+#include poll.h
+ 
+int check_conn_is_ok(socket_t sock) {
+	struct pollfd fd;
+	int ret = 0;
+	socklen_t len = 0;
+ 
+	fd.fd = sock;
+	fd.events = POLLOUT;
+ 
+	while ( poll (&fd, 1, -1) == -1 ) {
+		if( errno != EINTR ){
+			perror("poll");
+			return -1;
+		}
+	}
+ 
+	len = sizeof(ret);
+	if ( getsockopt (sock, SOL_SOCKET, SO_ERROR,
+                     &ret,
+                     &len) == -1 ) {
+    	        perror("getsockopt");
+		return -1;
+	}
+ 
+	if(ret != 0) {
+		fprintf (stderr, "socket %d connect failed: %s\n",
+                 sock, strerror (ret));
+		return -1;
+	}
+ 
+	return 0;
+}
+在调用connect时，这样使用：
+
+#include erron.h
+ 
+....
+if(connnect()) {
+    if(errno == EINTR) {
+        if(check_conn_is_ok() < 0) {
+              perror();
+              return -1;
+        }
+        else {
+             printf("connect is success!\n");
+        }
+    }
+    else {
+         perror("connect");
+         return -1;
+    }
+}
+我一般使用continue或者goto来处理。
+
+安装信号时设置 SA_RESTART属性
+
+我们还可以从信号的角度来解决这个问题， 安装信号的时候， 设置 SA_RESTART属性，那么当信号处理函数返回后， 不会让系统调用返回失败，而是让被该信号中断的系统调用将自动恢复。
+
+struct sigaction action;  
+   
+action.sa_handler = handler_func;  
+sigemptyset(&action.sa_mask);  
+action.sa_flags = 0;  
+/* 设置SA_RESTART属性 */  
+action.sa_flags |= SA_RESTART;  
+   
+sigaction(SIGALRM, &action, NULL);
+但注意，并不是所有的系统调用都可以自动恢复。如msgsnd喝msgrcv就是典型的例子，msgsnd/msgrcv以block方式发送/接收消息时，会因为进程收到了信号而中断。此时msgsnd/msgrcv将返回-1，errno被设置为EINTR。且即使在插入信号时设置了SA_RESTART，也无效。在man msgrcv中就有提到这点：
+
+msgsnd and msgrcv are never automatically restarted after being interrupted by a signal handler, regardless of the setting of the SA_RESTART flag when establishing a signal handler.
+
+
+
+忽略信号
+
+当然最简单的方法是忽略信号，在安装信号时，明确告诉系统不会产生该信号的中断。
+
+struct sigaction action;  
+   
+action.sa_handler = SIG_IGN;  
+sigemptyset(&action.sa_mask);  
+   
+sigaction(SIGALRM, &action, NULL);
+#include   
+#include   
+#include   
+#include   
+#include   
+#include   
+   
+void sig_handler(int signum)  
+{  
+    printf("in handler\n");  
+    sleep(1);  
+    printf("handler return\n");  
+}  
+   
+int main(int argc, char **argv)  
+{  
+    char buf[100];  
+    int ret;  
+    struct sigaction action, old_action;  
+   
+    action.sa_handler = sig_handler;  
+    sigemptyset(&action.sa_mask);  
+    action.sa_flags = 0;  
+    /* 版本1:不设置SA_RESTART属性 
+     * 版本2:设置SA_RESTART属性 */  
+    //action.sa_flags |= SA_RESTART;  
+   
+    sigaction(SIGALRM, NULL, &old_action);  
+    if (old_action.sa_handler != SIG_IGN) {  
+        sigaction(SIGALRM, &action, NULL);  
+    }  
+    alarm(3);  
+     
+    bzero(buf, 100);  
+   
+    ret = read(0, buf, 100);  
+    if (ret == -1) {  
+        perror("read");  
+    }  
+   
+    printf("read %d bytes:\n", ret);  
+    printf("%s\n", buf);  
+   
+    return 0;  
+}
+在linux测试结果：
+
+不设置SA_RESTART，执行结果如下：
+
+
+
+
+
+
+说明接受信号处理完成以后，主函数收到EINTR信号，read函数返回-1，退出
+
+设置SA_RESTART，执行结果如下：
+
+
+
+
+
+
+说明设置SA_RESTART参数以后，自动重新调用read函数，没有体现在应用层代码中，在应用层看来，这个EINTR没有造成任何影响。
+
+总结：
+
+慢系统调用(slow system call)会被信号中断，系统调用函数返回失败，并且errno被置为EINTR（错误描述为“Interrupted system call”）。
+
+处理方法有以下三种：①人为重启被中断的系统调用；②安装信号时设置 SA_RESTART属性；③忽略信号（让系统不产生信号中断）。
+
+有时我们需要捕获信号，但又考虑到第②种方法的局限性（设置 SA_RESTART属性对有的系统无效，如msgrcv），所以在编写代码时，一定要“人为重启被中断的系统调用”。
+
+发布于 2020-07-13 15:50
+Linux
+Linux 开发
+Socket
