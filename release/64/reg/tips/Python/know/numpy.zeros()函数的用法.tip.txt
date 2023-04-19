@@ -1,0 +1,59 @@
+python numpy.zeros()函数的用法
+
+天行_
+
+于 2018-11-10 12:12:26 发布
+
+122158
+ 收藏 236
+分类专栏： numpy 文章标签： python numpy
+版权
+
+numpy
+专栏收录该内容
+6 篇文章8 订阅
+订阅专栏
+numpy.zeros(shape，dtype=float，order = 'C')
+
+返回给定形状和类型的新数组，用0填充。
+
+参数：	
+shape：int 或 int 的元组
+
+ 	新阵列的形状，例如：（2，3）或2。
+ 	dtype：数据类型，可选
+ 	数组的所需数据类型，例如numpy.int8。默认是numpy.float64
+ 	order：{'C'，'F'}，可选，默认：'C'
+ 	是否在内容中以行（C）或列（F）顺序存储多维数据。
+返回：	out：ndarray
+ 	具有给定形状，类型和顺序的0的数组。
+ 
+
+Example：
+
+np.zeros(5)
+Out[1]: array([ 0.,  0.,  0.,  0.,  0.])
+np.zeros((4,),dtype = int)
+Out[2]: array([0, 0, 0, 0])
+np.zeros((2,3))
+Out[2]: 
+array([[ 0.,  0.,  0.],
+       [ 0.,  0.,  0.]])
+s = (3,3)
+ 
+np.zeros(s)
+Out[3]: 
+array([[ 0.,  0.,  0.],
+       [ 0.,  0.,  0.],
+       [ 0.,  0.,  0.]])
+np.zeros((2,),dtype = [('x','i4'),('y','i4')])
+Out[4]: 
+array([(0, 0), (0, 0)],
+      dtype=[('x', '<i4'), ('y', '<i4')])
+np.zeros((3,),dtype = [('x','i4'),('y','i4')])
+Out[5]: 
+array([(0, 0), (0, 0), (0, 0)],
+      dtype=[('x', '<i4'), ('y', '<i4')])
+————————————————
+版权声明：本文为CSDN博主「天行_」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/lens___/article/details/83927880

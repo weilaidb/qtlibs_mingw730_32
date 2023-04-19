@@ -1,0 +1,73 @@
+np.dot()使用方法
+
+pillstap
+
+已于 2022-08-29 11:17:38 修改
+
+77943
+ 收藏 317
+分类专栏： python常用函数笔记 文章标签： python np.dot()函数
+版权
+
+华为云开发者联盟
+该内容已被华为云开发者联盟社区收录
+加入社区
+
+python常用函数笔记
+专栏收录该内容
+2 篇文章3 订阅
+订阅专栏
+np.dot()函数主要有两个功能，向量点积和矩阵乘法，这里我就简单列举了三种最常用到的情况
+
+1. np.dot(a, b), 其中a为一维的向量，b为一维的向量，当然这里a和b都是np.ndarray类型的, 此时因为是一维的所以是向量点积。
+
+import numpy as np
+ 
+a = np.array([1, 2, 3, 4, 5])
+b = np.array([6, 7, 8, 9, 10])
+print(np.dot(a, b))
+ 
+output:
+130
+[Finished in 0.2s]
+2. np.dot(a, b), 其中a为二维矩阵，b为一维向量，这时b会被当做一维矩阵进行计算
+
+import numpy as np
+ 
+a = np.random.randint(0,10, size = (5,5))
+b = np.array([1,2,3,4,5])
+print("the shape of a is " + str(a.shape))
+print("the shape of b is " + str(b.shape))
+print(np.dot(a, b))
+ 
+ 
+output:
+the shape of a is (5, 5)
+the shape of b is (5,)
+[42 85 50 81 76]
+[Finished in 0.2s]
+这里需要注意的是一维矩阵和一维向量的区别，一维向量的shape是(5, ), 而一维矩阵的shape是(5, 1), 若两个参数a和b都是一维向量则是计算的点积，但是当其中有一个是矩阵时（包括一维矩阵），dot便进行矩阵乘法运算。所以如果是一个向量和一个矩阵相乘，这个向量会自动转换为一维矩阵进行计算。
+
+3. np.dot(a ,b), 其中a和b都是二维矩阵，此时dot就是进行的矩阵乘法运算
+
+import numpy as np
+ 
+a = np.random.randint(0, 10, size = (5, 5))
+b = np.random.randint(0, 10, size = (5, 3))
+print("the shape of a is " + str(a.shape))
+print("the shape of b is " + str(b.shape))
+print(np.dot(a, b))
+ 
+ 
+output:
+the shape of a is (5, 5)
+the shape of b is (5, 3)
+[[ 66  80  98]
+ [ 53  60  60]
+ [ 65  84  85]
+ [ 25 113 101]
+ [ 42  78  77]]
+[Finished in 0.2s]
+————————————————
+版权声明：本文为CSDN博主「pillstap」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/skywalker1996/article/details/82462499

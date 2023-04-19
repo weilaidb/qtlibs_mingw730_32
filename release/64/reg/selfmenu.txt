@@ -2502,6 +2502,9 @@ Python/API/file read write
 Python/API/logn
 Python/API/logn 10
 Python/API/logn 2
+Python/API/mean
+Python/API/neuralnet/Neuron
+Python/API/neuralnet/OurNeuralNetwork
 Python/API/np.array
 Python/API/thread
 Python/API/thread2
@@ -2539,7 +2542,11 @@ Python/idea快捷键
 Python/idea插件
 Python/idea插件 V起来 nextchatgpt
 Python/idea配置说明
+Python/know/NumPy教程：19种数据类型及对象（dtype）示例
+Python/know/np.dot()使用方法
+Python/know/numpy mean()函数 详解
 Python/know/numpy.array函数详解
+Python/know/numpy.zeros()函数的用法
 Python/know/如何自己从零实现一个神经网络?
 Python/list/列表大小 len
 Python/main
@@ -3241,6 +3248,8 @@ path路径/常用文件夹
 术语/JavaScript/new
 术语/Linux/FIB Forward Information Base
 术语/Linux/FIB Forward Information Base 2
+术语/Math数学/偏导数
+术语/Math数学/偏导数2
 术语/ROS/汇总(all)
 术语/WEB/AJAX
 术语/WEB/ASP/ASP 简介
