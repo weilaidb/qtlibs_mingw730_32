@@ -1,0 +1,1855 @@
+
+首页
+知学堂
+会员
+发现
+等你来答
+中国连续第 7 个月减持美国债
+​
+切换模式
+登录/注册
+如何自己从零实现一个神经网络?
+关注问题​写回答
+登录/注册
+编程
+计算机
+神经网络
+深度学习（Deep Learning）
+如何自己从零实现一个神经网络?
+不用tensorflow、caffe之类的东西，用C++、python等语言及其标准库，从零开始写一个有具体功能的神经网络？最好是处理图片、文字、音频…显示全部 ​
+关注者
+2,935
+被浏览
+806,162
+关注问题​写回答
+​邀请回答
+​好问题 121
+​2 条评论
+​分享
+​
+78 个回答
+默认排序
+量子位
+量子位​
+2020 年度新知答主
+7,080 人赞同了该回答
+“我在网上看到过很多神经网络的实现方法，但这一篇是最简单、最清晰的。”
+
+一位来自普林斯顿的华人小哥Victor Zhou，写了篇神经网络入门教程，在线代码网站Repl.it联合创始人Amjad Masad看完以后，给予如是评价。
+
+
+
+
+
+
+这篇教程发布仅天时间，就在Hacker News论坛上收获了574赞。程序员们纷纷夸赞这篇文章的代码写得很好，变量名很规范，让人一目了然。
+
+下面就让我们一起从零开始学习神经网络吧。
+
+实现方法
+搭建基本模块——神经元
+在说神经网络之前，我们讨论一下神经元（Neurons），它是神经网络的基本单元。神经元先获得输入，然后执行某些数学运算后，再产生一个输出。比如一个2输入神经元的例子：
+
+
+
+
+
+
+在这个神经元中，输入总共经历了3步数学运算，
+
+先将两个输入乘以权重（weight）：
+
+x1→x1 × w1
+x2→x2 × w2
+
+把两个结果想加，再加上一个偏置（bias）：
+
+（x1 × w1）+（x2 × w2）+ b
+
+最后将它们经过激活函数（activation function）处理得到输出：
+
+y = f(x1 × w1 + x2 × w2 + b)
+
+激活函数的作用是将无限制的输入转换为可预测形式的输出。一种常用的激活函数是sigmoid函数：
+
+
+
+
+
+
+sigmoid函数的输出介于0和1，我们可以理解为它把 (−∞,+∞) 范围内的数压缩到 (0, 1)以内。正值越大输出越接近1，负向数值越大输出越接近0。
+
+举个例子，上面神经元里的权重和偏置取如下数值：
+
+w=[0,1]
+b = 4
+
+w=[0,1]是w1=0、w2=1的向量形式写法。给神经元一个输入x=[2,3]，可以用向量点积的形式把神经元的输出计算出来：
+
+w·x+b =（x1 × w1）+（x2 × w2）+ b = 0×2+1×3+4=7
+y=f(w⋅X+b)=f(7)=0.999
+
+以上步骤的Python代码是：
+
+import numpy as np
+
+def sigmoid(x):
+  # Our activation function: f(x) = 1 / (1 + e^(-x))
+  return 1 / (1 + np.exp(-x))
+
+class Neuron:
+  def __init__(self, weights, bias):
+    self.weights = weights
+    self.bias = bias
+
+  def feedforward(self, inputs):
+    # Weight inputs, add bias, then use the activation function
+    total = np.dot(self.weights, inputs) + self.bias
+    return sigmoid(total)
+
+weights = np.array([0, 1]) # w1 = 0, w2 = 1
+bias = 4                   # b = 4
+n = Neuron(weights, bias)
+
+x = np.array([2, 3])       # x1 = 2, x2 = 3
+print(n.feedforward(x))    # 0.9990889488055994
+我们在代码中调用了一个强大的Python数学函数库NumPy。
+
+搭建神经网络
+神经网络就是把一堆神经元连接在一起，下面是一个神经网络的简单举例：
+
+
+
+
+这个网络有2个输入、一个包含2个神经元的隐藏层（h1和h2）、包含1个神经元的输出层o1。
+
+隐藏层是夹在输入输入层和输出层之间的部分，一个神经网络可以有多个隐藏层。
+
+把神经元的输入向前传递获得输出的过程称为前馈（feedforward）。
+
+我们假设上面的网络里所有神经元都具有相同的权重w=[0,1]和偏置b=0，激活函数都是sigmoid，那么我们会得到什么输出呢？
+
+h1=h2=f(w⋅x+b)=f((0×2)+(1×3)+0)
+=f(3)
+=0.9526
+
+o1=f(w⋅[h1,h2]+b)=f((0∗h1)+(1∗h2)+0)
+=f(0.9526)
+=0.7216
+
+以下是实现代码：
+
+import numpy as np
+
+# ... code from previous section here
+
+class OurNeuralNetwork:
+  '''
+  A neural network with:
+    - 2 inputs
+    - a hidden layer with 2 neurons (h1, h2)
+    - an output layer with 1 neuron (o1)
+  Each neuron has the same weights and bias:
+    - w = [0, 1]
+    - b = 0
+  '''
+  def __init__(self):
+    weights = np.array([0, 1])
+    bias = 0
+
+    # The Neuron class here is from the previous section
+    self.h1 = Neuron(weights, bias)
+    self.h2 = Neuron(weights, bias)
+    self.o1 = Neuron(weights, bias)
+
+  def feedforward(self, x):
+    out_h1 = self.h1.feedforward(x)
+    out_h2 = self.h2.feedforward(x)
+
+    # The inputs for o1 are the outputs from h1 and h2
+    out_o1 = self.o1.feedforward(np.array([out_h1, out_h2]))
+
+    return out_o1
+
+network = OurNeuralNetwork()
+x = np.array([2, 3])
+print(network.feedforward(x)) # 0.7216325609518421
+训练神经网络
+现在我们已经学会了如何搭建神经网络，现在我们来学习如何训练它，其实这就是一个优化的过程。
+
+假设有一个数据集，包含4个人的身高、体重和性别：
+
+
+
+
+现在我们的目标是训练一个网络，根据体重和身高来推测某人的性别。
+
+
+
+
+为了简便起见，我们将每个人的身高、体重减去一个固定数值，把性别男定义为1、性别女定义为0。
+
+
+
+
+
+
+在训练神经网络之前，我们需要有一个标准定义它到底好不好，以便我们进行改进，这就是损失（loss）。
+
+比如用均方误差（MSE）来定义损失：
+
+
+
+
+
+
+n是样本的数量，在上面的数据集中是4；
+y代表人的性别，男性是1，女性是0；
+ytrue是变量的真实值，ypred是变量的预测值。
+
+顾名思义，均方误差就是所有数据方差的平均值，我们不妨就把它定义为损失函数。预测结果越好，损失就越低，训练神经网络就是将损失最小化。
+
+如果上面网络的输出一直是0，也就是预测所有人都是男性，那么损失是：
+
+
+
+
+
+
+MSE= 1/4 (1+0+0+1)= 0.5
+
+计算损失函数的代码如下：
+
+import numpy as np
+
+def mse_loss(y_true, y_pred):
+  # y_true and y_pred are numpy arrays of the same length.
+  return ((y_true - y_pred) ** 2).mean()
+
+y_true = np.array([1, 0, 0, 1])
+y_pred = np.array([0, 0, 0, 0])
+
+print(mse_loss(y_true, y_pred)) # 0.5
+减少神经网络损失
+这个神经网络不够好，还要不断优化，尽量减少损失。我们知道，改变网络的权重和偏置可以影响预测值，但我们应该怎么做呢？
+
+为了简单起见，我们把数据集缩减到只包含Alice一个人的数据。于是损失函数就剩下Alice一个人的方差：
+
+
+
+
+
+
+预测值是由一系列网络权重和偏置计算出来的：
+
+
+
+
+
+
+所以损失函数实际上是包含多个权重、偏置的多元函数：
+
+
+
+
+
+
+（注意！前方高能！需要你有一些基本的多元函数微分知识，比如偏导数、链式求导法则。）
+
+如果调整一下w1，损失函数是会变大还是变小？我们需要知道偏导数∂L/∂w1是正是负才能回答这个问题。
+
+根据链式求导法则：
+
+
+
+
+
+
+而L=(1-ypred)2，可以求得第一项偏导数：
+
+
+
+
+接下来我们要想办法获得ypred和w1的关系，我们已经知道神经元h1、h2和o1的数学运算规则：
+
+
+
+
+实际上只有神经元h1中包含权重w1，所以我们再次运用链式求导法则：
+
+
+
+
+然后求∂h1/∂w1
+
+
+
+
+
+
+我们在上面的计算中遇到了2次激活函数sigmoid的导数f′(x)，sigmoid函数的导数很容易求得：
+
+
+
+
+
+
+总的链式求导公式：
+
+
+
+
+
+
+这种向后计算偏导数的系统称为反向传播（backpropagation）。
+
+上面的数学符号太多，下面我们带入实际数值来计算一下。h1、h2和o1
+
+h1=f(x1⋅w1+x2⋅w2+b1)=0.0474
+
+h2=f(w3⋅x3+w4⋅x4+b2)=0.0474
+
+o1=f(w5⋅h1+w6⋅h2+b3)=f(0.0474+0.0474+0)=f(0.0948)=0.524
+
+神经网络的输出y=0.524，没有显示出强烈的是男（1）是女（0）的证据。现在的预测效果还很不好。
+
+我们再计算一下当前网络的偏导数∂L/∂w1：
+
+
+
+
+
+
+这个结果告诉我们：如果增大w1，损失函数L会有一个非常小的增长。
+
+随机梯度下降
+下面将使用一种称为随机梯度下降（SGD）的优化算法，来训练网络。
+
+经过前面的运算，我们已经有了训练神经网络所有数据。但是该如何操作？SGD定义了改变权重和偏置的方法：
+
+
+
+
+
+
+η是一个常数，称为学习率（learning rate），它决定了我们训练网络速率的快慢。将w1减去η·∂L/∂w1，就等到了新的权重w1。
+
+当∂L/∂w1是正数时，w1会变小；当∂L/∂w1是负数 时，w1会变大。
+
+如果我们用这种方法去逐步改变网络的权重w和偏置b，损失函数会缓慢地降低，从而改进我们的神经网络。
+
+训练流程如下：
+
+1、从数据集中选择一个样本；
+2、计算损失函数对所有权重和偏置的偏导数；
+3、使用更新公式更新每个权重和偏置；
+4、回到第1步。
+
+我们用Python代码实现这个过程：
+
+import numpy as np
+
+def sigmoid(x):
+  # Sigmoid activation function: f(x) = 1 / (1 + e^(-x))
+  return 1 / (1 + np.exp(-x))
+
+def deriv_sigmoid(x):
+  # Derivative of sigmoid: f'(x) = f(x) * (1 - f(x))
+  fx = sigmoid(x)
+  return fx * (1 - fx)
+
+def mse_loss(y_true, y_pred):
+  # y_true and y_pred are numpy arrays of the same length.
+  return ((y_true - y_pred) ** 2).mean()
+
+class OurNeuralNetwork:
+  '''
+  A neural network with:
+    - 2 inputs
+    - a hidden layer with 2 neurons (h1, h2)
+    - an output layer with 1 neuron (o1)
+
+  *** DISCLAIMER ***:
+  The code below is intended to be simple and educational, NOT optimal.
+  Real neural net code looks nothing like this. DO NOT use this code.
+  Instead, read/run it to understand how this specific network works.
+  '''
+  def __init__(self):
+    # Weights
+    self.w1 = np.random.normal()
+    self.w2 = np.random.normal()
+    self.w3 = np.random.normal()
+    self.w4 = np.random.normal()
+    self.w5 = np.random.normal()
+    self.w6 = np.random.normal()
+
+    # Biases
+    self.b1 = np.random.normal()
+    self.b2 = np.random.normal()
+    self.b3 = np.random.normal()
+
+  def feedforward(self, x):
+    # x is a numpy array with 2 elements.
+    h1 = sigmoid(self.w1 * x[0] + self.w2 * x[1] + self.b1)
+    h2 = sigmoid(self.w3 * x[0] + self.w4 * x[1] + self.b2)
+    o1 = sigmoid(self.w5 * h1 + self.w6 * h2 + self.b3)
+    return o1
+
+  def train(self, data, all_y_trues):
+    '''
+    - data is a (n x 2) numpy array, n = # of samples in the dataset.
+    - all_y_trues is a numpy array with n elements.
+      Elements in all_y_trues correspond to those in data.
+    '''
+    learn_rate = 0.1
+    epochs = 1000 # number of times to loop through the entire dataset
+
+    for epoch in range(epochs):
+      for x, y_true in zip(data, all_y_trues):
+        # --- Do a feedforward (we'll need these values later)
+        sum_h1 = self.w1 * x[0] + self.w2 * x[1] + self.b1
+        h1 = sigmoid(sum_h1)
+
+        sum_h2 = self.w3 * x[0] + self.w4 * x[1] + self.b2
+        h2 = sigmoid(sum_h2)
+
+        sum_o1 = self.w5 * h1 + self.w6 * h2 + self.b3
+        o1 = sigmoid(sum_o1)
+        y_pred = o1
+
+        # --- Calculate partial derivatives.
+        # --- Naming: d_L_d_w1 represents "partial L / partial w1"
+        d_L_d_ypred = -2 * (y_true - y_pred)
+
+        # Neuron o1
+        d_ypred_d_w5 = h1 * deriv_sigmoid(sum_o1)
+        d_ypred_d_w6 = h2 * deriv_sigmoid(sum_o1)
+        d_ypred_d_b3 = deriv_sigmoid(sum_o1)
+
+        d_ypred_d_h1 = self.w5 * deriv_sigmoid(sum_o1)
+        d_ypred_d_h2 = self.w6 * deriv_sigmoid(sum_o1)
+
+        # Neuron h1
+        d_h1_d_w1 = x[0] * deriv_sigmoid(sum_h1)
+        d_h1_d_w2 = x[1] * deriv_sigmoid(sum_h1)
+        d_h1_d_b1 = deriv_sigmoid(sum_h1)
+
+        # Neuron h2
+        d_h2_d_w3 = x[0] * deriv_sigmoid(sum_h2)
+        d_h2_d_w4 = x[1] * deriv_sigmoid(sum_h2)
+        d_h2_d_b2 = deriv_sigmoid(sum_h2)
+
+        # --- Update weights and biases
+        # Neuron h1
+        self.w1 -= learn_rate * d_L_d_ypred * d_ypred_d_h1 * d_h1_d_w1
+        self.w2 -= learn_rate * d_L_d_ypred * d_ypred_d_h1 * d_h1_d_w2
+        self.b1 -= learn_rate * d_L_d_ypred * d_ypred_d_h1 * d_h1_d_b1
+
+        # Neuron h2
+        self.w3 -= learn_rate * d_L_d_ypred * d_ypred_d_h2 * d_h2_d_w3
+        self.w4 -= learn_rate * d_L_d_ypred * d_ypred_d_h2 * d_h2_d_w4
+        self.b2 -= learn_rate * d_L_d_ypred * d_ypred_d_h2 * d_h2_d_b2
+
+        # Neuron o1
+        self.w5 -= learn_rate * d_L_d_ypred * d_ypred_d_w5
+        self.w6 -= learn_rate * d_L_d_ypred * d_ypred_d_w6
+        self.b3 -= learn_rate * d_L_d_ypred * d_ypred_d_b3
+
+      # --- Calculate total loss at the end of each epoch
+      if epoch % 10 == 0:
+        y_preds = np.apply_along_axis(self.feedforward, 1, data)
+        loss = mse_loss(all_y_trues, y_preds)
+        print("Epoch %d loss: %.3f" % (epoch, loss))
+
+# Define dataset
+data = np.array([
+  [-2, -1],  # Alice
+  [25, 6],   # Bob
+  [17, 4],   # Charlie
+  [-15, -6], # Diana
+])
+all_y_trues = np.array([
+  1, # Alice
+  0, # Bob
+  0, # Charlie
+  1, # Diana
+])
+
+# Train our neural network!
+network = OurNeuralNetwork()
+network.train(data, all_y_trues)
+随着学习过程的进行，损失函数逐渐减小。
+
+
+
+
+
+
+现在我们可以用它来推测出每个人的性别了：
+
+# Make some predictions
+emily = np.array([-7, -3]) # 128 pounds, 63 inches
+frank = np.array([20, 2])  # 155 pounds, 68 inches
+print("Emily: %.3f" % network.feedforward(emily)) # 0.951 - F
+print("Frank: %.3f" % network.feedforward(frank)) # 0.039 - M
+更多
+这篇教程只是万里长征第一步，后面还有很多知识需要学习：
+
+1、用更大更好的机器学习库搭建神经网络，如Tensorflow、Keras、PyTorch
+2、在浏览器中的直观理解神经网络：https://playground.tensorflow.org/
+3、学习sigmoid以外的其他激活函数：https://keras.io/activations/
+4、学习SGD以外的其他优化器：https://keras.io/optimizers/
+5、学习卷积神经网络（CNN）
+6、学习递归神经网络（RNN）
+
+这些都是Victor给自己挖的“坑”。他表示自己未来“可能”会写这些主题内容，希望他能陆续把这些坑填完。如果你想入门神经网络，不妨去订阅他的博客。
+
+关于这位小哥
+Victor Zhou是普林斯顿2019级CS毕业生，已经拿到Facebook软件工程师的offer，今年8月入职。他曾经做过JS编译器，还做过两款页游，一个仇恨攻击言论的识别库。
+
+
+
+
+
+
+最后附上小哥的博客链接：
+
+— 完 —
+
+量子位 · QbitAI
+վ'ᴗ' ի 追踪AI技术和产品新动态
+
+欢迎大家关注我们，以及订阅我们的知乎专栏
+
+编辑于 2019-04-01 18:11
+​赞同 7080​
+​添加评论
+​分享
+​收藏
+​喜欢
+收起​
+ValK
+ValK
+只想学自己感兴趣的东西
+1,398 人赞同了该回答
+我是从高三开始入门的，一直是用C++来做神经网络。从造轮子开始，到实现模型，到封装模型，再到真正用seq2vec,seq2seq模型训练成功一些小玩意，所有的东西都是自己写的，但是资料都是从网上搜，学习也遇到好多坑。我将会在这里具体说说造轮子的过程。
+
+造轮子之前，必须要广泛查阅资料，自己推导前向传播和反向传播的所有过程，这个过程需要的知识点是偏导数以及链式法则，高中生其实是可以理解的（将偏导数理解为对多元函数中其中一个变量求导，把其他所有量都看作常数即可），不过稍微有点困难，这直接导致了我高三其实学的一知半解。
+
+首先入门实现要从最简单的BP开始，公式等内容不再一一赘述，网上有非常多的资料，个人草稿纸上推导的内容也早就丢失。确认理解后，就可以着手用C++开始写BP的轮子了。
+
+首先是各种激励函数。一开始你需要了解的激励函数可能只有sigmoid，但是随着学习深入，了解其他的激励函数很有必要。
+
+在激励函数方面需要写的是这个函数本身，以及它的导函数。sigmoid和tanh,elu等激励函数需要用到exp()函数，这个函数需要cmath头文件。IDE自选吧，怎么方便怎么来，我高中参加NOIP用Dev，一直到现在我才改用VScode（这个只能算工作台）。
+
+
+sigmoid
+
+tanh
+tanh其实在cmath库里就有写好的函数，可以直接调用的。
+
+
+ReLU
+relu用三目运算符就很舒服。elu和leaky relu也可以这么玩儿。不过我比较推荐leaky relu吧，因为relu很容易出现神经元死亡的情况（神经元无论接受什么样的数据，其总和都是负值，那么这个神经元没有任何输出，在反向过程中也无法进行权值更新，具体看自己推导）。
+
+以上是激励函数的一些例子。下面是写神经元的例子。
+
+写神经元的话，你可以单纯只用二维数组来写，直接做矩阵运算，但是当时我没有接触线性代数，所以用了个非常直观但是后期效率低下的方法。
+
+
+一般用struct
+首先定义输入神经元个数，隐藏层神经元个数，输出神经元个数，分别对应InputNum，HideNum，OutputNum。如果你觉得这个写法有点长，可以缩成INUM,HNUM,ONUM等等，怎么舒服怎么写。
+
+然后用struct来分别定义隐藏层神经元，输出层神经元。显然这个用C++的class有点大炮打蚊子的感觉，当然还是那一句，怎么舒服怎么写。如果你觉得我这么写有点重复的内容，可以使用template。
+
+
+用template灵活编写，还可复用
+然后bp必须要有的一些变/常量有：
+
+常量const double learningrate，大小自己定
+
+input[INUM]用于存储输入数据（单个batch），expect[ONUM]用于存储期望数据（单个batch）
+
+error,sigma_error，分别用于记录单个batch的误差，以及对所有batch的误差求和，记得初始化为一个很大的值，这是进入训练循环的必要条件。
+
+hidden[HNUM],output[ONUM]这两个是结构体数组，之后在写前向和反向过程中是必要的。
+
+以上所有变量都是全局变量。
+
+
+最基本的需要的函数
+TxtCheck()用于检查神经网络的数据是否存在，不存在的话进行INIT()并且输出数据保存为一个文件。INIT()即为初始化函数。
+
+
+INIT函数，第一句先确定随机数种子
+INIT()函数首先要先开始生成随机数，srand()加上unsigned (time(NULL))很不错，需要头文件ctime。在下面的语句里，对每个神经元的weight和bia进行初始化，具体内容按照需求来，这个自己可以灵活编辑，我这里只给个大框架。
+
+Datain和Dataout不多说了，显而易见是进行数据的输出和读取用的，用于在几个epoch后保存数据文件，避免下一次打开的时候重复训练。
+
+
+用ifstream和ofstream进行读取和输出，需要头文件fstream。上图双引号内填文件名（文件在该文件夹下）或者绝对地址（文件在其他地方）。
+
+Mainwork()函数用于读取训练集，首先sigma_error=0，接着依次循环对训练集中每个batch进行处理，读入input和expect中，然后调用Calc()函数进入前向传播阶段，再调用ErrorCalc()进入本次误差计算阶段，error在本次计算中被赋值。然后进行Training()反向传播，接着sigma_error+=error。
+
+
+Mainwork预览
+Calc()里面进行前向传播，基本上都是循环，不用我多说了吧？
+
+ErrorCalc()也是如此，同理Training()也是，所以写的这些东西里面，占了绝大多数的语句都是循环语句。
+
+
+
+*0.5比/2快不少哦，尤其是需要很多步骤的时候
+
+把整个过程都写下来啦。。。这是我个人喜好的写法，要是觉得看不明白或者觉得效率很低，也可以自己写的，反正能实现功能是关键！
+
+（有个小trick上图没体现出来，一般bia的增量是2*learningrate*diff，亲测效果不错）
+
+main里面基本上写一些调用的内容
+
+
+然后在C++里面，如果数据里出现了Inf，很有可能下面会出现NaN，然后循环会被动停止，给你输出含有一堆NaN的垃圾数据，为了避免这个，C++其实是有一个宏可以检测Inf和NaN的。
+
+isnan()和isinf()是cmath/math.h库里的宏，可以直接调用来判断
+
+
+到这里，我已经把写简单BP的诀窍说完了，如果你想写深度的，框架其实也差不多。以后我可能会更新的内容里面也基本上都是建立在这个框架体系之上的，希望能有所帮助。即使你可能不太能接受我这种不用矩阵运算的写法，但这也是一个用C++造轮子从零开始的例子，希望能给予你鼓励。
+
+下面贴个代码，当然不能直接复制了用，要自己修改的哦
+
+#include<iostream>
+#include<cmath>
+#include<ctime>
+#define INUM  2
+#define HNUM  5
+#define ONUM  2
+using namespace std;
+
+
+template <const int NUM>
+	struct neuron
+	{
+		double w[NUM],bia,diff;
+		double in,out;
+	};
+neuron<HNUM> hide[HNUM];
+neuron<ONUM> output[ONUM];
+const double learningrate=0.1;
+double input[INUM];
+double expect[ONUM];
+double sigma_error=1e8;
+double error=1e8;
+
+double sigmoid(double x)
+{
+	return 1.0/(1.0+exp(-x));
+}
+double diffsigmoid(double x)
+{
+	x=1.0/(1.0+exp(-x));
+	return x*(1-x);
+}
+double tanh(double x)
+{
+	return (exp(x)-exp(-x))/(exp(x)+exp(-x));
+}
+double  difftanh(double x)
+{
+	x=tanh(x);
+	return 1-x*x;
+}
+double relu(double x)
+{
+	return x>0? x:0;
+}
+double diffrelu(double x)
+{
+	return x>0? 1:0;
+}
+
+
+void TxtCheck();
+void INIT();
+void Datain();
+void Dataout();
+
+void Mainwork();
+void Calc();
+void ErrorCalc();
+void Training();
+
+int main()
+{
+	int epoch=0;
+	TxtCheck();
+	while(sigma_error>0.001)
+	{
+		epoch++;
+		Mainwork();
+		if(epoch%(一个数)==0)
+			Dataout();
+			//也可以写其他操作 
+	}
+	Dataout();
+	return 0;
+}
+
+void INIT()
+{
+	srand(unsigned(time(NULL)));
+	/*statement*/
+	return;
+}
+void Datain()
+{
+	ifstream fin("   ");
+	fin>>...
+	fin.close();
+}
+void Dataout()
+{
+	ofstream fout(" ");
+	fout<<...
+	fout.close();
+}
+void Mainwork()
+{
+	ifstream fin("数据集");
+	sigma_error=0;
+	for(int b=0;b<batch_size;b++)
+	{
+		/*处理batch数据，读入input和expect*/
+		Calc();
+		ErrorCalc();
+		Training();
+		sigma_error+=error;
+	}
+	fin.close();
+	return;
+}
+
+void Calc()
+{
+	for(int i=0;i<HNUM;i++)
+	{
+		hide[i].in=0;
+		hide[i].in+=hide[i].bia;
+		for(int j=0;j<INUM;j++)
+			hide[i].in+=input[j]*hide[i].w[j];
+		hide[i].out=sigmoid(hide[i].in);
+	}
+	/*
+	
+	
+	  other  statements
+	
+	
+	*/
+}
+void ErrorCalc()
+{
+	double trans;
+	error=0;
+	for(int i=0;i<ONUM;i++)
+	{
+		trans=output[i].out-expect[i];
+		error+=trans*trans;
+	}
+	error*=0.5;
+}
+
+void Training()
+{
+	for(int i=0;i<ONUM;i++)
+		output[i].diff=(expect[i]-output[i].out)*diffsigmoid(output[i].in);
+	//负号直接舍弃，因为整个传递过程这里的负号不带来影响 
+	//而且在最后更新数据的时候也不需要再*(-1)
+	for(int i=0;i<HNUM;i++)
+	{
+		hide[i].diff=0;
+		for(int j=0;j<ONUM;j++)
+			hide[i].diff+=output[j].diff*output[j].w[i];
+		hide[i].diff*=diffsigmoid(hide[i].in);
+	}
+	
+	for(int i=0;i<ONUM;i++)
+	{
+		output[i].bia+=learningrate*output[i].diff;
+		for(int j=0;j<HNUM;j++)
+			output[i].w[j]+=learningrate*output[i].diff*hide[j].out;
+	}
+	
+	for(int i=0;i<HNUM;i++)
+	{
+		hide[i].bia+=learningrate*hide[i].diff;
+		for(int j=0;j<INUM;j++)
+			hide[i].w[j]+=learningrate*hide[i].diff*input[j];
+	}
+	return;
+}
+2019/3/14 21:59更新
+
+
+AutoEncoder
+最近进军深度学习，少不了自动编码器，于是在LSTM的seq2seq模型上加入了AutoEncoder部分，由于初期的架构，循环很多，代码量很大，不过可以从以前的代码里复制，然后微微修改，再粘贴下来，等到有空之后，我会把自己RNN和LSTM的东西也分享分享的。
+
+2019/3/15更新
+
+功能函数的大体结构都如之前写的那样，现在讲述的都是其他一些神经元单元的设计和使用。我是做NLP自然语言处理的，自然语言处理必然少不了RNN，LSTM，GRU这些基本单元，那么按照上面的思路，RNN和LSTM的写法应该不难得出，不过变成了下面这样：
+
+#define MAXTIME 100
+
+template <const int InputNum,const int HideNum,const int Maxtime>
+	struct rnn_neuron
+	{
+		double wi[InputNum],wh[HideNum];
+		double bia,diff[Maxtime];
+		double in[Maxtime],out[Maxtime];
+	};
+template <const int InputNum,const int Maxtime>
+	struct nor_neuron
+	{
+		double w[InputNum],bia,diff[Maxtime];
+		double in[Maxtime],out[Maxtime];
+	};
+const double learningrate=0.1;
+
+rnn_neuron<INUM,HNUM,MAXTIME> hide[HNUM];
+nor_neuron<HNUM,MAXTIME>      output[ONUM];
+
+double                input[INUM][MAXTIME];
+double                expect[ONUM][MAXTIME];
+double                sigma_error=1e8;
+double                error=1e8;
+可以看出来出现了MAXTIME这个东西，这个辅助量是用于记录时间序列中每个时间刻的数据的，因为每个数据在最后BPTT的过程中都是必需的。rnn中的wi是对输入端的权重，wh是对前一时间刻隐藏层输出的权重。
+
+但是这样写还有个缺陷。struct中diff是记录这个单元在t时刻的训练增量的，显然如果直接遍历所有时间，把增量依次赋给数据是不太行的。因为每个时间刻内，增量可能数量级很小很小，甚至有可能到1e-8以及更小（在非常长的时间序列下，可以到1e-20的级别），直接赋给数据，就相当于给数据加上了0，丢失了精度。
+
+举个例子：double x=0.1,y=1e-10;
+
+x+y后，得出的结果仍然是0.1，显然是丢失了精度。
+
+那么为了避免出现这个问题，我们还需要再加上一个sigmadiff用于把所有时间刻的diff累加起来一起赋给数据。不过这样做的话，就要对每个时间下的每个数据（包括权重）做sigmadiff了，因为一开始求的diff是对bia的偏导数，如果直接全部加起来，获得的sigmadiff仅仅是对bia的sigmadiff。
+
+于是
+
+template <const int InputNum,const int HideNum,const int Maxtime>
+	struct rnn_neuron
+	{
+		double wi[InputNum],wh[HideNum],sigmawi[InputNum],sigmawh[HideNum];
+		double bia,diff[Maxtime]，sigmabia;
+		double in[Maxtime],out[Maxtime];
+	};
+template <const int InputNum,const int Maxtime>
+	struct nor_neuron
+	{
+		double w[InputNum],bia,diff[Maxtime],sigmaw[InputNum],sigmabia;
+		double in[Maxtime],out[Maxtime];
+	};
+就变成了这样。
+
+那么同理，lstm是一样的思路，不过数据更加多，而且随着数据量增加，训练速度也明显会变得非常慢（真的非常显著的变化！）
+
+template <const int Inputnum,const int Hidenum,const int Maxtime>
+	struct LSTM_neuron
+	{
+		double cell[Maxtime];
+		double out[Maxtime];
+		double fog_in[Maxtime],fog_out[Maxtime],fog_bia,fog_wi[InputNum],fog_wh[HideNum],fog_diff[Maxtime];
+		double sig_in[Maxtime],sig_out[Maxtime],sig_bia,sig_wi[InputNum],sig_wh[HideNum],sig_diff[Maxtime];
+		double tan_in[Maxtime],tan_out[Maxtime],tan_bia,tan_wi[InputNum],tan_wh[HideNum],tan_diff[Maxtime];
+		double out_in[Maxtime],out_out[Maxtime],out_bia,out_wi[InputNum],out_wh[HideNum],out_diff[Maxtime];
+		double fog_transbia,fog_transwi[InputNum],fog_transwh[HideNum];
+		double sig_transbia,sig_transwi[InputNum],sig_transwh[HideNum];
+		double tan_transbia,tan_transwi[InputNum],tan_transwh[HideNum];
+		double out_transbia,out_transwi[InputNum],out_transwh[HideNum];
+	};
+那么针对rnn和lstm的Calc()和Training()函数都要重新编写哦！
+
+接着就是利用这些单元来写一些模型，然后对测试好的模型进行封装。
+
+先拿一开始的BP做个例子吧。思想其实是很简单的，BP的神经元我们已经有个一个struct来定义了。那么我们用这个struct做一个class，把一些函数也包含进去。bp.h用于放template和class
+
+/*bp.h header file by ValK*/
+/*   2019/3/15 15:25      */
+#ifndef __BP_H__
+#define __BP_H__
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
+#include <fstream>
+using namespace std;
+
+template <const int NUM>
+	struct neuron
+	{
+		double w[NUM],bia,diff;
+		double in,out;
+	};
+class ActivateFunction
+{
+	public:
+		double sigmoid(double x)
+		{
+			return 1.0/(1.0+exp(-x));
+		}
+		double diffsigmoid(double x)
+		{
+			x=1.0/(1.0+exp(-x));
+			return x*(1-x);
+		}
+		double tanh(double x)
+		{
+			return (exp(x)-exp(-x))/(exp(x)+exp(-x));
+		}
+		double  difftanh(double x)
+		{
+			x=tanh(x);
+			return 1-x*x;
+		}
+		double relu(double x)
+		{
+			return x>0? x:0;
+		}
+		double diffrelu(double x)
+		{
+			return x>0? 1:0;
+		}
+};
+ActivateFunction fun;
+template<const int INUM,const int HNUM,const int ONUM>
+	class bp_neural_network
+	{
+		private:
+			neuron<HNUM> hide[HNUM];
+			neuron<ONUM> output[ONUM];
+			double learningrate;
+			double input[INUM];
+			double expect[ONUM];
+			int batch_size;
+			double sigma_error;
+			double error;
+		public:
+			int epoch;
+			void TxtCheck()
+			{
+				if(!fopen("data.ai","r"))
+				{
+					INIT();
+					Dataout();
+				}
+				if(!fopen("trainingdata.txt","r"))
+				{
+					cout<<"Cannot open file:trainingdata.txt"<<endl;
+					cout<<"Programme exited with an unexpected error"<<endl;
+					exit(0);
+				}	
+			}
+			bp_neural_network()
+			{
+				epoch=0;
+				sigma_error=1e8;
+				error=1e8;
+                                batch_size=1;
+                                learningrate=0.01;
+				TxtCheck();
+			}
+			void SetBatch(int Batch)
+			{
+				batch_size=Batch;
+				return;
+			}
+			void INIT()
+			{
+				srand(unsigned(time(NULL)));
+				/*statement*/
+				return;
+			}
+			void Datain()
+			{
+				ifstream fin("data.ai");
+				/*statement*/
+				fin.close();
+			}
+			void Dataout()
+			{
+				ofstream fout("data.ai");
+				/*statement*/
+				fout.close();
+			}
+			void Mainwork()
+			{
+				ifstream fin("trainingdata.txt");
+				sigma_error=0;
+				for(int b=0;b<batch_size;b++)
+				{
+					/*处理batch数据，读入input和expect*/
+					Calc();
+					ErrorCalc();
+					Training();
+					sigma_error+=error;
+				}
+				fin.close();
+				return;
+			}
+			void Calc()
+			{
+				for(int i=0;i<HNUM;i++)
+				{
+					hide[i].in=hide[i].bia;
+					for(int j=0;j<INUM;j++)
+						hide[i].in+=input[j]*hide[i].w[j];
+					hide[i].out=fun.sigmoid(hide[i].in);
+				}
+				for(int i=0;i<ONUM;i++)
+				{
+					output[i].in=output[i].bia;
+					for(int j=0;j<HNUM;j++)
+						output[i].in+=hide[j].out*output[i].w[j];
+					output[i].out=fun.sigmoid(output[i].in);
+				}
+			}
+			void ErrorCalc()
+			{
+				double trans;
+				error=0;
+				for(int i=0;i<ONUM;i++)
+				{
+					trans=output[i].out-expect[i];
+					error+=trans*trans;
+				}
+				error*=0.5;
+			}
+			void Training()
+			{
+				for(int i=0;i<ONUM;i++)
+					output[i].diff=(expect[i]-output[i].out)*fun.diffsigmoid(output[i].in);
+				//负号直接舍弃，因为整个传递过程这里的负号不带来影响 
+				//而且在最后更新数据的时候也不需要再*(-1)
+				for(int i=0;i<HNUM;i++)
+				{
+					hide[i].diff=0;
+					for(int j=0;j<ONUM;j++)
+						hide[i].diff+=output[j].diff*output[j].w[i];
+					hide[i].diff*=fun.diffsigmoid(hide[i].in);
+				}
+				for(int i=0;i<ONUM;i++)
+				{
+					output[i].bia+=learningrate*output[i].diff;
+					for(int j=0;j<HNUM;j++)
+						output[i].w[j]+=learningrate*output[i].diff*hide[j].out;
+				}
+				for(int i=0;i<HNUM;i++)
+				{
+					hide[i].bia+=learningrate*hide[i].diff;
+					for(int j=0;j<INUM;j++)
+						hide[i].w[j]+=learningrate*hide[i].diff*input[j];
+				}
+				return;
+			}
+	};
+#endif
+bpneuralnetwork这个template初始三个传参便是建立一个网络必须要的参数，这种思想在写其他template封装时很重要。
+
+neuron是struct单元，包括了基本bp神经元需要的数据，ActivateFunction类包括了一些需要使用的激励函数。
+
+省时间，一些函数的内容就不多写了。设计构造函数的时候可以自己创新，想怎么写怎么写，我这里构造函数先初始化了epoch，sigmerror，error，batch_size，还有learningrate。（直接把函数内容写class里面是被template逼的……教授要是看到了会骂死我）
+
+Mainwork函数一般推荐你不要封装进去。。因为bp可能会被用来处理各种各样的问题，为了保证灵活性，Mainwork还是自己在外面写吧，要什么功能再加进去就是了。
+
+写个小bug（误）来看看是否运行正常：
+
+
+没有问题，因为我没有训练集，所以在构造函数里判断出来了，直接退出了程序。
+
+更新内容基本结束~
+
+2019.5.14更新
+
+
+
+这次课设就写了相关的代码，不过和答案里提供的方法不太一样，这个头文件库里面所有的网络建立都是通过constructor传参+内存分配完成的，没有使用template。https://github.com/ValKmjolnir/easyNLP
+
+编辑于 2019-08-08 11:45
+​赞同 1398​
+​142 条评论
+​分享
+​收藏
+​喜欢
+收起​
+张觉非
+张觉非​
+误落尘网中，一去三十年。
+79 人赞同了该回答
+我向您推荐我们最新出版的一本书《用Python实现深度学习框架》：
+
+
+用Python实现深度学习框架
+京东
+¥85.40
+去购买
+​
+
+关于反向传播，网上很多讲解和推导都还在用单输出多元函数的偏导数说话，这是为了照顾数学基础不太牢固的读者。但是这样会非常繁琐，就像拿指甲刀剪纸。全连接网络的计算其实特别简单，就是反复实施线性变换+激活（严谨点说是仿射变换，因为还加了偏置）。用所谓“神经元”来比拟，它还算称得上是“网络”。但若用向量语言描述，它都算不上网络了，就是简单直给的复合映射。以雅可比矩阵作为多对多映射的“导”，全连接上的反向传播就是一个非常简单的式子，是链式法则的直接运用。
+
+全连接网络很少单独使用，它往往是作为更复杂网络的一个组分或部件。网络前部各种折腾，最后整成一个向量，连上一到两层全连接，再施加 SoftMax 。所以，我们不建议您去学习和实现全连接网络的反向传播了，那只是一个特例——计算图自动求导的特例。计算图自动求导的本质就是从结果节点向前传输雅可比矩阵，在此过程中储存中间结果反复使用，以空间换时间。
+
+我们建议您直接学习实现计算图框架，包括它的前向计算，反向传播（自动求导），以及优化算法。实现了计算图框架，您就等于实现了一大类机器学习算法，包括从最简单的逻辑回归到复杂的深度神经网络。这是因为，您可以用计算图的各类运算节点像搭积木一样搭出这些模型和网络。这时候您不用操心逐个 ad hoc 式地去分别实现这些模型和网络的反向传播和训练，因为计算图已经提供了统一的机制。
+
+在《用Python实现深度学习框架》中，我们带领读者用 Python+Numpy 从头实现了一个基于计算图的深度学习/神经网络框架（我们用Numpy保存矩阵和做矩阵乘法）。它支持计算图的搭建、自动求导以及各种优化算法。用这个框架，我们搭建了逻辑回归、多层全连接神经网络、RNN、CNN、FM、DeepFM 等模型和网络。当然，读者还可以用该框架搭建其它模型和网络，乃至设计自己的网络。必要时，读者也可以继承节点基类，实现其他类型的计算节点。本书前言和第一章试读：
+
+本书框架（MatrixSlow）的 github：https://github.com/zackchen/MatrixSlow。您可以看一看 example/ch07/nn_mnist.py 这份代码是如何用自己实现的框架搭建多层全连接神经网络，并用于 MNIST 的，然后再顺着代码看进去：
+
+# 导入MatrixSlow框架
+import matrixslow as ms
+
+# 构造计算图：输入向量，是一个784x1矩阵，不需要初始化，不参与训练
+x = ms.core.Variable(dim=(784, 1), init=False, trainable=False)
+
+# One-Hot类别标签，是10x1矩阵
+one_hot = ms.core.Variable(dim=(10, 1), init=False, trainable=False)
+
+# 输入层，100个神经元，激活函数为ReLU
+hidden_1 = ms.layer.fc(x, 784, 100, "ReLU")
+
+# 隐藏层，20个神经元，激活函数为ReLU
+hidden_2 = ms.layer.fc(hidden_1, 100, 20, "ReLU")
+
+# 输出层，10个神经元，无激活函数
+output = ms.layer.fc(hidden_2, 20, 10, None)
+
+# 概率输出
+predict = ms.ops.SoftMax(output)
+
+# 交叉熵损失
+loss = ms.ops.loss.CrossEntropyWithSoftMax(output, one_hot)
+
+# 学习率
+learning_rate = 0.001
+
+# 构造Adam优化器
+optimizer = ms.optimizer.Adam(ms.default_graph, loss, learning_rate)
+
+# 批大小为64
+batch_size = 64
+
+# 训练执行30个epoch
+for epoch in range(30):
+    
+    # 批计数器清零
+    batch_count = 0
+    
+    # 遍历训练集中的样本
+    for i in range(len(X)):
+        
+        # 取第i个样本，构造784x1矩阵对象
+        feature = np.mat(X[i]).T
+        
+        # 取第i个样本的One-Hot标签，10x1矩阵
+        label = np.mat(one_hot_label[i]).T
+        
+        # 将特征赋给x节点，将标签赋给one_hot节点
+        x.set_value(feature)
+        one_hot.set_value(label)
+        
+        # 调用优化器的one_step方法，执行一次前向传播和反向传播
+        optimizer.one_step()
+        
+        # 批计数器加1
+        batch_count += 1
+        
+        # 若批计数器大于等于批大小，则执行一次梯度下降更新，并清零计数器
+        if batch_count >= batch_size:
+            
+            # 打印当前epoch数，迭代数与损失值
+            print("epoch: {:d}, iteration: {:d}, loss: {:.3f}".format(
+                    epoch + 1, i + 1, loss.value[0, 0]))
+
+            # 优化器执行更新
+            optimizer.update()
+            batch_count = 0
+matrixslow 就是我们自己实现的框架。ms.core.Variable 类是变量节点类，我们用它存储网络的参数、特征或标签。ms.layer.fc 是一个构造全连接层（full-connected）的辅助函数，若进如函数体，会看到它构造权值矩阵、偏置向量以及矩阵乘法、加法、激活等计算节点。ms.ops.SoftMax 类是执行 SoftMax 计算的节点，它的值就是网络的输出了。
+
+ms.ops.loss.CrossEntropyWithSoftMax 是交叉熵节点，注意它没有以 ms.ops.SoftMax 类节点为输入，而是以更之前的节点为输入，它是把 SoftMax 和 Cross Entropy 二合一，这样雅可比矩阵的计算会比较简单。ms.optimizer.Adam 是 ADAM 优化器类。我们还实现了其他几种优化器类。
+
+最后再搭车推荐一下我的另一本书《深入理解神经网络》。这本书也有 ad-hoc 式的全连接反向传播的实现以及计算图的实现，但这本书更加偏重数学原理，更深刻：
+
+
+深入理解神经网络 从逻辑回归到CNN(图灵出品)
+京东
+¥85.50
+去购买
+​
+
+
+本人专栏：
+
+编辑于 2020-12-07 10:57
+​赞同 79​
+​5 条评论
+​分享
+​收藏
+​喜欢
+收起​
+logo
+数数科技
+广告​
+不感兴趣
+知乎广告介绍
+数数科技诚意之作《游戏数据分析：从方法到实践》，新书正式发布
+方法：从数据采集到指标体系，再到专题分析与探索性分析，常用方法一览无余 案例：解析数据驱动游戏业务增长典型案例，看数据分析如何助力打造爆款游戏 实践：游戏全生命周期四个关键阶段的数据分析实践，掌握精细化运营分析策略查看详情
+黑马程序员Python
+黑马程序员Python​
+已认证帐号
+221 人赞同了该回答
+手把手教你用卷积神经网络做垃圾分类，全文1.4w字，阅读大概需要10分钟。
+
+前言
+目前我国垃圾分类存在的主要问题有三点：
+
+1，垃圾分类正确率不高。
+
+2，居民缺乏垃圾分类的意识和相关知识。
+
+3，没有真正意义上的高效的垃圾分类系统。
+
+基于以上，我们用深度学习的方法做垃圾分类。从技术上旨在通过深度学习，实现垃圾的高精确度分类。
+
+
+卷积神经网络做垃圾分类-视频
+
+神经网络
+神经网络简介
+人工神经网络（ Artificial Neural Network， 简写为ANN）也简称为神经网络（NN），是一种模仿生物神经网络结构和功能的计算模型。经典的神经网络结构包含三个层次的神经网络。分别为输入层，输出层以及隐藏层。
+
+
+其中每层的圆圈代表一个神经元，隐藏层和输出层的神经元有输入的数据计算后输出，输入层的神经元只是输入。
+
+神经网络的特点
+每个连接都有个权值
+同一层神经元之间没有连接
+最后的输出结果对应的层也称之为全连接层
+神经网络是深度学习的重要算法，在图像（如图像的分类、检测）和自然语言处理（如文本分类、聊天等）有很多应用。
+
+神经网络原理
+神经网络分类的原理是怎么样的？我们还是围绕着损失、优化这两块去说。神经网络输出结果如何分类？
+
+
+神经网络解决多分类问题最常用的方法是设置n个输出节点，其中n为类别的个数。
+
+任意事件发生的概率都在0和1之间，且总有某一个事件发生（概率的和为1）。如果将分类问题中“一个样例属于某一个类别”看成一个概率事件，那么训练数据的正确答案就符合一个概率分布。如何将神经网络前向传播得到的结果也变成概率分布呢？Softmax回归就是一个非常常用的方法。
+
+softmax回归
+Softmax回归将神经网络输出转换成概率结果
+
+softmax(y_i) = \frac{e^{y_i}}{\sum_{j=1}^{n}e^{y_i}}
+
+
+
+如何理解这个公式的作用呢？看一下计算案例
+
+假设输出结果为：2.3, 4.1, 5.6
+softmax的计算输出结果为：
+y1_p = e^2.3/(e^2.3+e^4.1+e^5.6)
+y2_p = e^4.1/(e^2.3+e^4.1+e^5.6)
+y3_p = e^5.6/(e^2.3+e^4.1+e^5.6)
+这样就把神经网络的输出变成了概率输出 那么如何去衡量神经网络预测的概率分布和真实答案的概率分布之间的距离？
+
+交叉熵损失
+公式：
+
+H_{y^{'}}(y)= - \sum_{i}y_{i}^{'} log(y_i)
+
+为了能够衡量距离，目标值需要进行one-hot编码，能与概率值一一对应，如下图
+
+
+损失值如何计算？
+
+-(0log(0.10)+0log(0.05)+0log(0.15)+0log(0.10)+0log(0.05)+0log(0.20)
+    +1log(0.10)+0log(0.05)+0log(0.10)+0log(0.10))
+上述的结果为-1log(0.10)，那么为了减少这一个样本的损失。神经网络应该怎么做？所以会提高对应目标值为1的位置输出概率大小，下面是log函数，log函数时单调递增的，取负号之后就单调递减。所以在减小损失值时相应的就会增大对应的概率值，同时根据softmax公式，其他类别的概率必定会减少。所以这里会提高对应目标值为1的位置输出概率大小。
+
+
+那么神经网络是怎么来减少损失值或者是找到最小的损失值呢？
+
+梯度下降算法
+目的：使损失函数的值找到最小值
+
+函数的梯度（gradient）指出了函数的最陡增长方向。沿着梯度的方向走，函数增长得就越快。那么按梯度的负方向走，函数值自然就降低得最快了。模型的训练目标即是寻找合适的$w$与$b$以最小化损失函数值。假设$w$与$b$都是一维实数，那么可以得到如下的$J$关于$w$与$b$的图：
+
+
+可以看到，此损失函数$J$是一个凸函数
+
+参数w和b的更新公式为： w := w - \alpha\frac{dJ(w, b)}{dw}
+
+b := b - \alpha\frac{dJ(w, b)}{db}
+
+注：其中 α 表示学习速率，即每次更新的 w 的步伐长度。当 w 大于最优解 w′ 时，导数大于 0，那么 w 就会向更小的方向更新。反之当 w 小于最优解 w′ 时，导数小于 0，那么 w 就会向更大的方向更新。迭代直到收敛。
+通过平面来理解梯度下降过程：
+
+
+反向传播算法
+反向传播算法实际就是：我们使用链式求导法则，反向层层推进，计算出每一层神经节点的偏导数，然后使用梯度下降，不断调整每一个节点的权重，从而达到求得全局最小值的目的。
+
+案例：Mnist手写数字识别
+数据集介绍
+
+文件说明：
+
+train-images-idx3-ubyte.gz: training set images (9912422 bytes)
+train-labels-idx1-ubyte.gz: training set labels (28881 bytes)
+t10k-images-idx3-ubyte.gz: test set images (1648877 bytes)
+t10k-labels-idx1-ubyte.gz: test set labels (4542 bytes)
+网址：http://yann.lecun.com/exdb/mnist/
+Mnist数据集可以从官网下载，网址： http://yann.lecun.com/exdb/mnist/ 下载下来的数据集被分成两部分：55000行的训练数据集（mnist.train）和10000行的测试数据集（mnist.test）。每一个MNIST数据单元有两部分组成：一张包含手写数字的图片和一个对应的标签。我们把这些图片设为“xs”，把这些标签设为“ys”。训练数据集和测试数据集都包含xs和ys，比如训练数据集的图片是 mnist.train.images ，训练数据集的标签是 mnist.train.labels。
+
+
+我们可以知道图片是黑白图片，每一张图片包含28像素X28像素。我们把这个数组展开成一个向量，长度是 28x28 = 784。因此，在MNIST训练数据集中，mnist.train.images 是一个形状为 [60000, 784] 的张量。
+
+
+MNIST中的每个图像都具有相应的标签，0到9之间的数字表示图像中绘制的数字。用的是one-hot编码
+
+
+Mnist数据获取API
+TensorFlow框架自带了读取这个数据集的接口：
+
+from tensorflow.examples.tutorials.mnist import input_data
+mnist = input_data.read_data_sets(path, one_hot=True)
+mnist.train.next_batch(100)(提供批量获取功能)
+mnist.train.images、labels
+mnist.test.images、labels
+流程分析
+网络设计
+我们采用只有一层，即最后一个输出层的神经网络，也称之为全连接层神经网络。
+
+
+相关计算
+tf.matmul(a, b, name=None)+bias
+return:全连接结果，供交叉损失运算
+tf.train.GradientDescentOptimizer(learning_rate)
+梯度下降
+learning_rate:学习率
+method:
+minimize(loss):最小优化损失
+具体流程
+获取数据
+from tensorflow.examples.tutorials.mnist import input_data
+mnist = input_data.read_data_sets("./mnist_data/", one_hot=True)
+定义数据占位符，Mnist数据实时提供给placeholder
+# 1、准备数据
+# x [None, 784] y_true [None. 10]
+with tf.variable_scope("mnist_data"):
+    x = tf.placeholder(tf.float32, [None, 784])
+    y_true = tf.placeholder(tf.int32, [None, 10])
+全连接结果计算
+# 2、全连接层神经网络计算
+# 类别：10个类别  全连接层：10个神经元
+# 参数w: [784, 10]   b:[10]
+# 全连接层神经网络的计算公式：[None, 784] * [784, 10] + [10] = [None, 10]
+# 随机初始化权重偏置参数，这些是优化的参数，必须使用变量op去定义
+with tf.variable_scope("fc_model"):
+    weights = tf.Variable(tf.random_normal([784, 10], mean=0.0, stddev=1.0), name="w")
+    bias = tf.Variable(tf.random_normal([10], mean=0.0, stddev=1.0), name="b")
+    # fc层的计算
+    # y_predict [None, 10]输出结果，提供给softmax使用
+    y_predict = tf.matmul(x, weights) + bias
+损失计算与优化
+# 3、softmax回归以及交叉熵损失计算
+with tf.variable_scope("loss"):
+    # labels:真实值 [None, 10]  one_hot
+    # logits:全脸层的输出[None,10]
+    # 返回每个样本的损失组成的列表
+    loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y_true,
+                                                                  logits=y_predict))
+# 4、梯度下降损失优化
+with tf.variable_scope("optimizer"):
+    # 学习率
+    optimizer = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
+模型训练
+# 开启会话去训练
+with tf.Session() as sess:
+    # 初始化变量
+    sess.run(tf.global_variables_initializer())
+    if FLAGS.is_train == 1:
+        # 循环步数去训练
+        for i in range(1000):
+            # 获取数据，实时提供
+            # 每步提供50个样本训练          
+                mnist_x, mnist_y = mnist.train.next_batch(100)
+                _, loss_value = sess.run([optimizer, loss], feed_dict={x:mnist_x, y:mnist_y})
+                print('第%d次训练, 损失值%.4f' %(i+1, loss_value))
+完善模型功能
+如何计算准确率
+equal_list = tf.equal(tf.argmax(y, 1), tf.argmax(y_label, 1))
+accuracy = tf.reduce_mean(tf.cast(equal_list, tf.float32))
+
+# 5、得出每次训练的准确率（通过真实值和预测值进行位置比较，每个样本都比较）
+with tf.variable_scope("accuracy"):
+    equal_list = tf.equal(tf.argmax(y_true, 1), tf.argmax(y_predict, 1))
+    accuracy = tf.reduce_mean(tf.cast(equal_list, tf.float32))
+使用测试集评估模型
+# 6、定义一个flag判断是否是训练模式
+tf.app.flags.DEFINE_integer("is_train", 1, "指定是否是训练模型，还是拿数据去预测")
+FLAGS = tf.app.flags.FLAGS
+...
+# 每次拿十个样本预测
+mnist_x, mnist_y = mnist.test.next_batch(10)
+卷积神经网络
+卷积神经网络简介
+传统意义上的多层神经网络是只有输入层、隐藏层、输出层。其中隐藏层的层数根据需要而定，没有明确的理论推导来说明到底多少层合适
+卷积神经网络CNN，在原来多层神经网络的基础上，加入了更加有效的特征学习部分，具体操作就是在原来的全连接层前面加入了卷积层与池化层。卷积神经网络出现，使得神经网络层数得以加深，“深度”学习由此而来。
+通常所说的深度学习，一般指的是这些CNN等新的结构以及一些新的方法（比如新的激活函数Relu等），解决了传统多层神经网络的一些难以解决的问题
+卷积神经网络原理
+先来看一个示意图：
+
+
+卷积神经网络三个结构
+神经网络(neural networks)的基本组成包括输入层、隐藏层、输出层。而卷积神经网络的特点在于隐藏层分为卷积层和池化层(pooling layer，又叫下采样层)以及激活层。每一层的作用
+
+卷积层：通过在原始图像上平移来提取特征
+激活层：增加非线性分割能力
+池化层：减少学习的参数，降低网络的复杂度（最大池化和平均池化）
+为了能够达到分类效果，还会有一个全连接层(Full Connection)也就是最后的输出层，进行损失计算并输出分类结果。
+
+卷积层
+
+参数及结构
+
+四个超参数控制输出体积的大小：过滤器大小，深度，步幅和零填充。得到的每一个深度也叫一个Feature Map。
+
+卷积层的处理，在卷积层有一个重要的就是过滤器大小（需要自己指定），若输入值是一个[32x32x3]的大小（例如RGB CIFAR-10彩色图像）。如果每个过滤器（Filter）的大小为5×5，则CNN层中的每个Filter将具有对输入体积中的[5x5x3]区域的权重，总共5 5 3 = 75个权重（和+1偏置参数），输入图像的3个深度分别与Filter的3个深度进行运算。请注意，沿着深度轴的连接程度必须为3，因为这是输入值的深度，并且也要记住这只是一个Filter。
+
+假设输入卷的大小为[16x16x20]。然后使用3x3的示例接收字段大小，CNN中的每个神经元现在将具有总共3 3 20 = 180个连接到输入层的连接。
+卷积层的输出深度，那么一个卷积层的输出深度是可以指定的，输出深度是由你本次卷积中Filter的个数决定。加入上面我们使用了64个Filter，也就是[5,5,3,64]，这样就得到了64个Feature Map，这样这64个Feature Map可以作为下一次操作的输入值
+
+卷积层的输出宽度，输出宽度可以通过特定算数公式进行得出，后面会列出公式。
+
+卷积输出值的计算
+我们用一个简单的例子来讲述如何计算卷积，然后，我们抽象出卷积层的一些重要概念和计算方法。
+
+假设有一个55的图像，使用一个33的filter进行卷积，得到了到一个33的Feature Map，至于得到33大小，可以自己去计算一下。如下所示：
+
+
+我们看下它的计算过程，首先计算公式如下：
+
+
+根据计算的例子，第一次：
+
+
+第二次：
+
+
+通过这样我们可以依次计算出Feature Map中所有元素的值。下面的动画显示了整个Feature Map的计算过程：
+
+
+步长
+
+那么在卷积神经网络中有一个概念叫步长，也就是Filter移动的间隔大小。上面的计算过程中，步幅(stride)为1。步幅可以设为大于1的数。例如，当步幅为2时，我们可以看到得出2*2大小的Feature Map，发现这也跟步长有关。Feature Map计算如下：
+
+
+
+
+
+填充和多Filter
+我们前面还曾提到，每个卷积层可以有多个filter。每个filter和原始图像进行卷积后，都可以得到一个Feature Map。因此，卷积后Feature Map的深度(个数)和卷积层的filter个数是相同的。
+
+如果我们的步长移动与filter的大小不适合，导致不能正好移动到边缘怎么办？
+
+
+以上就是卷积层的计算方法。这里面体现了局部连接和权值共享：每层神经元只和上一层部分神经元相连(卷积计算规则)，且filter的权值对于上一层所有神经元都是一样的。
+
+总结输出大小
+
+输入体积大小$H_1W_1D_1$
+四个超参数：
+Filter数量K
+Filter大小F
+步长S
+零填充大小P
+输出体积大小$H_2W_2D_2$
+$H_2 = (H_1 - F + 2P)/S + 1$
+$W_2 = (W_1 - F + 2P)/S + 1$
+$D_2 = K$
+激活函数-Relu
+一般在进行卷积之后就会提供给激活函数得到一个输出值。我们不使用$sigmoid$，$softmax$，而使用$Relu$。该激活函数的定义是：
+
+$f(u)= max(0,u)$
+
+Relu函数如下：
+
+
+特点
+
+速度快：与sigmoid函数需要计算指数和倒数相比，relu函数其实就是一个max(0,u)，计算代价小很多
+稀疏性： 因为relu函数在输入小于0时是完全不激活的，因此可以获得一个更低的激活率。
+池化计算
+池化层主要的作用是下采样，通过去掉Feature Map中不重要的样本，进一步减少参数数量。池化的方法很多，最常用的是Max Pooling。Max Pooling实际上就是在$n$个样本中取最大值，作为采样后的样本值。下图是max pooling：
+
+
+除了Max Pooing之外，常用的还有Mean Pooling——取各样本的平均值。对于深度为D的Feature Map，各层独立做Pooling，因此Pooling后的深度仍然为D。
+
+全连接层
+前面的卷积和池化相当于做特征工程，后面的全连接相当于做特征加权，最后的全连接层在整个卷积神经网络中起到“分类器”的作用。
+
+实例探究
+卷积网络领域有几种架构，名称。最常见的是：
+
+LeNet：卷积网络的第一个成功应用是由Yann LeCun于1990年代开发的。其中最著名的是LeNet架构，用于读取邮政编码，数字等。
+AlexNet：卷积网络在计算机视觉中的第一个应用是AlexNet，由亚历克斯·克里维斯基，伊利亚·萨茨基弗和吉奥夫·欣顿发展。AlexNet在2012年被提交给ImageNet ILSVRC挑战，明显优于第二名。该网络与LeNet具有非常相似的体系结构，但是使用更多层数，更大和更具特色的卷积层。
+ZFNet。ILSVRC 2013获奖者是Matthew Zeiler和Rob Fergus的卷积网络。它被称为ZFNet（Zeiler＆Fergus Net的缩写）。通过调整架构超参数，特别是通过扩展中间卷积层的大小，使第一层的步幅和过滤器尺寸更小，对AlexNet的改进。
+GoogleNet。ILSVRC 2014获奖者是Szegedy等人的卷积网络。来自Google。其主要贡献是开发一个初始模块，大大减少了网络中的参数数量（4M，与AlexNet的60M相比）。GoogLeNet还有几个后续版本，最近的是Inception-v4。
+VGGNet。2011年ILSVRC的亚军是来自Karen Simonyan和Andrew Zisserman的网络，被称为VGGNet。它的主要贡献在于表明网络的深度是良好性能的关键组成部分。他们最终的网络包含16个CONV / FC层，并且具有非常均匀的架构，从始至终只能执行3x3卷积和2x2池化。VGGNet的缺点是使用更多的内存和参数更多。
+ResNet。Kaiming He等人开发的残差网络 是ILSVRC 2015的获胜者。它大量使用特殊的跳过连接和批量归一化。该架构在网络末端也没有使用全连接层。ResNets目前是迄今为止最先进的卷积神经网络模型。
+下面就是VGGNet的结构：
+
+INPUT: [224x224x3]        memory:  224*224*3=150K   weights: 0
+CONV3-64: [224x224x64]  memory:  224*224*64=3.2M   weights: (3*3*3)*64 = 1,728
+CONV3-64: [224x224x64]  memory:  224*224*64=3.2M   weights: (3*3*64)*64 = 36,864
+POOL2: [112x112x64]  memory:  112*112*64=800K   weights: 0
+CONV3-128: [112x112x128]  memory:  112*112*128=1.6M   weights: (3*3*64)*128 = 73,728
+CONV3-128: [112x112x128]  memory:  112*112*128=1.6M   weights: (3*3*128)*128 = 147,456
+POOL2: [56x56x128]  memory:  56*56*128=400K   weights: 0
+CONV3-256: [56x56x256]  memory:  56*56*256=800K   weights: (3*3*128)*256 = 294,912
+CONV3-256: [56x56x256]  memory:  56*56*256=800K   weights: (3*3*256)*256 = 589,824
+CONV3-256: [56x56x256]  memory:  56*56*256=800K   weights: (3*3*256)*256 = 589,824
+POOL2: [28x28x256]  memory:  28*28*256=200K   weights: 0
+CONV3-512: [28x28x512]  memory:  28*28*512=400K   weights: (3*3*256)*512 = 1,179,648
+CONV3-512: [28x28x512]  memory:  28*28*512=400K   weights: (3*3*512)*512 = 2,359,296
+CONV3-512: [28x28x512]  memory:  28*28*512=400K   weights: (3*3*512)*512 = 2,359,296
+POOL2: [14x14x512]  memory:  14*14*512=100K   weights: 0
+CONV3-512: [14x14x512]  memory:  14*14*512=100K   weights: (3*3*512)*512 = 2,359,296
+CONV3-512: [14x14x512]  memory:  14*14*512=100K   weights: (3*3*512)*512 = 2,359,296
+CONV3-512: [14x14x512]  memory:  14*14*512=100K   weights: (3*3*512)*512 = 2,359,296
+POOL2: [7x7x512]  memory:  7*7*512=25K  weights: 0
+FC: [1x1x4096]  memory:  4096  weights: 7*7*512*4096 = 102,760,448
+FC: [1x1x4096]  memory:  4096  weights: 4096*4096 = 16,777,216
+FC: [1x1x1000]  memory:  1000 weights: 4096*1000 = 4,096,000
+
+TOTAL memory: 24M * 4 bytes ~= 93MB / image (only forward! ~*2 for bwd)
+TOTAL params: 138M parameters
+Inception-ResNet-v2介绍
+Inception
+问题：
+
+图像中突出部分的大小差别很大。例如，狗的图像可以是以下任意情况。每张图像中狗所占区域都是不同的。
+
+从左到右：狗占据图像的区域依次减小
+
+由于信息位置的巨大差异，为卷积操作选择合适的卷积核大小就比较困难。信息分布更全局性的图像偏好较大的卷积核，信息分布比较局部的图像偏好较小的卷积核。
+非常深的网络更容易过拟合。将梯度更新传输到整个网络是很困难的。
+简单地堆叠较大的卷积层非常消耗计算资源。
+解决方案：
+
+为什么不在同一层级上运行具备多个尺寸的滤波器呢？网络本质上会变得稍微「宽一些」，而不是「更深」。作者因此设计了 Inception 模块。
+
+下图是「原始」Inception 模块。它使用 3 个不同大小的滤波器（1x1、3x3、5x5）对输入执行卷积操作，此外它还会执行最大池化。所有子层的输出最后会被级联起来，并传送至下一个 Inception 模块。
+
+
+原始 Inception 模块。
+
+ResNet
+随着网络的加深，出现了训练集准确率下降的现象，因为梯度反向传播到前面的层，重复相乘可能使梯度无穷小。结果就是，随着网络的层数更深，其性能趋于饱和，甚至开始迅速下降。所以作者针对这个问题提出了一种全新的网络，叫深度残差网络（ResNet）其核心思想是引入一个所谓的「恒等快捷连接」（identity shortcut connection），直接跳过一个或多个层，如下图所示：
+
+Inception-ResNet-v2
+Google团队发布**Inception-ResNet-v2，它在ILSVRC图像分类基准测试中实现了当下最好的成绩。Inception-ResNet-v2是早期Inception V3模型变化而来，从微软的残差网络（ResNet）论文中得到了一些灵感。
+
+
+使用Inception-ResNet-v2进行垃圾分类
+数据集介绍
+下载链接https://github.com/garythung/trashnet/blob/master/data/dataset-resized.zip
+
+数据集一共分了六个类别，分别是：cardboard glass metal paper plastic trash，一共2527个样本
+
+
+glass样本示例
+
+处理流程
+数据预处理：
+设置数据类别
+class_names_to_ids = {'cardboard': 0, 'glass': 1, 'metal': 2, 'paper':3, 'plastic':4, 'trash':5}
+把文件名及类别写入文件
+import os
+data_dir = 'dataset/'
+output_path = 'list.txt'
+fd = open(output_path, 'w')
+for class_name in class_names_to_ids.keys():
+    images_list = os.listdir(data_dir + class_name)
+    for image_name in images_list:
+        fd.write('{}/{} {}\n'.format(class_name, image_name, class_names_to_ids[class_name]))
+fd.close()
+划分训练集合测试集
+# 随机选取样本做训练集和测试集
+import random
+_NUM_VALIDATION = 505
+_RANDOM_SEED = 0
+list_path = 'list.txt'
+train_list_path = 'list_train.txt'
+val_list_path = 'list_val.txt'
+fd = open(list_path)
+lines = fd.readlines()
+fd.close()
+random.seed(_RANDOM_SEED)
+random.shuffle(lines)
+fd = open(train_list_path, 'w')
+for line in lines[_NUM_VALIDATION:]:
+    fd.write(line)
+fd.close()
+fd = open(val_list_path, 'w')
+for line in lines[:_NUM_VALIDATION]:
+    fd.write(line)
+fd.close()
+加载数据
+解析训练集测试集文件名
+python def get_train_test_data(list_file): list_train = open(list_file) x_train = [] y_train = [] for line in list_train.readlines(): x_train.append(line.strip()[:-2]) y_train.append(int(line.strip()[-1])) #print(line.strip()) return x_train, y_train x_train, y_train = get_train_test_data('list_train.txt') x_test, y_test = get_train_test_data('list_val.txt')
+
+加载并预处理数据
+python def process_train_test_data(x_path): images = [] for image_path in x_path: img_load = load_img('dataset/'+image_path) img = image.img_to_array(img_load) img = preprocess_input(img) images.append(img) return images train_images = process_train_test_data(x_train) test_images = process_train_test_data(x_test)
+
+构造模型
+这里使用预先keras中已经训练好的InceptionResNetV2模型，模型的最后一层全连接层加载模型时不加载，按照我们需要分类的类别数进行设置。
+
+from keras.applications.inception_resnet_v2 import InceptionResNetV2
+base_model = InceptionResNetV2(include_top=False, pooling='avg')
+outputs = Dense(6, activation='softmax')(base_model.output)
+model = Model(base_model.inputs, outputs)
+模型训练与保存
+# 设置ModelCheckpoint，按照验证集的准确率进行保存
+save_dir='train_model'
+filepath="model_{epoch:02d}-{val_acc:.2f}.hdf5"
+checkpoint = ModelCheckpoint(os.path.join(save_dir, filepath), monitor='val_acc',verbose=1, 
+                            save_best_only=True)
+# 模型设置
+def acc_top3(y_true, y_pred):
+    return top_k_categorical_accuracy(y_true, y_pred, k=3)
+
+def acc_top5(y_true, y_pred):
+    return top_k_categorical_accuracy(y_true, y_pred, k=5)
+
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy', acc_top3, acc_top5])
+# 模型训练
+model.fit(np.array(train_images), to_categorical(y_train),
+          batch_size=8,
+          epochs=5,
+          shuffle=True,
+          validation_data=(np.array(test_images), to_categorical(y_test)),
+          callbacks=[checkpoint])
+# 训练结果输出示例
+Train on 2022 samples, validate on 505 samples
+Epoch 1/5
+2022/2022 [==============================] - 238s 118ms/step - loss: 0.1213 - acc: 0.9629 - acc_top3: 0.9970 - acc_top5: 0.9990 - val_loss: 0.6070 - val_acc: 0.8653 - val_acc_top3: 0.9644 - val_acc_top5: 0.9921
+Epoch 00001: val_acc improved from 0.86139 to 0.86535, saving model to train_model/model_01-0.87.hdf5
+模型加载与预测
+# 加载指定模型
+model.load_weights('train_model/model_01-0.87.hdf5')
+# 直接使用predict方法进行预测
+y_pred = model.predict(np.array(test_images))
+结果分析
+可以看到在验证集上的top1准确率是86.53%，top3的准确率是96.44%，相比于Inception-ResNet-v2模型本身的准确率有一些提升，也说明我们在Inception-ResNet-v2微调之后的这个垃圾分类模型充分利用了原模型已经学习到的规律，并对我们这个特定数据集有很好的预测能力。
+
+发布于 2022-09-01 16:12
+​赞同 221​
+​7 条评论
+​分享
+​收藏
+​喜欢
+收起​
+春阳CYang
+春阳CYang​
+人工智能架构师 / 干货满满
+93 人赞同了该回答
+动机：为了更好地理解深度学习，我决定从头开始构建一个神经网络，而不需要像 TensorFlow 这样的深度学习库。我相信，了解神经网络的内部工作对任何有抱负的数据科学家来说都是非常重要的。
+
+什么是神经网络？
+大多数神经网络的介绍性文本在描述它们时都会提到它和大脑的类比。在不深入研究大脑的情况下，我发现更容易将神经网络简单地描述为一个数学函数，将给定的输入映射（计算）为一个期望的输出。
+
+神经网络由以下这些组件组成
+
+输入层，x；
+任意数量的隐藏层；
+输出层，ŷ；
+在每层之间的权重(weights)和偏差(biases)，W 和 b；
+每个隐藏层的激活函数选择，σ。在本篇中，我们将使用 Sigmoid 激活函数。
+下图显示了 2 层神经网络的结构（注意，在计算神经网络的层数时，输入层通常被排除在外）
+
+
+用 Python 创建神经网络类非常的容易。
+
+class NeuralNetwork:
+    def __init__(self, x, y):
+        self.input      = x
+        self.weights1   = np.random.rand(self.input.shape[1],4) 
+        self.weights2   = np.random.rand(4,1)                 
+        self.y          = y
+        self.output     = np.zeros(y.shape)
+训练神经网络
+简单的两层神经网络的输出 ŷ 为：
+
+
+你可能会注意到，在上面的方程中，权重 W 和偏差 b 是唯一影响输出 ŷ 的变量。
+
+当然，权重和偏差的正确值决定了预测的准确性。根据输入数据微调权重和偏差的过程称为神经网络训练。
+
+训练过程的每次迭代都包括以下步骤：
+
+计算预测输出 ŷ，称为前馈计算(feedforward)
+更新权重和偏差，称为反向传播(backpropagation)
+下面的序列图说明了这个过程。
+
+
+前馈计算（Feedforward）
+As we’ve seen in the sequential graph above, feedforward is just simple calculus and for a basic 2-layer neural network, the output of the Neural Network is: 正如我们在上面的序列图中看到的，前馈只是简单的计算，对于简单的的 2 层神经网络，神经网络的输出是：
+
+
+让我们在 python 代码中添加一个前馈函数来实现这一点。注意，为了简单起见，我们假设偏差为 0。
+
+class NeuralNetwork:
+    def __init__(self, x, y):
+        self.input      = x
+        self.weights1   = np.random.rand(self.input.shape[1],4) 
+        self.weights2   = np.random.rand(4,1)                 
+        self.y          = y
+        self.output     = np.zeros(self.y.shape)
+
+    def feedforward(self):
+        self.layer1 = sigmoid(np.dot(self.input, self.weights1))
+        self.output = sigmoid(np.dot(self.layer1, self.weights2))
+然而，我们仍然需要一种方法来评估我们预测的有多 “好”（即我们的预测离我们想要的有多远）？损失函数使我们能够做到这一点。
+
+损失函数（Loss Function）
+有许多可用的损失函数，而我们问题的性质应该决定我们对损失函数的选择。在本篇中，我们将使用简单的平方和误差作为损失函数。
+
+
+也就是说，平方和误差就是每个预测值和实际值之间的差值之和的平方，这样我们就可以测量出“现实和理想之间差值”的绝对值了。
+
+我们在训练中的目标是找到一组最佳的权重和偏差，以最小化损失函数。
+
+反向传播（Backpropagation）
+现在我们已经测量了预测的误差（损失），我们需要找到一种方法将误差传播回来，并更新我们的权重和偏差。
+
+为了知道调整权重和偏差的适当的大小，我们需要知道损失函数相对于权重和偏差的导数。
+
+回想一下微积分，函数的导数就是函数的斜率。
+
+
+如果我们能够计算出导数，我们可以简单地通过增加/减少它来更新权重和偏差（参见上图）。这就称为梯度下降。
+
+然而，我们不能直接计算损失函数对权重和偏差的导数，因为损失函数的方程并不包含权重和偏差。因此，我们需要链式法则(Chian Rule)来帮助我们计算它。
+
+
+嚯！这看起来很难看，但它可以让我们得到我们所需要的 -- 损失函数相对于权重的导数（斜率），这样我们就可以相应地调整权重。
+
+现在我们有了这些，让我们将反向传播函数添加到 python 代码中。
+
+class NeuralNetwork:
+    def __init__(self, x, y):
+        self.input      = x
+        self.weights1   = np.random.rand(self.input.shape[1],4) 
+        self.weights2   = np.random.rand(4,1)                 
+        self.y          = y
+        self.output     = np.zeros(self.y.shape)
+
+    def feedforward(self):
+        self.layer1 = sigmoid(np.dot(self.input, self.weights1))
+        self.output = sigmoid(np.dot(self.layer1, self.weights2))
+
+    def backprop(self):
+        # 应用链式法则求损失函数关于weights2和weights1的导数
+        d_weights2 = np.dot(self.layer1.T, (2*(self.y - self.output) * sigmoid_derivative(self.output)))
+        d_weights1 = np.dot(self.input.T,  (np.dot(2*(self.y - self.output) * sigmoid_derivative(self.output), self.weights2.T) * sigmoid_derivative(self.layer1)))
+
+        # 用损失函数的导数（斜率）更新权重
+        self.weights1 += d_weights1
+        self.weights2 += d_weights2
+为了更深入地理解微积分和链规则在反向传播中的应用，我强烈推荐3Blue1Brown编写的教程。
+
+把上面这些放在一起
+现在我们有了完整的用于进行前馈和反向传播的 python 代码，让我们把神经网络应用于一个实例，看看它的表现如何。
+
+
+我们的神经网络要去学习表示这个函数的理想权重和bias。
+
+让我们对神经网络进行 1500 次迭代的训练，看看会发生什么。查看下面的每次迭代的损失图，我们可以清楚地看到损失单调地向最小值递减。这与我们前面讨论的梯度下降算法是一致的。
+
+
+让我们看看 1500 次迭代后神经网络的最终预测（输出）。
+
+
+我们做到了！我们的前馈和反向传播算法成功地训练了神经网络，预测结果收敛于我们真实想要的值。
+
+请注意，预测值和实际值之间存在细微差异。这是可取的，因为它可以防止过拟合，并允许神经网络更好地泛化到它没有见过的数据。
+
+接下来？
+我们的旅程还没有结束。关于神经网络和深度学习，还有很多东西需要学习。比如：
+
+除了 Sigmoid 函数，我们还可以使用其他什么激活函数？
+在训练神经网络时使用的学习率(Learning Rate)
+更加复杂的优化技术
+将卷积用于图像分类任务、自然语言处理任务等
+等等等等
+我会写更多关于这些主题的文章，欢迎关注这些文章的更新！
+
+编辑于 2022-10-13 16:26
+​赞同 93​
+​8 条评论
+​分享
+​收藏
+​喜欢
+收起​
+QR Code of Downloading Zhihu App
+下载知乎客户端
+与世界分享知识、经验和见解
+广告
+广告
+相关问题
+如何从零实现一个神经网络？ 0 个回答
+自己如何从零开始构建一个神经网络？ 0 个回答
+我如何设计以下神经网络? 2 个回答
+什么是轻量级神经网络？ 6 个回答
+如何设计一个神经网络？ 0 个回答
+相关推荐
+live
+Python 神经网络编程
+塔里克·拉希德
+69 人读过
+​阅读
+live
+TensorFlow 从零开始学
+侯伦青等
+130 人读过
+​阅读
+live
+深度学习
+徐立芳
+19 人读过
+​阅读
+广告
+刘看山知乎指南知乎协议知乎隐私保护指引
+应用工作申请开通知乎机构号
+侵权举报网上有害信息举报专区
+京 ICP 证 110745 号
+京 ICP 备 13052560 号 - 1
+京公网安备 11010802020088 号
+京网文[2022]2674-081 号
+药品医疗器械网络信息服务备案
+（京）网药械信息备字（2022）第00334号服务热线：400-919-0001违法和不良信息举报：010-82716601举报邮箱：jubao@zhihu.com
+儿童色情信息举报专区
+互联网算法推荐举报专区
+养老诈骗举报专区
+MCN 举报专区
+信息安全漏洞反馈专区
+内容从业人员违法违规行为举报
+网络谣言信息举报入口
+自媒体乱象举报专区
+网络传播秩序举报专区
+证照中心Investor Relations
+联系我们 © 2023 知乎
+北京智者天下科技有限公司版权所有
+本站提供适老化无障碍服务
+
+登录即可查看 超5亿 专业优质内容
+超 5 千万创作者的优质提问、专业回答、深度文章和精彩视频尽在知乎。
+立即登录/注册

@@ -2502,6 +2502,7 @@ Python/API/file read write
 Python/API/logn
 Python/API/logn 10
 Python/API/logn 2
+Python/API/np.array
 Python/API/thread
 Python/API/thread2
 Python/API/thread3
@@ -2538,6 +2539,8 @@ Python/idea快捷键
 Python/idea插件
 Python/idea插件 V起来 nextchatgpt
 Python/idea配置说明
+Python/know/numpy.array函数详解
+Python/know/如何自己从零实现一个神经网络?
 Python/list/列表大小 len
 Python/main
 Python/new/eg
@@ -2580,6 +2583,7 @@ Python/soft/pip install 指定下载源
 Python/soft/pip jupyter notebook
 Python/soft/pip qt5目录及相关
 Python/soft/pip uninstall 卸载
+Python/soft/pip update
 Python/soft/python -m pip install --upgrade pip
 Python/test/ssh
 Python/引用其它目录

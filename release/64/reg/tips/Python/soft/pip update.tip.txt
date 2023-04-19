@@ -1,0 +1,6 @@
+c:\users\dell\appdata\local\programs\python\python38\python.exe -m pip install --upgrade pip
+
+
+pip install --upgrade pip
+
+pip3 install --upgrade pip

@@ -46,3 +46,7 @@ robotframework
 [web框架]
 flask
 vsearch
+
+
+[neural network]
+numpy
