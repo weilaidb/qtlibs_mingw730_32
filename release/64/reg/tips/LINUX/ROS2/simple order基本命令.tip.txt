@@ -35,3 +35,22 @@ colcon bulid
 
 
 
+########话题
+ros2 topic list
+ros topic info 发布节点
+#查看
+rqt_graph
+#摄像头发布和订阅
+ros2 run  learning_topic topic_webcam_pub
+ros2 run  learning_topic topic_webcam_sub
+
+
+
+
+
+
+
+
+
+
+

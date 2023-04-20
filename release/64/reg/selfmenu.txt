@@ -2528,6 +2528,10 @@ Python/PYTHONPATH
 Python/Print
 Python/Print 2 to 3
 Python/Print 注释
+Python/ROS/learning_topic/topic_helloworld_pub.py
+Python/ROS/learning_topic/topic_helloworld_sub.py
+Python/ROS/learning_topic/topic_webcam_pub.py
+Python/ROS/learning_topic/topic_webcam_sub.py
 Python/Regex/split
 Python/WEB/简介
 Python/common/id
