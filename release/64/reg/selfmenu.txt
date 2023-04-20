@@ -820,6 +820,7 @@ Docker/镜像路径
 ECLIST/时钟时间/gmac读取从e2prom中读取数据错误
 ERLANG/eg
 ERLANG/资料路径 address
+FPGA/Know/FPGA工程师必备技能_HDMI接口协议
 FPGA/ZYNQ/AHB
 FPGA/ZYNQ/AMBA
 FPGA/ZYNQ/APB
