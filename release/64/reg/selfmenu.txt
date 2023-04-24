@@ -2787,7 +2787,10 @@ SoftWare/WPS/A4尺寸 大小
 SoftWare/WPS/A4纸张的大小和电脑如何一样
 SoftWare/WPS/如何批量选中不同颜色的文字
 SoftWare/WPS/如何显示文档批注
+SoftWare/clion/cmake
 SoftWare/firefox/firefox显示书签栏
+SoftWare/idea 2023.1激活
+SoftWare/idea 2023.1激活 clion
 SoftWare/opengrok/md5sum
 SoftWare/opengrok/usage用法
 SoftWare/opengrok/usage用法 freq
@@ -2840,6 +2843,7 @@ Tools/Tomcat/conf context.xml
 Tools/Tomcat/conf tomcat-users.xml
 Tools/Tomcat/post文件或内容最大值
 Tools/Tomcat/版本变更修改内容
+Tools/Tomcat/路径
 Tools/UML/StartUML
 Tools/UML/常用软件
 Tools/UML/序列图 画时序图

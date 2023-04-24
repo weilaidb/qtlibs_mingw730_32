@@ -3,3 +3,4 @@ Rainbow Brackets彩虹括号
 power-mode II 敲代码特效插件
 Material Theme UI  idea主题更换插件
 Background Image Plus   idea背景修改插件
+bito chatgpt插件

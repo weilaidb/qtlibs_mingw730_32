@@ -14,3 +14,7 @@ python3-colcon-ros
 
 #USB相机
 ros-humble-usb-cam
+
+#gmock 
+libgmock-dev
+

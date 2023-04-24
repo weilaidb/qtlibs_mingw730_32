@@ -1,0 +1,10 @@
+1.使用ssh 连接远端
+2.使用脚本 ，add configuration
+shell script
+
+script text :
+rm -rf mybuild  &&mkdir mybuild && cd mybuild && cmake .. && make && cd .. && ./mybuild/test
+
+3.Working directory:
+/home/weilaidb/data/git/basecpp
+
