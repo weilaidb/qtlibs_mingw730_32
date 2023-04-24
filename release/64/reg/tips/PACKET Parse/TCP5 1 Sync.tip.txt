@@ -1,15 +1,15 @@
-Frame 437: 74 bytes on wire (592 bits), 74 bytes captured (592 bits) on interface \Device\NPF_{5D4183D4-7898-47E1-BF68-24D9FD4A6002}, id 0
+Frame 438: 74 bytes on wire (592 bits), 74 bytes captured (592 bits) on interface \Device\NPF_{5D4183D4-7898-47E1-BF68-24D9FD4A6002}, id 0
     Interface id: 0 (\Device\NPF_{5D4183D4-7898-47E1-BF68-24D9FD4A6002})
         Interface name: \Device\NPF_{5D4183D4-7898-47E1-BF68-24D9FD4A6002}
         Interface description: WLAN
     Encapsulation type: Ethernet (1)
-    Arrival Time: Apr 24, 2023 07:58:22.304294000 中国标准时间
+    Arrival Time: Apr 24, 2023 07:58:22.305278000 中国标准时间
     [Time shift for this packet: 0.000000000 seconds]
-    Epoch Time: 1682294302.304294000 seconds
-    [Time delta from previous captured frame: 0.116314000 seconds]
-    [Time delta from previous displayed frame: 0.000000000 seconds]
-    [Time since reference or first frame: 3.755330000 seconds]
-    Frame Number: 437
+    Epoch Time: 1682294302.305278000 seconds
+    [Time delta from previous captured frame: 0.000984000 seconds]
+    [Time delta from previous displayed frame: 0.000984000 seconds]
+    [Time since reference or first frame: 3.756314000 seconds]
+    Frame Number: 438
     Frame Length: 74 bytes (592 bits)
     Capture Length: 74 bytes (592 bits)
     [Frame is marked: False]
@@ -34,7 +34,7 @@ Internet Protocol Version 4, Src: bogon (192.168.0.106), Dst: 49.234.85.12 (49.2
         0000 00.. = Differentiated Services Codepoint: Default (0)
         .... ..00 = Explicit Congestion Notification: Not ECN-Capable Transport (0)
     Total Length: 60
-    Identification: 0x7c8f (31887)
+    Identification: 0x7c90 (31888)
     Flags: 0x40, Don't fragment
         0... .... = Reserved bit: Not set
         .1.. .... = Don't fragment: Set
@@ -46,14 +46,14 @@ Internet Protocol Version 4, Src: bogon (192.168.0.106), Dst: 49.234.85.12 (49.2
     [Header checksum status: Unverified]
     Source Address: bogon (192.168.0.106)
     Destination Address: 49.234.85.12 (49.234.85.12)
-Transmission Control Protocol, Src Port: 63766 (63766), Dst Port: sunproxyadmin (8081), Seq: 0, Len: 0
-    Source Port: 63766 (63766)
+Transmission Control Protocol, Src Port: 63767 (63767), Dst Port: sunproxyadmin (8081), Seq: 0, Len: 0
+    Source Port: 63767 (63767)
     Destination Port: sunproxyadmin (8081)
-    [Stream index: 10]
-    [Conversation completeness: Incomplete, DATA (15)]
+    [Stream index: 11]
+    [Conversation completeness: Incomplete, ESTABLISHED (7)]
     [TCP Segment Len: 0]
     Sequence Number: 0    (relative sequence number)
-    Sequence Number (raw): 1551586517
+    Sequence Number (raw): 434924753
     [Next Sequence Number: 1    (relative sequence number)]
     Acknowledgment Number: 0
     Acknowledgment number (raw): 0
@@ -94,10 +94,10 @@ Transmission Control Protocol, Src Port: 63766 (63766), Dst Port: sunproxyadmin 
         TCP Option - SACK permitted
             Kind: SACK Permitted (4)
             Length: 2
-        TCP Option - Timestamps: TSval 1346281058, TSecr 0
+        TCP Option - Timestamps: TSval 1346281059, TSecr 0
             Kind: Time Stamp Option (8)
             Length: 10
-            Timestamp value: 1346281058
+            Timestamp value: 1346281059
             Timestamp echo reply: 0
     [Timestamps]
         [Time since first frame in this TCP stream: 0.000000000 seconds]

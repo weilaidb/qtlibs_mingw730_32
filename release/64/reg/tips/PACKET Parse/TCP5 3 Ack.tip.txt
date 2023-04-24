@@ -1,22 +1,22 @@
-Frame 437: 74 bytes on wire (592 bits), 74 bytes captured (592 bits) on interface \Device\NPF_{5D4183D4-7898-47E1-BF68-24D9FD4A6002}, id 0
+Frame 447: 66 bytes on wire (528 bits), 66 bytes captured (528 bits) on interface \Device\NPF_{5D4183D4-7898-47E1-BF68-24D9FD4A6002}, id 0
     Interface id: 0 (\Device\NPF_{5D4183D4-7898-47E1-BF68-24D9FD4A6002})
         Interface name: \Device\NPF_{5D4183D4-7898-47E1-BF68-24D9FD4A6002}
         Interface description: WLAN
     Encapsulation type: Ethernet (1)
-    Arrival Time: Apr 24, 2023 07:58:22.304294000 中国标准时间
+    Arrival Time: Apr 24, 2023 07:58:22.334459000 中国标准时间
     [Time shift for this packet: 0.000000000 seconds]
-    Epoch Time: 1682294302.304294000 seconds
-    [Time delta from previous captured frame: 0.116314000 seconds]
-    [Time delta from previous displayed frame: 0.000000000 seconds]
-    [Time since reference or first frame: 3.755330000 seconds]
-    Frame Number: 437
-    Frame Length: 74 bytes (592 bits)
-    Capture Length: 74 bytes (592 bits)
+    Epoch Time: 1682294302.334459000 seconds
+    [Time delta from previous captured frame: 0.000078000 seconds]
+    [Time delta from previous displayed frame: 0.000078000 seconds]
+    [Time since reference or first frame: 3.785495000 seconds]
+    Frame Number: 447
+    Frame Length: 66 bytes (528 bits)
+    Capture Length: 66 bytes (528 bits)
     [Frame is marked: False]
     [Frame is ignored: False]
     [Protocols in frame: eth:ethertype:ip:tcp]
-    [Coloring Rule Name: TCP SYN/FIN]
-    [Coloring Rule String: tcp.flags & 0x02 || tcp.flags.fin == 1]
+    [Coloring Rule Name: TCP]
+    [Coloring Rule String: tcp]
 Ethernet II, Src: IntelCor_c6:e6:98 (5c:e4:2a:c6:e6:98), Dst: Tp-LinkT_17:b5:26 (54:75:95:17:b5:26)
     Destination: Tp-LinkT_17:b5:26 (54:75:95:17:b5:26)
         Address: Tp-LinkT_17:b5:26 (54:75:95:17:b5:26)
@@ -33,8 +33,8 @@ Internet Protocol Version 4, Src: bogon (192.168.0.106), Dst: 49.234.85.12 (49.2
     Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
         0000 00.. = Differentiated Services Codepoint: Default (0)
         .... ..00 = Explicit Congestion Notification: Not ECN-Capable Transport (0)
-    Total Length: 60
-    Identification: 0x7c8f (31887)
+    Total Length: 52
+    Identification: 0x7c91 (31889)
     Flags: 0x40, Don't fragment
         0... .... = Reserved bit: Not set
         .1.. .... = Don't fragment: Set
@@ -46,59 +46,50 @@ Internet Protocol Version 4, Src: bogon (192.168.0.106), Dst: 49.234.85.12 (49.2
     [Header checksum status: Unverified]
     Source Address: bogon (192.168.0.106)
     Destination Address: 49.234.85.12 (49.234.85.12)
-Transmission Control Protocol, Src Port: 63766 (63766), Dst Port: sunproxyadmin (8081), Seq: 0, Len: 0
+Transmission Control Protocol, Src Port: 63766 (63766), Dst Port: sunproxyadmin (8081), Seq: 1, Ack: 1, Len: 0
     Source Port: 63766 (63766)
     Destination Port: sunproxyadmin (8081)
     [Stream index: 10]
     [Conversation completeness: Incomplete, DATA (15)]
     [TCP Segment Len: 0]
-    Sequence Number: 0    (relative sequence number)
-    Sequence Number (raw): 1551586517
+    Sequence Number: 1    (relative sequence number)
+    Sequence Number (raw): 1551586518
     [Next Sequence Number: 1    (relative sequence number)]
-    Acknowledgment Number: 0
-    Acknowledgment number (raw): 0
-    1010 .... = Header Length: 40 bytes (10)
-    Flags: 0x002 (SYN)
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 1060301812
+    1000 .... = Header Length: 32 bytes (8)
+    Flags: 0x010 (ACK)
         000. .... .... = Reserved: Not set
         ...0 .... .... = Nonce: Not set
         .... 0... .... = Congestion Window Reduced (CWR): Not set
         .... .0.. .... = ECN-Echo: Not set
         .... ..0. .... = Urgent: Not set
-        .... ...0 .... = Acknowledgment: Not set
+        .... ...1 .... = Acknowledgment: Set
         .... .... 0... = Push: Not set
         .... .... .0.. = Reset: Not set
-        .... .... ..1. = Syn: Set
-            [Expert Info (Chat/Sequence): Connection establish request (SYN): server port 8081]
-                [Connection establish request (SYN): server port 8081]
-                [Severity level: Chat]
-                [Group: Sequence]
+        .... .... ..0. = Syn: Not set
         .... .... ...0 = Fin: Not set
-        [TCP Flags: ··········S·]
-    Window: 64240
-    [Calculated window size: 64240]
-    Checksum: 0x4837 [unverified]
+        [TCP Flags: ·······A····]
+    Window: 259
+    [Calculated window size: 66304]
+    [Window size scaling factor: 256]
+    Checksum: 0x482f [unverified]
     [Checksum Status: Unverified]
     Urgent Pointer: 0
-    Options: (20 bytes), Maximum segment size, No-Operation (NOP), Window scale, SACK permitted, Timestamps
-        TCP Option - Maximum segment size: 1460 bytes
-            Kind: Maximum Segment Size (2)
-            Length: 4
-            MSS Value: 1460
+    Options: (12 bytes), No-Operation (NOP), No-Operation (NOP), Timestamps
         TCP Option - No-Operation (NOP)
             Kind: No-Operation (1)
-        TCP Option - Window scale: 8 (multiply by 256)
-            Kind: Window Scale (3)
-            Length: 3
-            Shift count: 8
-            [Multiplier: 256]
-        TCP Option - SACK permitted
-            Kind: SACK Permitted (4)
-            Length: 2
-        TCP Option - Timestamps: TSval 1346281058, TSecr 0
+        TCP Option - No-Operation (NOP)
+            Kind: No-Operation (1)
+        TCP Option - Timestamps: TSval 1346281088, TSecr 1501062704
             Kind: Time Stamp Option (8)
             Length: 10
-            Timestamp value: 1346281058
-            Timestamp echo reply: 0
+            Timestamp value: 1346281088
+            Timestamp echo reply: 1501062704
     [Timestamps]
-        [Time since first frame in this TCP stream: 0.000000000 seconds]
-        [Time since previous frame in this TCP stream: 0.000000000 seconds]
+        [Time since first frame in this TCP stream: 0.030165000 seconds]
+        [Time since previous frame in this TCP stream: 0.000078000 seconds]
+    [SEQ/ACK analysis]
+        [This is an ACK to the segment in frame: 446]
+        [The RTT to ACK the segment was: 0.000078000 seconds]
+        [iRTT: 0.030165000 seconds]

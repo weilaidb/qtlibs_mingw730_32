@@ -178,6 +178,7 @@ git@gitee.com:weilaidb/cxxcodesets.git
 git@github.com:weilaidb/gmock-1.7.0.git
 git@github.com:weilaidb/codetools.git
 git@github.com:weilaidb/execCmd.git
+--select下为linux平台
 #gitee,vimrc分支
 git@gitee.com:weilaidb/jsp_exe.git
 git@gitee.com:weilaidb/basecpp.git

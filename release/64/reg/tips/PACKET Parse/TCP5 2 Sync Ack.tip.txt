@@ -1,0 +1,108 @@
+Frame 446: 74 bytes on wire (592 bits), 74 bytes captured (592 bits) on interface \Device\NPF_{5D4183D4-7898-47E1-BF68-24D9FD4A6002}, id 0
+    Interface id: 0 (\Device\NPF_{5D4183D4-7898-47E1-BF68-24D9FD4A6002})
+        Interface name: \Device\NPF_{5D4183D4-7898-47E1-BF68-24D9FD4A6002}
+        Interface description: WLAN
+    Encapsulation type: Ethernet (1)
+    Arrival Time: Apr 24, 2023 07:58:22.334381000 中国标准时间
+    [Time shift for this packet: 0.000000000 seconds]
+    Epoch Time: 1682294302.334381000 seconds
+    [Time delta from previous captured frame: 0.000692000 seconds]
+    [Time delta from previous displayed frame: 0.029103000 seconds]
+    [Time since reference or first frame: 3.785417000 seconds]
+    Frame Number: 446
+    Frame Length: 74 bytes (592 bits)
+    Capture Length: 74 bytes (592 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: eth:ethertype:ip:tcp]
+    [Coloring Rule Name: TCP SYN/FIN]
+    [Coloring Rule String: tcp.flags & 0x02 || tcp.flags.fin == 1]
+Ethernet II, Src: Tp-LinkT_17:b5:26 (54:75:95:17:b5:26), Dst: IntelCor_c6:e6:98 (5c:e4:2a:c6:e6:98)
+    Destination: IntelCor_c6:e6:98 (5c:e4:2a:c6:e6:98)
+        Address: IntelCor_c6:e6:98 (5c:e4:2a:c6:e6:98)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Source: Tp-LinkT_17:b5:26 (54:75:95:17:b5:26)
+        Address: Tp-LinkT_17:b5:26 (54:75:95:17:b5:26)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 49.234.85.12 (49.234.85.12), Dst: bogon (192.168.0.106)
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x68 (DSCP: AF31, ECN: Not-ECT)
+        0110 10.. = Differentiated Services Codepoint: Assured Forwarding 31 (26)
+        .... ..00 = Explicit Congestion Notification: Not ECN-Capable Transport (0)
+    Total Length: 60
+    Identification: 0x0000 (0)
+    Flags: 0x40, Don't fragment
+        0... .... = Reserved bit: Not set
+        .1.. .... = Don't fragment: Set
+        ..0. .... = More fragments: Not set
+    ...0 0000 0000 0000 = Fragment Offset: 0
+    Time to Live: 53
+    Protocol: TCP (6)
+    Header Checksum: 0xfd4b [validation disabled]
+    [Header checksum status: Unverified]
+    Source Address: 49.234.85.12 (49.234.85.12)
+    Destination Address: bogon (192.168.0.106)
+Transmission Control Protocol, Src Port: sunproxyadmin (8081), Dst Port: 63766 (63766), Seq: 0, Ack: 1, Len: 0
+    Source Port: sunproxyadmin (8081)
+    Destination Port: 63766 (63766)
+    [Stream index: 10]
+    [Conversation completeness: Incomplete, DATA (15)]
+    [TCP Segment Len: 0]
+    Sequence Number: 0    (relative sequence number)
+    Sequence Number (raw): 1060301811
+    [Next Sequence Number: 1    (relative sequence number)]
+    Acknowledgment Number: 1    (relative ack number)
+    Acknowledgment number (raw): 1551586518
+    1010 .... = Header Length: 40 bytes (10)
+    Flags: 0x012 (SYN, ACK)
+        000. .... .... = Reserved: Not set
+        ...0 .... .... = Nonce: Not set
+        .... 0... .... = Congestion Window Reduced (CWR): Not set
+        .... .0.. .... = ECN-Echo: Not set
+        .... ..0. .... = Urgent: Not set
+        .... ...1 .... = Acknowledgment: Set
+        .... .... 0... = Push: Not set
+        .... .... .0.. = Reset: Not set
+        .... .... ..1. = Syn: Set
+            [Expert Info (Chat/Sequence): Connection establish acknowledge (SYN+ACK): server port 8081]
+                [Connection establish acknowledge (SYN+ACK): server port 8081]
+                [Severity level: Chat]
+                [Group: Sequence]
+        .... .... ...0 = Fin: Not set
+        [TCP Flags: ·······A··S·]
+    Window: 28960
+    [Calculated window size: 28960]
+    Checksum: 0xeb81 [unverified]
+    [Checksum Status: Unverified]
+    Urgent Pointer: 0
+    Options: (20 bytes), Maximum segment size, SACK permitted, Timestamps, No-Operation (NOP), Window scale
+        TCP Option - Maximum segment size: 1424 bytes
+            Kind: Maximum Segment Size (2)
+            Length: 4
+            MSS Value: 1424
+        TCP Option - SACK permitted
+            Kind: SACK Permitted (4)
+            Length: 2
+        TCP Option - Timestamps: TSval 1501062704, TSecr 1346281058
+            Kind: Time Stamp Option (8)
+            Length: 10
+            Timestamp value: 1501062704
+            Timestamp echo reply: 1346281058
+        TCP Option - No-Operation (NOP)
+            Kind: No-Operation (1)
+        TCP Option - Window scale: 7 (multiply by 128)
+            Kind: Window Scale (3)
+            Length: 3
+            Shift count: 7
+            [Multiplier: 128]
+    [Timestamps]
+        [Time since first frame in this TCP stream: 0.030087000 seconds]
+        [Time since previous frame in this TCP stream: 0.030087000 seconds]
+    [SEQ/ACK analysis]
+        [This is an ACK to the segment in frame: 437]
+        [The RTT to ACK the segment was: 0.030087000 seconds]
+        [iRTT: 0.030165000 seconds]

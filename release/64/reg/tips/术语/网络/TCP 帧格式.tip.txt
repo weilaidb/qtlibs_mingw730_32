@@ -1,0 +1,90 @@
+0                                                   15 16                              31
+1：Source Port(16b)                                          Destination Port(16b)
+2：Sequence Number (32b)
+3：Acknowledgement Number(32b)
+4：Header Len(4) Resv(4)  CWR|ECN|URG|ACK|PSH|RST|SYN|FIN          Window Size(16)
+Tcp CheckSum(16)                                          Urgent Pointer(16)
+Options(variable)
+
+
+
+
+TCP协议及帧格式
+
+marywang56
+
+于 2017-07-26 16:04:49 发布
+
+25234
+ 收藏 26
+分类专栏： tcp-ip 网络安全 文章标签： tcp 通信
+
+tcp-ip
+同时被 2 个专栏收录
+6 篇文章1 订阅
+订阅专栏
+
+网络安全
+11 篇文章1 订阅
+订阅专栏
+参考文章链接：http://www.cnblogs.com/lshs/p/6038458.html
+
+TCP（Transmission Control Protocol 传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议，由IETF的RFC 793定义。
+
+面向连接：在应用TCP协议进行通信之前双方通常需要通过三次握手来建立TCP连接，连接建立后才能进行正常的数据传输，因此广播和多播不会承载在TCP协议上。
+
+可靠性：由于TCP处于多跳通信的IP层之上，而IP层并不提供可靠的传输，因此在TCP层看来就有四种常见传输错误问题，分别是比特错误(packet bit errors)、包乱序(packet reordering)、包重复(packet duplication)、丢包(packet erasure或称为packet drops)，因此TCP要提供可靠的传输，就需要具有超时与重传管理、窗口管理、流量控制、拥塞控制等功能。
+
+因此个人理解可靠性体现在三个方面，首先TCP通过超时重传和快速重传两个常见手段来保证数据包的正确传输，也就是说接收端在没有收到数据包或者收到错误的数据包的时候会触发发送端的数据包重传(处理比特错误和丢包)。其次TCP接收端会缓存接收到的乱序到达数据，重排序后在向应用层提供有序的数据(处理包乱序)。最后TCP发送端会维持一个发送”窗口”动态的调整发送速率以适用接收端缓存限制和网络拥塞情况，避免了网络拥塞或者接收端缓存满而大量丢包的问题(降低丢包率)。
+
+字节流式：应用层发送的数据会在TCP的发送端缓存起来，统一分片(例如一个应用层的数据包分成两个TCP包)或者打包(例如两个或者多个应用层的数据包打包成一个TCP数据包)发送，到接收端的时候接收端也是直接按照字节流将数据传递给应用层。作为对比，同样是传输层的协议，UDP并不会对应用层的数据包进行打包和分片的操作，一般一个应用层的数据包就对应一个UDP包。
+
+TCP报文格式：
+TCP封装在IP报文中的时候，如下图所示，TCP头紧接着IP头(IPV6有扩展头的时候，则TCP头在扩展头后面)，不携带选项(option)的TCP头长为20bytes，携带选项的TCP头最长可到60bytes。
+这里写图片描述
+
+其中header length字段由4比特构成，最大值为15，单位是32比特，即头长的最大值为15*32 bits = 60bytes，因此上面说携带选项的TCP头长最长为60bytes。
+这里写图片描述
+
+TCP的源端口、目的端口、以及IP层的源IP地址、目的IP地址四元组唯一的标识了一个TCP连接
+
+TCP各字段释义：
+TCP源端口(Source Port)：16位的源端口其中包含发送方应用程序对应的端口。源端口和源IP地址标示报文发送端的地址。
+TCP目的端口(Destination port)：16位的目的端口域定义传输的目的。这个端口指明报文接收计算机上的应用程序地址接口。
+TCP序列号（SequenceNumber）：32位的序列号标识了TCP报文中第一个byte在对应方向的传输中对应的字节序号。当SYN出现，SN=ISN(随机值）单位是byte。比如发送端发送的一个TCP包净荷(不包含TCP头)为12byte，SN为5，则发送端接着发送的下一个数据包的时候，SN应该设置为5+12=17。通过序列号，TCP接收端可以识别出重复接收到的TCP包，从而丢弃重复包，同时对于乱序数据包也可以依靠系列号进行重排序，进而对高层提供有序的数据流。另外如果接收的包中包含SYN或FIN标志位，逻辑上也占用1个byte，应答号需加1。
+TCP应答号(Acknowledgment Number简称ACK Number)：32位的ACK Number标识了报文发送端期望接收的字节序列。如果设置了ACK控制位，这个值表示一个准备接收的包的序列码，注意是准备接收的包，比如当前接收端接收到一个净荷为12byte的数据包，SN为5，则会回复一个确认收到的数据包，如果这个数据包之前的数据也都已经收到了，这个数据包中的ACK Number则设置为12+5=17，表示之前的数据都已经收到了，准备接受SN=17的数据包。
+
+注：关于TCP序列号和应答号，也可以参考文章：http://blog.csdn.net/a19881029/article/details/38091243/
+
+头长(Header Length)：4位包括TCP头大小，指示TCP头的长度，即数据从何处开始。
+
+保留(Reserved)：4位值域，这些位必须是0。为了将来定义新的用途所保留，其中RFC3540将Reserved字段中的最后一位定义为Nonce标志。后续拥塞控制部分的讲解我们会简单介绍Nonce标志位。
+
+标志(Code Bits)：8位标志位，下面介绍。
+
+窗口大小(Window Size)：16位，该值指示了从Ack Number开始还愿意接收多少byte的数据量，也即用来表示当前接收端的接收窗还有多少剩余空间，用于TCP的流量控制。
+
+校验位(Checksum)：16位TCP头。发送端基于数据内容计算一个数值，接收端要与发送端数值结果完全一样，才能证明数据的有效性。接收端checksum校验失败的时候会直接丢掉这个数据包。CheckSum是根据伪头+TCP头+TCP数据三部分进行计算的。
+
+优先指针（紧急,Urgent Pointer）：16位，指向后面是优先数据的字节，在URG标志设置了时才有效。如果URG标志没有被设置，紧急域作为填充。
+选项(Option)：长度不定，但长度必须以是32bits的整数倍。常见的选项包括MSS、SACK、Timestamp等等。
+
+八位标志位分别介绍如下：
+
+CWR(Congestion Window Reduce)：拥塞窗口减少标志set by sender，用来表明它接收到了设置ECE标志的TCP包。并且sender 在收到消息之后已经通过降低发送窗口的大小来降低发送速率。
+
+ECE(ECN Echo)：ECN响应标志被用来在TCP3次握手时表明一个TCP端是具备ECN功能的。在数据传输过程中也用来表明接收到的TCP包的IP头部的ECN被设置为11。注：IP头部的ECN被设置为11表明网络线路拥堵。
+
+注：关于CWR和ECE标记为详细信息可参考：http://www.cnblogs.com/hadis-yuki/p/5467787.html
+
+URG(Urgent)：该标志位置位表示紧急(The urgent pointer) 标志有效。该标志位目前已经很少使用参考后面流量控制和窗口管理部分的介绍。
+
+ACK：取值1代表Acknowledgment Number字段有效，这是一个确认的TCP包，取值0则不是确认包。后续文章介绍中当ACK标志位有效的时候我们称呼这个包为ACK包，使用大写的ACK称呼。
+
+PSH(Push)：该标志置位时，一般是表示发送端缓存中已经没有待发送的数据，接收端不将该数据进行队列处理，而是尽可能快将数据转由应用处理。在处理 telnet 或 rlogin 等交互模式的连接时，该标志总是置位的。
+
+RST(Reset)：用于reset相应的TCP连接。通常在发生异常或者错误的时候会触发复位TCP连接。
+
+SYN：同步序列编号(Synchronize Sequence Numbers)有效。该标志仅在三次握手建立TCP连接时有效。
+
+FIN(Finish)：No more data from sender。当FIN标志有效的时候我们称呼这个包为FIN包。
