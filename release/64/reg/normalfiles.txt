@@ -26,6 +26,7 @@ https://github.com/weilaidb/linux_driver
 【doxygen boost】http://49.234.85.12:8081/boost/
 【doxygen ffmpeg】http://49.234.85.12:8081/ffmpeg/
 【doxygen jeewms】http://49.234.85.12:8081/jeewms/
+【gitee】https://gitee.com/
 【help basecpp】http://101.201.79.164:8081/basecpp/
 【layui】http://layui.org.cn/index.html
 【下载视频】C:\Users\dell\dwhelper
