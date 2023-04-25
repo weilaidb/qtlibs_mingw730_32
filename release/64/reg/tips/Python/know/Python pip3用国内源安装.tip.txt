@@ -1,0 +1,48 @@
+Python pip3用国内源安装
+
+darkula
+
+于 2022-04-19 14:53:07 发布
+
+4147
+ 收藏
+分类专栏： python 文章标签： python
+版权
+
+python
+专栏收录该内容
+1 篇文章0 订阅
+订阅专栏
+国内可用的源如下：
+清华：https://pypi.tuna.tsinghua.edu.cn/simple
+中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/
+华中理工大学：http://pypi.hustunique.com/
+山东理工大学：http://pypi.sdutlinux.org/
+豆瓣：http://pypi.douban.com/simple/
+阿里元：https://mirrors.aliyun.com/pypi/simple
+修改配置文件
+在当前用户目录下建立文件夹.pip，然后在文件夹中创建pip.conf文件，再将源地址加进去即可
+
+mkdir ~/.pip
+vim ~/.pip/pip.conf
+1
+2
+然后将下面这两行复制进去就好了
+
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+1
+2
+指定源安装
+pip3 install NumPy -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 install statsmodels -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 install pandas -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip3 install matplotlib -i https://pypi.tuna.tsinghua.edu.cn/simple
+1
+2
+3
+4
+文章知识点与官方知识档案匹配，可进一步学习相关知识
+————————————————
+版权声明：本文为CSDN博主「darkula」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/darkula/article/details/124273734

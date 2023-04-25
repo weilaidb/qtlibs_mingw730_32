@@ -2529,6 +2529,7 @@ Python/Map/para2 multiplier_func
 Python/Map/para2 square
 Python/Map/test
 Python/PYTHONPATH
+Python/Path Windows
 Python/Print
 Python/Print 2 to 3
 Python/Print 注释
@@ -2551,6 +2552,8 @@ Python/idea插件
 Python/idea插件 V起来 nextchatgpt
 Python/idea配置说明
 Python/know/NumPy教程：19种数据类型及对象（dtype）示例
+Python/know/Python pip3 install 用国内源安装
+Python/know/Python pip3用国内源安装
 Python/know/np.dot()使用方法
 Python/know/numpy mean()函数 详解
 Python/know/numpy.array函数详解
