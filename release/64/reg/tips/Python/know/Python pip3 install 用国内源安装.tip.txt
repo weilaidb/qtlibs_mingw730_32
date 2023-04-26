@@ -1,4 +1,9 @@
-pip3 install NumPy 
-pip3 install statsmodels 
-pip3 install pandas 
-pip3 install matplotlib 
+paramiko
+NumPy 
+statsmodels 
+pandas 
+matplotlib 
+robotframework
+robotframework-seleniumlibrary
+testobject
+TestObject
