@@ -2615,6 +2615,7 @@ Python/示例/网络/webssh
 Python/示例/网络/客户端
 Python/示例/网络/服务端
 Python/自动化测试/Robot Framework Demo
+Python/自动化测试/测试框架
 Python/语法/pyQt5/创建Action
 Python/语法/pyQt5/创建菜单
 Python/语法/tryException

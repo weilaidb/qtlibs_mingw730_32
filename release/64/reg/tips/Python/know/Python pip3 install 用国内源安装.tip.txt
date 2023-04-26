@@ -7,3 +7,6 @@ robotframework
 robotframework-seleniumlibrary
 testobject
 TestObject
+selenium
+
+pyQt5

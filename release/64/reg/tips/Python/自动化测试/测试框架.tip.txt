@@ -1,0 +1,8 @@
+Python Web 自动化框架
+
+Python Web 自动化框架有多种，下面介绍几种比较流行的：
+1. Selenium：Selenium 是一个自动化测试框架，可以用于 Web 应用程序测试和功能测试。它有多种语言的驱动程序，包括 Python，可以很方便地与 Python 代码集成。
+2. Robot Framework：Robot Framework 也可以用于 Web 应用程序测试，支持 SeleniumLibrary 库，可以方便地执行 Selenium 测试用例。
+3. PyTest：PyTest 提供了良好的 Web 应用程序自动化测试支持，可以使用 Selenium WebDriver 编写测试用例，同时还支持插件机制，可以增加更多的功能。
+4. TestComplete：TestComplete 是一个面向 Web 和桌面应用程序的自动化测试工具，支持 Python 脚本编写，以帮助测试人员进行 Web 应用程序测试和 GUI 自动化测试。
+5. Behave：Behave 是一个行为驱动开发的自动化测试框架，可以用 Gherkin 语言编写测试用例，同时支持 Selenium 和其他 Python Web 应用程序测试工具的集成，以实现 Web 应用程序的自动化测试。
