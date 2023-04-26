@@ -1,0 +1,36 @@
+Python 如何引用上层文件夹的文件
+
+
+在Python中，可以通过添加上级目录到sys.path中来引用上层文件夹的文件。
+ 假设要在当前目录下的"test.py"中引用上级目录下的"utils.py"文件，可以使用以下代码：
+import sys
+sys.path.append("..") # 添加上级目录
+from utils import some_function # 引用上级目录下的文件
+ some_function() # 调用函数
+这样就可以在"test.py"中成功引用上级目录的文件了。需要注意的是，上级目录的文件路径应该正确，否则无法成功引用文件。
+
+
+
+
+
+
+import paramiko
+import sys
+sys.path.append("../file")
+from fileoper import *
+
+
+hostname = "49.234.85.12"  # 主机IP地址
+port = 22  # SSH端口号
+username = "weixj"  # SSH用户名
+password = "xxxxxxx"  # SSH密码
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect(hostname=hostname, port=port, username=username, password=password)
+stdin, stdout, stderr = ssh.exec_command("ls -lh")
+print(stdout.read().decode())
+ssh.close()
+
+
+
+

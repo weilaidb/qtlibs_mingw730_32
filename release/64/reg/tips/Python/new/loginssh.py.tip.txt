@@ -1,0 +1,14 @@
+import paramiko
+hostname = "49.234.85.12"  # 主机IP地址
+port = 22  # SSH端口号
+username = "weixj"  # SSH用户名
+password = "xxxxxx"  # SSH密码
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect(hostname=hostname, port=port, username=username, password=password)
+stdin, stdout, stderr = ssh.exec_command("ls -lh")
+print(stdout.read().decode())
+ssh.close()
+
+
+

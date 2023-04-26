@@ -2554,6 +2554,7 @@ Python/idea配置说明
 Python/know/NumPy教程：19种数据类型及对象（dtype）示例
 Python/know/Python pip3 install 用国内源安装
 Python/know/Python pip3用国内源安装
+Python/know/Python 如何引用上层文件夹的文件 父亲目录 parent dir
 Python/know/np.dot()使用方法
 Python/know/numpy mean()函数 详解
 Python/know/numpy.array函数详解
@@ -2562,6 +2563,8 @@ Python/know/如何自己从零实现一个神经网络?
 Python/list/列表大小 len
 Python/main
 Python/new/eg
+Python/new/loginssh.py
+Python/new/loginsshtimely.py
 Python/new/python 文本 单独处理字符串每个字符的方法汇总
 Python/new/python 文本 字符串开头或者结尾匹配
 Python/new/python文本 maketrans和translate

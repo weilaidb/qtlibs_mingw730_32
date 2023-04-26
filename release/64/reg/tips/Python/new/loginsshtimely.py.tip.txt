@@ -1,0 +1,34 @@
+import paramiko
+import time
+
+hostname = "49.234.85.12"  # 主机IP地址
+port = 22  # SSH端口号
+username = "weixj"  # SSH用户名
+password = "xxxxxxxx."  # SSH密码
+command = "ls -lh && find work/git/unix" # 要在SSH会话中运行的命令
+
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect(hostname=hostname, port=port, username=username, password=password)
+
+stdin, stdout, stderr = ssh.exec_command(command)
+#延时后，立即的数据获取不到了
+# time.sleep(1)
+
+while not stdout.channel.exit_status_ready():
+    if stdout.channel.recv_ready():
+        alldata = stdout.channel.recv(1024)
+        prevdata = b"1"
+        while prevdata:
+            prevdata = stdout.channel.recv(1024)
+            # print("recv data:")
+            alldata += prevdata
+
+            strdata = prevdata.decode("utf8")
+            print(strdata, end="")
+
+
+        # strdata = alldata.decode("utf8")
+        # print(strdata)
+
+ssh.close()
