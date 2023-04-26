@@ -1,0 +1,5 @@
+JSP是Java Server Pages的缩写，而Python是一种脚本语言，这两种语言可以结合使用，下面是一些潜在的方法：
+ 1. 使用Jython：Jython是一种将Python代码编译为Java字节码的工具，它可以直接与Java代码进行交互。使用Jython，您可以在JSP页面中嵌入Python代码块，并将其与Java对象一起使用。
+ 2. 使用Python脚本作为后端处理器：您可以通过将Python脚本部署到Web服务器中并将JSP页面中的表单提交到该脚本来将两种语言结合起来。
+ 3. 使用RESTful API：您可以使用Python编写RESTful API，并在JSP页面中通过AJAX调用该API来处理和显示数据。
+ 这里只是提供了一些可能的选项，具体实现方式还需要根据您的需求和具体情况进行选择。
