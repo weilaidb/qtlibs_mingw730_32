@@ -33,7 +33,10 @@ https://github.com/RT-Thread/rt-thread/
 git@github.com:RT-Thread/rt-thread.git
 #Python robot framework 自动化测试
 https://github.com/robotframework/RobotDemo
-
+#老旧照片修复
+git@github.com:microsoft/Bringing-Old-Photos-Back-to-Life.git
+#Gtest代码自动生成测试代码
+git@github.com:microsoft/TestAdapterForGoogleTest.git
 
 常用git库:
 https://github.com/git/git/tags?after=v2.23.4

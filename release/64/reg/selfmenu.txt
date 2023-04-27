@@ -2557,8 +2557,10 @@ Python/idea插件
 Python/idea插件 V起来 nextchatgpt
 Python/idea配置说明
 Python/know/NumPy教程：19种数据类型及对象（dtype）示例
+Python/know/Python pip3 install Python之pip命令指定安装源和版本
 Python/know/Python pip3 install 用国内源安装
 Python/know/Python pip3 install 用国内源安装 Update
+Python/know/Python pip3 install 用国内源安装 依赖项在文件中
 Python/know/Python pip3用国内源安装
 Python/know/Python 如何引用上层文件夹的文件 父亲目录 parent dir
 Python/know/np.dot()使用方法
@@ -2807,6 +2809,7 @@ SoftWare/idea 2023.1激活
 SoftWare/idea 2023.1激活 clion
 SoftWare/idea 2023.1激活 pycharm
 SoftWare/know/OpenAi 11个免费好用的 AI 网站工具分享，不容错过！
+SoftWare/know/老旧照片修复
 SoftWare/opengrok/md5sum
 SoftWare/opengrok/usage用法
 SoftWare/opengrok/usage用法 freq
