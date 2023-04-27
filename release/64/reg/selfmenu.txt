@@ -2806,6 +2806,7 @@ SoftWare/firefox/firefox显示书签栏
 SoftWare/idea 2023.1激活
 SoftWare/idea 2023.1激活 clion
 SoftWare/idea 2023.1激活 pycharm
+SoftWare/know/OpenAi 11个免费好用的 AI 网站工具分享，不容错过！
 SoftWare/opengrok/md5sum
 SoftWare/opengrok/usage用法
 SoftWare/opengrok/usage用法 freq
