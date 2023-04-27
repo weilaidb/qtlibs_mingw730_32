@@ -37,6 +37,9 @@ https://github.com/robotframework/RobotDemo
 git@github.com:microsoft/Bringing-Old-Photos-Back-to-Life.git
 #Gtest代码自动生成测试代码
 git@github.com:microsoft/TestAdapterForGoogleTest.git
+---是这个
+https://github.com/google/googletest.git
+https://github.com/google/googletest/releases/tag/v1.13.0
 
 常用git库:
 https://github.com/git/git/tags?after=v2.23.4
