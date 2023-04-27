@@ -1,0 +1,771 @@
+java ssh 连接之 jsch-0.1.55.jar 试用
+
+szlcy
+
+于 2020-07-23 10:35:03 发布
+
+2182
+ 收藏 4
+分类专栏： 开船 文章标签： java
+版权
+
+开船
+专栏收录该内容
+24 篇文章0 订阅
+订阅专栏
+JSch 是一个纯 java 的 ssh2 实现。主要用来连接 ssh 和 sftp。
+
+官网在此: http://www.jcraft.com/jsch/
+
+1, MAVEN 引入依赖
+<!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
+<dependency>
+    <groupId>com.jcraft</groupId>
+    <artifactId>jsch</artifactId>
+    <version>0.1.55</version>
+</dependency>
+
+1
+2
+3
+4
+5
+6
+7
+2, 编写工具类
+JSCHUtil 类主要有以下方法：
+
+远程执行命令: remoteExecute
+scp 文件至远程服务器: scpTo
+从远程服务器 scp 文件: scpFrom
+显示 sftp 的目录内容: listFilesInSFTP
+上传文件至 sftp 目录: uploadToSFTP
+从 sftp 下载文件: downloadFromSFTP
+# vim d:/temp/JSCHUtil.java
+
+import com.jcraft.jsch.*;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
+public class JSCHUtil {
+
+    private static JSch jsch = new JSch();
+
+    public static void main(String[] args) throws JSchException {
+
+        Session session = JSCHUtil.createSession("10.161.97.205", 22, "root", "<!--你的密码 -->");
+
+        JSCHUtil.remoteExecute(session, "df -Th");
+
+        long l1 = JSCHUtil.scpTo(session, "d:/temp/README.md", "/root/README.md");
+        System.out.println(l1);
+
+        long l2 = JSCHUtil.scpFrom(session, "/root/README.md", "d:/temp/README.txt");
+        System.out.println(l2);
+
+        List<String> strings = JSCHUtil.listFilesOnSFTP(session, "/root");
+        for (String name: strings) {
+            System.out.println("/" + name);
+        }
+        
+        boolean b1 = JSCHUtil.uploadToSFTP(session, "d:/temp/README.md", "/root/README.SFTP");
+        System.out.println(b1);
+        
+        boolean b2 = JSCHUtil.downloadFromSFTP(session, "/root/README.SFTP", "d:/temp/README.SFTP");
+        System.out.println(b2);
+        
+        session.disconnect();
+    }
+
+    public static Session createSession(String ip, int port, String user, String password) throws JSchException {
+        JSch jSch = new JSch();
+        Session session = jSch.getSession(user, ip, port);
+        session.setPassword(password);
+        session.setConfig("StrictHostKeyChecking", "no");
+        session.connect();
+        return session;
+    }
+
+    public static List<String> remoteExecute(Session session, String command) throws JSchException {
+
+        List<String> resultLines = new ArrayList<>();
+        ChannelExec channel = null;
+        try {
+            channel = (ChannelExec) session.openChannel("exec");
+            channel.setCommand(command);
+            InputStream input = channel.getInputStream();
+            channel.connect();
+            try {
+                BufferedReader inputReader = new BufferedReader(new InputStreamReader(input));
+                String inputLine = null;
+                while ((inputLine = inputReader.readLine()) != null) {
+                    System.out.println(inputLine);
+                    resultLines.add(inputLine);
+                }
+            } finally {
+                if (input != null) {
+                    try {
+                        input.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (channel != null) {
+                try {
+                    channel.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return resultLines;
+    }
+
+    public static long scpTo(Session session, String source, String destination) {
+        FileInputStream fileInputStream = null;
+        try {
+            ChannelExec channel = (ChannelExec) session.openChannel("exec");
+            OutputStream out = channel.getOutputStream();
+            InputStream in = channel.getInputStream();
+            boolean ptimestamp = false;
+            String command = "scp";
+            if (ptimestamp) {
+                command += " -p";
+            }
+            command += " -t " + destination;
+            channel.setCommand(command);
+            channel.connect();
+            if (checkAck(in) != 0) {
+                return -1;
+            }
+            File _lfile = new File(source);
+            if (ptimestamp) {
+                command = "T " + (_lfile.lastModified() / 1000) + " 0";
+                // The access time should be sent here,
+                // but it is not accessible with JavaAPI ;-<
+                command += (" " + (_lfile.lastModified() / 1000) + " 0\n");
+                out.write(command.getBytes());
+                out.flush();
+                if (checkAck(in) != 0) {
+                    return -1;
+                }
+            }
+            //send "C0644 filesize filename", where filename should not include '/'
+            long fileSize = _lfile.length();
+            command = "C0644 " + fileSize + " ";
+            if (source.lastIndexOf('/') > 0) {
+                command += source.substring(source.lastIndexOf('/') + 1);
+            } else {
+                command += source;
+            }
+            command += "\n";
+            out.write(command.getBytes());
+            out.flush();
+            if (checkAck(in) != 0) {
+                return -1;
+            }
+            //send content of file
+            fileInputStream = new FileInputStream(source);
+            byte[] buf = new byte[1024];
+            long sum = 0;
+            while (true) {
+                int len = fileInputStream.read(buf, 0, buf.length);
+                if (len <= 0) {
+                    break;
+                }
+                out.write(buf, 0, len);
+                sum += len;
+            }
+            //send '\0'
+            buf[0] = 0;
+            out.write(buf, 0, 1);
+            out.flush();
+            if (checkAck(in) != 0) {
+                return -1;
+            }
+            return sum;
+        } catch (JSchException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fileInputStream != null) {
+                try {
+                    fileInputStream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static long scpFrom(Session session, String source, String destination) {
+        FileOutputStream fileOutputStream = null;
+        try {
+            ChannelExec channel = (ChannelExec) session.openChannel("exec");
+            channel.setCommand("scp -f " + source);
+            OutputStream out = channel.getOutputStream();
+            InputStream in = channel.getInputStream();
+            channel.connect();
+            byte[] buf = new byte[1024];
+            //send '\0'
+            buf[0] = 0;
+            out.write(buf, 0, 1);
+            out.flush();
+            while (true) {
+                if (checkAck(in) != 'C') {
+                    break;
+                }
+            }
+            //read '644 '
+            in.read(buf, 0, 4);
+            long fileSize = 0;
+            while (true) {
+                if (in.read(buf, 0, 1) < 0) {
+                    break;
+                }
+                if (buf[0] == ' ') {
+                    break;
+                }
+                fileSize = fileSize * 10L + (long) (buf[0] - '0');
+            }
+            String file = null;
+            for (int i = 0; ; i++) {
+                in.read(buf, i, 1);
+                if (buf[i] == (byte) 0x0a) {
+                    file = new String(buf, 0, i);
+                    break;
+                }
+            }
+            // send '\0'
+            buf[0] = 0;
+            out.write(buf, 0, 1);
+            out.flush();
+            // read a content of lfile
+            if (Files.isDirectory(Paths.get(destination))) {
+                fileOutputStream = new FileOutputStream(destination + File.separator + file);
+            } else {
+                fileOutputStream = new FileOutputStream(destination);
+            }
+            long sum = 0;
+            while (true) {
+                int len = in.read(buf, 0, buf.length);
+                if (len <= 0) {
+                    break;
+                }
+                sum += len;
+                if (len >= fileSize) {
+                    fileOutputStream.write(buf, 0, (int) fileSize);
+                    break;
+                }
+                fileOutputStream.write(buf, 0, len);
+                fileSize -= len;
+            }
+            return sum;
+        } catch (JSchException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fileOutputStream != null) {
+                try {
+                    fileOutputStream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return -1;
+    }
+
+    private static int checkAck(InputStream in) throws IOException {
+        int b = in.read();
+        // b may be 0 for success,
+        //          1 for error,
+        //          2 for fatal error,
+        //          -1
+        if (b == 0) return b;
+        if (b == -1) return b;
+        if (b == 1 || b == 2) {
+            StringBuffer sb = new StringBuffer();
+            int c;
+            do {
+                c = in.read();
+                sb.append((char) c);
+            }
+            while (c != '\n');
+            if (b == 1) { // error
+                System.out.println(sb.toString());
+            }
+            if (b == 2) { // fatal error
+                System.out.println(sb.toString());
+            }
+        }
+        return b;
+    }
+
+
+    public static List<String> listFilesInSFTP(Session session, String path) {
+
+        ArrayList<String> fileList = new ArrayList<String>();
+        try {
+            ChannelSftp channel = (ChannelSftp) session.openChannel("sftp");
+            channel.connect();
+
+            Vector vv = channel.ls(path);
+
+            if (vv != null) {
+                for (int ii = 0; ii < vv.size(); ii++) {
+                    Object obj = vv.elementAt(ii);
+                    if (obj instanceof com.jcraft.jsch.ChannelSftp.LsEntry) {
+                        fileList.add(((com.jcraft.jsch.ChannelSftp.LsEntry) obj).getFilename());
+                    }
+                }
+            }
+        } catch (SftpException e) {
+            e.printStackTrace();
+        } catch (JSchException e) {
+            e.printStackTrace();
+        }
+        return fileList;
+    }
+
+    public static boolean uploadToSFTP(Session session, String source, String destination) {
+
+        try {
+            ChannelSftp channel = (ChannelSftp) session.openChannel("sftp");
+            channel.connect();
+
+            try {
+                channel.put(source, destination);
+                return true;
+            } catch (SftpException e) {
+                e.printStackTrace();
+            }
+
+        } catch (JSchException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean downloadFromSFTP(Session session, String source, String destination) {
+
+        try {
+            ChannelSftp channel = (ChannelSftp) session.openChannel("sftp");
+            channel.connect();
+
+            try {
+                channel.get(source, destination);
+                return true;
+            } catch (SftpException e) {
+                e.printStackTrace();
+            }
+
+        } catch (JSchException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+}
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+3, 编译运行
+# 将 jsch-0.1.55.jar 解压至 D:\temp, 注意，com 目录与 JSCHUtil.java 文件在同一父目录下。
+# 编译
+D:\temp>javac -cp . JSCHUtil.java
+# 运行
+D:\temp>java JSCHUtil
+文件系统                   类型      容量  已用  可用 已用% 挂载点
+/dev/mapper/centos-lv_root xfs        50G   22G   28G   45% /
+/dev/xvde1                 xfs       500G  158G  343G   32% 
+/dev/xvda1                 xfs      1014M  207M  808M   21% /boot
+/dev/mapper/centos-home    xfs        42G  386M   41G    1% 
+5804
+5805
+/.ssh
+/.bash_profile
+/README.md
+/README.SFTP
+true
+true
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+文章知识点与官方知识档案匹配，可进一步学习相关知识
+————————————————
+版权声明：本文为CSDN博主「szlcy」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/szlcy/article/details/107530902

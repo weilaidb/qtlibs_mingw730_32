@@ -1,0 +1,49 @@
+String转List示例（java）
+
+卡夫卡的熊kfk
+
+于 2021-11-08 11:09:43 发布
+
+57615
+ 收藏 67
+分类专栏： 技术 文章标签： list java 数据结构
+版权
+
+华为云开发者联盟
+该内容已被华为云开发者联盟社区收录
+加入社区
+
+技术
+专栏收录该内容
+11 篇文章0 订阅
+订阅专栏
+本文涉及到了两种String格式的转换：
+
+格式为 “1,2,3”;
+格式为 [{“uid”:“1”,“userName”:“小明”},{“uid”:“2”,“userName”:“小红”}]
+第一种：
+String uid="1,2,3";
+1
+（1）转为List<Long> uids={1,2,3}
+
+List<Long> uids=Arrays.stream(uid.split(",")).map(s->Long.parseLong(s.trim())).collect(Collectors.toList())
+1
+（2）转为List<String> uids={"1","2","3"}
+
+List<String> uids=Arrays.asList(uid.split(","));
+1
+第二种：
+String格式为 [{“uid”:“1”,“userName”:“小明”},{“uid”:“2”,“userName”:“小红”}]。代码为：
+
+ String user="[{\"uid\":\"1\",\"userName\":\"小明\"},{\"uid\":\"2\",\"userName\":\"小红\"}]";
+1
+（1）转为String
+
+List<String> userList= JSONArray.parseArray(user,String.class);
+1
+（2）转为User实体
+
+List<User> userList=JSONArray.parseArray(user,User.class);
+————————————————
+版权声明：本文为CSDN博主「卡夫卡的熊kfk」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qsbbl/article/details/121202345

@@ -10,3 +10,13 @@ TestObject
 selenium
 
 pyQt5
+
+
+flask
+flask-restful
+setuptools
+flasgger
+flask_script
+flask_migrate
+
+

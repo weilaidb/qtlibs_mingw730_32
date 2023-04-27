@@ -1527,7 +1527,10 @@ JAVA/know/CaseUtils 对Java字符串进行转换为驼峰格式
 JAVA/know/MVC框架
 JAVA/know/Serializable 序列化
 JAVA/know/Serializable 接口（序列化）
+JAVA/know/String转List示例（java） String[] List<String>转换
+JAVA/know/java ssh 连接之 jsch-0.1.55.jar 试用
 JAVA/know/java string replace和replaceAll的区别以及用法
+JAVA/know/浅析 JSch - Java实现的SSH通讯包：jsch作用、4种认证方式、如何配置免密登录、ssh公钥检查机制及3种选项、如何实现sftp文件传输、maven依赖及具体使用示例代码
 JAVA/new/enter to br
 JAVA/new/implements interface
 JAVA/new/interface
@@ -2555,6 +2558,7 @@ Python/idea插件 V起来 nextchatgpt
 Python/idea配置说明
 Python/know/NumPy教程：19种数据类型及对象（dtype）示例
 Python/know/Python pip3 install 用国内源安装
+Python/know/Python pip3 install 用国内源安装 Update
 Python/know/Python pip3用国内源安装
 Python/know/Python 如何引用上层文件夹的文件 父亲目录 parent dir
 Python/know/np.dot()使用方法

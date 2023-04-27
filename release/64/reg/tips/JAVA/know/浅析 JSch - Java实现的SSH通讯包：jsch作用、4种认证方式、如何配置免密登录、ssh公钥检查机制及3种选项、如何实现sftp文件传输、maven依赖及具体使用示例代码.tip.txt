@@ -1,0 +1,147 @@
+浅析 JSch - Java实现的SSH通讯包：jsch作用、4种认证方式、如何配置免密登录、ssh公钥检查机制及3种选项、如何实现sftp文件传输、maven依赖及具体使用示例代码
+一、JSch 是什么及其作用
+　　JSch 是SSH2的一个纯Java实现。它允许你连接到一个 sshd 服务器，使用端口转发，X11转发，文件传输等等。你可以将它的功能集成到你自己的程序中，同时该项目也提供一个J2ME版本用来在手机上直连SSHD服务器。
+
+　　说白了就是以 Java 的方式通过 jsch 连接，来对服务器进行操作。
+
+　　JSch 是一个纯粹的用 Java 实现 SSH 功能的 Java library。如果要知道 Jsch 的功能需先了解一下 SSH。SSH是一个安全协议，用来在不同系统或者服务器之间进行安全连接，在连接和传送数据的过程中会进行加密。SSH一般是基于客户端的或者Linux命令行，比如 window 通过 OpenSSH、putty等客户端的工具，在linux上可以通过ssh username@host命令进行连接。但是如果在Java中如何实现SSH呢？这时候便是通过JSCH来实现此的功能。
+
+　　JSch库可以实现Java连接Linux服务器并操作命令、文件等，支持常用的各种授权模式。官网：http://www.jcraft.com/jsch/
+
+　　类似C#中的SSH.Net框架。在Java中，类似的库还有：Apache Mina SSHD  http://mina.apache.org/sshd-project/
+
+二、Jsch 的认证方式
+1、Jsch提供了四种认证机制：
+
+password 密码方式
+publickey(DSA,RSA) 公私钥方式
+keyboard-interactive
+gss-api-with-mic
+　　常见的认证方式为password认证，但是本文接下来主要讨论基于publickey认证。对于后面两种认证方式感兴趣的朋友可以去查阅相关资料，本文将不做讨论。
+
+2、配置SSH免密步骤概述
+
+在linux下执行ssh-keygen -t rsa 生成一对对应公私钥。
+把公钥复制到将要连接的目标服务器上，放到对应用户的.ssh目录下。
+进入到.ssh中：cd ~/.ssh，并公钥导入到authorized_keys信任列表：cat 公钥 >> authorized_key
+更新权限：chmod 600 authorized_keys，自此SSH免密登录配置完成。
+3、Jsch基于publickey认证Demo
+
+复制代码
+    //从配置文件中读取 目标服务器ip、端口、用户名、私钥路径 
+    String ftpHost = prop.getProperty("downloadHost"); 
+    String port = prop.getProperty("downloadftpPort"); 
+    String ftpUserName = prop.getProperty("downloadUserName"); 
+    String priKeyBasePath = prop.getProperty("priBaseKeyPath"); 
+    //建立JSch对象 
+    JSch jsch = new JSch(); 
+    Session session = null; 
+    ChannelSftp channelSftp = null 
+    try{ 
+     //添加私钥 
+     jsch.addIdentity(priKeyBasePath); 
+     session=jsch.getSession(userName, hostIp, port); 
+     Properties sessionConfig = new Properties(); 
+     //SSH 公钥检查机制 no、ask、yes 
+     sessionConfig.put("StrictHostKeyChecking", "no"); 
+     session.connect();  
+      
+     channelSftp = (ChannelSftp) session.openChannel("sftp"); // 打开SFTP通道 
+     channelSftp.connect();  
+     //进行操作 如进入指定文件夹 
+     channelSftp.cd(config.getFileDir()); 
+    }catch (JSchException e) { 
+     logger.error("sftp getConnect error : "+e); 
+    } 
+复制代码
+4、SSH公钥检查机制：
+
+　　公钥检查机制是一个安全机制，可以防范中间人劫持等黑客攻击。SSH连接远程主机时，会检查主机的公钥。如果是第一次该主机，会显示该主机的公钥摘要，提示用户是否信任该主机。当选择接受，就会将该主机的公钥追加到文件 ~/.ssh/known_hosts 中。当再次连接该主机时，就不会再提示该问题了。 但是在某些特殊的情况下，严格的SSH公钥检查可能会破坏一些依赖SSH协议的自动化任务如Java的Jsch免密登录sftp程序。解决方式为调整StrictHostKeyChecking配置指令。
+
+　　StrictHostKeyChecking选项如下3种：
+
+no 最不安全的级别，当然也没有那么多烦人的提示了，相对安全的内网测试时建议使用。如果连接server的key在本地不存在，那么就自动添加到文件中(默认是known_hosts)，并且给出一个警告。
+ask 默认的级别，就是出现刚才的提示了。如果连接和key不匹配，给出提示，并拒绝登录。
+yes 最安全的级别，如果连接与key不匹配，就拒绝连接，不会提示详细信息。
+来源于文章：https://www.cnblogs.com/zjfjava/p/11735837.html
+
+三、JSch 实现 sftp 文件传输
+1、什么是SFTP?
+
+　　SFTP是一个安全文件传送协议，可以为传输文件提供一种安全的加密方法。SFTP 为 SSH 的一部份，是一种传输文件到服务器的安全方式。SFTP是使用加密传输认证信息和传输的数据，所以，使用SFTP是非常安全的。但是，由于这种传输方式使用了加密/解密技术，所以传输效率比普通的FTP要低得多，如果您对网络安全性要求更高时，可以使用SFTP代替FTP。
+
+2、ChannelSftp类
+
+　　ChannelSftp是JSch实现SFTP核心类，其包含了所有SFTP的方法，如
+
+put()--文件上传
+get()--文件下载
+cd()--进入指定目录
+ls()--得到指定目录下的文件列表
+rename()--重命名指定文件或目录
+rm()--删除指定文件
+mkdir()--创建目录
+rmdir()--删除目录
+　　Jsch是Java实现SSH功能的java library，可用于连接sftp服务器。其拥有4种认证方式，其中publickey方式通过配置公私钥实现SSH免密登录。Java程序中通过使用Jsch核心类ChannelSftp进行sftp操作。对于连接过程中的SSH公钥检查机制可结合实际情况作出相应的调整。
+
+四、JSch 具体示例
+1、JSch 的 maven 地址
+
+复制代码
+<!-- https://mvnrepository.com/artifact/com.jcraft/jsch -->
+<dependency>
+    <groupId>com.jcraft</groupId>
+    <artifactId>jsch</artifactId>
+    <version>0.1.55</version>
+</dependency>
+复制代码
+2、我代码里的具体应用
+
+复制代码
+    /**
+     * 使用jsch连接终端
+     */
+    private void connectToSSH(SSHConnectInfo sshConnectInfo, WebSSHData webSSHData, SimpMessagingTemplate template) throws JSchException, IOException {
+        //获取jsch的会话
+        Session session = sshConnectInfo.getJSch().getSession(webSSHData.getUsername(), webSSHData.getHost(), webSSHData.getPort());
+        Properties config = new Properties();
+        config.put("StrictHostKeyChecking", "no");
+        session.setConfig(config);
+        //设置密码
+        session.setPassword(webSSHData.getPassword());
+        //连接  超时时间30s
+        session.connect(30000);
+        //开启shell通道
+        Channel channel = session.openChannel("shell");
+        //通道连接 超时时间3s
+        channel.connect(3000);
+        //设置channel
+        sshConnectInfo.setChannel(channel);
+        //转发消息
+        transToSSH(channel, "\r");
+
+        //读取终端返回的信息流
+        InputStream inputStream = channel.getInputStream();
+        try {
+            //循环读取
+            byte[] buffer = new byte[1024];
+            int i = 0;
+            //如果没有数据来，线程会一直阻塞在这个地方等待数据。
+            while ((i = inputStream.read(buffer)) != -1) {
+                template.convertAndSend("/topic/" + webSSHData.getUserId(), new String(Arrays.copyOfRange(buffer, 0, i)));
+            }
+        } finally {
+            //断开连接后关闭会话
+            session.disconnect();
+            channel.disconnect();
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        }
+    }
+复制代码
+　　查资料了解了下，功能还是挺多的，要用到的时候再具体去查去解决吧。
+
+　　有个基本使用可以看这篇博客：https://honeypps.com/java/jsch-quick-start/
+
+分类: Java知识学习 , xterm/Web终端
