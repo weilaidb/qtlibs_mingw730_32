@@ -24,6 +24,7 @@ argparse
 shutil
 
 [##老旧照片修复
+pytorch
 torch
 torchvision
 dlib
@@ -38,3 +39,5 @@ opencv-python
 einops
 PySimpleGUI
 matplotlib
+face_recognition 
+cmake

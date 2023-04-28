@@ -2561,6 +2561,7 @@ Python/know/Python pip3 install Python之pip命令指定安装源和版本
 Python/know/Python pip3 install 用国内源安装
 Python/know/Python pip3 install 用国内源安装 Update
 Python/know/Python pip3 install 用国内源安装 依赖项在文件中
+Python/know/Python pip3 install 用国内源安装 查看源内容
 Python/know/Python pip3用国内源安装
 Python/know/Python 如何引用上层文件夹的文件 父亲目录 parent dir
 Python/know/np.dot()使用方法
