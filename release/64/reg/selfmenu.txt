@@ -3542,6 +3542,7 @@ path路径/常用文件夹
 脚本/VBS/SecureCrt/git process
 脚本/VBS/SecureCrt/git push cur branch
 脚本/VBS/SecureCrt/每行保存日志
+自动化测试/test1
 英语/eg
 英语/单词
 设计/术语/Agile
