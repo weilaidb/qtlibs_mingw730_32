@@ -1,0 +1,106 @@
+
+
+
+
+
+<html>
+<head>
+  <title>SSH测试</title>
+</head>
+<body>
+<form id="sshForm" method="get">
+  <div>
+    <label for="host">主机名：</label>
+    <input type="text" id="host" name="host" value="49.234.85.12">
+  </div>
+  <div>
+    <label for="port">端口号：</label>
+    <input type="text" id="port" name="port" value="22">
+  </div>
+  <div>
+    <label for="username">用户名：</label>
+    <input type="text" id="username" name="username" value="">
+  </div>
+  <div>
+    <label for="password">密码：</label>
+    <input type="password" id="password" name="password" value="">
+  </div>
+  <div>
+    <label for="command">命令：</label>
+    <textarea id="command" name="command" rows="5"></textarea>
+  </div>
+  <div>
+    <input type="submit" value="执行命令">
+  </div>
+</form>
+
+<div id="result"></div>
+</body>
+
+<script>
+  document.getElementById("sshForm").addEventListener("submit", function(event) {
+    alert("here");
+    event.preventDefault();
+    var form = this;
+    var xhr = new XMLHttpRequest();
+    // xhr.open(form.method, form.action, true);
+    // xhr.open('POST', '/SSHServlet', true);
+    const formData = new FormData();
+    formData.append('username', 'john');
+    formData.append('email', 'john@example.com');
+
+    var url ="../../sshservlet";
+    xhr.open("GET",url,true);//true表示会在send()方法之后继续执行。
+
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // 显示命令执行结果
+        document.getElementById("result").innerHTML = xhr.responseText;
+      }
+    };
+    // xhr.send(new FormData(form));
+    xhr.send(formData);        ---此处报错
+  });
+</script>
+</html>
+
+
+
+
+
+
+
+JSP无法加载静态资源：Failed to load resource: the server responded with a status of 404 ()
+
+落日漫余晖.
+
+于 2021-09-27 15:22:35 发布
+
+4058
+ 收藏 3
+文章标签： html
+版权
+JSP无法加载静态资源：Failed to load resource: the server responded with a status of 404 ()
+在写项目的时候，我们总共发现的问题时，总是遇到静态资源无法正常加载的bug，出现了如下图的bug！
+
+
+原因是在经过DispacterSerlvet转发时被它内置的过滤器给拦截了，引入文件是这样的! ! !
+
+解决方法：
+第一步：
+
+<%@ taglib prefix=“c” uri=“http://java.sun.com/jsp/jstl/core” %>
+
+第二步：
+修改路径
+
+2、用 <c:url value=""></c:url>标签引入框架文件
+
+
+
+根据以上两步去解决这个问题，JSP无法加载静态资源的问题就可以检查啦！！！
+————————————————
+版权声明：本文为CSDN博主「落日漫余晖.」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_54769967/article/details/120509150
+

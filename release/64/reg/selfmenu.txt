@@ -1172,6 +1172,7 @@ JAVA/AJAX new/jsp/eg
 JAVA/AJAX new/jsp/onblur
 JAVA/AJAX new/jsp/request response path
 JAVA/AJAX new/jsp/输入内容显示下拉菜单
+JAVA/AJAX new/jsp/输入内容显示下拉菜单（实际）
 JAVA/AJAX new/onreadystatechange
 JAVA/AJAX new/onreadystatechange 回调函数
 JAVA/AJAX new/xml Retrieve data from XML file
@@ -1267,6 +1268,7 @@ JAVA/JSP/Print/System.in
 JAVA/JSP/Print/System.out.print
 JAVA/JSP/Print/System.out.println
 JAVA/JSP/Problem/Error during artifact deployment
+JAVA/JSP/Problem/Failed to load resource: the server responded with a status of 404
 JAVA/JSP/Problem/IDEA project模式下，不显示项目工程目录
 JAVA/JSP/Problem/IDEA 打开文件夹特别慢
 JAVA/JSP/Problem/Path Relative to Deployment Root 相对根路径
