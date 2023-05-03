@@ -1,0 +1,123 @@
+Java中如何获取当前日期和时间的4种方法
+
+小楼星辰
+
+于 2021-08-04 00:28:55 发布
+
+33306
+ 收藏 45
+分类专栏： Java
+版权
+
+Java
+专栏收录该内容
+33 篇文章0 订阅
+订阅专栏
+最近群里有一位 C 转 Java 的网友，问到“Java如何获取当前日期和时间”这个问题，知识虽然基础，但大部分网友只记得 Java8 以前的用法。本文总结了 4 种方法，其中第 4 种是 Java8 才提供的 API。
+
+
+System.currentTimeMillis()
+获取标准时间可以通过System.currentTimeMillis()方法获取，此方法不受时区影响，得到的结果是时间戳格式的。例如：
+
+1543105352845  
+1
+我们可以将时间戳转化成我们易于理解的格式
+
+SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+Date date = new Date(System.currentTimeMillis());
+System.out.println(formatter.format(date));
+1
+2
+3
+则该时间戳对应的时间为：
+
+2021-8-4 at 00:22:12 CET
+1
+值得注意的是，此方法会根据我们的系统时间返回当前值，因为世界各地的时区是不一样的。
+
+java.util.Date
+在 Java 中，获取当前日期最简单的方法之一就是直接实例化位于 Java 包 java.util 的 Date 类。
+
+Date date = new Date(); 
+// this object contains the current date value 
+1
+2
+上面获取到的日期也可以被format成我们需要的格式，例如：
+
+SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+System.out.println(formatter.format(date));  
+1
+2
+Calendar API
+Calendar 类，专门用于转换特定时刻和日历字段之间的日期和时间。
+
+使用 Calendar 获取当前日期和时间非常简单：
+
+Calendar calendar = Calendar.getInstance(); 
+// get current instance of the calendar  
+1
+2
+与 date 一样，我们也可以非常轻松地 format 这个日期成我们需要的格式
+
+SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+System.out.println(formatter.format(calendar.getTime()));  
+1
+2
+上面代码打印的结果如下：
+
+4-8-2021 00:27:20  
+1
+Date/Time API
+Java 8 提供了一个全新的 API，用以替换 java.util.Date 和 java.util.Calendar。Date / Time API 提供了多个类，帮助我们来完成工作，包括：
+
+LocalDate
+LocalTime
+LocalDateTime
+ZonedDateTime
+LocalDate
+LocalDate 只是一个日期，没有时间。 这意味着我们只能获得当前日期，但没有一天的具体时间。
+
+LocalDate date = LocalDate.now(); // get the current date 
+1
+我们可以 format 它。
+
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
+System.out.println(date.format(formatter));  
+1
+2
+得到的结果只有年月日，例如:
+
+4-8-2021
+1
+LocalTime
+LocalTime 与 LocalDate 相反，它只代表一个时间，没有日期。 这意味着我们只能获得当天的当前时间，而不是实际日期：
+
+LocalTime time = LocalTime.now(); // get the current time  
+1
+可以按如下方式 format。
+
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");  
+System.out.println(time.format(formatter)); 
+1
+2
+得到的结果类似如下：
+
+00:25:58  
+1
+LocalDateTime
+最后一个是 LocalDateTime，也是 Java 中最常用的 Date / Time 类，代表前两个类的组合 – 即日期和时间的值：
+
+LocalDateTime dateTime = LocalDateTime.now(); // get the current date and time  
+1
+format 的方式也一样。
+
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
+System.out.println(dateTime.format(formatter)); 
+1
+2
+得到的日期结果类似于：
+
+4-8-2021 00:27:20  
+————————————————
+版权声明：本文为CSDN博主「小楼星辰」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_36789243/article/details/119362598

@@ -1536,6 +1536,9 @@ JAVA/know/浅析 JSch - Java实现的SSH通讯包：jsch作用、4种认证方�
 JAVA/new/enter to br
 JAVA/new/implements interface
 JAVA/new/interface
+JAVA/new/map
+JAVA/new/当前时间
+JAVA/new/当前时间2
 JAVA/new/进制转换 16进制 10进制
 JAVA/print/println
 JAVA/print/println 片段

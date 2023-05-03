@@ -1,0 +1,9 @@
+try{
+    Map<String, String[]> params = request.getParameterMap();
+    for(String key : params.keySet()){
+        System.out.println("key" + key + "=" + params.get(key));
+    }
+
+}catch (Exception e){
+    e.printStackTrace();
+}
