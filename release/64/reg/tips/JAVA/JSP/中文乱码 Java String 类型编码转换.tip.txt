@@ -1,0 +1,40 @@
+Java String 类型编码转换
+
+梦魇秦歌
+
+于 2011-05-24 15:38:00 发布
+
+120682
+ 收藏 3
+分类专栏： Java 文章标签： string java encoding 数据库 byte jdk
+版权
+
+Java
+专栏收录该内容
+3 篇文章1 订阅
+订阅专栏
+String newStr = new String(oldStr.getBytes(), "UTF-8"); 
+
+java中的String类是按照unicode进行编码的，当使用String(byte[] bytes, String encoding)构造字符串时，encoding所指的是bytes中的数据是按照那种方式编码的，而不是最后产生的String是什么编码方式，换句话说，是让系统把bytes中的数据由encoding编码方式转换成unicode编码。如果不指明，bytes的编码方式将由jdk根据操作系统决定。
+
+        当我们从文件中读数据时，最好使用InputStream方式，然后采用String(byte[] bytes, String encoding)指明文件的编码方式。不要使用Reader方式，因为Reader方式会自动根据jdk指明的编码方式把文件内容转换成unicode 编码。
+
+        当我们从数据库中读文本数据时，采用ResultSet.getBytes()方法取得字节数组，同样采用带编码方式的字符串构造方法即可。
+
+ResultSet rs;
+bytep[] bytes = rs.getBytes();
+String str = new String(bytes, "gb2312");
+
+不要采取下面的步骤。
+
+ResultSet rs;
+String str = rs.getString();
+str = new String(str.getBytes("iso8859-1"), "gb2312");
+
+        这种编码转换方式效率底。之所以这么做的原因是，ResultSet在getString()方法执行时，默认数据库里的数据编码方式为 iso8859-1。系统会把数据依照iso8859-1的编码方式转换成unicode。使用str.getBytes("iso8859-1")把数据还原，然后利用new String(bytes, "gb2312")把数据从gb2312转换成unicode，中间多了好多步骤。
+
+        从HttpRequest中读参数时，利用reqeust.setCharacterEncoding()方法设置编码方式，读出的内容就是正确的了。
+转:http://www.blogjava.net/rabbit/archive/2008/03/27/189009.html
+————————————————
+版权声明：本文为CSDN博主「梦魇秦歌」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/mengyan4632/article/details/6442548

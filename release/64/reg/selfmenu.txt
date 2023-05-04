@@ -1367,6 +1367,8 @@ JAVA/JSP/string/String
 JAVA/JSP/synchronized
 JAVA/JSP/title eg
 JAVA/JSP/中文乱码
+JAVA/JSP/中文乱码 Java String 类型编码转换
+JAVA/JSP/中文乱码 使用web.xml过滤
 JAVA/JSP/代码段/decode getBytes
 JAVA/JSP/代码段/getBytes print all utf8 gbk
 JAVA/JSP/代码段/getBytes 方法

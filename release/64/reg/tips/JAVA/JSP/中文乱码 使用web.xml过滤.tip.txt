@@ -1,0 +1,152 @@
+AskOpenAI 智问
+
+JAVA SSH 捕获异常返回数据
+
+
+
+
+在 Java SSH 中，捕获异常并返回数据的方式可以通过以下步骤实现：
+
+使用 JSch 库连接到 SSH 服务器。
+
+执行命令并获取输出流。
+
+将输出流转换为字符串并返回。
+
+捕获异常并返回错误信息。
+
+以下是示例代码：
+
+
+import com.jcraft.jsch.*;
+
+public class SSHConnection {
+    private String host;
+    private String username;
+    private String password;
+
+    public SSHConnection(String host, String username, String password) {
+        this.host = host;
+        this.username = username;
+        this.password = password;
+    }
+
+    public String executeCommand(String command) {
+        JSch jsch = new JSch();
+        Session session = null;
+        try {
+            session = jsch.getSession(username, host, 22);
+            session.setPassword(password);
+            session.setConfig("StrictHostKeyChecking", "no");
+            session.connect();
+
+            ChannelExec channel = (ChannelExec) session.openChannel("exec");
+            channel.setCommand(command);
+            channel.setInputStream(null);
+            channel.setErrStream(System.err);
+
+            InputStream in = channel.getInputStream();
+            channel.connect();
+
+            byte[] tmp = new byte[1024];
+            StringBuilder sb = new StringBuilder();
+            while (true) {
+                while (in.available() > 0) {
+                    int i = in.read(tmp, 0, 1024);
+                    if (i < 0) break;
+                    sb.append(new String(tmp, 0, i));
+                }
+                if (channel.isClosed()) {
+                    if (in.available() > 0) continue;
+                    break;
+                }
+                try {Thread.sleep(1000);} catch (Exception ee) {}
+            }
+            channel.disconnect();
+            session.disconnect();
+
+            return sb.toString();
+        } catch (JSchException | IOException e) {
+            e.printStackTrace();
+            return "Error: " + e.getMessage();
+        }
+    }
+}
+在上面的代码中，executeCommand 方法接受一个命令作为参数，并返回命令的输出结果。如果发生异常，将返回错误信息。在捕获异常时，可以根据需要返回不同的错误信息。
+
+
+
+
+JSP 显示中文乱码
+
+
+
+
+JSP 显示中文乱码的原因可能有很多，但是最常见的原因是编码不匹配。下面介绍两种常见的解决方法。
+
+在 JSP 页面头部添加编码设置
+在 JSP 页面的头部添加以下代码：
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+这个代码片段中的 contentType 属性设置了页面的 MIME 类型，charset 属性设置了字符编码。这里将字符编码设置为 UTF-8，这是一种常见的字符编码格式。
+
+在 web.xml 中添加编码过滤器
+在 web.xml 文件中添加以下代码：
+
+
+<filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+        <param-name>forceEncoding</param-name>
+        <param-value>true</param-value>
+    </init-param>
+</filter>
+<filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+这个代码片段定义了一个编码过滤器，它将所有请求和响应的字符编码设置为 UTF-8。
+
+以上两种方法中，第一种方法是最常用的方法，因为它比较简单，而且可以直接在 JSP 页面中设置。第二种方法需要在 web.xml 文件中进行配置，但是它可以确保所有的 JSP 页面都使用相同的字符编码。
+
+
+
+
+org.springframework.web.filter.CharacterEncodingFilter 是哪个库
+
+
+
+
+org.springframework.web.filter.CharacterEncodingFilter 是 Spring Framework 的库，它提供了一个过滤器，用于设置请求和响应的字符编码。这个过滤器可以确保所有的请求和响应都使用相同的字符编码，从而避免乱码问题。
+
+要使用 org.springframework.web.filter.CharacterEncodingFilter，需要在 Maven 或 Gradle 中添加 Spring Framework 的依赖。以下是 Maven 的依赖配置示例：
+
+
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-web</artifactId>
+    <version>${spring.version}</version>
+</dependency>
+在这个示例中，${spring.version} 是 Spring Framework 的版本号，需要根据实际情况进行设置。如果是 Gradle 项目，可以使用以下代码添加依赖：
+
+
+implementation 'org.springframework:spring-web:${spring.version}'
+在添加了 Spring Framework 的依赖之后，就可以在 web.xml 中配置 org.springframework.web.filter.CharacterEncodingFilter 了。
+
+
+
+
+有效上下文 Tokens : 2677/$0.0054
+
+
+
+
+
+
+与 ta 对话吧
