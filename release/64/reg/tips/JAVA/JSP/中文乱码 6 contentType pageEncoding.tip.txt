@@ -1,0 +1,30 @@
+AskOpenAI 智问
+
+contentType="text/html; charset=UTF-8" 和 pageEncoding="UTF-8"
+
+
+
+
+contentType="text/html; charset=UTF-8" 和 pageEncoding="UTF-8" 都是用于指定网页编码的方式，但是它们的作用和使用场景略有不同。
+
+contentType="text/html; charset=UTF-8" 用于在HTTP响应头中指定网页的MIME类型和字符集编码方式，告知浏览器该网页的内容类型和编码方式，让浏览器正确解析和显示网页内容。例如：
+
+html
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+pageEncoding="UTF-8" 则是用于在JSP页面中指定页面源代码的编码方式，告诉服务器该JSP页面的源代码使用的字符集编码方式，让服务器正确读取和解析JSP页面的源代码。例如：
+
+html
+<%@ page language="java" contentType="text/html; pageEncoding="UTF-8"%>
+需要注意的是，如果指定的字符集编码方式不正确或者与实际编码方式不一致，会导致页面乱码或者无法正确解析。因此，在开发中应该根据实际情况选择正确的字符集编码方式，并且保证所有相关的配置都一致。
+
+
+
+
+有效上下文 Tokens : 728/$0.0015
+
+
+
+
+
+
+与 ta 对话吧

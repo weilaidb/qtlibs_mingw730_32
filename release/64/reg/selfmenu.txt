@@ -1196,7 +1196,11 @@ JAVA/AJAX 教程/AJAX 实例
 JAVA/AJAX 教程/eg
 JAVA/AJAX 教程/简介
 JAVA/AJAX 示例/经典ajax实例-ajax实现输入时的自动提示jsp(转)
+JAVA/API/DateTime/CST
+JAVA/API/DateTime/当前时间
 JAVA/API/Java获取当前路径
+JAVA/API/String/getBytes
+JAVA/API/String/new String
 JAVA/Ant/使用Ant构建项目
 JAVA/Base/forloop
 JAVA/Cloud/ECS
@@ -1367,6 +1371,10 @@ JAVA/JSP/string/String
 JAVA/JSP/synchronized
 JAVA/JSP/title eg
 JAVA/JSP/中文乱码
+JAVA/JSP/中文乱码 3
+JAVA/JSP/中文乱码 4 ajax显示
+JAVA/JSP/中文乱码 5 pageEncoding
+JAVA/JSP/中文乱码 6 contentType pageEncoding
 JAVA/JSP/中文乱码 Java String 类型编码转换
 JAVA/JSP/中文乱码 使用web.xml过滤
 JAVA/JSP/代码段/decode getBytes

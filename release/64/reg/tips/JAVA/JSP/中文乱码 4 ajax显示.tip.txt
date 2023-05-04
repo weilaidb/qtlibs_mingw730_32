@@ -1,0 +1,46 @@
+    private String executeCommands(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        PrintWriter out = response.getWriter();
+
+
+
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8"); //不好使
+
+        //判断命令为空
+        if(0 == request.getParameter("command").trim().length())
+        {
+            String errormsg = "exec cmd empty 控制符";
+            response.getWriter().write(errormsg);
+
+
+
+
+============================上面显示乱码，下面正常， response.setCharacterEncoding("UTF-8");  设置要在最前面， out 在后面
+
+
+
+
+
+
+
+
+    private String executeCommands(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8"); //OK
+        PrintWriter out = response.getWriter();
+
+
+        //判断命令为空
+        if(0 == request.getParameter("command").trim().length())
+        {
+            String errormsg = "exec cmd empty 控制符";
+            response.getWriter().write(errormsg);
+
+
+
+
+
+
+===========JSP要配置 pageEncoding="UTF-8"
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>

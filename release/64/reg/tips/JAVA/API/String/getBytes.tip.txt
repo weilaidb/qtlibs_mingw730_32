@@ -1,0 +1,16 @@
+  java.lang.String
+@NotNull  
+@Contract(pure = true)  
+public byte[] getBytes(     @NonNls  @NotNull  String charsetName )
+throws java.io.UnsupportedEncodingException
+Encodes this String into a sequence of bytes using the named charset, storing the result into a new byte array.
+The behavior of this method when this string cannot be encoded in the given charset is unspecified. The java.nio.charset.CharsetEncoder class should be used when more control over the encoding process is required.
+Params:
+charsetName – The name of a supported charset
+Returns:
+The resultant byte array
+Throws:
+UnsupportedEncodingException – If the named charset is not supported
+Since:
+JDK1.1
+  < 1.8 > (rt.jar)

@@ -1,0 +1,14 @@
+pageEncoding="UTF-8"
+
+
+
+
+pageEncoding="UTF-8" 是 JSP 页面的编码设置，它指定了 JSP 页面的字符编码为 UTF-8。
+
+在 JSP 页面中，可以使用 <%@ page %> 标签来设置各种页面属性，包括语言、缓存、错误页面等等。其中，pageEncoding 属性用于指定页面的字符编码。例如：
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+这个代码片段中，contentType 属性指定了页面的 MIME 类型为 text/html，并且字符编码为 UTF-8。pageEncoding 属性也设置为 UTF-8，确保 JSP 页面使用相同的字符编码。
+
+在 JSP 页面中，如果没有指定字符编码，就会使用默认的编码。不同的服务器和容器可能有不同的默认编码，因此在使用 JSP 页面时，最好明确指定字符编码，以避免出现乱码等问题。
