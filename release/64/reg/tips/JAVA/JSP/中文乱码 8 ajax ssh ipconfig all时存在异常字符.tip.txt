@@ -1,0 +1,23 @@
+SSH执行本地时，存在异常乱码
+
+==ajax返回的数据，(需要使用decodeURI???)--不对啊，只注了一个，增加了一行，没改啥啊，多了个括号就不一样了？？？
+
+
+ //回调函数
+    function callback_ssh(){
+      if(xmlHttp.readyState == 4){
+        //4代表完成200代表服务器响应 、 404代表资源未找到 ，500代表 内部出现错误
+        if(xmlHttp.status == 200){
+          //定义交互成功时候，获取的数据是 Text数组的格式 。
+          // alert("reponse");
+          var result = (xmlHttp.responseText);
+          setContent_ssh(result);
+        }
+      }
+    }
+    //设置关联数据的展示，参数代表的是服务器传递过来的关联数据
+    function setContent_ssh(contents){
+      clearContent_ssh();
+      // document.getElementById("result_ssh").innerText = decodeURI(contents).toString();
+      document.getElementById("result_ssh").innerText = (contents).toString();
+    }
