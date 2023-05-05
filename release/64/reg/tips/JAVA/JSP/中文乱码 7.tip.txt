@@ -1,0 +1,20 @@
+JSP 通过Servlet返回的数据乱码
+
+在 JSP 中通过 Servlet 返回的数据乱码，可能是由于字符编码不匹配所致。可以尝试以下解决方法：
+ 1. 在 Servlet 中设置字符编码
+ 在 Servlet 的  `doGet`  或  `doPost`  方法中添加如下代码，设置字符编码为 UTF-8。
+request.setCharacterEncoding("UTF-8");
+response.setContentType("text/html; charset=UTF-8");
+2. 在 JSP 中设置字符编码
+ 在 JSP 的头部添加如下代码，设置字符编码为 UTF-8。
+jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+3. 设置 Tomcat 的 URIEncoding
+ 在 Tomcat 的  `server.xml`  配置文件中，找到  `<Connector>`  标签，添加  `URIEncoding="UTF-8"`  属性。
+xml
+<Connector port="8080" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443"
+           URIEncoding="UTF-8" />
+以上这些方法可以解决 JSP 通过 Servlet 返回的数据乱码问题。
+
