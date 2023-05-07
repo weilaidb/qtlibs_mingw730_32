@@ -1,0 +1,28 @@
+-自动化测试SSH数据获取 -(war) 
+=====用户说明书
+
+1.支持分隔符，分别是等待字符和执行命令，比如:
+$;pwd
+$;ls -lh
+$;su
+$;ifconfig
+
+2.支持二级代理，登陆一级SSH后，再登陆下一级SSH，再执行命令;同时命令也支持分隔符
+
+3.
+http://49.234.85.12:8081/weilaix1/test/sshform4.jsp
+
+test/sshform.jsp  -- 一级代理（exec），不支持分隔符
+test/sshform2.jsp -- 二级代理（shell），支持分隔符
+test/sshform3.jsp -- 一级代理（shell），不支持分隔符
+test/sshform4.jsp -- 一级代理（shell），支持分隔符
+
+
+
+
+
+
+
+
+
+
