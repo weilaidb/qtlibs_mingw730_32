@@ -1,0 +1,5 @@
+$;pwd
+$;ls -lh
+$;su
+$;ifconfig
+$;diagShowPub("nihaoma")

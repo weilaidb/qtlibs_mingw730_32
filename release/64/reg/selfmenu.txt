@@ -294,6 +294,7 @@ BAT/网络network/问题点/OSPF
 BAT/网络network/防火墙
 BAT/网络network/防火墙工作原理
 BUG管理/BUG类别
+BUG管理/JSP/onclick 双引号不成对的问题
 BUG管理/Linux/Ctags out of memory
 BUG管理/MSTP/长时PING大包丢包
 BUG管理/PHY自协商/偶发一些子架ping不通线卡
@@ -3564,6 +3565,7 @@ path路径/常用文件夹
 自动化测试/dealspecialsign
 自动化测试/sshconfig_secondagent
 自动化测试/test1
+自动化测试/test2
 英语/eg
 英语/单词
 设计/术语/Agile

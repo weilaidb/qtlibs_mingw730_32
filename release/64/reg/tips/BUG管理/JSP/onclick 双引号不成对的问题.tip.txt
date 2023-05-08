@@ -1,0 +1,65 @@
+测试BUG模板
+☆Bug标题
+JSP/onclick 双引号不成对的问题
+
+☆Bug详细描述（含步骤）
+
+    <%
+        if(havaAutomationTest){
+            System.out.println("lefttextxxx:" + lefttext);
+            String convertText = lefttext.replaceAll("\r?\n", "</br>").replaceAll("\"", "\\\\\"");
+            System.out.println("convertText:" + convertText);
+    %>
+    <input type="button" value="执行" onclick="addAutomationTest('<%=convertText%>','<%=selectitem%>')" style="margin-right: 10px;width: 80px"/>
+ 
+页面显示多余的内容
+','自动化测试/test2')" style="margin-right: 10px;width: 80px"/>
+
+
+☆项目模块
+
+☆严重程度
+C-一般
+
+
+☆优先级
+
+☆Bug类别
+代码错误
+
+☆Bug状态
+Closed
+
+
+☆提交人
+ME
+
+☆提交日期
+2023-05-08 19:31:10
+
+☆附加信息
+
+☆解决人
+
+☆解决日期
+
+☆解决方式
+onclike使用单引号=''，里面的内容
+
+    <%
+        if(havaAutomationTest){
+            System.out.println("lefttextxxx:" + lefttext);
+            String convertText = lefttext.replaceAll("\r?\n", "</br>").replaceAll("\"", "\\\\\"");
+//            String convertText = lefttext.replaceAll("\r?\n", "</br>");
+            System.out.println("convertText:" + convertText);
+    %>
+    <input type="button" value="执行" onclick='addAutomationTest("<%=convertText%>","<%=selectitem%>")' style="margin-right: 10px;width: 80px"/>
+    <input type="button" value="关闭"   onclick="closewindow()" style="margin-right: 10px;width: 80px"/>
+<%--    <input type="button"   onclick="addAutomationTest('$;pwd</br>$;ls -lh</br>$;su</br>$;ifconfig</br>$;diagShowPub\(\"nihaoma\"\)</br>','自动化测试/test2')" style="margin-right: 10px;width: 80px"/>--%>
+<%--    <input type="button"   onclick='addAutomationTest("diagShowPub(\"abc\")","自动化测试/test2")' style="margin-right: 10px;width: 80px"/>--%>
+
+
+☆解决用时
+
+========================================================================
+========================================================================
