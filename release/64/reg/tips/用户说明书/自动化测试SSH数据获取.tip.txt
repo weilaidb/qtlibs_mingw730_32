@@ -21,6 +21,11 @@ test/sshform4.jsp -- 一级代理（shell），支持分隔符
 --More--;\n    --表示遇到--More--，执行\n
 
 
+5.SSH配置
+二级代理配置：
+名称:自动化测试/sshconfig_secondagent
+特性:支持【过滤
+
 
 
 
