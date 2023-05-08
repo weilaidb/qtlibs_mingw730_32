@@ -17,7 +17,8 @@ test/sshform2.jsp -- 二级代理（shell），支持分隔符
 test/sshform3.jsp -- 一级代理（shell），不支持分隔符
 test/sshform4.jsp -- 一级代理（shell），支持分隔符
 
-
+4.定义特殊处理字符，有些命令一次显示不全，又无法及时返回，增加《自动化测试/dealspecialsign》定义，比如：
+--More--;\n    --表示遇到--More--，执行\n
 
 
 
