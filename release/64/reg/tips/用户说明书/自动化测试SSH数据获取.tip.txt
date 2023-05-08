@@ -24,7 +24,12 @@ test/sshform4.jsp -- 一级代理（shell），支持分隔符
 5.SSH配置
 二级代理配置：
 名称:自动化测试/sshconfig_secondagent
-特性:支持【过滤
+特性:支持【和空行过滤
+
+一级代理配置：
+名称:自动化测试/sshconfig_firstagent
+特性:支持【和空行过滤
+
 
 
 

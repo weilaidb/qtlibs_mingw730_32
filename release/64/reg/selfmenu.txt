@@ -3563,6 +3563,7 @@ path路径/常用文件夹
 脚本/VBS/SecureCrt/git push cur branch
 脚本/VBS/SecureCrt/每行保存日志
 自动化测试/dealspecialsign
+自动化测试/sshconfig_firstagent
 自动化测试/sshconfig_secondagent
 自动化测试/test1
 自动化测试/test2
