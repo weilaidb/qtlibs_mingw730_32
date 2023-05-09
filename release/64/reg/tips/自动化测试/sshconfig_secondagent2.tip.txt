@@ -1,0 +1,12 @@
+【二级代理配置】
+【一级代理】
+localhost
+22
+weixjxxxx
+xxxxx
+
+【二级代理】
+49.234.85.12
+22
+weixj
+xxxxx
