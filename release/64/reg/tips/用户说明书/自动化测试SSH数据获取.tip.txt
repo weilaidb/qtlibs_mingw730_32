@@ -25,11 +25,15 @@ test/sshform4.jsp -- 一级代理（shell），支持分隔符
 二级代理配置：
 名称:自动化测试/sshconfig_secondagent
 特性:支持【和空行过滤
+     代理机和目标机水平排列
+     支持脚本选择
 
 一级代理配置：
 名称:自动化测试/sshconfig_firstagent
 特性:支持【和空行过滤
 
+6.脚本选择时，有些内容可能需要替换掉，引入 selectitem + "(replacereg)"，文件内容按行替换,支持正则替换，（示例）:
+.*(abc).*;yyyyy   -- 表示将带abc的行替换成yyyy
 
 
 

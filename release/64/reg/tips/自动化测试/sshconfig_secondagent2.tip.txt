@@ -2,7 +2,7 @@
 【一级代理】
 localhost
 22
-weixjxxxx
+weilaidb
 xxxxx
 
 【二级代理】
