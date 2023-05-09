@@ -1260,6 +1260,7 @@ JAVA/JSP/JavaBean/parseInt Long Float Double
 JAVA/JSP/JavaBean/setProperty
 JAVA/JSP/JavaBean/useBean
 JAVA/JSP/JavaBean/介绍
+JAVA/JSP/Know/JSP 标准标签库（JSTL）
 JAVA/JSP/Know/JSP怎么和Python结合
 JAVA/JSP/Know/JSP登录后自动返回到登录前页面
 JAVA/JSP/Know/Jsp常用功能:CSV文件的生成与分析
