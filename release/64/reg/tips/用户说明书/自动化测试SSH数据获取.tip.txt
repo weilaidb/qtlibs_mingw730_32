@@ -32,8 +32,10 @@ test/sshform4.jsp -- 一级代理（shell），支持分隔符
 名称:自动化测试/sshconfig_firstagent
 特性:支持【和空行过滤
 
-6.脚本选择时，有些内容可能需要替换掉，引入 selectitem + "(replacereg)"，文件内容按行替换,支持正则替换，（示例）:
+6.脚本选择时，有些内容可能需要替换掉，引入 SSH CONFIG selectitem + "(replacereg)"，文件内容按行替换,支持正则替换，（示例）:
 .*(abc).*;yyyyy   -- 表示将带abc的行替换成yyyy
+
+注：SSH CONFIG selectitem -- 表示SSH配置的选中项，因为数据可能是公用的，但是SSH配置可能存在差异，如果SSH配置这一项有特殊要求，可以进行定制。
 
 
 
