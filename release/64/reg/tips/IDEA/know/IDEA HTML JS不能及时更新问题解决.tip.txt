@@ -1,0 +1,77 @@
+IDEA HTML JS不能及时更新问题解决
+
+使用这个也不好使了
+1.重启电脑试一下  NG
+2.参考下面配置单，NG 
+3.重启浏览器    NG
+4.清除浏览器缓存 清除缓存快捷键 Ctrl+Shift+Delete  -- OK
+
+
+jazz2013
+
+于 2021-04-02 10:51:18 发布
+
+614
+ 收藏 1
+文章标签： IDEA
+版权
+IDEA HTML JS不能及时更新问题解决
+
+参考文章：
+
+（1）IDEA HTML JS不能及时更新问题解决
+
+（2）https://www.cnblogs.com/duaner92/p/10833798.html
+
+
+
+
+
+
+
+
+https://www.codeprj.com/blog/a54f861.html
+
+IDEA HTML JS不能及时更新问题解决
+本文转载自  duaner92  查看原文  2019-05-08 19:11  2503    IDEA     
+
+问题描述
+
+　　使用IDEA 开发时，修改js文件，前端页面不能及时更新。
+
+解决方法：
+
+      1. IDEA settings--> Compiler --> Make project automatically 选项勾选
+
+
+
+ 
+
+      2. 操作如图
+
+
+
+ 
+
+3. 操作如图
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

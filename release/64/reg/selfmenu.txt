@@ -1167,6 +1167,7 @@ Html/style/eg
 Html/参考手册/strong
 Html/参考手册/strong 示例
 Html/参考手册/示例/a href 去掉横线
+IDEA/know/IDEA HTML JS不能及时更新问题解决
 JAVA/AJAX new/JSON 实例
 JAVA/AJAX new/eg
 JAVA/AJAX new/jsp/eg
