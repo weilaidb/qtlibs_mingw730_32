@@ -1,0 +1,3 @@
+[常用Linux命令]
+$;pwd
+$;cd ~/work/git/test/tty && ./tty.out Makefile 
