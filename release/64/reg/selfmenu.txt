@@ -3571,8 +3571,10 @@ path路径/常用文件夹
 自动化测试/sshconfig_settings
 自动化测试/test1
 自动化测试/test2
+自动化测试/用例/test1 direct
 自动化测试/用例/test2 二级代理
 自动化测试/用例/test2 二级代理 more
+自动化测试/用例/test2 二级代理 带校验
 自动化测试/用例/test2 二级代理 替换
 英语/eg
 英语/单词

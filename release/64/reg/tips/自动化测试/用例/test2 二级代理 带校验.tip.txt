@@ -1,0 +1,17 @@
+[常用Linux命令]
+$;pwd;/home/weixj
+$;ls -lh
+$;ifconfig
+$;ifconfig -a
+$;arp
+$;route
+$;df -lh
+$;uname -a
+$;cat /proc/cpuinfo
+$;cat /proc/meminfo
+$;last
+$;who
+
+
+
+
