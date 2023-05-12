@@ -1,1 +1,1 @@
-ExecSshCmdTimeout:30
+ExecSshCmdTimeout:10

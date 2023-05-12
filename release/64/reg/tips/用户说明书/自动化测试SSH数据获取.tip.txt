@@ -20,6 +20,8 @@ test/sshform4.jsp -- 一级代理（shell），支持分隔符
 4.定义特殊处理字符，有些命令一次显示不全，又无法及时返回，增加《自动化测试/dealspecialsign》定义，比如：
 --More--;\n    --表示遇到--More--，执行\n
 注:支持特殊字符有:$SPACE，$TAB,$ENTER，分别表示:空格，制表符，换行
+支持正则表达式，比如：
+.*--More--.*;$SPACE
 
 
 5.SSH配置
