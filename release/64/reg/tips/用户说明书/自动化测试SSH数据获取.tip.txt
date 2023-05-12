@@ -43,6 +43,7 @@ test/sshform4.jsp -- 一级代理（shell），支持分隔符
 
 7.支持自定义配置，《自动化测试/sshconfig_settings》
 ExecSshCmdTimeout:30  -- 执行命令超时时间
+AutoDownloadResult:1  -- 命令执行结束是否自动下载结果，默认自动下载
 
 
 
