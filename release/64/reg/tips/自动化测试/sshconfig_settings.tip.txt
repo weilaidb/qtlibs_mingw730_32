@@ -1,2 +1,2 @@
 ExecSshCmdTimeout:10
-AutoDownloadResult:0
+AutoDownloadResult:1
