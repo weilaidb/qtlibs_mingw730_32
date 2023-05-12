@@ -3568,6 +3568,7 @@ path路径/常用文件夹
 自动化测试/sshconfig_firstagent
 自动化测试/sshconfig_secondagent
 自动化测试/sshconfig_secondagent2
+自动化测试/sshconfig_settings
 自动化测试/test1
 自动化测试/test2
 自动化测试/用例/test2 二级代理

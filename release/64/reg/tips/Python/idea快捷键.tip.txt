@@ -7,7 +7,11 @@ IDEA可以说是当下Java程序员日常开发的神器，但是想要发挥这
 IDEA返回到上次编辑位置的默认快捷键是ctrl+shift+backspace或者ctrl+alt+←。
 
 
-File-Settings-Keymap-DeleteLine -- Shift+Y
+File-Settings-Keymap-
+
+DeleteLine -- Shift+Y
+Back    -- Alt + ,
+Forward --  Alt + .
 
 
 必备
