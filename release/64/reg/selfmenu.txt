@@ -2340,6 +2340,7 @@ OS/WIN10/打印机 Epson L360 打印不出黑色
 OS/WIN10/打印机 Epson L360 打印有重影
 OS/WIN10/打印机 m7605d
 OS/WIN11/windows 11 搭建 ssh server 服务
+OS/WIN11/驱动备份等
 OS/WIN7/安装系统常见问题
 OS/无线硬盘/NEWQ 智能云储宝K1 使用说明
 Office/Excel/Macro/SpellNumber
@@ -3517,6 +3518,7 @@ path路径/常用文件夹
 用户说明书/超级记事本 weilaix.war
 电影/战争/收藏
 电脑/Hasee神舟/Z7-RA7/配置
+电脑/Hasee神舟/Z7-RA7/配置2
 电脑/ThinkPad/T14/常见
 电脑/ThinkPad/T14/拆机
 电脑/ThinkPad/T14/拆机 加内存和硬盘安装系统
