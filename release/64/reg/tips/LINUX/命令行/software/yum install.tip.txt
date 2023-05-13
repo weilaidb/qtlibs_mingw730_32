@@ -86,3 +86,8 @@ cppunit
 [rar]
 epel-release
 unar
+
+telnet
+telnet-server
+xinetd
+

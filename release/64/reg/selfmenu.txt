@@ -2329,6 +2329,7 @@ OS/MACOS/黑苹果/安装教程
 OS/Ubuntu/EasyBcd
 OS/Ubuntu/硬盘安装
 OS/Ubuntu/硬盘安装后引导
+OS/WIN10/know/QQ五笔win10中英文切换失灵解决办法
 OS/WIN10/know/win10 安装ssh SSH开启（win10）
 OS/WIN10/know/win10 安装ssh并作为服务器使用
 OS/WIN10/mcafee占用磁盘100%怎么办,mcafee占用磁盘的完美解决方法
@@ -3510,7 +3511,7 @@ path路径/常用文件夹
 用户说明书/代码集autocodesets 菜单定义规范
 用户说明书/在线文档浏览 kkFileView-2.2.0
 用户说明书/更换服务器change server
-用户说明书/自动化测试SSH数据获取
+用户说明书/自动化测试SSH&TELNET数据获取
 用户说明书/芝士错题本
 用户说明书/计算器Web(Python)
 用户说明书/超级记事本 weilaix.war
@@ -3569,8 +3570,10 @@ path路径/常用文件夹
 自动化测试/sshconfig_secondagent
 自动化测试/sshconfig_secondagent2
 自动化测试/sshconfig_settings
+自动化测试/telnetconfig_firstagent
 自动化测试/test1
 自动化测试/test2
+自动化测试/用例/linux common
 自动化测试/用例/test1 direct
 自动化测试/用例/test2 二级代理
 自动化测试/用例/test2 二级代理 more

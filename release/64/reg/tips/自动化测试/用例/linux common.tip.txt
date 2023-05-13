@@ -1,0 +1,19 @@
+[常用Linux命令]
+cat /etc/redhat-release
+rpm -qa | grep telnet
+pwd
+ls -lh
+ifconfig
+ifconfig -a
+arp
+route
+df -lh
+uname -a
+cat /proc/cpuinfo
+cat /proc/meminfo
+last
+who
+
+
+
+

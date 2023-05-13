@@ -1,0 +1,57 @@
+-自动化测试SSH&TELNET数据获取 -(war) 
+=====用户说明书
+
+1.支持分隔符，分别是等待字符和执行命令，比如:
+$;pwd
+$;ls -lh
+$;su
+$;ifconfig
+$;ifconfig;eth0
+
+支持用户数据校验,在用例的第三个位置,表示期望包含的数据，可以正则表示
+$;ifconfig;eth0
+
+
+2.支持二级代理，登陆一级SSH后，再登陆下一级SSH，再执行命令;同时命令也支持分隔符
+
+3.
+http://49.234.85.12:8081/weilaix1/test/sshform4.jsp
+
+test/sshform.jsp  -- 一级代理（exec），不支持分隔符
+test/sshform2.jsp -- 二级代理（shell），支持分隔符
+test/sshform3.jsp -- 一级代理（shell），不支持分隔符
+test/sshform4.jsp -- 一级代理（shell），支持分隔符
+
+4.定义特殊处理字符，有些命令一次显示不全，又无法及时返回，增加《自动化测试/dealspecialsign》定义，比如：
+--More--;\n    --表示遇到--More--，执行\n
+注:支持特殊字符有:$SPACE，$TAB,$ENTER，分别表示:空格，制表符，换行
+支持正则表达式，比如：
+.*--More--.*;$SPACE
+
+
+5.SSH配置
+二级代理配置：
+名称:自动化测试/sshconfig_secondagent
+特性:支持【和空行过滤
+     代理机和目标机水平排列
+     支持脚本选择
+
+一级代理配置：
+名称:自动化测试/sshconfig_firstagent
+特性:支持【和空行过滤
+
+6.脚本选择时，有些内容可能需要替换掉，引入 SSH CONFIG selectitem + "(replacereg)"，文件内容按行替换,支持正则替换，（示例）:
+.*(abc).*;yyyyy   -- 表示将带abc的行替换成yyyy
+
+注：SSH CONFIG selectitem -- 表示SSH配置的选中项，因为数据可能是公用的，但是SSH配置可能存在差异，如果SSH配置这一项有特殊要求，可以进行定制。
+
+
+7.SSH支持自定义配置，《自动化测试/sshconfig_settings》
+ExecSshCmdTimeout:30  -- 执行命令超时时间
+AutoDownloadResult:1  -- 命令执行结束是否自动下载结果，默认自动下载
+
+8.支持TELNET方式获取数据，支持一级代理
+test/telnetform.jsp -- 一级代理（telnet），不支持分隔符
+TELNET选项：
+"自动化测试/telnetconfig_firstagent"  -- 一级代理配置
+
