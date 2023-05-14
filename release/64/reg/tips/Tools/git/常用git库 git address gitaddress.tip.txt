@@ -158,6 +158,8 @@ git@github.com:layui/layui.git
 
 
 本地库:
+#自动化测试
+git@gitee.com:weilaidb/autotest.git
 #神经网络
 git@gitee.com:weilaidb/neralnetwork_eg.git
 #Web部署,2为扩展版本(tomcat10),1为复制web_notebook_online
