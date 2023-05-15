@@ -49,7 +49,9 @@ test/sshform4.jsp -- 一级代理（shell），支持分隔符
 7.SSH支持自定义配置，《自动化测试/sshconfig_settings》
 ExecSshCmdTimeout:30  -- 执行命令超时时间
 AutoDownloadResult:1  -- 命令执行结束是否自动下载结果，默认自动下载
-ShowMoreInfo:1        -- 用例判断时，是否详细打印，默认打印
+ShowMoreInfo:1        -- 用例判断时，是否后台详细打印More信息，默认打印, 比如:System.out.println(output);
+SaveCmdResult2AllDb:1 -- 是否存储数据到数据库alldb，表名为abc，转化存储
+
 
 8.支持TELNET方式获取数据，支持一级代理
 test/telnetform.jsp -- 一级代理（telnet），不支持分隔符
