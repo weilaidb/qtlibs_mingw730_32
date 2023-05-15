@@ -1,0 +1,86 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<script src="../js/jquery-3.6.0.min.js"></script>
+
+
+  <script type="text/javascript">
+    var xmlHttp_ssh;
+    function sendSshContent_ssh(){
+      // var formData = new FormData();
+      // formData.append("host", document.getElementById("host").value)
+      var express = "";
+      express += "?host=" + encodeURIComponentPub("host");
+      express += "&port=" + encodeURIComponentPub("port");
+      express += "&username=" + encodeURIComponentPub("username");
+      express += "&password=" + encodeURIComponentPub("password");
+      express += "&host2=" + encodeURIComponentPub("host2");
+      express += "&port2=" + encodeURIComponentPub("port2");
+      express += "&username2=" + encodeURIComponentPub("username2");
+      express += "&password2=" + encodeURIComponentPub("password2");
+      express += "&command=" + encodeURIComponentPub("command");
+      express += "&sshconfig=" + encodeURIComponent(getSelectIndexText("sshconfig"));
+      express += "&id_findtext=" + encodeURIComponent(getTextEditValue("id_findtext"));
+
+      //给服务器发送数据 ，采用的是 Ajax异步传输数据。
+      //所以建立一个Ajax的对象xmlHttp_ssh,
+      xmlHttp_ssh = createxmlHttpPub();//xmlHttp_ssh= 获得 xmlHttp_ssh的对象 ；
+      //要给服务器发送数据
+      var url ="../sshservlet2" + express;
+      xmlHttp_ssh.open("GET",url,true);//true表示会在send()方法之后继续执行。
+      //xmlHttp_ssh绑定回调方法 ，当xmlHttp_ssh的状态改变的时候才会调用 此方法
+      //xmlHttp_ssh的四种状态我们只关心状态4：（complete）,所以说在完成之后调用回调方法才有意义
+      xmlHttp_ssh.onreadystatechange = callback_ssh;//onreadystatechange在这里是小写不能大写 。
+      xmlHttp_ssh.send(null);
+    }
+    
+    //回调函数
+    function callback_ssh(){
+      if(xmlHttp_ssh.readyState == 4){
+        //4代表完成200代表服务器响应 、 404代表资源未找到 ，500代表 内部出现错误
+        if(xmlHttp_ssh.status == 200){
+          //定义交互成功时候，获取的数据是 Text数组的格式 。
+          // alert("reponse");
+          var result = (xmlHttp_ssh.responseText);
+          setContent_ssh(result);
+        }
+      }
+    }
+    //设置关联数据的展示，参数代表的是服务器传递过来的关联数据
+    function setContent_ssh(contents){
+      setRandomColor("colorshow");
+      // alert(getLableValue("autodownloadresult"));
+      if(parseInt(getLableValue("autodownloadresult")) > 0)
+      {
+        downloadData(contents, "path/to/data");
+      }
+      clearContent_ssh();
+      // console.log("before result:" + contents);
+      contents = markColorMulLineCase(contents);
+      // console.log("after result:" + contents);
+
+      // document.getElementById("result_ssh").innerText = decodeURIComponent(contents).toString();
+      document.getElementById("result_ssh").innerHTML = (contents).toString();
+    }
+
+    function downloadData(data, url){
+      var blob = new Blob([data], {type: "application/octet-stream"});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      // a.download = "autotestdata_" + getSelectIndexText("sshconfig")  + "_"  + getTextEditValue("id_findtext")  + "_" + getCurTimeString() + ".csv";
+      a.download = "autotestdata_" + getSelectIndexText("sshconfig")  + "_"  + getTextEditValue("id_findtext")  + "_" + getCurTimeString() + ".xlsx";
+      document.body.appendChild(a);
+      a.click();
+      // Clean up the URL
+      setTimeout(function() {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 0);
+    }
+
+
+    //清空数据的方法
+    function clearContent_ssh(){
+      document.getElementById("result_ssh").innerText="";
+    }
+  </script>
+

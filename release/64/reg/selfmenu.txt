@@ -1171,6 +1171,8 @@ IDEA/know/IDEA HTML JS不能及时更新问题解决
 JAVA/AJAX new/JSON 实例
 JAVA/AJAX new/eg
 JAVA/AJAX new/jsp/eg
+JAVA/AJAX new/jsp/include
+JAVA/AJAX new/jsp/include2
 JAVA/AJAX new/jsp/onblur
 JAVA/AJAX new/jsp/request response path
 JAVA/AJAX new/jsp/输入内容显示下拉菜单
@@ -3456,6 +3458,7 @@ path路径/常用文件夹
 正则表达式/所有转一行_替换为NL
 正则表达式/所有转一行_替换为空格
 正则表达式/所有转一行_替换为逗号
+正则表达式/所有转一行_期望结果
 正则表达式/添加引号
 正则表达式/验证Email地址
 测试用例/DCN/光监控/OSPF互通

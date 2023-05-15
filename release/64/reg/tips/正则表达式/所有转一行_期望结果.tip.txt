@@ -1,0 +1,4 @@
+eth0: flags=4163 mtu 1500
+inet 172.17.0.10 netmask 255.255.240.0 broadcast 172.17.15.255
+inet6 fe80::5054:ff:feeb:186b prefixlen 64 scopeid 0x20
+ether 52:54:00:eb:18:6b txqueuelen 1000 (Ethernet)
