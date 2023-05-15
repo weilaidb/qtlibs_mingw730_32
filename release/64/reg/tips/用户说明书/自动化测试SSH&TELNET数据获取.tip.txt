@@ -56,6 +56,7 @@ test/telnetform.jsp -- 一级代理（telnet），不支持分隔符
 TELNET选项：
 "自动化测试/telnetconfig_firstagent"  -- 一级代理配置
 
+9.增加$SLEEP x(x为秒数)，命令执行时，有些需要等待一段时间获取数据。
 
 
 注意事项:
