@@ -306,6 +306,7 @@ BUG管理/异常挂起/LACP弹出消息失败
 BUG管理/异常挂起/LACP弹出消息失败2
 BUG管理/测试BUG模板
 BUG管理/测试BUG记录模板（供参考）
+BUG管理/自动化测试SSH&TELNET数据获取/java.lang.IllegalArgumentException: URLDecoder: Illegal hex characters in escape (%) pattern - Error at index 0 in
 BUG管理/自动化测试SSH&TELNET数据获取/常见故障列表
 Books/know/《unix环境高级编程·第三版》源代码编译及使用
 Books/常用书籍列表

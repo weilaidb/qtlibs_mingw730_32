@@ -1,0 +1,102 @@
+测试BUG模板
+☆Bug标题
+自动化测试SSH&TELNET数据获取/java.lang.IllegalArgumentException: URLDecoder: Illegal hex characters in escape (%) pattern - Error at index 0 in
+
+☆Bug详细描述（含步骤）
+1.输入执行内容中包含%时
+2.输出异常
+
+ssh do post
+
+
+16-May-2023 23:23:15.512 SEVERE [http-nio-8081-exec-9] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [SshServlet2] in context with path [/weilaix1] threw exception
+        java.lang.IllegalArgumentException: URLDecoder: Illegal hex characters in escape (%) pattern - Error at index 0 in: "%
+"
+                at java.base/java.net.URLDecoder.decode(URLDecoder.java:232)
+                at java.base/java.net.URLDecoder.decode(URLDecoder.java:142)
+                at ssh.SSHServlet2.getDecodeString(SSHServlet2.java:84)
+                at ssh.SSHServlet2.executeCommands(SSHServlet2.java:102)
+                at ssh.SSHServlet2.doPost(SSHServlet2.java:414)
+                at javax.servlet.http.HttpServlet.service(HttpServlet.java:696)
+                at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+                at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+                at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+                at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+                at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+                at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+                at filter.CheckLoginFilter.doFilter(CheckLoginFilter.java:53)
+                at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+                at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+                at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+                at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+                at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+                at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+                at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+                at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:687)
+                at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+                at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+                at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+                at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+                at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+                at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+                at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+                at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+                at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+                at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+                at java.base/java.lang.Thread.run(Thread.java:829)
+
+
+
+☆项目模块
+
+☆严重程度
+A-崩溃
+
+☆优先级
+
+☆Bug类别
+代码错误
+
+
+☆Bug状态
+Closed
+
+☆提交人
+ME
+
+☆提交日期
+2023-05-16 23:23:52
+
+☆附加信息
+
+    private String getDecodeString(HttpServletRequest request, String key) throws UnsupportedEncodingException {
+//        自动化测试SSH&TELNET数据获取/java.lang.IllegalArgumentException: URLDecoder: Illegal hex characters in escape (%) pattern - Error at index 0 in
+//
+//☆Bug详细描述（含步骤）
+//        1.输入执行内容中包含%时
+//        2.输出异常
+        String url = request.getParameter(key);
+        return replacerSpecialSign(url);
+    }
+
+    public static String replacerSpecialSign(String data) {
+        try {
+            data = data.replaceAll("%(?![0-9a-fA-F]{2})", "%25");
+            data = data.replaceAll("\\+", "%2B");
+            data = URLDecoder.decode(data, "utf-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+☆解决人
+
+☆解决日期
+
+☆解决方式
+
+☆解决用时
+
+========================================================================
+========================================================================

@@ -12,6 +12,7 @@ File-Settings-Keymap-
 DeleteLine -- Shift+Y
 Back    -- Alt + ,
 Forward --  Alt + .
+ReFormt Code(格式化代码) --- Ctrl + Alt + L
 
 
 必备
