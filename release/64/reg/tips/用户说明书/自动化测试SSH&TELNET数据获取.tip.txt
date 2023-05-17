@@ -51,7 +51,7 @@ ExecSshCmdTimeout:30  -- 执行命令超时时间
 AutoDownloadResult:1  -- 命令执行结束是否自动下载结果，默认自动下载
 ShowMoreInfo:1        -- 用例判断时，是否后台详细打印More信息，默认打印, 比如:System.out.println(output);
 SaveCmdResult2AllDb:1 -- 是否存储数据到数据库alldb，表名为abc，转化存储
-
+SaveCmdResult2AllDbMinSize:300  -- 数据库要保存时，数据大小的最小值（包含）
 
 8.支持TELNET方式获取数据，支持一级代理
 test/telnetform.jsp -- 一级代理（telnet），不支持分隔符
