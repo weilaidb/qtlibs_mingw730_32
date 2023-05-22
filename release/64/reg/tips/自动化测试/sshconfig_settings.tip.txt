@@ -1,4 +1,4 @@
 ExecSshCmdTimeout:10
-AutoDownloadResult:1
+AutoDownloadResult:0
 ShowMoreInfo:1
 SaveCmdResult2AllDb:1
