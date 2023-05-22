@@ -1,3 +1,12 @@
+Ctrl + = 跳转到定义（go to definition）
+Back  Alt+, (自定义)
+Forward  Alt+. （自定义）
+
+Shift + ctrl + -
+前进 shift + ctrl + -. VSCode左下角 “ 管理 ” -> “ 键盘快捷方式 ” -> 搜索 “ 前进 / Go Forward 或 后退 / Go Back ”
+
+
+
 Vivado中常用的快捷键
 
 1) 点击 Project Manager 下的 Add Sources 图标（或者使用快捷键 Alt+A）

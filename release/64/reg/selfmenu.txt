@@ -2903,6 +2903,7 @@ Tools/VIM常用快捷键
 Tools/VIM常用快捷键 ctags
 Tools/VIM常用快捷键 vim + ctags + cscope = 强大的IDE
 Tools/VS Visual Studio快捷键
+Tools/VSCode 的常用快捷键
 Tools/VSCode/C C++ 必备开发插件
 Tools/VSCode/C C++ 必备开发插件 remote development
 Tools/VSCode/base/背景色 护眼色
