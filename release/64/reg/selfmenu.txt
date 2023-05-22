@@ -316,6 +316,7 @@ Books/常用书籍列表(文学)
 Books/常用代码
 Books/常用网址
 Books/常用网址（https develop）
+Books/常用网址（https 修行）
 Books/读后感/Linux Tcp IP协议栈 Linux2.6协议栈源代码分析
 Books/读后感/ROS机器人开发实践
 Books/读后感/奔跑吧 Linux内核
@@ -2600,6 +2601,8 @@ Python/know/如何自己从零实现一个神经网络?
 Python/list/列表大小 len
 Python/main
 Python/new/eg
+Python/new/int to str
+Python/new/list append
 Python/new/loginssh.py
 Python/new/loginsshtimely.py
 Python/new/python 文本 单独处理字符串每个字符的方法汇总
@@ -2611,6 +2614,7 @@ Python/new/python文本 字符与字符值转换
 Python/new/python文本 字符串对齐
 Python/new/python文本 字符串逐字符反转以及逐单词反转
 Python/new/python文本 拼接或合并字符串
+Python/new/str to int
 Python/pyQt5_import
 Python/qt/print
 Python/qt/pyQt5 app ico程序图标

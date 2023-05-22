@@ -1,0 +1,1 @@
+str(\1)$NLstr1 = str(\1)$NL$NL
