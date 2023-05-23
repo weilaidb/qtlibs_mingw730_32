@@ -1,0 +1,209 @@
+LAN1~LAN4 四个端口
+LAN1 千兆端口，
+LAN2 连接机顶盒
+LAN3~4 备用网络端口
+
+在本页面上，您可以查看设备的基本信息。
+设备型号：	HG8541M-RMS
+描述：	EchoLife HG8541M-RMS GPON/EPON Terminal (CLASS C+/PX20+/PRODUCT ID:2150083310EGH5002424/CHIP:00050020170224)
+SN：	485754431BE2DC95 (HWTC1BE2DC95)
+硬件版本：	1297.A
+软件版本：	V3R017C10S102
+制造信息：	2150083310EGH5002424.C822
+ONT注册状态：	O5(Operation state)
+ONT ID：	24
+CPU使用率：	10%
+内存使用率：	66%
+定制信息：	COMMON
+系统时间：	2023-05-24 04:01:47+08:00
+
+
+
+在本页面上，您可以查询光模块基本信息。
+ONT信息
+ 	查询值	参考值
+发光状态：	auto	auto
+发送光功率：	2.07 dBm	0.5 — 5dBm
+接收光功率：	-25.69 dBm	-30 — -8dBm
+工作电压：	3307 mV	3100—3500mV
+工作电流：	16 mA	0—90mA
+工作温度：	53 ℃	-10—85℃
+OLT信息
+ 	查询值	参考值
+光模块类型：	--	--
+发送光功率：	-- dBm	--
+PON口标识：	--	--
+
+
+
+
+在本页面上，您可以查看设备的基本信息。
+设备型号：	HG8541M-RMS
+描述：	EchoLife HG8541M-RMS GPON/EPON Terminal (CLASS C+/PX20+/PRODUCT ID:2150083310EGH5002424/CHIP:00050020170224)
+SN：	485754431BE2DC95 (HWTC1BE2DC95)
+硬件版本：	1297.A
+软件版本：	V3R017C10S102
+制造信息：	2150083310EGH5002424.C822
+ONT注册状态：	O5(Operation state)
+ONT ID：	24
+CPU使用率：	1%
+内存使用率：	68%
+定制信息：	COMMON
+系统时间：	2023-05-24 04:03:45+08:00
+
+
+在本页面上，您可以查询用户设备基本信息，包括主机名、设备类型、IP地址、MAC地址和上线状态。
+主机名	接入端口号	设备类型	IP地址	MAC地址	上线状态	应用
+--	LAN2	--	192.168.100.100	84:a9:38:5b:fd:53	在线	 详细信息
+ 访问共享
+ 网络应用
+ 1/1  		第 
+ 页	跳转
+
+
+
+
+
+
+Manufacturer:Huawei Technologies Co., Ltd;
+ProductClass:HG8541M-RMS;
+SerialNumber:485754431BE2DC95;
+IP:192.168.100.1;
+HWVer:1297.A;
+SWVer:V3R017C10S102;
+
+1981-01-01 00:00:12 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+1981-01-01 00:00:23 [Critical][配置日志] 终端:CLI(192.168.100.100),执行结果:Fail,操作类型:Login,Username:
+1981-01-01 00:00:24 [Critical][配置日志] 终端:CLI(192.168.100.100),执行结果:Success,操作类型:Login,Username:root
+1981-01-01 00:00:25 [Critical][Shell日志] 终端:CLI(192.168.100.100),执行结果:Success,操作命令:logout
+1981-01-01 00:00:25 [Critical][配置日志] 终端:CLI(192.168.100.100),执行结果:Success,操作类型:Logout,Username:root
+1981-01-01 00:00:28 [Critical][配置日志] 终端:CLI(192.168.100.100),执行结果:Fail,操作类型:Login,Username:
+1981-01-01 00:00:28 [Critical][配置日志] 终端:CLI(192.168.100.100),执行结果:Success,操作类型:Login,Username:root
+1981-01-01 00:00:29 [Critical][Shell日志] 终端:CLI(192.168.100.100),执行结果:Success,操作命令:su
+1981-01-01 00:00:31 [Critical][Shell日志] 终端:CLI(192.168.100.100),执行结果:Success,操作命令:shell
+1981-01-01 00:00:34 [Critical][Shell日志] 终端:CLI(192.168.100.100),执行结果:Success,操作命令:exit
+1981-01-01 00:00:38 [Critical][配置日志] 终端:CLI(192.168.100.100),执行结果:Success,操作类型:Set,X_HW_DEBUG.AMP.LedTest:,Optype:on
+1981-01-01 00:00:15 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+1981-01-01 00:00:25 [Critical][配置日志] 终端:CLI(172.16.0.254),执行结果:Success,操作类型:Login,Username:root
+1981-01-01 00:00:27 [Critical][Shell日志] 终端:CLI(172.16.0.254),执行结果:Success,操作命令:su
+1981-01-01 00:02:03 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+1981-01-01 00:02:03 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[258] Att[5] Val[0]
+1981-01-01 00:02:03 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[259] Att[5] Val[0]
+1981-01-01 00:02:03 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[260] Att[5] Val[0]
+2017-05-04 10:12:05 [Critical][配置日志] 终端:VoiceServer(-),执行结果:Success,操作类型:Set,Services.VoiceService.X_HW_DialSN:,IsHaveAuthed:1
+1981-01-01 00:00:15 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+1981-01-01 00:00:39 [Critical][配置日志] 终端:CLI(192.168.100.15),执行结果:Success,操作类型:Login,Username:root
+1981-01-01 00:00:40 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:su
+1981-01-01 00:00:42 [Critical][配置日志] 终端:CLI(192.168.100.15),执行结果:Success,操作类型:Set,X_HW_DEBUG.AMP.LedTest:,Optype:on
+1981-01-01 00:00:43 [Critical][配置日志] 终端:CLI(192.168.100.15),执行结果:Success,操作类型:Set,X_HW_DEBUG.AMP.LedTest:,Optype:off
+1981-01-01 00:00:15 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+1981-01-01 00:01:38 [Error][告警日志] 告警ID:104509,告警级别:次要,软件升级开始.终端:OTHER
+1981-01-01 00:02:22 [Error][告警日志] 告警ID:104510,告警级别:次要,软件升级成功，升级前软件版本：V300R017C10SPC102B075，升级后软件版本：V300R017C10SPC102B075.终端:OTHER
+1981-01-01 00:02:24 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：正常软件手动重启，终端:OTHER
+1981-01-01 00:00:15 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+1981-01-01 00:00:29 [Critical][配置日志] 终端:CLI(172.16.0.253),执行结果:Fail,操作类型:Login,Username:
+1981-01-01 00:00:29 [Critical][配置日志] 终端:CLI(172.16.0.253),执行结果:Fail,操作类型:Login,Username:equipadmin
+1981-01-01 00:00:30 [Critical][配置日志] 终端:CLI(172.16.0.253),执行结果:Fail,操作类型:Login,Username:equipadmin
+1981-01-01 00:00:30 [Critical][配置日志] 终端:CLI(172.16.0.253),执行结果:Fail,操作类型:Login,Username:
+1981-01-01 00:00:31 [Critical][配置日志] 终端:CLI(172.16.0.253),执行结果:Success,操作类型:Login,Username:root
+1981-01-01 00:00:31 [Critical][Shell日志] 终端:CLI(172.16.0.253),执行结果:Success,操作命令:su
+1981-01-01 00:00:33 [Critical][Shell日志] 终端:CLI(172.16.0.253),执行结果:Success,操作命令:shell
+1981-01-01 00:00:33 [Critical][Shell日志] 终端:CLI(172.16.0.253),执行结果:Success,操作命令:exit
+1981-01-01 00:00:15 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+1981-01-01 00:00:36 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+1981-01-01 00:00:36 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[258] Att[5] Val[0]
+1981-01-01 00:00:36 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[259] Att[5] Val[0]
+1981-01-01 00:00:36 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[260] Att[5] Val[0]
+1981-01-01 00:00:37 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+1981-01-01 00:00:37 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[258] Att[5] Val[0]
+1981-01-01 00:00:37 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[259] Att[5] Val[0]
+1981-01-01 00:00:37 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[260] Att[5] Val[0]
+1981-01-01 00:00:15 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+1981-01-01 00:00:28 [Critical][配置日志] 终端:CLI(192.168.100.15),执行结果:Fail,操作类型:Login,Username:
+1981-01-01 00:00:28 [Critical][配置日志] 终端:CLI(192.168.100.15),执行结果:Fail,操作类型:Login,Username:equipadmin
+1981-01-01 00:00:29 [Critical][配置日志] 终端:CLI(192.168.100.15),执行结果:Fail,操作类型:Login,Username:equipadmin
+1981-01-01 00:00:29 [Critical][配置日志] 终端:CLI(192.168.100.15),执行结果:Fail,操作类型:Login,Username:
+1981-01-01 00:00:30 [Critical][配置日志] 终端:CLI(192.168.100.15),执行结果:Success,操作类型:Login,Username:root
+1981-01-01 00:00:30 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:su
+1981-01-01 00:00:31 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:shell
+1981-01-01 00:00:32 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:exit
+1981-01-01 00:00:33 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:shell
+1981-01-01 00:00:36 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:exit
+1981-01-01 00:00:39 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:shell
+1981-01-01 00:00:40 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:exit
+1981-01-01 00:00:47 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:shell
+1981-01-01 00:00:48 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:exit
+1981-01-01 00:00:48 [Error][告警日志] 告警ID:104509,告警级别:次要,软件升级开始.终端:CLI
+1981-01-01 00:00:48 [Critical][配置日志] 终端:CLI(192.168.100.15),执行结果:Success,操作类型:Set,SMP.SWM.LoadPack:,ChannelName:tftp,IpAddr:192.168.100.15,RemoteFilePath:...
+1981-01-01 00:01:01 [Error][告警日志] 告警ID:104510,告警级别:次要,软件升级成功，升级前软件版本：V300R017C10SPC102B075，升级后软件版本：.终端:CLI
+1981-01-01 00:01:01 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:shell
+1981-01-01 00:01:24 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:exit
+1981-01-01 00:01:24 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:shell
+1981-01-01 00:01:25 [Critical][Shell日志] 终端:CLI(192.168.100.15),执行结果:Success,操作命令:exit
+1981-01-01 00:01:25 [Critical][配置日志] 终端:CLI(192.168.100.15),执行结果:Success,操作类型:Set,X_HW_DEBUG.AMP.LedTest:,Optype:on
+1981-01-01 00:00:20 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+1981-01-01 00:06:54 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+1981-01-01 00:06:54 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[258] Att[5] Val[0]
+1981-01-01 00:06:54 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[259] Att[5] Val[0]
+1981-01-01 00:06:54 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[260] Att[5] Val[0]
+2017-06-03 10:27:34 [Critical][配置日志] 终端:VoiceServer(-),执行结果:Success,操作类型:Set,Services.VoiceService.X_HW_DialSN:,IsHaveAuthed:1
+2017-06-03 10:27:35 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+2017-06-03 10:30:23 [Critical][配置日志] 终端:WEB(192.168.1.2),执行结果:Success,操作类型:Login,Username:CMCCAdmin
+2017-06-03 10:31:17 [Critical][配置日志] 终端:WEB(192.168.1.2),执行结果:Success,操作类型:Login,Username:CMCCAdmin
+2017-06-03 10:31:46 [Critical][配置日志] 终端:WEB(192.168.1.2),执行结果:Success,操作类型:Add,InternetGatewayDevice.WANDevice.WANConnectionDevice:1
+2017-06-03 10:31:48 [Critical][配置日志] 终端:WEB(192.168.1.2),执行结果:Success,操作类型:Add,WANDevice.WANConnectionDevice.WANPPPConnection:1.1,Enable:1,X_HW_IPv4Enable:1,X_HW_IPv6Enable:0,X_HW_IPv6MultiCastVLAN:-1,...
+2017-06-03 10:33:26 [Critical][配置日志] 终端:WEB(192.168.1.2),执行结果:Success,操作类型:Logout,Username:CMCCAdmin
+1981-01-01 00:00:15 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+2017-06-26 10:01:30 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+2017-06-26 10:01:30 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[258] Att[5] Val[0]
+2017-06-26 10:01:30 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[259] Att[5] Val[0]
+2017-06-26 10:01:30 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[260] Att[5] Val[0]
+2017-06-26 10:01:40 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+1981-01-01 00:00:15 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+2017-06-28 22:39:20 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+2017-06-28 22:39:20 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[258] Att[5] Val[0]
+2017-06-28 22:39:20 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[259] Att[5] Val[0]
+2017-06-28 22:39:20 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[260] Att[5] Val[0]
+2017-06-28 22:39:22 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+1981-01-01 00:00:15 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+1981-01-01 00:05:44 [Error][告警日志] 告警ID:104850,告警级别:次要,[MU]从ip:224.0.0.99 登陆成功!
+1981-01-01 00:05:55 [Error][告警日志] 告警ID:104509,告警级别:次要,软件升级开始.终端:OTHER
+1981-01-01 00:06:18 [Error][告警日志] 告警ID:104510,告警级别:次要,软件升级成功，升级前软件版本：V300R017C10SPC102B075，升级后软件版本：V300R015C10SPC115B040.终端:OTHER
+1981-01-01 00:06:19 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：正常软件手动重启，终端:OTHER
+1981-01-01 00:00:15 [Alert][告警日志] 告警ID:104514,告警级别:严重,主区系统损坏发生回滚到备区
+1981-01-01 00:01:36 [Critical][配置日志] 终端:OTHER(-),执行结果:Success,操作命令:system copy
+1981-01-01 00:00:15 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+1981-01-01 00:01:51 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+1981-01-01 00:01:51 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[258] Att[5] Val[0]
+1981-01-01 00:01:51 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[259] Att[5] Val[0]
+1981-01-01 00:01:51 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[260] Att[5] Val[0]
+2006-03-05 21:00:21 [Critical][配置日志] 终端:VoiceServer(-),执行结果:Success,操作类型:Set,Services.VoiceService.X_HW_DialSN:,IsHaveAuthed:1
+1981-01-01 00:00:15 [Error][告警日志] 告警ID:104001,告警级别:次要,设备重启，复位原因：掉电复位，终端:OTHER
+1981-01-01 00:07:16 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+1981-01-01 00:07:16 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[258] Att[5] Val[0]
+1981-01-01 00:07:16 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[259] Att[5] Val[0]
+1981-01-01 00:07:16 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[260] Att[5] Val[0]
+2023-05-22 23:36:10 [Critical][配置日志] 终端:OLT(-),执行结果:Success,操作类型:Set,Msg:Me[11] Inst[257] Att[5] Val[0]
+2023-05-24 04:01:46 [Critical][配置日志] 终端:WEB(192.168.100.100),执行结果:Success,操作类型:Login,Username:root
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2023-05-23 22:31:58
+                        
