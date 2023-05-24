@@ -2585,6 +2585,7 @@ Python/idea快捷键
 Python/idea插件
 Python/idea插件 V起来 nextchatgpt
 Python/idea配置说明
+Python/know/Django-详解settings.py 文件作用
 Python/know/NumPy教程：19种数据类型及对象（dtype）示例
 Python/know/Python pip3 install Python之pip命令指定安装源和版本
 Python/know/Python pip3 install 用国内源安装
@@ -2597,6 +2598,7 @@ Python/know/np.dot()使用方法
 Python/know/numpy mean()函数 详解
 Python/know/numpy.array函数详解
 Python/know/numpy.zeros()函数的用法
+Python/know/【3】Django----Settings.py配置详解
 Python/know/如何自己从零实现一个神经网络?
 Python/list/列表大小 len
 Python/main

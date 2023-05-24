@@ -1,0 +1,181 @@
+Django-详解settings.py 文件作用
+
+weixin_37974938
+
+于 2020-02-24 19:56:47 发布
+
+622
+ 收藏 1
+分类专栏： django 文章标签： django python
+版权
+
+django
+专栏收录该内容
+2 篇文章0 订阅
+订阅专栏
+模板Templates
+在django配置文件 ----> settings.py 中，配置模板文件的 —参数列表-- 配置如下：，
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,  #
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+Backend 字段 ，‘BACKEND’ 英译为 后端; 后台; 后段; 编译器后端;，
+
+这里应该是指 后台 编译器后端，因为这个字段后面 对应 的是django的内置模板渲染引擎----> DjangoTemplates,
+渲染页面的渲染器，了解到的有两种，一个是django内置的DjangoTemplates,，还有一种是 jinja2
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            '/home/html/example.com',
+            '/home/html/default',
+        ],
+    },
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [
+            '/home/html/jinja2',
+        ],
+    },
+]
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+DIRS字段， directories 文件目录
+
+指向模板文件的路径，参数值问一个列表，通常为 [os.path.join(BASE_DIR, ‘templates’)]，项目目录下的templates 文件夹，
+APP_DIRS 作用是： 是否从app目录内查找静态模板，告知引擎是否应在已安装的应用程序中查找模板
+
+参数有两个选择 ： True 和 False
+设置为True时，django将会在每个app内查找对应的temmplates文件夹下的HTML文件，在当前APP内编写views方法是会优先使用本app内的静态文件（也有先使用DIRS配置的templates文件，这个有点玄学，有较多bug,推荐将这一选项设置为False）模板，如果没有，则向其他app或者在与app同级下的templates文件夹下找，
+设置为Fales时，django将在项目根目录（相对来讲）下的templates文件夹内寻找对应的模板文件，就是DIRS 指定的那个文件目录内查找，推荐使用该方法，因为这样可以方便管理静态文件
+默认为True，推荐使用False，方便统一静态文件路径，后期好查找，
+OPTIONS
+django官方文档
+
+context_processors 直译上下文处理器，文本处理器 django-content_process官方文档
+自定义上下文处理器请参照这位前辈的案例
+代码如下：
+ 			'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+1
+2
+3
+4
+5
+6
+上述4个选项，debug，request,auth,message,是指可以被模板语法使用的变量，除此之外，django还提供了很多的上下文处理器，比如：下面这段代码：
+
+'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                "django.template.context_processors.i18n",
+                'django.template.context_processors.media',
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ]
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+以上代码所带的上下文处理器都是可以改变的，意味着，你可以用，也可以不用，但是还有一种是不被开发者选择的，它就是csrf,这个上下文处理器，这个不 能被开发者选择是否启用，
+
+上下文处理器调用时返回的 字典，也即以 键值对的方式返回对应的变量
+
+debug: 有两个变量，
+debug 布尔值，True or False ,如果开着调试模式，（调试模式允许的IP才能方位），方能得到这个参数，
+sql_queries， 一组sql查询调试信息{‘sql’: …, ‘time’: …},返回查询用的时间
++具体使用如下：
+DEBUG = True
+INTERNAL_IPS=(
+              '192.168.3.189',
+              '127.0.0.1',
+)
+
+#前端页面django模板语法：
+{% for query in sql_queries %}
+	time：{{ query.time }},
+	sql: {{query.sql}}
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+auth: 有两个变量
+user ，表示当前登陆用户，如果没有登陆用户的时候，返回的是一个AnonymousUser用户实例。
+perms ，表示当前用户的权限，是django.contrib.auth.context_processors.PermWrapper的实例对象。
+i18n: 返回三个变量
+i18n（其来源是英文单词 internationalization的首末字符i和n，18为中间的字符数）是“国际化”的简称。
+
+LANGUAGES - 一系列元组组成的列表，每个元组的第一个元素是语言代码，第二个元素是用该语言表示的语言名称。
+
+LANGUAGE_BIDI 当前地域的说明。 如果为真（True），它就是从右向左书写的语言，例如： 希伯来语，阿拉伯语。 如果为假（False），它就是从左到右书写的语言，如： 英语，法语，德语等，（第一次了解到外国还有从右向左写的语言）
+
+LANGUAGE_CODE 是当前用户的优先语言。 例如： en-us。
+
+此段解释，摘自W3Cschool
+————————————————
+版权声明：本文为CSDN博主「weixin_37974938」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_37974938/article/details/104458063
