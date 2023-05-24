@@ -2630,7 +2630,7 @@ Python/qt/pyQt5 textedit
 Python/scripts/csvoper.py
 Python/scripts/genvlanxml.py
 Python/scripts/help.py
-Python/scripts/import
+Python/scripts/import parent
 Python/scripts/public.py
 Python/scripts/python对csv文件的读写
 Python/scripts/web/app.run
