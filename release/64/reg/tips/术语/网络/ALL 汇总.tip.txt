@@ -69,6 +69,10 @@ IoT Internet of Things 物联网
 Rt-Thread RealTime Thread 实时多线程
 
 
+DUT（被测设备）
+ 被测器件（DUT），也称为被测设备（EUT）和被测单元（UUT），是在首次制造时或在其生命周期后期进行测试的制造产品，作为正在进行的功能测试和校准的一部分检查。
+
+
 
 
 
