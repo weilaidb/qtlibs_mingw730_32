@@ -1,10 +1,10 @@
 ☆ API名称
-Python/re.finditer
+Python/re.split
 
 ☆ 简介
-和 findall 类似，在字符串中找到正则表达式所匹配的所有子串，并把它们作为一个迭代器返回。
+split 方法按照能够匹配的子串将字符串分割后返回列表，它的使用形式如下：
 
-re.finditer(pattern, string, flags=0)
+re.split(pattern, string[, maxsplit=0, flags=0])
 
 
 
@@ -14,6 +14,7 @@ re.finditer(pattern, string, flags=0)
 参数	描述
 pattern	匹配的正则表达式
 string	要匹配的字符串。
+maxsplit	分隔次数，maxsplit=1 分隔一次，默认为 0，不限制次数。
 flags	标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。参见：正则表达式修饰符 - 可选标志
 
 ☆ 返回参数
@@ -28,19 +29,16 @@ flags	标志位，用于控制正则表达式的匹配方式，如：是否区�
 
 ☆ 示例
 实例
-# -*- coding: UTF-8 -*-
+>>>import re
+>>> re.split('\W+', 'runoob, runoob, runoob.')
+['runoob', 'runoob', 'runoob', '']
+>>> re.split('(\W+)', ' runoob, runoob, runoob.') 
+['', ' ', 'runoob', ', ', 'runoob', ', ', 'runoob', '.', '']
+>>> re.split('\W+', ' runoob, runoob, runoob.', 1) 
+['', 'runoob, runoob, runoob.']
  
-import re
- 
-it = re.finditer(r"\d+","12a32bc43jf3") 
-for match in it: 
-    print (match.group() )
-输出结果：
-
-12 
-32 
-43 
-3
+>>> re.split('a*', 'hello world')   # 对于一个找不到匹配的字符串而言，split 不会对其作出分割
+['hello world']
 
 ☆ 限制说明
  API的调用限制说明。
@@ -60,6 +58,6 @@ for match in it:
  API提供商的联系方式。
 
 ☆提交日期
-2023-06-06 07:06:51
+2023-06-06 07:48:09
 ========================================================================
 ========================================================================
