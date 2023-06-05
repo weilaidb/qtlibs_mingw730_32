@@ -1,6 +1,15 @@
 
 API Manual/API参考手册模板
+API Manual/API参考手册模板2
 API Manual/C/open
+API Manual/Python/re.compile
+API Manual/Python/re.findall
+API Manual/Python/re.finditer
+API Manual/Python/re.match
+API Manual/Python/re.match与re.search
+API Manual/Python/re.search
+API Manual/Python/re.split
+API Manual/Python/re.sub
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoCad/三等分圆

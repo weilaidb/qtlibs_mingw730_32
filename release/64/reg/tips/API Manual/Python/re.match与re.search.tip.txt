@@ -1,0 +1,59 @@
+☆ API名称
+Python/re.match与re.search
+
+☆ 简介
+
+re.match与re.search的区别
+re.match只匹配字符串的开始，如果字符串开始不符合正则表达式，则匹配失败，函数返回None；而re.search匹配整个字符串，直到找到一个匹配。
+
+
+☆ 请求参数
+
+☆ 返回参数
+
+☆ 错误码
+
+☆ 示例
+
+实例
+#!/usr/bin/python
+import re
+ 
+line = "Cats are smarter than dogs";
+ 
+matchObj = re.match( r'dogs', line, re.M|re.I)
+if matchObj:
+   print "match --> matchObj.group() : ", matchObj.group()
+else:
+   print "No match!!"
+ 
+matchObj = re.search( r'dogs', line, re.M|re.I)
+if matchObj:
+   print "search --> searchObj.group() : ", matchObj.group()
+else:
+   print "No match!!"
+以上实例运行结果如下：
+No match!!
+search --> searchObj.group() :  dogs
+
+☆ 限制说明
+ API的调用限制说明。
+
+☆ 安全说明
+ API的安全说明。
+
+☆ 更新日志
+ | 版本号 | 更新内容 |
+| ----- | ---- |
+| 1.0   | 版本1.0的更新内容 |
+
+☆ 支持情况
+ API的支持情况。
+
+☆ 联系方式
+ API提供商的联系方式。
+
+☆提交日期
+2023-06-06 06:59:20
+========================================================================
+========================================================================
