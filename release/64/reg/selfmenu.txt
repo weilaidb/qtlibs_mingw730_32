@@ -10,6 +10,15 @@ API Manual/Python/file.next
 API Manual/Python/file.open
 API Manual/Python/file.read
 API Manual/Python/file.readline
+API Manual/Python/file.readlines
+API Manual/Python/file.seek
+API Manual/Python/file.tell
+API Manual/Python/file.truncate
+API Manual/Python/file.write
+API Manual/Python/file.writelines
+API Manual/Python/io.input
+API Manual/Python/io.print
+API Manual/Python/io.raw_input
 API Manual/Python/re.compile
 API Manual/Python/re.findall
 API Manual/Python/re.finditer

@@ -1,20 +1,22 @@
 ☆ API名称
-Python/file.readline
+Python/file.readlines
 
 ☆ 简介
-readline() 方法用于从文件读取整行，包括 "\n" 字符。如果指定了一个非负数的参数，则返回指定大小的字节数，包括 "\n" 字符。
+readlines() 方法用于读取所有行(直到结束符 EOF)并返回列表，该列表可以由 Python 的 for... in ... 结构进行处理。
+
+如果碰到结束符 EOF 则返回空字符串。
 
 语法
-readline() 方法语法如下：
+readlines() 方法语法如下：
 
-fileObject.readline(size)
+fileObject.readlines( );
 
 
 ☆ 参数
-size -- 从文件中读取的字节数。
+无。
 
 ☆ 返回值
-返回从字符串中读取的字节。
+返回列表，包含所有的行。
 
 ☆ 错误码
  | 错误码 | 说明 |
@@ -23,7 +25,7 @@ size -- 从文件中读取的字节数。
 
 ☆ 示例
 实例
-以下实例演示了 readline() 方法的使用：
+以下实例演示了 readlines() 方法的使用：
 
 文件 runoob.txt 的内容如下：
 
@@ -34,27 +36,29 @@ size -- 从文件中读取的字节数。
 5:www.runoob.com
 循环读取文件的内容：
 
+实例
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-
+ 
 # 打开文件
-fo = open("runoob.txt", "rw+")
+fo = open("runoob.txt", "r")
 print "文件名为: ", fo.name
-
-line = fo.readline()
-print "读取第一行 %s" % (line)
-
-line = fo.readline(5)
-print "读取的字符串为: %s" % (line)
-
+ 
+for line in fo.readlines():                          #依次读取每行  
+    line = line.strip()                             #去掉每行头尾空白  
+    print "读取的数据为: %s" % (line)
+ 
 # 关闭文件
 fo.close()
 以上实例输出结果为：
 
 文件名为:  runoob.txt
-读取第一行 1:www.runoob.com
+读取的数据为: 1:www.runoob.com
+读取的数据为: 2:www.runoob.com
+读取的数据为: 3:www.runoob.com
+读取的数据为: 4:www.runoob.com
+读取的数据为: 5:www.runoob.com
 
-读取的字符串为: 2:www
 
 ☆ 限制说明
  API的调用限制说明。
@@ -74,6 +78,6 @@ fo.close()
  API提供商的联系方式。
 
 ☆提交日期
-2023-06-06 07:59:34
+2023-06-06 08:00:33
 ========================================================================
 ========================================================================
