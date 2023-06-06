@@ -2,6 +2,14 @@
 API Manual/API参考手册模板
 API Manual/API参考手册模板2
 API Manual/C/open
+API Manual/Python/file.close
+API Manual/Python/file.fileno
+API Manual/Python/file.flush
+API Manual/Python/file.isatty
+API Manual/Python/file.next
+API Manual/Python/file.open
+API Manual/Python/file.read
+API Manual/Python/file.readline
 API Manual/Python/re.compile
 API Manual/Python/re.findall
 API Manual/Python/re.finditer
