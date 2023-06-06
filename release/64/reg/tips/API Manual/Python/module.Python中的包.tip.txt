@@ -1,0 +1,95 @@
+☆ API名称
+Python/module.Python中的包
+
+☆ 简介
+Python中的包
+包是一个分层次的文件目录结构，它定义了一个由模块及子包，和子包下的子包等组成的 Python 的应用环境。
+
+简单来说，包就是文件夹，但该文件夹下必须存在 __init__.py 文件, 该文件的内容可以为空。__init__.py 用于标识当前文件夹是一个包。
+
+考虑一个在 package_runoob 目录下的 runoob1.py、runoob2.py、__init__.py 文件，test.py 为测试调用包的代码，目录结构如下：
+
+test.py
+package_runoob
+|-- __init__.py
+|-- runoob1.py
+|-- runoob2.py源代码如下：
+package_runoob/runoob1.py
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+ 
+def runoob1():
+   print "I'm in runoob1"
+package_runoob/runoob2.py
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+ 
+def runoob2():
+   print "I'm in runoob2"
+现在，在 package_runoob 目录下创建 __init__.py：
+
+package_runoob/__init__.py
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+ 
+if __name__ == '__main__':
+    print '作为主程序运行'
+else:
+    print 'package_runoob 初始化'
+然后我们在 package_runoob 同级目录下创建 test.py 来调用 package_runoob 包
+
+test.py
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+ 
+# 导入 Phone 包
+from package_runoob.runoob1 import runoob1
+from package_runoob.runoob2 import runoob2
+ 
+runoob1()
+runoob2()
+以上实例输出结果：
+
+package_runoob 初始化
+I'm in runoob1
+I'm in runoob2
+如上，为了举例，我们只在每个文件里放置了一个函数，但其实你可以放置许多函数。你也可以在这些文件里定义Python的类，然后为这些类建一个包。
+
+
+☆ 参数
+ | 参数名 | 必选 | 类型 | 说明 |
+| ----- | ---- | ---- | ---- |
+| 参数1 | 是   | 类型1 | 参数1的说明 |
+
+☆ 返回值
+
+
+☆ 错误码
+ | 错误码 | 说明 |
+| ----- | ---- |
+
+
+☆ 示例
+
+
+☆ 限制说明
+ API的调用限制说明。
+
+☆ 安全说明
+ API的安全说明。
+
+☆ 更新日志
+ | 版本号 | 更新内容 |
+| ----- | ---- |
+| 1.0   | 版本1.0的更新内容 |
+
+☆ 支持情况
+ API的支持情况。
+
+☆ 联系方式
+ API提供商的联系方式。
+
+☆提交日期
+2023-06-06 08:23:27
+========================================================================
+========================================================================

@@ -2,6 +2,7 @@
 API Manual/API参考手册模板
 API Manual/API参考手册模板2
 API Manual/C/open
+API Manual/Python/file.File对象的属性
 API Manual/Python/file.close
 API Manual/Python/file.fileno
 API Manual/Python/file.flush
@@ -19,6 +20,22 @@ API Manual/Python/file.writelines
 API Manual/Python/io.input
 API Manual/Python/io.print
 API Manual/Python/io.raw_input
+API Manual/Python/module.PYTHONPATH 变量
+API Manual/Python/module.Python中的包
+API Manual/Python/module.dir
+API Manual/Python/module.from…import
+API Manual/Python/module.from…import*
+API Manual/Python/module.globals & locals
+API Manual/Python/module.import
+API Manual/Python/module.reload
+API Manual/Python/module.命名空间和作用域
+API Manual/Python/module.搜索路径
+API Manual/Python/os.chdir
+API Manual/Python/os.getcwd
+API Manual/Python/os.mkdir
+API Manual/Python/os.remove
+API Manual/Python/os.rename
+API Manual/Python/os.rmdir
 API Manual/Python/re.compile
 API Manual/Python/re.findall
 API Manual/Python/re.finditer
