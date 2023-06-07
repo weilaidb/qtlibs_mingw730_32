@@ -67,6 +67,7 @@ https://github.com/apriorit/gmock-global.git
 https://github.com/sqlite/sqlite/
 git@github.com:microsoft/vscode.git
 #vscode snippets
+git@gitee.com:weilaidb/vscode-snippets.git
 https://github.com/one-harsh/vscode-cpp-snippets
 git://git.busybox.net/busybox
 https://git.busybox.net/busybox
