@@ -66,6 +66,8 @@ https://gitee.com/sinojelly/mockcpp.git
 https://github.com/apriorit/gmock-global.git
 https://github.com/sqlite/sqlite/
 git@github.com:microsoft/vscode.git
+#vscode snippets
+https://github.com/one-harsh/vscode-cpp-snippets
 git://git.busybox.net/busybox
 https://git.busybox.net/busybox
 git@github.com:vgough/rlog.git

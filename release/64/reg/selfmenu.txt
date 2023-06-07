@@ -2964,6 +2964,7 @@ Tools/VSCode/know/VScode替代Source insight的设置及常用快捷键
 Tools/VSCode/know/videos
 Tools/VSCode/know/vscode左下角显示大纲（显示所有函数方法）
 Tools/VSCode/know/【提高效率】VScode快速生成代码片段（代码模板）
+Tools/VSCode/know/一个案例学会 VSCode Snippets，极大提高开发效率
 Tools/VSCode/know/借助clangd实现VSCode C++代码补全
 Tools/VSCode/know/资深工程师 VSCode C/C++ 必备开发插件
 Tools/VSCode/know/远程开发ssh 利用VScode连接远程服务器进行代码调试及可视化界面
@@ -2975,6 +2976,8 @@ Tools/VSCode/模板/help 位置 复制
 Tools/VSCode/模板/insertfileheader
 Tools/VSCode/模板/insertfilesource
 Tools/VSCode/模板/snippet generator
+Tools/VSCode/模板/snippets/c/cfileheader
+Tools/VSCode/模板/snippets/c/cfilesource
 Tools/VSCode/模板/snippets/c/enter
 Tools/VSCode/模板/snippets/c/gtest1to6withclass
 Tools/VSCode/模板/snippets/c/gtestcase1to6only
