@@ -42,6 +42,8 @@ https://github.com/google/googletest.git
 https://github.com/google/googletest/releases/tag/v1.13.0
 
 常用git库:
+[git git]
+https://github.com/git/git/tags?after=v2.1.0-rc1
 https://github.com/git/git/tags?after=v2.23.4
 git@github.com:weilaidb/sourceinsight.git
 #tipc
