@@ -1,0 +1,168 @@
+[05:05:17.860] Log Level: 2
+[05:05:17.877] SSH Resolver called for "ssh-remote+49.234.85.12", attempt 1
+[05:05:17.878] "remote.SSH.useLocalServer": false
+[05:05:17.878] "remote.SSH.showLoginTerminal": false
+[05:05:17.879] "remote.SSH.remotePlatform": {"101.201.79.164":"linux","49.234.85.12":"linux","192.168.0.108":"linux"}
+[05:05:17.879] "remote.SSH.path": undefined
+[05:05:17.879] "remote.SSH.configFile": undefined
+[05:05:17.879] "remote.SSH.useFlock": true
+[05:05:17.879] "remote.SSH.lockfilesInTmp": false
+[05:05:17.880] "remote.SSH.localServerDownload": auto
+[05:05:17.880] "remote.SSH.remoteServerListenOnSocket": false
+[05:05:17.880] "remote.SSH.showLoginTerminal": false
+[05:05:17.880] "remote.SSH.defaultExtensions": []
+[05:05:17.880] "remote.SSH.loglevel": 2
+[05:05:17.881] "remote.SSH.enableDynamicForwarding": true
+[05:05:17.881] "remote.SSH.enableRemoteCommand": false
+[05:05:17.881] "remote.SSH.serverPickPortsFromRange": {}
+[05:05:17.881] "remote.SSH.serverInstallPath": {}
+[05:05:17.885] VS Code version: 1.75.1
+[05:05:17.885] Remote-SSH version: remote-ssh@0.102.0
+[05:05:17.885] win32 x64
+[05:05:17.888] SSH Resolver called for host: 49.234.85.12
+[05:05:17.888] Setting up SSH remote "49.234.85.12"
+[05:05:17.894] Using commit id "441438abd1ac652551dbe4d408dfcec8a499b8bf" and quality "stable" for server
+[05:05:17.900] Install and start server if needed
+[05:05:17.905] Checking ssh with "C:\Program Files\Microsoft\jdk-11.0.16.101-hotspot\bin\ssh.exe -V"
+[05:05:17.908] Got error from ssh: spawn C:\Program Files\Microsoft\jdk-11.0.16.101-hotspot\bin\ssh.exe ENOENT
+[05:05:17.908] Checking ssh with "D:\Program Files\Python3\Scripts\ssh.exe -V"
+[05:05:17.910] Got error from ssh: spawn D:\Program Files\Python3\Scripts\ssh.exe ENOENT
+[05:05:17.910] Checking ssh with "D:\Program Files\Python3\ssh.exe -V"
+[05:05:17.911] Got error from ssh: spawn D:\Program Files\Python3\ssh.exe ENOENT
+[05:05:17.911] Checking ssh with "D:\Downloads\zbox\zbox\nssm\win32\ssh.exe -V"
+[05:05:17.913] Got error from ssh: spawn D:\Downloads\zbox\zbox\nssm\win32\ssh.exe ENOENT
+[05:05:17.913] Checking ssh with "C:\Program Files\Common Files\Oracle\Java\javapath\ssh.exe -V"
+[05:05:17.915] Got error from ssh: spawn C:\Program Files\Common Files\Oracle\Java\javapath\ssh.exe ENOENT
+[05:05:17.915] Checking ssh with "D:\Program Files\VanDyke Software\Clients\ssh.exe -V"
+[05:05:17.917] Got error from ssh: spawn D:\Program Files\VanDyke Software\Clients\ssh.exe ENOENT
+[05:05:17.917] Checking ssh with "C:\Program Files (x86)\Common Files\Oracle\Java\javapath\ssh.exe -V"
+[05:05:17.919] Got error from ssh: spawn C:\Program Files (x86)\Common Files\Oracle\Java\javapath\ssh.exe ENOENT
+[05:05:17.919] Checking ssh with "C:\WINDOWS\system32\ssh.exe -V"
+[05:05:17.922] Got error from ssh: spawn C:\WINDOWS\system32\ssh.exe ENOENT
+[05:05:17.923] Checking ssh with "C:\WINDOWS\ssh.exe -V"
+[05:05:17.927] Got error from ssh: spawn C:\WINDOWS\ssh.exe ENOENT
+[05:05:17.928] Checking ssh with "C:\WINDOWS\System32\Wbem\ssh.exe -V"
+[05:05:17.929] Got error from ssh: spawn C:\WINDOWS\System32\Wbem\ssh.exe ENOENT
+[05:05:17.930] Checking ssh with "C:\WINDOWS\System32\WindowsPowerShell\v1.0\ssh.exe -V"
+[05:05:17.932] Got error from ssh: spawn C:\WINDOWS\System32\WindowsPowerShell\v1.0\ssh.exe ENOENT
+[05:05:17.932] Checking ssh with "C:\WINDOWS\System32\OpenSSH\ssh.exe -V"
+[05:05:17.985] > OpenSSH_for_Windows_8.1p1, LibreSSL 3.0.2
+
+[05:05:17.990] Running script with connection command: "C:\WINDOWS\System32\OpenSSH\ssh.exe" -T -D 50815 "49.234.85.12" bash
+[05:05:17.993] Terminal shell path: C:\WINDOWS\System32\cmd.exe
+[05:05:18.253] > ]0;C:\WINDOWS\System32\cmd.exe
+[05:05:18.253] Got some output, clearing connection timeout
+[05:05:18.268] > Bad owner or permissions on C:\\Users\\weilaidb/.ssh/config
+> 过程试图写入的管道不存在。
+> 
+
+
+
+
+
+.ssh的权限设置（重新生成）
+
+1）
+weilaidb@weilaixnew MINGW64 ~
+$ ls -alh | grep  .ssh/
+drwxr-xr-x 1 weilaidb 197121    0 Jun 14 05:06 .ssh/
+
+weilaidb@weilaixnew MINGW64 ~
+$ ls -alh .ssh/
+total 37K
+drwxr-xr-x 1 weilaidb 197121    0 Jun 14 05:06 ./
+drwxr-xr-x 1 weilaidb 197121    0 Jun 14 05:06 ../
+-rw-r--r-- 1 weilaidb 197121 2.6K Jun 14 05:06 id_rsa
+-rw-r--r-- 1 weilaidb 197121  573 Jun 14 05:06 id_rsa.pub
+
+
+2）
+
+[root@VM-0-10-centos] ~
+$ chown -R weixj.weixj /home/weixj/ssh.
+ssh.vs.remote/     ssh.weilaidb.new/  ssh.weilaidb.new2/ ssh.weixj/         
+[root@VM-0-10-centos] ~
+$ chown -R weixj.weixj /home/weixj/ssh.wei
+ssh.weilaidb.new/  ssh.weilaidb.new2/ ssh.weixj/         
+[root@VM-0-10-centos] ~
+$ chown -R weixj.weixj /home/weixj/ssh.weilaidb.new2/
+[root@VM-0-10-centos] ~
+$ exit
+exit
+[weixj@VM-0-10-centos] ~
+$ ls
+ssh  ssh.vs.remote  ssh.weilaidb.new  ssh.weilaidb.new2  ssh.weixj  work
+[weixj@VM-0-10-centos] ~
+$ ll
+total 24
+drwx------ 2 weixj weixj 4096 Nov  1  2022 ssh
+drwx------ 2 weixj weixj 4096 Jun 13 23:50 ssh.vs.remote
+drwxr-xr-x 2 weixj weixj 4096 Jun 14 05:01 ssh.weilaidb.new
+drwxr-xr-x 2 weixj weixj 4096 Jun 14 05:08 ssh.weilaidb.new2
+drwx------ 2 weixj weixj 4096 Nov  1  2022 ssh.weixj
+drwxrwxr-x 4 weixj weixj 4096 Apr  2 10:08 work
+[weixj@VM-0-10-centos] ~
+$ cd .ssh/
+[weixj@VM-0-10-centos] ~/.ssh
+$ ssh-copy-id -i ../ssh.weilaidb.new2/id_rsa.pub weixj@49.234.85.12                            
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "../ssh.weilaidb.new2/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0744 for '/home/weixj/.ssh/id_rsa' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "/home/weixj/.ssh/id_rsa": bad permissions
+weixj@49.234.85.12's password: 
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'weixj@49.234.85.12'"
+and check to make sure that only the key(s) you wanted were added.
+
+[weixj@VM-0-10-centos] ~/.ssh
+$ 
+
+
+
+
+
+3）
+# Read more about SSH config files: https://linux.die.net/man/5/ssh_config
+Host 49.234.85.12
+  HostName 49.234.85.12
+  User weixj
+  IdentityFile "C:\Users\weilaidb\.ssh\id_rsa"
+
+
+4）
+解决VS code报错，过程试图写入的管道不存在
+开始在使用VS code远程连接ssh时，发现上面报错了：
+
+并且发现在cmd中，使用ssh root@xxx IP xxx也是报错Bad owner or permissions on … 。
+
+后来发现原来时.ssh文件权限不够。
+
+
+解决办法如下：
+
+1.找到.ssh文件夹。它通常位于C:\Users，例如C:\Users\Akkuman。
+2.右键单击.ssh文件夹，然后单击“属性”。
+3.找到并点击“安全”标签。
+4.然后单击“高级”。 单击“禁用继承”，单击“确定”。 将出现警告弹出窗口。单击“从此对象中删除所有继承的权限”。
+5.你会注意到所有用户都将被删除。让我们添加所有者。在同一窗口中，单击“编辑”按钮。
+6.接下来，单击“添加”以显示“选择用户或组”窗口。
+7.单击“高级”，然后单击“立即查找”按钮。应显示用户结果列表。 选择您的用户帐户。
+8.然后单击“确定”（大约三次）以关闭所有窗口。
+9.完成所有操作后，再次关闭并打开VSCode 并尝试连接到远程SSH主机。
+现在这个问题应该解决了。
+————————————————
+版权声明：本文为CSDN博主「IT_Holmes」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/IT_Holmes/article/details/119364817
+
+
+
+
+

@@ -2959,6 +2959,7 @@ Tools/VSCode 的常用快捷键
 Tools/VSCode/C C++ 必备开发插件
 Tools/VSCode/C C++ 必备开发插件 remote development
 Tools/VSCode/base/背景色 护眼色
+Tools/VSCode/know/Bad owner or permissions
 Tools/VSCode/know/VSCode大纲outline视图提示在文档中找不到符号解决方法
 Tools/VSCode/know/VSCode大纲outline视图提示在文档中找不到符号解决方法(no symbols found in document)
 Tools/VSCode/know/VScode替代Source insight的设置及常用快捷键
@@ -2966,9 +2967,11 @@ Tools/VSCode/know/videos
 Tools/VSCode/know/vscode左下角显示大纲（显示所有函数方法）
 Tools/VSCode/know/vscode设置remote-ssh并免密登录
 Tools/VSCode/know/vscode设置remote-ssh并免密登录 configuring-key-based-authentication
+Tools/VSCode/know/vscode设置remote-ssh并免密登录（new)
 Tools/VSCode/know/【提高效率】VScode快速生成代码片段（代码模板）
 Tools/VSCode/know/一个案例学会 VSCode Snippets，极大提高开发效率
 Tools/VSCode/know/借助clangd实现VSCode C++代码补全
+Tools/VSCode/know/解决VS code报错，过程试图写入的管道不存在(Bad owner or permissions on
 Tools/VSCode/know/资深工程师 VSCode C/C++ 必备开发插件
 Tools/VSCode/know/远程开发ssh 利用VScode连接远程服务器进行代码调试及可视化界面
 Tools/VSCode/模板/00snippet 中可以使用的一些变量

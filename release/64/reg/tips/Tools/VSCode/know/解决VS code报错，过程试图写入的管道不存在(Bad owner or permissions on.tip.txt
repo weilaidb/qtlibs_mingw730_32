@@ -1,0 +1,388 @@
+CSDN首页
+博客
+下载
+学习
+社区
+false
+GitCode
+InsCode 
+vscode
+ 搜索
+
+会员中心 
+消息
+历史
+创作中心
+发布
+解决VS code报错，过程试图写入的管道不存在(Bad owner or permissions on C:\\Users\\Administrator/.ssh/config)
+
+IT_Holmes
+
+于 2021-08-04 02:09:06 发布
+
+17734
+ 收藏 56
+分类专栏： JavaScript 基础语言 (从头到尾 笔记) 文章标签： vscode 前端 大前端
+版权
+
+JavaScript 基础语言 (从头到尾 笔记)
+专栏收录该内容
+31 篇文章62 订阅
+订阅专栏
+开始在使用VS code远程连接ssh时，发现上面报错了：
+在这里插入图片描述
+并且发现在cmd中，使用ssh root@xxx IP xxx也是报错Bad owner or permissions on … 。
+
+后来发现原来时.ssh文件权限不够。
+
+在这里插入图片描述
+解决办法如下：
+
+1.找到.ssh文件夹。它通常位于C:\Users，例如C:\Users\Akkuman。
+2.右键单击.ssh文件夹，然后单击“属性”。
+3.找到并点击“安全”标签。
+4.然后单击“高级”。 单击“禁用继承”，单击“确定”。 将出现警告弹出窗口。单击“从此对象中删除所有继承的权限”。
+5.你会注意到所有用户都将被删除。让我们添加所有者。在同一窗口中，单击“编辑”按钮。
+6.接下来，单击“添加”以显示“选择用户或组”窗口。
+7.单击“高级”，然后单击“立即查找”按钮。应显示用户结果列表。 选择您的用户帐户。
+8.然后单击“确定”（大约三次）以关闭所有窗口。
+9.完成所有操作后，再次关闭并打开VSCode 并尝试连接到远程SSH主机。
+现在这个问题应该解决了。
+
+
+IT_Holmes
+关注
+
+34
+
+
+56
+打赏
+
+24
+
+专栏目录
+vscode远程连接提示过程试图写入的管道不存在
+baidu_39131915的博客
+ 2万+
+vscode报如下错误 [14:18:57.722] Got some output, clearing connection timeout [14:18:57.751] > 过程试图写入的管道不存在。 [14:18:58.010] "install" terminal command done [14:18:58.011] Install terminal quit with output: 过程试图写入的管道不存在。 [14:18:58.011] Received install output:
+Vscode远程连接Ubuntu出错问题的解决方法
+01-08
+一、事件背景： 由于工作需要使用vscode远程连接到Ubuntu。（具体连接方法可百度，本文仅限分享其中遇到的问题） 二、问题现象： 在这过程中遇到了一个问题。其文字描述为：Could not establish connection to “IP地址”与过程试图写入管道不存在。 如下图所示： 三、问题分析： 1、根据问题报错在网上查找原因。 根据关键字“过程试图写入的管道不存在”匹配到的东西太多太广了，例如由于安装Git导致，由于Ubuntu升级系统导致，由于未安装open ssh软件。除了看的眼花，别的一无所获。所以换个思路。 2、定位问题方向，连接方（vscode、Windows）的
+24 条评论
+COOL228
+热评
+骗人的呜呜修改不了准备卸载重安了
+写评论
+...解决“过程试图写入的管道不存在“报错_过程试图写入的管道不存在...
+6-13
+首先按照这个过程尝试使用VScode远程连接服务器 https://zhuanlan.zhihu.com/p/141205262 在最后一步启动服务器的时候遇到下面的报错: 过程试图写入的管道不存在 Running script with connection command: ssh-T-D 1366 lab bash[21:47:...
+VScode远程连接服务器-过程试图写入的管道不存在-could not establis...
+6-12
+使用服务器的过程中突然与服务器断连,报错如下:could not establist connection to [20:23:39.487]>ssh: connecttohost10.201.0.131port22: Connection timed out > [20:23:39.495]>过程试图写入的管道不存在。 > [20:23:40.759]"...
+vscode报错Install terminal quit with output: 过程试图写入的管道不存在。
+qq_35037684的博客
+ 315
+解决方法2，其实还是不行，最后尝试把vscode卸载重装的时候（没删成功，显示有应用占用，不能删除），莫名奇妙的又能连上了。试了几乎全网的方法都没用，使用。淡定，在心里默念一句法克…
+vscode远程连接失败：Could not establish connection to... 过程试图写入的管道不存在 （已解决）
+wtl666_6的博客
+ 1万+
+Could not establish connection to... VScode远程连接失败
+...ssh连接虚拟机 & 报错 过程试图写入的管道不存在(已解决)_remote...
+6-12
+因为在windows上VSCode使用的默认ssh工具存在实现上的问题,导致一旦我们直接使用默认ssh连接会有报错:”过程试图写入的管道不存在”(The process tried to write to a nonexistent pipe)。那出现这样的问题我们有两种解决办法。解决办法一:...
+VScode报错 过程试图写入的管道不存在。_过程试图写入的管道不存在vs...
+6-12
+问题一:Install terminal quit with output: 过程试图写入的管道不存在 解决办法:应该是密匙问题,将原本的密匙删除并重新加载即可。 具体操作:将安装vscode的window目录中的C:\Users\Administrator.ssh里的known_hosts文件删除即可。
+【已解决】vscode远程连接提示过程试图写入的管道不存在
+weixin_39175109的博客
+ 3570
+【已解决】vscode远程连接提示过程试图写入的管道不存在
+VS Code 远程访问提示过程试图写入的管道不存在
+evil_chopper的博客
+ 449
+VSCode remote-ssh 远程访问失败
+vscode ssh连接服务器报错:过程试图写入的管道不存在
+6-12
+首先说明下:shh在VSCode报错的过程中,终端是会有提示的 解决问题的 学会看终端命令的: 我的报错是这个提示:kex_exchange_identification: read: Connection reset by peer” 过程试图写入的管道不存在: ...
+VScode:过程试图写入的管道不存在VScode_过程试图写入的管道不存在...
+5-26
+VScode:过程试图写入的管道不存在 环境变量设置有问题:将系统环境变量的ssh,放到用户环境变量,也有可能是ssh冲突(原因是避免系统环境变量与用户环境变量的ssh冲突),多试几次就行了DYF-AI 关注 1 1 觉得还不错? 一键收藏 1 ...
+Vscode 无法连接到 Ubuntu 的解决方法(非常实用)
+小朋友
+ 3102
+1、安装 Vscode； 2、在 Vscode 中安装 Remote Development 扩展； 3、把远程资源管理器修改为：SSH Targets； 4、点击 SSH TARGETS 后面的配置按钮，如下图所示； 选择第一个默认路径即可； 第二行 Host 后面的名字可以随便起；第三行 HostName 后面的是 Ubuntu 主机地址，可在 Ubuntu 中输入 ifconfig 获取； 第四行 User 是 Ubuntu 用户名；最后保存，如下图所示； 5、...
+Bad owner or permissions on .ssh/config的解决
+热门推荐
+zcc_heu的博客
+ 5万+
+Bad owner or permissions on .ssh/config的解决 当为本机配一个固定用户名远程登录某主机时，配置了一个config文件，但是在执行ssh免密码登录时报如下的错误：Bad owner or permissions on .ssh/config的解决。 经过查找资料发下解决办法如下： sudo chmod 600 config
+vscode 连接Ubuntu出现：Permission denied, please try again
+小鹏AI
+ 7450
+解决办法： 在Linux系统下输入以下命令： vim /etc/ssh/sshd_config （如果没有vim ： apt install vim） vim /etc/ssh/sshd_config 在sshd_config文件中找到：PermitRootLogin 将PermitRootLogin前面的#去掉， 并更改为： PermitRootLogin yes 重新启动ssh服务：sudo /etc/init.d/ssh restart 重新使用vscode进行连接 ...
+VScode使用ssh远程连接时报错：Bad owner or permissions on C:\\Users\\user-name/.ssh/config
+m0_46201414的博客
+ 462
+关于VScode远程ssh连接ubuntu虚拟机时产生的Bad owner or permissions on C:\\Users\\user-name/.ssh/config报错问题
+Windows VScode SSH连接 Bad owner or permissions on C:\\Users\\admin/.ssh/config 错误解决方法
+xunyishuai5020的博客
+ 2693
+解决VScode SSH远程访问报错
+解决fatal:remote error:You can’t push to git://github.com/username/*.git问题的办法
+01-10
+解决fatal:remote error:You can’t push to git://github.com/username/*.git问题的办法 今天Git push的时候 ...解决方法： git remote rm origin git remote add origin git@github.com:username/resname.git 接
+rimp：一个hacky项目，可让您将https://repl.it中的repl导入到您的项目中
+02-04
+轮辋 hacky项目，可让您将repls导入项目 如何安装 pip install rimp 哇，那很容易，不是吗？ 如何使用 您只需要知道1条命令即可使用load_repl 。 load_repl （名称： str ，项目： str ，force_reinstall： bool = ...
+rsync同步时出现rsync: failed to set times on “xxxx”: Operation not permitted
+09-30
+今天在同步数据的时候提示rsync: failed to set times on “xxxx”: Operation not permitted，一般来说要不是服务器时间不对或者权限没有设置好
+Get My MSL1.3.apk
+10-31
+Get My MSL will give you your MSL code without the need to use adb shell or have a terminal app installed.This version requires INTERNET permissions because it allows the user to decide if they would...
+AWS亚马逊ssh登录失败 Permissions 0644 for .pem are too open
+01-07
+AWS亚马逊ssh登录失败 Permissions 0644 for .pem are too open ssh -i yourPath/yourPrivateKey.pem ec2-user@yourAwsAddress.compute.amazonaws.com Warning: Permanently added 'yourAwsAddress.compute.amazon...
+【Vscode - Bug】-- 过程试图写入的管道不存在
+银尘博客
+ 4382
+文章目录问题截图问题分析解决办法： 问题截图 问题描述： 在使用Vscode连接虚拟机的时候出现了连接不上的问题，主要报错是：过程试图写入的管道不存在！ 问题分析 碰到这个问题，我根据网上博文的思路，进行了下面的几种操作： 1、https://zixizixi.cn/windows_vscode_ssh_error_bad-owner-or-permissions （未解决！） 2、https://blog.csdn.net/u011436427/article/details/102981641 主要将
+Vscode——报错解决：SSH远程连接提示过程试图写入的管道不存在
+最新发布
+Williamcsj的博客
+ 367
+本地的known_hosts文件记录服务器信息与现服务器的信息冲突了，导致连接失败。把本地的known_hosts的原服务器信息全部删掉，然后重新连接。
+Vscode连接远程服务器出现“过程试图写入的管道不存在(Bad owner or permissions on C:\Users\Administrator/.ssh/config)”报错
+release11的博客
+ 1058
+@[TOC]Vscode连接远程服务器出现“过程试图写入的管道不存在(Bad owner or permissions on C:\Users\Administrator/.ssh/config)”报错 Vscode连接远程服务器出现“过程试图写入的管道不存在(Bad owner or permissions on C:\Users\Administrator/.ssh/config)”报错 你好！ 这是你第一次使用 Markdown编辑器 所展示的欢迎页。如果你想学习如何使用Markdown编辑器, 可以
+[client 219.232.77.97:31902] AH00035: access to /info.php denied (filesystem path '/var/www') because search permissions are missing on a component of the path
+02-06
+这个错误消息表示访问网页服务器上的文件/var/www/info.php的请求被拒绝。原因是访问该文件所需的搜索权限在路径的某个部分缺失。这通常是由于文件或文件夹的权限设置不当导致的。可以通过检查文件和文件夹的权限以及所属用户和组来解决这个问题。
+“相关推荐”对你有帮助么？
+
+非常没帮助
+
+没帮助
+
+一般
+
+有帮助
+
+非常有帮助
+关于我们
+招贤纳士
+商务合作
+寻求报道
+
+400-660-0108
+
+kefu@csdn.net
+
+在线客服
+工作时间 8:30-22:00
+公安备案号11010502030143
+京ICP备19004658号
+京网文〔2020〕1039-165号
+经营性网站备案信息
+北京互联网违法和不良信息举报中心
+家长监护
+网络110报警服务
+中国互联网举报中心
+Chrome商店下载
+账号管理规范
+版权与免责声明
+版权申诉
+出版物许可证
+营业执照
+©1999-2023北京创新乐知网络技术有限公司
+
+IT_Holmes
+码龄3年
+ 暂无认证
+246
+原创
+8238
+周排名
+1万+
+总排名
+38万+
+访问
+
+等级
+4552
+积分
+6065
+粉丝
+826
+获赞
+273
+评论
+4994
+收藏
+签到新秀
+签到达人
+签到王者
+GitHub
+笔耕不辍
+阅读者勋章
+分享学徒
+求知
+受益良多
+博客之星–参与
+持续创作
+1024勋章
+1024超级勋章
+创作能手
+新人勋章
+私信
+关注
+搜博主文章
+
+热门文章
+解决VS code报错，过程试图写入的管道不存在(Bad owner or permissions on C:\\Users\\Administrator/.ssh/config)  17720
+linux系统 常用命令(全面总结)  12990
+Java语言程序设计与数据结构（基础篇）课后练习题 第十三章（一）  11116
+JavaScript 基础笔记总结(全部)  10354
+AI 自动写代码插件 Copilot(副驾驶员)  9766
+分类专栏
+
+Android 原生安卓
+5篇
+
+React 全家桶
+8篇
+
+云原生 学习
+8篇
+
+Java(从头到尾 笔记)
+32篇
+
+JVM
+2篇
+
+SpringCloud全家桶
+9篇
+
+SpringBoot项目
+2篇
+
+中间件 (从头到尾 笔记)
+23篇
+
+Spring全家桶(架构设计)
+2篇
+
+Java 开发工程师 面试题
+1篇
+
+Vue 全家桶
+14篇
+
+uniApp
+2篇
+
+JavaScript 基础语言 (从头到尾 笔记)
+31篇
+
+MySQL (从头到尾 笔记)
+3篇
+
+JavaWeb(从头到尾 笔记)
+7篇
+
+算法与数据结构
+
+linux
+18篇
+
+其他
+1篇
+
+Ubuntu
+1篇
+
+内网穿透
+1篇
+
+网页设计
+1篇
+
+Java(笔记 过时)
+5篇
+
+Java (算法)
+7篇
+
+DOS命令
+4篇
+
+c语言
+
+CentOS
+5篇
+
+电脑故障
+1篇
+
+计算机黑皮书系列
+35篇
+
+python (从头到尾 笔记)
+12篇
+
+eclipse
+3篇
+
+git
+3篇
+
+加密解密签名
+2篇
+
+最新评论
+python 人生苦短，我学Python（二）
+花开盛夏^.^: 博主总结的很好，为你点赞！
+
+Java语言程序设计与数据结构（基础篇）课后练习题 第十二章（三）
+王彦韬: 12.15运行出现Mismatch错误
+
+解决VS code报错，过程试图写入的管道不存在(Bad owner or permissions on C:\\Users\\Administrator/.ssh/config)
+COOL228: 骗人的呜呜修改不了准备卸载重安了
+
+解决VS code报错，过程试图写入的管道不存在(Bad owner or permissions on C:\\Users\\Administrator/.ssh/config)
+m0_66327016: 非常有用，问题解决，十分感谢
+
+Java语言程序设计与数据结构（基础篇）课后练习题 第六章（三）
+2301_77840556: 谢谢大哥！查阅不懂的地方很方便！
+
+您愿意向朋友推荐“博客详情页”吗？
+
+强烈不推荐
+
+不推荐
+
+一般般
+
+推荐
+
+强烈推荐
+最新文章
+ElasticSearch 8 学习笔记总结(七)
+ElasticSearch 8 学习笔记总结(六)
+ElasticSearch 8 学习笔记总结(五)
+2023年16篇2022年86篇2021年88篇2020年56篇
+
+
+
+
+
+举报
+
+搜索
+
+评论
+
+笔记

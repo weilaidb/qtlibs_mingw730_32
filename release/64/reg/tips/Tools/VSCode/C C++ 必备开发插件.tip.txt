@@ -8,7 +8,7 @@ ssh weixj@49.234.85.12
 
 
 
-chinese
+chinese 
 python
 c
 cmake 
@@ -25,4 +25,9 @@ Bito
 
 
 
+Mintlify Doc Writer
 
+#代码生成
+CodeGeeX
+
+Code GPT
