@@ -3100,6 +3100,11 @@ Tools/十六进制颜色码转换成RGB颜色值2
 Tools/双拼输入法快捷键
 Tools/双拼输入法快捷键 小鹤双拼
 Tools/双拼输入法快捷键 打字练习
+Tools/数据恢复/常用软件
+Tools/数据恢复/数据恢复基本常识
+Tools/数据恢复/文件开头字节判断文件类型
+Tools/数据恢复/深度数据恢复软件（恢复的文件打不开，或不能正常使用）
+Tools/数据恢复/视频恢复软件
 Tools/查看代码工具/OpenGrok/error/The source root path has not been configured! Please configure your webapp.
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/help Requirements安装要求
