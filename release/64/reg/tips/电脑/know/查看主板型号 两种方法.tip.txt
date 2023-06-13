@@ -1,0 +1,27 @@
+查看主板型号 两种方法
+
+nongcunqq
+
+于 2021-06-17 10:24:31 发布
+
+3454
+ 收藏 6
+分类专栏： windows
+版权
+
+windows
+专栏收录该内容
+136 篇文章3 订阅
+订阅专栏
+第一种
+开始 运行 输入cmd
+进入cmd后输入 systeminfo
+
+系统型号就是主板型号
+
+第二种
+开始 运行 输入 dxdiag
+
+————————————————
+版权声明：本文为CSDN博主「nongcunqq」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/nongcunqq/article/details/117983884

@@ -1,0 +1,136 @@
+vscode设置remote-ssh并免密登录
+
+_cuihua
+
+于 2021-03-18 16:45:22 发布
+
+30577
+ 收藏 105
+分类专栏： linux软件安装使用 文章标签： vscode ssh linux ubuntu
+版权
+
+华为云开发者联盟
+该内容已被华为云开发者联盟社区收录
+加入社区
+
+linux软件安装使用
+专栏收录该内容
+7 篇文章3 订阅
+订阅专栏
+1. 在vscode中安装remote-ssh插件
+直接在vscode中搜索remote-ssh即可安装
+
+安装完成以后是这样：
+
+
+2. 使用remote-ssh远程登录ssh
+按照下图标记依次点击1、2、3，就会出现remote-ssh编辑界面，用来输出要远程登录的ssh
+
+这就是远程ssh信息的编辑界面：
+
+Host是这个ssh信息在你本地的显示内容
+HostName是你的远程ssh的ip信息
+User是你的远程ssh的用户名，如果远程是Linux系统的话，这个就是你登录Linux的用户名
+
+输入完成保存以后，左侧就会出现你的刚才设置的信息：
+
+然后点击下图圈起来的按钮，用来登录你的远程ssh
+
+点击完成，就会弹出新的vscode界面，需要你进一步输入远程ssh的信息：
+
+点击continue，之后会出：
+
+输入你的远程ssh主机的密码，之后：
+
+左下角出现如图字样，你就已经连接上了。
+
+3. 设置免密登录
+当可以连接上ssh以后，打开命令行，输入：
+
+ssh-keygen
+1
+回车，一直回车，不要输入任何内容，直到命令行就会输出一下信息：
+
+表示生成的公钥和秘钥，注意圈起来的路径文件，需要将其拷贝到你的远程ssh主机中，我远程主机时虚拟机，所以仅将其上上传到/home文件夹下即可，也就是吧id_rsa.pub文件拷贝（PS：刚才圈起来的按个目录一定有这个文件）。
+之后操作远程ssh主机：
+
+mkdir .ssh
+mv id_rsa.pub .ssh
+cd .ssh
+cat id_rsa.pub >> authorized_keys
+sudo chmod 600 authorized_keys
+service sshd restart
+1
+2
+3
+4
+5
+6
+可能在最后一条命令要输出你的账号登录密码。
+这样远程ssh主机配置免密码登录就完成了。
+然后你可以在vscode重复打开远程ssh的步骤，看看是否还需要输入密码了。
+————————————————
+版权声明：本文为CSDN博主「_cuihua」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_42397613/article/details/114983147
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[weixj@VM-0-10-centos] ~/.ssh
+$ ssh-copy-id -i weixj@49.234.85.12                       
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/weixj/.ssh/id_rsa.pub"
+The authenticity of host '49.234.85.12 (49.234.85.12)' can't be established.
+ECDSA key fingerprint is SHA256:NbZMLxxe35DeiuI3o13QqWtS82mBEibYZCiluxEFtsM.
+ECDSA key fingerprint is MD5:4e:a2:b5:f1:20:3a:94:e1:32:86:65:81:23:98:65:d2.
+Are you sure you want to continue connecting (yes/no)? yes
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0744 for '/home/weixj/.ssh/id_rsa' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "/home/weixj/.ssh/id_rsa": bad permissions
+weixj@49.234.85.12's password: 
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'weixj@49.234.85.12'"
+and check to make sure that only the key(s) you wanted were added.
+
+[weixj@VM-0-10-centos] ~/.ssh
+$ ll
+total 16
+-rw------- 1 weixj weixj 1136 Jun 13 23:50 authorized_keys
+-rwx------ 1 weixj weixj    0 Jun 13 23:08 cat
+-rwxr--r-- 1 weixj weixj 2602 Jun 13 23:12 id_rsa
+-rwx------ 1 weixj weixj  568 Jun 13 23:12 id_rsa.pub
+-rw-r--r-- 1 weixj weixj  174 Jun 13 23:50 known_hosts
+[weixj@VM-0-10-centos] ~/.ssh
+$ more authorized_keys 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsRxoKekz92OGeFZXWMBiyO8O/Scvx+VOv41SiALO5VhEHF7ymPKixYG+YqFVbt0EMtThPnV5x5kcC1rIO38kWDzyN46Mtkp6QArG8WyEy4gsNQrUciAYC3ZTtRfjNieG57SY6b99vgaI2rHobXaZroCPVfefd2L3V+q9y6ckd2zVVhRcWgD01h1OyS4YPjXBgt
+RDiPdr17QLDZruHI7KP5tSlJ4tJ6LUddt/xEi8bfvKJmz3QaD93/DaJxm6x+1m4+YlThJ4W6rA7oV8jDKGjrwOpNz0uAtSiuTv2KcHuOI5Ci7UxUkDNzO3iKD/p+23/cfTQc9iSP/ZY3QnXN6SZsZNcCgfRMgTeB+1+MUzdzIotqfGJihQLLzbVgAmtw9+nEp6PxEInkYrLBFm1fu0fodt2NyMzEBqCL8QVAW7exd
+QJvgCTBwMCYgIUR5OqJjPTWnyvJwVYWiSRkNpxWhCNfVbD/7nsii8RadaxlIXYtQUAD71l2qyCDuazQedAsec= dell@dellwin10
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsRxoKekz92OGeFZXWMBiyO8O/Scvx+VOv41SiALO5VhEHF7ymPKixYG+YqFVbt0EMtThPnV5x5kcC1rIO38kWDzyN46Mtkp6QArG8WyEy4gsNQrUciAYC3ZTtRfjNieG57SY6b99vgaI2rHobXaZroCPVfefd2L3V+q9y6ckd2zVVhRcWgD01h1OyS4YPjXBgt
+RDiPdr17QLDZruHI7KP5tSlJ4tJ6LUddt/xEi8bfvKJmz3QaD93/DaJxm6x+1m4+YlThJ4W6rA7oV8jDKGjrwOpNz0uAtSiuTv2KcHuOI5Ci7UxUkDNzO3iKD/p+23/cfTQc9iSP/ZY3QnXN6SZsZNcCgfRMgTeB+1+MUzdzIotqfGJihQLLzbVgAmtw9+nEp6PxEInkYrLBFm1fu0fodt2NyMzEBqCL8QVAW7exd
+QJvgCTBwMCYgIUR5OqJjPTWnyvJwVYWiSRkNpxWhCNfVbD/7nsii8RadaxlIXYtQUAD71l2qyCDuazQedAsec= dell@dellwin10
+[weixj@VM-0-10-centos] ~/.ssh
+$ diff authorized_keys id_rsa.pub 
+2d1
+< ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsRxoKekz92OGeFZXWMBiyO8O/Scvx+VOv41SiALO5VhEHF7ymPKixYG+YqFVbt0EMtThPnV5x5kcC1rIO38kWDzyN46Mtkp6QArG8WyEy4gsNQrUciAYC3ZTtRfjNieG57SY6b99vgaI2rHobXaZroCPVfefd2L3V+q9y6ckd2zVVhRcWgD01h1OyS4YPjXBgtRDiPdr17QLDZruHI7KP5tSlJ4tJ6LUddt/xEi8bfvKJmz3QaD93/DaJxm6x+1m4+YlThJ4W6rA7oV8jDKGjrwOpNz0uAtSiuTv2KcHuOI5Ci7UxUkDNzO3iKD/p+23/cfTQc9iSP/ZY3QnXN6SZsZNcCgfRMgTeB+1+MUzdzIotqfGJihQLLzbVgAmtw9+nEp6PxEInkYrLBFm1fu0fodt2NyMzEBqCL8QVAW7exdQJvgCTBwMCYgIUR5OqJjPTWnyvJwVYWiSRkNpxWhCNfVbD/7nsii8RadaxlIXYtQUAD71l2qyCDuazQedAsec= dell@dellwin10
+[weixj@VM-0-10-centos] ~/.ssh
