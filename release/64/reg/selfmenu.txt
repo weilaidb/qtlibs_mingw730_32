@@ -1,7 +1,14 @@
 
 API Manual/API参考手册模板
 API Manual/API参考手册模板2
+API Manual/API参考手册模板3
 API Manual/C/open
+API Manual/FFmpeg/av_freep
+API Manual/FFmpeg/av_mallocz
+API Manual/FFmpeg/macros/AVERROR
+API Manual/FFmpeg/macros/AV_JOIN
+API Manual/FFmpeg/macros/AV_STRINGIFY
+API Manual/FFmpeg/macros/FFALIGN
 API Manual/Python/file.File对象的属性
 API Manual/Python/file.close
 API Manual/Python/file.fileno
@@ -45,6 +52,7 @@ API Manual/Python/re.search
 API Manual/Python/re.split
 API Manual/Python/re.sub
 API Manual/Python/re.正则表达式对象
+API Manual/usr/errno
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
 AutoCad/三等分圆

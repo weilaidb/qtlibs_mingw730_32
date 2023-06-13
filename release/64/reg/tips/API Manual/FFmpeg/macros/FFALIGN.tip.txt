@@ -1,0 +1,78 @@
+☆ API名称
+FFmpeg/macros/FFALIGN
+
+☆ 简介
+#define FFALIGN(x, a) (((x)+(a)-1)&~((a)-1))
+求x按a对齐的边界值
+
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+int stride = FFALIGN(width, 8);
+
+#include <stdio.h>
+
+#define FFALIGN(x, a) (((x)+(a)-1)&~((a)-1))
+
+
+
+int main()
+{
+    printf("FFALIGN(0,16):%u\n", FFALIGN(0,16));
+    printf("FFALIGN(1,16):%u\n", FFALIGN(1,16));
+    printf("FFALIGN(10,16):%u\n", FFALIGN(10,16));
+    printf("FFALIGN(17,16):%u\n", FFALIGN(17,16));
+    printf("FFALIGN(20,16):%u\n", FFALIGN(20,16));
+    printf("FFALIGN(31,16):%u\n", FFALIGN(31,16));
+    printf("FFALIGN(32,16):%u\n", FFALIGN(32,16));
+    printf("FFALIGN(33,16):%u\n", FFALIGN(33,16));
+
+
+    return 0;
+}
+
+
+结果：
+FFALIGN(0,16):0
+FFALIGN(1,16):16
+FFALIGN(10,16):16
+FFALIGN(17,16):32
+FFALIGN(20,16):32
+FFALIGN(31,16):32
+FFALIGN(32,16):32
+FFALIGN(33,16):48
+
+
+
+
+
+☆ 限制说明
+ API的调用限制说明。
+
+☆ 安全说明
+ API的安全说明。
+
+☆ 更新日志
+ | 版本号 | 更新内容 |
+| ----- | ---- |
+| 1.0   | 版本1.0的更新内容 |
+
+☆ 支持情况
+ API的支持情况。
+
+☆ 联系方式
+ API提供商的联系方式。
+
+☆提交日期
+2023-06-14 06:18:14
+========================================================================
+========================================================================

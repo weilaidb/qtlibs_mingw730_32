@@ -1,7 +1,18 @@
 ☆ API名称
+FFmpeg/macros/AVERROR
 
 ☆ 简介
+/* error handling */
+#if EDOM > 0
+#define AVERROR(e) (-(e))   ///< Returns a negative error code from a POSIX error code, to return from library functions.
+#define AVUNERROR(e) (-(e)) ///< Returns a POSIX error code from a library function error return value.
+#else
+/* Some platforms have E* and errno already negated. */
+#define AVERROR(e) (e)
+#define AVUNERROR(e) (e)
+#endif
 
+返回错误码，作为一个统一提示符
 
 ☆ 参数
 
@@ -34,5 +45,6 @@
  API提供商的联系方式。
 
 ☆提交日期
+2023-06-14 06:43:46
 ========================================================================
 ========================================================================
