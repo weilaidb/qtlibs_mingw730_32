@@ -2971,6 +2971,7 @@ Tools/VSCode/know/Bad owner or permissions
 Tools/VSCode/know/VSCode大纲outline视图提示在文档中找不到符号解决方法
 Tools/VSCode/know/VSCode大纲outline视图提示在文档中找不到符号解决方法(no symbols found in document)
 Tools/VSCode/know/VScode替代Source insight的设置及常用快捷键
+Tools/VSCode/know/VsCode 常用C/C++插件大全
 Tools/VSCode/know/videos
 Tools/VSCode/know/vscode左下角显示大纲（显示所有函数方法）
 Tools/VSCode/know/vscode设置remote-ssh并免密登录
@@ -2990,12 +2991,14 @@ Tools/VSCode/模板/help 位置 复制
 Tools/VSCode/模板/insertfileheader
 Tools/VSCode/模板/insertfilesource
 Tools/VSCode/模板/snippet generator
+Tools/VSCode/模板/snippets/c/c.json
 Tools/VSCode/模板/snippets/c/cfileheader
 Tools/VSCode/模板/snippets/c/cfilesource
 Tools/VSCode/模板/snippets/c/enter
 Tools/VSCode/模板/snippets/c/gtest1to6withclass
 Tools/VSCode/模板/snippets/c/gtestcase1to6only
 Tools/VSCode/模板/snippets/c/helloworld
+Tools/VSCode/模板/snippets/c/print
 Tools/VSCode/模板/头文件#ifndef #define #endif
 Tools/VSCode/背景色 护眼色
 Tools/VSCode快捷键

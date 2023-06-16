@@ -1,0 +1,36 @@
+VsCode 常用C/C++插件大全
+
+吾爱吃西红柿
+
+已于 2022-11-28 10:27:12 修改
+
+19426
+ 收藏 67
+分类专栏： 嵌入式常用工具 文章标签： vscode
+版权
+
+嵌入式常用工具
+专栏收录该内容
+3 篇文章0 订阅
+订阅专栏
+
+
+插件名称	作用
+C/C++	必要的
+C/C++ Snippets	C/C++重用代码块
+C/C++ Advanced Lint	C/C++静态检测
+Code Runne	代码运行
+Include AutoComplete	自动头文件包含
+Rainbow Brackets	彩虹花括号，有助于阅读代码
+One Dark Pro	VSCode 的主题
+GBKtoUTF8	将 GBK 转换为 UTF8
+ARM Assembley	ARM汇编语言高亮
+vscode-icons	VSCode 图标插件，使得资源管理器下各个文件夹的图标更加美观整洁
+compareit	比较插件，可以用于比较两个文件的差异
+DeviceTree	设备树语法插件
+TabNine	一款 AI 自动补全插件
+文章知识点与官方知识档案匹配，可进一步学习相关知识
+C技能树首页概览152273 人正在系统学习中
+————————————————
+版权声明：本文为CSDN博主「吾爱吃西红柿」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/anmo_moan/article/details/119561303

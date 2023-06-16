@@ -1,0 +1,34 @@
+{
+	"printfu": {
+		"prefix": "printfu",
+		"body": [
+			"printf (\"${1:i}:%u\\n\", ${1:i});",
+		],
+		"description": "Code snippet for 'printf' unsigned int"
+	},
+	"printfd": {
+		"prefix": "printfd",
+		"body": [
+			"printf (\"${1:i}:%d\\n\", ${1:i});",
+		],
+		"description": "Code snippet for 'printf' unsigned int"
+	},
+	"entertips": {
+		"prefix": "entertips",
+		"body": [
+			"/* 函数 、 行 */",
+			"#ifndef ENTERTIPS",
+			"#define ENTERTIPS fprintf(stdout, \"%s:%d\\n\", __FUNCTION__ , __LINE__ );",
+			"#endif",
+		],
+		"description": "Code snippet for 'printf' unsigned int"
+	},
+
+	"entertipsonly": {
+		"prefix": "entertipsonly",
+		"body": [
+			"ENTERTIPS;",
+		],
+		"description": "Code snippet for 'printf' unsigned int"
+	},	
+}
