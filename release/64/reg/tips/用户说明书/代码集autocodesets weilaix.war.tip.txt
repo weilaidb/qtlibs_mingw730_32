@@ -3,9 +3,11 @@
 
 1.在文件中配置的路径
 v1.1 支持根据contentPath自定义路径，第一行为默认路径，不可加contentPath。
+--windows
 D:\mydb\autocodesets\config.txt 定义实际的文件路径：
 D:\code\qtlibs_mingw730_32\release\64\reg
 /HelloJavaEE4:D:\code\qtlibs_mingw730_32.org\release\64\reg
+/api:work/config/api/reg
 
 
 --linux定义的路径为（软链接）:
@@ -24,7 +26,10 @@ lrwxrwxrwx 1 root root 49 Jul 31 21:51 reg -> /root/work/git/qtlibs_mingw730_32/
 D:\mydb\sqlite_mysql\config.txt 定义实际的文件路径:
 a）如果不定义，在D:\下会生成alldb
 b）在此文件中定义实际引用的库路径，比如
-D:\mydb\sqlite_mysql\
+--windows
+D:\mydb\sqlite_mysql
+/HelloJavaEE4:D:\mydb\sqlite_mysql333
+
 同时将数据库mldn拷贝过来，默认用户和密码为admin
 
 --linux定义的配置文件情况:

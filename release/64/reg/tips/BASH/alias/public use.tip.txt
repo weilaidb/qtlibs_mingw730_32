@@ -38,7 +38,7 @@ alias tailvarlogmessages="tail /var/log/messages "
 alias tailvarlogmessages300="tail /var/log/messages -n 300 "
 
 #weilaix.war部署
-alias deployweilax1="tomcatstop && cd ../webapps/&& ls&& rm -rf weilaix1*&& mv ~/weilaix1.war .&& sleep 10 && tomcatstart "
+alias deployweilax1="tomcatstop && cd ../webapps/&& ls&& rm -rf weilaix1*&& mv ~/weilaix1.war .&& cp -af weilaix1.war api.war&& sleep 10 && tomcatstart "
 
 
 alias sudoaptautoremove="sudo apt autoremove "
