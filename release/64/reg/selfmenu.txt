@@ -2968,6 +2968,8 @@ Tools/VSCode/C C++ 必备开发插件
 Tools/VSCode/C C++ 必备开发插件 remote development
 Tools/VSCode/base/背景色 护眼色
 Tools/VSCode/know/Bad owner or permissions
+Tools/VSCode/know/Snippets，VSCode用户代码片段设置详细教程（附代码便捷生成器链接
+Tools/VSCode/know/Snippets，模板 templates
 Tools/VSCode/know/VSCode大纲outline视图提示在文档中找不到符号解决方法
 Tools/VSCode/know/VSCode大纲outline视图提示在文档中找不到符号解决方法(no symbols found in document)
 Tools/VSCode/know/VScode替代Source insight的设置及常用快捷键
@@ -3630,6 +3632,7 @@ path路径/常用文件夹
 电脑/虚拟机vm/桥接模式ping不通主机IP
 电脑/虚拟机vm/目录管理
 电脑/虚拟机vm/目录管理 windows10 microsoft store安装ubuntu
+电脑/装机/360 备份还原
 电脑/装机/Ghost 备份还原
 电脑/装机/Ghost 备份还原(dell inspiron-15-7537)
 社会/专升本/政治课件

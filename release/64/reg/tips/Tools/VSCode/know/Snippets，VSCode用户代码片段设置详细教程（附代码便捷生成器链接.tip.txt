@@ -1,0 +1,119 @@
+写文章
+点击打开多多的主页
+VSCode用户代码片段设置详细教程（附代码便捷生成器链接）
+VSCode用户代码片段设置详细教程（附代码便捷生成器链接）
+潘潘
+潘潘
+学编程的GISer
+​关注他
+22 人赞同了该文章
+详细教程：
+
+VSCode User Snippets（用户代码片段）：用快捷键快速生成代码，提高你的开发效率！
+​mp.weixin.qq.com/s?__biz=Mzg4MzY5MTAwMQ==&mid=2247483851&idx=1&sn=95ff2247d62ce531aa97c6f140294eb3&chksm=cf42dd5df835544befab5eea80e530f4288de50e2fd7d32ee812216c229f3c6b68c79ac2c363#rd
+
+看这个也可以，话不多说，看效果：
+
+
+教程：1.首先先写好你要快捷生成的代码片段，比如：
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>${TM_FILENAME_BASE}</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">$0</div>
+    <script>
+      Vue.config.productionTip = false;
+      const vm = new Vue({
+        el: '#root',
+        data: {
+          $1, //光标出现的第一个位置
+        },
+      });
+</script>
+  </body>
+</html>
+注意这里的$1,$2……$0，这是你代码快捷生成之后鼠标光标的所在位置，光标会首先定位在$1,按Tab键切换到$2的位置，以此类推，光标最后会定位在$0的位置。还有其他语法，在这里一并讲解：
+
+1. 占位符
+
+占位符是带有值的制表符，如 .将插入并选择占位符文本，以便可以轻松更改。说白了占位符${1:foo}就是在$1的基础上，光标跳到$1位置的同时会自动生成并选中foo，同样按Tab键切换到$2的位置。占位符可以嵌套，如 。${1:foo}${1:another ${2:placeholder}}
+
+2. 选择
+
+占位符可以作为有选择的值。语法是以逗号分隔的值的枚举，用竖线字符括起来，例如 。插入代码段并选择占位符时，选项将提示用户选取其中一个值。${1|one,two,three|}
+
+3. 变量
+
+插入变量的值。如果未设置变量，则插入其默认值或空字符串。当变量未知（即未定义其名称）时，将插入变量的名称并将其转换为占位符。$name${name:default}可以使用以下变量：
+
+TM_SELECTED_TEXT当前选定的文本或空字符串
+TM_CURRENT_LINE当前行的内容
+TM_CURRENT_WORD光标下单词的内容或空字符串
+TM_LINE_INDEX基于零索引的行号
+TM_LINE_NUMBER基于一个索引的行号
+TM_FILENAME当前文档的文件名
+TM_FILENAME_BASE不带扩展名的当前文档的文件名 （比如这里你在用户代码片段中写了${TM_FILENAME_BASE}，在自动生成的代码里就会在这个位置自动填充上你的文件的不含扩展名的文件名）
+TM_DIRECTORY当前文档的目录
+TM_FILEPATH当前文档的完整文件路径
+RELATIVE_FILEPATH当前文档的相对（相对于打开的工作空间或文件夹）文件路径
+CLIPBOARD剪贴板的内容
+WORKSPACE_NAME打开的工作区或文件夹的名称
+WORKSPACE_FOLDER打开的工作区或文件夹的路径
+要插入当前日期和时间：
+
+CURRENT_YEAR本年度
+CURRENT_YEAR_SHORT本年度的最后两位数
+CURRENT_MONTH以两位数字表示的月份（例如"02"）
+CURRENT_MONTH_NAME月份的全名（例如"七月"）
+CURRENT_MONTH_NAME_SHORT月份的短名称（例如"Jul"）
+CURRENT_DATE以两位数字表示的月份中的某一天（例如"08"）
+CURRENT_DAY_NAME日期的名称（例如"星期一"）
+CURRENT_DAY_NAME_SHORT日期的短名称（例如"星期一"）
+CURRENT_HOUR24 小时制格式的当前小时
+CURRENT_MINUTE当前分钟为两位数
+CURRENT_SECOND当前第二位为两位数
+CURRENT_SECONDS_UNIX自 Unix 纪元以来的秒数
+对于插入随机值：
+
+RANDOM6 个随机的 Base-10 数字
+RANDOM_HEX6 个随机的 16 位基本数字
+UUIDA 版本 4 UUID
+将代码写好之后，打开这个网址：https://99cc.vip/public/tools/vscode_snippet/index.html
+
+进入下边的网页后按图片中的指示操作：
+
+
+用户代码片段快速生成器
+将在这个网页右侧黑色框中的代码复制，打开vscode中的用户代码片段（左下角设置→用户代码片段）：
+
+
+
+
+这里你可以设置是全局使用还是只能在特定的文件中使用，比如html,vue文件等:
+
+
+关键的一步来了：把你要自动生成的代码片段复制粘贴到打开的文件这里：
+
+
+复制好之后的样子:
+
+
+之后就可以使用你的快捷方式啦，演示：
+
+动图封面
+是不是比之前方便多啦！ 关注公众号：学编程的GISer，获取更多干货知识！
+
+详细教程链接：
+
+VSCode User Snippets（用户代码片段）：用快捷键快速生成代码，提高你的开发效率！
+​mp.weixin.qq.com/s?__biz=Mzg4MzY5MTAwMQ==&mid=2247483851&idx=1&sn=95ff2247d62ce531aa97c6f140294eb3&chksm=cf42dd5df835544befab5eea80e530f4288de50e2fd7d32ee812216c229f3c6b68c79ac2c363#rd
+
+
+发布于 2022-03-03 11:26

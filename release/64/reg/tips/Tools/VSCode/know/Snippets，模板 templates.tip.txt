@@ -1,0 +1,10 @@
+	"forloopword32": {
+		"prefix": "forloopword32",
+		"body": [
+			"for (${WORD32} ${i} = ${1:0}; ${i} < ${2:length}; ${i}++)",
+			"{",
+			"	$3",
+			"}"
+		],
+		"description": "Code snippet for 'for' loop type word32"
+	},
