@@ -2392,6 +2392,7 @@ OS/Ubuntu/硬盘安装后引导
 OS/WIN10/know/QQ五笔win10中英文切换失灵解决办法
 OS/WIN10/know/win10 安装ssh SSH开启（win10）
 OS/WIN10/know/win10 安装ssh并作为服务器使用
+OS/WIN10/know/win10安装Ubuntu双系统超级详细教程(UEFI启动模式)
 OS/WIN10/mcafee占用磁盘100%怎么办,mcafee占用磁盘的完美解决方法
 OS/WIN10/安装系统(新)记录
 OS/WIN10/安装系统常见问题
