@@ -1,0 +1,522 @@
+CSDN首页
+博客
+下载
+学习
+社区
+false
+GitCode
+InsCode
+Ubuntu
+ 搜索
+
+会员中心 
+消息
+历史
+创作中心
+发布
+在 Windows10 系统下安装 Ubuntu22.04 系统
+
+tianyvHon
+
+已于 2022-05-04 07:47:00 修改
+
+13218
+ 收藏 104
+分类专栏： # Ubuntu 文章标签： Ubuntu
+版权
+
+华为云开发者联盟
+该内容已被华为云开发者联盟社区收录
+加入社区
+
+Ubuntu
+专栏收录该内容
+12 篇文章5 订阅
+订阅专栏
+在 Windows10 系统下安装 Ubuntu22.04 系统
+本文根据本人成功安装为背景，进行详细地讲解在 Windows10 系统下安装 Ubuntu22.04 系统。本人的成功安装也是根据前辈们的教程进行的，在查找资料过程中，总是感觉教程怪怪的，但还是要说声：谢谢！！！
+
+本文章以本人的风格对本次成功案例进行详细描述。
+
+1. 前言
+Ⅰ. tianyvHon 安装成功所采用的 笔记本信息：
+
+系统版本：Windows10
+
+处理器：i5-8265U
+
+内存：16.0G
+
+GPU：NVIDIA GeForce MX150
+
+硬盘：
+
+SSD: 120G
+机械硬盘: 1T
+BIOS：UEFI
+
+Brand：惠普
+
+购买时间：2018年10月
+
+Ⅱ. 查看电脑的 BIOS 模式
+
+win+r 打开运行，然后输入 msinfo32 回车确认，在弹出的窗口中可以看出电脑的 BIOS 模式是 MBR 还是 UEFI，如下图所示：
+
+查看 BIOS 模式
+
+Ⅲ. Recommended system requirements（建议的系统要求）
+
+2 GHz dual-core processor or better
+
+4 GB system memory
+
+25 GB of free hard drive space Internet access is helpful
+
+Either a DVD drive or a USB port for the installer media
+
+根据 Ubuntu22.04 系统的安装要求，此 computer 的处理器是达不到的。通过这几天的使用，发现还是 OK 的！！！
+
+下面开启我们的系统安装之旅
+2. 安装前准备
+硬件准备
+内存大小 8G 左右的 U盘
+
+软件准备
+Ubuntu22.04 镜像
+
+Ⅰ. Ubuntu官网下载
+
+
+Ⅱ. 清华镜像源或其他镜像源下载
+
+
+Ⅲ. 本人百度网盘分享下载-4ynp
+
+Rufus U盘启动盘制作软件
+
+Ⅰ. 官网下载
+
+Ⅱ. 本人百度网盘分享下载-l6g2
+
+3. 制作U盘启动盘
+打开 Rufus 软件，如下图所示
+
+上图为没有插入 U盘 的情况。当插入 U盘 盘后，此软件会自动识别 U盘，但还是建议大家进行确认，因为在制作前会将 U盘 进行格式化，数据可是不容易修复的！！！待确认完毕后，进行如下操作
+（1）单击 选择，找到 Ubuntu22.04 镜像，注意镜像的后缀为 .iso
+
+（2）分区类型及目标系统类型 不需要我们进行操作
+
+（3）格式化选项 就是 U盘 的信息，默认即可，如下图所示
+
+
+下面，单击 开始，会弹出下图所示的窗口，单击 OK 即可，如下图所示
+
+此软件会在格式化 U盘 前提示我们，确认无误后，单击 确定 即可，如下图所示
+
+等待制作完成，如下图所示
+
+制作完成后，状态栏的 准备就绪 会变绿，如下图所示
+
+4. 为 Ubuntu22.04 系统分磁盘空间
+本人的笔记本有两块硬盘，Windows10 安装在 SSD 硬盘上，此硬盘的容量太小了，于是把 Ubuntu22.04 安装在 机械硬盘 上。但是必须两块硬盘进行操作：
+
+1、在 Windows10 系统盘上为 Ubuntu22.04 系统分配一块 /boot 以及 swap 空间，其中
+
+/boot 是引导 Ubuntu22.04 系统启动所需要的，此文件也就是几十M，本人分配 300M
+swap 分区，即交换区
+swap 空间的作用可简单描述为：当系统的物理内存不够用的时候，就需要将物理内存中的一部分空间释放出来，以供当前运行的程序使用。
+此块空间的大小根据物理内存而定，当内存小于 8G 时，一般为内存的两倍；当大于 8G 时，和内存一样大即可。
+2、在 机械硬盘 上为 Ubuntu22.04 系统分配一块 / 以及 /home 空间
+
+鼠标 右键 单击 Windows10 系统的 徽标，然后找到 磁盘管理 并单击，弹出 磁盘管理 窗口，如下图所示：
+
+在 SSD 硬盘上分出一块空间
+
+大家对自己的磁盘进行区分，你们的可能与我不同，我的 磁盘1 是 SSD 硬盘，即 Windows10 系统盘。相信大家的磁盘空间已经都分配完毕了，那么现在就要压缩出一部分未分配的空间。
+
+鼠标选中需要进行压缩的卷（比如我的磁盘1中的autumn卷），右键 单击，然后选中 压缩卷，计算一段时间后，会弹出一个新的窗口，如下图所示：
+
+前面说到，需要在 Windows10 系统盘上分出一块空间，大家根据自己的情况计算，然后在 输入压缩空间量 输入需要压缩的大小，然后单击 压缩，如下图所示。提示：1G = 1024M
+
+耐心等待压缩完成
+在 机械硬盘 上为 Ubuntu22.04 系统分配 / 和 /home 空间
+
+对于这两块空间：/ 为 Ubuntu22.04 系统安装各种软件的空间，/home 为 Ubuntu22.04 系统存放各个用户资料的空间。在这里，我为这两块空间分别分配 100G，共 200G
+
+同样，鼠标选中需要压缩的卷（比如我的磁盘0的tianyvHon卷），右键 单击，然后选中 压缩卷，计算一段时间后，会弹出一个新的窗口
+
+然后在 输入压缩空间量 输入需要压缩的大小
+
+耐心等待压缩完成，如果压缩空间比较大的话，这个过程是比较慢的，可以根据下面操作查看压缩进度
+
+在 此电脑 界面，鼠标右键单击盘符，然后单击 属性
+
+
+在弹出的窗口中，单击 工具，然后单击 优化
+
+在新的窗口中，会在相应的磁盘下看到压缩进度
+
+分配空间完毕
+5. Ubuntu22.04 系统安装
+关闭计算机
+按下开机键，然后不停的按 F9 键（具体的键根据自己的笔记本品牌，可以在老毛桃网站上进行查询），会出现一个界面，仔细分析，选择从刚刚制作的 U盘 启动盘进行启动，通过键盘上的上下左右键可以进行选择，Enter 代表确认
+
+然后询问要做什么，选择 Try or Install ubuntu
+
+接下来，正式进入系统安装阶段
+选择语言及操作（根据个人需求选择），我这里选择 English，然后单击 Install Ubuntu
+
+键盘布局（默认即可），单击 continue
+
+连接无线网络
+
+选择 正常安装、下载时更新，单击 continue
+
+这一步要小心，选择 Something else，单击 continue
+
+接下来，对 Ubuntu 系统进行分区，这一步很重要
+
+首先，我们先来认识认识磁盘在这里的表示形式
+
+根据我的电脑，/dev/sda 代表机械硬盘，/dev/sdb 代表 SSD 硬盘。我们可以在界面的最下方，通过磁盘的容量进行区分，如下图所示
+
+固态硬盘
+
+机械硬盘
+
+选中 free space，单击下面的 ＋，会弹出分区窗口，输入的分区大小、各项的选择以及分区顺序根据下表进行操作，要注意：先逻辑分区，再主分区，所以大家先计算一下每一块分配多少空间，具体操作如下图所示
+
+space	size	Type for the new partition	Location for the new partition	use as	Mount point
+swap	/dev/sdb	17195	Logical	Beginning of this space	swap area	
+/home	/dev/sda	112349	Logical	Beginning of this space	/home	Ext4 journaling…
+/	/dev/sda	102400	Primary	Beginning of this space	/	Ext4 journaling…
+/boot	/dev/sdb	300	Primary	Beginning of this space	/boot	Ext4 journaling…
+swap分区操作
+
+/home分区操作
+
+/分区操作
+
+/boot分区操作
+
+下面两图，分别是两个磁盘分配完毕之后的情况
+固态硬盘分区完成
+
+机械硬盘分区完成
+
+单击 Install Now，会弹出如下窗口，确认是否进行安装，单击 Continue
+
+接下来，选择地点，然后单击 Continue
+
+最后，输入 Ubuntu22.04 系统的信息，然后单击 Continue
+
+以上系统信息配置完成，耐心等待安装完成，这个时候可以去做点其他事情，时间还是挺长的，速度取决于网速的快慢
+
+安装完成，需要重启
+
+重启的过程，系统提示我们，需要拔掉 U盘，如下图所示：
+
+拔掉 U盘，如果有密码的话，会提示输入密码，之后进入系统，单击 skip
+
+单击 Next
+
+单击 Next
+
+单击 Done
+
+Ubuntu22.04 系统界面，看起来非常舒服，操作起来也非常的丝滑！！！
+
+Windows10 系统下安装 Ubuntu22.04 系统到此安装完毕，希望本文能够对大家起到帮助。由于电脑的不同以及其他因素，可能你在安装的过程中会遇到我这没有提到的问题，不要担心，慢慢去探索、去寻找答案，终究会成功的，Believe Yourself!!!
+
+如果实在找不到答案，可以私信给我，我们一块去探索。由于担心不能及时收到你们的私信，建议大家可以加我 WeChat:tianyvHon，大家请放心，不是推销号。
+
+让我们一起去探索！！！
+
+
+tianyvHon
+关注
+
+13
+
+
+104
+打赏
+
+8
+
+专栏目录
+win下子系统Ubuntu22.04安装包（ARM64）
+02-12
+Windows的ubuntu22.04子系统的安装包，可以双击通过MS Store安装，也可以改变后缀名为zip，解压后手动运行Ubuntu.exe进行安装。 此方案适用于想装linux子系统但是由于连不上Microsoft Store的朋友。该文件也可以通过微软的官网进行下载，但是下载速度十分缓慢。因此我提供此包给需要的朋友。 该包的“x64”架构我也已经上传。 查看自己电脑架构的方式：cmd中输入systeminfo，有一个词条。 该包亲测有效，我自己就是手动安装的。
+ubuntu22.04lts服务端安装桌面离线包
+08-03
+ubuntu22.04lts服务端安装桌面离线包
+8 条评论
+杨merina冰
+热评
+分配磁盘的时候，在机械硬盘里面不能新建简单卷命名为/,这个怎么处理呀博主
+写评论
+Windows下安装Ubuntu双系统详细步骤教程_shczsq的博客
+5-27
+记得重启时进入BOOT更改启动顺序,不然一直从U盘启动。 此时双系统默认是Ubuntu引导Windows,也就是在选择界面10秒不选会自动进入Ubuntu。想要设置成Windows引导Ubuntu可以网上查找教程,现在大部分的主板引导方式会使设置Windows引导Ubuntu比较困难,...
+如何在Windows下安装ubuntu子系统_windows下ubuntu_weixin_45497135的博...
+6-24
+2. 下载ubuntu 可通过Windows store下载对应的版本,建议ubuntu18.04版本,下载后会得到后缀为.appx的文件,直接安装即可。 如果Windows store速度太慢可以下载文中附件(如果需要其他版本请点击链接) 需要注意,此方法默认系统装在C盘,如果需要...
+win10下安装Ubuntu的简单方式
+桃花岛主的桃花岛
+ 515
+1.制作ubuntu启动盘：  参考 https://000.lc/rufus2.硬盘分区        1.右击 此电脑--&gt;管理--&gt;磁盘管理，弹出如下图界面        2.点击选择一尚有足够空闲空间的磁盘，右击压缩卷，弹出如下界面，在  “输入压缩空间量” 一栏填写需要压缩的空间大小，建议大于40G。        3.等待压缩完成后出现如图是未分配空间，至此为止，保持磁盘未...
+Windows10下安装Ubuntu22.04（打造双系统）步骤 + 安装Nvidia显卡驱动
+takedachia的博客
+ 1531
+训练神经网络常用Lunix系统，这里使用Ubuntu22.04。 记录一下Windows10+Ubuntu双系统安装方法。
+Win10环境下的Ubuntu安装与配置_win10运行ubuntu_Roslin_v的博客-CS...
+6-23
+右键点击电脑左下角的Windows图标,以管理员身份运行PowerShell,在命令行中输入如下命令: Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux wsl --install 安装成功后,重启电脑即可。重启后,会自动跳出Ubu...
+Win10系统安装Ubuntu系统_windows10安装ubuntu_willhu2008的博客-CSDN...
+6-20
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse # 预发布软件源,不...
+Windows下安装Ubuntu系统（双系统）
+weixin_64501326的博客
+ 1万+
+记录自己接触的新知识，方便以后自己再次使用时的查找——Windows和Ubuntu（双系统）
+Ubuntu 22.04操作系统下常用软件备忘
+陆巍的博客
+ 7669
+时间过得真快，不知不觉间Ubuntu的桌面版本已经到了22.04。本文记录我在Ubuntu 22.04下使用的部分软件，一方面供刚开始使用Ubuntu系统的朋友们参考，另外就是方便自己以后重装系统。下面介绍的软件，全部都是免费授权使用的，放心安装下载。
+windows下安装ubuntu20.04双系统_windows安装ubuntu20.04_缔宇diyu的...
+6-24
+选择ubuntu。grub界面,选择进入ubuntu还是windows,默认是ubuntu。这里最后一个选项也可以进入BIOS。 选择install ubuntu。我这里选择先保持英文,后面再改成中文。 嫌麻烦的话,直接选中文吧,后面改回来有点麻烦,但不难。
+win10环境下Ubuntu安装教程_win10下安装ubuntu_黄瓜炒肉的博客-CSDN博...
+6-20
+10. 安装完毕后重启电脑,重启后进入引导界面,第一项是“Ubuntu”,第二项是“Ubuntu高级设置”,第三项是“Windows Boot Manage(on /dev/*),第四项为“System setup”,回车进入Ubuntu系统” ...
+使用VirtualBox一步一步安装Ubuntu 22.04
+热门推荐
+fx_yzjy101的专栏
+ 1万+
+目录 背景 准备阶段 新建虚拟机 Ubuntu安装过程 进入系统 背景 Ubuntu 22.04正式版还没有发布，Ubuntu 22.04 Bate发布了，这里使用VirtualBox 安装一个Ubuntu 22.04 Bate尝尝鲜。 准备阶段 安装VirtualBox（我已经安装过了，此文章不涉及，自行搜索吧） 准备安装介质，在官网或者很多开源镜像站都可以下载到。推荐从国内镜像站下载，速度快。 新建虚拟机 点击新建，在新建虚拟电脑对话框填入虚拟电脑的名称，保存的位置。推荐保存
+dell笔记本安装桌面版 ubuntu系统
+qq_36100288的博客
+ 2369
+dell笔记本安装桌面版ubuntu系统详细教程
+Windows系统安装Ubuntu虚拟机_ubuntu安装windows虚拟机_浅梦语11的博客...
+6-24
+3.Windows系统安装Linux虚拟机: 今天我们介绍一下第三种,安装Linux虚拟机。 目录 一、安装软件: 二、软件准备: vmware workstation安装: Ubuntu镜像: 三、安装步骤: 3.1 创建虚拟机 3.2 安装Ubuntu系统: ...
+Windows系统下安装Ubuntu_anyutube怎么用_Louiseluke的博客
+6-23
+Windows系统下安装Ubuntu 一、 官网下载点击打开链接Ubuntu桌面版。 二、下载UltraISO(软碟通)软件点击打开链接。 三、利用软碟通制作启动U盘,操作步骤如下图所示: 注:下载好的Ubuntu镜像文件放在F盘,双击镜像文件选择写入硬盘映像即可。
+手把手教你安装win10和Ubuntu22.04双系统
+weixin_49565223的博客
+ 7300
+本教程旨在在win10 基础上加装 Ubuntu22.04 且互不冲突。 我自己安装的时候也遇到了诸多麻烦，都是Google，csdn等解决，其实这些遇到关键问题时都不太靠谱，目前网上的教程都是Ubuntu18，16，但新手都不知道，导致用错教程，很多东西还是得自己尝试，大不了就翻车重装系统，所以再次提醒大家还是事先做好备份工作，以防万一。
+Ubantu 22.04.2安装教程 + VMWare Tools + 百度网盘 + Anaconda + Pycharm安装
+焦糖呱呱子的博客
+ 1160
+本文集成了完整的Ubantu安装和常用软件、编程环境的配置，包括百度网盘，Anaconda，PyCharm，Matlab
+windows 安装Ubuntu 子系统_windows子系统ubuntu_烟雨醉沉浮的博客...
+6-13
+wsl --install -d Ubuntu-18.04 //安装指定版本 wsl --install // 安装默认版本 卸载 windows 键,找到ubuntu 图标,右键卸载 或者使用命令 wslconfig /l # 从列表中选择要卸载的发行版(例如Ubuntu)并键入命令 wslconfig /u Ubuntu...
+(2022.05)安装Ubuntu 22.04 LTS/ 20.04 LTS UEFI引导双系统
+qq_39784521的博客
+ 8049
+ubuntu windows双系统安装
+Win10与Ubuntu双系统开机不能进入Ubuntu的问题
+04-11
+解决Win10与Ubuntu双系统 开机不能 进入Ubuntu的问题，更换启动项目和顺序的方法
+Ubuntu22.04安装教程以及Ubuntu下C++环境配置
+09-25
+Ubuntu22.04安装教程以及Ubuntu下C++环境配置
+14_Ubuntu如何系统安装vGPU驱动
+12-05
+14_Ubuntu如何系统安装vGPU驱动 GRID除了支持我们熟悉的Windows系统以外，也对Linux系统提供支持（注意：不支持在K1，K2平台的Linux虚拟机），本文主要讲解如何在Ubuntu 14.04虚拟机中安装vGPU驱动。 首先介绍下环境背景： 服务器Supermicro 1018 GR-T (CPU e5-2697v3 2.6GHZ 256GB Memory) 虚拟化平台：Citrix XenServer 7.2 NVIDIA GRID版本： 4.3 我们在安装任何虚拟机操作系统之前，首先要看NVIDIA GRID Release Note是否对此虚拟机的操作系统支持，此次我们查看367.106-370.12-grid-vgpu-release-notes-citrix-xenserver.pdf 我
+win下子系统Ubuntu22.04安装包（x64）
+02-12
+Windows的ubuntu22.04子系统的安装包，可以双击通过MS Store安装，也可以改变后缀名为zip，解压后手动运行Ubuntu.exe进行安装。 此方案适用于想装linux子系统但是由于连不上Microsoft Store的朋友。该文件也可以通过微软的官网进行下载，但是下载速度十分缓慢。因此我提供此包给需要的朋友。 该包的“AMR64”架构我也已经上传。 查看自己电脑架构的方式：cmd中输入systeminfo，有一个词条。 该包亲测有效，我自己就是手动安装的。
+Linux qt 模拟鼠标获取坐标 自动点击 ubuntu22.04系统
+10-08
+鼠标自动点击的功能在windows下调用WindowsAPI能够简单实现 但在linux实现并无现成api 因此自己编写了一个 能够获取当前鼠标位置并模拟自动点击，（不限制在本widget界面范围内，能够获取全局坐标值） 工程中建立了...
+win10下Linux子系统(ubuntu)开启并配置(shell主题，汉化，图形界面…)
+01-09
+一、开启win10子系统 [ Windows Subsystem for Linux（WSL）] 1. 启动开发者模式: 设置——>更新和安全——>开发者选项——>开发人员模式 2. 打开windows下的Linux子系统 控制面板——>程序和功能——>启用或关闭...
+win10安装ubuntu22.04
+最新发布
+06-01
+### 回答1： 1. 下载Ubuntu 22.04的ISO镜像文件。 2. 制作Ubuntu 22.04的启动盘。可以使用Rufus、UNetbootin等工具，将ISO镜像文件写入U盘或DVD。 3. 在Windows 10系统中打开“设置”应用程序，选择“更新和安全”选项，然后选择“恢复”选项卡。 4. 在“高级启动”下，选择“立即重新启动”。 5. 选择“使用设备”选项，然后选择Ubuntu 22.04的启动盘。 6. 进入Ubuntu 22.04的安装界面，选择语言和时区等选项。 7. 选择“安装Ubuntu”选项，然后选择安装类型（如双系统安装或覆盖安装）。 8. 设置用户名和密码等信息，然后等待安装完成。 9. 安装完成后，重新启动计算机，选择Ubuntu 22.04系统启动。 10. 进入Ubuntu 22.04系统后，可以进行系统设置和软件安装等操作。 ### 回答2： 在安装Ubuntu 22.04前，我们需要在Windows 10中创建一个可引导的Ubuntu安装盘或USB。我们可以通过下载当前版本的Ubuntu 22.04的ISO文件，然后使用Windows 10自带的磁盘工具或第三方虚拟光驱软件加载该ISO文件，从而创建一个可引导的Ubuntu安装盘。 一旦我们准备好了安装盘或USB，我们可以进入Windows 10的BIOS设置，并选择从外部设备引导。接下来，我们需要按照Ubuntu安装向导中的步骤进行安装。在这个过程中，我们需要选择安装Ubuntu的磁盘空间、设置用户名和密码、选择安装软件等选项。 当安装完成后，我们需要重新启动计算机并选择从安装的Ubuntu系统启动。Ubuntu 22.04安装完成后，我们可以在Ubuntu终端中执行更新和升级命令以确保系统处于最新的状态。此外，我们还可以安装必要的软件包和应用程序，例如Web浏览器、办公套件、媒体播放器等。 在安装Ubuntu 22.04之后，我们需要小心操作，以确保系统的稳定性和安全性。我们应该经常更新软件包并保持系统的最新状态。此外，我们还可以考虑使用防病毒软件和防火墙来保护我们的系统。 ### 回答3： 在开始安装Ubuntu 22.04之前，您需要做一些准备工作： 1.下载Ubuntu 22.04 ISO镜像文件。您可以从官网或其他网站下载Ubuntu 22.04。确保从可靠的网站下载并验证ISO镜像文件的完整性。 2.创建Ubuntu Live USB或安装光盘。您需要一个可启动的Ubuntu安装介质。您可以创建一个Live USB或者将ISO镜像文件写入DVD或CD。 3.备份您的重要数据。在安装Ubuntu 22.04之前，请确保备份您计算机中的所有重要数据。虽然在安装Ubuntu时不会立即删除您的所有数据，但建议您在进行任何操作之前进行备份。 接下来是Ubuntu 22.04的安装过程： 1.将Ubuntu Live USB或安装光盘插入计算机，并启动计算机。启动后，您将看到Ubuntu 22.04的安装程序屏幕。选择“Install Ubuntu”选项开始安装。 2.选择您的语言和时区。在这个步骤中，选择您想要的语言和时区，然后单击“Continue”。 3.选择安装类型。在这个步骤中，您需要选择要执行的操作。如果您仅想安装Ubuntu，则选择“Erase disk and install Ubuntu”选项。如果您想保留Windows和Ubuntu，则选择“Install Ubuntu alongside Windows”选项。 4.分配磁盘空间。如果您选择“Erase disk and install Ubuntu”选项，则Ubuntu将占用整个磁盘空间。如果您选择“Install Ubuntu alongside Windows”选项，则您需要分配磁盘空间给Ubuntu。将鼠标拖动到控制条上选择您想分配的磁盘空间大小。然后单击“Continue”。 5.输入您的用户名和密码。在这个步骤中，您需要输入您的用户名和密码。您还可以选择是否创建一个自定义设置的用户帐户。 6.进行安装。单击“Install Now”按钮开始安装Ubuntu 22.04。安装过程需要一段时间。您可以在安装过程中观看详细介绍。 7.重启您的计算机。安装完成后，您需要重新启动计算机才能进入Ubuntu系统。 这就是安装Ubuntu 22.04的简要步骤。安装过程可能会有一些变化，具体取决于您计算机的硬件和当前操作系统。不过，如果您按照这些步骤进行操作，应该能够成功安装Ubuntu 22.04并准备好使用。
+“相关推荐”对你有帮助么？
+
+非常没帮助
+
+没帮助
+
+一般
+
+有帮助
+
+非常有帮助
+关于我们
+招贤纳士
+商务合作
+寻求报道
+
+400-660-0108
+
+kefu@csdn.net
+
+在线客服
+工作时间 8:30-22:00
+公安备案号11010502030143
+京ICP备19004658号
+京网文〔2020〕1039-165号
+经营性网站备案信息
+北京互联网违法和不良信息举报中心
+家长监护
+网络110报警服务
+中国互联网举报中心
+Chrome商店下载
+账号管理规范
+版权与免责声明
+版权申诉
+出版物许可证
+营业执照
+©1999-2023北京创新乐知网络技术有限公司
+
+tianyvHon
+码龄4年
+ 暂无认证
+89
+原创
+6万+
+周排名
+3万+
+总排名
+27万+
+访问
+
+等级
+1415
+积分
+95
+粉丝
+389
+获赞
+227
+评论
+1468
+收藏
+新秀勋章
+持续创作
+1024勋章
+笔耕不辍
+创作能手
+阅读者勋章
+私信
+关注
+搜博主文章
+
+热门文章
+为 Ubuntu22.04 系统添加中文输入法  28942
+Matlab2018a安装教程  28810
+更改 Ubuntu22.04 系统软件源  23152
+MATLAB R2022b 安装教程  18122
+MATLAB R2022a 安装教程  16261
+分类专栏
+
+Linux
+
+Ubuntu
+12篇
+
+AUTUMN
+
+GUI
+
+LVGL
+1篇
+
+QT
+16篇
+
+CREATION
+
+PR
+1篇
+
+PROGRAMMING
+4篇
+
+C
+6篇
+
+C++
+7篇
+
+数据结构与算法
+2篇
+
+AI
+3篇
+
+CIRCUIT
+
+KiCad
+2篇
+
+CONTROL
+5篇
+
+FreeRTOS
+4篇
+
+RT-Thread
+
+STRUCTURE
+1篇
+
+TOOLS
+28篇
+
+最新评论
+MATLAB R2022b 安装教程
+Starsburnblue: 请问为什么到最后没有破解成功，还是要账户或者许可文件。步骤都能对起来
+
+为 Ubuntu22.04 系统添加中文输入法
+想成为樱木花道的宫城良田: 第6步报错的话，可以看看我的最新文章
+
+MATLAB R2022b 安装教程
+是香橙啊: 没有装载这个选项啊
+
+MATLAB R2022b 安装教程
+是香橙啊: 这是ios的吗
+
+MATLAB R2022b 安装教程
+wdvxy: 怎么才有装载呀
+
+您愿意向朋友推荐“博客详情页”吗？
+
+强烈不推荐
+
+不推荐
+
+一般般
+
+推荐
+
+强烈推荐
+最新文章
+MATLAB R2022b 安装教程
+CODESYS Install
+Everything
+2023年3篇2022年61篇2021年25篇
+目录
+在 Windows10 系统下安装 Ubuntu22.04 系统
+1. 前言
+2. 安装前准备
+3. 制作U盘启动盘
+4. 为 Ubuntu22.04 系统分磁盘空间
+5. Ubuntu22.04 系统安装
+
+
+
+
+举报
