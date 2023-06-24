@@ -2389,6 +2389,7 @@ OS/MACOS/黑苹果/安装教程
 OS/Ubuntu/EasyBcd
 OS/Ubuntu/硬盘安装
 OS/Ubuntu/硬盘安装后引导
+OS/WIN10/Ubuntu双系统安装注意事项
 OS/WIN10/know/QQ五笔win10中英文切换失灵解决办法
 OS/WIN10/know/win10 安装ssh SSH开启（win10）
 OS/WIN10/know/win10 安装ssh并作为服务器使用

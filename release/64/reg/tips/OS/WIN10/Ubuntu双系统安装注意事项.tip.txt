@@ -1,0 +1,15 @@
+https://www.bilibili.com/video/BV1qG4y1P7SE/?spm_id_from=333.337.search-card.all.click&vd_source=8e54df84922718f7a026e954aaa26251
+
+
+
+1.C盘压缩出来300M数据作为EFI保留分区 
+2.其它地方分出来一部分作为数据空间
+3.安装启动作为引导器的设备，就是刚才那个efi的300M盘符
+
+
+
+
+
+
+
+
