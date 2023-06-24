@@ -4,6 +4,10 @@ bcdedit
 bcdedit
 
 
+If you want to add an UEFI entry for Ubuntu with bcdedit, you can use the following commands as administrator:
+
+List all BCD entries for UEFI:
+bcdedit /enum firmware
 
 
 
