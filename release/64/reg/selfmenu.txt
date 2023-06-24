@@ -190,6 +190,7 @@ BAT/NET USER
 BAT/NETSTAT
 BAT/RMDIR
 BAT/TCP STATUS状态
+BAT/bcdedit 引导系统 双系统
 BAT/new/zipwar.bat
 BAT/new/zipwar.bat 2
 BAT/shutdown

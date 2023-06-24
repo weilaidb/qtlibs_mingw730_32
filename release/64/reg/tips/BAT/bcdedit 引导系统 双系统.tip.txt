@@ -1,0 +1,17 @@
+bcdedit
+
+显示
+bcdedit
+
+
+
+
+
+
+=====================
+描述：Windows Boot Manager
+GPT分区GUID：{A126DA7F-8F84-4C89-B60D-5A03C65583D6}
+分区编号：2
+分区开始扇区：1085440
+分区结束扇区：1290239
+文件路径：\EFI\Microsoft\Boot\bootmgfw.efi
