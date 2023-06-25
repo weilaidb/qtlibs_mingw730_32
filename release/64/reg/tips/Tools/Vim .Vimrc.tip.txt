@@ -96,7 +96,7 @@ Plugin 'VundleVim/Vundle.vim'
 "美化状态栏"
 Plugin 'powerline/powerline'
 "类似IDE的补全插件(如果使用片段则需要把此插件临时注掉)" 
-"Plugin 'ycm-core/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 "添加一个树形目录"
 Plugin 'preservim/nerdtree'
 "缩进指示线"
@@ -174,8 +174,6 @@ Plugin 'junegunn/vim-easy-align'
 
 "代码片段
 "Plugin 'SirVer/ultisnips'
-
-Plugin 'honza/vim-snippets'
 
 "日历
 Plugin 'itchyny/calendar.vim'
@@ -261,7 +259,9 @@ Plugin 'tpope/vim-fugitive.vim'
 
 
 "模糊查找神器LeaderF
-"Plugin 'Yggdroot/LeaderF'
+Plugin 'Yggdroot/LeaderF'
+
+
 
 
 
@@ -359,7 +359,7 @@ map <leader>a :A<CR>
 "Plugin 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
-"Plugin 'honza/vim-snippets'
+Plugin 'honza/vim-snippets'
 
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
@@ -715,6 +715,56 @@ if has("cscope")
     "set ttimeoutlen=100
 
 endif
+
+
+
+
+"================模糊查找神器LeaderF
+" don't show the help in normal mode
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+
+let g:Lf_ShortcutF = "<leader>ff"
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap go :<C-U>Leaderf! rg --recall<CR>
+
+" should use `Leaderf gtags --update` first
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
