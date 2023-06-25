@@ -5,3 +5,9 @@
 #alias gitlogl2="git log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative "
 
 #alias gitlogl3="git log --graph --pretty=format:'%h -%d %s (%ci) <%an>' --abbrev-commit --date=relative "
+
+
+
+alias gitpullforce="git fetch --all && git reset --hard origin/master && git pull "
+
+

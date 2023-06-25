@@ -1,3 +1,6 @@
+gitpullforce;git fetch --all && git reset --hard origin/master && git pull
+
+
 #ros2
 ros2colonbuild;colcon build
 ros2run;ros2 run
