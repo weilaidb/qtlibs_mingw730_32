@@ -261,24 +261,6 @@ Plugin 'tpope/vim-fugitive.vim'
 
 
 
-"模糊查找神器LeaderF
-Plugin 'Yggdroot/LeaderF.vim'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 call vundle#end()
 "开启文件类型自动检测，编写代码时自动换行对齐"
