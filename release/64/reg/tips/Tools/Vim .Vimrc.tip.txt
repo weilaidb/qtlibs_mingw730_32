@@ -260,6 +260,9 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-fugitive.vim'
 
 
+"模糊查找神器LeaderF
+"Plugin 'Yggdroot/LeaderF'
+
 
 
 call vundle#end()
