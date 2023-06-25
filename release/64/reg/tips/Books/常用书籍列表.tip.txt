@@ -12,6 +12,8 @@ AT&T_GCC_ASM.pdf
 JavaScript 高级程序设计第 4 版.PDF
 Wireshark数据包分析实战（第3版）
 unix环境高级编程·第三版
+Vim实用技巧(jb51.net).pdf
+
 
 
 行星旅行指南

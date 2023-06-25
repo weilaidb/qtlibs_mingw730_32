@@ -261,6 +261,9 @@ Plugin 'tpope/vim-fugitive.vim'
 
 
 
+"模糊查找神器LeaderF
+Plugin 'Yggdroot/LeaderF.vim'
+
 
 
 
