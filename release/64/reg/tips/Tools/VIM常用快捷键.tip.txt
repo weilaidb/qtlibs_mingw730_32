@@ -63,6 +63,115 @@ I  插入
 Esc
 
 
+8.演奏和弦
+当你看到诸如<C-p> 这样的键时，它的意思不是“先按 <，然后按 C，再按 -，
+等等”。<C-p> 标记等同于 Ctrl-p，意为“同时按 <Ctrl> 及 p”。
+我不会无缘无故地选择这种标记方式的。首先，在 Vim 的文档中使用了这种标记
+（:h key-notation ），我们也用它定义自定义按键映射项。另外，某些 Vim 命令
+由组合键及其他键以一定的次序组合在一起，这种标记也可以很好地表达这些命令。
+请看下面这些例子：
+标记 含义
+<C-n> 同时按 <Ctrl> 和 n
+g<C-]> 按 g，然后同时按 <Ctrl> 和 ]
+<C-r>0 同时按 <Ctrl> 和 r，然后按 0
+<C-w><C-=> 同时按 <Ctrl> 和 w，然后同时按 <Ctrl> 和 =
+
+9.显示特殊按键
+有些特殊按键以其名字表示，下表节选了其中的一些：
+标记 含义
+<Esc> 按退出键
+<CR> 按回车键，也写作 <Enter>
+<Ctrl> 按控制键
+<Tab> 按制表键
+<Shift> 按切换键
+<S-Tab> 同时按 <Shift> 和 <Tab>
+<Up> 按上光标键
+<Down> 按下光标键
+␣ 按空格键
+注意，空格由␣表示。它和 f{char} 命令组合在一起时记为 f␣。
+
+
+
+10.技巧 70 用迭代求值的方式给列表编号
+如果宏在每次执行时都能插入一个可变的数值，这将会很有用处。在本节中，我
+们将学习一种技术，它会在录制宏的时候使某个数字递增，这样一来，就可以在连续
+的文本上插入数字 1 到 5。
+假设我们要为一些连续的项目进行编号，以下列文本作为演示：
+macros/incremental.txt 
+partridge in a pear tree 
+turtle doves 
+French hens 
+calling birds 
+golden rings 
+最终，将把它们转换成这个样子：
+1) partridge in a pear tree 
+2) turtle doves
+3) French hens 
+4) calling birds 
+5) golden rings 
+我们已经学会了几种方法，使得 Vim 能够执行简单的运算，既可以采用带次数的
+方式调用 <C-a> 和 <C-x> 命令（参见技巧 10），也可以利用表达式寄存器（参见技
+巧 16）。为了完成这次任务，我们将使用表达式寄存器并结合一点 Vim 脚本。
+基本的 Vim 脚本
+我们先把即将用到的几个命令行脚本过一遍。通过使用 let 关键字，我们可以创建
+一个名为 i 的变量，并将其值赋为 0，也可以用 :echo 命令查看变量的当前值：
+➾:let i=0 
+➾:echo i 
+《 0 
+以下语句可用于累加 i 的值：
+➾:let i += 1 
+➾:echo i 
+《 1 
+如果只是想显示一个变量的值，:echo 命令完全可以胜任，但实际上，我们是想
+在文档中插入这个值，因此要使用表达式寄存器。在技巧 16 中，我们已经看到可以用
+表达式寄存器进行简单的求和运算，并将结果插入至文档。在这里，我们只需在插入
+模式下运行 <C-r>=i<CR>，即可插入变量 i 的值。
+录制宏
+现在我们归纳一下操作的步骤：
+按键操作 缓冲区内容
+:let i=1 partridge in a pear tree 
+qa partridge in a pear tree 
+I<C-r>=i<CR>)<Esc> 1) partridge in a pear tree 
+:let i += 1 1) partridge in a pear tree 
+q 1) partridge in a pear tree 
+在开始录制宏之前，先将变量 i 的初值赋为 1。在宏的录制过程中，利用表
+图灵社区会员 徐迁征(1090297017@qq.com) 专享 尊重版权
+166 Vim 实用技巧
+达式寄存器插入 i 的值，而在停止宏的录制之前，再触发该变量进行累加，现
+在应该是 2 了。
+执行宏
+正如表 11-4 所展示的那样，我们可以在余下的文本行上回放这个宏。
+:normal @a 命令将指示 Vim 在高亮选中的每一行上执行这个宏（参见以并行方
+式执行宏）。i 的初始值是 2，但它在每次宏执行完后都会递增。最终，每行都以连续
+的数字开头了。
+表 11-4 —— 在其余的文本行上执行宏
+按键操作 缓冲区内容
+{start} 1) partridge in a pear tree
+turtle doves 
+French hens 
+calling birds 
+golden rings 
+jVG 1) partridge in a pear tree
+turtle doves 
+French hens 
+calling birds 
+golden rings 
+:'<,'>normal @a 1) partridge in a pear tree
+2) turtle doves 
+3) French hens 
+4) calling birds 
+5) golden rings 
+我们也可以通过复制、粘贴以及 <C-a> 命令完成同样的工作。作为练习，你不
+妨自己试一试。
+
+
+
+
+
+
+
+
+
 
 一、移动光标
 h,j,k,l 上，下，左，右
