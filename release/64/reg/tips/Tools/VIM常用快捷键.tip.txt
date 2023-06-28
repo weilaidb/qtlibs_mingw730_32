@@ -4,6 +4,10 @@ Ctrl+O 后退
 Ctrl+] 跳转
 u 撤回
 Ctrl+r  重做
+Ctrl+a  数字加
+Ctrl+x  数字减
+0 180<C-x>  -180(数字减)
+
 
 ciw    选中单词
 A      行末并插入
@@ -18,8 +22,35 @@ ciw    删除光标单词，并插入
 s
 S      删除整行并插入
 yy     复制当前行
+yyp    复制一行
 p      在下一行粘贴
 P      在上一行粘贴
+f{char} 查找字符，;下一个   ，上一个
+F{char} 反向查找字符，;下一个   ，上一个
+v       视图普通模式
+V       视图行模式
+Ctrl+V  视图块模式
+.     重复上一次操作
+*     选中符号，并查找
+
+:%s/content/copy/g  全部替换
+* cwcopy<Esc>  n  .  确认替换
+A;<Esc>  j.  行末添加;号，并依次下一行一样添加
+
+f+  s{char} ;.   依次替换+
+db x  反向删除某单词(光标在单词尾)
+b     单词开头
+b  dw   正向删除单词
+daw    删除整个单词(delete a word ?)
+
+
+
+数字的格式   set nrformats=
+set nrformats-=octal
+
+
+
+
 
 
 
