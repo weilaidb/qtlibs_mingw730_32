@@ -1,0 +1,410 @@
+Call Hierarchy & more
+
+https://devblogs.microsoft.com/cppblog/c-extension-in-vs-code-1-16-release-call-hierarchy-more/
+
+Show Call Hierarchy   Shift+Alt+H
+
+Dismiss
+Show Incoming Calls : 函数被调用的关系图
+Show Outgoing Calls : 函数调用的子函数关系图
+
+
+
+
+
+We use optional cookies to improve your experience on our websites, such as through social media connections, and to display personalized advertising based on your online activity. If you reject optional cookies, only cookies necessary to provide you the services will be used. You may change your selection by clicking “Manage Cookies” at the bottom of the page. Privacy Statement Third-Party Cookies
+Accept Reject Manage cookies
+Skip to main content
+
+C++ Team Blog
+DevBlogs Developer Technology Languages .NET Platform Development Data Development
+
+Theme
+Login
+
+Email Subscriptions are here!
+Get notified in your email when a new post is published to this blog
+Subscribe 
+Close
+C++ Extension in VS Code 1.16 Release: Call Hierarchy & more
+
+Alexandra Kemper
+
+June 28th, 20230 3
+The 1.16 version of the C++ Extension in VS Code has now been shipped. With this version of the extension, we are releasing one of our most upvoted GitHub feature requests – Call Hierarchy. We also added new functionality when creating declarations and definitions that allows you to copy the declaration/definition and specify its placement in code, as well as adding other code enhancements. For the full list of changes, please reference the 1.16 release notes.  
+
+Call Hierarchy  
+With call hierarchy, you can now easily navigate your codebase, especially when trying to understand the complex calling relationships between functions. This might be a familiar experience if you have used call hierarchy in Visual Studio. Here you can see it in action:  
+
+
+
+How can you view the call hierarchy?  
+To view the call hierarchy, right-click a function to display the context menu and select Show Call Hierarchy. This will populate the call tree in the side bar with all of the functions called by your selected function. Toggle the phone icon in the side bar menu to switch to incoming calls. Incoming calls will show whenever your function is referenced by another function.
+
+Image showing that the command in the context menu to look for is called "show call hierarchy"
+
+You can also invoke the command palette (Ctrl + Shift + P) and run the command Calls: Show Call Hierarchy to display the call hierarchy side bar.  
+
+Image that shows that the command for call hierarchy in the command palette is called "show call hierarchy".
+
+Additionally, you can explore nested calls by selecting a function already shown in the call tree and right-clicking on that function to view the available commands.
+
+Image shows that if you right click on a function displayed in the call hierarchy call tree, you will be able access another menu which gives you the option to find incoming/outgoing calls for that sub function
+
+ 
+
+Copy Declaration/Definition 
+After releasing the Create Declaration/Definition feature in version 1.13.6, you can now also copy that declaration or definition. Rather than using “Create Declaration/Definition” to automatically add a generated declaration or definition to a location chosen by the extension, “Copy Declaration/Definition” will copy the declaration or definition to your clipboard instead. This gives you the option to decide where exactly in your code you would like to paste the copied declaration or definition.   
+
+To copy a definition or declaration, select a function that has a Quick Fix available (three dots under the function name), then select the Code Action (lightbulb icon) on the left. This will open the Code Action options, where you can select “Copy definition of ‘YourFunctionName’” or “Copy declaration of ‘YourFunctionName’” depending on which is being created.  
+
+
+
+If the Declaration/Definition is not formatted for you when you paste, you can turn on auto formatting by navigating to the settings editor (Ctrl + ,) and searching for Format On Paste. Enabling this will automatically formal all items you paste into the editor.     
+
+What do you think?  
+Download the C/C++ extension for Visual Studio Code  today, give it a try, and let us know what you think.  
+
+If you have any questions around this release, feel free to start a discussion in our GitHub repository. Otherwise, if you run into any issues, please report them in the  issues section. We can be reached via the comments below, per email at  visualcpp@microsoft.com, or through our team on Twitter at  @VisualC.  
+
+
+Alexandra Kemper Product Manager, C++ Team
+Follow   
+
+Posted in
+C++
+Read next
+vcpkg integration with the GitHub dependency graph
+Introducing vcpkg's integration with the GitHub dependency graph
+Michael Price
+June 27, 2023
+0 comment
+AddressSanitizer continue_on_error
+Visual Studio 17.6 comes with new functionality in the Address Sanitizer runtime which provides a new “checked build” for C and C++. This new runtime mode diagnoses ...
+Jim Radigan
+June 29, 2023
+0 comment
+0 comments
+Log in to join the discussion.
+
+Relevant Links
+Getting Started with C++ in VS
+
+Bring Your Existing C++ Code to VS
+
+C++ Code Editing & Navigation
+
+C++ Unit Testing
+
+C++ Debugging & Diagnostics
+
+Collaborating with Your Team in VS
+
+C++ Windows Development
+
+C++ Linux Development
+
+C++ Android & iOS Development
+
+C++ Game Development
+
+Topics
+C++
+Announcement
+CMake
+New Feature
+Linux
+Visual Studio Code
+Diagnostics
+General C++ Series
+performance
+Vcpkg
+Game Development
+Writing Code
+OpenFolder
+Experimental
+Documentation
+New User
+IoT
+OpenMP
+Containers
+Survey
+faster
+Clang
+embedded
+Coroutine
+GitHub
+VC++ Migration Documentation
+Migration DevLab
+C++ Q&A Series
+Pure Virtual C++
+Featured
+Mobile
+Trip Report
+Archive
+June 2023
+May 2023
+April 2023
+March 2023
+February 2023
+January 2023
+December 2022
+November 2022
+October 2022
+September 2022
+August 2022
+July 2022
+June 2022
+May 2022
+April 2022
+March 2022
+February 2022
+January 2022
+December 2021
+November 2021
+October 2021
+September 2021
+August 2021
+July 2021
+June 2021
+May 2021
+April 2021
+March 2021
+February 2021
+January 2021
+December 2020
+November 2020
+October 2020
+September 2020
+August 2020
+July 2020
+June 2020
+May 2020
+April 2020
+March 2020
+February 2020
+January 2020
+December 2019
+November 2019
+October 2019
+September 2019
+August 2019
+July 2019
+June 2019
+May 2019
+April 2019
+March 2019
+February 2019
+January 2019
+December 2018
+November 2018
+October 2018
+September 2018
+August 2018
+July 2018
+June 2018
+May 2018
+April 2018
+March 2018
+February 2018
+January 2018
+December 2017
+November 2017
+October 2017
+September 2017
+August 2017
+July 2017
+June 2017
+May 2017
+April 2017
+March 2017
+February 2017
+January 2017
+December 2016
+November 2016
+October 2016
+September 2016
+August 2016
+July 2016
+June 2016
+May 2016
+April 2016
+March 2016
+February 2016
+January 2016
+December 2015
+November 2015
+October 2015
+September 2015
+August 2015
+July 2015
+June 2015
+May 2015
+April 2015
+March 2015
+February 2015
+January 2015
+December 2014
+November 2014
+October 2014
+September 2014
+August 2014
+July 2014
+June 2014
+May 2014
+April 2014
+March 2014
+February 2014
+January 2014
+December 2013
+November 2013
+October 2013
+September 2013
+August 2013
+July 2013
+June 2013
+May 2013
+April 2013
+March 2013
+February 2013
+January 2013
+December 2012
+November 2012
+October 2012
+September 2012
+August 2012
+July 2012
+June 2012
+May 2012
+April 2012
+March 2012
+February 2012
+January 2012
+December 2011
+November 2011
+October 2011
+September 2011
+August 2011
+July 2011
+June 2011
+May 2011
+April 2011
+March 2011
+February 2011
+January 2011
+December 2010
+November 2010
+October 2010
+September 2010
+August 2010
+July 2010
+June 2010
+May 2010
+April 2010
+March 2010
+February 2010
+January 2010
+December 2009
+November 2009
+October 2009
+September 2009
+August 2009
+July 2009
+June 2009
+May 2009
+April 2009
+March 2009
+February 2009
+January 2009
+December 2008
+November 2008
+October 2008
+September 2008
+August 2008
+July 2008
+June 2008
+May 2008
+April 2008
+March 2008
+February 2008
+January 2008
+December 2007
+November 2007
+October 2007
+September 2007
+August 2007
+July 2007
+June 2007
+May 2007
+April 2007
+March 2007
+February 2007
+January 2007
+December 2006
+November 2006
+October 2006
+September 2006
+August 2006
+July 2006
+June 2006
+May 2006
+Stay informed
+Enter your email
+By subscribing you agree to our Terms of Use and Privacy Policy
+Feedback usabilla icon
+
+What's new
+Surface Pro 9
+Surface Laptop 5
+Surface Studio 2+
+Surface Laptop Go 2
+Surface Laptop Studio
+Surface Go 3
+Microsoft 365
+Windows 11 apps
+Microsoft Store
+Account profile
+Download Center
+Microsoft Store support
+Returns
+Order tracking
+Virtual workshops and training
+Microsoft Store Promise
+Flexible Payments
+Education
+Microsoft in education
+Devices for education
+Microsoft Teams for Education
+Microsoft 365 Education
+How to buy for your school
+Educator training and development
+Deals for students and parents
+Azure for students
+Business
+Microsoft Cloud
+Microsoft Security
+Dynamics 365
+Microsoft 365
+Microsoft Power Platform
+Microsoft Teams
+Microsoft Industry
+Small Business
+Developer & IT
+Azure
+Developer Center
+Documentation
+Microsoft Learn
+Microsoft Tech Community
+Azure Marketplace
+AppSource
+Visual Studio
+Company
+Careers
+About Microsoft
+Company news
+Privacy at Microsoft
+Investors
+Diversity and inclusion
+Accessibility
+Sustainability
+Sitemap Contact Microsoft Privacy Terms of use Trademarks Safety & eco Recycling About our ads © Microsoft 2023
