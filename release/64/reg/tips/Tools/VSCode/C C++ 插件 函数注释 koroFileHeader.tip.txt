@@ -1,0 +1,85 @@
+vsCode快速生成文件头注释和函数注释
+
+爱酱丶
+
+于 2021-04-22 18:06:11 发布
+
+7691
+ 收藏 25
+版权
+推荐一个vsCode里超好用的插件（koroFileHeader），可快速生成注释模板（可自定义），就不用一个个敲/***/啦。
+
+使用也很简单：
+
+安装插件：
+
+在设置中配置一下模板：
+
+
+然后就出现我们的setting.json文件
+加入以下设置：
+"fileheader.configObj": { //快速添加文件头部注释和函数注释
+        "createFileTime": true, // 设置为true则为文件新建时候作为date，否则注释生成时间为date
+        "autoAdd": true, // 自动生成注释
+        "annotationStr": {
+            "head": "/*",
+            "middle": " * @",
+            "end": " */",
+            "use": true // 设置自定义注释可用
+        },
+    },
+    "fileheader.cursorMode": { // 快速注释函数 ctrl+alt+t
+        "description": "", // 函数描述
+        "param ": "", // 函数参数
+        "return": "", // 函数输出
+        "Author": "爱酱丶", // 作者
+        "Date": "Do not edit", // 创建时间
+        "LastEditTime": "Do not edit", // 最后一次修改的时间
+        "LastEditors": "爱酱丶" // 修改人员
+    },
+    "fileheader.customMade": { // 快速注释文件头部 ctrl+alt+i
+        "Description": "", // 文件描述
+        "Author": "爱酱丶", // 作者
+        "Date": "Do not edit", // 创建时间
+        "LastEditTime": "Do not edit", // 最后一次修改的时间
+        "LastEditors": "爱酱丶" // 修改人员
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+
+
+然后来试一下效果：
+CTRL+alt+i
+
+CTRL+alt+t
+
+了解更多
+
+【完
+————————————————
+版权声明：本文为CSDN博主「爱酱丶」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/M1512415/article/details/116024395

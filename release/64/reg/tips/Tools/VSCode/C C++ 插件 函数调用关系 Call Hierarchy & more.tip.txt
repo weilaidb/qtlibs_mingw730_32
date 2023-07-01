@@ -5,7 +5,7 @@ https://devblogs.microsoft.com/cppblog/c-extension-in-vs-code-1-16-release-call-
 Show Call Hierarchy   Shift+Alt+H
 
 Dismiss
-Show Incoming Calls : 函数被调用的关系图
+Show Incoming Calls : 函数被调用的关系图(一般用这个)
 Show Outgoing Calls : 函数调用的子函数关系图
 
 
