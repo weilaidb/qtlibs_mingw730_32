@@ -2972,6 +2972,7 @@ Tools/VSCode 的常用快捷键
 Tools/VSCode/C C++ 必备开发插件
 Tools/VSCode/C C++ 必备开发插件 remote development
 Tools/VSCode/C C++ 插件 函数注释 koroFileHeader
+Tools/VSCode/C C++ 插件 函数注释 koroFileHeader2
 Tools/VSCode/C C++ 插件 函数调用关系 Call Hierarchy & more
 Tools/VSCode/base/背景色 护眼色
 Tools/VSCode/know/Bad owner or permissions
