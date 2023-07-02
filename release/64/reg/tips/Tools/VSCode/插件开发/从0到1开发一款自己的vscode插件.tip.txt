@@ -1,0 +1,518 @@
+https://juejin.cn/post/7010765441144455199
+
+稀土掘金
+首页
+沸点
+课程
+直播
+活动
+竞赛
+商城
+APP
+插件
+探索稀土掘金
+创作者中心
+vip
+会员
+登录
+注册
+从0到1开发一款自己的vscode插件
+执鸢者
+2021-09-22 22:35
+6572
+一、vscode插件是什么？
+大家对vscode肯定都不陌生，其是微软推出的一款轻量级代码编辑器，在使用的时候总会时不时的安装一些插件去协助我们进行开发，这些插件就是利用vscode给我们开放的一些API的基础上进行扩展功能的开发，从而解决开发中的一些问题，提高生产效率。这种插件化思想一方面使该代码编辑器更轻量化；另一方面能够充分利用社区的力量，为其提供更加多元化的插件。（下图是我做的一个小插件的效果图） 
+
+二、vscode插件能做什么？
+vscode插件能做什么？其核心点在于vscode为其提供了哪些开放能力，只有其开放的能力才能为我们所用，就官网来看，利用vscode插件能够做以下事情（该部分来自于vscode官网扩展能力概述部分）：
+
+通用功能
+可以在任何扩展中使用的核心功能，主要包括以下几点：
+
+（1）能够添加命令、配置项、快捷键、菜单项、右键菜单；
+
+（2）存储工作区或全局数据；
+
+（3）展示通知信息；
+
+（4）使用快速选择收集用户的输入；
+
+（5）打开文件选择器让用户去选择文件或文件夹；
+
+（6）使用Progress API去阐述长时间运行的操作；
+
+主题化
+控制vscode的外观，包括编辑器中源代码的颜色和vscode ui的颜色，其主要包含三种类型的主题：
+
+（1）颜色主题：其允许将颜色应用于VS Code UI组件和编辑器中的文本；
+
+（2）文件图标主题：文件图标显示在VS Code UI中的位置，例如文件资源管理器、快速打开列表和编辑器选项卡；
+
+（3）产品图标主题：在整个UI中使用的一组图标
+
+声明性语言特性
+声明性语言功能为编程语言添加了基本的文本编辑支持，例如括号匹配、自动缩进和语法突出显示。
+
+程序语言特性
+编程语言功能添加了丰富的编程语言支持，例如悬停、转到定义、诊断错误、IntelliSense 和 CodeLens。
+
+扩展工作台
+工作台是指包含标题栏、活动栏、侧边栏、控制板、编辑组、状态栏等UI组件的整体Visual Studio Code UI。VS Code提供了各种API，允许将自己的组件添加到工作台。
+
+调试
+可以通过编写将 VS Code 的调试 UI 连接到特定调试器或运行时的调试器扩展来利用 VS Code 的调试功能。
+
+三、vscode插件实战
+vscode插件其实是vscode对外提供了一些能力，如果不是特别需要其实没有必要完整的学习整体内容，仅仅需要了解其大体开发思路、能够解决的问题，之所以这么说是因为（以上纯个人观点，不一定正确）学习该部分的内容需要一定精力，但学后并不一定能够在自己项目中得到使用，深入学习投入于产出并不成正比，所以本次我只会讲述入门级内容，具体的内容扔需要读者在需要这一部分能力的时候再深入研究。
+
+3.1 项目初始化
+官方为了方便开发人员进行vscode插件的开发，提供了对yo应的脚手架来生成对应的项目。
+
+// 安装需要的包
+npm install -g yo generator-code
+// 运行
+yo code
+上述命令其实安装了两个包（yo和generator-code)，这两个包用途如下：
+
+yo模块全局安装后就安装了Yeoman，Yeoman是通用型项目脚手架工具，可以根据一套模板，生成一个对应的项目结构
+generator-code模块是VS Code扩展生成器，与yo配合使用才能构建项目。
+3.2 重要文件
+在项目生成之后，目录结构如下所示，其中最重要的文件是package.json和extension.js，了解这两个文件基本上就可以入门开发一个vscode插件了。
+
+
+3.2.1 package.json
+该文件是vscode扩展的清单文件，里面有很多字段，官方对每个字段都进行了详细阐述，本次我们重点阐述以下初始化后期清单文件。
+
+{
+	"name": "demo", // 插件名
+	"displayName": "插件", // 显示在应用市场的名字
+	"description": "我的第一个插件测试", // 具体描述
+	"version": "0.0.1", // 插件的版本号
+	"engines": {
+		"vscode": "^1.60.0" // 最低支持的vscode版本
+	},
+	"categories": [
+		"Other" // 扩展类别
+	],
+    // 激活事件组，在那些事件情况下被激活
+	"activationEvents": [
+		"onCommand:demo.helloWorld"
+	],
+    // 插件的主入口文件
+	"main": "./extension.js",
+    // 贡献点
+	"contributes": {
+        // 命令
+		"commands": [
+			{
+				"command": "demo.helloWorld",
+				"title": "Hello World"
+			}
+		]
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+    // 开发依赖项
+	"devDependencies": {
+		"@types/vscode": "^1.60.0",
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "14.x",
+		"eslint": "^7.27.0",
+		"glob": "^7.1.7",
+		"mocha": "^8.4.0",
+		"typescript": "^4.3.2",
+		"vscode-test": "^1.5.2"
+	}
+}
+
+在这份清单文件中，重点关注的主要有三部分内容：activationEvents、main以及contributes，其是整个文件中的重中之重。
+
+main
+指明了该插件的主入口在哪，只有找到主入口整个项目才能正常的运转、
+
+activationEvents
+指明该插件在何种情况下才会被激活，因为只有激活后插件才能被正常使用，官网已经指明了激活的时机，这样我们就可以按需设置对应时机。（具体每个时机用的时候详细查看即可）
+
+onLanguage 打开解析为特定语言文件时被激活，例如"onLanguage:python"
+onCommand 在调用命令时被激活
+onDebug 在启动调试话之前被激活
+onDebugInitialConfigurations
+onDebugResolve
+workspaceContains 每当打开文件夹并且该文件夹包含至少一个与 glob 模式匹配的文件时
+onFileSystem 每当读取来自特定方案的文件或文件夹时
+onView 每当在 VS Code 侧栏中展开指定 id 的视图
+onUri 每当打开该扩展的系统范围的 Uri 时
+onWebviewPanel
+onCustomEditor
+onAuthenticationRequest
+* 只要一启动vscode，插件就会被激活
+onStartupFinished
+contributes
+通过扩展注册contributes用来扩展Visual Studio Code中的各项技能，其有多个配置，如下所示：
+
+breakpoints 断点
+colors 主题颜色
+commands 命令
+configuration 配置
+configurationDefaults 默认的特定于语言的编辑器配置
+customEditors 自定义编辑器
+debuggers
+grammars
+iconThemes
+jsonValidation
+keybindings 快捷键绑定
+languages
+menus
+problemMatchers
+problemPatterns
+productIconThemes
+resourceLabelFormatters
+snippets 特定语言的片段
+submenus
+taskDefinitions
+themes 颜色主题
+typescriptServerPlugins
+views
+viewsContainers
+viewsWelcome
+walkthroughs
+3.2.2 extension.js文件
+该文件时其入口文件，即package.json中main字段对应的文件（不一定叫extension.js这个名字），该文件中将导出两个方法：activate和deactivate，两个方法的执行时机如下所示：
+
+activate
+这是插件被激活时执行的函数
+
+deactivate
+这是插件被销毁时调用的方法，比如释放内存等。
+
+3.3 实战
+上述已经对vscode插件有了基础的认识，下面就进行一个简单的实战，打造属于自己的一个vscode插件，此插件的功能如下：
+
+通过在文件编辑区域或文件名上右击弹出按钮，点击按钮获取文件的大小、创建时间和修改时间；
+如果获取的是文件夹，则指明该文件是文件夹，不是文件，给予提示。
+3.3.1 package.json修改项
+{
+	// ……
+    // 在getFileState指令下激活
+	"activationEvents": [
+		"onCommand:getFileState"
+	],
+    // 入口文件
+	"main": "./extension.js",
+	"contributes": {
+        // 命令
+		"commands": [
+			{
+				"command": "getFileState",
+				"title": "File State"
+			}
+		],
+        // 菜单项
+		"menus": {
+            // 编辑上下文菜单
+			"editor/context": [
+				{
+					"when": "editorFocus",
+					"command": "getFileState",
+					"group": "navigation"
+				}
+			],
+            // 资源管理器上下文菜单
+			"explorer/context": [
+				{
+					"command": "getFileState",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	// ……
+}
+3.3.2 主函数内容
+const vscode = require('vscode');
+const fs = require('fs');
+
+function activate(context) {
+	console.log('插件已经被激活');
+
+	// 注册命令
+	let commandOfGetFileState = vscode.commands.registerCommand('getFileState', uri => {
+		// 文件路径
+		const filePath = uri.path.substring(1);
+		fs.stat(filePath, (err, stats) => {
+			if (err) {
+				vscode.window.showErrorMessage(`获取文件时遇到错误了${err}!!!`)
+			}
+
+			if (stats.isDirectory()) {
+				vscode.window.showWarningMessage(`检测的是文件夹，不是文件，请重新选择！！！`);
+			}
+
+			if (stats.isFile()) {
+				const size = stats.size;
+				const createTime = stats.birthtime.toLocaleString();
+				const modifyTime = stats.mtime.toLocaleString();
+
+				vscode.window.showInformationMessage(`
+					文件大小为:${size}字节;
+					文件创建时间为:${createTime};
+					文件修改时间为:${modifyTime}
+				`, { modal: true });
+			}
+		});
+		
+		const stats = fs.statSync(filePath);
+		console.log('stats', stats);
+		console.log('isFile', stats.isFile());
+	});
+
+	// 将命令放入其上下文对象中，使其生效
+	context.subscriptions.push(commandOfGetFileState);
+}
+
+function deactivate() {}
+
+module.exports = {
+	activate,
+	deactivate
+}
+3.3.3 效果图
+经过开发后，该插件调试效果如下所示：
+
+
+3. 4 发布
+插件看法完毕之后就是需要分享出去供大家使用，目前有三种方式：
+
+直接把文件夹发给别人，让别人找到vscode的插件存放目录并放进去，然后重启vscode，一般不推荐；
+
+打包成vsix插件，然后发送给别人安装，如果你的插件涉及机密不方便发布到应用市场，可以尝试采用这种方式；
+
+注册开发者账号，发布到官网应用市场，这个发布和npm一样是不需要审核的。
+
+每一种方式都可行，并且网上也有很多教程讲述其发布方式，今天我重点讲述一下第二种，毕竟在插件这么多的情况下，很多人更乐于开发一款属于自己的专用插件或者特定自己领域使用的插件，完全没必要发布到应用市场。
+
+安装对应的模块vsce
+npm i vsce -g
+利用vsce进行打包，生成对应的vsix文件
+vsce package
+
+安装到vscode
+
+安装完成之后就可以正常的进行使用了
+
+四、总结
+因为工作中目前还没有遇到这种需求，此次我只是对vscode插件的开发流程进行了一个简单的概述，并没有进一步深入探索，待工作中有这样的场景需要这样的能力去解决某些问题时，能够快速反应有这样的解决方案，再进一步学习也为时不晚，也希望爱学习的小伙伴们也对这一部分能够有一定了解，弥补自己知识上欠缺的一环，后续为己所用。
+
+五、参考文献
+vscode插件编写实战
+
+vscode插件开发全攻略
+
+官方文档
+
+1.如果觉得这篇文章还不错，来个分享、点赞吧，让更多的人也看到
+
+2.欢迎关注公众号前端点线面,开启前端救赎之路。
+
+标签：
+Visual Studio Code
+前端
+相关小册
+「JavaScript 设计模式核心原理与应用实践」封面
+VIP JavaScript 设计模式核心原理与应用实践
+修言
+11979购买
+¥9.95
+¥19.9
+首单券后价
+「前端算法与数据结构面试：底层逻辑解读与大厂真题训练」封面
+VIP 前端算法与数据结构面试：底层逻辑解读与大厂真题训练
+修言
+7080购买
+¥14.95
+¥29.9
+首单券后价
+评论
+
+看完啦，
+登录
+分享一下感受吧～
+全部评论 2
+最新
+最热
+用户3166984189869的头像
+用户3166984189869
+创作等级LV.3
+掘友6级：杰出掘友
+前端
+1年前
+讲的太清晰了，点赞
+厚礼蟹man的头像
+厚礼蟹man
+创作等级LV.2
+掘友4级：进阶掘友
+前端工程师
+1年前
+为什么我f5调试的时候snippets是起作用的，但是vsce打包安装后，snippets就不起作用了[流泪]
+相关推荐
+都不要欺负我
+5年前
+CSS
+Visual Studio Code
+Sublime Text
+实用的 Visual Studio Code 插件
+2.3w
+522
+10
+Stone
+3年前
+Visual Studio Code
+Visual Studio Code 常用插件分享
+7743
+37
+2
+Fundebug
+4年前
+CSS
+JavaScript
+TypeScript
+30个极大提高开发效率的Visual Studio Code插件
+1.3w
+560
+17
+Fundebug
+3年前
+Visual Studio Code
+前端
+后端
+Visual Studio Code 远程开发探秘
+1.2w
+103
+18
+liuyatao
+4年前
+Visual Studio Code
+Visual Studio Code 远程开发尝鲜
+1.2w
+5
+2
+面向Google编程
+3年前
+Visual Studio Code
+吐血推荐珍藏的Visual Studio Code插件
+5491
+9
+评论
+web前端烹饪师兼韭王
+2年前
+前端
+Visual Studio Code 编辑器插件推荐
+1397
+4
+评论
+陆荣涛
+10月前
+前端
+Visual Studio和Visual Studio Code的区别
+3264
+11
+17
+橘子味汽水_
+4年前
+前端
+Visual Studio Code
+三分钟教你同步 Visual Studio Code 设置
+4.3w
+503
+29
+Jerryc24696
+3年前
+Visual Studio Code
+Visual Studio Code 插件推荐 VSC Netease Music
+3531
+点赞
+评论
+极客小俊
+2年前
+Visual Studio Code
+VisualStudio Code使用心得与常用插件技巧大全
+4427
+11
+评论
+程序it圈
+4年前
+Visual Studio Code
+Visual Studio Code 1.32 发布
+2706
+4
+评论
+三分恶
+2年前
+前端
+对于Web开发最棒的22个Visual Studio Code插件
+3243
+15
+3
+小梦大半就是我
+3年前
+Visual Studio Code
+Visual Studio Code 大哉聊
+2477
+3
+5
+水墨寒
+5年前
+前端
+Visual Studio Code入门(译)
+5237
+95
+5
+
+执鸢者
+创作等级LV.5
+前端工程师@百度
+关注
+私信
+获得点赞  3,106
+文章被阅读  176,902
+相关文章
+一篇搞定前端高频手撕算法题（36道）
+300点赞  ·  44评论
+40张图入门Linux——（前端够用，运维入门）
+213点赞  ·  15评论
+前端工程师的一大神器——puppeteer
+66点赞  ·  7评论
+这款可视化代码执行工具助力前端学习
+56点赞  ·  10评论
+一文彻底搞懂前端监控
+135点赞  ·  14评论
+限时领掘金会员
+目录
+一、vscode插件是什么？
+二、vscode插件能做什么？
+三、vscode插件实战
+3.1 项目初始化
+3.2 重要文件
+3.2.1 package.json
+3.2.2 extension.js文件
+3.3 实战
+3.3.1 package.json修改项
+3.3.2 主函数内容
+3.3.3 效果图
+3. 4 发布
+四、总结
+五、参考文献
+
+登录掘金后可立即获得以下权益：
+免费试学课程
+收藏有用文章
+查阅浏览足迹
+订阅优质专栏
+体验签到抽奖
+提升成长等级
+首次使用？
+点我注册

@@ -2993,6 +2993,9 @@ Tools/VSCode/know/借助clangd实现VSCode C++代码补全
 Tools/VSCode/know/解决VS code报错，过程试图写入的管道不存在(Bad owner or permissions on
 Tools/VSCode/know/资深工程师 VSCode C/C++ 必备开发插件
 Tools/VSCode/know/远程开发ssh 利用VScode连接远程服务器进行代码调试及可视化界面
+Tools/VSCode/插件开发/VSCode插件开发入门
+Tools/VSCode/插件开发/从0到1开发一款自己的vscode插件
+Tools/VSCode/插件开发/命令列表 order list
 Tools/VSCode/模板/00snippet 中可以使用的一些变量
 Tools/VSCode/模板/cmain
 Tools/VSCode/模板/cxxmain

@@ -1,0 +1,634 @@
+https://zhuanlan.zhihu.com/p/99198980
+
+
+
+首发于
+玩转VS Code
+
+写文章
+点击打开多多的主页
+VSCode插件开发入门
+张宇
+张宇
+​关注他
+215 人赞同了该文章
+内容提要
+VSCode 组成结构
+插件在 VSCode 中能做什么
+编写 Hello world 了解插件生命周期
+主要配置和 APIs
+Web View 示例
+VSCode 组成结构
+VSCode 是基于 Electron 构建的，主要由三部分构成：
+
+Electron: UI
+Monaco Editor
+Extension Host
+Language Server Protocol & Debug Adapter Protocol
+
+VSCode 主要构成
+VSCode 中的大部分功能都是通过 Extension Host 来实现的。符合 LSP 的插件对应的高亮等语言特性就会反映到 Monaco Editor 上。从源码的 extensions 目录中可以看到，VSCode 默认集成了各种语言的插件。
+
+Monaco Editor
+是一个基于网页的编辑器，有符合 LSP 的插件就可以进行高亮、悬停提示，导航到定义、自动补全、格式化等功能。它的代码位于 monaco-editor
+
+Extension Host
+VSCode 的主进程和插件进程是分开管理的，Extension Host 就是用来管理插件进程的。
+
+Extension Host 是用来确保插件：
+
+不影响启动速度
+不会减低 UI 响应速度
+不会改变 UI 样式
+因此保证 VSCode 的稳定和快速的密码就在于使用 Extension Host 将主进程和插件进程分开，使插件不会影响到 VSCode 主进程的性能和稳定。
+
+在编写插件的时候 VSCode 可以让插件设置 Activation Events 来对插件懒加载。比如只有打开了 Markdown 文件才打开对应的插件。这样可以降低无谓的 CPU 和内存使用。
+
+Language Server Protocol & Debug Adapter Protocol
+这两个协议主要是为了将编辑器和编程语言/调试服务的功能分离开，实现任何语言只要编写对应的语言服务即可。目前各大编辑器都已经支持了这个协议。
+
+插件在 VSCode 中能做什么
+主题
+界面和文本(TextMate 语法)主题色
+图标样式
+通用功能
+添加命令
+添加配置项
+添加快捷键
+添加菜单项
+添加右键菜单
+从文本输入框获取输入(QuickPick)
+存储数据(localStorage)
+工作区扩展
+活动栏项目
+显示提示框
+状态栏信息
+显示进度条
+打开文件
+显示网页(web view)
+程序语言
+实现新语言的高亮
+实现新语言的调试器
+代码库管理
+定义和执行 Task
+定义 snippet
+主题
+可以修改的内容如下图（来自VSCode 官方文档）所示，主要是背景和文字的颜色，各类图标等。
+
+
+颜色主题
+
+图标主题
+通用功能
+
+通用功能中的命令，配置项，快捷方式，文本框，开发工具
+工作区扩展
+
+工作区扩展
+动图封面
+进度栏
+因为有 web view 并且底层是 node.js 虽然官方不推荐，但是实际是可以做到非常多的事情。
+
+另外底层的 Electron 是阉割版的，如果需要的功能没有，也可以下载官方的 Electron 替换掉 VSCode 中的版本。
+
+程序语言实现
+实现编程语言的高亮、悬停提示，导航到定义、自动补全、格式化、调试等功能。
+
+
+Language Server
+
+Debug Adapter
+下面是 mssql 的架构和数据流：
+
+
+ms sql 架构
+
+ms sql 数据流
+编写 Hello world 了解插件生命周期
+编写插件
+至少需要 Javascript 或 Typescript 来做入口。
+
+除了入口必须用 JS 或 TS，具体实现完全可以用你熟悉的任何语言，只要在 VSCode 的电脑上可以执行。
+
+例如 Java Language Server 插件的大部分功能都是由 Java 实现的，插件和 Java 代码之间通过 json-RPC 来进行通信。
+
+Hello world 介绍
+以下内容使用了 VSCode 插件文档中的 your first extension，原始代码在 helloworld-sample
+
+这个插件主要功能是运行 hello world 命令，弹出消息。
+
+动图封面
+Hello World
+生命周期
+
+VSCode 插件声明周期
+从生命周期上来看，插件编写有三大个部分：
+
+Activation Event：设置插件激活的时机。位于 package.json 中。
+Contribution Point：设置在 VSCode 中哪些地方添加新功能，也就是这个插件增强了哪些功能。位于 package.json 中。
+Register：在 extension.ts 中给要写的功能用 vscode.commands.register... 给 Activation Event 或 Contribution Point 中配置的事件绑定方法或者设置监听器。位于入口文件（默认是 extension.ts）的 activate() 函数中。
+packages.json
+package 中和插件有关的主要内容是如下几个项目，其中 main 是插件代码的入口文件。
+
+"activationEvents": [
+        "onCommand:extension.helloWorld"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.helloWorld",
+                "title": "Hello World"
+            },
+            {
+                "command": "extension.helloVscode",
+                "title": "Hello vscode"
+            }
+        ]
+    },
+activationEvents
+官方文档： activation-events
+
+原来的 "Hello World" 只是在执行 extension.helloWorld 的命令后才会激活插件，所以如果需要在其他情况下激活插件的话，则需要添加对应的命令才行。所以新添加了 onCommand:extension.helloVscode。
+
+"activationEvents": [
+    "onCommand:extension.helloWorld",
+    "onCommand:extension.helloVscode"
+  ],
+如果忘记添加这个命令则会造成执行命令后，插件并没有启动，命令执行失败。
+
+
+Contribution Points
+官方文档： contribution-points
+
+这个是在 package.json 中配置的项目。说明了插件对哪些项目进行了增强。
+
+对于 "hello world" 示例，如果需要在原有功能上添加一个命令 hello Vscode，下面的 command 为 "extension.helloVscode" 的就是新添加的命令了。
+
+"contributes": {
+  "commands": [
+    {
+      "command": "extension.helloWorld",
+      "title": "Hello World"
+    },
+    {
+      "command": "extension.helloVscode",
+      "title": "Hello vscode"
+    }
+  ]
+},
+Extension.ts
+这个文件是插件的入口，一般包括两个函数 activate 和 deactivate。其中 activate 函数是插件激活时也就是在注册的 Activation Event 发生的时候就会执行。deactivate 中放的是插件关闭时执行的代码。
+
+在 activate() 函数中通过 return 返回的数据或函数可以作为接口供其他插件使用。
+
+VSCode 在运过程中，会通过 Extension Host 来管理所有插件中这两个函数的生命周期。
+
+import * as vscode from "vscode";
+// 插件激活时的入口
+export function activate(context: vscode.ExtensionContext) {
+  // 注册 extension.helloWorld 命令
+  let disposable = vscode.commands.registerCommand("extension.helloWorld", () => {
+    vscode.window.showInformationMessage("Hello World!");
+  });
+
+  // 给插件订阅 helloWorld 命令
+  context.subscriptions.push(disposable);
+
+  // 新增的代码
+  let helloVscode = vscode.commands.registerCommand("extension.helloVscode", () => {
+    vscode.window.showInformationMessage("Hello Vscode");
+  });
+  context.subscriptions.push(helloVscode);
+
+  // return 的内容可以作为这个插件对外的接口
+  return {
+    hello() {
+      return "hello world";
+    }
+  };
+}
+
+// 插件释放的时候触发
+export function deactivate() {}
+activate
+ExtensionContext
+字面上意思是上下文信息，实际上就是当前插件的状态信息。
+
+
+Extension Context
+registerCommand 和 subscriptions.push()
+完整的 API 是：registerCommand(command: string, callback: (args: any[]) => any, thisArg?: any): Disposable
+
+这个的主要功能是给功能代码(callback)注册一个命令(command)，然后通过 subscriptions.push() 给插件订阅对应的 command 事件。
+
+return 给其他插件提供接口
+如果需要使用其他插件提供的接口，则可以在 package.json 中将对应插件添加到 extensionDependency 中，然后使用 getExtension 函数中的 export 属性。
+
+export function activate(context: vscode.ExtensionContext) {
+  let api = {
+    hello() {
+      return "hello world";
+    }
+  };
+  return api;
+}
+
+// 引入其他插件接口
+let helloWorld = extensions.getExtension("helloWorld");
+let importedApi = helloWorld.exports;
+
+console.log(importedApi.hello());
+Debug Extension
+在 launch.json 中添加一个扩展开发的配置，然后按F5就可以打开一个新的 VSCode，然后就可以在这个新的 VSCode 中进行插件测试。并且也可以在插件代码的那个 VSCode 中打断点调试。建议在“args”中添加"--disable-extensions"，不然要调试的插件加载太慢，还以为写的有问题。
+
+Unit Test
+具体文档请参考 testing extension
+
+测试插件可以使用 vscode-test API 来做测试。需要给它的 runTests 提供 extensionDevelopmentPath, extensionTestsPath 即开发目录和测试文件目录。测试则使用习惯的单元测试框架即可。
+
+import * as path from "path";
+
+import { runTests } from "vscode-test";
+
+async function main() {
+  try {
+    // The folder containing the Extension Manifest package.json
+    // Passed to `--extensionDevelopmentPath`
+    const extensionDevelopmentPath = path.resolve(__dirname, "../../");
+
+    // The path to the extension test script
+    // Passed to --extensionTestsPath
+    const extensionTestsPath = path.resolve(__dirname, "./suite/index");
+
+    // Download VS Code, unzip it and run the integration test
+    await runTests({ extensionDevelopmentPath, extensionTestsPath });
+  } catch (err) {
+    console.error("Failed to run tests");
+    process.exit(1);
+  }
+}
+
+main();
+如果要对测试做Debug的话，则可以参考下面内容配置 launch.json。其中设置关闭了其他的插件，如果需要打开其他插件，则删掉 --disable-extensions。也可以通过给 runTests 再添加一个参数 launchArgs: ['--disable-extensions'] 来关闭其他插件。
+
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Extension Tests",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--disable-extensions",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--extensionTestsPath=${workspaceFolder}/out/test/suite/index"
+      ],
+      "outFiles": ["${workspaceFolder}/out/test/**/*.js"]
+    }
+  ]
+}
+await runTests({
+  extensionDevelopmentPath,
+  extensionTestsPath,
+  launchArgs: ["--disable-extensions"]
+});
+主要配置和 APIs
+Activation Events
+这个项目定义的是插件打开的时机，可以在以下情况时打开：
+
+onLanguage： 在打开对应语言文件时
+onCommand： 在执行对应命令时
+onDebug： 在 debug 会话开始前
+onDebugInitialConfigurations： 在初始化 debug 设置前
+onDebugResolve： 在 debug 设置处理完之前
+workspaceContains： 在打开一个文件夹后，如果文件夹内包含设置的文件名模式时
+onFileSystem： 打开的文件或文件夹，是来自于设置的类型或协议时
+onView： 侧边栏中设置的 id 项目展开时
+onUri： 在基于 vscode 或 vscode-insiders 协议的 url 打开时
+onWebviewPanel： 在打开设置的 webview 时
+*： 在打开 vscode 的时候，如果不是必须一般不建议这么设置
+官方文档：activation-events
+
+Contribution Points
+这个是用来用来描述你所写的插件在哪些地方添加了功能，是什么样的功能，添加的内容会显示到界面上，前面的 hello world 示例就是在 commands 中添加了相应的 hello world 命令，然后这个命令就可以在命令窗口执行了。
+
+configuration
+configurationDefaults
+commands
+menus
+keybindings
+languages
+debuggers
+breakpoints
+grammars
+themes
+snippets
+jsonValidation
+views
+viewsContainers
+problemMatchers
+problemPatterns
+taskDefinitions
+colors
+typescriptServerPlugins
+resourceLabelFormatters
+官方文档：contribution-points
+
+APIs
+所有的 API 定义在 vscode.d.ts 中，其注释也写的非常详细。主要是以下各类 API：
+
+commands
+comments
+debug
+env
+extensions
+languages
+scm
+tasks
+window
+workspace
+API 设计的模式
+官方文档：vscode-api#api-patterns
+
+Promise
+VSCode API 中异步操作使用的是 Promise，所以可以使用 Then 或者 await。大部分情况下 Thenable 是可选的，如果 promise 是可选的，则会有一个可选类型。
+
+provideNumber(): number | Thenable<number>
+Cancellation Tokens
+在一个操作完成前，会开始于一个不稳定的状态。比如在开始代码智能提示时，最开始的操作会因为后面持续输入的内容过时。
+
+很多 API 会有一个 CancellationToken，来检查操作是否取消 (isCancellationRequested)，或者在发生取消操作时得到通知 (onCancellationRequested)。这个 Token 一般是函数的最后一个可选(回调)参数。
+
+Disposables
+VSCode API 对使用的各类资源利用 dispose pattern 来进行释放。应用于事件监听、命令、UI 交互等。
+
+例如：对于 setStatusBarMessage(value: string)（给状态栏显示消息）函数返回一个 Disposable 类型，然后可以通过调用它的 dispose 来移除信息。
+
+Events
+事件在 VSCode API 里面是通过订阅监听函数来实现的。订阅后会返回一个支持 Disposable 接口的变量。调用 dispose 就可以取消监听。
+
+var listener = function(event) {
+  console.log("It happened", event);
+};
+
+// 开始监听
+var subscription = fsWatcher.onDidDelete(listener);
+
+// 搞事情
+
+subscription.dispose(); // 停止监听
+对于事件的命名遵循 on[Will|Did]VerbNoun? 模式。
+
+onWill：即将发生
+onDid：已经发生
+verb：发生了什么
+noun：事件所处环境，如果发生在所处的环境则可以不加。
+例如：window.onDidChangeActiveTextEditor。
+
+Web View 示例
+web view 是 VSCode 插件里面比较有意思并且写起来也相对自由的部分，web view 用好了可以做出非常棒的插件，例如下面这个 Visual Embedded Rust。
+
+动图封面
+web view 生命周期
+生命周期包括三部分：
+
+创建：panel = vscode.window.createWebviewPanel()
+显示：panel.webview.html = htmlString
+关闭：panel.dispose() 主动关闭，panel.onDidDispose 设置关闭时清理的内容。
+export function webViewPanel(context: vscode.ExtensionContext) {
+  // 1. 使用 createWebviewPanel 创建一个 panel，然后给 panel 放入 html 即可展示 web view
+  const panel = vscode.window.createWebviewPanel(
+    'helloWorld',
+    'Hello world',
+    vscode.ViewColumn.One, // web view 显示位置
+    {
+      enableScripts: true, // 允许 JavaScript
+      retainContextWhenHidden: true // 在 hidden 的时候保持不关闭
+    }
+  );
+  const innerHtml = `<h1>Hello Web View</h1>`;
+  panel.webview.html = getWebViewContent(innerHtml);
+
+  // 2. 周期性改变 html 中的内容，因为是直接给 webview.html 赋值，所以是刷新整个内容
+  function changeWebView() {
+    const newData = Math.ceil(Math.random() * 100);
+    panel.webview.html = getWebViewContent(`${innerHtml}<p>${newData}</p>`);
+  }
+  const interval = setInterval(changeWebView, 1000);
+
+  // 3. 可以通过设置 panel.onDidDispose，让 webView 在关闭时执行一些清理工作。
+  panel.onDidDispose(
+    () => {
+      clearInterval(interval);
+    },
+    null,
+    context.subscriptions
+  );
+}
+
+function getWebViewContent(body: string, pic?: vscode.Uri) {
+  return `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    ${body}
+    <br />
+    <img
+      id="picture"
+      src="${pic || 'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif'}"
+      width="300" />
+  </body>
+</html>
+  `;
+}
+动图封面
+web view
+读取本地文件
+一般情况下 web view 是不能直接访问本地文件的，需要使用vscode-resource开头的地址。并且只能访问插件所在目录和当前工作区。
+
+在高于 1.38 版 VSCode 下可以使用 panel.webview.asWebviewUri(onDiskPath) 生成对应的地址，否则需要使用onDiskPath.with({ scheme: 'vscode-resource' })。
+
+export function webViewLocalContent(context: vscode.ExtensionContext) {
+  const panel = vscode.window.createWebviewPanel(
+    'HelloWebViewLocalContent',
+    'Web View Local Content',
+    vscode.ViewColumn.One,
+    {
+      localResourceRoots: [
+        vscode.Uri.file(path.join(context.extensionPath, 'media'))
+      ]
+    }
+  );
+
+  const onDiskPath = vscode.Uri.file(
+    path.join(context.extensionPath, 'media', 'cat.jpg')
+  );
+  // 生成一个特殊的 URI 来给 web view 用。
+  // 实际是：vscode-resource: 开头的一个 URI
+  // 资源文件只能放到插件安装目录或则用户当前工作区里面
+  // 1.38以后才有这个 API，前面版本可以用onDiskPath.with({ scheme: 'vscode-resource' });
+  const catPicSrc = panel.webview.asWebviewUri(onDiskPath);
+  const body = `<h1>hello local cat</h1>`;
+  panel.webview.html = getWebViewContent(body, catPicSrc);
+}
+web view 和插件通信
+向 web view 发信息是通过 currentPanel.webview.postMessage({}) 发送一个json数据。在 web view 中通过window.addEventListener('message', callback)监听message信息。
+
+// 插件发送数据
+currentPanel.webview.postMessage({ command: 'hello web view' });
+
+// web 接收
+window.addEventListener('message', event => {
+  const message = event.data;
+  console.log(message.command);
+})
+由于 web view 不能直接调用 vscode 的 API，不过 vscode 还是给它提供了一个 acquireVsCodeApi() 的函数，它返回的对象中有一个 postMessage 方法。web view 可以通过这个方法给 vscode 发送消息。插件端则通过currentPanel.webview.onDidReceiveMessage()订阅接收消息的事件。
+
+// web view 向插件端发送数据
+const vscode = acquireVsCodeApi();
+vscode.postMessage({
+  command: 'alert',
+  text: 'hello vscode'
+});
+
+// 插件端接收数据
+currentPanel.webview.onDidReceiveMessage(
+    message => {
+      switch (message.command) {
+        case 'alert':
+          vscode.window.showInformationMessage(message.text);
+          return;
+      }
+    },
+    undefined,
+    context.subscriptions
+  );
+动图
+调试 web view
+可以使用下面 web view develop tool 命令。
+
+
+打开 web view 开发工具
+打开后可以看到 web view 包在一个 iframe 中，断点什么的都是支持的，内容如下：
+
+
+编辑于 2019-12-25 20:37
+Visual Studio Code
+​赞同 215​
+​10 条评论
+​分享
+​喜欢
+​收藏
+​申请转载
+​
+
+评论千万条，友善第一条
+
+10 条评论
+默认
+最新
+夜云
+夜云
+作者你好，请问一下context.subscriptions具体有什么作用呢，不进行订阅会有什么问题吗？
+2022-04-18
+​回复
+​1
+Tang
+Tang
+初学vscode插件，给了我很大帮助
+
+
+2020-12-11
+​回复
+​2
+风少
+风少
+vscode api的功能感觉比较晦涩难懂，大佬有啥建议不
+2021-12-27
+​回复
+​赞
+秋月
+秋月
+大佬，我想开发一个五子棋的插件，可以不
+2021-11-16
+​回复
+​赞
+不二
+不二
+初学vscode插件 能不能给个源码兄弟
+2021-07-03
+​回复
+​赞
+张宇
+张宇
+作者
+官方有一个示例库比较全，可以参考一下
+github.com/microsoft/vs
+2021-07-27
+​回复
+​1
+明明白白洪世贤
+明明白白洪世贤
+请问一个问题。我要开发代码折叠的插件，肯定要知道executeCommand折叠的api参数，我怎么找到这个参数呢？
+
+比如vscode.commands.executeCommand('editor.unfoldAll');这是全部折叠的，看别人的。
+
+这个'editor.unfoldAll'参数怎么得到的。能说下途径吗。比如我现在需要折叠层次文档翻了一圈只看到fold。
+
+2021-05-03
+​回复
+​赞
+古月三石
+古月三石
+非常感谢作者的分享， 可以问下 vscode 跟nodejs 有啥关系 写webview可以用nodejs吗？
+
+2020-07-10
+​回复
+​赞
+张宇
+张宇
+作者
+vscode的底层有个node.js，这个webview其实是建立在electron基础上的，electron也是vscode底层的一部分。如果需要写桌面程序，可以考虑使用electron来写。
+
+2020-07-18
+​回复
+​1
+心脏跳动
+心脏跳动
+磊子哥你也在。[爱]
+
+01-07
+​回复
+​赞
+
+评论千万条，友善第一条
+
+文章被以下专栏收录
+玩转VS Code
+玩转VS Code
+Visual Studio Code的最新资讯，使用技巧，插件信息等
+推荐阅读
+插件开发之VSCode
+插件开发之VSCode
+JackChen
+如何开发一款vscode插件
+如何开发一款vscode插件
+清沫
+VSCode插件开发实战
+VSCode插件开发实战
+郑家骐
+一文教会你如何开发一个Vscode插件(一)
+背景作为一个熟练的 CV仔，在熟练业务之后，常常都会将组件进行抽离公共组件，可以大大的提高开发效率。然而抽离公共组件之后，日常的开发便是创建相同的文件夹，修改router ，修改表单的属…
+
+retrychx
+
+
+选择语言
+选择语言
