@@ -31,3 +31,11 @@ Mintlify Doc Writer
 CodeGeeX
 
 Code GPT
+
+
+Vim
+
+头文件和源文件切换
+Swicher  （Alt+O）
+
+
