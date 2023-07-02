@@ -2587,6 +2587,7 @@ PHP/study教程
 PHP/test.php
 PHP/testrail
 PhotoShop/三等分 三分圆
+PhotoShop/二寸照片 两寸照片
 PhotoShop/常用快捷键 shortcut
 PhotoShop/常用快捷键 shortcut 2
 Pthread/Create
@@ -3003,9 +3004,9 @@ Tools/VSCode/插件开发/API/showWarningMessage
 Tools/VSCode/插件开发/VSCode插件开发入门
 Tools/VSCode/插件开发/VSCode插件开发梳理
 Tools/VSCode/插件开发/extension.js
+Tools/VSCode/插件开发/order list 命令列表
 Tools/VSCode/插件开发/package.json
 Tools/VSCode/插件开发/从0到1开发一款自己的vscode插件
-Tools/VSCode/插件开发/命令列表 order list
 Tools/VSCode/模板/00snippet 中可以使用的一些变量
 Tools/VSCode/模板/cmain
 Tools/VSCode/模板/cxxmain
