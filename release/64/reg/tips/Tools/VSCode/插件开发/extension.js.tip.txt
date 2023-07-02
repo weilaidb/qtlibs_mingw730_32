@@ -1,0 +1,17 @@
+3.2.2 extension.js文件
+
+该文件时其入口文件，即package.json中main字段对应的文件（不一定叫extension.js这个名字），该文件中将导出两个方法：activate和deactivate，两个方法的执行时机如下所示：
+
+
+activate
+
+这是插件被激活时执行的函数
+
+deactivate
+
+这是插件被销毁时调用的方法，比如释放内存等。
+
+作者：执鸢者
+链接：https://juejin.cn/post/7010765441144455199
+来源：稀土掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

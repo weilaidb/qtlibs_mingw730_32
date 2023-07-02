@@ -67,6 +67,8 @@ https://github.com/sinojelly/mockcpp.git
 https://gitee.com/sinojelly/mockcpp.git
 https://github.com/apriorit/gmock-global.git
 https://github.com/sqlite/sqlite/
+#vscode
+https://github.com/microsoft/vscode-cpptools.git
 git@github.com:microsoft/vscode.git
 #vscode snippets
 git@gitee.com:weilaidb/vscode-snippets.git
@@ -163,6 +165,9 @@ git@github.com:layui/layui.git
 
 
 本地库:
+#vscode插件开发
+git@gitee.com:weilaidb/vscodeplugineg.git
+
 #Vim用法
 git@gitee.com:weilaidb/vim.usage.git
 

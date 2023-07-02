@@ -1,10 +1,66 @@
-npm config ls  查看npm配置列表
+* npm config ls  查看npm配置列表
 
-设置镜像为淘宝
+* 设置镜像为淘宝
 npm config set registry https://registry.npm.taobao.org/
 
-初始化开发库
+* 初始化开发库
 // 安装需要的包
 npm install -g yo generator-code
 // 运行
 yo code
+
+*编译
+F5 
+Then, inside the editor, press F5. This will compile and run the extension in a new Extension Development Host window.
+
+* 文件功能说明：
+package.json
+该文件是vscode扩展的清单文件，里面有很多字段，官方对每个字段都进行了详细阐述
+
+
+*打包发布
+安装 vsce(Visual Studio Code Extension)
+npm i vsce -g
+
+打包成 vsix 文件：
+vsce package
+
+tips：生成的 vsix 文件不能直接拖入安装，只能从扩展的右上角选择 Install from VSIX 安装。
+
+发布到应用市场
+注册登陆网站：登陆网站 https://dev.azure.com/vscode 获取一个 access token，用这个 token 来创建一个 publisher。
+
+创建发布者账号： vsce create-publisher (publisher name)
+
+登陆账号： vsce login (publisher name)
+
+发布
+vsce publish
+
+增量发布：版本号(major.minor.patch)
+
+vsce publish patch(minor/major)
+
+取消发布：
+
+vsce unpublish (publisher name).(extension name)
+
+更新
+修改版本号，重新执行 vsce publish 即可
+
+
+
+
+
+
+
+
+
+
+
+
+
+常见问题:
+1.打包或发布报错
+vsce package Make sure to edit the README.md file before you package or publish your extension.
+删除ReadMe.md

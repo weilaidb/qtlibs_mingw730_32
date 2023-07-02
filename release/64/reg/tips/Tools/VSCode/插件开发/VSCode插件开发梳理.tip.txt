@@ -1,0 +1,334 @@
+https://segmentfault.com/a/1190000017279102
+
+
+segmentfault
+问答
+专栏
+标签
+活动
+发现
+搜索关键字
+VSCode插件开发梳理
+头像
+离岛
+58515
+首页
+专栏
+学习分享
+文章详情
+VSCode插件开发梳理
+头像
+离岛
+58515
+发布于
+2018-12-06
+ 
+纸上得来终觉浅，深知此事要躬行，因此来体验一下VSCode的插件开发，网上有很多小伙伴的文章给了很大帮助，本文的代码是直接使用网上的内容，特此整理出来给后来学习的伙伴们参考
+https://www.cnblogs.com/lianm...
+http://www.cnblogs.com/Leo_wl...
+
+搭建环境
+首先Nodejs和VSCode需要提前安装好，这里对这块的安装不再赘述。接下来安装yo 这是vscode团队为插件开发提供的工具
+
+npm install -g yo generator-code
+安装成功后，通过yo code生成插件开发项目，这里官方推荐使用typescript，当然我们更熟悉javascript，其余的根据情况默认即可
+
+clipboard.png
+
+一路生成后，通过VSCode打开（File->Open Folder）刚生成的插件项目,在这一堆文件中，我们只关心两个重点，extension.js 是插件的入口文件，package.json包含插件的配置信息
+
+准备完成后，为了先验证下插件项目正常OK，在VSCode中F5运行（或Debug->start）如果你可以看到VSCode又启动了一个窗口运行插件项目,shift+ctrl+p 输入Hello World如果在右下角能看到Hello World的提示信息就OK 了
+
+clipboard.png
+
+如果在编辑插件时内容做了变更，在运行的窗口只需通过Ctrl+r 即可刷新，无需关闭重新运行
+
+插件内容
+这里就开始写插件具体的内容了，发挥创造想象力的时候到了，但是一开始无从下手，可以参考下官网的文档，写的很是详细，虽然是英文的但是直接翻译读起来也没特别怪
+
+官方入门示例一：https://code.visualstudio.com...
+
+这里的插件内容是根据官网示例二的Markdown字数统计做了修改后的内容，可以统计任意文件中所编写的字符数量
+
+新建wordCounter.js
+
+class WordCounter {
+    constructor(_vscode) {        //构造函数，传入vscode对象
+        this.vscode = _vscode;
+        this.init();
+    }
+ 
+    init() {                      //初始化
+        var vscode = this.vscode;
+        var StatusBarAlignment = vscode.StatusBarAlignment;
+        var window = this.vscode.window;
+ 
+        //statusBar，是需要手动释放的
+        this.statusBar = window.createStatusBarItem(StatusBarAlignment.Left);
+ 
+        //跟注册事件相配合的数组，事件的注册，也是需要释放的
+        var disposable = [];
+        //事件在注册的时候，会自动填充一个回调的dispose到数组
+        window.onDidChangeTextEditorSelection(this.updateText, this, disposable);
+ 
+        //保存需要释放的资源
+        this.disposable = vscode.Disposable.from(disposable);
+ 
+        this.updateText();
+        this.statusBar.show();
+    }
+ 
+    updateText() {       //现在快凌晨两点，偷个懒早点睡，临时改成字符数量了。
+        var window = this.vscode.window;
+        this.editor = window.activeTextEditor;
+        var content = this.editor.document.getText();
+        var len = content.replace(/[\r\n\s]+/g, '').length;
+        this.statusBar.text = `啦啦啦...已经敲了${len}个字符了`;
+    }
+ 
+    dispose() {  //实现dispose方法
+        this.disposable.dispose();
+        this.statusBar.dispose();
+    }
+}
+ 
+module.exports = WordCounter;
+修改extension.js
+
+// vscode这个包，包含了里面所有的api
+const vscode = require('vscode');
+// 在插件被激活的时候，这个方法会被调用
+function activate(context) {
+    var WordCounter = require('./wordCounter');
+    var counter = new WordCounter(vscode);
+    //需要释放的资源都在这里依次push到这个数组里面
+    context.subscriptions.push(counter);
+}
+exports.activate = activate;
+
+// this method is called when your extension is deactivated
+function deactivate() {
+}
+exports.deactivate = deactivate;
+修改package.json
+
+{
+    "name": "wordcount",
+    "displayName": "WordCount",
+    "description": "wordcount",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.29.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.sayHello",
+                "title": "Hello World"
+            }
+        ]
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^3.1.4",
+        "vscode": "^1.1.25",
+        "eslint": "^4.11.0",
+        "@types/node": "^8.10.25",
+        "@types/mocha": "^2.2.42"
+    }
+}
+然后就shift+ctrl+p进入到插件运行环境下测试就可以在状态栏中的字符数量提示了
+
+本地使用插件
+插件编写好了之后，如何正常在VSCode开发过程中使用，这块直接把开发的插件项目拷贝到VSCode存放安装插件的目录下
+
+C:\Users\your name\.vscode\extensions
+插件项目拷贝进去后，重启VSCode，然后随意打开一个新的项目，在状态栏也可以看到字符统计的这个功能了
+
+插件发布
+官方插件发布流程：https://code.visualstudio.com...
+
+Visual Studio Code的应用市场基于微软自己的Azure DevOps，插件的身份验证、托管和管理都是在这里。要发布到应用市场首先得有应用市场的publisher账号
+
+1.注册账号 https://aka.ms/SignupAzureDevOps
+2.得到token,登录后选择Security,按照下图上的方式勾选，这里注意得到token一定要复制下来保存，因为第二次进入就不会再显示了
+clipboard.png
+3.安装vsce打包工具 npm install -g vsce
+4.使用vsce工具命令创建发布账号vsce create-publisher your-publisher-name
+5.登录账号vsce login your-publisher-name
+6.发布vsce publish
+
+clipboard.png
+
+发布成功后，可以访问https://marketplace.visualstu... 查看
+
+在VSCode中也可以搜索进行安装
+
+clipboard.png
+
+这里在发布时有几个常见错误：
+错误1：Error:Missing publisher name. Learn more:https://code.visualstudio.com...
+解决方式：在package.json中将刚刚创建好的发布账号配置进去"publisher":"your name",
+
+错误2：Error:Make sure to edit the README.md file before you publish your extension
+解决方式：看下README.md文件中是否有http地址
+
+错误3：A ‘repository’field is missing from the 'package.josn' manifest file .Do you want to continue? [y/n]
+解决方式：y
+
+代码下载
+访问百度网盘地址直接下载即可
+https://pan.baidu.com/s/1-veA...
+
+Microsoft
+visual-studio-code
+阅读 16.5k更新于 2018-12-06
+本作品系原创，采用《署名-非商业性使用-禁止演绎 4.0 国际》许可协议
+
+学习分享
+专栏文章首发于《离岛手记》公众号，来关注呀
+2 条评论
+头像
+撰写评论 …
+评论支持部分 Markdown 语法：**粗体** _斜体_ [链接](http://example.com) `代码` - 列表 > 引用。你还可以使用 @ 来通知其他用户。
+头像
+baoshan：感谢分享。我也尝试写了两个插件，感兴趣的可以直接在vscode中搜索安装试试哦，源码奉上：（1）注释对齐插件 https://github.com/gitshan/vs...（2）console.log快速输出日志插件 https://github.com/gitshan/vs...
+2019-08-08
+头像
+han6054：Access Token verification has failed
+2022-03-31
+推荐阅读
+在VSCode中调试Django项目
+在VSCode扩展中，搜索Django，点击install进行安装Djnao插件是针对Visual Studio代码的Django扩展，用于模板中语法提示和补全、调试Django项目。
+离岛
+阅读 4.2k
+
+VS Code Day，终于来了！
+本次大会将是广大 VS Code 爱好者一起学习交流的盛会。除了会让我们对 VS Code 更加深入的理解，我们还将一同探讨最新最热的技术话题：VS Code 插件开发、Copilot/ChatGPT、云原生、大前端、多语言开发等等，它们...
+微软技术栈
+阅读 1.2k
+
+封面图
+3月更新 | Visual Studio Code Python
+我们很高兴地宣布，2023年3月版 Visual Studio Code Python 和 Jupyter 扩展现已推出！此版本包括以下改进：后退按钮和取消功能添加到创建环境命令默认情况下，Python 扩展不再附带 isortJupyter 笔记本中内核选...
+微软技术栈
+阅读 1.2k
+
+封面图
+Visual Studio Code 1.77 发布！
+欢迎使用 Visual Studio Code 2023 年3月版。此版本有许多更新，其中一些主要亮点包括：无障碍改进：新的悬停、通知和 Sticky Scroll 快捷键复制 GitHub 深度链接：在编辑器内创建永久链接和 HEAD 链接笔记本保存...
+微软技术栈
+阅读 1.1k
+
+封面图
+远离加班🙅🏻‍♀️ 不如看看这款ChatGPT插件
+众所周知，程序员加班是一件非常常见的事情，特别是在IT行业中，很多人为了加快项目进度或满足客户需求而加班。长期加班还会导致工作疲劳和情绪疲惫，影响个人的工作效率和生活质量。而且长期加班可能会引发职业...
+爱运动的勺子
+赞 4
+阅读 456
+评论 4
+
+封面图
+vscode笔记
+0x01 vscode for c/c++1、安装vscode官方教程：[链接]1、安装msys2 ：[链接] {代码...} 2、vscode配置 编辑c的include path 添加步骤一中安装的C环境的路径 2、调试 {代码...} 0x02 vscode for python调试celery...
+白风之下
+阅读 1.1k
+
+Visual Studio Code (VS Code) – C++ 入门
+—— 基于 Visual Studio Code 官方文档的全面的、具体的入门级教程作者：Xi Xu阅读原文推荐使用 OpenAI API 来提高编程效率《OpenAI 账户注册 —— 中国大陆的最优解决方案》。建议在学习本教程的同时观看本教程配套...
+Xi_Xu
+赞 1
+阅读 525
+评论 1
+
+封面图
+avatar
+离岛
+585 声望
+79 粉丝
+
+相关文章
+VScode 插件开发（五）插件包
+赞 1
+阅读 3.4k
+
+vscode插件 - quokka
+赞 4
+阅读 12.9k
+
+vscode vue 插件
+阅读 1.1k
+
+VScode 插件开发（一）絮叨
+赞 4
+阅读 2.2k
+
+VScode 插件开发（三）主题
+赞 1
+阅读 4.4k
+
+宣传栏
+自顶向下学 React 源码
+从理念到架构到实现到代码，透彻理解
+痛点消除：社区精选 100 问
+2022 年 SegmentFault 思否社区精选问答
+无师自通：社区精选 100 篇
+2022 年 SegmentFault 思否社区精选文章
+文章目录
+跟随
+搭建环境
+插件内容
+本地使用插件
+插件发布
+代码下载
+产品
+热门问答
+热门专栏
+热门课程
+最新活动
+翻译
+勋章
+课程
+Java 开发课程
+PHP 开发课程
+Python 开发课程
+前端开发课程
+移动开发课程
+资源
+每周精选
+用户排行榜
+帮助中心
+建议反馈
+合作
+关于我们
+广告投放
+职位发布
+讲师招募
+联系我们
+合作伙伴
+关注
+产品技术日志
+社区运营日志
+市场运营日志
+团队日志
+社区访谈
+条款
+服务协议
+隐私政策
+下载 App
+Copyright © 2011-2023 SegmentFault. 当前呈现版本 23.06.29
+
+浙ICP备15005796号-2浙公网安备33010602002000号ICP 经营许可 浙B2-20201554
+
+杭州堆栈科技有限公司版权所有
+
