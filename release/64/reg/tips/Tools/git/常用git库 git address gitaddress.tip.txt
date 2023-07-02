@@ -70,6 +70,8 @@ https://github.com/sqlite/sqlite/
 #vscode
 https://github.com/microsoft/vscode-cpptools.git
 git@github.com:microsoft/vscode.git
+git@github.com:microsoft/vscode-extension-samples.git
+
 #vscode snippets
 git@gitee.com:weilaidb/vscode-snippets.git
 https://github.com/one-harsh/vscode-cpp-snippets

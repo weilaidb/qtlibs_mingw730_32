@@ -13,6 +13,9 @@ yo code
 F5 
 Then, inside the editor, press F5. This will compile and run the extension in a new Extension Development Host window.
 
+F5 编译并运行
+Ctrl+Shift+F5 重新加载
+
 * 文件功能说明：
 package.json
 该文件是vscode扩展的清单文件，里面有很多字段，官方对每个字段都进行了详细阐述
@@ -64,3 +67,23 @@ vsce unpublish (publisher name).(extension name)
 1.打包或发布报错
 vsce package Make sure to edit the README.md file before you package or publish your extension.
 删除ReadMe.md
+
+2.fs.stat代码中卡着不动，没有响应，像是死循环
+没有引用头文件 
+const fs = require('fs');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
