@@ -16,6 +16,7 @@ Then, inside the editor, press F5. This will compile and run the extension in a 
 
 F5 编译并运行
 Ctrl+Shift+F5 重新加载
+--弹出异常，需要将extension.js打开，并位于这个文件中。
 
 * 文件功能说明：
 package.json
