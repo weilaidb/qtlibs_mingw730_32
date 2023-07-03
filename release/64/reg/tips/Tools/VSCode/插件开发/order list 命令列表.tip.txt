@@ -67,6 +67,7 @@ vsce unpublish (publisher name).(extension name)
 
 常见问题:
 1.打包或发布报错
+ ERROR  Make sure to edit the README.md file before you package or publish your extension.
 vsce package Make sure to edit the README.md file before you package or publish your extension.
 删除ReadMe.md
 
@@ -75,13 +76,17 @@ vsce package Make sure to edit the README.md file before you package or publish 
 const fs = require('fs');
 
 
+3.Uncaught Error Error: Cannot find module 'vscode'
+卸载vscode,使用zip版本
+重新yo code 试一下
+重新更新yo code,生成依赖
 
 
+4.修改out\extension.js 内容被覆盖
+应该修改 src\extension.ts 文件， out下的是自动生成的。
 
-
-
-
-
+5.out\extension.js 中文乱码
+src\extension.ts 必须是UTF-8格式的
 
 
 
