@@ -55,6 +55,30 @@ vsce unpublish (publisher name).(extension name)
 
 
 
+*安装typescript
+npm install -g typescript
+
+检查是否安装成功，即看看是否有版本号 下面这个V是大写
+
+tsc -V 
+
+运行(编译)typescript。
+其实是编译ts文件，浏览器不能直接运行ts文件，需要编译成js文件使用。在nodejs中也可以使用typescript进行编译
+
+tsc demo.ts
+
+*typescript 网址
+https://www.tslang.cn/docs/home.html
+
+
+
+
+
+
+
+
+
+
 
 
 
