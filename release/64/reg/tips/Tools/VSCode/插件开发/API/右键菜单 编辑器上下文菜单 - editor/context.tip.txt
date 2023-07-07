@@ -1,0 +1,3 @@
+【command；group；show title;letname】
+extension.helloWorld;navigation;xx;disposable
+extension.showSelectedText;navigation;show selected Text;disposable_showSelectText

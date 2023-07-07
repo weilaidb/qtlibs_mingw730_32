@@ -1,0 +1,1 @@
+"menus": {$NL$TB"editor/context": [$NL$TB$TB{$NL$TB$TB$TB"command": "\1", $NL$TB$TB$TB"group": "\2" $NL$TB$TB}$NL$TB],$NL$NL$TB"explorer/context": [$NL$TB$TB{$NL$TB$TB"command": "\1",	$NL$TB$TB"group": "\2"$NL$TB$TB}$NL$TB]$NL}$NL

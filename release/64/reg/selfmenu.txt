@@ -3002,12 +3002,16 @@ Tools/VSCode/插件开发/API/showErrorMessage var
 Tools/VSCode/插件开发/API/showInformationMessage
 Tools/VSCode/插件开发/API/showInformationMessage var
 Tools/VSCode/插件开发/API/showWarningMessage
+Tools/VSCode/插件开发/API/右键菜单 编辑器上下文菜单 - editor/context
+Tools/VSCode/插件开发/API/右键菜单 资源管理器上下文菜单 + 编辑器上下文菜单
+Tools/VSCode/插件开发/API/右键菜单 资源管理器上下文菜单 - explorer/context
 Tools/VSCode/插件开发/VSCode插件开发入门
 Tools/VSCode/插件开发/VSCode插件开发梳理
 Tools/VSCode/插件开发/extension.js
 Tools/VSCode/插件开发/order list 命令列表
 Tools/VSCode/插件开发/package.json
 Tools/VSCode/插件开发/从0到1开发一款自己的vscode插件
+Tools/VSCode/插件开发/初识vscode插件开发(二)-右键菜单
 Tools/VSCode/模板/00snippet 中可以使用的一些变量
 Tools/VSCode/模板/cmain
 Tools/VSCode/模板/cxxmain
