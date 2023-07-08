@@ -1,3 +1,7 @@
 【command；group；show title;letname】
+extension.showSubMenu;navigation;show SubMenu;disposable_submenu
+
+
 extension.helloWorld;navigation;xx;disposable
 extension.showSelectedText;navigation;show selected Text;disposable_showSelectText
+

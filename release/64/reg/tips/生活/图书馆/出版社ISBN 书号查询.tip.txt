@@ -9,10 +9,30 @@ ISBN
 9787555915027
 9787115230287
 
+IP地址或网址域名查询
+https://tool.lu/ip/
+
+
+
+环球出版社
+https://universalpress.cn/lxwm
+47.89.66.232
+
+联系我们
+
+出版社：环球出版社
+邮箱：universalpress@universalpress.cn
+社址：112 ROBINSON ROAD#03-01 ROBINSON 112 SINGAPORE（068902）
+
+
+
+
+
 
 可能存在问题的网站 
 https://www.nlb.gov.sg/main/home
 https://search.nlb.gov.sg/onesearch/Search?query=9787555915027&cont=book
+52.128.22.225
 
 可能存在问题的书籍
 六零回眸
