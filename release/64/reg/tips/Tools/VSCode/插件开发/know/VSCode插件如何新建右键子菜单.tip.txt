@@ -1,0 +1,258 @@
+https://juejin.cn/post/7239715208792834104
+
+稀土掘金
+首页
+沸点
+课程
+直播
+活动
+竞赛
+商城
+APP
+插件
+探索稀土掘金
+创作者中心
+vip
+会员
+登录
+注册
+VSCode插件如何新建右键子菜单
+冬玉
+2023-06-01 23:11
+42
+写这篇文档是因为，在开发vscode插件的时候，发现官网创建右键子菜单的文档写的不是很清楚，为了写子菜单还得专门去看了别人开发的插件，很麻烦，因此补充了这篇文档。
+
+首先创建一个vscode插件项目
+
+npm install -g yo generator-code 
+yo code
+然后给编辑器右键添加上我们的命令，在package.json的contributes中添加菜单
+
+{
+  "contributes": {
+     // 定义命令
+    "commands": [
+      {
+        "command": "myProject.add",
+        "title": "添加"
+      },
+      {
+        "command": "myProject.delete",
+        "title": "删除"
+      },
+    ],
+    // 定义submenus
+    "submenus": [
+      {
+        "id": "myProject/content",
+        "label": "MenuName" // 显示的标题
+      }
+    ],
+    "menus": {
+       // 定义菜单显示位置 
+      "editor/context": [
+        {
+          "submenu": "myProject/content",
+          "group": "navigation",
+        }
+      ],
+      // 定义二级菜单点击时的命令
+      "myProject/content": [
+        {
+          "command": "myProject.add",
+          "group": "1"
+        },
+        {
+          "command": "myProject.delete",
+          "group": "2"
+        },
+      ]
+    },
+  }
+}
+
+效果图
+此时点击鼠标右键菜单就可以看到以下效果了。
+
+image.png
+
+参考
+vscode官网：code.visualstudio.com/api
+
+标签：
+前端
+Visual Studio Code
+相关小册
+「Babel 插件通关秘籍」封面
+VIP Babel 插件通关秘籍
+zxg_神说要有光
+创作等级LV.7
+VIP.5 如鱼得水
+5482购买
+¥24.95
+¥49.9
+首单券后价
+「玩转 CSS 的艺术之美」封面
+VIP 玩转 CSS 的艺术之美
+JowayYoung
+创作等级LV.7
+VIP.5 如鱼得水
+4828购买
+¥9.95
+¥19.9
+首单券后价
+评论
+
+看完啦，
+登录
+分享一下感受吧～
+相关推荐
+都不要欺负我
+5年前
+CSS
+Visual Studio Code
+Sublime Text
+实用的 Visual Studio Code 插件
+2.3w
+522
+10
+Stone
+3年前
+Visual Studio Code
+Visual Studio Code 常用插件分享
+7758
+37
+2
+陆荣涛
+10月前
+前端
+Visual Studio和Visual Studio Code的区别
+3351
+11
+18
+Fundebug
+3年前
+Visual Studio Code
+前端
+后端
+Visual Studio Code 远程开发探秘
+1.3w
+103
+18
+liuyatao
+4年前
+Visual Studio Code
+Visual Studio Code 远程开发尝鲜
+1.2w
+5
+2
+橘子味汽水_
+4年前
+前端
+Visual Studio Code
+三分钟教你同步 Visual Studio Code 设置
+4.3w
+503
+29
+程序it圈
+4年前
+Visual Studio Code
+Visual Studio Code 1.32 发布
+2709
+4
+评论
+小梦大半就是我
+3年前
+Visual Studio Code
+Visual Studio Code 大哉聊
+2490
+3
+5
+web前端烹饪师兼韭王
+2年前
+前端
+Visual Studio Code 编辑器插件推荐
+1406
+4
+评论
+面向Google编程
+3年前
+Visual Studio Code
+吐血推荐珍藏的Visual Studio Code插件
+5515
+9
+评论
+Fundebug
+4年前
+CSS
+JavaScript
+TypeScript
+30个极大提高开发效率的Visual Studio Code插件
+1.3w
+560
+17
+水墨寒
+5年前
+前端
+Visual Studio Code入门(译)
+5245
+95
+5
+Jerryc24696
+3年前
+Visual Studio Code
+Visual Studio Code 插件推荐 VSC Netease Music
+3542
+点赞
+评论
+Tecode
+4年前
+TypeScript
+Visual Studio Code中配置TypeScript自动编译
+5634
+7
+评论
+Junyang
+3年前
+Visual Studio Code
+Visual Studio Code (VS Code)自定义代码模板
+9781
+20
+27
+
+冬玉
+创作等级LV.3
+前端菜鸟
+关注
+私信
+获得点赞  27
+文章被阅读  11,293
+相关文章
+解决VSCode报Delete `␍`eslint(prettier/prettier)问题
+13点赞  ·  1评论
+浏览器存储
+3点赞  ·  4评论
+解决浏览器访问GitHub过慢问题
+2点赞  ·  0评论
+实用的 Visual Studio Code 插件
+522点赞  ·  10评论
+Visual Studio Code 常用插件分享
+37点赞  ·  2评论
+限时领掘金会员
+目录
+效果图
+参考
+
+登录掘金后可立即获得以下权益：
+免费试学课程
+收藏有用文章
+查阅浏览足迹
+订阅优质专栏
+体验签到抽奖
+提升成长等级
+首次使用？
+点我注册
+image
+掘金已支持深色模式
+在“我的设置-通用设置”中即可配置
+点击前往

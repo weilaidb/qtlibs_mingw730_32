@@ -3008,6 +3008,7 @@ Tools/VSCode/插件开发/API/右键菜单 资源管理器上下文菜单 - expl
 Tools/VSCode/插件开发/VSCode插件开发入门
 Tools/VSCode/插件开发/VSCode插件开发梳理
 Tools/VSCode/插件开发/extension.js
+Tools/VSCode/插件开发/know/VSCode插件如何新建右键子菜单
 Tools/VSCode/插件开发/order list 命令列表
 Tools/VSCode/插件开发/package.json
 Tools/VSCode/插件开发/从0到1开发一款自己的vscode插件
