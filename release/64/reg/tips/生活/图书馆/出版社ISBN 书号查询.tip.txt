@@ -33,6 +33,9 @@ https://universalpress.cn/lxwm
 
 
 可能存在问题的网站 
+https://www.isbnsearcher.com/
+
+
 https://www.nlb.gov.sg/main/home
 https://search.nlb.gov.sg/onesearch/Search?query=9787555915027&cont=book
 52.128.22.225

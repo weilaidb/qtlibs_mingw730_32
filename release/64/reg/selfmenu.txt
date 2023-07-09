@@ -53,6 +53,8 @@ API Manual/Python/re.split
 API Manual/Python/re.sub
 API Manual/Python/re.正则表达式对象
 API Manual/TypeScript/Hello World!
+API Manual/TypeScript/TypeScript 基础类型
+API Manual/TypeScript/TypeScript 基础语法
 API Manual/TypeScript/TypeScript 安装
 API Manual/TypeScript/TypeScript 教程
 API Manual/usr/errno
