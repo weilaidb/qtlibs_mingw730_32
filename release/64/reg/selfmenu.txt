@@ -52,11 +52,19 @@ API Manual/Python/re.search
 API Manual/Python/re.split
 API Manual/Python/re.sub
 API Manual/Python/re.正则表达式对象
+API Manual/TypeScript/0总结
 API Manual/TypeScript/Hello World!
+API Manual/TypeScript/TypeScript Number
+API Manual/TypeScript/TypeScript String（字符串）
+API Manual/TypeScript/TypeScript 函数
+API Manual/TypeScript/TypeScript 变量声明
 API Manual/TypeScript/TypeScript 基础类型
 API Manual/TypeScript/TypeScript 基础语法
 API Manual/TypeScript/TypeScript 安装
+API Manual/TypeScript/TypeScript 循环
 API Manual/TypeScript/TypeScript 教程
+API Manual/TypeScript/TypeScript 条件语句
+API Manual/TypeScript/TypeScript 运算符
 API Manual/usr/errno
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
@@ -3599,6 +3607,7 @@ path路径/常用文件夹
 测试用例/超级记事本/内容替换 一个包含多个替换模式
 环境配置/环境1
 环境配置/环境配置模板
+生活/IPHONE/往PC上传输照片经常中断
 生活/中医/脾胃 肾
 生活/位置/出版社地址
 生活/位置/常用物品
