@@ -53,7 +53,10 @@ API Manual/Python/re.split
 API Manual/Python/re.sub
 API Manual/Python/re.正则表达式对象
 API Manual/TypeScript/0总结
+API Manual/TypeScript/Array splice
 API Manual/TypeScript/Hello World!
+API Manual/TypeScript/TypeScript Array(数组)
+API Manual/TypeScript/TypeScript Map 对象
 API Manual/TypeScript/TypeScript Number
 API Manual/TypeScript/TypeScript String（字符串）
 API Manual/TypeScript/TypeScript 函数

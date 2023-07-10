@@ -1,12 +1,7 @@
 ☆ API名称
-TypeScript/0总结
+TypeScript/TypeScript Map 对象
 
 ☆ 简介
-1.let声明的是常量
-var声明的是变量
-
-2.查看函数声明
-https://www.tutorialspoint.com/typescript/typescript_arrays.htm
 
 
 
@@ -41,6 +36,6 @@ https://www.tutorialspoint.com/typescript/typescript_arrays.htm
  API提供商的联系方式。
 
 ☆提交日期
-2023-07-09 22:48:55
+2023-07-10 07:33:29
 ========================================================================
 ========================================================================
