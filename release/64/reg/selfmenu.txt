@@ -2992,6 +2992,7 @@ Tools/VSCode/C C++ 必备开发插件 remote development
 Tools/VSCode/C C++ 插件 函数注释 koroFileHeader
 Tools/VSCode/C C++ 插件 函数注释 koroFileHeader2
 Tools/VSCode/C C++ 插件 函数调用关系 Call Hierarchy & more
+Tools/VSCode/C C++ 插件 格式化 Prettier
 Tools/VSCode/base/背景色 护眼色
 Tools/VSCode/know/Bad owner or permissions
 Tools/VSCode/know/Snippets，VSCode用户代码片段设置详细教程（附代码便捷生成器链接
