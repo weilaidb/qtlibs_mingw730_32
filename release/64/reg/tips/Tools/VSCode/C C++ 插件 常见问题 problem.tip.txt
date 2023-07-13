@@ -126,6 +126,12 @@ C_Cpp › Vc Format › Space: Pointer Reference Alignment
 --right
 
 
+Editor › Language: Colorized Bracket Pairs
+如果启用方括号对着色，则按照其嵌套级别定义已着色的方括号对。
+
+在settings.json中编辑：
+C_Cpp.vcFormat
+
 8.设置中 
 用户
 远程 
