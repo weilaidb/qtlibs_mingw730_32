@@ -48,10 +48,8 @@ https://www.cnblogs.com/cv-pr/p/7418025.html
 https://blog.csdn.net/booksyhay/article/details/121105145
 default formatter:C/C++ ms-vscode.cpptools
 
-Editor: Format On Type
-控制编辑器在键入一行后是否自动格式化该行。
---勾选
 
+设置 -- 扩展 -- C/C++ -- 格式设置
 
 C_Cpp: Formatting
 配置格式设置引擎。
@@ -88,7 +86,8 @@ vcFormat！！！
 缩进Indent
 C_Cpp配置中，以vcFormat > Indent开头的。
 
-
+C_Cpp › Vc Format › Indent: Braces
+--不勾选
 
 C_Cpp › Vc Format › New Line: Before Catch
 将 catch 和类似关键字放置在新行上。
@@ -117,6 +116,14 @@ C_Cpp › Vc Format › New Line › Before Open Brace: Namespace
 C_Cpp › Vc Format › New Line › Before Open Brace: Type
 类型定义左大括号的位置。
 --newLine
+
+Editor: Format On Type
+控制编辑器在键入一行后是否自动格式化该行。
+--不勾选
+
+C_Cpp › Vc Format › Space: Pointer Reference Alignment
+指针和引用运算符周围的空格。
+--right
 
 
 8.设置中 
