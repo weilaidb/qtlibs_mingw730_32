@@ -142,7 +142,8 @@ C_Cpp.vcFormat
 优先级依次升高，最后面的优先级越高
 
 
-
+9.怎么在package.json中添加注释
+ "comment":"显示剪切板",
 
 
 

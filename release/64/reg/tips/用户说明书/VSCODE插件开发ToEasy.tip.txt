@@ -1,0 +1,22 @@
+VSCODE插件开发ToEasy
+=====用户说明书
+支持的功能：
+1.右键File State，查看文件大小、修改时间
+2.Ctrl+Alt+P,Hello World，显示提示信息
+3.右键显示 show selected text
+4.右键支持子菜单
+5.右键增加剪切板内容生成相关项，包含：
+.)支持类生成声明和实现
+.)gtest框架TEST_F生成
+.)gtest用例生成1~3个
+.)gtest用例生成1~6个
+.)for循环数量，生成for循环
+.)while循环数量，生成while循环
+
+
+
+
+6.
+7.
+8.
+9.

@@ -3031,6 +3031,7 @@ Tools/VSCode/插件开发/order list 命令列表
 Tools/VSCode/插件开发/package.json
 Tools/VSCode/插件开发/从0到1开发一款自己的vscode插件
 Tools/VSCode/插件开发/初识vscode插件开发(二)-右键菜单
+Tools/VSCode/插件开发/常见问题列表
 Tools/VSCode/模板/00snippet 中可以使用的一些变量
 Tools/VSCode/模板/cmain
 Tools/VSCode/模板/cxxmain
@@ -3657,6 +3658,7 @@ path路径/常用文件夹
 生活/过年/时间
 用户说明书/EC管理 dd-x.y-SNAPSHOT.jar
 用户说明书/JEEWMS 功能列表
+用户说明书/VSCODE插件开发ToEasy
 用户说明书/bugzilla
 用户说明书/代码集autocodesets weilaix.war
 用户说明书/代码集autocodesets weilaix.war Apache版本更新
