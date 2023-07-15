@@ -1,0 +1,2 @@
+【command;let名称;】
+clipboard.generate.class;disposable_class

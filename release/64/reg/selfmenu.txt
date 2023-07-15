@@ -3014,6 +3014,8 @@ Tools/VSCode/know/解决VS code报错，过程试图写入的管道不存在(Bad
 Tools/VSCode/know/资深工程师 VSCode C/C++ 必备开发插件
 Tools/VSCode/know/远程开发ssh 利用VScode连接远程服务器进行代码调试及可视化界面
 Tools/VSCode/插件开发/API/VSCode 插件开发常用 API
+Tools/VSCode/插件开发/API/clipBoard
+Tools/VSCode/插件开发/API/clipBoard insertText
 Tools/VSCode/插件开发/API/console.log
 Tools/VSCode/插件开发/API/console.log var
 Tools/VSCode/插件开发/API/showErrorMessage var
