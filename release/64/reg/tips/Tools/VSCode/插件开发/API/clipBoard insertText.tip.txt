@@ -1,2 +1,0 @@
-【command;let名称;生成内容的函数】
-clipboard.generate.class;disposable_class;getClassDeclareImplement

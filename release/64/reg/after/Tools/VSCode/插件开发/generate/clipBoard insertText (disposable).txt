@@ -1,0 +1,1 @@
+//\1$NLlet \2 = vscode.commands.registerCommand('\1', () => {$NL$TBconst editor = vscode.window.activeTextEditor;$NL$TBvscode.env.clipboard.readText().then((text) => {$NL$TB$TBinsertText(text, clipgen.\3(text));$NL$TB});$NL});$NLcontext.subscriptions.push(\2);$NL$NL$NL=======================================>>>>>>>>>>>$NL$NL$NL$NL$NL$NL
