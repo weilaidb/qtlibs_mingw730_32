@@ -30,9 +30,12 @@ yo code
 F5 
 Then, inside the editor, press F5. This will compile and run the extension in a new Extension Development Host window.
 
-F5 编译并运行
+F5 运行
 Ctrl+Shift+F5 重新加载
 --弹出异常，需要将extension.js打开，并位于这个文件中。
+
+编译并
+npm run compile
 
 * 文件功能说明：
 package.json
@@ -213,9 +216,15 @@ Activating extension 'undefined_publisher.toeasy' failed: Cannot find module '/h
 
 
 
+9.version requestion
+[weilaidb@weilaidb-virtual-machine] ~/work/git/vscodeplugineg/linuxeasy
+$ vsce package
+ ERROR  @types/vscode ^1.80.0 greater than engines.vscode ^1.79.0. Consider upgrade engines.vscode or use an older @types/vscode version
 
 
-
+  "engines": {
+    "vscode": "^1.80.0"
+  },
 
 
 
