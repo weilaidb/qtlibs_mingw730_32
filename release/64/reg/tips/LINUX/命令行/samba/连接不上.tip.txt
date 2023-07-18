@@ -24,3 +24,8 @@
 
 8.还原为桥接模式
 删除window的网桥
+
+9./etc/samba/smb.conf 中未打开homes
+;[homes]
+
+可以使用testparm来查看参数

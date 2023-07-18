@@ -207,6 +207,8 @@ At this point you have successfully installed Node.js and npm using apt and the 
 
 
 
+8.window package run on linux no good, tips:
+Activating extension 'undefined_publisher.toeasy' failed: Cannot find module '/home/weilaidb/work/git/vscodeplugineg/linuxeasy/out/extension.js' Require stack: - /usr/share/code/resources/app/out/vs/loader.js - /usr/share/code/resources/app/out/bootstrap-amd.js - /usr/share/code/resources/app/out/bootstrap-fork.js - .
 
 
 
