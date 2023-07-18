@@ -228,4 +228,20 @@ $ vsce package
 
 
 
+10.无法找到模块“fs-extra”的声明文件。“/home/weilaidb/work/git/vscodeplugineg/linuxeasy/node_modules/fs-extra/lib/index.js”隐式拥有 "any" 类型。
+  尝试使用 `npm i --save-dev @types/fs-extra` (如果存在)，或者添加一个包含 `declare module 'fs-extra';` 的新声明(.d.ts)文件ts(7016)
+
+
+npm i --save-dev @types/fs-extra
+
+11.路径差异, windows和linux
+
+    // 注册命令
+    let commandOfGetFileState = vscode.commands.registerCommand('fs.getFileState', uri => {
+        // 文件路径
+		//windows
+        //const filePath = uri.path.substring(1);
+		const filePath = uri.path.toLocaleString();
+		console.log("uri:" + uri.path.toLocaleString());
+
 
