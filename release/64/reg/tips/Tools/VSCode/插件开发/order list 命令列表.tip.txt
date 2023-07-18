@@ -141,7 +141,7 @@ N_NODE_MIRROR=${N_NODE_MIRROR:-${NODE_MIRROR:-https://nodejs.org/dist}} 改成
 N_NODE_MIRROR=${N_NODE_MIRROR:-${NODE_MIRROR:-https://npm.taobao.org/mirrors/node}}
 
 
-7.npm 删除全部依赖包
+7.npm 删除全部依赖包后，npm执行报错
 #ok
 rm -rf  /usr/local/lib/node_modules
 
@@ -175,8 +175,35 @@ rm -rf  /usr/local/lib/node_modules
 原文链接：https://blog.csdn.net/DarlingYL/article/details/120972047
 
 
+sudo apt remove libnode72
 
 
+Option 2 — Installing Node.js with Apt Using a NodeSource PPA
+To install a different version of Node.js, you can use a PPA (personal package archive) maintained by NodeSource. These PPAs have more versions of Node.js available than the official Ubuntu repositories. Node.js v14, v16, and v18 are available as of the time of writing.
+
+First, we will install the PPA in order to get access to its packages. From your home directory, use curl to retrieve the installation script for your preferred version, making sure to replace 18.x with your preferred version string (if different).
+
+cd ~
+curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
+Refer to the NodeSource documentation for more information on the available versions.
+
+You can inspect the contents of the downloaded script with nano (or your preferred text editor):
+
+nano nodesource_setup.sh
+Running third party shell scripts is not always considered a best practice, but in this case, NodeSource implements their own logic in order to ensure the correct commands are being passed to your package manager based on distro and version requirements. If you are satisfied that the script is safe to run, exit your editor, then run the script with sudo:
+
+sudo bash nodesource_setup.sh
+The PPA will be added to your configuration and your local package cache will be updated automatically. You can now install the Node.js package in the same way you did in the previous section. It may be a good idea to fully remove your older Node.js packages before installing the new version, by using sudo apt remove nodejs npm. This will not affect your configurations at all, only the installed versions. Third party PPAs don’t always package their software in a way that works as a direct upgrade over stock packages, and if you have trouble, you can always try to revert to a clean slate.
+
+sudo apt install nodejs
+Verify that you’ve installed the new version by running node with the -v version flag:
+
+node -v
+Output
+v18.7.0
+The NodeSource nodejs package contains both the node binary and npm, so you don’t need to install npm separately.
+
+At this point you have successfully installed Node.js and npm using apt and the NodeSource PPA. The next section will show how to use the Node Version Manager to install and manage multiple versions of Node.js.
 
 
 
