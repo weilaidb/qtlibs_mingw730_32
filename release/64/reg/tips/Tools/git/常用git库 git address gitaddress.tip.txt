@@ -165,6 +165,9 @@ https://gitee.com/erzhongxmu/JEEWMS.git
 git@github.com:layui/layui.git
 
 
+https://gitee.com/zqylzcwcxy/vscode-extension-translate/blob/master/src/extension.ts
+
+
 
 
 本地库:
