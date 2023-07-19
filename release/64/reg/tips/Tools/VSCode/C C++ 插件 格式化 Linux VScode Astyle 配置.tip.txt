@@ -1,0 +1,80 @@
+https://blog.csdn.net/qq_27114397/article/details/81980444
+
+
+
+
+
+Linux VScode Astyle 配置
+
+InfiniteYuan
+
+于 2018-08-23 14:33:05 发布
+
+2363
+ 收藏 3
+分类专栏： Linux 文章标签： Astyle VScode ubuntu
+版权
+
+Linux
+专栏收录该内容
+2 篇文章0 订阅
+订阅专栏
+Linux VScode Astyle 配置
+Astyle
+linux 终端下安装 astyle :
+
+sudo apt-get install astyle
+
+Artistic Style
+
+安装 Astyle 插件
+在 VS Extensions(Ctrl+Shift+S) 中搜索 Astyle ,　并安装 Astyle．
+
+在配置中进行配置
+按下 Ctrl+Shift+P
+输入选择 Preferences：Open Settings(JSON)
+添加以下设置
+    "astyle.executable": "astyle",
+    // "astyle.astylerc": "${workspaceRoot}/.vscode/astylerc", //此处默认是```$HOME/.astylerc```(不填)
+    "astyle.additional_languages": [
+        "c",
+        "cpp",
+    ],
+    "astyle.cmd_options": [
+        "--style=otbs",
+        "--indent=spaces=4",
+        "--convert-tabs",
+        "--align-pointer=name",
+        "--align-reference=name",
+        "--keep-one-line-statements",
+        "--pad-header",
+        "--pad-oper",
+    ],//(命令可以自己选择)
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+命令选项
+
+使用 Astyle
+使用 Ctrl+Shift+I 既可以格式化代码.
+
+NOTE: 可能需要输入两次 Ctrl+Shift+I 命令
+————————————————
+版权声明：本文为CSDN博主「InfiniteYuan」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_27114397/article/details/81980444
+
+
+
