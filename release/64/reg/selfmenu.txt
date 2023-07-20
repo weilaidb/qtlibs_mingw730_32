@@ -68,6 +68,10 @@ API Manual/TypeScript/TypeScript 循环
 API Manual/TypeScript/TypeScript 教程
 API Manual/TypeScript/TypeScript 条件语句
 API Manual/TypeScript/TypeScript 运算符
+API Manual/Vscode/array iterator
+API Manual/Vscode/extension-guides-articles
+API Manual/Vscode/readContent
+API Manual/Vscode/readContentByUri
 API Manual/usr/errno
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
@@ -3029,6 +3033,7 @@ Tools/VSCode/插件开发/VSCode插件开发梳理
 Tools/VSCode/插件开发/extension.js
 Tools/VSCode/插件开发/generate/clipBoard
 Tools/VSCode/插件开发/generate/clipBoard insertText (disposable)
+Tools/VSCode/插件开发/generate/clipBoard insertText title(disposable)
 Tools/VSCode/插件开发/know/VSCode插件如何新建右键子菜单
 Tools/VSCode/插件开发/order list 命令列表
 Tools/VSCode/插件开发/package.json
