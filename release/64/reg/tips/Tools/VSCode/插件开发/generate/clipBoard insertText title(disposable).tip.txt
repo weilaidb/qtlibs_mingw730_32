@@ -1,4 +1,6 @@
 【command;title;let名称(无disposable_);函数名称】
+clipboard.generate.tofiletail;add clipboard text to file tail;tofiletail;makeToFileTail
+
 fs.makeTestFCaseSetNameSame;gtest TEST_F用例集名相同;TestFCaseSetNameSame;makeTestFCaseSetNameSame
 
 

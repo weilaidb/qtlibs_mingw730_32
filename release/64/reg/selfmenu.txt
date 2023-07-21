@@ -68,10 +68,13 @@ API Manual/TypeScript/TypeScript 循环
 API Manual/TypeScript/TypeScript 教程
 API Manual/TypeScript/TypeScript 条件语句
 API Manual/TypeScript/TypeScript 运算符
+API Manual/Vscode/activeTextEditor 内容全部替换
+API Manual/Vscode/activeTextEditor 末尾追加
 API Manual/Vscode/array iterator
 API Manual/Vscode/extension-guides-articles
 API Manual/Vscode/readContent
 API Manual/Vscode/readContentByUri
+API Manual/Vscode/regexp replace
 API Manual/usr/errno
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
