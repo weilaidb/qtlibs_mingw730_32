@@ -75,6 +75,7 @@ API Manual/Vscode/extension-guides-articles
 API Manual/Vscode/readContent
 API Manual/Vscode/readContentByUri
 API Manual/Vscode/regexp replace
+API Manual/Vscode/workspace 所有文件列表
 API Manual/usr/errno
 Algorithm 算法/从中间某处排序字符串
 Algorithm 算法/大数进制转换
