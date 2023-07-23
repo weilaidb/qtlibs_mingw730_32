@@ -71,7 +71,9 @@ API Manual/TypeScript/TypeScript 运算符
 API Manual/Vscode/activeTextEditor 内容全部替换
 API Manual/Vscode/activeTextEditor 末尾追加
 API Manual/Vscode/array iterator
+API Manual/Vscode/clipboard text
 API Manual/Vscode/extension-guides-articles
+API Manual/Vscode/nodejs 判断是文件夹还是文件
 API Manual/Vscode/readContent
 API Manual/Vscode/readContentByUri
 API Manual/Vscode/regexp replace
