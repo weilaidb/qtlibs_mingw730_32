@@ -17,6 +17,7 @@ npm install -g typescript
 
 npm install -g fs fs-extra vscode
 npm install -g vs 
+npm install i jsonc-parser
 
 下载 n 这个用于更新 node 版本的工具
 sudo npm install n -g
