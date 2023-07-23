@@ -2400,6 +2400,8 @@ Makefile/条件判断/ifeq
 Makefile/条件判断/ifndef
 Makefile/条件判断/ifneq
 Makefile/模式变量
+NodeJS/Buffer(缓冲区)
+NodeJS/Stream(流)
 OS/Centos/8.3.2011
 OS/Centos/8.3.2011 problem/samba Unit smb.service not found
 OS/Centos/8.3.2011 python(abi)
