@@ -38,4 +38,5 @@ Vim
 头文件和源文件切换
 Swicher  （Alt+O）
 
-
+#在多选的文件上查找
+Find and Transform
