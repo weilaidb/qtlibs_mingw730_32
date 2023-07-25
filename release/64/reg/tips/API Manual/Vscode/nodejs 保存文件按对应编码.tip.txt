@@ -1,0 +1,75 @@
+☆ API名称
+Vscode/nodejs 保存文件按对应编码
+
+☆ 简介
+
+
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+exports.writeFile = writeFile;
+function writeFileExt(filePath, writeContent, encoding) {
+    // 第一个参数：文件路径
+    // 第二个参数：文件内容
+    // 第三个参数：回调函数
+    //    成功：
+    //      文件写入成功
+    //      error 是 null
+    //    失败：
+    //      文件写入失败
+    //      error 就是错误对象
+    if (encoding.toLowerCase().startsWith("utf-8")) {
+        fs.writeFile(filePath, writeContent, function (error) {
+            if (error) {
+                console.log("写入失败");
+            }
+            else {
+                console.log("写入成功了");
+            }
+        });
+    }
+    else {
+        // 把中文转换成字节数组
+        var arr = iconv.encode(writeContent, "gbk");
+        fs.writeFile(filePath, arr, function (error) {
+            if (error) {
+                console.log("写入失败");
+            }
+            else {
+                console.log("写入成功了");
+            }
+        });
+    }
+}
+
+
+☆ 限制说明
+ API的调用限制说明。
+
+☆ 安全说明
+ API的安全说明。
+
+☆ 更新日志
+ | 版本号 | 更新内容 |
+| ----- | ---- |
+| 1.0   | 版本1.0的更新内容 |
+
+☆ 支持情况
+ API的支持情况。
+
+☆ 联系方式
+ API提供商的联系方式。
+
+☆提交日期
+2023-07-25 08:34:05
+========================================================================
+========================================================================

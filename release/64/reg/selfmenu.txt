@@ -9,6 +9,7 @@ API Manual/FFmpeg/macros/AVERROR
 API Manual/FFmpeg/macros/AV_JOIN
 API Manual/FFmpeg/macros/AV_STRINGIFY
 API Manual/FFmpeg/macros/FFALIGN
+API Manual/NodeJS/iconv-lite/encode
 API Manual/Python/file.File对象的属性
 API Manual/Python/file.close
 API Manual/Python/file.fileno
@@ -73,6 +74,7 @@ API Manual/Vscode/activeTextEditor 末尾追加
 API Manual/Vscode/array iterator
 API Manual/Vscode/clipboard text
 API Manual/Vscode/extension-guides-articles
+API Manual/Vscode/nodejs 保存文件按对应编码
 API Manual/Vscode/nodejs 判断是文件夹还是文件
 API Manual/Vscode/readContent
 API Manual/Vscode/readContentByUri
