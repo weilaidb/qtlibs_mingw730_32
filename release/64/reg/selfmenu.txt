@@ -76,6 +76,7 @@ API Manual/Vscode/clipboard text
 API Manual/Vscode/extension-guides-articles
 API Manual/Vscode/nodejs 保存文件按对应编码
 API Manual/Vscode/nodejs 判断是文件夹还是文件
+API Manual/Vscode/nodejs 编码 解码 编解码
 API Manual/Vscode/readContent
 API Manual/Vscode/readContentByUri
 API Manual/Vscode/regexp replace

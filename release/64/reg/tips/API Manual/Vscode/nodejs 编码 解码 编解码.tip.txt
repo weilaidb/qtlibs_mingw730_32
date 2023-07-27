@@ -1,0 +1,206 @@
+
+编码
+
+解码
+
+热门频道
+
+首页
+
+
+博客
+
+
+研修院
+
+
+VIP
+
+
+APP
+
+
+问答
+
+
+下载
+
+
+社区
+
+推荐频道
+
+活动
+
+
+招聘
+
+
+专题
+
+打开CSDN APP
+Copyright © 1999-2020, CSDN.NET, All Rights Reserved
+
+
+打开APP
+
+Nodejs进阶：服务端字符编解码&乱码处理 转载
+ 2020-06-16 09:23:04
+
+ruanhongbiao 
+
+码龄11年
+
+关注
+写在前面
+在web服务端开发中，字符的编解码几乎每天都要打交道。编解码一旦处理不当，就会出现令人头疼的乱码问题。
+
+不少从事node服务端开发的同学，由于对字符编码码相关知识了解不足，遇到问题时，经常会一筹莫展，花大量的时间在排查、解决问题。
+
+文本先对字符编解码的基础知识进行简单介绍，然后举例说明如何在node中进行编解码，最后是服务端的代码案例。本文相关代码示例可在这里找到。
+
+关于字符编解码
+在网络通信的过程中，传输的都是二进制的比特位，不管发送的内容是文本还是图片，采用的语言是中文还是英文。
+
+举个例子，客户端向服务端发送"你好"。
+
+客户端 --- 你好 ---> 服务端
+
+ 这中间包含了两个关键步骤，分别对应的是编码、解码。
+
+客户端：将"你好"这个字符串，编码成计算机网络需要的二进制比特位。
+服务端：将接收到的二进制比特位，解码成"你好"这个字符串。
+总结一下：
+
+编码：将需要传送的数据，转成对应的二进制比特位。
+解码：将二进制比特位，转成原始的数据。
+上面有些重要的技术细节没有提到，答案在下一小节。
+
+客户端怎么知道"你好"这个字符对应的比特位是多少？
+服务端收到二进制比特位之后，怎么知道对应的字符串是什么？
+关于字符集和字符编码
+上面提到字符、二进制的转换问题。既然两者可以互相转换，也就是说存在明确的转换规则，可以实现字符<->二进制的相互转换。
+
+这里提到的转换规则，其实就是我们经常听到的字符集&字符编码。
+
+字符集是一系列字符（文字、标点符号等）的集合。字符集有很多，常见的有ASCII、Unicode、GBK等。不同字符集主要的区别在于包含字符个数的不同。
+
+了解了字符集的概念后，接下来介绍下字符编码。
+
+字符集告诉我们支持哪些字符，但具体字符怎么编码，是由字符编码决定的。比如Unicode字符集，支持的字符编码有UTF8(常用)、UTF16、UTF32。
+
+概括一下：
+
+字符集：字符的集合，不同字符集包含的字符数不同。
+字符编码：字符集中字符的实际编码方式。
+一个字符集可能有多种字符编码方式。
+可以把字符编码看成一个映射表，客户端、服务端就是根据这个映射表，来实现字符跟二进制的编解码转换。
+
+举个例子，"你"这个字符，在UTF8编码中，占据三个字节0xe4 0xbd 0xa0，而在GBK编码中，占据两个字节0xc4 0xe3。
+
+字符编解码例子
+上面已经提到了字符编解码所需的基础知识。下面我们看一个简单的例子，这里借助了icon-lite这个库来帮助我们实现编解码的操作。
+
+可以看到，在字符编码时，我们采用了gbk。在解码时，如果同样采用gbk，可以得到原始的字符。而当我们解码时采用utf8时，则出现了乱码。
+
+实际例子：服务端编解码
+通常我们需要处理编解码的场景有文件读写、网络请求处理。这里距网络请求的例子，介绍如何在服务端进行编解码。
+
+假设我们运行着如下http服务，监听来自客户端的请求。客户端传输数据时采用了gbk编码，而服务端默认采用的是utf8编码。
+
+如果此时采用默认的utf8对请求进行解码，就会出现乱码，因此需要特殊处理。
+
+服务端代码如下（为简化代码，这里跳过了请求方法、请求编码的判断）
+
+对应的客户端代码如下：
+
+相关链接
+Nodejs学习笔记
+https://github.com/chyingp/nodejs-learning-guide
+
+iconv-lite
+https://github.com/ashtuchkin/iconv-lite
+
+原文链接：https://www.cnblogs.com/chyingp/p/charset-enc-dec.html
+点击阅读全文 
+打开CSDN APP，看更多技术内容
+
+[encode]iconv文件编码转换_iconv.encode_Léon's Blog的博客-CSDN博 ...
+(1) 利用iconv函数族进行编码转换 iconv函数族的头文件是iconv.h,使用前需包含之。 #include <iconv.h> iconv函数族有三个函数,原型如下: iconv_t iconv_open(const char *tocode, const char *fromcode); 此函数说明将要进行哪...
+继续访问
+iconv文件格式转换_iconv格式转换_cws1214的博客
+iconv -f $from_encoding -t $to_encoding $file [Ctrl+A Select All] 下载以后保存为encode.sh,添加可执行权限,并转换一个文件试试。 $ chmod +x encode.sh $ ./encode.sh UTF8 kernel/sys.c ...
+继续访问
+iconv-lite：以纯javascript转换字符编码
+iconv-lite：纯JS字符编码转换 无需本机代码编译。 快速安装，可在Windows和类的沙盒环境中使用。 用于诸如 ， ， ， 等流行项目。 比更快（有关性能比较，请参见下文）。 直观的编码/解码API，包括流支持。 通过在浏览器中使用或 （〜180KB的gzip用缓冲液垫片包括压缩）。 包含打字稿。 支持React Native（需要安装stream模块以启用Streaming API）。 许可证：麻省理工学院。 用法 基本API var iconv = require ( "iconv-lite" ) ; // Convert from an encoded buffer to a js string. str = iconv . decode ( Buffer . from ( [ 0x68 , 0x65 , 0x6c , 0x6c , 0x6f ] ) , "win1251" ) ; // Convert from a js string to an encoded buffer. buf = iconv . encode ( "Sample i
+iconv-lite，JS字符串编解码工具
+编码：字符串到二进制数据转换的过程。解码：二进制数据到字符串转换的过程。 iconv-lite: Pure JS character encoding conversion 多种类型字符串（包括gbk，utf8）的编码与解码。 安装： npm install iconv-lite --save 使用： //iconv-lite引用 var iconv = require('iconv-lite'); //gbk let gbk_buf = iconv.encode("你好我来自vue！", 'gb.
+继续访问
+学习PHP中的iconv扩展相关函数_php td_iconv_chinaherolts2008的博客...
+首先,就是我们可以设置 iconv 扩展中默认定义的输出和输出字符编码格式。 iconv_set_encoding("internal_encoding","UTF-8"); //Deprecated: iconv_set_encoding():Useoficonv.internal_encodingisdeprecated ...
+继续访问
+关于iconv('gbk', 'utf-8',$str)会调失字符的原因
+iconv('gbk', 'utf-8',$str)调失字符原因
+继续访问
+编码格式转换方法
+控制台编码格式修改 https://blog.csdn.net/runAndRun/article/details/103072938?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogComm
+继续访问
+
+iconv 文件编码转换
+linux shell 配置文件中默认的字符集编码为UTF－8 。UTF－8是unicode的一种表达方式，gb2312是和unicode都是字符的编码方式，所以说gb2312跟utf－8的概念应该不是一个层次上的。在LINUX上进行编码转换时,可以利用iconv命令实现,这是针对文件的,即将指定文件从一种编码转换为另一种编码。  查了下iconv命令用法如下： iconv [选项...] [
+继续访问
+最新发布 javascript 编码转换
+js编码转换
+继续访问
+nodejs应用之中文乱码问题（1）- 使用iconv-lite类库将gbk文件转为utf8
+专注js栈技术（web前端、chrome扩展、nodejs、mongodb、快应用、微信小程序），整合多种编程语言（python、bat等），秉承工匠精神，不求做大做强，始终致力于用技术改善日常工作和生活。 一、本文目标 提供简洁可靠的方案，将gbk编码的文本转换为utf8编码，解决可能会出现的中文乱码问题。 二、适合的读者 1.具备基本的nodejs知识，知道如何使用npm下载类库 2.有解...
+继续访问
+Node爬虫利用Jquery解析元素，利用 iconv.decode之后还是乱码
+最近在学习Node爬虫，其中就用到了Jquery解析页面元素，在爬取页面的时候利用 iconv.decode之后还是乱码，那么首先要搞清楚下面的内容问题就迎刃而解了。 const Decodebody = iconv.decode(body, 'gb2312') 这行代码的意思是对爬虫获取得到的response响应内容进行解码。 const $ = cheerio.load(Decodebody ) 这行代码的意思是将解析得到的内容转换为Dom树，方便利用Jquery进行解析。 问题： 利用iconv.de
+继续访问
+Node.js与PHP之间通过RSA算法实现签名验证
+Node.js与PHP之间通过RSA算法实现签名验证做过web开发的同学都知道我们经常在接口间交互的时候为了防止数据伪造并 且保证安全性我们会采用签名的方式进行验证， 签名的算法我们一般选择RSA非对称加密算法。想了解更多签名与RSA算法知识可以去查阅PKCS#1、PKCS#7相关资料。笔者在做利用Node.js做单点登录的时候涉及到了Node.js项目中产生的签名，然后需要到PHP项目中去验签，
+继续访问
+nodejs判断文件的字符集编码
+----------------------------------- 通过前2字节判断： 编码 16进制数 unicode FFFE或FEFF utf-8 EFBB 代码： var fs=require('fs') fs.readFile('code.txt',function(err,buffer){ if(buffer[0]==...
+继续访问
+Nodejs进阶之服务端字符编解码和乱码处理
+主要介绍了Nodejs进阶之服务端字符编解码和乱码处理,具有一定的参考价值，感兴趣的小伙伴们可以参考一下
+Nodejs进阶：基于express+multer的文件上传实例
+本篇文章主要介绍了基于express+multer的文件上传实例，现在分享给大家，也给大家做个参考，感兴趣的小伙伴们可以参考一下。
+Nodejs进阶：核心模块net入门学习与实例讲解
+本篇文章主要是介绍了Nodejs之NET模块，net模块是同样是nodejs的核心模块，具有一定的参考价值，感兴趣的小伙伴们可以参考一下。
+Nodejs进阶：express+session实现简易登录身份认证
+本篇文章主要介绍了Nodejs进阶：express+session实现简易身份认证示例，非常具有实用价值，需要的朋友可以参考下
+Nodejs进阶：如何将图片转成datauri嵌入到网页中去实例
+主要介绍了Nodejs进阶：如何将图片转成datauri嵌入到网页中去,有兴趣的可以了解一下。
+结合file和iconv命令转换文件的字符编码类型
+http://hi.baidu.com/netwrom/blog/item/8885f31ef0d09ae7e1fe0b1c.html 在很多类unix平台上都有一个iconv工具，可以用来转换字符编码；而对于普通的文本文件，file命令可以用来检测某个文件的字符编码类型，结合两者就可以非常方便地把一个未知编码类型的文本文件用某一指定编码类型进行编码。 ...
+继续访问
+PHP编码转换之iconv
+PHP编码转换之iconv
+继续访问
+NPM酷库039：iconv-lite，字符串编码转换
+NPM酷库，每天两分钟，了解一个流行NPM库。· 我们的程序与外部系统对接时，输入输出的数据经常需要做编码转换，因为JavaScript采用的编码是Unicode，而外部系统的数据编码可能是多种多样的，比如Windows上的汉字编码使用的是GBK。 准确地说，JavaScript的编码采用的是UCS-2，这是一个很古老的（1990年诞生...
+继续访问
+npm iconv utf8 转 gbk、gb2312 bug
+npm iconv 模块在转换中文路径时，有时候会在末尾添加 /r 或 /r/n ， 导致打开文件失败。 解决方法是： 从 Buffer 末尾搜索/r 或/n，替换为0 。
+继续访问
+nodejs转换文件编码，使用iconv-lite插件
+const fs = require("fs"); const path = require("path"); const os = require("os"); const platform = os.platform(); // npm转码插件 const iconv = require("iconv-lite"); // 注意：fs模块一般情况下默认以utf8格式输入输出 // 判断文件有无内容 function isEmpty(filepath) { try { let content
+继续访问
+iconv.encode
+nodejs
+写评论
+
+评论
+
+1
+
+点赞
+
+踩
+
+分享
+
+前往
