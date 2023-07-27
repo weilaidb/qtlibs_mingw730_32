@@ -1,7 +1,40 @@
-
 编码
 
 解码
+
+//encoding:原始数据转换成对应编码
+//decoding:已经编码的数据按编码格式反解析原始数据
+/**
+ *文件中保存的内容是已经编码过的内容，即为UTF-8或GBK编码的二进制数据
+ *以二进制形式读取出来后，需求按照与文件编码一致的格式进行解码，才能恢复出来原始数据。
+ * @param buf：从文件中以二进制形式读取出来的数据
+ * @param encoding：文件格式编码
+ * @returns
+ */
+//encoding:原始数据转换成对应编码
+//decoding:已经编码的数据按编码格式反解析原始数据
+/**
+ *文件中保存的内容是已经编码过的内容，即为UTF-8或GBK编码的二进制数据
+ *以二进制形式读取出来后，需求按照与文件编码一致的格式进行解码，才能恢复出来原始数据。
+ * @param buf：从文件中以二进制形式读取出来的数据
+ * @param encoding：文件格式编码
+ * @returns
+ */
+export function getDecodeBufByFileEncoding(buf: string, encoding: string) {
+    if (encoding.toLowerCase().startsWith("utf-8")) {
+        return iconv.decode(Buffer.from(buf, "binary"), "utf-8");
+    } else {
+        return iconv.decode(Buffer.from(buf, "binary"), "gbk");
+    }
+}
+
+
+思路：
+1.从文件中以二进制方式读取数据
+2.获取文件的编码形式
+3.解码二进制数据，以文件编码方式
+4.保存文件时，需要将原始数据编码成按编码格式的二进制数据。
+
 
 热门频道
 
