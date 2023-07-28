@@ -2,6 +2,14 @@
 clipboard.generate.replaceregexp;剪切板正则替换;replaceregexp;ReplaceRegexp
 
 
+
+extension.showInputBox;弹出输入框;showInputBox;showInputBox
+
+
+
+clipboard.generate.replaceregexp;剪切板正则替换;replaceregexp;ReplaceRegexp
+
+
 clipboard.generate.tofiletail;add clipboard text to file tail;tofiletail;makeToFileTail
 
 fs.makeTestFCaseSetNameSame;gtest TEST_F用例集名相同;TestFCaseSetNameSame;makeTestFCaseSetNameSame
