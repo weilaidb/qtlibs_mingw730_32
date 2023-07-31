@@ -1,3 +1,59 @@
 Network error:Software caused connection abort
 
 --更换ssh - key
+
+
+D:\Program Files\Git\etc\ssh\sshd_config
+#Compression delayed
+#ClientAliveInterval 60
+#ClientAliveCountMax 3
+#UseDNS no
+
+
+
+
+解决ssh 连接报错 network error software caused connection abort 自动中断
+
+zyp361161
+
+于 2020-12-10 09:57:51 发布
+
+21019
+ 收藏 33
+文章标签： linux ssh
+版权
+1.在linux服务器端设置
+vi /etc/ssh/sshd_config
+
+找到 TCPKeepAlive yes把前面的#去掉
+
+找到ClientAliveInterval 参数去掉前面的#
+
+ClientAliveInterval 60  把后面的0改成60
+
+ClientAliveInterval指定了服务器端向客户端请求消息的时间间隔, 默认是0，不发送。而ClientAliveInterval 60表示每分钟发送一次，然后客户端响应，这样就保持长连接了。这里比较怪的地方是：不是客户端主动发起保持连接的请求(如FTerm, CTerm等),而是需要服务器先主动。
+
+另外，至于ClientAliveCountMax，使用默认值3即可。ClientAliveCountMax表示服务器发出请求后客户端没有响应的次数达到一定值，就自动断开，正常情况下，客户端不会不响应。
+ 
+
+2.putty客户端设置
+在 Connection 里面有个 Seconds between keepaliaves，这里就是每间隔指定的秒数，就给服务器发送一个空的数据包，来保持连接。以免登录的主机那边在长时间没接到数据后，会自动断开 SSH 的连接
+
+
+
+上图中，默认输入 0 是禁用保持连接，在这里我习惯的设置了 60。两个复选框都保持默认选中。
+
+ 
+
+3.使用mobaxterm连接服务器设置
+mobaxterm是一个很不错的远程连接工具，功能也很强大。在连接到远程服务器时，如果隔一段时间不进行操作的话，会出现中断连接的现象。解决这个问题，可以在settings设置一下，就可以解决无操作断连的问题。
+
+操作如下
+
+
+
+齐活，把ssh中的keepalive勾选上就完事啦。
+————————————————
+版权声明：本文为CSDN博主「zyp361161」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/zyp361161/article/details/110946904
+
