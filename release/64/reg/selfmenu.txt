@@ -80,6 +80,7 @@ API Manual/Vscode/nodejs 编码 解码 编解码
 API Manual/Vscode/readContent
 API Manual/Vscode/readContentByUri
 API Manual/Vscode/regexp replace
+API Manual/Vscode/regexp replace all替换所有
 API Manual/Vscode/string split
 API Manual/Vscode/workspace 所有文件列表
 API Manual/usr/errno

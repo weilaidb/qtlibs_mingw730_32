@@ -1,0 +1,44 @@
+☆ API名称
+Vscode/regexp replace all替换所有
+
+☆ 简介
+使用RegExp第二个参数gi来控制
+
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+// var writeContent = decodeBuf + "\n" + clipBoardText;
+var writeContent = decodeBuf.replace(RegExp(userInput,"gi"), clipBoardText);
+console.log("writeContent:\n" + writeContent);
+
+
+☆ 限制说明
+ API的调用限制说明。
+
+☆ 安全说明
+ API的安全说明。
+
+☆ 更新日志
+ | 版本号 | 更新内容 |
+| ----- | ---- |
+| 1.0   | 版本1.0的更新内容 |
+
+☆ 支持情况
+ API的支持情况。
+
+☆ 联系方式
+ API提供商的联系方式。
+
+☆提交日期
+2023-07-31 23:31:37
+========================================================================
+========================================================================
