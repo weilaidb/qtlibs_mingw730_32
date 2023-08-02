@@ -6,6 +6,16 @@ dhcp属于udp协议
 
 
 
+DHCP NAK：
+服务器对客户端的 DHCP REQUEST 报文的拒绝响应报文，比如服务器对客户
+端分配的 IP 地址已超过使用租借期限（服务器没有找到相应的租约记录）或者由于某些原
+因无法正常分配 IP 地址，则发送 DHCP NAK 报文作为应答（客户端移到了另一个新的网络）。
+通知 DHCP 客户端无法分配合适 IP 地址。DHCP 客户端需要重新发送
+DHCP DISCOVERY 报文
+来申请新的 IP 地址。
+
+
+
 
 Frame 20731: 590 bytes on wire (4720 bits), 590 bytes captured (4720 bits) on interface 0
     Interface id: 0 (\Device\NPF_{0D133629-3E86-4133-9D89-4F7DF2E1C4F9})

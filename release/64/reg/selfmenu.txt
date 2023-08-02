@@ -322,6 +322,7 @@ BAT/网络network/知识点/ATM协议
 BAT/网络network/知识点/BGP 边界网关协议
 BAT/网络network/知识点/BGP漫谈
 BAT/网络network/知识点/CE
+BAT/网络network/知识点/DHCP八种报文详解
 BAT/网络network/知识点/HDLC
 BAT/网络network/知识点/IP协议号大全
 BAT/网络network/知识点/IP地址 ipaddress

@@ -1,0 +1,64 @@
+DHCP八种报文详解
+
+置顶
+懒惰会杀死你
+
+于 2019-07-04 10:10:39 发布
+
+43922
+ 收藏 145
+分类专栏： 网络工程师 文章标签： DHCP八种报文详解 dhcp报文 dhcp详解
+
+网络工程师
+专栏收录该内容
+6 篇文章4 订阅
+订阅专栏
+DHCP 报文分为 8 种类型，DHCP 服务器和客户端之间通过这 8 种类型的报文进行通信。
+文章目录
+DHCP 报文分为 8 种类型，DHCP 服务器和客户端之间通过这 8 种类型的报文进行通信。
+DHCP DISCOVER：
+DHCP OFFER：
+DHCP REQUEST：此报文用于以下三种用途
+DHCP ACK：
+DHCP NAK：
+DHCP DECLINE：
+DHCP RELEASE：
+DHCP INFORM：
+DHCP DISCOVER：
+这是 DHCP 客户端首次登录网络时进行 DHCP 过程的第一个报文，用来寻找 DHCP 服务器。
+
+DHCP OFFER：
+DHCP服务器用来响应DHCP,DISCOVER报文，此报文携带了各种配置信息。
+
+DHCP REQUEST：此报文用于以下三种用途
+客户端初始化后，发送广播的 DHCP REQUEST 报文来回应服务器的 DHCP OFFER 报文。
+
+客户端重启初始化后，发送广播的 DHCP REQUEST 报文来确认先前被分配的 IP 地址等配置信息。
+
+当客户端已经和某个 IP 地址绑定后，发送 DHCP REQUEST 报文来延长 IP 地址的租期。
+
+DHCP ACK：
+服务器对客户端的 DHCP REQUEST 报文的确认响应报文，客户端收到此报文
+后，才真正获得了 IP 地址和相关的配置信息。
+
+DHCP NAK：
+服务器对客户端的 DHCP REQUEST 报文的拒绝响应报文，比如服务器对客户
+端分配的 IP 地址已超过使用租借期限（服务器没有找到相应的租约记录）或者由于某些原
+因无法正常分配 IP 地址，则发送 DHCP NAK 报文作为应答（客户端移到了另一个新的网络）。
+通知 DHCP 客户端无法分配合适 IP 地址。DHCP 客户端需要重新发送
+DHCP DISCOVERY 报文
+来申请新的 IP 地址。
+
+DHCP DECLINE：
+当客户端发现服务器分配给它的 IP 地址发生冲突时会通过发送此报文
+来通知服务器，并且会重新向服务器申请地址。
+
+DHCP RELEASE：
+客户端可通过发送此报文主动释放服务器分配给它的 IP 地址，当服务
+器收到此报文后，可将这个 IP 地址分配给其它的客户端。
+
+DHCP INFORM：
+客户端已经获得了 IP 地址，发送此报文的目的是为了从服务器获得其
+他的一些网络配置信息，比如网关地址、DNS 服务器地址等。
+以上 8 种类型报文的格式相同，只是某些字段的取值不同。DHCP 报文格式基于 BOOTP
+的报文格式。
