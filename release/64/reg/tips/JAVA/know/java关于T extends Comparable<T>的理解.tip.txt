@@ -1,0 +1,119 @@
+java关于T extends Comparable<T>的理解
+
+左高右低
+
+于 2019-03-02 00:08:28 发布
+
+3985
+ 收藏 12
+分类专栏： java 文章标签： java
+版权
+
+java
+专栏收录该内容
+25 篇文章1 订阅
+订阅专栏
+下面这段程序中就用到了T extends Comparable<? super T>这个写法,extends表示上限,super表示下限,可是总感觉为什么合在一起那么复杂呢?为什么不能用T extends Comparable< T >来表示?
+
+ /**
+     * 取最小值
+     *
+     * @param <T>         元素类型
+     * @param numberArray 链表
+     * @return 最小值
+     */
+    public static <T extends Comparable<? super T>> T min(List<T> numberArray) {
+        if (numberArray == null) {
+            return null;
+        }
+        int len = numberArray.size();
+        T min = numberArray.get(0);
+        for (int i = 0; i < len; i++) {
+            if (min.compareTo(numberArray.get(i)) > 0) {
+                min = numberArray.get(i);
+            }
+        }
+        return min;
+    }
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+在查找资料后我知道了答案,用 T extends Comparable<? super T>虽然看上去麻烦,可是它不仅可以用于原来的类,同时也作用于该类的所有子类,使用另外一种则会报错;
+当只写T extends Comparable< T>时,Boy就会因为不满足约束条件而报错,此时T为Boy但他却只有继承过来的Comparable< People>所有就不满足约束条件
+
+class People implements Comparable<People> {
+    String name;
+    int age;
+
+    public People(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public int compareTo(People o) {
+       return this.age - o.age;
+    }
+}
+
+class Boy extends People {
+    public Boy(String name, int age) {
+        super(name, age);
+    }
+}
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+这里要注意由于父类以及拥有了Comparable接口,所以让子类同样继承接口的方法是不可以的,以下是测试:
+
+ public static void main(String[] args) throws FileNotFoundException {
+        List<People> test0 = new ArrayList<>();
+        test0.add(new People("Lise", 18));
+        test0.add(new Boy("Ake", 15));
+
+        List<Boy> test1 = new ArrayList<>();
+        test1.add(new Boy("Mark", 18));
+        test1.add(new Boy("Sandy", 15));
+
+        System.out.println(min(test0));
+        System.out.println(min(test1));//为T extends Comparable< T>时编译报错
+    }
+————————————————
+版权声明：本文为CSDN博主「左高右低」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/zjgyjd/article/details/88071115

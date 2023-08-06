@@ -1642,6 +1642,10 @@ JAVA/know/Serializable 接口（序列化）
 JAVA/know/String转List示例（java） String[] List<String>转换
 JAVA/know/java ssh 连接之 jsch-0.1.55.jar 试用
 JAVA/know/java string replace和replaceAll的区别以及用法
+JAVA/know/java 中Class<?> JAVA泛型简析
+JAVA/know/java 中Class<?> Java 泛型
+JAVA/know/java 中Class<?> 括号中问号代表什么意思
+JAVA/know/java关于T extends Comparable<T>的理解
 JAVA/know/浅析 JSch - Java实现的SSH通讯包：jsch作用、4种认证方式、如何配置免密登录、ssh公钥检查机制及3种选项、如何实现sftp文件传输、maven依赖及具体使用示例代码
 JAVA/new/enter to br
 JAVA/new/implements interface
@@ -3673,6 +3677,7 @@ path路径/常用文件夹
 生活/礼物/新年礼物
 生活/社保/114网上预约挂号统一平台
 生活/社保/北京市社会保险经办机构
+生活/维修/断钉子如何取出来
 生活/购物/过节
 生活/贷款/中国银行APP 暂不支持提前还款
 生活/贷款/定金与订金

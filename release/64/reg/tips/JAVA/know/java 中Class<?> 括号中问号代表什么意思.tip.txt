@@ -1,0 +1,22 @@
+java 中Class<?> 括号中问号代表什么意思
+
+zi_jun
+
+于 2013-06-24 12:15:17 发布
+
+19262
+ 收藏 3
+分类专栏： java
+
+java
+专栏收录该内容
+107 篇文章0 订阅
+订阅专栏
+一楼
+泛型
+赞同
+二楼
+楼上不要乱说哈。 public final Class<?> getClass()返回此 Object 的运行时类。返回的 Class 对象是由所表示类的 static synchronized 方法锁定的对象。 ?代表〔直接继承Object或者间接继承〕的正在运行的类。 class A extends Date{ ... new A().getClass();//返回 Class<A> ...  
+三楼
+其实，一楼和二楼说的都正确，其实Java的泛型就是创建一个用类型作为参数的类。就象我们写类的方法一样，方法是这样的method(String str1,String str2 ),方法中参数str1、str2的值是可变的。而泛型也是一样的，这样写class Java_Generics＜K,V＞，这里边的K和V就象方法中的参数str1和str2,也是可变。 而 “？”则属于类型通配符的一种，举个例子： List＜String＞ a = new ArrayList＜String＞(); a.add(“String”); List＜?＞ b = a; System.out.println(a.get(0)); 这段代码没问题的，a.get(0)将返回一个Object。 其解释就是二楼所说的了~ 想了解更多关于泛型的知识，通过下面的链接查看： 
+http://blog.csdn.net/zi_jun/article/details/9160837

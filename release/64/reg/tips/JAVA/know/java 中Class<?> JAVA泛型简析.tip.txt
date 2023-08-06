@@ -1,0 +1,264 @@
+JAVA泛型简析
+
+zi_jun
+
+于 2013-06-24 12:14:31 发布
+
+3847
+ 收藏 14
+分类专栏： java
+
+java
+专栏收录该内容
+107 篇文章0 订阅
+订阅专栏
+泛型是JDK1.5支持的新功能之一，在目前的JAVA编程中被广泛的使用，下面我们就来看看泛型和它的属性。
+
+1、Java泛型
+
+　　其实Java的泛型就是创建一个用类型作为参数的类。就象我们写类的方法一样，方法是这样的method(String str1,String str2 ),方法中参数str1、str2的值是可变的。而泛型也是一样的，这样写class Java_Generics＜K,V＞，这里边的K和V就象方法中的参数str1和str2,也是可变。下面看看例子：
+
+//code list 1 
+import Java.util.Hashtable; 
+class TestGen0＜K,V＞｛ 
+　public Hashtable＜K,V＞ h=new Hashtable＜K,V＞(); 
+　public void put(K k, V v) ｛ 
+　　h.put(k,v); 
+　｝ 
+　public V get(K k) ｛ 
+　　return h.get(k); 
+　｝ 
+　public static void main(String args[])｛ 
+　　TestGen0＜String,String＞ t=new TestGen0＜String,String＞(); 
+　　t.put("key", "value"); 
+　　String s=t.get("key"); 
+　　System.out.println(s); 
+　｝ 
+｝ 
+
+
+
+　　正确输出:value
+
+　　这只是个例子（Java中集合框架都泛型化了，这里费了2遍事.），不过看看是不是创建一个用类型作为参数的类，参数是K，V，传入的“值”是String类型。这个类他没有特定的待处理型别，以前我们定义好了一个类，在输入输入参数有所固定，是什么型别的有要求，但是现在编写程序，完全可以不制定参数的类型，具体用的时候来确定，增加了程序的通用性，像是一个模板。
+
+　　呵呵，类似C++的模板（类似）。
+
+　　1.1. 泛型通配符
+
+　　下面我们先看看这些程序：
+
+//Code list 2 
+void TestGen0Medthod1(List l) ｛ 
+　for (Object o : l) 
+　　System.out.println(o); 
+｝ 
+
+
+
+　　看看这个方法有没有异议，这个方法会通过编译的，假如你传入String，就是这样List＜String＞。
+
+　　接着我们调用它,问题就出现了，我们将一个List＜String＞当作List传给了方法，JVM会给我们一个警告，说这个破坏了类型安全，因为从List中返回的都是Object类型的，而让我们再看看下面的方法。
+
+实际上，JVM并不会发出任何警告，也许发出警报，我没有看到。总而言之，使用Code list 2 当传入List<String> 的时候，是可以出结果的，完全正确的。
+
+我的测试代码如下：
+
+
+package com.testing;
+ 
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class Test {		
+	public static void main(String[] args) {
+		List<String> list = new ArrayList<String>();
+		list.add("123");
+		list.add("456");		
+		TestMethod(list);
+	}
+	
+	public static void TestMethod(List l){
+		for(Object o:l){
+			System.out.println(o);
+		}
+	}	
+}
+结果：
+123
+
+456
+
+
+
+
+
+//Code list 3 
+void TestGen0Medthod1(List＜String＞ l) ｛ 
+　for (Object o : l) 
+　　System.out.println(o); 
+｝
+
+ 
+
+　　因为这里的List＜String＞不是List＜Object＞的子类,不是String与Object的关系，就是说List＜String＞不隶属于list＜Object＞,他们不是继承关系，所以是不行的，这里的extends是表示限制的。
+
+　　类型通配符是很神奇的，List＜?＞这个你能为他做什么呢?怎么都是“？”，它似乎不确定，他总不能返回一个？作为类型的数据吧，是啊他是不会返回一个“？”来问程序员的？JVM会做简单的思考的，看看代码吧，更直观些。
+
+//code list 4 
+List＜String＞ l1 = new ArrayList＜String＞(); 
+li.add(“String”); 
+List＜?＞ l2 = l1; 
+System.out.println(l1.get(0)); 
+
+
+
+　　这段代码没问题的，l1.get(0)将返回一个Object。
+
+
+我认为上句话是不对的，l1.get(0) 将返回一个String，由于List中存放的所有数据均是String类型的，及List<String>。
+
+我的测试代码如下：
+
+
+package com.testing;
+ 
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class Test {		
+	public static void main(String[] args) {
+		List<String> list = new ArrayList<String>();
+		list.add("123");
+		list.add("456");	
+		
+		List<?> list2 = list;
+		System.out.println(list2.getClass());
+		System.out.println(list.get(0).getClass());
+		System.out.println(list2.get(0).getClass());
+	}	
+}
+
+结果：
+class java.util.ArrayList
+class java.lang.String
+class java.lang.String
+
+当上面的代码中的List<?> 改为：List 时候，结果不变。
+
+
+　　1.2. 编写泛型类要注意：
+
+　　1) 在定义一个泛型类的时候，在 “＜＞”之间定义形式类型参数，例如：“class TestGen＜K,V＞”，其中“K” , “V”不代表值，而是表示类型。
+
+　　2) 实例化泛型对象的时候，一定要在类名后面指定类型参数的值（类型），一共要有两次书写。例如：
+
+TestGen＜String,String＞ t=new TestGen＜String,String＞()；
+
+　　3) 泛型中＜K extends Object＞,extends并不代表继承，它是类型范围限制。
+
+
+4）在"<>"之间定义的类型参数，不能是基本数据类型，如不能是int ，应该是Integer。应该为相应的包装类。
+2、泛型与数据类型转换
+
+　　2.1. 消除类型转换
+
+　　上面的例子大家看到什么了，数据类型转换的代码不见了。在以前我们经常要书写以下代码，如：
+
+//code list 5 
+import Java.util.Hashtable; 
+class Test ｛ 
+　public static void main(String[] args) ｛ 
+　　Hashtable h = new Hashtable(); 
+　　h.put("key", "value"); 
+　　String s = (String)h.get("key"); 
+　　System.out.println(s); 
+　｝ 
+｝ 
+
+
+
+　　这个我们做了类型转换，是不是感觉很烦的，并且强制类型转换会带来潜在的危险，系统可能会抛一个ClassCastException异常信息。在JDK5.0中我们完全可以这么做，如：
+
+//code list 6 
+import Java.util.Hashtable; 
+class Test ｛ 
+　public static void main(String[] args) ｛ 
+　　Hashtable＜String,Integer＞ h = new Hashtable＜String,Integer＞ (); 
+　　h.put("key", new Integer(123)); 
+　　int s = h.get("key").intValue(); 
+　　System.out.println(s); 
+　｝ 
+｝ 
+
+
+
+　　这里我们使用泛化版本的HashMap,这样就不用我们来编写类型转换的代码了，类型转换的过程交给编译器来处理，是不是很方便，而且很安全。上面是String映射到String，也可以将Integer映射为String，只要写成HashTable＜Integer,String＞ h=new HashTable＜Integer,String＞();h.get(new Integer(0))返回value。果然很方便。
+
+　　2.2 自动解包装与自动包装的功能
+
+　　从上面有没有看到有点别扭啊，h.get(new Integer(123))这里的new Integer(123);好烦的，在JDK5.0之前我们只能忍着了，现在这种问题已经解决了，请看下面这个方法。我们传入一个int这一基本类别，然后再将i的值直接添加到List中，其实List是不能储存基本型别的，List中应该存储对象，这里编译器将int包装成Integer，然后添加到List中去。接着我们用List.get(0);来检索数据，并返回对象再将对象解包装成int。恩，JDK5.0给我们带来更多方便与安全。
+
+//Code list 7 
+public void autoBoxingUnboxing(int i) ｛ 
+　ArrayList＜Integer＞ L= new ArrayList＜Integer＞(); 
+　L.add(i); 
+　int a = L.get(0); 
+　System.out.println("The value of i is " + a); 
+｝ 
+
+
+
+　　2.3 限制泛型中类型参数的范围
+
+　　也许你已经发现在code list 1中的TestGen＜K,V＞这个泛型类,其中K,V可以是任意的型别。也许你有时候呢想限定一下K和V当然范围，怎么做呢？看看如下的代码：
+
+//Code list 8 
+class TestGen2＜K extents String,V extends Number＞ 
+｛ 
+　private V v=null; 
+　private K k=null; 
+　public void setV(V v)｛ 
+　　this.v=v; 
+　｝ 
+　public V getV()｛ 
+　　return this.v; 
+　｝ 
+　public void setK(K k)｛ 
+　　this.k=k; 
+　｝ 
+　public V getK()｛ 
+　　return this.k; 
+　｝ 
+　public static void main(String[] args) 
+　｛ 
+　　TestGen2＜String,Integer＞ t2=new TestGen2＜String,Integer＞(); 
+　　t2.setK(new String("String")); 
+　　t2.setV(new Integer(123)); 
+　　System.out.println(t2.getK()); 
+　　System.out.println(t2.getV()); 
+　｝ 
+｝
+
+
+ 
+
+　　 上边K的范围是＜=String ，V的范围是＜=Number，注意是“＜=”,对于K可以是String的，V当然也可以是Number，也可以是Integer,Float,Double,Byte等。看看下图也许能直观些请看上图A是上图类中的基类，A1，A2分别是A的子类，A2有2个子类分别是A2_1，A2_2。
+
+　　然后我们定义一个受限的泛型类class MyGen＜E extends A2＞,这个泛型的范围就是上图中兰色部分。
+
+　　这个是单一的限制，你也可以对类别多重限制，如下：
+
+class C＜T extends Comparable＜? super T＞ & Serializable＞
+
+　　我们来分析以下这句，T extends Comparable这个是对上限的限制，Comparable＜ super T＞这个是下限的限制，Serializable是第2个上限。一个指定的类型参数可以具有一个或多个上限。具有多重限制的类型参数可以用于访问它的每个限制的方法和域。
+
+　　2.4. 多态方法
+
+//Code list 9 
+class TestGen ｛ 
+　＜T extends Object＞ public static List＜T＞ make(T first) ｛ 
+　　return new List＜T＞(first); 
+　｝ 
+｝
+
