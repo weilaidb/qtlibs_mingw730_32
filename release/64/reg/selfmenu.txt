@@ -2143,6 +2143,7 @@ LINUX/know/epoll
 LINUX/know/find paths must precede expression
 LINUX/know/glibc/glibc unlink触发机制解析（pwn unlink）
 LINUX/know/glibc/glibc中malloc源码分析
+LINUX/know/linux ping测试如何指定网口
 LINUX/know/poll I/O多路复用
 LINUX/know/poll I/O多路复用 test
 LINUX/know/poll函数详解
@@ -3649,6 +3650,7 @@ path路径/常用文件夹
 环境配置/环境1
 环境配置/环境配置模板
 生活/IPHONE/往PC上传输照片经常中断
+生活/中医/中医养生精髓：元气足，病自无！
 生活/中医/脾胃 肾
 生活/位置/出版社地址
 生活/位置/常用物品
