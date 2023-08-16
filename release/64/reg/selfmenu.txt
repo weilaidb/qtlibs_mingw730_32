@@ -2,6 +2,7 @@
 API Manual/API参考手册模板
 API Manual/API参考手册模板2
 API Manual/API参考手册模板3
+API Manual/API参考手册模板4
 API Manual/C/open
 API Manual/FFmpeg/av_freep
 API Manual/FFmpeg/av_mallocz
@@ -3801,6 +3802,7 @@ path路径/常用文件夹
 设计/试题/出题
 设计/试题/出题2
 设计/试题/出题2 描述
+设计/试题/出题疑难/Abc *p = ++p1; 为什么p的结果和p1是一样的？
 设计/试题/出题疑难/printf %d%d%d i++ --i
 设计/试题/出题疑难/printf %d%d%d i++ --i  (2)
 设计/软件框架/SCRUM

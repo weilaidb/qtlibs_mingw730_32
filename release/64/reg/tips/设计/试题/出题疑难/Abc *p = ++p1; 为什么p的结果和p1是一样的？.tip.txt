@@ -1,0 +1,68 @@
+Abc *p = ++p1; 为什么p的结果和p1是一样的？
+
+
+
+在给定的代码中， `Abc *p = ++p1;`  这行代码会使指针  `p`  的值与  `p1`  的值相等。
+
+这是因为前缀递增运算符  `++`  会先将  `p1`  的值加1，然后再将其赋值给  `p` 。由于  `p`  和  `p1`  都指向同一个内存位置，即  `c`  的地址，所以它们的值是相等的。
+
+换句话说， `++p1`  会将  `p1`  的值加1，然后将结果赋给  `p` ，因此  `p`  和  `p1`  都指向同一个地址。所以它们的值是一样的。
+
+
+
+
+===程序：
+[root@VM-0-10-centos] ~/work/git/test/pointer.sub
+$ cat main.cpp 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Abc
+{
+    /* data */
+    int data[100];
+}Abc;
+
+
+
+int main(int argc, char **argv)
+{
+    Abc c;
+    Abc *p1 = &c;
+    Abc *q = (++p1);
+//    Abc *p = (p1+1);
+    int num = (char *)q - (char *)p1;
+
+    printf("num:%u\n", num);
+    printf("&c:%p\n", &c);
+    printf("p1:%p\n", p1);
+    printf("q:%p\n", q);
+    return 0;
+}
+
+
+
+
+[root@VM-0-10-centos] ~/work/git/test/pointer.sub
+$ 
+[root@VM-0-10-centos] ~/work/git/test/pointer.sub
+$ 
+[root@VM-0-10-centos] ~/work/git/test/pointer.sub
+$ make
+mkdir -p ./tmp
+ [LD]    (pointer.sub.out)
+now file is /root/work/git/test/pointer.sub
+g++  -o pointer.sub.out  ./tmp/./main.o -lpthread   
+current path is pointer.sub
+cp -f pointer.sub.out ../exelibtest
+mkdir -p ../exelibtest
+chmod +x  pointer.sub.out && ./pointer.sub.out
+num:0
+&c:0x7fffd88e1240
+p1:0x7fffd88e13d0
+q:0x7fffd88e13d0
+bind ok
+[root@VM-0-10-centos] ~/work/git/test/pointer.sub
+$ 
+
