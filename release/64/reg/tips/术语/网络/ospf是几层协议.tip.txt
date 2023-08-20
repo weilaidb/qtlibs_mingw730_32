@@ -4,6 +4,16 @@ OSPF协议报文封装在IP数据包中，理论上属于传输层，功能是�
 
 Internet层的协议是因为它们直接在IP数据包中封装它们的消息。
 
+
+
+
+应用层(RIP)
+传输层 (TCP/UDP/OSPF)
+网络层(IPv4)
+数据链路层(MAC)
+物理层(PHY)
+
+
 作者：网络工程师阿龙
 链接：https://www.zhihu.com/question/342428840/answer/1168541878
 来源：知乎

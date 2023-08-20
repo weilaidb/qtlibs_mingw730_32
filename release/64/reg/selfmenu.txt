@@ -2064,6 +2064,7 @@ LINUX/7z
 LINUX/CentOS/必备命令 order
 LINUX/CentOS/必备软件 necessary software
 LINUX/Code/ERROR
+LINUX/Ethtool
 LINUX/Linux xargs help
 LINUX/Linux xargs 与 find 联合使用
 LINUX/Linux xargs 与 find 联合使用 eg
@@ -3514,6 +3515,7 @@ path路径/常用文件夹
 术语/大小端
 术语/大小端 MEMCPY
 术语/异或
+术语/网络/1000base-t
 术语/网络/ABR(OSPF)
 术语/网络/ALL 常见计算
 术语/网络/ALL 汇总
@@ -3628,6 +3630,7 @@ path路径/常用文件夹
 术语/网络/路由协议的分类
 术语/网络/链路汇聚协议
 术语/软件/软件源 Repository
+术语/软件建模/UML
 标准/RFC/TCP协议中最初的描述(RFC793)
 检查单/结算
 歌曲/列表
@@ -3751,6 +3754,7 @@ path路径/常用文件夹
 笔记/读书笔记/ROS机器人开发实践
 笔记/软件/UML画序列图或时序图
 笔记/软件开发思想 想法
+笔记/软件开发思想 想法2（数据库自动化编程）
 笔记/进程链接动态库中Gtest用例成功 ，链接静态库却失败
 算法/C/冒泡排序
 算法/C/快速排序法
