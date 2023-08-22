@@ -3080,6 +3080,7 @@ Tools/VSCode/模板/snippets/c/helloworld
 Tools/VSCode/模板/snippets/c/print
 Tools/VSCode/模板/头文件#ifndef #define #endif
 Tools/VSCode/背景色 护眼色
+Tools/VSCode/过滤文件夹filterdir/linux
 Tools/VSCode快捷键
 Tools/VSCode快捷键2
 Tools/Vim .Vimrc

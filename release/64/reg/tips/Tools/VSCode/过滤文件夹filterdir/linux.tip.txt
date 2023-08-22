@@ -1,0 +1,34 @@
+settings.json
+
+
+
+
+
+
+
+########过滤内容为：
+
+
+
+{
+	"folders": [
+		{
+			"path": "../../code/linux/linux-5.16.9.tar/linux-5.16.9/linux-5.16.9"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"**/.vscode": true,
+			"**/.idea": true,
+			"arch/[a-u]*": true,
+			"arch/xte*": true,
+			"drivers/": true,
+		}
+	},
+}
