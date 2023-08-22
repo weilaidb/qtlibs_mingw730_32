@@ -612,6 +612,7 @@ C/info/const xing、xing const 、const xing const
 C/interface/checkCpu
 C/know/C 两个叹号的含义!!
 C/know/C语言中 typeof（）函数的用法
+C/know/C语言正则表达式详解 regcomp() regexec() regfree()详解
 C/know/C语言高级用法---typeof()关键字
 C/know/EINTR错误产生的原因
 C/know/Extensions to the C Language Family typeof
