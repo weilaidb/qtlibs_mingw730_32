@@ -14,6 +14,10 @@ context 网络背景；情境；脉络
 properties 网络特性；性质；性能
 property
 represent 网络表示；象征；代理
+Scenario 场景
+
+
+
 
 
 
