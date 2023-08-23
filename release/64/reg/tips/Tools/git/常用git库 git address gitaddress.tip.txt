@@ -167,7 +167,9 @@ git@github.com:layui/layui.git
 
 https://gitee.com/zqylzcwcxy/vscode-extension-translate/blob/master/src/extension.ts
 
-
+#Android手机变成电脑摄像头
+#https://blog.csdn.net/csdnnews/article/details/132419306?spm=1000.2115.3001.5926
+git@github.com:Ruddle/RemoteCam.git
 
 
 本地库:
