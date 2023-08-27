@@ -16,6 +16,7 @@ http://localhost:8080/weilai/sql/bselectdb.jsp
 https://docs.python.org/3.8/
 https://github.com/weilaidb
 https://github.com/weilaidb/linux_driver
+【API入口】http://49.234.85.12:8081/api/file/index.jsp
 【AskOpenAI 主页】https://askopenai.cn/
 【AskOpenAI 智能问答】https://www.askopenai.co/
 【CSDN】https://www.csdn.net/
