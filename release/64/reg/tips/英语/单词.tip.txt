@@ -25,11 +25,13 @@ contiguously：连续地
 interleaved：插入
 The interleave factor：交织因子
 consecutive：连续的;连续不断的
-
-
-
-
-
+conventions:约定
+literal：字面意义的
+partial：部分的
+expansion：膨胀;扩展;扩张;扩大
+irregular：不规则的
+identifier：标识符
+procedure：(商业、法律或政治上的)程序;步骤;(正常)手续;手术
 
 
 

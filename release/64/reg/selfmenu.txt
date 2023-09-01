@@ -651,6 +651,7 @@ C/注释comments. insertFileHeader 头文件
 C/注释comments. insertFileHeader 源文件
 C/注释comments. insertFuncHeader 函数名
 C/注释comments. insertFuncHeader 函数名2
+CMD/dir
 CXX/ARRAYSIZE
 CXX/Cout no prar
 CXX/Cout no prara endl
