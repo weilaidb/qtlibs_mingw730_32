@@ -17,6 +17,19 @@ represent 网络表示；象征；代理
 Scenario 场景
 
 
+revised：修订
+subtle：微妙
+grayscale:灰度级
+assembled：组装;装配;集合;收集;聚集
+contiguously：连续地
+interleaved：插入
+The interleave factor：交织因子
+consecutive：连续的;连续不断的
+
+
+
+
+
 
 
 
