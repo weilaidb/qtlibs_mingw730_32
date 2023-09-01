@@ -2691,6 +2691,7 @@ Python/idea插件 V起来 nextchatgpt
 Python/idea配置说明
 Python/know/Django-详解settings.py 文件作用
 Python/know/NumPy教程：19种数据类型及对象（dtype）示例
+Python/know/Python pip3 install
 Python/know/Python pip3 install Python之pip命令指定安装源和版本
 Python/know/Python pip3 install 用国内源安装
 Python/know/Python pip3 install 用国内源安装 Update
