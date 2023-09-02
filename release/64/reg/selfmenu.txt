@@ -2112,6 +2112,7 @@ LINUX/Ubuntu/必备软件 necessary software dpkg -i
 LINUX/Vim/vim实用技巧
 LINUX/cat EOF
 LINUX/cat EOF 2 stdout
+LINUX/dhclient
 LINUX/dnf
 LINUX/go
 LINUX/help/HZ
