@@ -563,6 +563,7 @@ C/NETWORK/set/getpeername
 C/NETWORK/set/getsockname
 C/NETWORK/set/getsockopt
 C/NETWORK/set/ioctl
+C/NETWORK/set/ioctl eg示例
 C/NETWORK/set/ioctl fcntl
 C/NETWORK/set/setsockopt
 C/PRINTF/DEFINE

@@ -1,0 +1,178 @@
+
+
+
+Forever Free
+UPGRADE
+j
+
+Home
+
+
+Share icon
+profile
+History
++
+Question :
+
+ioctl 驱动内核示例代码和app代码，for example
+Answer :
+
+Share icon
+Here is an example of a kernel driver and app code for the  ioctl  interface: 
+ 
+Kernel Driver Code:
+c
+#include <linux/module.h>
+#include <linux/fs.h>
+#include <linux/cdev.h>
+#include <linux/device.h>
+#include <linux/uaccess.h>
+
+#define DEVICE_NAME "my_device"
+#define IOCTL_SET_VALUE _IOR('k', 0, int)
+#define IOCTL_GET_VALUE _IOR('k', 1, int)
+
+static int value = 0;
+static dev_t dev;
+static struct cdev cdev;
+static struct class *class;
+static struct device *device;
+
+static long my_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+{
+    int ret = 0;
+    int tmp;
+
+    switch (cmd)
+    {
+        case IOCTL_SET_VALUE:
+            if (copy_from_user(&tmp, (int *)arg, sizeof(int)))
+                return -EFAULT;
+            value = tmp;
+            break;
+
+        case IOCTL_GET_VALUE:
+            if (copy_to_user((int *)arg, &value, sizeof(int)))
+                return -EFAULT;
+            break;
+
+        default:
+            return -ENOTTY;
+    }
+
+    return ret;
+}
+
+static struct file_operations fops = {
+    .unlocked_ioctl = my_ioctl,
+};
+
+static int __init my_driver_init(void)
+{
+    if (alloc_chrdev_region(&dev, 0, 1, DEVICE_NAME) < 0)
+        return -1;
+
+    cdev_init(&cdev, &fops);
+    if (cdev_add(&cdev, dev, 1) == -1)
+    {
+        unregister_chrdev_region(dev, 1);
+        return -1;
+    }
+
+    class = class_create(THIS_MODULE, DEVICE_NAME);
+    device = device_create(class, NULL, dev, NULL, DEVICE_NAME);
+
+    return 0;
+}
+
+static void __exit my_driver_exit(void)
+{
+    device_destroy(class, dev);
+    class_unregister(class);
+    class_destroy(class);
+    cdev_del(&cdev);
+    unregister_chrdev_region(dev, 1);
+}
+
+module_init(my_driver_init);
+module_exit(my_driver_exit);
+MODULE_LICENSE("GPL");
+App Code:
+c
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+
+#define DEVICE_PATH "/dev/my_device"
+#define IOCTL_SET_VALUE _IOR('k', 0, int)
+#define IOCTL_GET_VALUE _IOR('k', 1, int)
+
+int main()
+{
+    int fd;
+    int value;
+
+    fd = open(DEVICE_PATH, O_RDWR);
+    if (fd < 0)
+    {
+        perror("Failed to open the device");
+        return EXIT_FAILURE;
+    }
+
+    // Set value using ioctl
+    value = 42;
+    if (ioctl(fd, IOCTL_SET_VALUE, &value) < 0)
+    {
+        perror("IOCTL SET failed");
+        close(fd);
+        return EXIT_FAILURE;
+    }
+
+    // Get value using ioctl
+    if (ioctl(fd, IOCTL_GET_VALUE, &value) < 0)
+    {
+        perror("IOCTL GET failed");
+        close(fd);
+        return EXIT_FAILURE;
+    }
+
+    printf("Value retrieved from the device: %d\n", value);
+
+    close(fd);
+    return EXIT_SUCCESS;
+}
+Please note that this is just a basic example, and you may need to modify it based on your specific requirements and system configuration.
+Was the last answer useful?
+
+
+
+
+
+
+Templates
+
+Explain Code
+
+Generate Comment
+
+Performance Check
+
+Security Check
+
+Style Check
+
+Improve Readability
+
+Clean Code
+
+Generate Unit Tests
+
+
+
+
+
+
+
+2023-09-03 19:14:38
+                        
