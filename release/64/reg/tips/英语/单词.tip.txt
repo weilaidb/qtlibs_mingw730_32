@@ -32,7 +32,63 @@ expansion：膨胀;扩展;扩张;扩大
 irregular：不规则的
 identifier：标识符
 procedure：(商业、法律或政治上的)程序;步骤;(正常)手续;手术
-
+extensible：扩展
+presentation：介绍，演讲，演示
+memorandum：备忘录
+notion：概念
+in no way：绝不是
+ transport-level：传输级
+issue：问题，发布，议题
+Alternatively：或者
+connectionless：无连接
+intentionally：故意
+syntax：语法
+extension：外延
+mechanisms：机制
+aspects：方面
+opposed：反对
+stateless：无状态的
+consistent：一致的
+internationalization：国际化
+backward compatibility：后向兼容性
+historical blunder：历史的错误
+Retrieval：检索
+Invitation：邀请
+conference：会议
+ play back：回放
+Terminology：术语
+adopted：采用
+Terms：条款
+Aggregate control：总控制
+multiple streams:多流
+timeline：时间轴
+feeds：馈送
+continuous：连接地
+transport layer：传输层
+comprise：组成
+aggregate：总
+concept：概念
+interactive：互动
+tight：紧
+Entity：实体
+transferred：转移
+payload：有效载荷
+consists of：由。。。组成
+metainformation ：元信息
+specific：具体的
+clockrates：时钟速率
+etc：等
+phase：阶段
+originate：起源
+reside：居住
+invoked：调用
+indirection：间接
+Redirection：重定向
+whiteboard：白板
+equivalent to：相当于
+octets：八位字节
+via：通过
+Participant：参与者
 
 
 
