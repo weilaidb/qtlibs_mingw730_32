@@ -3577,7 +3577,9 @@ path路径/常用文件夹
 术语/网络/RJ45
 术语/网络/RPC（Remote Procedure Call）远程过程调用协议
 术语/网络/RS485 RS-485
+术语/网络/RSTP
 术语/网络/SDN(Software Define NetWork)
+术语/网络/SDP
 术语/网络/STP
 术语/网络/SVLAN CVLAN
 术语/网络/TCAM（Ternary Content-Addressable Memory）
@@ -3598,6 +3600,8 @@ path路径/常用文件夹
 术语/网络/know/序列化的优势
 术语/网络/know/路由表 (RIB) 与转发表 (FIB)
 术语/网络/ospf是几层协议
+术语/网络/rtcp
+术语/网络/rtp
 术语/网络/rtsp
 术语/网络/tipc
 术语/网络/万兆以太网
@@ -3716,6 +3720,7 @@ path路径/常用文件夹
 生活/贷款/定金与订金
 生活/贷款/押金、定金、订金、保证金和违约金这“五金”有什么区别？
 生活/过年/时间
+生活/运动/蹲马步
 生活/银行/没有发现您USBKEY内的证书，请检查。
 生活/魔方/复原公式
 用户说明书/EC管理 dd-x.y-SNAPSHOT.jar

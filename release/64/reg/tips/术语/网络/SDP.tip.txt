@@ -1,0 +1,473 @@
+SDP（Session Description Protocol）
+
+
+SDP（会话描述协议），用于两个会话实体之间的媒体协商，并达成一致，属信令语言族，采用文本（字符）描述形式。rfc3264协议[1]主要概述一个请求/响应模型（offer/answer，以下叙述采用英文），包括请求/响应的实体和不同阶段的操作行为，如初始协商过程和重协商过程，并简单介绍消息中各种参数的含义。具体各个参数的详细说明见rfc2327协议[2]。本文主要参照3264协议，大部分为直译，附加自己经验和理解。
+
+ 
+
+ 
+
+
+
+ 
+
+图1 SDP模型组网图
+
+ 
+
+1实体、消息
+Offer/Answer模型包括两个实体，一个是请求主体Offerer，另外一个是响应实体Answerer，两个实体只是在逻辑上进行区分，在一定条件可以转换。例如，手机A发起媒体协商请求，那么A就是Offerer，反之如果A为接收请求则为Offerer。
+
+Offerer发给Answerer的请求消息称为请求offer，内容包括媒体流类型、各个媒体流使用的编码集，以及将要用于接收媒体流的IP和端口。
+
+Answerer收到offer之后，回复给Offerer的消息称为响应，内容包括要使用的媒体编码，是否接收该媒体流以及告诉Offerer其用于接收媒体流的IP和端口。
+
+ 
+
+2 SDP各个参数简单介绍
+下面示例摘自3264协议[1]
+
+v=0                                                                              
+
+o=carol 28908764872 28908764872 IN IP4 100.3.6.6        //会话ID号和版本
+
+s=-                                     //用于传递会话主题
+
+t=0 0                                   //会话时间，一般由其它信令消息控制，因此填0
+
+c=IN IP4 192.0.2.4              //描述本端将用于传输媒体流的IP
+
+m=audio 0 RTP/AVP 0 1 3     //媒体类型 端口号 本端媒体使用的编码标识（Payload）集
+
+a=rtpmap:0 PCMU/8000 //rtpmap映射表，各种编码详细描述参数，包括使用带宽（bandwidth）
+
+a=rtpmap:1 1016/8000
+
+a=rtpmap:3 GSM/8000
+
+a=sendonly     //说明本端媒体流的方向，取值包括sendonly/recvonly/sendrecv/inactive
+
+a=ptime:20                           //说明媒体流打包时长
+
+m=video 0 RTP/AVP 31 34
+
+a=rtpmap:31 H261/90000
+
+a=rtpmap:34 H263/90000
+
+ 
+
+3 实体行为、操作过程
+3.1 初始协商的Offer请求
+
+实体A <-> 实体B，实体首先发起Offer请求，内容如2节所示，对于作何一个媒体流/媒体通道，这时实体A必须：
+
+a.       如果媒体流方向标为recvonly/sendrecv，即a=recvonly或a=sendrecv，则A必须（MUST）准备好在这个IP和端口上接收实体B发来的媒体流；
+
+b.       如果媒体流方向标为sendonly/inactive，即a=recvonly或a=sendrecv，则A不需要进行准备。
+
+3.2 Answer响应
+
+实体B收到A的请求offer后，根据自身支持的媒体类型和编码策略，回复响应。
+
+a. 如果实体B回复的响应中的媒体流数量和顺序必须（MUST）和请求offer一致，以便实体A进行甄别和决策。即m行的数量和顺序必须一致，B不能（MUST NOT）擅自增加或删除媒体流。如果B不支持某个媒体流，可以在对应的端口置0，但不能不带这个m行描述。
+
+b. 对于某种媒体，实体B必须（MUST）从请求offer中选出A支持且自己也支持的该媒体的编码标识集，并且可以（MAY）附带自己支持的其它类型编码。
+
+c. 对于响应消息中各个媒体的方向：
+
+如果请求某媒体流的方向为sendonly，那么响应中对应媒体的方向必须为recvonly；
+
+如果请求某媒体流的方向为recvonly，那么响应中对应媒体的方向必须为sendonly；
+
+如果请求某媒体流的方向为sendrecv，那么响应中对应媒体的方向可以为sendrecv/sendonly/recvonly/inactive中的一种；
+
+如果请求某媒体流的方向为inactive，那么响应中对应媒体的方向必须为inactive；
+
+d.       响应answer里提供IP和端口，指示Offerer本端期望用于接收媒体流的IP和端口，一旦响应发出之后，Offerer必须（MUST）准备好在这个IP和端口上接收实体A发来的媒体流。
+
+e.       如果请求offer中带了ptime（媒体流打包间隔）的a行或带宽的a行，则响应answer也应该（SHOULD）相应的携带。
+
+f.        实体B Offerer应该（SHOULD）使用实体A比较期望的编码生成媒体流发送。一般来说对于m行，如m=video 0 RTP/AVP 31 34，排充越靠前的编码表示该实体越希望以这个编码作为载体，这里示例31(H261)，34（H263）中H261为A更期望使用的编码类型。同理，当实体A收到响应answer后也是这样理解的。
+
+ 
+
+3.3 实体收到响应后的处理
+
+当实体A收到B回复的响应后，可以（MAY）开始发送媒体流，如果媒体流方向为sendonly/sendrecv，
+
+a.       必须（MUST）使用answer列举的媒体类型/编码生成媒体发送；
+
+b.       应该（SHOULD）使用answer中的ptime和bandwidth来打包发送媒体流；
+
+c.       可以（MAY）立即停止监听端口，该端口为offer支持answer不支持的媒体所使用的端口。
+
+4 修改媒体流（会话）
+修改媒体流的offer-answer操作必须基于之前协商的媒体形式（音频、视频等），不能（MUST NOT）对已有媒体流进行删减。
+
+4.1 删除媒体流
+
+如果实体认定新的会话不支持之前媒商的某个媒体，新的offer只须对这种媒体所在m行的端口置0，但不能不描述这种媒体，即不带对应m行。当answerer收到响应之后，处理同初始协商一样。
+
+ 
+
+4.2 增加媒体流
+
+如果实体打算新增媒体流，在offer里只须加上描述即可或者占用之前端口被置0的媒体流，即用新的媒体描述m行替换旧的。当answerer收到offer请求后，发现有新增媒体描述，或者过于端口被置0的媒体行被新的媒体描述替换，即知道当前为新增媒体流，处理同初始协商。
+
+ 
+
+4.3 修改媒体流
+
+修改媒体注主要是针对初始协商结果，如果有变更即进入修改流程处理，可能的变更包括IP地址、端口，媒体格式（编码），媒体类型（音、视频），媒体属性（ptime，bandwidth，媒体流方向变更等）。
+
+ 
+
+ 
+
+参考文档
+[1] RFC3264，An Offer/Answer Model with the Session Description Protocol (SDP)
+
+[2] RFC2327，SDP: Session Description Protocol
+
+[3] RFC2119，Key words for use in RFCs to Indicate Requirement Levels
+
+ 
+
+ 
+
+SDP: Session Description Protocol(会话描述协议)
+(RFC2327)
+1. 概述
+SDP也是MMUSIC工作组的一个产品,在MBONE内容中用得很多。其目的就是在媒体会话中，传递媒体流信息，允许会话描述的接收者去参与会话。 SDP基本上在internet上工作。他定义了绘画描述的统一格式,但并不定义多播地址的分配和SDP消息的传输,也不支持媒体编码方案的协商,这些功能均由下层传送协议完成.典型的会话传送协议包括:SAP(Session Announcement Protocol 会话公告协议),SIP,RTSP,HTTP,和使用MIME的E-Mail.(注意:对SAP只能包含一个会话描述,其它会话传诵协议的SDP可包含多个绘画描述)
+SDP包括以下一些方面：
+1） 会话的名称和目的
+2） 会话存活时间
+3） 包含在会话中的媒体信息，包括：
+媒体类型(video, audio, etc)
+传输协议(RTP/UDP/IP, H.320, etc)
+媒体格式(H.261 video, MPEG video, etc)
+多播或远端（单播）地址和端口
+4） 为接收媒体而需的信息(addresses, ports, formats and so on)
+5） 使用的带宽信息
+6） 可信赖的接洽信息（Contact information）
+
+2. 协议
+Session description //格式及举例
+v=   (protocol version) //v=0
+       o=   (owner/creator and session identifier). //o=<用户名><会话id><版本><网络类
+//型><地址类型><地址>
+//o=sname 1234567890 0987654321 IN
+//IP4 126.15.64.3
+       s=   (session name) //会话名
+       i=* (session information) //会话信息
+       u=* (URI of description) //u=http://www.zte.com.cn/staff/sdp.ps
+       e=* (email address) //e=zte@isi.edu(general text如：王生)
+//或e=Mr. Wang<[email]wang@zte.com[/email]>
+       p=* (phone number) //p=+86-0755-26773000-7110(wang)
+//or p=+1 617 253 6011
+       c=* (connection information -如已经包含在所有媒体中则该行不需要)
+//c=<网络类型><地址信息><连接地址>
+//多点会议包括TTL
+//连接地址: <base multicast
+//address>/<ttl>/<number of addresses>
+//c=IN IP4 224.2.13.23/127
+//c=IN IP4 224.2.1.1/127/3
+       b=* (bandwidth information) //b=<修改量（CT Conference Total
+//IAS Application-specific Max)>:<带宽
+//值（kb/s）>
+//b=CT:120
+One or more time descriptions (see below)
+       z=* (time zone adjustments) //时区调整
+       k=* (encryption key) //k=<方法>:<密钥>或k=<方法>
+       a=* (zero or more session attribute lines) //a=<属性>   或a=<属性>:<值>
+Zero or more media descriptions (see below)
+
+各行严格按顺序,其中:
+时间描述：
+       t=   (time the session is active) //<开始时间><结束时间>，单位秒，十
+//进制NTP
+//t=2873397468 2873404969
+       r=* (zero or more repeat times) //<重复时间><活动持续时间
+//以开始时刻为参考的偏移列表>单位秒
+//r=604800 3666 90000 或写成
+//r=7d 1h 0 25h
+媒体描述：
+       m=   (media name and transport address) //m=<媒体><端口><传送><格式列表>
+//m=audio 49170 RTP/AVP 0 3
+//协议为RTP，剖面为AVP
+//参考rtp-parameters.txt
+       i=* (media title媒体称呼) //
+       c=* (connection information – 如已经包含在会话级描述则为可选)
+       b=* (bandwidth information) //同c
+       k=* (encryption key) //会话级为摸认值,同c
+       a=* (zero or more media attribute lines) //两种形式：(也同c)（见后说明）
+//a=<attribute>如：
+// a=recvonly
+//a=<attribute>:<value>
+
+注：v,o,s,t,m为必须的,其他项为可选。
+如果SDP语法分析器不能识别某一类型(Type),则整个描述丢失;
+如果”a=”的某属性值不理解,则予以丢失
+整个协议区分大小写
+“=”两侧不允许有空格
+会话级的描述就是媒体级描述的缺省值
+所有均格式为<type>=<value>
+
+3. SDP在IP电话中的使用
+SDP用于构建INVITE和200 OK响应消息的消息体,供主\被叫用户交换媒体信息.
+1. 媒体流的配置
+1) 主被叫的媒体描述必须完全对应:主被叫的第n个媒体流(“m=”)对应,都包含”a=rtpmap”.这样的目的是易于适应静态净荷类型到动态净荷类型的转换.
+2) 如被叫不想接收主叫提出的某个媒体流则在响应中设置该媒体流的端口号为0.并且,必须返回对应的媒体流行.
+2. 单播SDP值的设定
+1) 对于只发媒体流,端口号无意义,应设为0.
+2) 每个媒体流的净载荷类型例表应传送两个信息:能接受/发送的编译码,和用以标识这些编译码的RTP净载荷类型号.
+3) 如对于某一媒体流,主/被叫没有公共的媒体格式,被叫仍然要求返回媒体流的”m=”行,端口好为0,同时,不列净载荷类型.
+4) 如果所有媒体流均无公共的媒体格式,则被叫回送400响应(坏请求),并加入304警告头字段(无媒体类型)
+3. 多播操作
+1) 接受和发送的多播地址是相同的
+2) 被叫不允许改变媒体流的只发,只收,或收/发特性
+3) 如果被叫不支持多播,则回送400响应和330警告(多播不可用)
+4. 延时媒体流
+由于主叫可能实际上是一个和其他协议(如H.323)互同的协议的网关,与S其互同的协议要求呼叫建立后进行媒体协商.这样,主叫可以先发不带SDP的INVITE,呼叫建立后可以通过ACK或重新发一个INVITE请求修改被叫的会话描述(SDP).
+5. 媒体流保持
+如果要求对方进入HOLD,即暂时停止发送一个或多个媒体流,这可以用Re-INVITE,其会话描述和原来的请求或响应中的描述相同,只是,”c=”行中的保持媒体流的地址置为”0.0.0.0”,还有就是Re_INVITE中的Cseq得递增.
+6. 对应于SIP中有3个实体字段:
+1) Content-Type: 指明消息体类型,有两种:
+i. Application/sdp:表示是SDP会话描述
+ii. Text/html:表示是普通文本或HTML格式的描述
+2) Content-Encoding:补充说明消息体类型,使用户可以采用压缩编码编辑消息体
+3) Content-Length:给出消息体的字节数
+7. SDP各type的详细解释:
+协议版本 v = SDP版本目前为0,没有子版本
+会话源 o = <用户名>用户在发起主机上登录名,如果主机不支持用户标识的概念,则为”-”
+<会话id>一般为数字串,其分配由创建工具决定,建议用网络时间协议(NTP)时
+戳,以确保唯一性.
+<版本>该会话公告的版本,供公告代理服务器检测同一会话的若干个公告哪个
+是最新公告.基本要求是会话数据修改后该版本值递增,建议用NTP时戳
+<网络类型>为文本串”IN”
+<地址类型>”IP4”(可为域名或点分十进制)/”IP6”(域名或压缩文本地址形式)
+<地址>
+会话名 s= ISO 10646字符表示的会话名
+会话信息   v= ISO 10646字符表示的会话信息
+URI    u= 能提供会议进一步信息的URI地址
+E妹地址   e= 给出会议负责人的联系信息,他不一定是创建会议公告的人
+电话号码   p= 给出会议负责人的联系信息,他不一定是创建会议公告的人(国际通用形式)
+连接数据   c=媒体连接数据，会话级为媒体级的摸认值
+带宽    b= 给出会话或媒体所用带宽，单位为kbit/s.修饰语：CT(会议总带宽，表示所有
+地点所有媒体的总带宽)，AS(应用特定最大带宽，表示一个地点单一媒体带宽)
+时间描述   t= 见上
+   r= 见上
+时区调整   z= 见上
+加密密钥    k=已定义的方法有
+      k=clear:<加密密钥>密钥没有变换
+k=base64:<编码密钥>已编码，因为它含有SDP禁用的字符
+k=uri:<获得密钥的URI>
+k=prompt。SDP没有提供密钥但该会话或媒体流是要求加密的。
+属性    a=一个m=行可有多个a=行，SDP建议扩展如下：(具体见[1].Page419)
+会话级： a=cat:<类别>//给出点分层次式会话分类号,供接收方筛选会话
+a=keywds:<关键词>//供接收方筛选会话
+a=tool:<工具名和版本号>//创建会话描述的工具名和版本号
+a=recvonly/sendrecv/sendonly//收发模式
+a=type:<会议类型>//有:广播,聚会,主席主持,测试,H.323
+a=charset:<字符集>//显示会话名和信息数据的字符集
+a=sdplang:<语言标记>//描述所有语言
+a=lang:<语言标记>//会话描述的缺省语言或媒体描述的语言
+a=framerate:<帧速率>//单位:帧/秒
+a=quality:<质量>//视频的建议质量(10/5/0)
+a=fmtp:<格式>< 格式特定参数>//定义指定格式的附加参数
+媒体级：a=ptime:<分组时间>//媒体分组的时长(单位:秒)
+a=recvonly/sendrecv/sendonly//收发模式
+a=orient:<白板方向>//指明白板在屏莫上的方向
+a=sdplang:<语言标记>//描述所有语言
+a=lang:<语言标记>//会话描述的缺省语言或媒体描述的语言
+媒体描述     m= <媒体>有5种类型：音频/视频/应用(如白板信息)/数据(不向用户显示的)/控制
+<端口>媒体流发往传输层的端口。取决于c=行规定的网络类型和接下来的传
+送层协议：对UDP为1024-65535；对分层编码应用（c=行没有多播地址），
+要给出多播端口数，如：m=video 49170/2 RTP/AVP 31（表示：端口49170
+和49171为第一对RTP/RTCP端口，49172和49173为第二对的端口）。
+<传送层协议>与c=行的地址类型有关。对大多的媒体在RTP/UDP上传送，定
+义2种：RTP/AVP：IETF RTP协议，音/视频应用文档。在UDP上传诵。
+Udp：UDP协议。
+<格式列表>对音/视频，就是音/视频应用文档中规定媒体净荷类型。列表中都
+有可能用，但第一个为缺省值，分为静态绑定和动态绑定：静态绑定即使媒体编码方式有净荷类型号完全确定，动态绑定则媒体编码方式如时钟频率，音频信道数等）没有完全确定，需要进一步的属性说明。分别举例如下：
+Alaw的PCM编码单信道Audio，其净荷类型号为8，把它发往UDP端口49232，则：m=audio 49232 RTP/AVP 8
+16bit线性编码，双声道立体声，抽样速率16kHz，其动态净荷类型号98，则：m=audio 49232 RTP/AVP 98
+a=rtpmap:98 L16/16000/2
+说明：1）a=rtpmap:<净荷类型号><编码名>/<时钟速率>[/<编码参数>]
+    对音频，编码参数为音频信道数；对视频没有定义
+2）SDP允许rtpmap规定实验性编码格式，但编码名必须以X-起，
+表示此格式还没正式登记。
+
+4. SDP Grammar
+announcement =        proto-version
+                     origin-field
+                     session-name-field
+                     information-field
+                     uri-field
+                     email-fields
+                     phone-fields
+                     connection-field
+                     bandwidth-fields
+                     time-fields
+                     key-field
+                     attribute-fields
+                     media-descriptions
+
+proto-version =    "v=" 1*DIGIT CRLF
+                     ;this memo describes version 0
+origin-field =        "o=" username space
+                     sess-id space sess-version space
+                     nettype space addrtype space
+                     addr CRLF
+session-name-field =   "s=" text CRLF
+information-field = ["i=" text CRLF]
+uri-field =           ["u=" uri CRLF]
+email-fields =        *("e=" email-address CRLF)
+phone-fields =        *("p=" phone-number CRLF)
+connection-field = ["c=" nettype space addrtype space
+                     connection-address CRLF]
+                     ;a connection field must be present
+                     ;in every media description or at the
+                     ;session-level
+bandwidth-fields = *("b=" bwtype ":" bandwidth CRLF)
+time-fields =       1*( "t=" start-time space stop-time
+                     *(CRLF repeat-fields) CRLF)
+                     [zone-adjustments CRLF]
+repeat-fields =    "r=" repeat-interval space typed-time
+                     1*(space typed-time)
+zone-adjustments = time space ["-"] typed-time
+                     *(space time space ["-"] typed-time)
+key-field =           ["k=" key-type CRLF]
+key-type =          "prompt" |
+                     "clear:" key-data |
+                     "base64:" key-data |
+                     "uri:" uri
+key-data =          email-safe | "~" | "
+attribute-fields = *("a=" attribute CRLF)
+media-descriptions =   *( media-field
+                     information-field
+                     *(connection-field)
+                     bandwidth-fields
+                     key-field
+                     attribute-fields )
+media-field =       "m=" media space port ["/" integer]
+                     space proto 1*(space fmt) CRLF
+media =             1*(alpha-numeric)
+                     ;typically "audio", "video", "application"
+                     ;or "data"
+fmt =                 1*(alpha-numeric)
+                     ;typically an RTP payload type for audio
+                     ;and video media
+proto =             1*(alpha-numeric)
+                     ;typically "RTP/AVP" or "udp" for IP4
+port =             1*(DIGIT)
+                     ;should in the range "1024" to "65535" inclusive
+                     ;for UDP based media
+attribute =           (att-field ":" att-value) | att-field
+att-field =           1*(alpha-numeric)
+att-value =           byte-string
+sess-id =          1*(DIGIT)
+                     ;should be unique for this originating username/host
+sess-version =        1*(DIGIT)
+                     ;0 is a new session
+connection-address =   multicast-address
+                     | addr
+multicast-address = 3*(decimal-uchar ".") decimal-uchar "/" ttl
+
+[ "/" integer ]
+                     ;multicast addresses may be in the range
+                     ;224.0.0.0 to 239.255.255.255
+ttl =                 decimal-uchar
+start-time =       time | "0"
+stop-time =           time | "0"
+time =             POS-DIGIT 9*(DIGIT)
+                     ;sufficient for 2 more centuries
+repeat-interval =     typed-time
+typed-time =       1*(DIGIT) [fixed-len-time-unit]
+fixed-len-time-unit = "d" | "h" | "m" | "s"
+bwtype =              1*(alpha-numeric)
+bandwidth =           1*(DIGIT)
+username =          safe
+                     ;pretty wide definition, but doesn't include space
+email-address =    email | email "(" email-safe ")" |
+                     email-safe "<" email ">"
+email =             ;defined in RFC822
+uri=                ;defined in RFC1630
+phone-number =        phone | phone "(" email-safe ")" |
+                     email-safe "<" phone ">"
+phone =             "+" POS-DIGIT 1*(space | "-" | DIGIT)
+                     ;there must be a space or hyphen between the
+                     ;international code and the rest of the number.
+nettype =          "IN"
+                     ;list to be extended
+addrtype =          "IP4" | "IP6"
+                     ;list to be extended
+addr =             FQDN | unicast-address
+FQDN =             4*(alpha-numeric|"-"|".")
+                     ;fully qualified domain name as specified in RFC1035
+unicast-address =     IP4-address | IP6-address
+IP4-address =       b1 "." decimal-uchar "." decimal-uchar "." b4
+b1 =                decimal-uchar
+                     ;less than "224"; not "0" or "127"
+b4 =                decimal-uchar
+                     ;not "0"
+IP6-address =       ;to be defined
+text =             byte-string
+                     ;default is to interpret this as IS0-10646 UTF8
+                     ;ISO 8859-1 requires a "a=charset:ISO-8859-1"
+                     ;session-level attribute to be used
+byte-string =       1*(0x01..0x09|0x0b|0x0c|0x0e..0xff)
+                     ;any byte except NUL, CR or LF
+decimal-uchar =    DIGIT
+                     | POS-DIGIT DIGIT
+                     | ("1" 2*(DIGIT))
+                     | ("2" ("0"|"1"|"2"|"3"|"4") DIGIT)
+                     | ("2" "5" ("0"|"1"|"2"|"3"|"4"|"5"))
+integer =          POS-DIGIT *(DIGIT)
+alpha-numeric =    ALPHA | DIGIT
+DIGIT =             "0" | POS-DIGIT
+POS-DIGIT =           "1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"
+ALPHA =             "a"|"b"|"c"|"d"|"e"|"f"|"g"|"h"|"i"|"j"|"k"|
+                     "l"|"m"|"n"|"o "|"p"|"q"|"r"|"s"|"t"|"u"|"v"|
+                     "w"|"x"|"y"|"z"|"A"|"B"|"C "|"D"|"E"|"F"|"G"|
+                     "H"|"I"|"J"|"K"|"L"|"M"|"N"|"O"|"P"|" Q"|"R"|
+                     "S"|"T"|"U"|"V"|"W"|"X"|"Y"|"Z"
+email-safe =       safe | space | tab
+safe =             alpha-numeric |
+                     "'" | "'" | "-" | "." | "/" | ":" | "?" | """ |
+                     "#" | "$" | "&" | "*" | ";" | "=" | "@" | "[" |
+                     "]" | "^" | "_" | "`" | "{" | "|" | "}" | "+" |
+                     "~" | "
+space =             %d32
+tab =                 %d9
+CRLF =             %d13.10
+
+常见的如下：
+
+a=rtpmap:103 ISAC/16000
+a=rtpmap:102 iLBC/8000
+a=rtpmap:3 GSM/8000
+a=rtpmap:106 telephone-event/8000
+a=rtpmap:13 CN/8000
+a=rtpmap:117 red/8000
+a=rtpmap:18 G729a/8000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:2 G726-32/8000
+a=rtpmap:4 G723/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:96 G726-40/8000
+a=rtpmap:97 G726-24/8000
+a=rtpmap:98 G726-16/8000
+a=rtpmap:100 NSE/8000
+a=rtpmap:101 telephone-event/8000
+a=rtpmap:0 pcmu/8000
+a=rtpmap:8 pcma/8000
+a=rtpmap:3 gsm/8000
+a=rtpmap:18 G729/8000
+a=rtpmap:98 iLBC/8000
+a=rtpmap:97 speex/8000
+a=rtpmap:101 telephone-event/8000
+
+标签: webrtc , sdp
+

@@ -1,0 +1,10 @@
+Real-time Transport Control Protocol或RTP Control Protocol或简写RTCP）是实时传输协议（RTP）的一个姐妹协议。RTCP由RFC 3550定义（取代作废的RFC 1889）。RTP 使用一个 偶数 UDP port ；而RTCP 则使用 RTP 的下一个 port，也就是一个奇数 port。RTCP与RTP联合工作，RTP实施实际数据的传输，RTCP则负责将控制包送至电话中的每个人。其主要功能是就RTP正在提供的服务质量做出反馈。
+
+
+RTSP协议：负责服务器与客户端之间的请求与响应
+RTP协议：负责传输媒体数据
+RTCP协议：在RTP传输过程中提供传输信息
+
+rtsp承载与rtp和rtcp之上，rtsp并不会发送媒体数据，而是使用rtp协议传输
+
+rtp并没有规定发送方式，可以选择udp发送或者tcp发送
