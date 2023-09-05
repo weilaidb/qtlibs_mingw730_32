@@ -89,6 +89,34 @@ equivalent to：相当于
 octets：八位字节
 via：通过
 Participant：参与者
+explicitly：明确地
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
