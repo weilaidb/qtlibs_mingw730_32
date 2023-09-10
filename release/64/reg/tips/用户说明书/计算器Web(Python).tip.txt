@@ -5,6 +5,8 @@
 http://101.201.79.164:8081/weilaipy/
 http://101.201.79.164:8081/weilaipy/python/calculator.jsp
 
+http://49.234.85.12:8081/weilaipy/python/calculator.jsp
+
 3.所在库
 git@github.com:weilaidb/jsp.git
 

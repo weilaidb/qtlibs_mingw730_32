@@ -1,0 +1,3 @@
+[prefix;body;description]
+enum class,enum class ${MyClass}{},Code sniipet for enum class (c++11)
+typedefstruct,typedef struct T_${Test}"$NL"{"$NL"$TB WORD32 dwIndex;"$NL"}T_${Test};,generate struct 

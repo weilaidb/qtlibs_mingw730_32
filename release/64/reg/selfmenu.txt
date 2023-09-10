@@ -3025,6 +3025,7 @@ Tools/VSCode/C C++ 插件 函数注释 koroFileHeader
 Tools/VSCode/C C++ 插件 函数注释 koroFileHeader2
 Tools/VSCode/C C++ 插件 函数调用关系 Call Hierarchy & more
 Tools/VSCode/C C++ 插件 常见问题 problem
+Tools/VSCode/C C++ 插件 格式化 Astyle
 Tools/VSCode/C C++ 插件 格式化 Linux VScode Astyle 配置
 Tools/VSCode/C C++ 插件 格式化 Prettier
 Tools/VSCode/base/背景色 护眼色
@@ -3047,6 +3048,7 @@ Tools/VSCode/know/借助clangd实现VSCode C++代码补全
 Tools/VSCode/know/解决VS code报错，过程试图写入的管道不存在(Bad owner or permissions on
 Tools/VSCode/know/资深工程师 VSCode C/C++ 必备开发插件
 Tools/VSCode/know/远程开发ssh 利用VScode连接远程服务器进行代码调试及可视化界面
+Tools/VSCode/snippet/generate
 Tools/VSCode/插件开发/API/VSCode 插件开发常用 API
 Tools/VSCode/插件开发/API/console.log
 Tools/VSCode/插件开发/API/console.log var
