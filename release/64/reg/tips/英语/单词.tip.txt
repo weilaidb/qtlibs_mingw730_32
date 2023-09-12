@@ -91,8 +91,8 @@ via：通过
 Participant：参与者
 explicitly：明确地
 preemption：抢占 n. 先买权，先占，先发制人; 优先权
-
-
+subroutine ：子程序
+directive ：命令
 
 
 
