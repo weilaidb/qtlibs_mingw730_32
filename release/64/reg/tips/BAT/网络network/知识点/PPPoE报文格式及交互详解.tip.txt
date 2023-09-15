@@ -1,0 +1,212 @@
+PPPoE报文格式及交互详解
+
+xinyuan0214
+
+于 2018-03-21 09:33:23 发布
+
+40042
+ 收藏 105
+分类专栏： 网络通信协议 switch 文章标签： pppoe
+版权
+
+网络通信协议
+同时被 2 个专栏收录
+12 篇文章5 订阅
+订阅专栏
+
+switch
+6 篇文章1 订阅
+订阅专栏
+简介
+PPPoE报文的格式就是在以太网帧中携带PPP报文，如图所示：
+
+
+
+各个字段解释如下： 
+
+Destination_address：一个以太网单播目的地址或者以太网广播地址（0xffffffff）。对于Discovery数据包来说，该域的值是单播或者广播地址，PPPoE Client寻找PPPoE Server的过程使用广播地址，确认PPPoE Server后使用单播地址。对于Session阶段来说，该域必须是Discovery阶段已确定的通信对方的单播地址。
+
+Source_address：源设备的以太网MAC地址。  
+
+Ether_type：设置为0x8863（Discovery阶段或拆链阶段）或者0x8864（Session阶段）。
+
+Ver：4bits，PPPoE版本号，值为0x1。 Type域：4bits，PPPoE类型，值为0x1。  
+
+Code：8bits，PPPoE报文类型。Code域为0x00，表示会话数据。Code域为0x09，表示PADI报文；Code域为0x07，表示PADO或PADT报文；Code域为0x19，表示PADR报文；Code域为0x65，表示PADS报文。
+
+Session_ID：16bits，对于一个给定的PPP会话，该值是一个固定值，并且与以太网Source_address和Destination_address一起实际地定义了一个PPP会话。值0xffff为将来的使用保留，不允许使用。  
+
+ Length：16bits，定义PPPoE的Payload域长度。不包括以太网头部和PPPoE头部的长度。
+
+数据：有时也称之为净载荷域，在PPPOE的不同阶段该域内的数据内容会有很大的不同。
+
+在PPPOE的发现阶段时，该域内会填充一些Tag（标记）；而在PPPOE的会话阶段，该域则携带的是标准的点对点协议包。
+
+PPPoE工作原理以及PPPoE帧格式
+PPPoE协议的工作流程包含发现和会话两个阶段，发现阶段是无状态的，目的是获得PPPoE终结端（在局端的ADSL设备上）的以太网MAC地址，并建立一个惟一的PPPoESESSION-ID。发现阶段结束后，就进入标准的PPP会话阶段。
+
+当一个主机想开始一个PPPoE会话，它必须首先进行发现阶段，以识别局端的以太网MAC地址，并建立一个PPPoE SESSION-ID。在发现阶段，基于网络的拓扑，主机可以发现多个接入集中器，然后允许用户选择一个。当发现阶段成功完成，主机和选择的接入集中器都有了他们在以太网上建立PPP连接的信息。直到PPP会话建立，发现阶段一直保持无状态的Client/Server（客户/服务器）模式。一旦PPP会话建立，主机和接入集中器都必须为PPP虚接口分配资源。
+
+
+
+PPPOE交互示意图
+
+PPPoE发现和会话两阶段
+发现（Discovery）阶段
+在发现（Discovery）阶段中用户主机以广播方式寻找所连接的所有接入集中器（或交换机），并获得其以太网MAC地址。然后选择需要连接的主机，并确定所要建立的PPP会话标识号码。发现阶段有4个步骤，当此阶段完成，通信的两端都知道PPPoE SESSION-ID和对端的以太网地址，他们一起唯一定义PPPoE会话。这4个步骤如下。
+
+（1）        主机广播发起分组（PADI）（PPPOE Active DiscoveryInitiation），分组的目的地址为以太网的广播地址0xffffffffffff，CODE（代码）字段值为0x09，SESSION-ID（会话ID）字段值为0x0000。PADI分组必须至少包含一个服务名称类型的标签（标签类型字段值为0x0101），向接入集中器提出所要求提供的服务。
+
+
+
+（2）        接入集中器收到在服务范围内的PADI分组，发送PPPoE有效发现提供包（PADO）（PPPOE Active Discovery Offer）分组，以响应请求。其中CODE字段值为0x07，SESSION-ID字段值仍为0x0000。PADO分组必须包含一个接入集中器名称类型的标签（标签类型字段值为0x0102，以及一个或多个服务名称类型标签，表明可向主机提供的服务种类。
+
+
+
+（3）        主机在可能收到的多个PADO分组中选择一个合适的PADO分组，然后向所选择的接入集中器发送PPPoE有效发现请求分组（PADR）（PPPOE Active Discovery Request）。其中CODE字段为0x19，SESSION_ID字段值仍为0x0000。PADR分组必须包含一个服务名称类型标签，确定向接入集线器（或交换机）请求的服务种类。当主机在指定的时间内没有接收到PADO，它应该重新发送它的PADI分组，并且加倍等待时间，这个过程会被重复期望的次数。
+
+
+
+（4）        接入集中器收到PADR分组后准备开始PPP会话，它发送一个PPPoE有效发现会话确认（PADS）（PPPOE Active DiscoverySession-confirmation）分组。其中CODE字段值为0x65，SESSION-ID字段值为接入集中器所产生的一个惟一的PPPoE会话标识号码。PADS分组也必须包含一个接入集中器名称类型的标签以确认向主机提供的服务。当主机收到PADS分组确认后，双方就进入PPP会话阶段。
+
+
+
+PPP会话阶段
+用户主机与接入集中器根据在发现阶段所协商的PPP会话连接参数进行PPP会话。一旦PPPoE会话开始，PPP数据就可以以任何其他的PPP封装形式发送。所有的以太网帧都是单播的。PPPoE会话的SESSION-ID一定不能改变，并且必须是发现阶段分配的值。
+
+PPPoE还有一个PADT分组，它可以在会话建立后的任何时候发送，来终止PPPoE会话，也就是会话释放。它可以由主机或者接入集中器发送。当对方接收到一个PADT分组，就不再允许使用这个会话来发送PPP业务。PADT分组不需要任何标签，其CODE字段值为0xa7，SESSION-ID字段值为需要终止的PPP会话的会话标识号码。在发送或接收PADT后，即使正常的PPP终止分组也不必发送。PPP对端应该使用PPP协议自身来终止PPPoE会话，但是当PPP不能使用时，可以使用（PADT）（PPPOE ActiveDiscovery Terminate）结束。
+
+PPPoE会话阶段主要分为LCP协商阶段、认证阶段、IPCP阶段等，在这些阶段顺利完成后，就可以进行数据传输。
+
+链路控制协议LCP(Link Control Protocol)
+此阶段主要是协商链路的一些参数，如最大接收单元MRU、Magic Number，以及后续认证时使用的协议等。LCP协商分为ConfigureRequest，ConfigureAck，TerminateRequest,Echo Request。
+
+
+
+LCP交互示意图
+
+SessionID就是PADS获得的SessionID，主要协商了MRU（Maximun Receive Ubit），并且提出认证使用的Magic Number。一般而言，MRU和MTU取值相同，PPPOE的最大MTU不能超过1492。计算方法如下:
+
+    首先，以太网帧大小限制：
+
+   Ethernet MinSize = 64 Byte
+
+   Ethernet MaxSize = 1518 Byte
+
+    去掉以太网帧头(6字节SRCMAC+6字节DSTMAC+2字节TYPE+4字节CRC)后的净荷为：
+
+   EthernetIP MTU =1518–18= 1500 B
+
+    所以，再去掉(6字节PPPoE_SESSION+2字节PPP_HEADER)的开销，所以PPPOE的MRU最大值为：PPPoEMTU/MRU=1500–8=1492B。
+
+   Magic-number选项用来协商双方的魔术字，两端魔术字不能重复，魔术字可用来检测链路的环回情况。
+
+    该选项提供了一种探测短路连接和其它数据链路层异常的方法当一方接收到带有魔数选项的配置请求数据帧后，将接收到的魔数与上次发送的魔数进行比较，如果不相同就认为没有发生短路。如果两个魔数相同，则需要发送一个携带不同魔数的配置否认帧，然后将接收到的魔数与发送的魔数进行比较。
+
+在广域链路上，最常用的一种检测链路的方法就是在远端将发送和接受短接成环路，在本端发送的信号如果能被自己成功的接受到，那么线路就有可能是Ok的，这就是LoopBack测试。如果环路在测试之后并未撤掉，PPP又没有引如Magic-Number的话，就可能自己和自己建立PPP关系。
+
+
+
+C->S Configure Request
+
+ 
+
+
+
+S->CConfigure Ack
+
+
+
+                                                                    S->C Configure Request
+
+
+
+C->SConfigure Ack
+
+ 
+
+C->Secho
+
+
+
+S->Cecho
+
+认证阶段（网络层控制协议NCP）
+认证阶段务器端将验证客户端的合法性。最常见的两种就是PAP和CHAP；
+
+   PAP（Password Authentication Protocol）验证为两次握手验证，密码为明文。
+
+   PAP验证的过程如下：
+
+   (1)被验证方发送用户名和密码到验证方；
+
+   (2)验证方根据本端用户表查看是否有此用户以及密码是否正确，然后返回不同的响应。
+
+    注意：PAP不是一种安全的验证协议。当验证时，口令以明文方式在链路上发送，并且由于完成PPP链路建立后，被验证方会不停地在链路上反复发送用户名和口令，直到身份验证过程结束，所以不能防止攻击。
+
+    CHAP（Challenge-Handshake Authentication Protocol）验证为三次握手验证，密码为密文（密钥）。  
+
+    CHAP验证过程如下：
+
+    (1)Challenge：验证方主动发起验证请求，验证方向被验证方发送一些随机产生的报文，并同时将本端的用户名附带上一起发送给被验证方；
+
+    (2)Response：若被验证方接到验证方的验证请求后，检查本端接口上是否配置了缺省的CHAP密码，如果配置了则被验证方利用报文ID、该缺省密码和MD5算法对该随机报文进行加密，将生成的密文和自己的用户名发回验证方；若被验证方检查发现本端接口上没有配置缺省的CHAP密码，则被验证方根据此报文中验证方的用户名在本端的用户表查找该用户对应的密码，如果在用户表找到了与验证方用户名相同的用户，便利用报文ID、此用户的密钥（密码）和MD5算法对该随机报文进行加密，将生成的密文和被验证方自己的用户名发回验证方；
+
+    (3)result:验证方用自己保存的被验证方密码和MD5算法对原随机报文加密，比较二者的密文，根据比较结果返回不同的响应。
+
+
+
+S->CChallenge
+
+
+
+C->SResponse
+
+
+
+S->CSucess
+
+IPCP(IP Control Protocol)阶段
+此阶段进行IP、DNS、WINS等的协商
+
+
+
+IPCP交互示意图
+
+
+
+S->CConfigure Request
+
+
+
+C->SConfigure Request
+
+
+
+C->SConfigure Ack
+
+
+
+S->CConfigure Nak
+
+
+
+C->SConfigure Request
+
+
+
+S->CConfigure Ack
+
+数据传输
+
+
+pppoe数据
+
+参考链接：
+
+http://blog.csdn.net/weixin_35804181/article/details/52242868
+
+  http://www.360doc.com/content/12/0312/20/3725126_193822217.shtml
+————————————————
+版权声明：本文为CSDN博主「xinyuan0214」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/xinyuan510214/article/details/79635015

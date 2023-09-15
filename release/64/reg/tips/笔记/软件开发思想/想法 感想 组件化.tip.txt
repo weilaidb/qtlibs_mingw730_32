@@ -1,0 +1,157 @@
+笔记模板
+☆标题
+软件开发思想/想法 感想 组件化
+
+
+☆内容
+组件化，使用经典的MVC思想来指导
+M:模型
+V:视图，界面 
+C:控制，给视图服务的
+
+VC是关联的
+M是业务逻辑层和数据层的结合，其核心点也在这里，需要将业务逻辑和数据分离开。
+
+
+☆附加信息
+在MVC（Model-View-Controller）中，M代表模型（Model），它确实是业务逻辑和数据的集合。模型负责处理数据逻辑和业务规则，并与数据库或其他数据源进行交互。它是应用程序的核心组件，通常包含数据存储、数据操作和业务逻辑的实现。其他两个组件是视图（View）和控制器（Controller），它们负责用户界面和用户交互。
+
+
+
+在MVC模型中，业务逻辑和数据可以通过以下方式实现解耦：
+
+1. 模型（Model）：模型负责处理数据逻辑和业务规则，它可以独立于具体的数据存储方式。这意味着模型可以与各种数据源（如数据库、文件、API等）进行交互，而不会直接依赖于特定的数据存储实现。
+
+2. 接口和抽象：通过定义接口和抽象类，可以将业务逻辑和数据访问进行分离。模型可以通过接口来定义其公共方法和属性，而具体的数据访问实现可以通过实现这些接口来提供。
+
+3. 控制器（Controller）：控制器负责协调模型和视图之间的交互。它可以通过调用模型的方法来处理业务逻辑，并将结果传递给视图进行展示。控制器可以起到解耦的作用，使得业务逻辑和数据操作可以独立于具体的视图实现。
+
+通过以上方式，MVC模型中的业务逻辑和数据可以相对独立地进行开发和维护，实现解耦的效果。这样可以提高代码的可维护性和可测试性，同时也方便对模型和数据访问层进行扩展和替换。
+
+
+
+
+
+MVC模型中，业务逻辑和数据如何实现解耦？C++实例
+在C++中实现MVC模型中的业务逻辑和数据解耦可以采用以下方法：
+
+1. 创建模型（Model）类：该类负责处理数据逻辑和业务规则。它可以定义数据成员和方法来表示业务逻辑，而不需要直接访问具体的数据源。
+class Model {
+private:
+    // 数据成员
+    int data;
+
+public:
+    // 方法
+    void setData(int value) {
+        data = value;
+    }
+
+    int getData() const {
+        return data;
+    }
+
+    // 其他业务逻辑方法
+};
+2. 创建接口（Interface）类：为了实现解耦，可以定义一个接口类来定义模型的公共方法和属性。
+class IModel {
+public:
+    virtual void setData(int value) = 0;
+    virtual int getData() const = 0;
+    // 其他业务逻辑方法的纯虚函数声明
+};
+3. 实现模型类并继承接口类：创建具体的模型类并继承上述定义的接口类，实现接口中声明的纯虚函数。
+class ConcreteModel : public IModel {
+private:
+    int data;
+
+public:
+    void setData(int value) override {
+        data = value;
+    }
+
+    int getData() const override {
+        return data;
+    }
+
+    // 实现其他业务逻辑方法
+};
+通过上述方式，业务逻辑和数据的实现被分离到不同的类中，从而实现了解耦。其他组件如视图（View）和控制器（Controller）可以使用接口类来访问模型，而不需要直接依赖于具体的模型实现类。这样可以提高代码的可维护性和可扩展性，同时也方便进行单元测试和模块替换。
+
+
+
+
+
+
+
+
+
+
+MVC模型中，业务逻辑和数据如何实现解耦？C++举一个详细点的例子
+
+在MVC模型中，可以通过以下方式实现业务逻辑和数据的解耦：
+
+1. 创建模型类（Model）：模型类负责处理数据逻辑和业务规则。它应该独立于具体的数据存储方式，可以定义数据成员和方法来表示业务逻辑。
+class Model {
+private:
+    int data;
+
+public:
+    void setData(int value) {
+        data = value;
+    }
+
+    int getData() const {
+        return data;
+    }
+
+    // 其他业务逻辑方法
+};
+2. 创建数据访问接口类（Data Access Interface）：为了解耦数据访问和模型，可以定义一个接口类来定义数据访问的公共方法。
+class IDataAccess {
+public:
+    virtual void saveData(int value) = 0;
+    virtual int loadData() const = 0;
+    // 其他数据访问方法的纯虚函数声明
+};
+3. 实现数据访问接口类（Data Access Implementation）：创建具体的数据访问类，实现数据访问接口中声明的方法。
+class DataAccess : public IDataAccess {
+public:
+    void saveData(int value) override {
+        // 实现数据保存逻辑
+    }
+
+    int loadData() const override {
+        // 实现数据加载逻辑
+        return 0;
+    }
+
+    // 其他数据访问方法的实现
+};
+4. 在模型类中使用数据访问接口类：在模型类中使用数据访问接口类来进行数据操作，而不是直接与具体的数据访问实现类耦合。
+class Model {
+private:
+    IDataAccess* dataAccess;
+
+public:
+    Model(IDataAccess* dataAccess) : dataAccess(dataAccess) {}
+
+    void setData(int value) {
+        dataAccess->saveData(value);
+    }
+
+    int getData() const {
+        return dataAccess->loadData();
+    }
+
+    // 其他业务逻辑方法
+};
+通过上述方式，业务逻辑和数据访问被分离到不同的类中，实现了解耦。其他组件如视图（View）和控制器（Controller）可以使用模型类来进行业务逻辑的处理，而不需要直接依赖于具体的数据访问实现类。这样可以提高代码的可维护性和可扩展性，同时也方便进行单元测试和数据访问层的替换。
+
+
+☆提交日期
+2023-09-15 08:26:04
+
+
+========================================================================
+========================================================================

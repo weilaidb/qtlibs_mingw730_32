@@ -18,7 +18,25 @@ CODE:10 IDENTIFIER:643 LENGTH(Variable) DATA(Variable)
 相当于
 L2 PPPoE  PPP 
 
+看来对包的理解还有问题：
+本以为L2之后就是IP包，看来这个地方是不依赖于IP报文来传递的，PPPoE其实和IP是在同一层次上
 
+
+PPPOE发现阶段：
+主机广播发起分组（PADI）（PPPOE Active DiscoveryInitiation）
+PPPoE有效发现提供包（PADO）（PPPOE Active Discovery Offer）分组
+PPPoE有效发现请求分组（PADR）（PPPOE Active Discovery Request）
+PPPoE有效发现会话确认（PADS）（PPPOE Active DiscoverySession-confirmation）分组
+
+
+
+PPPOE会话阶段：
+LCP协商阶段
+认证阶段
+IPCP阶段
+
+
+PPPOE的最大MTU不能超过1492
 
 
 注:

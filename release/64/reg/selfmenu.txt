@@ -343,6 +343,7 @@ BAT/网络network/知识点/PPP chap
 BAT/网络network/知识点/PPPoE
 BAT/网络network/知识点/PPPoE 为啥家用路由器MTU值最大为1492
 BAT/网络network/知识点/PPPoE帧格式
+BAT/网络network/知识点/PPPoE报文格式及交互详解
 BAT/网络network/知识点/PPPoE攻击 PADT断开连接
 BAT/网络network/知识点/PPP协议和PPPoE协议
 BAT/网络network/知识点/PPP协议的帧格式
@@ -3783,6 +3784,7 @@ path路径/常用文件夹
 笔记/软件/UML画序列图或时序图
 笔记/软件开发思想/头文件梳理
 笔记/软件开发思想/想法 感想
+笔记/软件开发思想/想法 感想 组件化
 笔记/软件开发思想/想法（数据库自动化编程）
 笔记/进程链接动态库中Gtest用例成功 ，链接静态库却失败
 算法/C/冒泡排序
