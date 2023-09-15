@@ -9,6 +9,7 @@ no sh
 ip route 0.0.0.0 0.0.0.0 20.1.1.2
 
 do sh ip int b
+do show ip interface b
 #显示路由
 do show ip route
 #显示ARP

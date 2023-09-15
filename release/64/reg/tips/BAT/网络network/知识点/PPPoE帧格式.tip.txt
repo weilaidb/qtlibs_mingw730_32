@@ -1,0 +1,78 @@
+PPPoE帧格式 
+
+PREAMBLE SFD
+DA SA TYPE(0x8864) DATA(Variable length)  FCS
+
+PPPoE
+V:1 T:1 Code:0x00 Session ID:0x0007 LENGTH(Variable)
+
+
+
+PPP
+FLG:0x7E ADR:0xff  CONTROL:0x03 PROTOCOL:0xc021 DATA(Variale length) FCS  FLG(0x7E)
+
+PPP LCP
+CODE:10 IDENTIFIER:643 LENGTH(Variable) DATA(Variable)
+
+
+相当于
+L2 PPPoE  PPP 
+
+
+
+
+注:
+各个字段解释如下： 
+
+Destination_address：一个以太网单播目的地址或者以太网广播地址（0xffffffff）。对于Discovery数据包来说，该域的值是单播或者广播地址，PPPoE Client寻找PPPoE Server的过程使用广播地址，确认PPPoE Server后使用单播地址。对于Session阶段来说，该域必须是Discovery阶段已确定的通信对方的单播地址。
+
+Source_address：源设备的以太网MAC地址。  
+
+Ether_type：设置为0x8863（Discovery阶段或拆链阶段）或者0x8864（Session阶段）。
+
+Ver：4bits，PPPoE版本号，值为0x1。 Type域：4bits，PPPoE类型，值为0x1。  
+
+Code：8bits，PPPoE报文类型。Code域为0x00，表示会话数据。Code域为0x09，表示PADI报文；Code域为0x07，表示PADO或PADT报文；Code域为0x19，表示PADR报文；Code域为0x65，表示PADS报文。
+
+Session_ID：16bits，对于一个给定的PPP会话，该值是一个固定值，并且与以太网Source_address和Destination_address一起实际地定义了一个PPP会话。值0xffff为将来的使用保留，不允许使用。  
+
+ Length：16bits，定义PPPoE的Payload域长度。不包括以太网头部和PPPoE头部的长度。
+
+数据：有时也称之为净载荷域，在PPPOE的不同阶段该域内的数据内容会有很大的不同。
+
+在PPPOE的发现阶段时，该域内会填充一些Tag（标记）；而在PPPOE的会话阶段，该域则携带的是标准的点对点协议包。
+————————————————
+版权声明：本文为CSDN博主「xinyuan0214」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/xinyuan510214/article/details/79635015
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

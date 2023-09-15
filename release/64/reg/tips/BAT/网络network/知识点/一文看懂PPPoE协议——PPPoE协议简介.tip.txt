@@ -1,0 +1,41 @@
+一文看懂PPPoE协议——PPPoE协议简介
+
+永远是少年啊
+
+于 2021-07-08 22:56:37 发布
+
+7136
+ 收藏 57
+分类专栏： 计算机网络 文章标签： pppoe ppp 计算机网络 ADSL 拨号上网
+版权
+
+计算机网络
+专栏收录该内容
+143 篇文章339 订阅
+订阅专栏
+今天给大家介绍一下PPPoE协议的相关内容，文章浅显易懂，特别适合0基础同学。本文将主要从PPPoE技术背景、基本概念和建立流程三个方面进行说明。
+在阅读本文之前，强烈建议您先阅读本文的先导文章：一文看懂PPP协议——PPP协议简介
+
+一、PPPoE技术背景
+目前，我们普通家庭在上网的时候，一般都是利用了ADSL技术进行拨号上网。其大致网络架构拓扑图是这样的：
+
+对于网络运营商而言，搭建如上的网络架构并不难，但是问题在于网络运营商要对用户上网行为进行收费和控制，因此，针对特定的数据包，就必须识别发送方的身份。
+在以太网链路上，以太网帧不具有上述功能，但是在PPP链路上，由于PPP协议自带认证功能，因此可以完美的解决上述问题。但是，PPP链路又无法实现多用户上网的需求。为了解决这个矛盾问题，解决用户上网行为管理和收费的问题，提出了将PPP数据帧封装在以太网数据帧里边从而在以太网网络中传输的技术——PPPoE技术。
+这里的PPP，就是指的PPP协议数据帧，而o就是over的意思，E就是Ethernet的意思，因此，PPPoE形象的说就是“在以太网上的PPP协议”。
+
+二、PPPoE基本概念
+上文中我们提到了PPPoE的背景——为了解决家庭用户上网行为控制和计费问题。并简要介绍了PPPoE的实现原理。PPPoE在数据链路层依旧是采用以太网格式的数据帧进行封装，但是在以太网封装完毕后，会进行PPPoE的数据头封装，PPPoE包括PPPoE头和PPPoE数据段两个部分，而PPPoE数据段部分中又包含了PPP帧和正常的数据。另外，在这里要特比注意：这里的PPP帧并不是一个完整的PPP帧，它只包含了PPP帧的Protocol字段和正常的数据。其他的字段（如FLAG、FCS等）在PPPoE建立过程中并不需要。PPPoE数据包封装如下所示：
+
+
+三、PPPoE建立流程
+上文中我们提到了PPPoE的数据包格式，那么PPPoE到底是如何实现的呢？下面我们一起来看一下：
+PPPoE是典型的C/S架构，普通用户一般为Client，而运营商为Server。PPPoE的建立分为Discover阶段和PPP Session阶段。
+在Discover阶段中，数据通信流程如下：
+
+如上图所示，当Client要运行PPPoE时，首先以广播的形式发送一个PADI（PPPoE Active Discovery Initiation）报文，该报文中含有Client端要请求的服务信息，PPPoE服务器在收到该报文后，会以单播的方式发送一个PADO（PPPoE Active Discovery Offer）报文，对Client端的PADI报文进行回应。PPPoE Client端在收到这个报文后，会向PPPoE Server发送PADR（PPPoE Active Discovery Request）报文。在这个报文中，PPPoE Client会创建并携带一个PPPoE Session。之后，PPPoE Server还会向客户端发送PADS（PPPoE Active Discovery Session-confirmation）报文，表示收到了该Session ID。
+到目前为止，Discover阶段已经结束了，PPPoE客户端和PPPoE服务端已经协商好了Session-ID，以后的PPPoE会话就会使用这个Session-ID了。
+在Discover阶段结束后，PPPoE会话会进入到PPP Session阶段，在该阶段中，会完成PPPoE客户端和服务端的认证过程，最终会依照PPP协议中连接的建立流程，完成链路层和网络层参数的协商，最后就能够正常通信了。
+原创不易，转载请说明出处：https://blog.csdn.net/weixin_40228200/article/details/118583965
+————————————————
+版权声明：本文为CSDN博主「永远是少年啊」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_40228200/article/details/118583965

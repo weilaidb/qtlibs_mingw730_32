@@ -278,7 +278,6 @@ BAT/网络network/router 路由器优先级
 BAT/网络network/router 路由器度量值
 BAT/网络network/router 路由器转发过程
 BAT/网络network/snat
-BAT/网络network/software cisco order
 BAT/网络network/software cisco order 常见问题
 BAT/网络network/stp
 BAT/网络network/tcpdump/arp
@@ -343,6 +342,7 @@ BAT/网络network/知识点/PPP
 BAT/网络network/知识点/PPP chap
 BAT/网络network/知识点/PPPoE
 BAT/网络network/知识点/PPPoE 为啥家用路由器MTU值最大为1492
+BAT/网络network/知识点/PPPoE帧格式
 BAT/网络network/知识点/PPPoE攻击 PADT断开连接
 BAT/网络network/知识点/PPP协议和PPPoE协议
 BAT/网络network/知识点/PPP协议的帧格式
@@ -362,6 +362,7 @@ BAT/网络network/知识点/ospf 路由协议 开放的最短路径优先协议 
 BAT/网络network/知识点/ospf网络类型
 BAT/网络network/知识点/ping 为什么会偶发丢包
 BAT/网络network/知识点/ping 探测路径mtu大小
+BAT/网络network/知识点/一文看懂PPPoE协议——PPPoE协议简介
 BAT/网络network/知识点/什么是PPPoE,PPPoE解决了哪些问题
 BAT/网络network/知识点/什么是SDN
 BAT/网络network/知识点/以太网最小字节为什么要求是64呢
@@ -2931,8 +2932,10 @@ RtThread/RT-Thread的架构
 RtThread/汇总(all)
 Setting/网页显示常用Tab切换
 SoftWare/AutoCad 2022
+SoftWare/Cisco Packet Tracer/eg/pppoe
 SoftWare/Cisco Packet Tracer/help
 SoftWare/Cisco Packet Tracer/启动打印/ISR4321 Router
+SoftWare/Cisco Packet Tracer/常用命令
 SoftWare/Cisco Packet Tracer/用法
 SoftWare/DevEco Studio
 SoftWare/FastStone Capture v9.7

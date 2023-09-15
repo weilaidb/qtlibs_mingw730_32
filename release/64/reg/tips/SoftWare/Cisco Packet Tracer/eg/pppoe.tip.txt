@@ -1,0 +1,10 @@
+PC0 is PPPoE Client and Router0 is PPPoE server, In order to see the PPPoE working. 
+1) Click on PC0, go to the Desktop tab, open PPPoE Dialer to dial to the server.
+2) Enter username = "c" and password "c" and click on the Connect button.
+3) Switch to the simulation mode. 
+4) Mouse over the PC, should be able to see the PPPoE IP address assigned to the PC0.
+5) From PC run ping 1.1.1.1 
+6) When ICMP packet gets to the Router0, click on the packet, in the layer2 detailed description, 
+ 	it should list PPPoE decapsulates (INBOUND) and encapsulateds (OUTBOUND).
+7) Click forward, so ICMP packet gets to the PC and click on it, you should see the same PPPoE encapsulation
+	and decapsulation as in step6. 
