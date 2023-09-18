@@ -194,6 +194,7 @@ git@gitee.com:weilaidb/deploysoftware.git
 git@github.com:weilaidb/qtlibs_mingw730_32.git
 git@github.com:weilaidb/linux_driver.git
 git@gitee.com:weilaidb/hello-java-ee3_-ext.git
+#EC管理，用例管理(spring test)
 git@gitee.com:weilaidb/DD.git
 git@gitee.com:weilaidb/javaScriptExample.git
 https://github.com/weilaidb/qtlibs_mingw730_32.git

@@ -1,0 +1,86 @@
+MVC
+
+
+Controller:控制业务流程
+ --将service类作为成员变量 ，成员方法中调用service对外提供的接口
+ --示例:public class ECController {
+    private ECService ecService;
+    public JSONObject getECList(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
+        return ecService.getECList(pageNum, pageSize);
+    }
+
+
+Service: 业务处理逻辑，对应M 
+ --service:仅提供对外的函数声明，给C使用
+ --定义为interface
+ --示例:public interface ECService {
+    JSONObject getECList(int pageNum, int pageSize);
+
+ --impl:service的接口实现
+ --定义为类实现
+ --示例ECServiceImpl，实现方法 ECServiceImpl implements 
+ --示例:public class ECServiceImpl implements ECService {
+    @Autowired
+    private ECDao ecDao;
+
+Dao :数据层，对应M，Data access object（数据访问对象）
+ --定义对数据的操作的接口定义，没有对数据操作接口的实现
+ --定义为interface
+ --一般一个Dao层对应一张数据库表
+ --示例:public interface ECDao {
+    List<EC> getECList();
+    int addEC(JSONObject request);
+
+
+Model:定义数据
+ --仅有数据的声明，没有数据的访问实现
+ --定义为类数据
+ --这个是最底层的数据
+ --示例:class EC {
+    private int id;
+
+
+
+
+MVC的DAO、Service、Controller层之间的关系
+小黑很白
+于 2021-08-01 20:55:03 发布 1172
+收藏 4
+版权
+MVC：
+
+    M—Model（模型，即JavaBean）
+    V—View（视图，即页面）
+    C—Controller（控制层，即与前端交互的类）
+
+DAO、Service、Controller层
+
+    DAO：数据层，即把业务层传过来的数据存放在数据库。
+    Service：业务层，处理控制层传过来的数据，然后把数据传给数据层。
+    Controller：控制层，接收前端传过来的数据和发送数据给前端，然后传给业务层。
+
+DAO层
+
+DAO层主要做数据持久层的工作，负责与数据库进行联络的一些任务都封装在此。DAO层的设计首先是设计DAO层的接口，然后在Spring的配置文件中定义此接口的实现类。DAO层的数据源配置，以及有关数据库连接参数都在Spring配置文件中进行配置。DAO设计的总体规划需要和设计的表，和实现类之间一一对应。DAO层所定义的接口里的方法大同小异，这是由DAO层对数据库访问的操作来决定的，对数据库的操作基本就是新增，更新，删除，查询等。因而DAO层里面基本要涵盖这些方法对应的操作。除此之外，可以定义一些自定义的特殊的对数据库访问的方法。
+
+
+Service层
+
+Service层主要负责业务模块的应用逻辑设计。首先设计接口，再设计其实现类，接着在Spring的配置文件中配置其实现的关联。这样可以在应用中调用Service接口进行业务的处理。封装Service层业务逻辑有利于通用的业务逻辑的独立性和重复利用性。Service层处于DAO层与Controller层之间，因而Service层应该既调用DAO层的接口，又要提供接口给Controller层的类来进行调用，处于一个中间层的位置。每个模型都有一个Service接口，每个接口分别封装各自的业务处理方法。
+
+DAO层，Service层这两个层次都可以单独开发，互相的耦合度很低，完全可以独立进行，这样的一种模式在开发大项目的过程中尤其有优势。
+
+Controller层
+
+Controller层负责具体的业务模块流程的控制，在此层要调用Service层的接口来控制业务流程，控制的配置也同样是在Spring的配置文件里进行，针对具体的业务流程，会有不同的控制器。具体的设计过程可以将流程进行抽象归纳，设计出可以重复利用的子单元流程模块。这样不仅使程序结构变得清晰，也大大减少了代码量。
+
+View层
+
+View层与控制层结合比较紧密，需要二者结合起来协同开发。View层主要负责前台jsp页面的显示。
+
+Controller，View层因为耦合度比较高，因而要结合在一起开发，但是也可以看作一个整体独立于前两个层进行开发。
+
+这样，在层与层之前只需要知道接口的定义，调用接口即可完成所需要的逻辑单元应用，一切显得非常清晰简单。
+————————————————
+版权声明：本文为CSDN博主「小黑很白」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_43111596/article/details/119302133
