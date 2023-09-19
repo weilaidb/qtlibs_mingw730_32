@@ -1,0 +1,102 @@
+
+darkless
+网络与信息安全博客
+标签分类
+关于
+PPP协议中的两个组件LCP和NCP
+LCP NCP
+ 路由交换 路由协议
+发布日期:   2016-12-06更新日期:   2021-12-15
+ppp是一个协议族，其中包含了两个协议：LCP（link control protocol）和NCP（network control protocol）两个协议，也称为ppp的两个组件。
+
+
+
+链路控制协议LinkControlProtocol用来建立、拆除和监控PPP数据链路
+
+网络层控制协议NetworkControlProtocol用于对不同的网络层协议进行连接建立和参数协商
+
+为了能适应多种多样的链路类型，（这里指的是物理层链路类型）PPP定义了链路控制协议LCP。LCP可以自动检测链路环境，如是否存在环路，协商链路参数，如最大数据包长度，使用何种认证协议等等。与其他数据链路层协议相比，PPP协议的一个重要特点是可以提供认证功能，链路两端可以协商使用何种认证协议来实施认证过程，只有认证成功之后才会建立连接。
+
+PPP定义了一组网络层控制协议NCP，每一个NCP对应了一种网络层协议，用于协商网络层地址等参数，例如IPCP用于协商控制IP协议，IPXCP用于协商控制IPX协议等。
+
+报文
+
+
+
+Configure-Request（配置请求）：链路层协商过程中发送的第一个报文，该报文表明点对点双方开始进行链路层参数的协商。
+Configure-Ack（配置响应）：收到对端发来的Configure-Request报文，如果参数取值完全接受，则以此报文响应。
+Configure-Nak（配置不响应）：收到对端发来的Configure-Request报文，如果参数取值不被本端认可，则发送此报文并且携带本端可接受的配置参数。
+Configure-Reject（配置拒绝）：收到对端发来的Configure-Request报文，如果本端不能识别对端发送的Configure-Request中的某些参数，则发送此报文并且携带那些本端不能认别的配置参数。
+LCP协商参数
+
+
+
+NCP（IPCP协商过程）
+
+IPCP使用和LCP相同的协商机制、报文类型，但IPCP并非调用LCP，只是工作过程、报文等和LCP相同。
+
+IP地址协商包括两种方式：静态配置协商和动态配置协商。
+
+静态协商是指ppp两端都配置了IP地址，此时要用静态协商，如果使用ppp客户端和服务器的模式此时要用动态协商。
+
+静态协商过程：
+
+
+
+静态IP地址的协商过程如下：
+
+每一端都要发送Configure-Request报文，在此报文中包含本地配置的地址；
+每一端接收到此Configure-Request报文之后，检查其中的IP地址，如果IP地址是一个合法的单播IP地址，而且和本地配置的IP地址不同（没有IP冲突），则认为对端可以使用该地址，回应一个Configure-Ack报文。
+动态协商过程：
+
+两端动态协商IP地址的过程如下：
+
+RTA向RTB发送一个Configure-Request报文，此报文中会包含一个IP地址0.0.0.0，表示向对端请求IP地址;
+RTB收到上述Configure-Request报文后，认为其中包含的地址（0.0.0.0）不合法，使用Configure-Nak回应一个新的IP地址10.1.1.1（此ip地址是从服务器端的地址中随机拿出的）;
+RTA收到此Configure-Nak报文之后，更新本地IP地址，并重新发送一个Configure-Request报文，包含新的IP地址10.1.1.1；
+RTB收到Configure-Request报文后，认为其中包含的IP地址为合法地址，回应一个Configure-Ack报文。
+同时，RTB也要向RTA发送Configure-Request报文请求使用地址10.1.1.2，RTA认为此地址合法，回应Configure-Ack报文。
+ 文章作者: darkless
+ 文章链接: https://darklesss.cn/2016/12/06/PPP-LCP-NCP/
+ 版权声明: 本博客所有文章除特別声明外，均采用 CC BY 4.0 许可协议。转载请注明来源 darkless !
+LCP NCP
+ 评论
+昵称
+邮箱
+网址
+欢迎评论
+
+
+
+0  字
+评论
+按正序按倒序按热度
+来发评论吧~
+Powered by Waline v2.15.8
+ 上一篇
+华为PPPoE相关配置华为PPPoE相关配置
+2016-12-08 路由交换 二层协议
+PPPoE
+下一篇 
+PPPoE会话建立过程PPPoE会话建立过程
+2016-12-05 路由交换 二层协议
+PPPoE
+  目录
+Copyright © 2016-2023 darkless | Powered by Hexo | Theme Matery
+
+  
+复制成功，请遵循本文的转载规则
+查看
+复制成功，请遵循本文的转载规则
+查看
+
+
+
+
+
+
+
+
+
+https://darkless.cn/2016/12/06/PPP-LCP-NCP/#:~:text=%E4%B8%BA%E4%BA%86%E8%83%BD%E9%80%82%E5%BA%94%E5%A4%9A%E7%A7%8D%E5%A4%9A%E6%A0%B7%E7%9A%84%E9%93%BE%E8%B7%AF%E7%B1%BB%E5%9E%8B%EF%BC%8C%EF%BC%88%E8%BF%99%E9%87%8C%E6%8C%87%E7%9A%84%E6%98%AF%E7%89%A9%E7%90%86%E5%B1%82%E9%93%BE%E8%B7%AF%E7%B1%BB%E5%9E%8B%EF%BC%89PPP%E5%AE%9A%E4%B9%89%E4%BA%86%E9%93%BE%E8%B7%AF%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AELCP%E3%80%82%20LCP%E5%8F%AF%E4%BB%A5%E8%87%AA%E5%8A%A8%E6%A3%80%E6%B5%8B%E9%93%BE%E8%B7%AF%E7%8E%AF%E5%A2%83%EF%BC%8C%E5%A6%82%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E7%8E%AF%E8%B7%AF%EF%BC%8C%E5%8D%8F%E5%95%86%E9%93%BE%E8%B7%AF%E5%8F%82%E6%95%B0%EF%BC%8C%E5%A6%82%E6%9C%80%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8C%85%E9%95%BF%E5%BA%A6%EF%BC%8C%E4%BD%BF%E7%94%A8%E4%BD%95%E7%A7%8D%E8%AE%A4%E8%AF%81%E5%8D%8F%E8%AE%AE%E7%AD%89%E7%AD%89%E3%80%82,%E4%B8%8E%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%8D%8F%E8%AE%AE%E7%9B%B8%E6%AF%94%EF%BC%8CPPP%E5%8D%8F%E8%AE%AE%E7%9A%84%E4%B8%80%E4%B8%AA%E9%87%8D%E8%A6%81%E7%89%B9%E7%82%B9%E6%98%AF%E5%8F%AF%E4%BB%A5%E6%8F%90%E4%BE%9B%E8%AE%A4%E8%AF%81%E5%8A%9F%E8%83%BD%EF%BC%8C%E9%93%BE%E8%B7%AF%E4%B8%A4%E7%AB%AF%E5%8F%AF%E4%BB%A5%E5%8D%8F%E5%95%86%E4%BD%BF%E7%94%A8%E4%BD%95%E7%A7%8D%E8%AE%A4%E8%AF%81%E5%8D%8F%E8%AE%AE%E6%9D%A5%E5%AE%9E%E6%96%BD%E8%AE%A4%E8%AF%81%E8%BF%87%E7%A8%8B%EF%BC%8C%E5%8F%AA%E6%9C%89%E8%AE%A4%E8%AF%81%E6%88%90%E5%8A%9F%E4%B9%8B%E5%90%8E%E6%89%8D%E4%BC%9A%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E3%80%82%20PPP%E5%AE%9A%E4%B9%89%E4%BA%86%E4%B8%80%E7%BB%84%E7%BD%91%E7%BB%9C%E5%B1%82%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AENCP%EF%BC%8C%E6%AF%8F%E4%B8%80%E4%B8%AANCP%E5%AF%B9%E5%BA%94%E4%BA%86%E4%B8%80%E7%A7%8D%E7%BD%91%E7%BB%9C%E5%B1%82%E5%8D%8F%E8%AE%AE%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%8D%8F%E5%95%86%E7%BD%91%E7%BB%9C%E5%B1%82%E5%9C%B0%E5%9D%80%E7%AD%89%E5%8F%82%E6%95%B0%EF%BC%8C%E4%BE%8B%E5%A6%82IPCP%E7%94%A8%E4%BA%8E%E5%8D%8F%E5%95%86%E6%8E%A7%E5%88%B6IP%E5%8D%8F%E8%AE%AE%EF%BC%8CIPXCP%E7%94%A8%E4%BA%8E%E5%8D%8F%E5%95%86%E6%8E%A7%E5%88%B6IPX%E5%8D%8F%E8%AE%AE%E7%AD%89%E3%80%82
+

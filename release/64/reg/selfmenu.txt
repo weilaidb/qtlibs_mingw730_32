@@ -345,6 +345,7 @@ BAT/网络network/知识点/PPPoE 为啥家用路由器MTU值最大为1492
 BAT/网络network/知识点/PPPoE帧格式
 BAT/网络network/知识点/PPPoE报文格式及交互详解
 BAT/网络network/知识点/PPPoE攻击 PADT断开连接
+BAT/网络network/知识点/PPP协议中的两个组件LCP和NCP
 BAT/网络network/知识点/PPP协议和PPPoE协议
 BAT/网络network/知识点/PPP协议的帧格式
 BAT/网络network/知识点/Ping命令的七种用法
@@ -364,6 +365,7 @@ BAT/网络network/知识点/ospf网络类型
 BAT/网络network/知识点/ping 为什么会偶发丢包
 BAT/网络network/知识点/ping 探测路径mtu大小
 BAT/网络network/知识点/一文看懂PPPoE协议——PPPoE协议简介
+BAT/网络network/知识点/一文看懂PPP协议——PPP协议简介
 BAT/网络network/知识点/什么是PPPoE,PPPoE解决了哪些问题
 BAT/网络network/知识点/什么是SDN
 BAT/网络network/知识点/以太网最小字节为什么要求是64呢
