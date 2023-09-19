@@ -228,7 +228,9 @@ git@gitee.com:weilaidb/goeg.git
 git@gitee.com:weilaidb/qemu_eg.git
 git@gitee.com:weilaidb/cxxcodesets.git
 
+git@github.com:weilaidb/jeecg-boot.git
 
+#jeecg-boot
 git clone git://101.201.79.164//myprj 
 
 下载超过1G的库提示失败,
