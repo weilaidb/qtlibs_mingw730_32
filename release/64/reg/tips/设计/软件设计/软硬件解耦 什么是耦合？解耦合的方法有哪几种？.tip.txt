@@ -1,0 +1,130 @@
+什么是耦合？解耦合的方法有哪几种？
+Java编程宇宙
+Java编程宇宙
+​关注
+16 人赞同了该文章
+在项目的开发过程中，我们经常强调项目的代码模块尽量做到低耦合高内聚，但是什么是耦合？怎样做到低耦合？可能有很多人感到疑惑，下面我来跟大家讲解什么是耦合，怎么进行解耦合实现低耦合。
+
+什么是耦合？
+耦合指的就是两个类之间的联系的紧密程度，看下面这段代码：
+
+public class A{
+        public int i;
+    }
+
+    public class B{
+        public void put(A a){
+            System.out.println(a.i);
+        }
+    }
+上面这个例子中A类和B类之间存在一种强耦合关系，B类的put方法参数必须是A类类型，不可以是非A类类型。有强耦合关系当然也存在所谓的弱耦合关系，请看下面这段代码：
+
+public interface IBase{
+        void say();
+    }
+
+    public class A implements IBase{
+
+        @Override
+        public void say() {
+            System.out.println("I am A");
+        }
+    }
+
+    public class B implements IBase{
+
+        @Override
+        public void say() {
+            System.out.println("I am B");
+        }
+    }
+
+    public class C{
+        public void put(IBase base){
+            base.say();
+        }
+    }
+}
+上面这段代码中C类与A类、B类之间就存在一种弱耦合关系，C类的put方法的参数可以使A类类型也可以是B类类型，不像强耦合关系中必须是A类类型其他类型皆不可的情形。
+
+二、怎么实现低耦合？
+实现低耦合就是对两类之间进行解耦，解除类之间的直接关系，将直接关系转换成间接关系，下面来提供两种解耦思路。
+
+1、使用类的向上转型或接口回调的方式进行解耦
+这两个方式其实都是一种思想，都是利用多态的思想，上面的弱耦合样例代码是接口回调的方式，下面展示利用类向上转型如何解耦:
+
+public class Base{
+       public void say(){
+            System.out.println("I am Base");
+        }
+    }
+    public class A extends Base{
+
+        @Override
+        public void say() {
+            System.out.println("I am A");
+        }
+    }
+
+    public class B extends Base{
+
+        @Override
+        public void say() {
+            System.out.println("I am B");
+        }
+    }
+
+    public class C{
+        public void put(Base base){
+            base.say();
+        }
+    }
+}
+看到这段代码是不是感觉跟上面的利用接口实现的弱耦合代码很相似，他们都是利用继承思想实现的多态性。
+
+2、利用适配器模式进行解耦
+所谓的强耦合不就是类之间存在着直接关系，从而使得他们俩联系特别紧密，那我在他们之间加一层，使直接关系变成间接关系，请看下面这段代码：
+
+public class A{
+
+        public void aSay() {
+            System.out.println("I am A");
+        }
+    }
+
+    public class Base{
+
+        public A a;
+        public Base(A a){
+            this.a=a;
+        }
+        public void baseSay(){
+            a.aSay();
+        }
+    }
+
+    public class B{
+        public void put(Base base){
+            base.baseSay();
+        }
+    }
+
+    public static void main(String[] args){
+        A a=new A();
+        Base base=new Base(a);
+        B b=new B();
+        b.put(base);
+    }
+}
+上面这段代码就是适配器模式进行解耦的代码例子，可能有人会很疑惑这样解耦有什么意义，以上代码只做演示确实看不出这种解耦的好处，但是在实际的项目开发过程中，如果有关A类的一些需求发生改变，我们可能只需要修改Base中的相关代码就可以进行整体需求的改变，否则的话，我们不仅要 修改A，还很有可能会导致B的修改。
+
+解耦的本质就是将类之间的直接关系转换成间接关系，不管是类向上转型，接口回调还是适配器模式都是在类之间加了一层，将原来的直接关系变成间接关系，使得两类对中间层是强耦合，两类之间变成弱耦合关系。
+
+以上纯属个人见解，如有不对欢迎各位大神指正。
+
+来源：https://www.cxyxiaowu.com/17615.html
+作者：忽如一夜听春雨
+关注我 @Java编程宇宙，学习更多 Java 知识
+100 道 Java 面试题汇总 PDF 下载（含答案解析和思维导图）
+
+发布于 2021-08-20 09:23
