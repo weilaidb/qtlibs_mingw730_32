@@ -1,0 +1,13 @@
+<dependency>
+　　<groupId>com.alibaba</groupId>  -- 
+　　<artifactId>easyexcel</artifactId>
+　　<version>2.2.4</version>
+</dependency>
+
+
+groupId和artifactId是maven管理项目包时用作区分的字段，就像是地图上的坐标。
+
+groupId：groupId分为几个字段，例如cn.com.fullstack，前面的com叫【域】，后面的是你自己起的域名。
+groupId一般分为多个段，这里我只说两段，第一段为域，第二段为公司名称。域又分为org、com、cn等等许多，其中org为非营利组织，com为商业组织。举个apache公司的tomcat项目例子：这个项目的groupId是org.apache，它的域是org（因为tomcat是非营利项目），公司名称是apache，artigactId是tomcat。
+
+artifactId：artifactId一般是项目名或者模块名。

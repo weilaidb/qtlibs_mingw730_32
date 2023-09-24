@@ -1620,6 +1620,7 @@ JAVA/SpringBoot/依赖库 pom.xml hibernate
 JAVA/SpringBoot/依赖库 pom.xml lombok
 JAVA/SpringBoot/依赖库 pom.xml webjars jquery
 JAVA/SpringBoot/创建工程 create project pom.xml
+JAVA/SpringBoot/工程Project/dependency
 JAVA/SpringBoot/工程Project/导入 dependency dependencies
 JAVA/SpringBoot/工程Project/导入 dependency dependencies2
 JAVA/SpringBoot/工程Project/新建工程 new project
@@ -1682,6 +1683,7 @@ JAVA/基本语句/main
 JAVA/基本语句/反射
 JAVA/基本语句/反射 Class.forName
 JAVA/基本语句/路径分隔符
+JAVA/注解/@Data
 JavaScript/JQuery/code/button
 JavaScript/JQuery/code/button 打开新界面
 JavaScript/JQuery/code/css() 方法
