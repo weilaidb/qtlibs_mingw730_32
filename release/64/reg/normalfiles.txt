@@ -31,6 +31,9 @@ https://github.com/weilaidb/linux_driver
 【doxygen jeewms】http://49.234.85.12:8081/jeewms/
 【gitee】https://gitee.com/
 【help basecpp】http://101.201.79.164:8081/basecpp/
+【jeecfg-boot External:】http://192.168.0.106:8080/jeecg-boot/
+【jeecfg-boot Swagger文档:】http://192.168.0.106:8080/jeecg-boot/doc.html
+【jeecg-boot】http://localhost:8080/jeecg-boot/
 【layui】http://layui.org.cn/index.html
 【下载视频】C:\Users\dell\dwhelper
 【双拼练习】https://dazi.91xjr.com/typing/train/shuang.html

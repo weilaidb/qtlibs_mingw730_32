@@ -2946,6 +2946,7 @@ SoftWare/Cisco Packet Tracer/用法
 SoftWare/DevEco Studio
 SoftWare/FastStone Capture v9.7
 SoftWare/FileZilla Server 新版配置教程，550错误解决
+SoftWare/Redis/introduction
 SoftWare/Source Insight
 SoftWare/Source Insight diy_utils.em
 SoftWare/Source Insight diy_utils.em github address

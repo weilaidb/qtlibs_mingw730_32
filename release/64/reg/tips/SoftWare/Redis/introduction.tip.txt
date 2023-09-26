@@ -1,0 +1,106 @@
+GET STARTED
+DOCS
+Redis
+Get started
+Data types
+Redis CLI
+Redis clients
+Persistence
+Scaling
+Redis Stack
+Get started
+RedisInsight
+JSON
+Search
+Probabilistic
+Triggers and functions
+COMMANDS
+RESOURCES
+Clients
+Libraries
+Tools
+Modules
+COMMUNITY
+SUPPORT
+Quick search&hellip…
+Search…
+⌘ K
+Download
+Try Redis Cloud
+Documentation
+About
+Who's using Redis?
+Governance
+Release cycle
+Sponsors
+License
+About Redis Stack
+Redis Enterprise
+Get started
+User interfaces
+Data types
+Interact with data
+Client quickstarts
+Use Redis
+Manage Redis
+Reference
+Home
+Documentation
+Introduction to Redis
+Introduction to Redis
+Learn about the Redis open source project
+
+Redis is an open source (BSD licensed), in-memory data structure store used as a database, cache, message broker, and streaming engine. Redis provides data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes, and streams. Redis has built-in replication, Lua scripting, LRU eviction, transactions, and different levels of on-disk persistence, and provides high availability via Redis Sentinel and automatic partitioning with Redis Cluster.
+
+You can run atomic operations on these types, like appending to a string; incrementing the value in a hash; pushing an element to a list; computing set intersection, union and difference; or getting the member with highest ranking in a sorted set.
+
+To achieve top performance, Redis works with an in-memory dataset. Depending on your use case, Redis can persist your data either by periodically dumping the dataset to disk or by appending each command to a disk-based log. You can also disable persistence if you just need a feature-rich, networked, in-memory cache.
+
+Redis supports asynchronous replication, with fast non-blocking synchronization and auto-reconnection with partial resynchronization on net split.
+
+Redis also includes:
+
+Transactions
+Pub/Sub
+Lua scripting
+Keys with a limited time-to-live
+LRU eviction of keys
+Automatic failover
+You can use Redis from most programming languages.
+
+Redis is written in ANSI C and works on most POSIX systems like Linux, *BSD, and Mac OS X, without external dependencies. Linux and OS X are the two operating systems where Redis is developed and tested the most, and we recommend using Linux for deployment. Redis may work in Solaris-derived systems like SmartOS, but support is best effort. There is no official support for Windows builds.
+
+Who's using Redis?
+Select list of organizations running Redis in production
+
+Redis open source governance
+Governance model for the Redis open source project
+
+Redis release cycle
+How are new versions of Redis released?
+
+Redis sponsors
+Current and former Redis sponsors
+
+Redis license
+Redis license and trademark information
+
+About Redis Stack
+Learn more about Redis Stack
+
+Redis Enterprise
+Learn about Redis Enterprise
+
+Rate this page
+★
+★
+★
+★
+★
+Edit this page
+Create an issue
+This is a community website sponsored by Redis Ltd. © 2023. Redis and the cube logo are registered trademarks of Redis Ltd. Terms of use & privacy policy.
+
+Search…
+Cancel
+Powered by Redis Stack
