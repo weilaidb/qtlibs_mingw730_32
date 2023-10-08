@@ -412,6 +412,7 @@ Books/常用网址（https develop）
 Books/常用网址（https 修行）
 Books/读后感/Linux Tcp IP协议栈 Linux2.6协议栈源代码分析
 Books/读后感/ROS机器人开发实践
+Books/读后感/大话设计模式
 Books/读后感/奔跑吧 Linux内核
 Books/读后感/奔跑吧 Linux内核 内存管理
 Books/读后感/奔跑吧 Linux内核 内存管理 用户态内存管理相关的API
