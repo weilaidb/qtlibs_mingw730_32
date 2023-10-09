@@ -1,6 +1,9 @@
 https://zhuanlan.zhihu.com/p/187516195
 
 
+依赖倒置原则
+
+
 
 
 首发于
