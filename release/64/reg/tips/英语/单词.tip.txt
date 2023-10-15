@@ -1,3 +1,12 @@
+homogeneous 同质性
+notation 标记
+complexity 复杂度
+overloading 重载
+binary compatibility 二进制兼容
+amortized 分期返还，折旧成本
+
+
+
 clarity  清晰
 Agile（敏捷项目管理）
 Scrum  Scrum 是用于开发、交付和持续支持复杂产品的一个框架，是一个增量的、迭代的开发过程。
