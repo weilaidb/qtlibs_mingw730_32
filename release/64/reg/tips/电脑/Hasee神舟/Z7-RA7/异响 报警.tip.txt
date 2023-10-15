@@ -1,0 +1,184 @@
+一般在开机时，会有报警声音，过一会自动关机
+
+
+自动更新变更到每个月更新一次
+
+
+https://zhuanlan.zhihu.com/p/642914883
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+唯一无副作用禁用Win10/11更新方法，一键暂停1000周
+电手
+电手​
+IT
+38 人赞同了该文章
+作为一个现代化的系统，Windows 很早便配备了自动更新功能以快速获取新功能、修复安全漏洞。
+
+不过到实际使用中嘛，自动弹出、重启自动进行、新版本大量 Bug … 体验十分糟糕。
+
+
+种种原因导致，经常就有朋友要禁止 Win10/11 自动更新方法。
+
+我们之前已经给出了许多禁用方法：追求稳定的人都是手动更新，禁用Windows更新这么简单。
+
+目前仍然可以使用 Anti-Windows-Update 工具来一键禁用，有需要可以文末获取。
+
+
+类似的工具或者手动方法还有很多，但它们有一个共同的弊端。
+
+禁用 Windows 更新服务会影响自带驱动程序更新、Microsoft Store 及Xbox 游戏的正常运行。
+
+
+Windows 自带的暂停更新就没有这种烦恼，同时也不需要担心禁用不彻底「反复发作」。
+
+唯一的缺点是，系统默认只能暂停5周，无法再次暂停。
+
+
+好在我们可以通过修改注册表来利用这个暂停特性。
+
+随时暂停、随时恢复，还不受时间、次数限制，也不用麻烦改系统时间。
+
+具体效果如下，直接暂停到2042年（可以自己改时间至更久）。
+
+
+恢复更新后可以选择再次暂停，选项长达1000周，也可以改到1万甚至10万周。
+
+
+具体操作很简单，创建一个 txt 文件导入以下代码。
+
+暂停更新至2042年（1000周）：
+
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings]
+"FlightSettingsMaxPauseDays"=dword:00001b58
+"PauseFeatureUpdatesStartTime"="2023-07-07T10:00:52Z"
+"PauseFeatureUpdatesEndTime"="2042-09-05T09:59:52Z"
+"PauseQualityUpdatesStartTime"="2023-07-07T10:00:52Z"
+"PauseQualityUpdatesEndTime"="2042-09-05T09:59:52Z"
+"PauseUpdatesStartTime"="2023-07-07T09:59:52Z"
+"PauseUpdatesExpiryTime"="2042-09-05T09:59:52Z"
+恢复至默认：
+
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings]
+"FlightSettingsMaxPauseDays"=-
+"PauseFeatureUpdatesStartTime"=-
+"PauseFeatureUpdatesEndTime"=-
+"PauseQualityUpdatesStartTime"=-
+"PauseQualityUpdatesEndTime"=-
+"PauseUpdatesStartTime"=-
+"PauseUpdatesExpiryTime"=-
+另存为 .reg 文件即可双击使用，怕出错的也可以文末获取文件。
+
+
+当然如果你更喜欢使用图形化界面，可以使用 Windows11轻松设置 这个小工具。
+
+由远景@coolcool2013 制作，其中暂停更新和上面手动操作原理一样。
+
+
+对就是这么简单，暂停更新可以说是目前最值得推荐的方法。
+
+也完全不用担心禁用服务不彻底、组策略配置麻烦等问题，其他工具可以退休了。
+
+
+发布于 2023-07-11 17:44・IP 属地四川
+Windows 10
+​赞同 38​
+​16 条评论
+​分享
+​喜欢
+​收藏
+​申请转载
+​
+写下你的评论...
+
+16 条评论
+默认
+最新
+鹿友阳
+鹿友阳
+牛逼的好方法[爱]
+
+09-21 · IP 属地福建
+​回复
+​1
+丶瓜菌
+丶瓜菌
+两手一个赞
+
+16 小时前 · IP 属地重庆
+​回复
+​喜欢
+周4859
+周4859
+太牛了
+
+
+
+
+10-12 · IP 属地河北
+​回复
+​喜欢
+小小清羽
+小小清羽
+可以可以很不错
+
+10-12 · IP 属地江西
+​回复
+​喜欢
+周4859
+周4859
+但为什么恢复默认后是这样子了
+
+
+10-12 · IP 属地河北
+​回复
+​喜欢
+拉斯柯尔尼科夫
+拉斯柯尔尼科夫
+好方法！回来为您点赞嘿嘿
+
+10-10 · IP 属地安徽
+​回复
+​喜欢
+我只是路过打酱油的
+我只是路过打酱油的
+特别好的方法，啥也不懂跟着做就搞好了，现在暂停到了2042年哈哈哈，等我过段时间再看看他到底有没有好还会不会自动更新了
+09-27 · IP 属地安徽
+​回复
+​喜欢
+grace
+grace
+[赞同]非常好用
+09-26 · IP 属地广东
+​回复
+​喜欢
+魔教中人
+魔教中人
+没整好就那个默认的保存了，怎么删除啊，有没有影响
+
+09-19 · IP 属地山东
+​回复
+​喜欢
+大大
+大大
+早知道还是电手[大哭]
+
+09-15 · IP 属地广东
+​回复
+​喜欢
+点击查看全部评论
