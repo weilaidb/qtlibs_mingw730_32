@@ -1,4 +1,5 @@
 【command;title;let名称(无disposable_);函数名称】
+cpp.vector;generate cpp;vector;Vector
 clipboard.generate.getset;generate getter setter;getset;GetSet
 
 
