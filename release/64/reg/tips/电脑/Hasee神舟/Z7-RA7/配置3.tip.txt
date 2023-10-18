@@ -1,0 +1,16 @@
+电脑基本信息
+我的电脑	神舟 CV15S 笔记本电脑
+操作系统	Windows 11 Core Country Specific 64位
+主显卡	独立显卡(对游戏和电影支持较好)
+
+
+基本硬件展示
+处理器	13th Gen Intel Core i7-13700H
+主板	神舟 CV15S
+内存	16 GB ( 三星 DDR4 3200MHz 8GB x 2 )
+主硬盘	三星 MZVL2512HCJQ-00B07 (512 GB / 固态硬盘)
+主显卡	NVIDIA GeForce RTX 3050 Laptop GPU ( 4 GB / 蓝天(CLEVO) )
+显示器	京东方 BOE0910 ( 15.5 英寸  )
+网卡	英特尔 Wi-Fi 6E AX211 160MHz
+声卡	瑞昱 High Definition Audio
+ 
