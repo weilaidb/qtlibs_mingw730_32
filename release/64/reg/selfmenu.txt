@@ -130,6 +130,7 @@ BASH/scripts/gen.vlan.xml.sh
 BASH/scripts/getnumsinfile.sh
 BASH/scripts/include.sh
 BASH/scripts/include.sh public
+BASH/scripts/insert.function.regexp.write.file.sh
 BASH/scripts/opengrok.run.ext.sh
 BASH/scripts/opengrok.run.ext.sh run eg
 BASH/scripts/opengrok.run.sh
@@ -3806,6 +3807,7 @@ path路径/常用文件夹
 笔记/网络/三层路由ping过程
 笔记/读书笔记/ROS机器人开发实践
 笔记/软件/UML画序列图或时序图
+笔记/软件开发思想/功能
 笔记/软件开发思想/头文件梳理
 笔记/软件开发思想/想法 感想
 笔记/软件开发思想/想法 感想 组件化
