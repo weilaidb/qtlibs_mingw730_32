@@ -9,11 +9,15 @@ dos2unix $0 >/dev/null 2>&1
 source ./public.sh
 
 #文件列表：
-输入文件:input.txt，原始函数
-输出文件:
-  regexp.result -- 正则表达的结果
+#输入文件:原始函数 -- input.txt
+#输出文件:
+#  正则表达的结果 -- virtual.base.function.declare
   
-
+INPUTFILE=input.txt
+OUTFILE1=output.base.function.d #基类声明
+OUTFILE2=output.base.function.i #基类实现
+OUTFILE3=output.impl.function.d #子类声明
+OUTFILE4=output.impl.function.i #子类实现
 
 
 
@@ -22,10 +26,8 @@ source ./public.sh
 [ $# -lt 0 ] && usage "./eg.sh "
 #[ $# -lt 1 ] && usage "./eg.sh RootPath"
 checkdirnoexistquit ./
-checkdirnoexistquit abc
+checkfilenoexistquit $INPUTFILE
 checkfilenoexistquit public.sh
-checkfilenoexistquit test.sh
-#checkfilenoexistquit test1.sh
 
 lsinfo .
 #lsinfo ..
@@ -35,3 +37,9 @@ lsinfo .
 findlistall .
 findlistignore . ".git\|.sh$"
 findlistuse . .git
+
+
+#generate base function declare
+
+
+
