@@ -8,6 +8,13 @@ dos2unix $0 >/dev/null 2>&1
 
 source ./public.sh
 
+#文件列表：
+输入文件:input.txt，原始函数
+输出文件:
+  regexp.result -- 正则表达的结果
+  
+
+
 
 
 ########main proc
