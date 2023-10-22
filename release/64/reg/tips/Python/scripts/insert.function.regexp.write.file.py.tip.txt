@@ -35,7 +35,7 @@ atexit.register(over)
 if __name__ == '__main__':
     print("===========main proc===========\n" * 3)
     if len(sys.argv) < 2:
-        print("usage: ./eg.sh RootPath\n")
+        print("usage: ./eg.sh input.txt\n")
         exit(0)
 
     print(sys.argv)
@@ -47,88 +47,101 @@ if __name__ == '__main__':
     signempty = ""
     result = ""
 
-    rootpath=sys.argv[1]
-    typeportfile=concat(rootpath, ("/type_port.txt"))
-    vlanrangefile=concat(rootpath, ("/vlan_type.txt"))
-    xmlfile=concat(rootpath , ("/vlan.xml"))
+    inputfilepath=sys.argv[1]
+    outputfile_basefuncd="output.base.function.d" #基类声明
+    outputfile_basefunci="output.base.function.i" #基类实现
+    outputfile_implfuncd="output.impl.function.d" #子类声明
+    outputfile_implfunci="output.impl.function.i" #子类实现
 
-    # println(rootpath)
-    # println(typeportfile)
-    # println(vlanrangefile)
-    # println(xmlfile)
+    println(inputfilepath)
+    # # println(typeportfile)
 
-    checkdirnoexistquit(rootpath)
-    checkfilenoexistquit(typeportfile)
-    checkfilenoexistquit(vlanrangefile)
-    #执行前先删除XML文件
-    filedelete(xmlfile)
+    # checkdirnoexistquit(inputfilepath)
+    checkfilenoexistquit(inputfilepath)
+    # #执行前先删除XML文件
+    filedelete(outputfile_basefuncd)
+    filedelete(outputfile_basefunci)
+    filedelete(outputfile_implfuncd)
+    filedelete(outputfile_implfunci)
 
-    typeportinfo = fileread(typeportfile)
-    printlntips("typeportinfo file", typeportinfo)
+    inputfileinfo = fileread(inputfilepath)
+    printlntips("inputfile info",inputfileinfo)
 
-    vlanrangeinfo = fileread(vlanrangefile)
-    printlntips("vlanrangeinfo file", vlanrangeinfo)
 
-    typeportlist = splitstrbyenternoempty(typeportinfo)
-    # printlntips("typeportlist", typeportlist)
+    splitlistinput = splitstrbyenter(inputfileinfo) 
+    printlntips("splitlistinput info",splitlistinput)
 
-    typelist = replacelistreg(typeportlist, r':.*', signempty)
-    lenlntips("typelist count", typelist)
-    printlntips("typelist", typelist,False)
+    
+    
 
-    vlanrangelist = splitstrbyenternoempty(vlanrangeinfo)
-    lenlntips("vlanrangelist count", vlanrangelist)
 
-    for vlanrange in vlanrangelist:
-        println()
-        println()
-        printlntips("===>",vlanrange)
-        vansplit = splitstrbysignnoempty(vlanrange, signmao)
-        if len(vansplit) < 2:
-            lenlntips("vansplit size", vansplit)
-            println("vansplit should like this, vlanx:xk,bfpga")
-            exit(0)
-        vlannum = replacestr(vansplit[0],signvlan,signempty)
-        ranges = vansplit[1]
-        rangelist = splitstrbysignnoempty(ranges, signdot)
-        lenlntips("rangelist", rangelist)
-        for rangex in rangelist:
-            println()
-            printlntips("rangex", rangex, False)
+    
+    
+
+
+    # vlanrangeinfo = fileread(vlanrangefile)
+    # printlntips("vlanrangeinfo file", vlanrangeinfo)
+
+    # typeportlist = splitstrbyenternoempty(typeportinfo)
+    # # printlntips("typeportlist", typeportlist)
+
+    # typelist = replacelistreg(typeportlist, r':.*', signempty)
+    # lenlntips("typelist count", typelist)
+    # printlntips("typelist", typelist,False)
+
+    # vlanrangelist = splitstrbyenternoempty(vlanrangeinfo)
+    # lenlntips("vlanrangelist count", vlanrangelist)
+
+    # for vlanrange in vlanrangelist:
+    #     println()
+    #     println()
+    #     printlntips("===>",vlanrange)
+    #     vansplit = splitstrbysignnoempty(vlanrange, signmao)
+    #     if len(vansplit) < 2:
+    #         lenlntips("vansplit size", vansplit)
+    #         println("vansplit should like this, vlanx:xk,bfpga")
+    #         exit(0)
+    #     vlannum = replacestr(vansplit[0],signvlan,signempty)
+    #     ranges = vansplit[1]
+    #     rangelist = splitstrbysignnoempty(ranges, signdot)
+    #     lenlntips("rangelist", rangelist)
+    #     for rangex in rangelist:
+    #         println()
+    #         printlntips("rangex", rangex, False)
             
-            #判断当前类型是否在类型列表
-            findtypelist = findstrinlist(rangex, typelist,True)
-            # lenlntips("findtypelist size", findtypelist)
-            if(0 == len(findtypelist)):
-                print("!!!!!! invalid rangex:%s" % (rangex))
-                printlntips("support typeportinfo", findtypelist)
-                exit(0)
+    #         #判断当前类型是否在类型列表
+    #         findtypelist = findstrinlist(rangex, typelist,True)
+    #         # lenlntips("findtypelist size", findtypelist)
+    #         if(0 == len(findtypelist)):
+    #             print("!!!!!! invalid rangex:%s" % (rangex))
+    #             printlntips("support typeportinfo", findtypelist)
+    #             exit(0)
                 
-            #根据类型查找所有相关端口
-            findtypeportlist = findstrinlist_replace(rangex, typeportlist, r':.*', signempty,True)
-            lenlntips("findtypeportlist size", findtypeportlist)
-            if(0 == len(findtypeportlist)):
-                print("!!!!!! invalid rangex:%s" % (rangex))
-                printlntips("support findtypeportlist", findtypeportlist)
-                exit(0)
+    #         #根据类型查找所有相关端口
+    #         findtypeportlist = findstrinlist_replace(rangex, typeportlist, r':.*', signempty,True)
+    #         lenlntips("findtypeportlist size", findtypeportlist)
+    #         if(0 == len(findtypeportlist)):
+    #             print("!!!!!! invalid rangex:%s" % (rangex))
+    #             printlntips("support findtypeportlist", findtypeportlist)
+    #             exit(0)
 
-            for typeport in findtypeportlist:
-                #生成最终的XML配置，根据格式
-                portx = replacestrreg(typeport, r'.*:',signempty).strip()
-                if(portx.isdigit()) and (vlannum.isdigit()):
-                    print("-->xml, vlan-port:%s/%s" % (vlannum, portx))
-                    result = concat(result, vlannum)
-                    result = concat(result, signmao)
-                    result = concat(result, portx)
-                    result = concat(result, signenter)
-                else:
-                    print("!!!!!! invalid portx:%s or vlannum:%s" % (portx, vlannum))
-                    exit(0)
+    #         for typeport in findtypeportlist:
+    #             #生成最终的XML配置，根据格式
+    #             portx = replacestrreg(typeport, r'.*:',signempty).strip()
+    #             if(portx.isdigit()) and (vlannum.isdigit()):
+    #                 print("-->xml, vlan-port:%s/%s" % (vlannum, portx))
+    #                 result = concat(result, vlannum)
+    #                 result = concat(result, signmao)
+    #                 result = concat(result, portx)
+    #                 result = concat(result, signenter)
+    #             else:
+    #                 print("!!!!!! invalid portx:%s or vlannum:%s" % (portx, vlannum))
+    #                 exit(0)
 
 
 
     # print(sys._getframe().f_lineno)     # 获取当前行号(行数)
-    println(result)
-    filewrite(xmlfile, result)
+    # println(result)
+    # filewrite(xmlfile, result)
     #设置成功标志
     setquitflag(0)
