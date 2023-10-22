@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #filename:insert.function.regexp.write.file.py
-#function:正则表达式的结果函数写到对应文件
+#function:根据函数原型，生成基类声明实现和子类声明实现
 #usage: ./eg.sh input.txt writelist.txt 基类名称 子类名称
 
 ##########
