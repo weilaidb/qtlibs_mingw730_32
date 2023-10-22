@@ -103,7 +103,7 @@ def procregexp_generate_class(searchObj, writelist, classbase, classimpl):
     # fileappend(writelist[0], exp1)
     insertclass(writelist[0], exp1)
     fileappend(writelist[1], exp2)
-    fileappend(writelist[2], exp3)
+    insertclass(writelist[2], exp3)
     fileappend(writelist[3], exp4)
 
 
