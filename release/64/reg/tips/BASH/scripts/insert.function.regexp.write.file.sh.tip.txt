@@ -9,15 +9,9 @@ dos2unix $0 >/dev/null 2>&1
 source ./public.sh
 
 #文件列表：
-<<<<<<< HEAD
 输入文件:原始函数 -- input.txt
 输出文件:
   正则表达的结果 -- virtual.base.function.declare
-=======
-#输入文件:原始函数 -- input.txt
-#输出文件:
-#  正则表达的结果 -- virtual.base.function.declare
->>>>>>> 66410c9c80dc27af46cd6f1f2f06976156fa0a18
   
 INPUTFILE=input.txt
 OUTFILE1=output.base.function.d #基类声明
