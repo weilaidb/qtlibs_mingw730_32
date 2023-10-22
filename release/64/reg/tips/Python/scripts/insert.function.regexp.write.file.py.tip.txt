@@ -31,6 +31,29 @@ def over():
 
 atexit.register(over)
 
+
+#插入类声明时，做下};之前处理
+def insertclass(filename, exp):
+    fileinfo = fileread(filename)
+    searchInf = re.search( r'(.*)(};)(.*)', fileinfo, re.M|re.I)
+
+    if searchInf:
+        printlntips ("insertclass found!!")
+        printlntips ("searchInf.group() : ", searchInf.group())
+        printlntips ("searchInf.group(1) : ", searchInf.group(1))
+        printlntips ("searchInf.group(2) : ", searchInf.group(2))
+        printlntips ("searchInf.group(3) : ", searchInf.group(3))
+        printlntips ("before fileinfo : ", fileinfo)
+        fileinfo = re.sub(r'};', exp + "\n};", fileinfo, re.M|re.I)
+        printlntips ("after fileinfo : ", fileinfo)
+        filewrite(filename, fileinfo)
+    else:
+        printlntips ("insertclass Nothing found!!", filename)
+        filewrite(filename, exp)
+    
+
+
+
 #处理函数正则，生成基类子类内容
 def procregexp_generate_class(searchObj, writelist, classbase, classimpl):
     printlntips("========process regexp class")
@@ -43,7 +66,7 @@ def procregexp_generate_class(searchObj, writelist, classbase, classimpl):
     printlntips("classimpl",classimpl)
 
     # exp1 = space4() + "virtual "+ functype + funcname_var + semicolon();
-    exp1 = "{0} virtual {1} {2};\n".format(space4(),functype, funcname_var)
+    exp1 = "{0}virtual {1} {2};\n".format(space4(),functype, funcname_var)
     exp2 = "{0}{1}::{2}{3}{4}{5}{6}\n\n".format(functype,classbase, funcname_var, "\n{\n",space4(),"return 0;","\n}")
     exp3 = exp1
     exp4 = "{0}{1}::{2}{3}{4}{5}{6}\n\n".format(functype,classimpl, funcname_var, "\n{\n",space4(),"return 0;","\n}")
@@ -53,7 +76,8 @@ def procregexp_generate_class(searchObj, writelist, classbase, classimpl):
     printlntips("exp4",exp4)
     
     
-    fileappend(writelist[0], exp1)
+    # fileappend(writelist[0], exp1)
+    insertclass(writelist[0], exp1)
     fileappend(writelist[1], exp2)
     fileappend(writelist[2], exp3)
     fileappend(writelist[3], exp4)
