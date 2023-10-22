@@ -2,9 +2,33 @@
 # -*- coding: utf-8 -*-
 #filename:insert.function.regexp.write.file.py
 #function:正则表达式的结果函数写到对应文件
+#usage: ./eg.sh input.txt writelist.txt 基类名称 子类名称
 
 ##########
-#★
+'''
+#★ input.txt：输入文件，定义函数声明，示例内容：
+word32 abc(int nihaoma);
+word32 bbbb(int anum);
+
+
+#writelist.txt:正则生成的内容，分别保存到的文件列表，分别是
+基类文件声明
+基类文件实现
+子类文件声明
+子类文件实现
+示例内容：
+/home/weilaidb/bashlib/test2/base.h
+/home/weilaidb/bashlib/test2/base.cpp
+/home/weilaidb/bashlib/test2/impl.h
+/home/weilaidb/bashlib/test2/impl.cpp
+
+用法：
+[weilaidb@weilaidb-virtual-machine] ~/bashlib
+$ python insert.file.py input.txt writelist.txt Animal Bird
+
+
+'''
+
 
 import sys
 sys.path.append('.')
@@ -103,10 +127,6 @@ if __name__ == '__main__':
     writelistpath=sys.argv[2] #输出要写的文件列表
     classbasename=sys.argv[3] #基类名称
     classimplname=sys.argv[4] #子类名称
-    outputfile_basefuncd="output.base.function.d" #基类声明
-    outputfile_basefunci="output.base.function.i" #基类实现
-    outputfile_implfuncd="output.impl.function.d" #子类声明
-    outputfile_implfunci="output.impl.function.i" #子类实现
     checkwritelistlen = 4
 
     println(inputfilepath)
@@ -115,11 +135,6 @@ if __name__ == '__main__':
     # checkdirnoexistquit(inputfilepath)
     checkfilenoexistquit(inputfilepath)
     checkfilenoexistquit(writelistpath)
-    # #执行前先删除XML文件
-    filedelete(outputfile_basefuncd)
-    filedelete(outputfile_basefunci)
-    filedelete(outputfile_implfuncd)
-    filedelete(outputfile_implfunci)
 
     inputfileinfo = fileread(inputfilepath)
     printlntips("inputfile info",inputfileinfo)
@@ -159,8 +174,5 @@ if __name__ == '__main__':
         else:
             printlntips ("Nothing found!!")
 
-    # print(sys._getframe().f_lineno)     # 获取当前行号(行数)
-    # println(result)
-    # filewrite(xmlfile, result)
     #设置成功标志
     setquitflag(0)
