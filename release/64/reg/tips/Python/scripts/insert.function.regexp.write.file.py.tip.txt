@@ -31,11 +31,39 @@ def over():
 
 atexit.register(over)
 
+#处理函数正则，生成基类子类内容
+def procregexp_generate_class(searchObj, writelist, classbase, classimpl):
+    printlntips("========process regexp class")
+    functype = searchObj.group(1)
+    funcname_var =  searchObj.group(2)
+    printlntips("functype",functype)
+    printlntips("funcname_var",funcname_var)
+    printlntips("writelist",writelist)
+    printlntips("classbase",classbase)
+    printlntips("classimpl",classimpl)
+
+    # exp1 = space4() + "virtual "+ functype + funcname_var + semicolon();
+    exp1 = "{0} virtual {1} {2};\n".format(space4(),functype, funcname_var)
+    exp2 = "{0}{1}::{2}{3}{4}{5}{6}\n\n".format(functype,classbase, funcname_var, "\n{\n",space4(),"return 0;","\n}")
+    exp3 = exp1
+    exp4 = "{0}{1}::{2}{3}{4}{5}{6}\n\n".format(functype,classimpl, funcname_var, "\n{\n",space4(),"return 0;","\n}")
+    printlntips("exp1",exp1)
+    printlntips("exp2",exp2)
+    printlntips("exp3",exp3)
+    printlntips("exp4",exp4)
+    
+    
+    fileappend(writelist[0], exp1)
+    fileappend(writelist[1], exp2)
+    fileappend(writelist[2], exp3)
+    fileappend(writelist[3], exp4)
+
+
 ########main proc
 if __name__ == '__main__':
     print("===========main proc===========\n" * 3)
-    if len(sys.argv) < 2:
-        print("usage: ./eg.sh input.txt\n")
+    if len(sys.argv) < 5:
+        print("usage: ./eg.sh input.txt writelist.txt 基类名称 子类名称\n")
         exit(0)
 
     print(sys.argv)
@@ -47,17 +75,22 @@ if __name__ == '__main__':
     signempty = ""
     result = ""
 
-    inputfilepath=sys.argv[1]
+    inputfilepath=sys.argv[1] #输入函数原型文件
+    writelistpath=sys.argv[2] #输出要写的文件列表
+    classbasename=sys.argv[3] #基类名称
+    classimplname=sys.argv[4] #子类名称
     outputfile_basefuncd="output.base.function.d" #基类声明
     outputfile_basefunci="output.base.function.i" #基类实现
     outputfile_implfuncd="output.impl.function.d" #子类声明
     outputfile_implfunci="output.impl.function.i" #子类实现
+    checkwritelistlen = 4
 
     println(inputfilepath)
     # # println(typeportfile)
 
     # checkdirnoexistquit(inputfilepath)
     checkfilenoexistquit(inputfilepath)
+    checkfilenoexistquit(writelistpath)
     # #执行前先删除XML文件
     filedelete(outputfile_basefuncd)
     filedelete(outputfile_basefunci)
@@ -66,79 +99,41 @@ if __name__ == '__main__':
 
     inputfileinfo = fileread(inputfilepath)
     printlntips("inputfile info",inputfileinfo)
+    
+    #检测写文件列表
+    writefileinfo = fileread(writelistpath)
+    printlntips("writlist info", writefileinfo)
+    
+    writesplit = splitstrbyenter(writefileinfo) 
+    printlntips("writesplit info",writesplit)
+    if(len(writesplit) < checkwritelistlen):
+        printlntips("write list cout less than checkwritelistlen", len(writesplit))
+        printlntips("checkwritelistlen", checkwritelistlen)
+        exit(0)
+        
+    #检测写文件列表内容是否存在
+    for item in writesplit:
+        if(checklenzero(item) == 0):
+            continue
+        checkfilenoexistquit(item)
 
-
+    #输入内容生成正则数据
     splitlistinput = splitstrbyenter(inputfileinfo) 
     printlntips("splitlistinput info",splitlistinput)
 
-    
-    
-
-
-    
-    
-
-
-    # vlanrangeinfo = fileread(vlanrangefile)
-    # printlntips("vlanrangeinfo file", vlanrangeinfo)
-
-    # typeportlist = splitstrbyenternoempty(typeportinfo)
-    # # printlntips("typeportlist", typeportlist)
-
-    # typelist = replacelistreg(typeportlist, r':.*', signempty)
-    # lenlntips("typelist count", typelist)
-    # printlntips("typelist", typelist,False)
-
-    # vlanrangelist = splitstrbyenternoempty(vlanrangeinfo)
-    # lenlntips("vlanrangelist count", vlanrangelist)
-
-    # for vlanrange in vlanrangelist:
-    #     println()
-    #     println()
-    #     printlntips("===>",vlanrange)
-    #     vansplit = splitstrbysignnoempty(vlanrange, signmao)
-    #     if len(vansplit) < 2:
-    #         lenlntips("vansplit size", vansplit)
-    #         println("vansplit should like this, vlanx:xk,bfpga")
-    #         exit(0)
-    #     vlannum = replacestr(vansplit[0],signvlan,signempty)
-    #     ranges = vansplit[1]
-    #     rangelist = splitstrbysignnoempty(ranges, signdot)
-    #     lenlntips("rangelist", rangelist)
-    #     for rangex in rangelist:
-    #         println()
-    #         printlntips("rangex", rangex, False)
-            
-    #         #判断当前类型是否在类型列表
-    #         findtypelist = findstrinlist(rangex, typelist,True)
-    #         # lenlntips("findtypelist size", findtypelist)
-    #         if(0 == len(findtypelist)):
-    #             print("!!!!!! invalid rangex:%s" % (rangex))
-    #             printlntips("support typeportinfo", findtypelist)
-    #             exit(0)
-                
-    #         #根据类型查找所有相关端口
-    #         findtypeportlist = findstrinlist_replace(rangex, typeportlist, r':.*', signempty,True)
-    #         lenlntips("findtypeportlist size", findtypeportlist)
-    #         if(0 == len(findtypeportlist)):
-    #             print("!!!!!! invalid rangex:%s" % (rangex))
-    #             printlntips("support findtypeportlist", findtypeportlist)
-    #             exit(0)
-
-    #         for typeport in findtypeportlist:
-    #             #生成最终的XML配置，根据格式
-    #             portx = replacestrreg(typeport, r'.*:',signempty).strip()
-    #             if(portx.isdigit()) and (vlannum.isdigit()):
-    #                 print("-->xml, vlan-port:%s/%s" % (vlannum, portx))
-    #                 result = concat(result, vlannum)
-    #                 result = concat(result, signmao)
-    #                 result = concat(result, portx)
-    #                 result = concat(result, signenter)
-    #             else:
-    #                 print("!!!!!! invalid portx:%s or vlannum:%s" % (portx, vlannum))
-    #                 exit(0)
-
-
+    for line in splitlistinput:
+        if(checklenzero(line) == 0):
+            continue
+        printlntips("splitlistinput line:",line)
+        searchObj = re.search( r'(\w+\s+\*?)([^)]+\));?.*', line, re.I)
+ 
+        if searchObj:
+            printlntips ("searchObj.group() : ", searchObj.group())
+            printlntips ("searchObj.group(1) : ", searchObj.group(1))
+            printlntips ("searchObj.group(2) : ", searchObj.group(2))
+            procregexp_generate_class(searchObj, writesplit, classbasename, classimplname)
+        else:
+            printlntips ("Nothing found!!")
 
     # print(sys._getframe().f_lineno)     # 获取当前行号(行数)
     # println(result)

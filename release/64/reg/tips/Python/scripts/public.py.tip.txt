@@ -25,7 +25,7 @@ def lenlntips(tips="", str=""):
 def lenln(str=""):
     print("len:%d" % len(str))
 
-def printlntips(tips, str, tipsenter=True):
+def printlntips(tips, str="", tipsenter=True):
     if False == tipsenter:
         print("%s:%s" %(tips, str))
     else:
@@ -71,6 +71,13 @@ def fileread(filename):
 
 def filewrite(filename, content):
     with open(filename, 'w') as f:
+        # print(f.read())
+        f.write(content)
+        f.close()
+        return 0
+
+def fileappend(filename, content):
+    with open(filename, 'a+') as f:
         # print(f.read())
         f.write(content)
         f.close()
@@ -163,6 +170,21 @@ def stripstr(str):
 def isdigtal(str):
     return str.isdigit()
 
+#字符串去除空格后长度
+def lenstrip(str):
+    return len(stripstr(str)) == 0
+
+#判断文件长度为0
+def checklenzero(str):
+    return 0 == lenstrip(str)
+
+#四个空格
+def space4():
+    return " " * 4
+
+#符号';'
+def semicolon():
+    return ";"
 
 
 ###################CSV读写
