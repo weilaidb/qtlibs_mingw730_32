@@ -173,6 +173,8 @@ git@github.com:Ruddle/RemoteCam.git
 
 
 本地库:
+#神经网络
+git@gitee.com:weilaidb/neural-networks.git
 #vscode插件开发
 git@gitee.com:weilaidb/vscodeplugineg.git
 
