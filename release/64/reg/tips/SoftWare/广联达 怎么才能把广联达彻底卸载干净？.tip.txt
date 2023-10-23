@@ -2,13 +2,18 @@ http://www.civilcn.com/zhishi/gczj/1663834167424858.html
 
 cmd命令：
 %appdata%
+删除
 GrandSoft
 
 
-regedit 
+regedit
+查找，并且删除
 GrandSoft
-Gl
 GLD
+Glodon
+
+
+%appdata%  -- 这个地方是和应用程序卸载关联的？
 
 
 您当前位置：首页 » 工程知识 » 工程造价知识
