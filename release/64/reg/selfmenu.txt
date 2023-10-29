@@ -761,6 +761,7 @@ CXX/knowledge/string C++string类的常用方法
 CXX/knowledge/string startsWith endswith
 CXX/knowledge/unordered_map C++ STL unordered_map容器用法详解
 CXX/knowledge/如何理解左操作数必须为左值
+CXX/knowledge/正确释放vector的内存：clear还是swap？
 CXX/new /read file
 CXX/new /write file
 CXX/new class operator=

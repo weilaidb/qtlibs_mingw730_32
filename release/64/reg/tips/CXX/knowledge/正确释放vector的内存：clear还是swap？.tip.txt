@@ -1,0 +1,108 @@
+正确释放vector的内存：clear还是swap？
+
+老蔡编程
+
+于 2023-07-08 19:23:08 发布
+
+阅读量494
+ 收藏 2
+
+点赞数
+分类专栏： C++知识点 文章标签： c++ 算法 开发语言 vector
+版权
+
+C++知识点
+专栏收录该内容
+11 篇文章0 订阅
+订阅专栏
+一、size()和capacity()方法的区别
+
+1、vector有size()和capacity()方法都用来获取vector的大小，那么它们两之间有什么区别呢？
+
+我们先来看一段代码：
+
+int main() {
+ 
+    std::vector<int> v1;
+    std::cout <<"size:"<< v1.size() << " ,capacity:" << v1.capacity() << std::endl;
+    v1.resize(10);
+    std::cout <<"size:"<< v1.size() << " ,capacity:" << v1.capacity() << std::endl;
+ 
+    for (int i = 0; i < 10; i++) {
+        std::cout << v1[i] << " ";
+    }
+    std::cout<<std::endl;
+    v1.push_back(1);
+    std::cout << "size:" << v1.size() << " ,capacity:" << v1.capacity() << std::endl;
+ 
+    return 0;
+}
+执行结果如下：
+
+
+
+这里得出以下几个结论：
+
+（1）capacity()表示vector预分配的内存空间，表示vector最多能容纳的元素个数。
+
+（2）size()表示vector中实际占用的元素个数。
+
+上面看到size=11, capacity=15，我们现在打印下第12,13个元素，看看到底是什么结果：
+
+std::cout << v1[11] << " " << v1[12] << std::endl;
+ 
+
+
+可以看到，预分配的空间也是可以访问的，但里面的值是不确定的。
+
+二、resize()和reserve()方法的区别
+
+（1）使用resize()，容器内的对象内存空间是真正存在的。
+
+上面的例子中，我们看到执行：v1.resize(10);后，size()和capacity()的值都是10。
+
+（2）reserve()只修改了capacity的值，容器内的对象并没有真实的内存空间(空间是"野"的)。
+
+三、clear()和swap()的区别
+
+（1）仅仅将容器中的元素释放(析构)掉，会导致size = 0,但是容器容量capacity不会变，即占用内存没有变化。
+
+我们用下面的代码验证下：
+
+ v1.clear();
+ std::cout << "size:" << v1.size() << " ,capacity:" << v1.capacity() << std::endl;
+执行结果：
+
+
+
+可以看到，clear()后size()变成了0，但capacity()的值还是15。
+
+（2）验证swap()方法
+
+//v1.clear();
+std::vector<int> tmp;
+tmp.swap(v1);
+std::cout << "size:" << v1.size() << " ,capacity:" << v1.capacity() << std::endl;
+ 结果如下：
+
+
+
+将需要缩容的容器与一个没有元素的临时容器进行交换，最终使得需要缩容的容器的size和capacity的大小一样，达到了缩容的目的，临时对象出作用域被析构，对象中的资源被释放。
+
+另外，现在也可以用shrink_to_fit()方法来释放vector的内存：
+
+v1.clear();
+//std::vector<int> tmp;
+//tmp.swap(v1);
+v1.shrink_to_fit();
+std::cout << "size:" << v1.size() << " ,capacity:" << v1.capacity() << std::endl;
+参考：
+
+（1）C++ STL之 vector的capacity和size属性区别
+
+（2）c++中vector的clear(),swap()以及 shrink_to_fit()方法
+
+（3）
+————————————————
+版权声明：本文为CSDN博主「老蔡编程」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/mars21/article/details/131614788

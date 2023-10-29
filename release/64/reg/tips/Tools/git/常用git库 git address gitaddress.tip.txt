@@ -219,7 +219,7 @@ git@gitee.com:weilaidb/jsp_exe.git
 git@gitee.com:weilaidb/basecpp.git
 git@gitee.com:weilaidb/vue_eg.git
 
-#CXX Gmock库
+#CXX Gmock库, CPP库
 git@gitee.com:weilaidb/basecpp.git
 git@github.com:weilaidb/codesetsmore.git
 git@gitee.com:weilaidb/vbscript_eg.git
