@@ -4,8 +4,10 @@ complexity 复杂度
 overloading 重载
 binary compatibility 二进制兼容
 amortized 分期返还，折旧成本
-
-
+facade 外观模式
+standalone 独立  孤立 
+Perplexity 困惑 复杂 困难
+occasionally 偶然 有时候
 
 clarity  清晰
 Agile（敏捷项目管理）
