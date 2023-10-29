@@ -6,6 +6,16 @@ https://us.nicebooks.com/search/isbn
 
 https://us.nicebooks.com/search/isbn?isbn=9787505633292
 
+#出书 人间正道
+ISBN 9789811886324
+
+鲁作登字-2023-A-00454738
+http://dj.sdbqfw.com/certSearch.aspx
+http://www.shandongbanquan.com/certdetail_192337.html
+http://www.shandongbanquan.com/
+
+#用这个？
+https://search.nlb.gov.sg/onesearch/Search?query=9789811886324&cont=book
 
 https://isbndb.com/
 
