@@ -124,6 +124,7 @@ BASH/printf string 1
 BASH/printf string 2
 BASH/printf string 3
 BASH/printf说明
+BASH/random num随机数
 BASH/replace nums in file or 提取数字自增1
 BASH/scripts/commitgit.atwork.sh
 BASH/scripts/gen.vlan.xml.sh
@@ -3410,6 +3411,7 @@ path路径/常用文件夹
 学习/考试/TL/上下文映射
 学习/考试/TL/基础知识
 学习/考试/小学生/五年级/下/期末
+学习/考试/小学生/六年级/上
 学校/四年级电话
 宏Macro/Source insight/AppendBufLine
 宏Macro/Source insight/Ask 输入内容
