@@ -390,6 +390,7 @@ BAT/网络network/防火墙
 BAT/网络network/防火墙工作原理
 BUG管理/BUG类别
 BUG管理/JSP/onclick 双引号不成对的问题
+BUG管理/JSP/请求的资源[/HelloJavaEE4/log/uploadServlet]不可用
 BUG管理/Linux/Ctags out of memory
 BUG管理/MSTP/长时PING大包丢包
 BUG管理/PHY自协商/偶发一些子架ping不通线卡
@@ -1557,6 +1558,7 @@ JAVA/SpringBoot/maven CamelCase驼峰
 JAVA/SpringBoot/maven mvnrepository
 JAVA/SpringBoot/maven settings.xml
 JAVA/SpringBoot/maven settings.xml .m3
+JAVA/SpringBoot/maven settings.xml 阿里云镜像
 JAVA/SpringBoot/maven 下载源配置 阿里云
 JAVA/SpringBoot/maven命令
 JAVA/SpringBoot/maven属性

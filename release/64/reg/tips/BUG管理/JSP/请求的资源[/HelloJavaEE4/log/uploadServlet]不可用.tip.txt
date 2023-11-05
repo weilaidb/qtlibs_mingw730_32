@@ -1,0 +1,68 @@
+测试BUG模板
+☆Bug标题
+JSP/请求的资源[/HelloJavaEE4/log/uploadServlet]不可用
+
+☆Bug详细描述（含步骤）
+HTTP状态 404 - 未找到
+类型 状态报告
+
+消息 请求的资源[/HelloJavaEE4/log/uploadServlet]不可用
+
+描述 源服务器未能找到目标资源的表示或者是不愿公开一个已经存在的资源表示。
+
+Apache Tomcat/9.0.58
+
+
+
+☆项目模块
+
+☆严重程度
+C-一般
+
+☆优先级
+
+☆Bug类别
+代码错误
+
+
+☆Bug状态
+Fixed
+
+☆提交人
+ME
+
+☆提交日期
+2023-11-05 11:47:38
+
+☆附加信息
+路径映射问题，示例
+1.form中使用相对路径，即不带路径的
+2.servert中使用带绝对路径的，包括根路径
+3.web.xml中不使用映射
+
+    <form method="post" enctype="multipart/form-data" action="uploadServlet">
+        姓名：<input type="text" name="uname"> <br>
+        文件：<input type="file" name="myfile"> <br>
+        <!-- button默认的类型是提交类型 type="submit" -->
+        <button>提交</button>
+    </form>
+
+
+
+@WebServlet("/log/uploadServlet")
+@MultipartConfig //如果是文件上传，必须要设置该注解！
+public class UploadServlet extends HttpServlet {
+
+
+
+
+☆解决人
+
+☆解决日期
+
+☆解决方式
+
+☆解决用时
+
+========================================================================
+========================================================================
