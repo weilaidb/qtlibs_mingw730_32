@@ -1,0 +1,16 @@
+电脑基本信息
+我的电脑	联想 ThinkPad E15 Gen 4 笔记本电脑
+操作系统	Windows 11 Core Country Specific 64位
+主显卡	集成显卡
+
+
+基本硬件展示
+处理器	12th Gen Intel Core i5-1240P
+主板	联想 21E6006ACD
+内存	40 GB ( 海力士 DDR4 3200MHz 8GB / 英睿达 DDR4 3200MHz 32GB )
+主硬盘	西数 WD PC SN740 SDDQMQD-512G-1001 (512 GB / 固态硬盘)
+主显卡	英特尔 Iris(R) Xe Graphics ( 1 GB / 联想 )
+显示器	联想 LEN40BA ( 15.5 英寸  )
+网卡	英特尔 Wi-Fi 6 AX201 160MHz
+声卡	瑞昱 High Definition Audio
+ 

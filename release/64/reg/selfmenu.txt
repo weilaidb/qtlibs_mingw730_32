@@ -3784,6 +3784,8 @@ path路径/常用文件夹
 电脑/Hasee神舟/Z7-RA7/配置
 电脑/Hasee神舟/Z7-RA7/配置2
 电脑/Hasee神舟/Z7-RA7/配置3
+电脑/ThinkPad/E15/配置
+电脑/ThinkPad/E15/配置2
 电脑/ThinkPad/T14/常见
 电脑/ThinkPad/T14/拆机
 电脑/ThinkPad/T14/拆机 加内存和硬盘安装系统
