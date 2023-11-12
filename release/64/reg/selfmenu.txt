@@ -788,6 +788,7 @@ CXX/编译动态库/LD_PRELOAD 劫持
 CXX/编译动态库/eg
 CXX/编译链接 预处理等
 ChatGpt/gitbito CLI
+ChatGpt/gitbito keys
 Code/filezilla/API/do_ssh2_transport
 Code/filezilla/API/do_ssh_init
 Code/filezilla/API/file_type
