@@ -787,6 +787,7 @@ CXX/编译 如何强制 gcc 链接未引用的静态库中的 目标文件
 CXX/编译动态库/LD_PRELOAD 劫持
 CXX/编译动态库/eg
 CXX/编译链接 预处理等
+ChatGpt/gitbito CLI
 Code/filezilla/API/do_ssh2_transport
 Code/filezilla/API/do_ssh_init
 Code/filezilla/API/file_type
