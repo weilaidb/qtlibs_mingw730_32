@@ -1,0 +1,160 @@
+Linux内核中链表list_head……的并发性
+linux
+linux
+​关注他
+我们被灌输过各种高效复杂的数据结构，比如rb tree，skip list等等，但现实中，我们经常用各种List管理我们的数据，因为它的操作非常简单。
+
+如果数据量小或者不太在乎时间，选择list_head。
+如果数据量大且对查找性能要求很高，读多写少的情况下，选择hlist。
+如果数据量大且对查找性能要求很高，写操作相对多的情况下，选择hlist_nulls。
+在涉及并发操作的环境中，对list的add，delete肯定需要某种并发保护，因为：
+
+无论是add还是delete操作本身均不是原子操作。
+但在具体的使用中，很多人搞不清该使用哪种类型的锁，于是就出现了以下的范式：
+
+懒省事者，无论是add，delete还是list_for_each，均用一把spinlock搞定。
+想优化性能却不想做太多的，直接把spinlock换成rwlock，一切看起来OK。
+如果写操作非常多且不能忍受性能损失，rculock搞定，同时保留add，delete的spinlock。
+但是事情真的有这么复杂吗？我看未必。
+
+事实上， 只要我们自己控制好写并发，读写是可以无锁并行的，只要保证我们的读操作中遍历链表的顺序是从前到后即可。
+
+我们看看这是为什么，先看add list：
+
+
+
+
+
+
+
+我们看到，之所以add操作对遍历不影响，是因为：
+
+第一，遍历是始终单向向前的。
+第二，先将新节点的next接入链表，使从new节点可继续遍历。
+第三，再将链表节点的next指向新节点，使new节点可被遍历到。
+同时，我们知道在x86_64体系，对齐的指针操作是原子操作，所以，上面第三步就是原子操作，这保证了链表add操作和遍历操作是无冲突的：
+
+遍历进程要么到达new。
+遍历进程要么越过到达N2。
+不会存在除1和2之外的其它情况。
+然而，如何保证上图中的顺序不会被编译器或者CPU给reorder呢？这很容易保证：
+
+增加一个屏障即可！
+长话短说，几乎 可以认为，x86_64体系，只有write-read序列存在CPU乱序的情况，所以乱序的情况并不会发生在链表操作中， “几乎” 以外的情况，此处不谈。
+
+需要C/C++ Linux服务器架构师学习资料加qun获取（资料包括C/C++，Linux，golang技术，Nginx，ZeroMQ，MySQL，Redis，fastdfs，MongoDB，ZK，流媒体，CDN，P2P，K8S，Docker，TCP/IP，协程，DPDK，ffmpeg等），免费分享
+
+
+
+
+
+
+在Linux内核的链表操作接口中，上述的顺序以及原子保证是通过 _rcu 后缀来修饰的接口保证的，比如：
+
+list_add_rcu/list_del_rcu
+hlist_add_after_rcu/hlist_del_rcu
+hlist_nulls_add_head_rcu/hlist_nulls_del_rcu
+以上的这些接口可以同时和同版本的for_each遍历同时进行而不会出现并发问题！也就是说，在保证不会同时add和del的前提下，可以实现无锁遍历。
+
+有了上面的理解，我们再看看del操作的流程：
+
+
+
+
+
+
+
+和add操作一样，这也是个实实在在的RCU操作，其核心在于 最后更新 ！
+
+关于rcu，我们必须清楚一件事，那就是遍历操作本身要通过rcu readlock保护，保证delete的节点在rcu readlock释放后再回收。
+
+最后，我们看一个关于hlist_nulls的遍历算法和其Insert/add，Remove/delete算法，来自内核文档Documents/RCU/rculist_nulls.txt：
+
+Lookup算法：
+1) Lookup algo
+--------------rcu_read_lock()begin:obj = lockless_lookup(key);if (obj) {  if (!try_get_ref(obj)) // might fail for free objects
+    goto begin;
+  /*
+   * Because a writer could delete object, and a writer could
+   * reuse these object before the RCU grace period, we
+   * must check key after getting the reference on object
+   */
+  if (obj->key != key) { // not the object we expected
+     put_ref(obj);
+     goto begin;
+   }
+}
+rcu_read_unlock();
+Insert/add算法：
+2) Insert algo :
+----------------
+/*
+ * Please note that new inserts are done at the head of list, * not in the middle or end.
+ */
+obj = kmem_cache_alloc(...);
+lock_chain(); // typically a spin_lock()
+obj->key = key;
+/*
+ * we need to make sure obj->key is updated before obj->next
+ * or obj->refcnt
+ */
+smp_wmb();
+atomic_set(&obj->refcnt, 1);
+hlist_add_head_rcu(&obj->obj_node, list);
+unlock_chain(); // typically a spin_unlock()
+Remove/delete算法：
+3) Remove algo
+--------------
+if (put_last_reference_on(obj) {
+   lock_chain(); // typically a spin_lock()
+   hlist_del_init_rcu(&obj->obj_node);
+   unlock_chain(); // typically a spin_unlock()
+   kmem_cache_free(cachep, obj);
+}
+在Linux内核的socket系统中，我们可以看到上述算法的具体实现，这是一个标准的算法，但是在特殊的环境下真的有必要这么复杂吗？lock_chain真的有必要吗？
+
+以socket系统为例，我们知道，socket是可以在内核中的软中断上下文被创建和销毁的，这里就会存在并发问题，因此Insert/Insert，Remove/Remove，Insert/Remove之间就会存在并发，所以必须lock_chain。
+
+但是如果我们保证节点的Insert和Remove均是在进程上下文的受控环境中进行的，比方说配置下发，那么我们只需要控制下发过程本身的并发即可，我们只要保证不会同时有Insert/Insert，Remove/Remove，Insert/Remove之间的并发即可，而这可以通过mutex来实现：
+
+int write_config(...)
+{	mutext_lock(&global_mutex);
+	insert_or_remove_some_nodes(...);
+	mutex_unlock(&global_mutex);
+}
+这样我们就可以省掉更多的spin开销，而我们知道mutex是可以re-schedule的，这便节省了CPU资源。
+
+你也不要怼我说re-schedule切换进程也是有开销的，这个开销可能比spinlock的开销更大，我承认这个点，但是我并非站在这个谁的开销大的立场上说这件事的，我的立场是：
+
+受控的环境比争抢的环境更好，我一向崇尚仲裁。
+至于怎么定义 “好” ，这便是形而上学的范畴了。
+
+举个例子，Linux内核的路由rule就是这么实现的。
+
+发布于 2020-09-28 16:16
+链表
+Linux
+Linux 内核
+​赞同 11​
+​1 条评论
+​分享
+​喜欢
+​收藏
+​申请转载
+​
+
+发布一条带图评论吧
+
+1 条评论
+默认
+最新
+陈小冰
+陈小冰
+看起来相当危险[发呆]
+
+2022-12-02
+​回复
+​喜欢
+文章被以下专栏收录
+linux服务器开发
+linux服务器开发

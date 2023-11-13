@@ -2031,6 +2031,7 @@ KERNEL/driver/kallsyms 查看内核的符号表
 KERNEL/hash/hlish add
 KERNEL/hash/hlish del
 KERNEL/hash/hlish 说明
+KERNEL/know/Linux内核中链表list_head……的并发性
 KERNEL/log_format
 KERNEL/module/makefile
 KERNEL/module/template
