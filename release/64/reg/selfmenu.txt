@@ -3116,6 +3116,7 @@ Tools/VSCode/过滤文件夹filterdir/linux
 Tools/VSCode/过滤文件夹filterdir/test
 Tools/VSCode快捷键
 Tools/VSCode快捷键2
+Tools/VSCode快捷键3
 Tools/Vim .Vimrc
 Tools/Vim .Vimrc .clang-format
 Tools/Vim .Vimrc plugin

@@ -1,0 +1,66 @@
+（10） 自动删除文件行尾空格
+写代码时，免不了会导致文件行尾出现很多空格，该命令可在文件保存时，自动去掉行尾所有空格。
+
+
+  "files.trimTrailingWhitespace": true,
+
+该命令还可配合插件Trailing Spaces，该插件会将行尾空格高亮。
+
+
+（15） 安装字体相关插件(可忽略)
+字体可以选择自己喜欢的，我推荐 source code pro 等宽字体。可从 google 搜索 source code pro 关键字下载。
+首选项中配置，我这里指定了多个字体，VSCode 会优先使用最前面的。找不到的话使用后面的。
+
+"editor.fontFamily": "'Source Code Pro', Consolas, 'Courier New', monospace",
+
+
+
+5. 附上我的 User Settings.json
+{
+    "editor.fontSize": 13,
+    "editor.minimap.maxColumn": 40,
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?·～！￥…（）—【】、；：‘’“”，。《》？ ",
+    "editor.fontFamily": "'Source Code Pro', Consolas, 'Courier New', monospace",
+    "editor.suggest.localityBonus": true,
+
+    "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${appName}",
+    "window.zoomLevel": 1,
+    "window.titleBarStyle": "custom",
+
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Solarized Light",
+    "workbench.sideBar.location": "right",
+
+    //"git.path": "D:\\Program Files\\Git\\cmd\\git.exe",
+    "git.path": "/usr/bin/git",
+    "git.autofetch": true,
+    "git.ignoreMissingGitWarning": true,
+
+    "git-assistant.checkConfigVariables": "disabled",
+    "git-assistant.pushBeforeClosingIDE": "disabled",
+
+    "diffEditor.ignoreTrimWhitespace": false,
+    //"terminal.integrated.shell.windows": "C:\\windows\\System32\\cmd.exe",
+
+    "http.proxy": "http://公司代理地址IP:端口/",
+    "http.proxyStrictSSL": false,
+
+    "files.trimTrailingWhitespace": true,
+    "files.autoGuessEncoding": true,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true
+    },
+
+    "C_Cpp.updateChannel": "Insiders",
+    "C_Cpp.default.intelliSenseMode": "gcc-x64",
+    "C_Cpp.default.includePath": [
+        "/usr/include",
+        "/usr/local/include",
+        "${workspaceFolder}/**"
+    ],
+
+    "terminal.integrated.fontFamily": "Hack Nerd Font",
+    "terminal.integrated.fontSize": 14,
+}
