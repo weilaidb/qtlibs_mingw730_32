@@ -1,0 +1,51 @@
+
+
+
+
+Forever Free
+UPGRADE
+j
+
+Home
+
+
+Share icon
+profile
+History
+Question :
+
+JSP 界面自动延时3秒关闭
+Answer :
+
+Share icon
+To automatically delay the closure of a JSP interface by 3 seconds, you can use JavaScript. Here's an example of how you can achieve this:
+jsp
+<html>
+<head>
+    <script>
+        // Function to close the JSP interface after a delay
+        function closeInterface() {
+            setTimeout(function(){
+                window.close();
+            }, 3000); // 3000 milliseconds = 3 seconds
+        }
+    </script>
+</head>
+<body onload="closeInterface()">
+    <!-- Your JSP interface content here -->
+</body>
+</html>
+In this example, the  closeInterface()  function is called when the JSP interface loads, and it uses the  setTimeout()  function to close the window after a 3-second delay.
+Was the last answer useful?
+
+
+
+
+Status Icon
+codesettmore
+
+
+
+
+
+Basic AI Model

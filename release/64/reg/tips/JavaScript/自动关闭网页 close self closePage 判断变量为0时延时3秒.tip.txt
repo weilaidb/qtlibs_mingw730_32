@@ -1,0 +1,41 @@
+Question :
+
+JSP 判断某个变量为0时，界面自动延时3秒关闭，变量不为0时不关闭
+Answer :
+
+Share icon
+To automatically delay the closure of a JSP interface by 3 seconds only when a specific variable is equal to 0, you can use JavaScript. Here's an example of how you can achieve this:
+jsp
+<html>
+<head>
+    <script>
+        // Function to close the JSP interface after a delay if the variable is 0
+        function closeInterface() {
+            var variable = <%= yourVariable %>; // Replace "yourVariable" with the actual variable name
+
+            if (variable === 0) {
+                setTimeout(function(){
+                    window.close();
+                }, 3000); // 3000 milliseconds = 3 seconds
+            }
+        }
+    </script>
+</head>
+<body onload="closeInterface()">
+    <!-- Your JSP interface content here -->
+</body>
+</html>
+In this example, the  closeInterface()  function is called when the JSP interface loads. It checks if the  yourVariable  is equal to 0. If it is, it uses the  setTimeout()  function to close the window after a 3-second delay. If the variable is not equal to 0, the window will not be closed. Replace  yourVariable  with the actual name of your variable in the JSP code.
+Was the last answer useful?
+
+
+
+
+Status Icon
+codesettmore
+
+
+
+
+
+Basic AI Model
