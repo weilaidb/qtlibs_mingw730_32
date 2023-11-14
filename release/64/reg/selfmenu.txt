@@ -2957,6 +2957,7 @@ SoftWare/Cisco Packet Tracer/启动打印/ISR4321 Router
 SoftWare/Cisco Packet Tracer/常用命令
 SoftWare/Cisco Packet Tracer/用法
 SoftWare/DevEco Studio
+SoftWare/FastStone Capture
 SoftWare/FastStone Capture v9.7
 SoftWare/FileZilla Server 新版配置教程，550错误解决
 SoftWare/Redis/introduction

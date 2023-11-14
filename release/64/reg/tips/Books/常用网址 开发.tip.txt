@@ -3,3 +3,11 @@ https://htmlpage.cn/builder/
 
 进修
 https://qicoder.com/ebooks/
+https://www.geeksforgeeks.org/c-multiple-choice-questions/
+
+
+C语言出题
+https://www.interviewbit.com/c-programming-mcq/
+https://www.includehelp.com/mcq/c-programming-language-mcqs.aspx
+
+https://www.includehelp.com/c/modulus-of-two-float-or-double-numbers-in-c-language.aspx
