@@ -1,0 +1,23 @@
+42.下列输出正确的是？（初始值:x=7,y=8)
+#include <stdio.h>
+int main(int argc, char **argv)
+{
+    float x;
+    int y;
+    printf("enter two numbers\n");
+    scanf("%f %f", &x, &y);
+    printf("%f, %d", x, y);
+
+    return 0;
+}
+
+A) 7.000000,7
+B) 运行错误
+C) 7.000000,随机值
+D) 随机值,随机值
+
+
+答案:C
+
+
+

@@ -1,0 +1,20 @@
+62.下列代码的输出是什么？
+#include <stdio.h>
+int main(int argc, char **argv)
+{
+    float f = 0.1;
+    if (f == 0.1)
+        printf("True");
+    else
+        printf("False");
+
+    return 0;
+}
+
+A) True
+B) False
+
+
+答案:B
+
+

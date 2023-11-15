@@ -11,3 +11,8 @@ https://www.interviewbit.com/c-programming-mcq/
 https://www.includehelp.com/mcq/c-programming-language-mcqs.aspx
 
 https://www.includehelp.com/c/modulus-of-two-float-or-double-numbers-in-c-language.aspx
+
+C安全编码实践
+https://www.cnblogs.com/Hi-blog/p/C-Secure-Coding-Standard.html
+
+https://huangwei.me/blog/2011/02/04/cert-secure-coding-standard-2/

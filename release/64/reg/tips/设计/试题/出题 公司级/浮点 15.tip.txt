@@ -1,0 +1,18 @@
+37.下列输出正确的是？
+#include <stdio.h>
+int main(int argc, char **argv)
+{
+    float x = 21.0;
+    x %= 3.0;
+    printf("%f", x);
+
+    return 0;
+}
+
+A) 7
+B) 7.00
+C) 7.000000
+D) 编译错误
+
+
+答案:D
