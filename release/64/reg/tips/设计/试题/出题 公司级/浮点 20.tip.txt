@@ -1,8 +1,18 @@
-62.针对类型float和double的差异是什么？
-A) 两者功能相同
-B) 与浮点值相比，double可以存储双倍值
-C) double是float的增强版本，在C99中引入
-D) double比float更精确，可以存储64位
+37.下列代码输出的结果是？
+#include <stdio.h>
+ 
+int main(void) {
+  long int big = 1234567890L;
+  float approx = big;
+  printf("%ld\n", (big - (long int)approx));
+  return 0;
+}
+
+A) -46
+B) 随机值
 
 
-答案:D
+答案:A
+
+解答：
+对于大多数浮点硬件，最接近float类型中可表示的1234567890的值为1234567844;因此,此程序打印值-46。

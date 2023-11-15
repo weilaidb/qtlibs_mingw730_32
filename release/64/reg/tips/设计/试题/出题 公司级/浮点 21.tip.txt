@@ -1,8 +1,27 @@
-62.针对类型float和double的差异是什么？
-A) 两者功能相同
-B) 与浮点值相比，double可以存储双倍值
-C) double是float的增强版本，在C99中引入
-D) double比float更精确，可以存储64位
+37.下列代码输出的结果是？
+#include <assert.h>
+#include <float.h>
+#include <limits.h>
+#include <math.h>
+#include <stdint.h>
+#include <stdio.h>
+ 
+extern size_t popcount(uintmax_t); /* See INT35-C */
+#define PRECISION(umax_value) popcount(umax_value)
+ 
+int main(void) {
+  assert(PRECISION(LONG_MAX) <= DBL_MANT_DIG * log2(FLT_RADIX));
+  long int big = 1234567890L;
+  double approx = big;
+  printf("%ld\n", (big - (long int)approx));
+  return 0;
+}
+
+A) -46
+B) 随机值
+C) 0
 
 
-答案:D
+答案:C
+
+解答：

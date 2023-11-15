@@ -1,8 +1,45 @@
-62.针对类型float和double的差异是什么？
-A) 两者功能相同
-B) 与浮点值相比，double可以存储双倍值
-C) double是float的增强版本，在C99中引入
-D) double比float更精确，可以存储64位
+37.下列浮点精度转换后计算值正常吗？
+#include <float.h>
+#include <math.h>
+  
+void func(double d_a, long double big_d) {
+  double d_b;
+  float f_a;
+  float f_b;
+ 
+  if (d_a != 0.0 &&
+      (isnan(d_a) ||
+       isgreater(fabs(d_a), FLT_MAX) ||
+       isless(fabs(d_a), FLT_MIN))) {
+    /* Handle error */
+  } else {
+    f_a = (float)d_a;
+  }
+  if (big_d != 0.0 &&
+      (isnan(big_d) ||
+       isgreater(fabs(big_d), FLT_MAX) ||
+       isless(fabs(big_d), FLT_MIN))) {
+    /* Handle error */
+  } else {
+    f_b = (float)big_d;
+  }
+  if (big_d != 0.0 &&
+      (isnan(big_d) ||
+       isgreater(fabs(big_d), DBL_MAX) ||
+       isless(fabs(big_d), DBL_MIN))) {
+    /* Handle error */
+  } else {
+    d_b = (double)big_d;
+  } 
+}
+
+A) 正常
+B) 错误，可能超范围
 
 
-答案:D
+答案:A
+
+解答：
+
+
+

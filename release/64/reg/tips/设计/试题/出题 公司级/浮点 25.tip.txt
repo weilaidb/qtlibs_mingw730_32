@@ -1,0 +1,31 @@
+37.下列代码输出结果是？
+
+#include <stdio.h>
+  
+int show_message(void) {
+    char buf[128] = "hello, world!!";
+    
+    if (fclose(stdout) == EOF) {
+        return -1;
+    }
+    
+    printf("%s\n", buf);
+    
+    return 0;
+}
+
+int main(void) {
+    show_message();
+    
+    return 0;
+}
+
+A) hello, world!!
+B) 无内容
+C) 编译错误
+D) 运行错误
+
+
+答案:B
+
+解答：

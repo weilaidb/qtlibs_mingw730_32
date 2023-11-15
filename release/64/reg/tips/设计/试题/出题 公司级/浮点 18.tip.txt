@@ -1,8 +1,21 @@
-62.针对类型float和double的差异是什么？
-A) 两者功能相同
-B) 与浮点值相比，double可以存储双倍值
-C) double是float的增强版本，在C99中引入
-D) double比float更精确，可以存储64位
+FLP32-C. 预防或检测数学函数中的自变量域和值域错误
+
+37.下列代码中result计算的值正常吗？
+#include <math.h>
+  
+void func(double x, double y) {
+  double result;
+  result = pow(x, y);
+}
 
 
-答案:D
+A) 正常
+B) 错误，可能超范围
+
+
+答案:B
+
+解答：
+如果x为负且y不是整数值，或者x为0且y为0，则此代码可能会产生域错误。如果x为0且y为负数，则可能会发生域错误或极点错误，如果结果不能表示为双精度值，则可能会发生范围错误。
+
+

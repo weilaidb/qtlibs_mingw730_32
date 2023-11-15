@@ -1,0 +1,21 @@
+37.下列代码存在的问题有哪些？
+#include <stdio.h>
+
+int main(void) {
+    FILE *my_stdout = stdout;
+    if (fputs("Hello, World!\n", my_stdout) == EOF) {
+        printf("error\n");
+    }
+    return 0;
+}
+
+
+A) 错误，fputs()调用了stdout的按值副本
+B) 正确
+
+
+答案:B
+
+解答：
+
+
