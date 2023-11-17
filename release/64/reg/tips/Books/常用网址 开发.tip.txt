@@ -5,7 +5,6 @@ https://htmlpage.cn/builder/
 https://qicoder.com/ebooks/
 https://www.geeksforgeeks.org/c-multiple-choice-questions/
 
-
 C语言出题
 https://www.interviewbit.com/c-programming-mcq/
 https://www.includehelp.com/mcq/c-programming-language-mcqs.aspx
@@ -19,3 +18,5 @@ https://huangwei.me/blog/2011/02/04/cert-secure-coding-standard-2/
 
 试题广场
 https://www.nowcoder.com/questionCenter
+公开真题库
+https://www.gkzenti.cn/paper?cls=%E8%BD%AF%E8%80%83&province=%E9%AB%98%E7%BA%A7_%E7%BD%91%E7%BB%9C%E8%A7%84%E5%88%92%E8%AE%BE%E8%AE%A1%E5%B8%88
