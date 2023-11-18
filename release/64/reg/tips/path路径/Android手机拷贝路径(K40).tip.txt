@@ -56,3 +56,20 @@ mtp://MI MAX 2/内部存储设备/Android/data/com.ximalaya.ting.android/files/d
 D:\DCIM\20201015\Data\Download
 
 
+
+喜马拉雅：
+此电脑\Redmi K40\内部存储设备\Android\data
+
+E:\K40备份恢复原厂\Android\data\com.ximalaya.ting.android\files\download
+
+录音记录：
+/MIUI/sound_recorder
+
+
+
+
+
+
+
+
+

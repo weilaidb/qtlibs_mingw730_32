@@ -1,0 +1,195 @@
+喜马拉雅下载文件名批量修改
+
+互牛
+
+于 2020-04-13 19:59:33 发布
+
+阅读量6.4k
+ 收藏
+
+点赞数 2
+文章标签： python
+版权
+喜马拉雅下载歌曲后，在下载目录里找到歌曲，发现名字都是有数字组成，并不是真实的歌曲名。。后发现同一目录下有相同名称开头的list.json文件。。打开后发现，真实名字保存在这个文件里。于是用python写了个小脚本，来修改名字
+
+
+下载目录里，有16155903 的文件夹，也有一个16155903list.json
+此脚本，编译成了win10 64位可以直接使用的小工具，在文章末尾会有链接。
+打开此工具后显示此窗口
+
+
+
+点击 路径选择，，选择到 如上的 16155903 目录
+
+注意，16155903list.json文件必须跟16155903这个文件在同意目录下
+这是修改前的，此目录里的歌曲
+选择此目录后，点击 开始重命名 按钮]
+
+
+[已转换完成](
+
+
+这是转换完成后的歌曲目录
+
+
+此工具并未完全认真测试。可能会有错误。现在工具可以提示一种错误，找不到文件夹，，此为，json文件里保存的文件，在所选下载目录里找不到。
+此种错误，最简单的解决办法为，重新下载歌曲
+下面是源码，有python基础的，可以直接使用
+
+#!/usr/bin/env python
+
+import time
+#import llx
+import os,json
+import tkinter as tk
+from tkinter.filedialog import askdirectory
+#import threading
+
+def jsonduiying(path):
+    path=path.replace('/','\\')
+    gequming=path.split('\\')[-1]#获得文件名
+    lujing=os.path.abspath(os.path.dirname(path))#获得文件所在的上级目录
+    filename=f"{lujing}\{gequming}list.json"
+    filename_list=os.listdir(path)
+
+    #print(lujing)
+    #print(filename_list)
+    f_obj=open(filename,'r',encoding='UTF-8')
+    numbers=json.load(f_obj)
+    haha={}#
+    #把json文件里的歌曲名和id写入字典haha
+    table="".maketrans("，。【】（）《》",",.[]()--")
+    table2="".maketrans(r'\/:*?"<>|','         ')
+    for i in numbers:
+        j=i['title']        
+        j=j.translate(table)#把中文字符换成英文字符
+        j=j.translate(table2)#把命名里不能含有的字符替换为空格
+        j=j.replace(' ','')#把空格去掉
+        haha[f"{i['trackId']}.m4a"]=j
+    for key in haha:
+        a=1
+        b=""
+        c=0
+        used_name=f"{path}\{key}"
+        while a:
+            try:
+                new_name=f"{path}\{haha[key]}{b}.m4a"
+                os.rename(used_name,new_name)
+            except FileNotFoundError:
+                return 0
+            except FileExistsError:
+                b=b+str(c)
+                c+=1
+            else:
+                a=0
+                #print(f"文件{used_name}更改为{new_name}")  
+    return 1
+root=tk.Tk()
+root.title("喜马拉雅歌曲名称对应修改器")
+path=tk.StringVar()
+zhuanZT=tk.StringVar()
+pathd=''
+def selectPath():
+    global path,pathd
+    pathd=askdirectory()
+    print(pathd)
+    path.set(pathd)
+def zhuanhuan(aa):
+    global zhuanZT
+    #zhuanZT.set("开始转换...请稍后...")
+    #time.sleep(2)
+    if jsonduiying(aa)==0:
+        zhuanZT.set("转换出错，找不到文件")
+    else:
+        zhuanZT.set("转换完成")
+#path.set("ag")
+#print(path)
+tk.Label(root,text = "歌曲路径:").grid(row = 0, column = 0)
+tk.Entry(root, textvariable = path,width=40).grid(row = 0, column = 1)
+tk.Button(root, text = "路径选择", command = selectPath).grid(row = 0, column = 2)
+tk.Button(root, text = "开始重命名", command = lambda :zhuanhuan(pathd),bg='red',fg='yellow').grid(row = 1, column = 2)  
+tk.Label(root,text = "转换状态:").grid(row = 1, column = 0)
+tk.Label(root,textvariable = zhuanZT,width=40).grid(row = 1, column = 1)
+if __name__=='__main__':
+    root.mainloop() `
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+用pyinstaller 打包后的文件链接。。这个可以直接在windows10 64位系统使用
+下载地址
+————————————————
+版权声明：本文为CSDN博主「互牛」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/oHuNiu/article/details/105495916
