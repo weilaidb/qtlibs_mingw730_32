@@ -65,6 +65,8 @@ E:\K40备份恢复原厂\Android\data\com.ximalaya.ting.android\files\download
 录音记录：
 /MIUI/sound_recorder
 
+一键还原（备份路径）：
+E:\K40备份恢复原厂\MIUI\backup\AllBackup
 
 
 
