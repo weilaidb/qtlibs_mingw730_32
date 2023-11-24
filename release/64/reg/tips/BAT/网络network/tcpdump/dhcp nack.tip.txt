@@ -1,0 +1,4 @@
+DHCPNack是DHCP协议中的一个消息类型，用来通知客户端请求的IP地址已经被占用，或者客户端的MAC地址已经被注册。当DHCP服务器收到DHCPDISCOVER消息后，会检查客户端请求的IP地址是否已经被占用，如果已经被占用，则会发送DHCPNack消息给客户端。当DHCP服务器收到DHCPREQUEST消息后，会检查客户端的MAC地址是否已经被注册，如果已经被注册，则会发送DHCPNack消息给客户端。
+
+
+和dhcp nak是一个意思哦

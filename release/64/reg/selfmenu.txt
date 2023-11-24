@@ -292,6 +292,7 @@ BAT/网络network/tcpdump/dhcp
 BAT/网络network/tcpdump/dhcp DHCP八种报文详解
 BAT/网络network/tcpdump/dhcp ack
 BAT/网络network/tcpdump/dhcp discover
+BAT/网络network/tcpdump/dhcp nack
 BAT/网络network/tcpdump/dhcp nak
 BAT/网络network/tcpdump/dhcp request
 BAT/网络network/tcpdump/help
@@ -3583,7 +3584,7 @@ path路径/常用文件夹
 术语/网络/IGP
 术语/网络/IPV4 帧格式
 术语/网络/IP协议 IP包头格式
-术语/网络/IP协议 IP包头格式 ping 65535长度如何分片
+术语/网络/IP协议 IP包头格式 ping 65535长度如何分片(或分段)
 术语/网络/LACP
 术语/网络/MAC漂移
 术语/网络/MLT
