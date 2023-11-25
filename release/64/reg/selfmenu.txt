@@ -3568,6 +3568,7 @@ path路径/常用文件夹
 术语/大小端 MEMCPY
 术语/异或
 术语/网络/1000base-t
+术语/网络/3DES
 术语/网络/ABR(OSPF)
 术语/网络/ALL 常见计算
 术语/网络/ALL 汇总
@@ -3578,6 +3579,7 @@ path路径/常用文件夹
 术语/网络/CAN总线
 术语/网络/CAN总线 CAN消息帧格式
 术语/网络/CERNET
+术语/网络/DES
 术语/网络/Dijkstra算法
 术语/网络/EIGRP
 术语/网络/FDDI网络
@@ -3589,8 +3591,10 @@ path路径/常用文件夹
 术语/网络/IPV4 帧格式
 术语/网络/IP协议 IP包头格式
 术语/网络/IP协议 IP包头格式 ping 65535长度如何分片(或分段)
+术语/网络/Kerberos
 术语/网络/LACP
 术语/网络/MAC漂移
+术语/网络/MD5
 术语/网络/MLT
 术语/网络/MSTP
 术语/网络/MSTP Topology Change (TC) BPDUs
@@ -3621,9 +3625,11 @@ path路径/常用文件夹
 术语/网络/RJ45
 术语/网络/RPC（Remote Procedure Call）远程过程调用协议
 术语/网络/RS485 RS-485
+术语/网络/RSA
 术语/网络/RSTP
 术语/网络/SDN(Software Define NetWork)
 术语/网络/SDP
+术语/网络/SHA
 术语/网络/STP
 术语/网络/SVLAN CVLAN
 术语/网络/TCAM（Ternary Content-Addressable Memory）
@@ -3691,6 +3697,7 @@ path路径/常用文件夹
 术语/软件/软件源 Repository
 术语/软件建模/UML
 术语/软件建模/UML 结构式图形
+术语/软考/网络规划师
 标准/RFC/TCP协议中最初的描述(RFC793)
 检查单/结算
 歌曲/列表

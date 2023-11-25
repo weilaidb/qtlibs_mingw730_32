@@ -1,0 +1,7 @@
+MD5:全称是 Message Digest 5，是一種散列函數
+SHA:全称是 Secure Hash Algorithm，即安全散列算法。
+DES:全称是 Data Encryption Standard，即数据加密标准。
+3DES:全称是 Triple Data Encryption Standard，即三重数据加密标准。
+RSA:全称是 Rivest–Shamir–Adleman，是一種公鑰加密演算法
+Kerberos:全称是 Key Distribution Center，即密钥分发中心。
+PKI:public key infrastructure 公钥基础设施

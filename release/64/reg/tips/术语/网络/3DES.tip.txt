@@ -1,0 +1,1 @@
+3DES 全称是 Triple Data Encryption Standard，即三重数据加密标准。它是一种对称加密算法，使用三重迭代 DES 算法来加密数据。3DES 比 DES 更安全，但速度较慢。3DES 已被广泛用于电子邮件、文件共享和其他安全应用中。
