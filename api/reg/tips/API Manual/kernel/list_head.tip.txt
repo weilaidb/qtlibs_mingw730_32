@@ -2,7 +2,29 @@
 kernel/list_head
 
 ☆ 简介
-aaaa
+struct list_head 是存储链表的结构，能举几个例子吗？
+
+struct list_head 是一个用于存储链表的结构体，在 Linux 内核中广泛使用。它定义了一个双向链表的节点，可以用于构建各种类型的链表数据结构。以下是一些示例：
+
+1. 内核中的进程链表：Linux 内核中的进程控制块（task_struct）包含一个 list_head 成员，用于将进程链接到一个进程链表中。
+struct task_struct {
+    // ...
+    struct list_head tasks;
+    // ...
+};
+2. 文件系统中的目录项链表：Linux 文件系统中的目录项（dentry）结构体包含一个 list_head 成员，用于将目录项链接到一个目录链表中。
+struct dentry {
+    // ...
+    struct list_head d_child;
+    // ...
+};
+3. 网络协议栈中的套接字链表：Linux 网络协议栈中的套接字（socket）结构体包含一个 list_head 成员，用于将套接字链接到一个套接字链表中。
+struct socket {
+    // ...
+    struct list_head list;
+    // ...
+};
+这些只是一些示例，struct list_head 可以用于构建各种类型的链表数据结构，以满足不同的需求。
 
 
 ☆ 参数
@@ -16,7 +38,45 @@ aaaa
 
 
 ☆ 示例
+struct list_head 代码引用示例，比较增删改查等操作
 
+当使用 struct list_head 来构建链表时，可以使用以下操作来进行增删改查等操作：
+
+1. 初始化链表头：
+struct list_head my_list;
+INIT_LIST_HEAD(&my_list);
+2. 添加节点到链表尾部：
+struct my_struct {
+    int data;
+    struct list_head list;
+};
+
+struct my_struct *new_node = malloc(sizeof(struct my_struct));
+new_node->data = 42;
+INIT_LIST_HEAD(&new_node->list);
+
+list_add_tail(&new_node->list, &my_list);
+3. 遍历链表：
+struct list_head *pos;
+struct my_struct *node;
+
+list_for_each(pos, &my_list) {
+    node = list_entry(pos, struct my_struct, list);
+    // 对每个节点执行操作
+    printf("%d\n", node->data);
+}
+4. 删除指定节点：
+struct list_head *pos, *next;
+struct my_struct *node;
+
+list_for_each_safe(pos, next, &my_list) {
+    node = list_entry(pos, struct my_struct, list);
+    if (node->data == 42) {
+        list_del(pos);
+        free(node);
+    }
+}
+这些操作只是一些常见的例子，struct list_head 提供了许多其他操作，如插入节点、替换节点、判断链表是否为空等等。具体的操作可以根据具体的需求来选择和使用。
 
 ☆ 限制说明
 
