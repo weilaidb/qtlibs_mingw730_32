@@ -1,0 +1,44 @@
+☆ API名称
+JAVA/Maven/dependency/jackson-annotations(jsonformat)
+
+☆ 简介
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-annotations</artifactId>
+    <version>2.14.2</version>
+</dependency>
+
+@JsonFormat
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-24 22:36:00
+========================================================================
+========================================================================

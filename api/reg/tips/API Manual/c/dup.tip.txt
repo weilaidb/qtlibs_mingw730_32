@@ -1,0 +1,90 @@
+☆ API名称
+c/dup
+
+☆ 简介
+#include <unistd.h>   
+int dup( int oldfd );   
+
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+利用函数dup，我们可以复制一个描述符。传给该函数一个既有的描述符，它就会返回一个新的描述符，这个新的描述符是传给它的描述符的拷贝。这意味着，这两个描述符共享同一个数据结构。例如，如果我们对一个文件描述符执行lseek操作，得到的第一个文件的位置和
+
+第二个是一样的。下面是用来说明dup函数使用方法的代码片段：
+int fd1, fd2; 
+ ...
+fd2 = dup( fd1 );
+    需要注意的是，我们可以在调用fork之前建立一个描述符，这与调用dup建立描述符的效
+
+果是一样的，子进程也同样会收到一个复制出来的描述符。
+————————————————
+版权声明：本文为CSDN博主「zhouhong1026」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/zhouhong1026/article/details/8151235
+
+
+
+
+/*************************************************************************
+    > File Name: test.c
+    > Author:  WYG
+    > Mail:  1769703801@qq.com 
+    > Created Time: 2020年11月09日 星期一 22时39分36秒
+ ************************************************************************/
+
+#include<stdio.h>
+#include<unistd.h>
+#include<fcntl.h>
+#include<string.h>
+int main()
+{
+    int oldfd = open("wyg.txt",O_RDWR | O_CREAT,664);
+    if(oldfd < 0)
+    {
+        perror("open");
+    }
+    printf("oldfd is : %d\n",oldfd);
+    int newfd = dup(oldfd);
+    if(newfd < 0)
+    {
+        perror("dup");
+    }
+    printf("newfd is : %d\n",newfd);
+    char *data = "this is new data";
+    write(newfd,data,strlen(data));
+    return 0;
+}
+
+由结果可看出oldfd文件描述符为3，newfd文件描述符为4，而oldfd和newfd都可以对wyg.txt文件进行操作。
+
+复制文件描述符，实质应该理解为:oldfd句柄原本指向wyg.txt的文件描述结构体，dup()指向完毕后，newfd句柄也会指向wyg.txt文件描述结构体。所以说对newfd句柄所指的文件操作，等价于操作wyg.txt文件。
+————————————————
+版权声明：本文为CSDN博主「钢钢钢很不爽」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_45672178/article/details/109588099
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-08-25 23:11:45
+========================================================================
+========================================================================

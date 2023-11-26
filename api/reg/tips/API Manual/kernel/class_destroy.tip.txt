@@ -1,0 +1,42 @@
+☆ API名称
+kernel/class_destroy
+
+☆ 简介
+void class_destroy(struct class *cls)
+destroys a struct class structure
+
+函数class_destroy()用于删除设备的逻辑类，即从Linux内核系统中删除设备的逻辑类。此函数执行的效果是删除函数__class_create()或宏class_create()在目录/sys/class下创建的逻辑类对应的文件夹。
+☆ 参数
+@cls: pointer to the struct class that is to be destroyed
+
+Note, the pointer to be destroyed must have been created with a call
+ * to class_create().
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-04 18:35:54
+========================================================================
+========================================================================

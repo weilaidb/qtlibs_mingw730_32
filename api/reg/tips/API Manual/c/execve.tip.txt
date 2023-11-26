@@ -1,0 +1,60 @@
+☆ API名称
+c/execve
+
+☆ 简介
+#include<unistd.h>
+
+int execve(const char *filename, char *const argv[ ], char *const envp[ ]);
+
+在父进程中fork一个子进程，在子进程中调用exec函数启动新的程序。exec函数一共有六个，其中execve为内核级系统调用，其他（execl，execle，execlp，execv，execvp）都是调用execve的库函数。
+
+☆ 参数
+execve()用来执行参数filename字符串所代表的文件路径，第二个参数是利用数组指针来传递给执行文件，并且需要以空指针(NULL)结束，最后一个参数则为传递给执行文件的新环境变量数组。
+
+☆ 返回值
+ 函数执行成功时没有返回值，执行失败时的返回值为-1.
+
+☆ 错误码
+
+
+
+☆ 示例
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/fcntl.h>
+
+int main(int argc, char **argv)
+{
+    char *argvx[ ]={"ls", "-al", "/etc/passwd", NULL};   
+    char *envp[ ]={"PATH=/bin", NULL};
+    execve("/bin/ls", argvx, envp);
+    return 0;
+}
+
+
+chmod +x  execve.out && ./execve.out
+-rw-r--r-- 1 root root 2865 Jul 18  2022 /etc/passwd
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-08-29 19:20:26
+========================================================================
+========================================================================

@@ -1,0 +1,45 @@
+☆ API名称
+kernel/cdev_add
+
+☆ 简介
+int cdev_add(struct cdev *p, dev_t dev, unsigned count)
+add a char device to the system
+
+ * cdev_add() adds the device represented by @p to the system, making it
+ * live immediately.  A negative error code is returned on failure.
+
+☆ 参数
+ * @p: the cdev structure for the device
+ * @dev: the first device number for which this device is responsible
+ * @count: the number of consecutive minor numbers corresponding to this
+ *         device
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-03 16:12:09
+========================================================================
+========================================================================

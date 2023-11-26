@@ -1,0 +1,15 @@
+
+JAVA
+JAVA/
+JSP
+c/
+dup
+dup2
+exec
+glibc
+ioctl
+kernel
+long
+mysql
+python
+sigaction

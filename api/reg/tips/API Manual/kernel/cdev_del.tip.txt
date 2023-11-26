@@ -1,0 +1,70 @@
+☆ API名称
+kernel/device_create
+
+☆ 简介
+struct device *device_create(struct class *class, struct device *parent,
+			     dev_t devt, void *drvdata, const char *fmt, ...)
+
+creates a device and registers it with sysfs
+☆ 参数
+ * @class: pointer to the struct class that this device should be registered to
+ * @parent: pointer to the parent struct device of this new device, if any
+ * @devt: the dev_t for the char device to be added
+ * @drvdata: the data to be added to the device for callbacks
+ * @fmt: string for the device's name
+
+ * A "dev" file will be created, showing the dev_t for the device, if
+ * the dev_t is not 0,0.
+ * If a pointer to a parent struct device is passed in, the newly created
+ * struct device will be a child of that device in sysfs.
+ * The pointer to the struct device will be returned from the call.
+ * Any further sysfs files that might be required can be created using this
+ * pointer.
+☆ 返回值
+ * Returns &struct device pointer on success, or ERR_PTR() on error.
+ *
+ * Note: the struct class passed to this function must have previously
+ * been created with a call to class_create().
+
+☆ 错误码
+
+
+
+☆ 示例
+static int __init my_driver_init(void)
+{
+    if (alloc_chrdev_region(&dev, 0, 1, DEVICE_NAME) < 0)
+        return -1;
+
+    cdev_init(&cdev, &fops);
+    if (cdev_add(&cdev, dev, 1) == -1)
+    {
+        unregister_chrdev_region(dev, 1);
+        return -1;
+    }
+
+    class = class_create(THIS_MODULE, DEVICE_NAME);
+    device = device_create(class, NULL, dev, NULL, DEVICE_NAME);
+
+    return 0;
+}
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-04 18:25:32
+========================================================================
+========================================================================

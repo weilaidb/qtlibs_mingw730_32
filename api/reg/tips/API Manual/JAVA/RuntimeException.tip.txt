@@ -1,0 +1,63 @@
+☆ API名称
+JAVA/RuntimeException
+
+☆ 简介
+2.常见的几种RuntimeException
+
+一般面试中java Exception（runtimeException ）是必会被问到的问题。常见的异常列出四五种，是基本要求。常见的几种如下：
+
+NullPointerException - 空指针引用异常
+ClassCastException - 类型强制转换异常。
+IllegalArgumentException - 传递非法参数异常。
+ArithmeticException - 算术运算异常
+ArrayStoreException - 向数组中存放与声明类型不兼容对象异常
+IndexOutOfBoundsException - 下标越界异常
+NegativeArraySizeException - 创建一个大小为负数的数组错误异常
+NumberFormatException - 数字格式异常
+SecurityException - 安全异常
+UnsupportedOperationException - 不支持的操作异常
+NegativeArrayException —— 数组负下标异常
+ArrayIndexOutOfBoundsException - 数组下标越界异常
+EOFException - 文件已结束异常
+FileNotFoundException - 文件未找到异常
+NumberFormatException - 字符串转换为数字异常
+SQLException - 操作数据库异常
+IOException - 输入输出异常
+NoSuchMethodException - 方法未找到异常
+
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+actionModel actionModel = config.pop(url);
+if(actionModel==null) {
+    throw new RuntimeException("你没有配置相关的action");
+}
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-17 21:48:08
+========================================================================
+========================================================================

@@ -1,0 +1,41 @@
+☆ API名称
+kernel/register_chrdev_region
+
+☆ 简介
+static struct char_device_struct *
+__register_chrdev_region(unsigned int major, unsigned int baseminor,
+			   int minorct, const char *name)
+
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-03 16:31:31
+========================================================================
+========================================================================

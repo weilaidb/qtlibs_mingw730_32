@@ -1,0 +1,42 @@
+☆ API名称
+kernel/device_destroy
+
+☆ 简介
+void device_destroy(struct class *class, dev_t devt)
+
+removes a device that was created with device_create()
+☆ 参数
+ * @class: pointer to the struct class that this device was registered with
+ * @devt: the dev_t of the device that was previously registered
+ *
+
+☆ 返回值
+ * This call unregisters and cleans up a device that was created with a
+ * call to device_create().
+
+☆ 错误码
+
+
+
+☆ 示例
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-04 18:28:25
+========================================================================
+========================================================================

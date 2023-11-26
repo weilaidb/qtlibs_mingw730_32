@@ -1,0 +1,60 @@
+☆ API名称
+JSP/getRequestURI
+
+☆ 简介
+request.getRequestURL() 返回全路径
+
+request.getRequestURI() 返回除去host（域名或者ip）部分的路径
+
+request.getContextPath() 返回工程名部分，如果工程映射为/，此处返回则为空
+
+request.getServletPath() 返回除去host和工程名部分的路径
+
+ 
+
+例如：
+
+
+request.getRequestURL() http://localhost:8080/jqueryLearn/resources/request.jsp 
+request.getRequestURI() /jqueryLearn/resources/request.jsp
+request.getContextPath()/jqueryLearn 
+request.getServletPath()/resources/request.jsp 
+
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+String requestURI = req.getRequestURI(); //获取请求的路径
+System.out.println("截取前："+requestURI);
+		
+String url = requestURI.substring(requestURI.lastIndexOf("/"), requestURI.lastIndexOf("."));//截取
+System.out.println("截取后："+url);
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-17 21:44:21
+========================================================================
+========================================================================

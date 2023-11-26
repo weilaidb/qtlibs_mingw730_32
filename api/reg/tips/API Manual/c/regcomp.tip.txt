@@ -1,0 +1,52 @@
+☆ API名称
+c/regcomp
+
+☆ 简介
+int regcomp (regex_t *compiled, const char *pattern, int cflags)
+这个函数把指定的正则表达式pattern编译成一种特定的数据格式compiled，这样可以使匹配更有效。函数regexec 会使用这个数据在目标文本串中进行模式匹配。执行成功返回０。 　
+
+☆ 参数
+①regex_t 是一个结构体数据类型，用来存放编译后的正则表达式，它的成员re_nsub 用来存储正则表达式中的子正则表达式的个数，子正则表达式就是用圆括号包起来的部分表达式。
+②pattern 是指向我们写好的正则表达式的指针。
+③cflags 有如下4个值或者是它们或运算(|)后的值：
+REG_EXTENDED 以功能更加强大的扩展正则表达式的方式进行匹配。
+REG_ICASE 匹配字母时忽略大小写。
+REG_NOSUB 不用存储匹配后的结果。
+REG_NEWLINE 识别换行符，这样’$’就可以从行尾开始匹配，’^’就可以从行的开头开始匹配。
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+    regex_t regex;
+    regmatch_t matches[5]; // Assuming many match
+    // int ret = regcomp(&regex, ":\\s+([0-9]{3})", REG_EXTENDED);
+    int ret = regcomp(&regex, ":\\s+([0-9])([0-9])([0-9])", REG_EXTENDED);
+    if (ret) {
+        printf("Failed to compile the regular expression.\n");
+        return 1;
+    }
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-08-22 22:47:30
+========================================================================
+========================================================================

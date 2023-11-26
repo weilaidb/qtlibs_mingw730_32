@@ -1,0 +1,44 @@
+☆ API名称
+kernel/cdev_init
+
+☆ 简介
+void cdev_init(struct cdev *cdev, const struct file_operations *fops)
+
+initialize a cdev structure
+
+ * Initializes @cdev, remembering @fops, making it ready to add to the
+ * system with cdev_add()
+
+☆ 参数
+ * @cdev: the structure to initialize
+ * @fops: the file_operations for this device
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-03 15:57:12
+========================================================================
+========================================================================

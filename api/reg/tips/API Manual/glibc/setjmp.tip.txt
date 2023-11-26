@@ -1,0 +1,73 @@
+☆ API名称
+glibc/setjmp
+
+☆ 简介
+#include <setjmp.h>
+int setjmp(jmp_buf environment)
+C 库宏 int setjmp(jmp_buf environment) ：创建本地的jmp_buf缓冲区并且初始化，用于将来跳转回此处。这个子程序保存程序的调用环境于env参数所指的缓冲区，env将被longjmp使用。如果是从setjmp直接调用返回，setjmp返回值为0。如果是从longjmp恢复的程序调用环境返回，setjmp返回非零值。
+
+
+☆ 参数
+environment -- 这是一个类型为 jmp_buf 的用于存储环境信息的对象。
+
+☆ 返回值
+这个宏可能不只返回一次。第一次，在直接调用它时，它总是返回零。当调用 longjmp 时带有设置的环境信息，这个宏会再次返回，此时它返回的值会传给 longjmp 作为第二个参数。
+
+☆ 错误码
+
+
+
+☆ 示例
+实例
+下面的实例演示了 setjmp() 宏的用法。
+
+实例
+#include <stdio.h>
+#include <setjmp.h>
+ 
+static jmp_buf buf;
+ 
+void second(void) {
+    printf("second\n");         // 打印
+    longjmp(buf,1);             // 跳回setjmp的调用处 - 使得setjmp返回值为1
+}
+ 
+void first(void) {
+    second();
+    printf("first\n");          // 不可能执行到此行
+}
+ 
+int main() {   
+    if ( ! setjmp(buf) ) {
+        first();                // 进入此行前，setjmp返回0
+    } else {                    // 当longjmp跳转回，setjmp返回1，因此进入此行
+        printf("main\n");       // 打印
+    }
+ 
+    return 0;
+}
+让我们编译并运行上面的程序，这将产生以下结果：
+
+second
+main
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-10-26 12:19:27
+========================================================================
+========================================================================
