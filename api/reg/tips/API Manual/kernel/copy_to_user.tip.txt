@@ -1,0 +1,45 @@
+☆ API名称
+kernel/copy_to_user
+
+☆ 简介
+static __always_inline unsigned long __must_check
+copy_to_user(void __user *to, const void *from, unsigned long n)
+
+将内核空间的数据复制到用户空间
+☆ 参数
+to:目标地址（用户空间）
+from:源地址（内核空间）
+n：将要拷贝数据的字节数
+
+☆ 返回值
+成功返回0，失败返回没有拷贝成功的数据字节数
+
+☆ 错误码
+
+
+
+☆ 示例
+    case IOCTL_GET_VALUE:
+        if (copy_to_user((int *)arg, &value, sizeof(int)))
+            return -EFAULT;
+        break;
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-03 21:20:26
+========================================================================
+========================================================================

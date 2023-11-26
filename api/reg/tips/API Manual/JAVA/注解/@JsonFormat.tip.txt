@@ -1,0 +1,45 @@
+☆ API名称
+JAVA/注解/@JsonFormat
+
+☆ 简介
+
+API Manual/JAVA/Maven/dependency/jackson-annotations(jsonformat)
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+/**推送时间*/
+@Excel(name = "推送时间", width = 20, format = "yyyy-MM-dd HH:mm:ss")
+@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+private java.util.Date esSendTime;
+
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-24 22:33:04
+========================================================================
+========================================================================

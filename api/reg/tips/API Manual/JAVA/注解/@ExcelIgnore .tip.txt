@@ -1,0 +1,87 @@
+☆ API名称
+JAVA/注解/@ExcelProperty
+
+☆ 简介
+@ExcelProperty("姓名")
+使用@ExcelProperty注解来指定标题名称
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+package com.test;
+
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.annotation.ExcelProperty;
+import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+public class _Excel_User {
+    @ExcelProperty("姓名")
+    private String name;
+
+    @ExcelProperty("性别")
+    private String sex;
+
+    @ExcelProperty("年龄")
+    private int age;
+
+    @ExcelProperty("身份证")
+    private String cardid;
+
+    static public List<_Excel_User> data()
+    {
+        List<_Excel_User> userList = new ArrayList<>();
+        _Excel_User user;
+        for (int i = 1; i <= 10; i++) {
+            user = new _Excel_User();
+            user.setName("张三" + i);
+            user.setSex("男");
+            user.setAge(i);
+            user.setCardid("440582xxxx");
+            userList.add(user);
+        }
+        return userList;
+    }
+
+    public static void main(String[] args) {
+        // 生成Excel路径
+        String fileName = "D:\\测试_User.xlsx";
+        System.out.println("================================================");
+        System.out.println("================================================");
+        System.out.println("================================================");
+        EasyExcel.write(fileName, _Excel_User.class).sheet("模板").doWrite(_Excel_User.data());
+    }
+
+}
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-24 22:15:27
+========================================================================
+========================================================================

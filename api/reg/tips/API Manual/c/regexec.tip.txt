@@ -1,0 +1,117 @@
+☆ API名称
+c/regexec
+
+☆ 简介
+int regexec (regex_t *compiled, char *string, size_t nmatch, regmatch_t matchptr [], int eflags)
+当我们编译好正则表达式后，就可以用regexec 匹配我们的目标文本串了，如果在编译正则表达式的时候没有指定cflags的参数REG_NEWLINE，则默认情况下是忽略换行符的，也就是把整个文本串当作一个字符串处理。执行成功返回０。
+regmatch_t 是一个结构体数据类型，在regex.h中定义：
+
+typedef struct
+{
+   regoff_t rm_so;
+   regoff_t rm_eo;
+} regmatch_t;
+1
+2
+3
+4
+5
+成员rm_so 存放匹配文本串在目标串中的开始位置，rm_eo 存放结束位置。通常我们以数组的形式定义一组这样的结构。因为往往我们的正则表达式中还包含子正则表达式。数组0单元存放主正则表达式位置，后边的单元依次存放子正则表达式位置。
+
+☆ 参数
+①compiled 是已经用regcomp函数编译好的正则表达式。
+②string 是目标文本串。
+③nmatch 是regmatch_t结构体数组的长度。
+④matchptr regmatch_t类型的结构体数组，存放匹配文本串的位置信息。
+⑤eflags 有两个值
+REG_NOTBOL 按我的理解是如果指定了这个值，那么’^’就不会从我们的目标串开始匹配。总之我到现在还不是很明白这个参数的意义；
+REG_NOTEOL 和上边那个作用差不多，不过这个指定结束end of line。
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+#include <stdio.h>
+#include <regex.h>
+
+#define ARRAYSIZE(A) (unsigned int)(sizeof(A)/sizeof(A[0]))
+
+int main() {
+    FILE *file;
+    char line[256];
+
+    // Open the file
+    file = fopen("output.txt", "r");
+    if (file == NULL) {
+        printf("Failed to open the file.\n");
+        return 1;
+    }
+
+    // Compile the regular expression
+    regex_t regex;
+    regmatch_t matches[5]; // Assuming many match
+    // int ret = regcomp(&regex, ":\\s+([0-9]{3})", REG_EXTENDED);
+    int ret = regcomp(&regex, ":\\s+([0-9])([0-9])([0-9])", REG_EXTENDED);
+    if (ret) {
+        printf("Failed to compile the regular expression.\n");
+        return 1;
+    }
+
+    // Read and filter each line
+    while (fgets(line, sizeof(line), file)) {
+        if (regexec(&regex, line, ARRAYSIZE(matches), matches, 0) == 0) {
+            printf("%s", line);  // Print the filtered line
+            printf("match count:%d\n", regex.re_nsub);
+            // printf("match str:%s\n", regex.matchptr);
+            // Print the matched data
+            //第一个是总的匹配项
+            for (int i = 0; i < regex.re_nsub + 1; i++) {
+                int start = matches[i].rm_so;
+                int end = matches[i].rm_eo;
+                printf("Matched data: %.*s\n", end - start, line + start);
+            }
+        }
+    }
+
+    // Cleanup
+    regfree(&regex);
+    fclose(file);
+
+    return 0;
+}
+
+☆ 限制说明
+正则表达式通用符号无法使用
+[0-9]表示数字
+[0-9a-zA-Z]表示符号
+
+示例，匹配400~1500范围的数字，带小数点
+===》合并一下
+([4-9][0-9]{2})|([4-9][0-9]{2}\.[0-9])|(1[0-4][0-9]{2})|(1[0-4][0-9]{2}\.[0-9])|(1500|1500\.[0-9])
+
+
+再加上首尾判断
+^([4-9][0-9]{2})$|^([4-9][0-9]{2}\.[0-9])$|^(1[0-4][0-9]{2})$|^(1[0-4][0-9]{2}\.[0-9])$|^(1500|1500\.[0-9])$
+
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-08-22 22:48:44
+========================================================================
+========================================================================

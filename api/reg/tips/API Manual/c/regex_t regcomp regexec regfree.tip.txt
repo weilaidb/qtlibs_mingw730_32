@@ -1,0 +1,72 @@
+☆ API名称
+c/regex_t regcomp regexec regfree
+
+☆ 简介
+
+
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+#include <stdio.h>
+#include <regex.h>
+
+int main() {
+    char *pattern = "your_pattern";
+    char *string = "your_input_string";
+
+    regex_t regex;
+    regmatch_t matches[1]; // Assuming only one match
+
+    int ret = regcomp(®ex, pattern, REG_EXTENDED);
+    if (ret) {
+        printf("Failed to compile the regular expression.\n");
+        return 1;
+    }
+
+    ret = regexec(®ex, string, 1, matches, 0);
+    if (!ret) {
+        // Print the matched data
+        for (int i = 0; i < 1; i++) {
+            int start = matches[i].rm_so;
+            int end = matches[i].rm_eo;
+            printf("Matched data: %.*s\n", end - start, string + start);
+        }
+    } else if (ret == REG_NOMATCH) {
+        printf("No match found.\n");
+    } else {
+        printf("Error in matching.\n");
+    }
+
+    regfree(®ex);
+
+    return 0;
+}
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-08-22 22:21:05
+========================================================================
+========================================================================

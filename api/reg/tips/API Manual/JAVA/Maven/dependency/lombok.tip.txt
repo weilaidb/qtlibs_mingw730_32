@@ -1,0 +1,165 @@
+☆ API名称
+JAVA/Maven/dependency/lombok
+
+☆ 简介
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.4</version>
+    <scope>provided</scope>
+</dependency>
+
+
+
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.26</version>
+</dependency>
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+
+package com.test;
+
+import lombok.Data;
+
+@Data
+public class _Data {
+    private int age;
+    private String name;
+
+    public static void main(String[] args) {
+        _Data data = new _Data();
+        data.setAge(30);
+        data.setName("Hello World");
+        System.out.println(data.getAge());
+        System.out.println(data.getName());
+    }
+
+}
+
+
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+@Data 使用与介绍
+
+foxscallion
+
+于 2020-08-16 16:58:09 发布
+
+53047
+ 收藏 277
+分类专栏： springboot Java 文章标签： java spring spring boot
+版权
+
+springboot
+同时被 2 个专栏收录
+4 篇文章1 订阅
+订阅专栏
+
+Java
+7 篇文章0 订阅
+订阅专栏
+@Data 使用
+@Data 注解的主要作用是提高代码的简洁，使用这个注解可以省去代码中大量的get()、 set()、 toString()等方法；
+
+引入lombok
+要使用 @Data 注解要先引入lombok，lombok 是什么，它是一个工具类库，可以用简单的注解形式来简化代码，提高开发效率。
+
+在maven中添加依赖
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.4</version>
+    <scope>provided</scope>
+</dependency>
+1
+2
+3
+4
+5
+6
+用@Data的写法：
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Person {
+    private String name;
+    private String address;
+    private Integer age;
+    private String hobbit;
+    private String phone;
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+常用的几个注解：
+@Data ： 注在类上，提供类的get、set、equals、hashCode、canEqual、toString方法
+@AllArgsConstructor ： 注在类上，提供类的全参构造
+@NoArgsConstructor ： 注在类上，提供类的无参构造
+@Setter ： 注在属性上，提供 set 方法
+@Getter ： 注在属性上，提供 get 方法
+@EqualsAndHashCode ： 注在类上，提供对应的 equals 和 hashCode 方法
+@Log4j/@Slf4j ： 注在类上，提供对应的 Logger 对象，变量名为 log
+
+原理
+Lombok本质上就是一个实现了“JSR 269 API”的程序。在使用javac的过程中，它产生作用的具体流程如下：
+
+javac对源代码进行分析，生成了一棵抽象语法树（AST）
+运行过程中调用实现了“JSR 269 API”的Lombok程序
+此时Lombok就对第一步骤得到的AST进行处理，找到@Data注解所在类对应的语法树（AST），然后修改该语法树（AST），增加getter和setter方法定义的相应树节点
+javac使用修改后的抽象语法树（AST）生成字节码文件，即给class增加新的节点（代码块）
+
+优缺点
+优点：
+能通过注解的形式自动生成构造器、getter/setter、equals、hashcode、toString等方法，提高了一定的开发效率
+让代码变得简洁，不用过多的去关注相应的方法
+属性做修改时，也简化了维护为这些属性所生成的getter/setter方法等
+
+缺点：
+不支持多种参数构造器的重载
+虽然省去了手动创建getter/setter方法的麻烦，但大大降低了源代码的可读性和完整性，降低了阅读源代码的舒适度
+像 lombok 这种插件，已经不仅仅是插件了，它在编译器编译时通过操作AST（抽象语法树）改变字节码生成，变相的说它就是在改变java语法，它改变了你编写源码的方式，它不像 spring 的依赖注入一样是运行时的特性，而是编译时的特性。如果一个项目有非常多这样的插件，会极大的降低阅读源代码的舒适度。
+lombok 只是省去了一些人工生成代码的麻烦，但是这些getter/setter等等的方法，用IDE的快捷键也可很方便的生成。况且，有时通过给getter/setter加一点点业务代码（但通常不建议这么加），能极大的简化某些业务场景的代码。
+————————————————
+版权声明：本文为CSDN博主「foxscallion」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_44903718/article/details/108038487
+
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-24 18:32:37
+========================================================================
+========================================================================

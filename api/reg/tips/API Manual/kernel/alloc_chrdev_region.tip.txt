@@ -1,0 +1,48 @@
+☆ API名称
+kernel/alloc_chrdev_region
+
+☆ 简介
+int alloc_chrdev_region(dev_t *dev, unsigned baseminor, unsigned count,const char *name)
+
+register a range of char device numbers
+
+ * Allocates a range of char device numbers.  The major number will be
+ * chosen dynamically, and returned (along with the first minor number)
+ * in @dev.  
+
+
+☆ 参数
+ * @dev: output parameter for first assigned number
+ * @baseminor: first of the requested range of minor numbers
+ * @count: the number of minor numbers required
+ * @name: the name of the associated device or driver
+
+☆ 返回值
+Returns zero or a negative error code.
+
+☆ 错误码
+
+
+
+☆ 示例
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-03 15:52:50
+========================================================================
+========================================================================

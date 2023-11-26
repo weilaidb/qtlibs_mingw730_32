@@ -1,0 +1,295 @@
+☆ API名称
+kernel/class_unregister
+
+☆ 简介
+#include <linux/device.h>
+void class_unregister(struct class *cls)
+在内核源码中的位置：linux-3.19.3/drivers/base/class.c
+函数class_unregister()的输入参数代表即将从Linux内核中删除的设备类，具体解释请参考极客笔记函数__class_create()的分析文档中的输入参数说明部分。
+☆ 参数
+
+
+☆ 返回值
+不返回任何值
+
+☆ 错误码
+
+
+
+☆ 示例
+https://deepinout.com/linux-kernel-api/device-driver-and-device-management/linux-kernel-api-class_unregister.html#:~:text=%E5%87%BD%E6%95%B0%20class_unregister,%28%29%20%E7%94%A8%E4%BA%8E%E5%88%A0%E9%99%A4%E8%AE%BE%E5%A4%87%E7%9A%84%E9%80%BB%E8%BE%91%E7%B1%BB%EF%BC%8C%E5%8D%B3%E4%BB%8ELinux%E5%86%85%E6%A0%B8%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%88%A0%E9%99%A4%E8%AE%BE%E5%A4%87%E7%9A%84%E9%80%BB%E8%BE%91%E7%B1%BB%E3%80%82
+
+编写测试文件：class_register_unregister.c
+
+实例说明：此实例不仅仅是为了说明函数class_register()、__class_register()、class_unregister()的作用，而是通过编写一个完整的字符设备驱动程序，在驱动程序中说明函数的作用，并体现函数在驱动程序实现过程中的作用。
+
+头文件引用、全局变量定义及相关函数声明：
+
+/*头文件引用*/
+#include <linux/module.h>
+#include <linux/init.h>
+#include <linux/kernel.h>
+#include <linux/slab.h>
+#include <linux/vmalloc.h>
+#include <linux/fs.h>
+#include <linux/cdev.h>
+#include <asm/uaccess.h>
+#include <linux/types.h>
+#include <linux/moduleparam.h>
+#include <linux/pci.h>
+#include <asm/unistd.h>
+#include <linux/device.h>
+MODULE_LICENSE("GPL");
+
+/*宏定义及全局变量定义*/
+#define MEM_MALLOC_SIZE 4096                                          //缓冲区大小
+#define MEM_MAJOR 245 //主设备号，通过命令ll /dev查看系统已经存在的设备文件设备号
+#define MEM_MINOR 0                                                   //次设备号
+char *mem_spvm;                                                      //缓冲区指针，指向内存区
+struct class *mem_class;                                             //设备类指针
+static int  __init  class_register_unregister_init(void);             //模块加载函数声明
+static void  __exit class_register_unregister_exit(void);             //模块卸载函数声明
+static int mem_open(struct inode *ind, struct file *filp);          //设备打开函数声明
+static int mem_release(struct inode *ind, struct file *filp); //设备关闭函数声明
+
+/*设备读函数声明*/
+static ssize_t mem_read(struct file *filp, char __user *buf, size_t size, loff_t *fpos);
+
+/*设备写函数声明*/
+static ssize_t mem_write(struct file *filp, const char __user *buf, size_t size,loff_t *fpos);
+static void class_create_release(struct class *cls);         //逻辑类释放处理函数声明
+
+/*定义设备驱动文件结构体*/
+struct file_operations mem_fops =
+{
+    .owner=THIS_MODULE,                                           //驱动文件拥有者
+    .open = mem_open,                                             //设备打开函数
+    .release = mem_release,                                       //设备释放函数
+    .read = mem_read,                                             //设备读函数
+    .write = mem_write,                                           //设备写函数
+};
+C
+模块加载函数定义：
+
+int __init class_register_unregister_init(void)
+{
+    int res;
+    printk("into class_register_unregister_init\n");
+    mem_spvm = (char *)vmalloc(MEM_MALLOC_SIZE);             //开辟内存缓冲区
+    res=register_chrdev(MEM_MAJOR, "my_char_dev", &mem_fops); // 注册字符设备
+    if(res)        //注册失败
+    {
+        unregister_chrdev(MEM_MAJOR, "my_char_dev");          //删除字符设备
+        printk("register char dev failed\n");
+        return -1;
+    }
+    printk("register char dev success\n");
+    mem_class= kzalloc(sizeof(*mem_class), GFP_KERNEL);      //为设备类开辟内存空间
+    if(IS_ERR(mem_class))                    //判断分配内存空间是否成功
+    {
+            kfree(mem_class);                //失败，释放开辟的内存空间
+            printk("failed in kzalloc class.\n");
+            return -1;
+    }
+    printk("kzalloc class success\n");
+    mem_class->name ="my_char_dev";          //初始化设备类名
+    mem_class->owner =THIS_MODULE;           //初始化设备类拥有者
+    mem_class->class_release=class_create_release;           //初始化设备类释放处理函数
+    int retval = class_register(mem_class);                  //注册设备类
+    /*
+    struct lock_class_key key;
+    int retval = __class_register(mem_class, key);           //注册设备类
+    */
+    if(retval)                               //判断注册结果
+    {
+        kfree(mem_class);                    //失败，释放内存空间
+        printk("failed in registing class\n");
+        return -1;
+    }
+    printk("register class success\n");
+    device_create(mem_class, NULL, MKDEV(MEM_MAJOR, MEM_MINOR), NULL, "my_char_dev");
+                                             //注册设备文件系统，并建立设备节点
+    printk("device create success\n");
+    printk("out class_register_unregister_init\n");
+    return 0;
+}
+C
+模块退出函数定义：
+
+void __exit class_register_unregister_exit(void)
+{
+    printk("into class_register_unregister_exit\n");
+    unregister_chrdev(MEM_MAJOR, "my_char_dev");            //删除字符设备
+    /*删除设备节点及目录*/
+    device_destroy(mem_class, MKDEV(MEM_MAJOR, MEM_MINOR));
+    if ((mem_class! = NULL)&&(! IS_ERR(mem_class)))
+        class_unregister(mem_class);                        //删除设备类
+    if (mem_spvm ! = NULL)
+        vfree(mem_spvm);                                    //释放缓冲区空间
+    printk("vfree ok! \n");
+    printk("out class_register_unregister_exit\n");
+}
+C
+相关函数定义：
+
+/*设备打开函数定义*/
+int mem_open(struct inode *ind, struct file *filp)
+{
+    printk("open vmalloc space\n");
+    try_module_get(THIS_MODULE);                  //模块引用计数器自加
+    printk("open vmalloc space success\n");
+    return 0;
+}
+
+/*设备读函数定义*/
+ssize_t mem_read(struct file *filp, char *buf, size_t size, loff_t *lofp)
+{
+    int res = -1;
+    char *tmp;
+    printk("copy data to the user space\n");
+    tmp = mem_spvm;
+    if (size > MEM_MALLOC_SIZE)                   //判断读取数据的大小
+        size = MEM_MALLOC_SIZE;
+    if (tmp ! = NULL)
+        res = copy_to_user(buf, tmp, size);     //将内核输入写入用户空间
+    if (res == 0)
+    {
+        printk("copy data success and the data is:%s\n", tmp);    //显示读取的数据
+        return size;
+    }
+    else
+    {
+        printk("copy data fail to the user space\n");
+        return 0;
+    }
+}
+
+/*设备写函数定义*/
+ssize_t mem_write(struct file *filp, const char *buf, size_t size, loff_t *lofp)
+{
+    int res = -1;
+    char *tmp;
+    printk("read data from the user space\n");
+    tmp = mem_spvm;
+    if (size > MEM_MALLOC_SIZE)                   //判断输入数据的大小
+        size = MEM_MALLOC_SIZE;
+    if (tmp ! = NULL)
+        res = copy_from_user(tmp, buf, size);   //将用户输入数据写入内核空间
+    if (res == 0)
+    {
+        printk("read data success and the data is:%s\n", tmp);    //显示写入的数据
+        return size;
+    }
+    else
+    {
+        printk("read data from user space fail\n");
+        return 0;
+    }
+}
+
+/*设备关闭函数定义*/
+int mem_release(struct inode *ind, struct file *filp)
+{
+    printk("close vmalloc space\n");
+    module_put(THIS_MODULE);                       //模块引用计数器自减
+    printk("close vmalloc space success\n");
+    return 0;
+}
+
+/*设备类释放处理函数定义*/
+void class_create_release(struct class *cls)
+{
+    pr_debug("%s called for %s\n", __func__, cls->name);
+    kfree(cls);                                      //释放设备类的内存空间
+}
+C
+模块加载、退出函数调用：
+
+module_init(class_register_unregister_init);    //模块加载
+module_exit(class_register_unregister_exit);    //模块卸载
+C
+用户态测试函数：
+
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <linux/fcntl.h>
+int main(int argc, char **argv)
+{
+    int fd, cnt;
+    char buf[256];
+    printf("char device testing.\n");
+    fd = open("/dev/my_char_dev", O_RDWR);           //打开字符设备
+    if (fd == 0)
+    {
+        printf("the char dev file cannot be opened.\n");
+        return 1;
+    }
+    printf("input the data for kernel: ");
+    scanf("%s", buf);                                //输入数据
+    cnt = write(fd, buf, 256);                       //将输入数据写入设备
+    if (cnt == 0)
+        printf("Write Error! \n");
+    cnt = read(fd, buf, 256);                        //从设备中读取数据
+    if (cnt > 0)
+        printf("read data from kernel is: %s\n", buf);
+    else
+        printf("read data error\n");
+    close(fd);                                       //关闭设备
+    printf("close the char dev file and test over\n");
+    return 0;
+}
+C
+实例运行结果及分析
+
+首先编译模块，执行命令insmod class_register_unregister.ko插入内核模块，然后输入命令dmesg -c查看模块插入结果，会出现如图A所示的结果。
+
+Linux内核API class_unregister
+
+然后执行命令ls /dev查看当前系统的设备文件，出现如图B所示的结果。
+
+Linux内核API class_unregister
+
+执行命令ls -l /sys/devices/virtual/my_char_dev/my_char_dev查看逻辑设备目录，出现如图C所示的结果。
+
+Linux内核API class_unregister
+
+用gcc编译器编译用户驱动测试文件，运行编译之后的可执行文件，出现如图D所示的结果。
+
+Linux内核API class_unregister
+
+用户测试程序执行完之后，输入命令dmesg -c，出现如图E所示的执行结果。
+
+Linux内核API class_unregister
+
+删除内核模块，执行命令rmmod class_register_unregisterl.ko，然后输入命令dmesg -c，出现如图F所示的信息。
+
+Linux内核API class_unregister
+
+结果分析：
+
+由图A到图E的输出结果可以推断宏class_register()的执行是成功的，能够完成设备类的注册，如果宏class_register()不能完成设备类的注册，则不会出现图中所示的结果。图F没有出现任何错误的信息，说明函数class_unregister()成功的删除了设备的逻辑类。
+
+如果将模块加载函数中的语句“int retval = class_register(mem_class); ”注释掉，去掉对函数“__class_register()”的注释，重新编译模块，加载模块，执行以上的测试步骤，会发现结果没有任何变化，即证明函数__class_register()与宏class_register()实现的作用相同。
+
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-04 18:32:04
+========================================================================
+========================================================================

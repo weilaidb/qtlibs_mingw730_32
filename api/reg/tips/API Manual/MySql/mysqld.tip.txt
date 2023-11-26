@@ -1,0 +1,112 @@
+☆ API名称
+MySql/mysqld
+
+☆ 简介
+E:\software\mysql\mysql-5.7.43-winx64\data
+E:\software\mysql\mysql-5.7.43-winx64\bin
+
+cd /d E:\software\mysql\mysql-5.7.43-winx64\
+安装服务，删除data（必须进入到目录下的bin去执行，不然生成的服务路径默认在C盘）
+mysqld -install
+mysqld --initialize
+
+用记事本打开.err文件，文件中存储了数据库的临时密码。也可以使用记事本的查找功能查找关键词password。记住此密码！！！
+
+启用MySQL服务(如何失败，将服务标记从禁用到自动，并修改路径为实际路径"C:\Program Files\MySQL\MySQL Server 5.7\mysqld" MySQL）
+net start mysql
+
+使用临时密码初次登陆MySQL
+mysql -u root -p。密码就是.err文件中的临时密码！登录成功
+mysql -u root -p
+
+
+修改root用户的登录密码为123456。
+alter user 'root'@'localhost' identified by '123456';
+
+
+修改MySQL字符集为utf8
+（1）在MySQL的安装目录中新建文件 my.ini 。文件内容为：
+
+[client]
+default-character-set=utf8
+ 
+[mysql]
+default-character-set=utf8
+ 
+[mysqld]
+character-set-server=utf8
+
+以管理员身份启动命令行，重启MySQL服务。
+
+net stop mysql
+net start mysql
+
+登录MySQL，使用命令 status 查看字符集。由于配置了环境变量，直接使用普通命令行即可登录MySQL。
+status 
+
+
+☆ 参数
+
+
+☆ 返回值
+
+
+☆ 错误码
+
+
+
+☆ 示例
+E:\software\mysql\mysql-5.7.43-winx64\bin>mysqld --install
+Service successfully installed.
+
+E:\software\mysql\mysql-5.7.43-winx64\bin>mysqld --install
+The service already exists!
+The current server installed: E:\software\mysql\mysql-5.7.43-winx64\bin\mysqld MySQL
+
+
+
+
+mysql> status
+--------------
+mysql  Ver 14.14 Distrib 5.7.43, for Win64 (x86_64)
+
+Connection id:          2
+Current database:
+Current user:           root@localhost
+SSL:                    Cipher in use is ECDHE-RSA-AES128-GCM-SHA256
+Using delimiter:        ;
+Server version:         5.7.43 MySQL Community Server (GPL)
+Protocol version:       10
+Connection:             localhost via TCP/IP
+Server characterset:    utf8
+Db     characterset:    utf8
+Client characterset:    utf8
+Conn.  characterset:    utf8
+TCP port:               3306
+Uptime:                 13 sec
+
+Threads: 1  Questions: 5  Slow queries: 0  Opens: 106  Flush tables: 1  Open tables: 99  Queries per second avg: 0.384
+--------------
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+
+
+☆ 更新日志
+
+
+☆ 支持情况
+————————————————
+版权声明：本文为CSDN博主「纸短情长ZF」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/m0_49284219/article/details/121972531
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-25 07:01:42
+========================================================================
+========================================================================

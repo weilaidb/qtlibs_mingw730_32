@@ -1,0 +1,161 @@
+☆ API名称
+c/ioctl
+
+☆ 简介
+int ioctl(int fd, ind cmd, …)；
+int (*ioctl) (struct inode * node, struct file *filp, unsigned int cmd, unsigned long arg);
+
+ioctl是一个系统调用，用于在用户空间和内核空间之间传递控制命令和数据。它可以用于访问和控制设备驱动程序的功能。ioctl的使用方式是通过指定设备文件描述符、控制命令和相关参数来进行调用。 
+
+
+ioctl是设备驱动程序中对设备的I/O通道进行管理的函数
+ioctl函数是文件结构中的一个属性分量，就是说如果你的驱动程序提供了对ioctl的支持，用户就可以在用户程序中使用ioctl函数来控制设备的I/O通道。
+
+☆ 参数
+fd:用户程序打开设备时使用open函数返回的文件标示符
+cmd:是用户程序对设备的控制命令
+省略号:一些补充参数，一般最多一个，这个参数的有无和cmd的意义相关。 
+
+
+1)inode和file：ioctl的操作有可能是要修改文件的属性，或者访问硬件。要修改
+文件属性的话，就要用到这两个结构体了，所以这里传来了它们的指针。
+2)cmd：命令，接下来要长篇大论地说。
+3)arg：参数，接下来也要长篇大论。
+
+☆ 返回值
+1)如果传入的非法命令，ioctl返回错误号-EINVAL。
+2)内核中的驱动函数返回值都有一个默认的方法，只要是正数，内核就会傻乎乎的认为这是正确的返回，并把它传给应用层，如果是负值，内核就会认为它是错误号了。
+Ioctl里面多个不同的命令，那就要看它函数的实现来决定返回值了。打个比方，如果ioctl里面有一个类似read的函数，那返回值也就可以像read一样返回。
+当然，不返回也是可以的。
+
+☆ 错误码
+EBADF d is not a valid descriptor. 
+EFAULT argp references an inaccessible memory area. 
+EINVAL Request or argp is not valid. 
+ENOTTY d is not associated with a character special device. 
+ENOTTY The specified request does not apply to the kind of object that the descriptor d references.
+
+
+☆ 示例
+
+
+☆ 限制说明
+
+
+☆ 安全说明
+If you are adding new ioctl's to the kernel, you should use the _IO
+macros defined in <linux/ioctl.h>:
+
+    ====== == ============================================
+    _IO    an ioctl with no parameters
+    _IOW   an ioctl with write parameters (copy_from_user)
+    _IOR   an ioctl with read parameters  (copy_to_user)
+    _IOWR  an ioctl with both write and read parameters.
+    ====== == ============================================
+
+☆ 更新日志
+
+
+☆ 支持情况
+ioctl如何实现
+    在驱动程序中实现的ioctl函数体内，实际上是有一个switch{case}结构，每一个case对应一个命令码，做出一些相应的操作。怎么实现这些操作，这是应用程序自己的事情。 在ioctl中命令码是唯一联系用户程序命令和驱动程序支持的途径。 如果有两个不同的设备，但它们的ioctl的cmd(命令码)却一样的，哪天有谁不小心打开错了，并且调用ioctl，这样就完蛋了。因为这个文件里面同样有cmd对应实现，故，我们可以自己生成未使用的命令码。 所以在Linux核心中是这样定义一个命令码的
+
+一个cmd被分为了4个段，每一段都有各自的意义，cmd的定义在<linux/ioctl.h>。注：但实际上<linux/ioctl.h>中只是包含了<asm/ioctl.h>，这说明了这是跟平台相关的，ARM的定义在<arch/arm/include/asm/ioctl.h>，但这文件也是包含别的文件<asm-generic/ioctl.h>，千找万找，终于找到了。
+
+
+
+在<asm-generic/ioctl.h>中，cmd拆分如下：
+
+全部都在 <asm-generic/ioctl.h> 和 ioctl-number.txt 这两个文档有说明
+http:/..../linux/include/asm-generic/ioctl.h
+  #define _IOC(dir,type,nr,size) \
+           (((dir)  << _IOC_DIRSHIFT) | \
+          ((type) << _IOC_TYPESHIFT) | \
+           ((nr)   << _IOC_NRSHIFT) | \
+           ((size) << _IOC_SIZESHIFT))
+____________________________________
+| 设备类型 | 序列号 | 方向 |数据尺寸|
+|----------|--------|------|--------|
+| 8 bit | 8 bit |2 bit |8~14 bit|
+|----------|--------|------|--------|
+————————————————
+
+四、CMD参数如何得出
+    cmd参数在用户程序端由一些宏根据设备类型、序列号、传送方向、数据尺寸等生成，这个整数通过系统调用传递到内核中的驱动程序，再由驱动程序使用解码宏从这个整数中得到设备的类型、序列号、传送方向、数据尺寸等信息，然后通过switch{case}结构进行相应的操作。
+    Linux内核已经提供了相应的宏来自动生成ioctl命令码：
+_IO(type,nr)   //无数据传输
+_IOR(type,nr,size)  //从设备读数据 
+_IOW(type,nr,size)  //向设备写数据
+_IOWR(type,nr,size)  //同时有读写数据
+
+     上面的命令已经定义了方向，我们要传的是幻数 (type) 、序号 (nr) 和大小 (size) 。在这里 szie 的参数只需要填参数的类型，如 int ，上面的命令就会帮你检测类型的正确然后赋值 sizeof(int) 。      
+     相对的，Linux内核也提供了相应的宏来从ioctl命令号种 解码 相应的域值：
+_IOC_DIR(nr)  //从命令中提取方向
+_IOC_TYPE(nr) //从命令中提取幻数
+_IOC_NR(nr)  //从命令中提取序数
+_IOC_SIZE(nr)  //从命令中提取数据大小
+
+例：
+/*include_cmd.hpp*/
+#define LED_IOC_MAGIC 0x13  //定义幻数
+#define LED_MAX_NR    3          //定义命令的最大序数
+#define  LED_GPRS_MAGIC _IO(LED_IOC_MAGIC,0x00)  //0x00   用” 宏+幻数“来自动生成ioctl命令码
+#define LED_WIFI _MAGIC _IO(LED_IOC_MAGIC,0x01)  //0x00
+#define LED_BT _MAGIC _IO(LED_IOC_MAGIC,0x02)  //0x00
+
+/*test.cpp*/
+fd = open();
+ioctl(fd,LED_GPRS_MAGIC,0);
+ioctl(fd,LED_GPRS_MAGIC,1);
+ioctl(fd,LED_WIFI_MAGIC ,0);
+ioctl(fd,LED_WIFI_MAGIC ,1);
+
+/*test_ioctl.c*/
+int test_ioctl (struct inode *node, struct file *filp, unsigned int cmd, unsigned long arg)
+{
+    if(_IOC_TYPE(cmd) !=LED_IOC_MAGIC ) return -EINVAL;   //提取出幻数做检验
+    if(_IOC_NR(cmd) > LED_MAX_NR ) return -EINVAL;          //提取命令序数
+
+    switch(cmd){
+    case LED_GPRS_MAGIC:
+     if(arg==0){
+    //..........
+    }else if(arg ==1){
+    //..........
+    }
+    break;
+    case LED_WIFI_MAGIC:
+    //..........
+    break;
+    }
+
+}
+arg参数：
+如果arg是一个整数，可以直接使用；
+　　如果是指针，我们必须确保这个用户地址是有效的，因此，使用之前需要进行正确检查。
+　　内部有检查的，
+
+不需要检测的：
+[cpp]  view plain  copy  
+copy_from_user  
+copy_to_user  
+get_user  
+put_user  
+
+需要检测 的：
+[cpp]  view plain  copy  
+__get_user  
+__put_user 
+
+————————————————
+版权声明：本文为CSDN博主「光利繁华的背后」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/Z_HUALIN/article/details/77892932
+
+
+☆ 联系方式
+
+
+☆提交日期
+2023-09-01 07:15:07
+========================================================================
+========================================================================
