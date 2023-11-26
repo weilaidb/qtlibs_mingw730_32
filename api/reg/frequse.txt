@@ -53,6 +53,9 @@ API Manual/kernel/copy_from_user
 API Manual/kernel/copy_to_user
 API Manual/kernel/device_create
 API Manual/kernel/device_destroy
+API Manual/kernel/list_head
+API Manual/kernel/man7.org > Linux > man-pages
+API Manual/kernel/readahead
 API Manual/kernel/register_chrdev_region
 API Manual/python/file
 API Manual/python/file.append

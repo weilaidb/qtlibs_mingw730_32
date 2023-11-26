@@ -1,0 +1,69 @@
+☆ API名称
+kernel/readahead
+
+☆ 简介
+readahead - initiate file readahead into page cache
+
+#define _GNU_SOURCE             /* See feature_test_macros(7) */
+       #include <fcntl.h>
+
+       ssize_t readahead(int fd, off64_t offset, size_t count);
+
+readahead() initiates readahead on a file so that subsequent
+       reads from that file will be satisfied from the cache, and not
+       block on disk I/O (assuming the readahead was initiated early
+       enough and that other activity on the system did not in the
+       meantime flush pages from the cache).
+
+       The fd argument is a file descriptor identifying the file which
+       is to be read.  The offset argument specifies the starting point
+       from which data is to be read and count specifies the number of
+       bytes to be read.  I/O is performed in whole pages, so that
+       offset is effectively rounded down to a page boundary and bytes
+       are read up to the next page boundary greater than or equal to
+       (offset+count).  readahead() does not read beyond the end of the
+       file.  The file offset of the open file description referred to
+       by the file descriptor fd is left unchanged.
+☆ 参数
+
+
+☆ 返回值
+On success, readahead() returns 0; on failure, -1 is returned,
+       with errno set to indicate the error.
+
+☆ 错误码
+ EBADF  fd is not a valid file descriptor or is not open for
+              reading.
+
+       EINVAL fd does not refer to a file type to which readahead() can
+              be applied.
+
+
+☆ 示例
+
+
+☆ 限制说明
+On some 32-bit architectures, the calling signature for this
+       system call differs, for the reasons described in syscall(2).
+
+☆ 安全说明
+       readahead() attempts to schedule the reads in the background and
+       return immediately.  However, it may block while it reads the
+       filesystem metadata needed to locate the requested blocks.  This
+       occurs frequently with ext[234] on large files using indirect
+       blocks instead of extents, giving the appearance that the call
+       blocks until the requested data has been read.
+
+☆ 更新日志
+
+
+☆ 支持情况
+https://www.man7.org/linux/man-pages/man2/readahead.2.html
+
+☆ 联系方式
+
+
+☆提交日期
+2023-11-26 21:14:59
+========================================================================
+========================================================================

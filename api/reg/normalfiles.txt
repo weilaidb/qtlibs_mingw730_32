@@ -1,0 +1,2 @@
+
+【linux帮助页面】https://www.man7.org/linux/man-pages/man2/readahead.2.html

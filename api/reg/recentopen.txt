@@ -10,6 +10,10 @@ file
 glibc
 ioctl
 kernel
+kernel man
+kernel man page
+kernel readahead 
+list_head 
 long
 mysql
 python
