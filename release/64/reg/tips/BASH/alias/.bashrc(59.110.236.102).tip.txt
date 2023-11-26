@@ -1,0 +1,58 @@
+# .bashrc
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+#. ~/soft/web_notebook_online/env.web.sh
+
+
+dos2unix ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
+source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use.tip.txt > /dev/null 2>&1
+
+dos2unix ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/gitinfo.tip.txt > /dev/null 2>&1
+source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/gitinfo.tip.txt > /dev/null 2>&1
+
+
+dos2unix ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt > /dev/null 2>&1
+source ~/work/git/qtlibs_mingw730_32/release/64/reg/tips/BASH/alias/public\ use\ @web.tip.txt > /dev/null 2>&1
+
+
+
+#export PS1="[\u@\h] \w\n$ "
+
+# pip bash completion start
+_pip_completion()
+{
+    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
+                   COMP_CWORD=$COMP_CWORD \
+                   PIP_AUTO_COMPLETE=1 $1 2>/dev/null ) )
+}
+complete -o default -F _pip_completion pip
+# pip bash completion end
+
+
+
+##BEGOO
+GOPROXY=https://goproxy.cn
+
+#自动下载
+go env -w GO111MODULE=on
+
+#设置环境为国内代理
+go env -w GOPROXY=https://goproxy.cn,direct
+
+
+
+
+
+
+
+cd ~/soft/web_notebook_online/apache-tomcat-work/bin && sh startup.sh

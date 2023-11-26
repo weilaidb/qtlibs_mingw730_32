@@ -1,3 +1,7 @@
+cd ~ && ssh-copy-id -i ./id_rsa.pub weilaidb@59.110.236.102
+
+
+
 [05:05:17.860] Log Level: 2
 [05:05:17.877] SSH Resolver called for "ssh-remote+49.234.85.12", attempt 1
 [05:05:17.878] "remote.SSH.useLocalServer": false

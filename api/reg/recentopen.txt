@@ -6,10 +6,12 @@ c/
 dup
 dup2
 exec
+file
 glibc
 ioctl
 kernel
 long
 mysql
 python
+read
 sigaction

@@ -7,6 +7,8 @@ alias cdworkgitrossrc="cd ~/work/git/ros_dev_ws/src/ "
 alias ros2nodelist="ros2 node list "
 alias ros2nodeinfo="ros2 node info "
 
+#ssh keys
+alias addsshkeys="cd ~ && ssh-copy-id -i ./id_rsa.pub weilaidb@59.110.236.102 "
 
 
 alias dulhmax1="du -lh --max-depth=1 "

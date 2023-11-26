@@ -1,3 +1,6 @@
+addsshkeys;cd ~ && ssh-copy-id -i ./id_rsa.pub weilaidb@59.110.236.102
+
+
 gitpullforce;git fetch --all && git reset --hard origin/master && git pull
 
 

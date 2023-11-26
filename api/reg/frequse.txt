@@ -1,5 +1,6 @@
 
 API Manual/API参考手册模板
+API Manual/API参考手册模板2
 API Manual/JAVA/Class.forName
 API Manual/JAVA/Maven/cmd/mvn 命令参数
 API Manual/JAVA/Maven/cmd/强制更新snapshot类型的插件或依赖库

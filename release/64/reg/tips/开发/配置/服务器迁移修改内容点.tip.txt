@@ -1,0 +1,38 @@
+1.迁移服务器修改点
+[root@VM-0-10-centos] ~/soft/web_notebook_online/apache-tomcat-work/bin/work/config
+$ ll
+total 4
+drwxr-x--- 3 root root 4096 Jun 18 12:54 api
+lrwxrwxrwx 1 root root   49 Nov  1  2022 reg -> /root/work/git/qtlibs_mingw730_32/release/64/reg/
+
+cd ~/soft/web_notebook_online/apache-tomcat-work/bin/work/config
+ln -s ~/work/git/qtlibs_mingw730_32/release/64/reg/ reg
+ln -s ~/work/git/qtlibs_mingw730_32/api api
+2.
+  git config --global user.email "wxjlmr@126.com"
+  git config --global user.name "yjduoduo"
+  
+  
+3.
+http://59.110.236.102/
+API:
+http://49.234.85.12:8081/api/file/index.jsp  
+http://59.110.236.102:8081/api/file/index.jsp  
+
+http://59.110.236.102:8081/api/file/index.jsp
+
+
+
+4.缺省一个文件夹
+java.lang.UnsatisfiedLinkError: org.sqlite.core.NativeDB._open_utf8([BI)V
+
+/root/web_notebook_online/apache-tomcat-work/temp/
+
+mkdir -p /root/web_notebook_online/apache-tomcat-work/temp/
+
+5.vim使用vimrc分支，master没内容
+chongwu / jsp_exe
+  104  cd jsp_exe.vim/
+  109  gitck vimrc
+cd ~
+  114  ln -s ~/work/git/jsp_exe.vim/vim/ .vim
