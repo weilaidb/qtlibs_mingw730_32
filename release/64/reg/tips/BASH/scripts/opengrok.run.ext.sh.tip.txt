@@ -5,15 +5,19 @@
 #支持opengrok版本、路径传递，索引路径传递，Http端口
 #
 set -e
+echo "first"
 
 ##处理带空格的文件名
 MY_SAVEIFS=$IFS
 #IFS=$(echo -en "\n\b")
 IFS=$'\n'
 
+echo "second"
 #convert dos 2 unix
 dos2unix $0 >/dev/null 2>&1
 source ./public.sh
+
+echo "third"
 
 usage(){
     echo "Usage:./eg.sh opengrokVersion indexdir httpport ctagspath"

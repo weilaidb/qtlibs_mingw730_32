@@ -3,7 +3,7 @@
 #function:提供给各脚本公共接口
 #
 #
-set -e 
+set -e
 
 dos2unix $0 >/dev/null 2>&1
 
@@ -204,3 +204,6 @@ FINDPATTERN="$2"
 checkdirnoexistquit $DIRPATH
 cd $DIRPATH && find | grep  $FINDPATTERN > findlist.grep
 }
+
+
+
