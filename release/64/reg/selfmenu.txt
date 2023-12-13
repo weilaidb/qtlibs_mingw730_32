@@ -3639,6 +3639,7 @@ path路径/常用文件夹
 术语/网络/STP
 术语/网络/SVLAN CVLAN
 术语/网络/TCAM（Ternary Content-Addressable Memory）
+术语/网络/TCP SEQ ACK
 术语/网络/TCP 帧格式
 术语/网络/TCP_IP协议族
 术语/网络/TIPC协议
