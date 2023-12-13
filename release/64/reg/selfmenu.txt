@@ -3337,6 +3337,7 @@ Windows/Hosts 广联达盗版问题定位
 Windows/help/arp
 Windows/help/arp -a
 Windows/help/arp2
+Windows/help/netsh
 Windows/know/config systemprofile Desktop 不可用
 Windows/regedits 按关键字删除
 Windows/regedits 按关键字删除 byitem

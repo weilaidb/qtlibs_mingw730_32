@@ -1,0 +1,26 @@
+C:\Users\weilaidb>netsh interface tcp show global
+查询活动状态...
+
+TCP 全局参数
+----------------------------------------------
+接收方缩放状态          : enabled
+接收窗口自动调节级别    : normal
+加载项拥塞控制提供程序  : default
+ECN 功能                      : disabled
+RFC 1323 时间戳                 : enabled
+初始 RTO                         : 1000
+接收段合并状态    : enabled
+非 Sack Rtt 复原             : disabled
+最大 SYN 重新传输次数             : 4
+快速打开                           : enabled
+快速打开回退                  : enabled
+HyStart                             : enabled
+比例费率降低         : enabled
+节奏配置文件                      : off
+
+
+在Windows 7上，默认情况下Compound算法是关闭的，我们可以通过下面的命令来启用它。
+netsh interface tcp set global congestionprovider=ctcp
+启用之后如果觉得不合适，可以通过以下命令来关闭。
+netsh interface tcp set global congestionprovider=none
+图6是在我的实验机上启用的过程。
