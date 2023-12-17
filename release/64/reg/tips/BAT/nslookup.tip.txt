@@ -1,0 +1,246 @@
+
+写文章
+点击打开多多的主页
+nslookup 入门命令详解
+揣着梦想
+揣着梦想
+​关注
+76 人赞同了该文章
+分享一下自己在使用计网: 自顶向下这本书课后习题时的一些经验
+以下命令会在 Mac (Linux适用) 和 Windows 下同时运行，或许能帮你解决一些疑惑
+先做个简单的介绍吧，nslookup (全称 name server lookup) ，是一个在命令行界面下的网络工具，它有两种模式: 交互 & 非交互，进入交互模式在命令行界面直接输入nslookup按回车，非交互模式则是后面跟上查询的域名或者 IP 地址按回车。一般来说，非交互模式适用于简单的单次查询，若需要多次查询，则交互模式更加适合，例如计网第七版第二章的课后习题p19 (单纯举例子，没有书不影响接下来的阅读)，从根服务器进行迭代查询。
+
+RR (Resource Records) -- 来自WIKI百科以及计算机网络: 自顶向下(7th)
+资源记录（RR）是包含了下列字段的4元组：
+
+(Name, Value, Type, TTL)
+
+主机记录（A记录）：RFC 1035 定义，A记录是用于名称解析的重要记录，提供标准的主机名到IP的地址映射。
+别名记录（CNAME记录）: RFC 1035 定义，向查询的主机提供主机名对应的规范主机名。
+域名服务器记录（NS记录） ：用来指定该域名由哪个DNS服务器来进行解析。 您注册域名时，总有默认的DNS服务器，每个注册的域名都是由一个DNS域名服务器来进行解析的，DNS服务器NS记录地址一般以以下的形式出现： http://ns1.domain.com、http://ns2.domain.com等。 简单的说，NS记录返回域中主机IP地址的权威DNS服务器的主机名。
+邮件交换记录（MX记录）：返回别名为Name对应的邮件服务器的规范主机名。
+上述表述总感觉略显抽象，引用中科大郑老师的PPT内容以做补充
+
+PS: 老师在b站上有分享视频，讲的非常的棒
+
+
+
+
+
+
+
+
+这里仅介绍常见的一部分记录类型，如果在使用当中有其他的需求，可以到 DNS Records和List of DNS record types--WIKI上查看，非常的全面。
+
+nslookup
+语法格式：
+
+nslookup –option1 –option2 host-to-find dns-server
+非交互模式
+非交互模式下每次查询需要输入完整的命令和参数，以baidu.com为例
+
+PS: nslookup 的查询在不指定参数的情况下，默认查询的类型为A。
+
+nslookup baidu.com
+下图为运行效果，左侧是 Mac 端，右侧是 Windows，Linux 呈现效果基本与 Mac 一致。结果的介绍会放在下文的交互模式部分，之后的演示大部分会在交互模式的状态下进行。
+
+
+交互模式
+在命令行下输入
+
+nslookup
+baidu.com
+可以看到进入交互模式后不再需要输入完整的命令便可以进行查询，并且可以连续的进行查询（友情提示Ctrl+C或者Cmd+C退出）
+
+Mac 和 Windows 中命令的反馈结果有一点不同，不过并不影响结果
+
+
+
+
+输出部分:
+
+最上面的 Server 和 Address 是该词查询的 DNS 服务器。可以自己指定，也可以默认，之后会说到。
+默认情况下 DNS 服务器的端口为53
+非权威应答（Non-authoritative answer）意味着answer来自于其他服务器的缓存，而不是权威的Baidu DNS服务器。缓存会根据 ttl（Time to Live）的值定时的进行更新。这个链接或许对你有所帮助: What is the meaning of the non-authoritative-answer?
+注意到，在对http://google.com进行查询时，Mac 返回的结果并没有非权威服务器提示，而Windows下的命令却提示了，这是因为 8.8.8.8 这个 DNS 服务器正是谷歌的权威名字服务器，可以使用nslookup -ty=ptr 8.8.8.8验证，ptr也是一种记录类型，可以用进行反向DNS解析(Reverse DNS Lookup)，拓展链接: reverse-dns-lookup
+If a hostname/IP address pair is cached in a DNS server and another query arrives to the DNS server for the same hostname, the DNS server can provide the desired IP address, even if it is not authoritative for the hostname. Because hosts and mappings between hostnames and IP addresses are by no means permanent, DNS servers discard cached information after a period of time (often set to two days).
+
+PS: 查询返回的多个结果均正确，不妨在你的浏览器用默认的80号端口试着访问一下，以第一个返回的百度网站为例，39.156.69.79:80
+
+
+拓展: PTR 反向DNS解析（8.8.8.8）
+
+nslookup -ty=ptr 8.8.8.8
+
+
+帮助界面
+
+或许提前看看命令的帮助界面会非常的有帮助
+Mac 下输入man nslookup | less，使用空格往下翻页，b往上翻页，q退出
+man nslookup | less
+Windows下有两种，一种是直接输入nslookup/?，还有一种是在交互模式下输入help或者?
+
+nslookup/?
+Windows 给出的命令为通用命令，Mac/Linux 可用于借鉴
+
+
+
+
+关于 querytype 和 type 的小疑惑
+
+在一开始上手nslookup时，看了一些CSDN的文章，其中有一篇混合了-querytype -type 使用 :)
+当时看的我有些疑惑，直到我查看了命令的帮助手册：
+
+
+
+-querytype 和 -type 的效用一致，可以简写为 -q 和 -ty，其在不指定类型的情况下默认查询类型为 A
+
+
+设置查询类型
+
+非交互模式: nslookup -ty=类型 name
+交互模式: set ty=类型
+
+先来看看之前提到的 NS 类型
+
+
+NS（Nameserver DNS record）
+
+查找权威名字服务器
+
+If Type=NS , then Name is a domain (such as http://foo.com ) and Value is the hostname of an authoritative DNS server that knows how to obtain the IP addresses for hosts in the domain.This record is used to route DNS queries further along in the query chain. As an example, ( http://foo.com , http://dns.foo.com , NS) is a Type NS record.
+nslookup
+set ty=NS
+
+
+PS: 交互模式下的 set 命令可以更改影响查找的状态信息，不仅用于记录类型的变更，使用set all可以查看常用选项的当前值以及当前默认的服务器和主机信息，注意，DNS 服务器不能通过 set 指定
+
+接下来以baidu.com为出发点，来看看对应的权威名字服务器
+
+
+
+
+Q1：哪个才是http://baidu.com的权威DNS服务器？请用 "name, value" 格式描述一下 NS 记录的返回内容
+所有问题答案会在文章末尾给出
+
+
+拓展: dig 命令
+如果你的操作系统是 Mac/Linux，不妨尝试一下dig baidu.com ns，会对结果有个更直观的感触
+
+
+
+其中21599为 TTL，即 DNS 缓存刷新时间，单位为 s ，NS 就是这次查询的类型。
+
+
+A（查看 IP 地址）
+
+If Type=A , then Name is a hostname and Value is the IP address for the hostname. Thus, a Type A record provides the standard hostname-to-IP address mapping. As an example, ( http://relay1.bar.foo.com , 145.37.93.126, A) is a Type A record.
+
+用以下命令（交互模式下）指定dns.baidu.com对baidu.com执行 type=A 的查询来看看结果与最开始有什么不同
+
+server dns.baidu.com
+set ty=A
+baidu.com
+
+
+发现了吗，此时并没有提示非权威应答（Non-authoritative answer），不妨思考一下以下两个问题
+Q2：A 记录的内容是什么？用 "name, value" 格式回答其中之一
+Q3：现在的这次查询和第一次有什么区别？
+
+
+
+更新：虚拟机过期了，故只用 Mac 的终端进行展示，不过命令是互通的。
+
+
+MX（Mail eXchange record）
+
+A mail exchanger record (MX record) specifies the mail server responsible for accepting email messages on behalf of a domain name. It is a resource record in the Domain Name System (DNS). It is possible to configure several MX records, typically pointing to an array of mail servers for load balancing and redundancy.
+查找host-to-find域的邮件服务器，
+
+
+
+熟悉的 SMTP（Simple Mail Transfer Protocol） （Ps：smtp并非一定是邮件服务器名字的组成部分）。
+
+
+CNAME（Canonical Name record）
+CNAME记录将当前 hostname 映射到另一个 hostname，answer 中 (name, value) 中的 name 对应的是 value 的别名：
+
+
+
+问题答案
+S1: 返回的 ns2.baidu.com ns7.baidu.com dns.baidu.com ns4.baidu.com ns3.baidu.com皆为 baidu.com 的权威 DNS 服务器。
+以 http://dns.baidu.com 为例，NS 记录的内容: (baidu.com, http://dns.baidu.com)
+S2: http://baidu.com的 ip 地址，(baidu.com, 220.181.38.148)
+S3: 该次查询指定了 http://baidu.com 的权威DNS服务器
+
+推荐阅读链接
+nslookup 入门
+十个常用命令
+nslookup: Here’s how the useful DNS check works
+what is meaning of non-authoritative answer
+reverse-dns-lookup
+
+
+dig 拓展
+相关介绍有空再做
+how-to-use-dig
+dig 命令大全
+域名系统-Wiki
+
+编辑于 2021-05-17 16:10
+DNS服务器
+DNS
+nslookup
+​赞同 76​
+​4 条评论
+​分享
+​喜欢
+​收藏
+​申请转载
+​
+
+赞同 76
+
+​
+分享
+
+发布一条带图评论吧
+
+4 条评论
+默认
+最新
+Angelo
+Angelo
+写的不错，但如果不懂DNS解析过程还真看不懂，理解有一定门槛
+
+2022-10-06
+​回复
+​3
+Bigonion
+Bigonion
+感谢您，非常详细！
+
+2022-09-15
+​回复
+​喜欢
+推荐阅读
+VLOOKUP教程（连载6）——使用VLOOKUP函数一对多查找的思路
+VLOOKUP函数的教程已经分享六篇了，今天算是这个函数的最后一篇基础教程，和大家分享两个问题，一对多查找的思路以及HLOOKUP函数的用法简介。 VLOOKUP一对多查找的思路当有多条记录与查找值…
+
+老菜鸟
+发表于Excel...
+VLOOKUP 之 关键字模糊查找
+VLOOKUP 之 关键字模糊查找
+TonyS...
+发表于Excel...
+[tableau实战#7]类Vlookup之表间匹配功能的实现之链接
+[tableau实战#7]类Vlookup之表间匹配功能的实现之链接
+文斯乐达
+发表于Finte...
+Vlookup--没有我找不到的
+文章来源Vlookup--没有我找不到的上一篇中我们提到了Vlookup的用法，也说明了需要注意的地方，在最后我们提到了一个问题，如何逆向查找呢？且看下面： 上一篇： Excel查找引用函数--Vlookup…
+
+数有道
+
+
+选择语言

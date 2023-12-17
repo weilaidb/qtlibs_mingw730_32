@@ -1,0 +1,172 @@
+Microsoft Windows [版本 10.0.19042.1586]
+(c) Microsoft Corporation。保留所有权利。
+
+C:\Users\weilaidb>
+C:\Users\weilaidb>nsloop
+'nsloop' 不是内部或外部命令，也不是可运行的程序
+或批处理文件。
+
+C:\Users\weilaidb>nslookup
+默认服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+>
+>
+>
+>
+>
+> q
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+非权威应答:
+名称:    q
+Address:  127.0.0.1
+
+> exit
+
+C:\Users\weilaidb>nslookup www.baidu.com
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+非权威应答:
+名称:    www.a.shifen.com
+Addresses:  182.61.200.6
+          182.61.200.7
+Aliases:  www.baidu.com
+
+
+C:\Users\weilaidb>nslookup 182.61.200.6
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+*** 没有 182.61.200.6 可以使用的 internal type for both IPv4 and IPv6 Addresses (A+AAAA)记录
+
+C:\Users\weilaidb>nslookup 182.61.200.7
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+*** 没有 182.61.200.7 可以使用的 internal type for both IPv4 and IPv6 Addresses (A+AAAA)记录
+
+C:\Users\weilaidb>nslookup www.bing.com
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+非权威应答:
+名称:    china.bing123.com
+Addresses:  202.89.233.101
+          202.89.233.100
+Aliases:  www.bing.com
+          www-www.bing.com.trafficmanager.net
+          cn-bing-com.cn.a-0001.a-msedge.net
+
+
+C:\Users\weilaidb>nslookup 202.89.233.101
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+*** 没有 202.89.233.101 可以使用的 internal type for both IPv4 and IPv6 Addresses (A+AAAA)记录
+
+C:\Users\weilaidb>nslookup 10.1.3.135
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+名称:    ns.tv-cloud.cn
+Address:  10.1.3.135
+
+
+C:\Users\weilaidb>nslookup
+默认服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+> set type-SRV
+> _ldap._tcp.dc._msdcs.nas.con
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+非权威应答:
+名称:    _ldap._tcp.dc._msdcs.nas.con
+Address:  127.0.0.1
+
+> _ldap._tcp.dc._msdcs.nas.com
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+DNS request timed out.
+    timeout was 2 seconds.
+*** ns.tv-cloud.cn 找不到 _ldap._tcp.dc._msdcs.nas.com: Server failed
+> _ldap._tcp.dc._msdcs.nas.com
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+DNS request timed out.
+    timeout was 2 seconds.
+*** 请求 ns.tv-cloud.cn 超时
+> nslookup baidu.com
+服务器:  baidu.com
+Addresses:  39.156.66.10
+          110.242.68.66
+
+非权威应答:
+名称:    nslookup
+Address:  127.0.0.1
+
+>
+>
+>
+>
+> nslookup baidu.com
+服务器:  baidu.com
+Addresses:  110.242.68.66
+          39.156.66.10
+
+非权威应答:
+名称:    nslookup
+Address:  127.0.0.1
+
+> baid.com
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+非权威应答:
+名称:    tybf.cjlhdns.com
+Address:  172.83.159.98
+Aliases:  baid.com
+
+> bing.com
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+非权威应答:
+名称:    bing.com
+Addresses:  2620:1ec:c11::200
+          204.79.197.200
+          13.107.21.200
+
+> github.com
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+非权威应答:
+名称:    github.com
+Address:  20.205.243.166
+
+> google.com
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+非权威应答:
+名称:    google.com
+Addresses:  2404:6800:4012:4::200e
+          172.217.160.78
+
+> baidu.com
+服务器:  ns.tv-cloud.cn
+Address:  10.1.3.135
+
+非权威应答:
+名称:    baidu.com
+Addresses:  39.156.66.10
+          110.242.68.66
+
+> nslookup baidu.com

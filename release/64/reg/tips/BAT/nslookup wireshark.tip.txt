@@ -1,0 +1,79 @@
+Frame 101: 69 bytes on wire (552 bits), 69 bytes captured (552 bits) on interface 0
+    Interface id: 0 (\Device\NPF_{0D133629-3E86-4133-9D89-4F7DF2E1C4F9})
+    Encapsulation type: Ethernet (1)
+    Arrival Time: Dec 17, 2023 07:53:20.014396000 中国标准时间
+    [Time shift for this packet: 0.000000000 seconds]
+    Epoch Time: 1702770800.014396000 seconds
+    [Time delta from previous captured frame: 0.558578000 seconds]
+    [Time delta from previous displayed frame: 1.445153000 seconds]
+    [Time since reference or first frame: 5.089003000 seconds]
+    Frame Number: 101
+    Frame Length: 69 bytes (552 bits)
+    Capture Length: 69 bytes (552 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: eth:ethertype:ip:udp:dns]
+    [Coloring Rule Name: UDP]
+    [Coloring Rule String: udp]
+
+Ethernet II, Src: 84:a9:38:5b:fd:53 (84:a9:38:5b:fd:53), Dst: bogon (54:75:95:17:b5:26)
+    Destination: bogon (54:75:95:17:b5:26)
+        Address: bogon (54:75:95:17:b5:26)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Source: 84:a9:38:5b:fd:53 (84:a9:38:5b:fd:53)
+        Address: 84:a9:38:5b:fd:53 (84:a9:38:5b:fd:53)
+        .... ..0. .... .... .... .... = LG bit: Globally unique address (factory default)
+        .... ...0 .... .... .... .... = IG bit: Individual address (unicast)
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: bogon (192.168.0.101), Dst: ns.tv-cloud.cn (10.1.3.135)
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+        0000 00.. = Differentiated Services Codepoint: Default (0)
+        .... ..00 = Explicit Congestion Notification: Not ECN-Capable Transport (0)
+    Total Length: 55
+    Identification: 0xb012 (45074)
+    Flags: 0x00
+        0... .... = Reserved bit: Not set
+        .0.. .... = Don't fragment: Not set
+        ..0. .... = More fragments: Not set
+    Fragment offset: 0
+    Time to live: 128
+    Protocol: UDP (17)
+    Header checksum: 0x0000 [validation disabled]
+    [Header checksum status: Unverified]
+    Source: bogon (192.168.0.101)
+    Destination: ns.tv-cloud.cn (10.1.3.135)
+    [Source GeoIP: Unknown]
+    [Destination GeoIP: Unknown]
+
+User Datagram Protocol, Src Port: 50396 (50396), Dst Port: domain (53)
+    Source Port: 50396 (50396)
+    Destination Port: domain (53)
+    Length: 35
+    Checksum: 0xcec9 [unverified]
+    [Checksum Status: Unverified]
+    [Stream index: 26]
+
+Domain Name System (query)
+    [Response In: 102]
+    Transaction ID: 0x0022
+    Flags: 0x0100 Standard query
+        0... .... .... .... = Response: Message is a query
+        .000 0... .... .... = Opcode: Standard query (0)
+        .... ..0. .... .... = Truncated: Message is not truncated
+        .... ...1 .... .... = Recursion desired: Do query recursively
+        .... .... .0.. .... = Z: reserved (0)
+        .... .... ...0 .... = Non-authenticated data: Unacceptable
+    Questions: 1
+    Answer RRs: 0
+    Authority RRs: 0
+    Additional RRs: 0
+    Queries
+        baidu.com: type A, class IN
+            Name: baidu.com
+            [Name Length: 9]
+            [Label Count: 2]
+            Type: A (Host Address) (1)
+            Class: IN (0x0001)

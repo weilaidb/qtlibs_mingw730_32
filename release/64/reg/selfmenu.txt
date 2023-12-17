@@ -229,6 +229,9 @@ BAT/bcdedit
 BAT/bcdedit 引导系统 双系统
 BAT/new/zipwar.bat
 BAT/new/zipwar.bat 2
+BAT/nslookup
+BAT/nslookup eg
+BAT/nslookup wireshark
 BAT/shutdown
 BAT/shutdown -a
 BAT/shutdown -r -t -f
