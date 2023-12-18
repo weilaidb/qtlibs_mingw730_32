@@ -10,6 +10,11 @@ https://downloadarchive.documentfoundation.org/libreoffice/old/6.4.7.2/rpm/x86_6
 https://github.com/ramonvc/freegpt-webui.git
 git@github.com:gitbito/CLI.git
 
+#软考 网络规划师
+git@gitee.com:zaonai/network_plannern.git
+软考刷题
+https://ruankaokao.com/typeinfo/typeinfo
+
 #Qt
 https://download.qt.io/archive/qt/
 #bugZilla
