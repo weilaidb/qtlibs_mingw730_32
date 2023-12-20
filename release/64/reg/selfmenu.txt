@@ -405,6 +405,7 @@ BUG管理/内存改写/新建的静态全局变量初始化为0，但是读写�
 BUG管理/单元测试/进程PROTOCOL Debug版本桩正常,Release版本桩打不上
 BUG管理/异常挂起/LACP弹出消息失败
 BUG管理/异常挂起/LACP弹出消息失败2
+BUG管理/执行crontab中opengrok脚本运行异常中止
 BUG管理/测试BUG模板
 BUG管理/测试BUG记录模板（供参考）
 BUG管理/自动化测试SSH&TELNET数据获取/java.lang.IllegalArgumentException: URLDecoder: Illegal hex characters in escape (%) pattern - Error at index 0 in
