@@ -1,4 +1,12 @@
 【command;title;let名称(无disposable_);函数名称】
+clipboard.generate.pragma.pack.1;1字节对齐;pragmapack;pragmaPack1
+
+
+
+clipboard.generate.replaceregexp;剪切板正则替换;replaceregexp;ReplaceRegexp
+
+
+
 cpp.vector;generate cpp;vector;Vector
 clipboard.generate.getset;generate getter setter;getset;GetSet
 
