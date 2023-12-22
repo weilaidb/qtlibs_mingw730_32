@@ -1,0 +1,1 @@
+vscode.window.showInformationMessage(`\1:${\1}`);$NL

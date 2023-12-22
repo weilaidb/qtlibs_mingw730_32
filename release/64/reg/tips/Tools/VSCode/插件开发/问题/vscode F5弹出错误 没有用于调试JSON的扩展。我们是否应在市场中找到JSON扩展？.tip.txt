@@ -1,0 +1,37 @@
+vscode F5弹出错误 
+没有用于调试JSON的扩展。我们是否应在市场中找到JSON扩展？
+
+
+VSCODE插件开发时，按F5运行异常了。Why？
+
+
+几个调试快捷键：
+
+F5运行
+Ctrl+F2停止运行
+F6下一步跳过（类似于Chrome的F10）
+F5下一步跳入
+F8跳过
+
+==>ok
+试了下abc 项目，按F5可以正常起来，这是为何？
+1.看来是工程中存在一些问题了。
+2.另外打开工程后，不要打开文件，直接按F5.
+3.如果打开文件，按F5，可能生效的是当前文件，就会弹出错误（这个不成立，正常的环境打开文件按F5都可以正常运行出来扩展开发宿主模式）
+
+==>ng
+试了下linuxeasy工程，按F5弹出，无法跟踪任务"npm:watch"。请确保已定义了问题匹配程序
+
+
+===>ng
+打开regexp工程，按F5，弹出选择调试器
+打开 这个路径也可以了
+D:\code\vscode\vscodeplugineg\regexp\regexp\
+必须打开带node_modules文件夹的路径才行。
+
+==>ok
+必须打开这个路径：
+D:\code\vscode\vscodeplugineg\easy\toeasy\
+打开上一级路径不行：
+D:\code\vscode\vscodeplugineg\easy\
+ 看来路径下必须是包含 node_modules才行的。
