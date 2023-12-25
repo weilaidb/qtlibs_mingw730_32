@@ -1,3 +1,7 @@
+alias crontabl="crontab -l "
+
+alias crontabe="crontab -e "
+
 #ros related
 alias mkdirrosworkspace="mkdir -p build install log src "
 alias ros2colonbuild="colcon build "

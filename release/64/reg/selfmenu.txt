@@ -133,6 +133,7 @@ BASH/scripts/getnumsinfile.sh
 BASH/scripts/include.sh
 BASH/scripts/include.sh public
 BASH/scripts/insert.function.regexp.write.file.sh
+BASH/scripts/opengrok.run.ext.1.13.0.sh
 BASH/scripts/opengrok.run.ext.sh
 BASH/scripts/opengrok.run.ext.sh run eg
 BASH/scripts/opengrok.run.sh
@@ -3253,6 +3254,7 @@ Tools/查看代码工具/OpenGrok/error/The source root path has not been config
 Tools/查看代码工具/OpenGrok/help
 Tools/查看代码工具/OpenGrok/help Requirements安装要求
 Tools/查看代码工具/OpenGrok/help2
+Tools/查看代码工具/OpenGrok/help3
 Tools/查看代码工具/OpenGrok/openGrok 1.7.40 + Java17+tomcat10.0.27
 Tools/查看代码工具/OpenGrok/【OpenGrok代码搜索引擎】三 OpenGrok常用命令
 Tools/查看代码工具/OpenGrok/【OpenGrok代码搜索引擎】二 Windows10下基于Linux子系统搭建Opengrok代码搜索引擎

@@ -1,3 +1,6 @@
+crontabl;crontab -l
+crontabe;crontab -e
+
 addsshkeys;cd ~ && ssh-copy-id -i ./id_rsa.pub weilaidb@59.110.236.102
 
 
