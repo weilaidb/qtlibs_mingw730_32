@@ -1,0 +1,13 @@
+在WIN10上使用Ubuntu
+
+#源为googletest
+cd /mnt/d/software/opengrok-1.13.0.tar/opengrok-1.13.0
+java -jar lib/opengrok.jar -c /usr/local/bin/ctags -s /mnt/d/code/c/googletest -d data -H -P -S -G -v -W etc/configuration.xml -U http://localhost:8080/source
+
+
+
+#源为D:\code\java
+cd /mnt/d/software/opengrok-1.13.0.tar/opengrok-1.13.0
+java -jar lib/opengrok.jar -c /usr/local/bin/ctags -s /mnt/d/code/java -d data -H -P -S -G -v -W etc/configuration.xml -U http://localhost:8080/source
+
+
