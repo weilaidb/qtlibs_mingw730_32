@@ -47,6 +47,7 @@ https://github.com/weilaidb/linux_driver
 【在线看代码new2】http://59.110.236.102:8081/source/
 【在线看代码new】http://49.234.85.12:8081/source/
 【在线看代码】http://101.201.79.164:8081/source/
+【在线看代码（本地）】http://localhost:8080/source/
 【无量寿经】http://dxzy163.com/player/index13333.html?id=13333&page=0&to=69
 【日志查找】http://49.234.85.12:8081/weilaix1/log/upload.jsp
 【码云 mayun】https://gitee.com/

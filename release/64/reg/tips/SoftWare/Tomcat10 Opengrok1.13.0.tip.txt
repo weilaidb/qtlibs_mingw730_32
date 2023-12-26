@@ -1,4 +1,9 @@
 在WIN10上使用Ubuntu
+#开启Tomcat10任务
+cd /mnt/d/software/apache-tomcat-10.1.17/bin && sh startup.sh
+
+
+
 
 #源为googletest
 cd /mnt/d/software/opengrok-1.13.0.tar/opengrok-1.13.0
