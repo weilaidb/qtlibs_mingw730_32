@@ -22,3 +22,28 @@ JAVA17生成JRE,在JDK
 D:\Program Files\Java\jdk-17
 bin\jlink.exe --module-path jmods --add-modules java.desktop --output jre
 
+
+
+#升级版本
+D:\software\apache-tomcat-10.1.17-windows-x64\apache-tomcat-10.1.17
+
+老的：
+JRE_HOME
+D:\Program Files\Java\jre1.8.0_192
+JAVA_HOME
+D:\Program Files\Java\jdk1.8.0_291
+
+
+新的：
+JAVA_HOME
+C:\Program Files\Java\jdk-11.0.2\
+
+JRE_HOME
+使用以下命令生成
+执行命令：
+bin\jlink.exe --module-path jmods --add-modules java.desktop --output jre
+即
+C:\Program Files\Java\jdk-11.0.2\jre --Tomcat10运行不起来
+C:\Program Files\Java\jre-11.0.2  --也不行
+C:\Program Files\Java\jdk-11.0.2\  -- 和JDK一样的就正常了
+

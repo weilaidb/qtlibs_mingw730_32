@@ -1,0 +1,251 @@
+https://www.cnblogs.com/linxuannihao/p/16032668.html
+
+
+年
+兔
+度
+欢
+发生缘由
+学习Tomcat软件的使用
+环境
+Tomcat版本：8.5.75
+jdk版本：jdk-16.0.2
+电脑系统：win10
+问题及补救
+启动Tomcat
+问题
+　　　　我的系统是win10，所以打开Tomcat需要启动bin目录下面startup.bat文件。可是双击startup.bat文件，发现会闪退。
+
+搜索
+　　　　通过搜索引擎搜索发现：这种情况的发生是因为没有正确的配置JAVA环境变量。
+
+结果
+　　　　可是我之前已经配置好了。使用cmd命令窗口分别输入下面命令：java、javac、java -version都没有任何问题。
+
+下载jre
+搜索
+　　　　通过搜索引擎搜索发现：查找到了jre的影子。原来自从jdk11版本开始后，下载jdk已经不会自带jre了，所以需要自行下载。果然，打开下载的jdk-16.0.2，里面并没有jre。
+
+修改
+　　　　通过管理员身份打开cmd命令，进入jdk的文件夹，键入下面的代码：bin\jlink.exe --module-path jmods --add-modules java.desktop --output jre
+　　　　然后再配置jre的环境变量，也就是JRE_HOME：E：\JAVA\jdk-16.0.2\jre   Path：%JRE_HOME%\bin
+
+结果
+　　　　双击打开startup.bat文件依旧是闪退，没有作用。
+
+修改源码
+搜索
+　　　　通过搜索引擎搜索发现：仍然有可能是环境变量配置错误。查看源码可以发现startup.bat–>catalina.bat–>setclasspath.bat，他们之间是层层调用的关系。
+
+修改
+　　　　所以我们可以在setclasspath.bat文件下面，声明环境变量，添加上自己本地jdk、jre路径。
+　　　　右键通过记事本打开setclasspath.bat文件，然后在setclasspath.bat文件代码最上方输入
+
+　　　　 set JAVA_HOME=E:\JAVA\jdk-16.0.2(jdk路径)
+
+　　　　 set JRE_HOME=E:\JAVA\jdk-16.0.2\jre(jre路径) 
+
+结果
+　　　　双击打开，这次闪退是闪两下了，依旧打不开。
+
+检查端口号
+搜索
+　　　　通过搜索引擎搜索发现：有可能是有其他应用程序占用该端口号
+
+修改
+　　　　通过cmd命令查看是否有其他应用程序占用8080端口号
+
+结果
+　　　　并没有软件占用。
+
+捕捉错误信息
+搜索
+　　　　通过搜索引擎搜索发现：可以通过捕捉查看错误信息。
+
+修改
+右键startup.bat文件，通过记事本打开，将倒数第三行修改一下。
+1
+2
+3
+call "%EXECUTABLE%" start %CMD_LINE_ARGS%
+# 修改为下面代码
+call "%EXECUTABLE%" run %CMD_LINE_ARGS%
+保存，然后以cmd命令的形式打开startup.bat文件。这时候会在cmd窗口出现
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Using CATALINA_BASE:   "E:\Tomcat\apache-tomcat-8.5.75"
+Using CATALINA_HOME:   "E:\Tomcat\apache-tomcat-8.5.75"
+Using CATALINA_TMPDIR: "E:\Tomcat\apache-tomcat-8.5.75\temp"
+Using JRE_HOME:        "E:\JAVA\jdk-16.0.2\jre"
+Using CLASSPATH:       "E:\Tomcat\apache-tomcat-8.5.75\bin\bootstrap.jar;E:\Tomcat\apache-tomcat-8.5.75\bin\tomcat-juli.jar"
+Using CATALINA_OPTS:   ""
+NOTE: Picked up JDK_JAVA_OPTIONS:  --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+WARNING: Unknown module: java.rmi specified to --add-opens
+Exception in thread "main" java.lang.NoClassDefFoundError: java/util/logging/Logger
+       at org.apache.juli.logging.DirectJDKLog.<init>(DirectJDKLog.java:61)
+       at org.apache.juli.logging.DirectJDKLog.getInstance(DirectJDKLog.java:181)
+       at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:130)
+       at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:153)
+       at org.apache.juli.logging.LogFactory.getLog(LogFactory.java:208)
+       at org.apache.catalina.startup.Bootstrap.<clinit>(Bootstrap.java:50)
+Caused by: java.lang.ClassNotFoundException: java.util.logging.Logger
+       at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:636)
+       at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:182)
+       at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:519)
+       ... 6 more　　
+右键startup.bat文件，通过记事本打开，在最后一行后面加上一行。键入：pause。
+保存，然后双击打开startup.bat文件。这时候会出现一个新的Tomcat窗口，里面同样有着报错信息
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Using CATALINA_BASE:   "E:\Tomcat\apache-tomcat-8.5.75"
+Using CATALINA_HOME:   "E:\Tomcat\apache-tomcat-8.5.75"
+Using CATALINA_TMPDIR: "E:\Tomcat\apache-tomcat-8.5.75\temp"
+Using JRE_HOME:        "E:\JAVA\jdk-16.0.2\jre"
+Using CLASSPATH:       "E:\Tomcat\apache-tomcat-8.5.75\bin\bootstrap.jar;E:\Tomcat\apache-tomcat-8.5.75\bin\tomcat-juli.jar"
+Using CATALINA_OPTS:   ""
+NOTE: Picked up JDK_JAVA_OPTIONS:  --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+WARNING: Unknown module: java.rmi specified to --add-opens
+Exception in thread "main" java.lang.NoClassDefFoundError: java/util/logging/Logger
+       at org.apache.juli.logging.DirectJDKLog.<init>(DirectJDKLog.java:61)
+       at org.apache.juli.logging.DirectJDKLog.getInstance(DirectJDKLog.java:181)
+       at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:130)
+       at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:153)
+       at org.apache.juli.logging.LogFactory.getLog(LogFactory.java:208)
+       at org.apache.catalina.startup.Bootstrap.<clinit>(Bootstrap.java:50)
+Caused by: java.lang.ClassNotFoundException: java.util.logging.Logger
+       at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:636)
+       at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:182)
+       at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:519)
+       ... 6 more
+修改jre环境变量
+搜索
+　　　　通过搜索引擎搜索Caused by: java.lang.ClassNotFoundException: java.util.logging.Logger发现：jre的问题。
+
+修改
+　　　　右键通过记事本打开setclasspath.bat文件，然后将之前写的代码修改为
+
+　　　　 set JAVA_HOME=E:\JAVA\jdk-16.0.2
+
+　　　　 set JRE_HOME=E:\JAVA\jdk-16.0.2
+
+结果
+　　　　双击打开，发现可以成功运行，但是有乱码问题。
+
+修改乱码问题
+修改
+　　　　我们来到conf目录中，找到一个名为logging.properties的文件，打开这个配置文件，修改如下配置项：
+　　　　 java.util.logging.ConsoleHandler.encoding = UTF-8
+
+　　　　修改为下面代码
+
+　　　　 java.util.logging.ConsoleHandler.encoding = GBK
+
+    保存后，重启tomcat！
+
+结果
+　　　　恭喜，成功了。
+
+重新修改环境变量
+在我写这篇博客的时候，发现其实是把JAVA环境变量配置错误了。
+应该为：JAVA_HOME：E：\JAVA\jdk-16.0.2   Path：%JAVA_HOME%\bin
+我弄的：JAVA_HOUME：E：\JAVA\jdk-16.0.2   Path：%JAVA_HOUME%\bin
+所以导致了错误，可是使用cmd命令窗口分别输入下面命令：java、javac、java -version都没有任何问题。
+修改完了环境变量，将之前在配置文件中写的代码删除：
+　　　 set JAVA_HOME=E:\JAVA\jdk-16.0.2
+
+　　 　set JRE_HOME=E:\JAVA\jdk-16.0.2
+
+然后就没有什么问题了。
+发生缘由
+环境
+问题及补救
+    启动Tomcat
+    下载jre
+    修改源码
+    检查端口号
+    捕捉错误信息
+    修改jre环境变量
+    修改乱码问题
+    重新修改环境变量
+
+__EOF__
+
+
+本文作者： linxuan
+本文链接： https://www.cnblogs.com/linxuannihao/p/16032668.html
+关于博主： 评论和私信会在第一时间回复。或者直接私信我。
+版权声明： 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！
+声援博主： 如果您觉得文章对您有帮助，可以点击文章右下角【推荐】一下。
+分类: 那些年遇到的BUG
+推荐该文
+ 关注博主关注博主 
+收藏本文
+ 分享微信炸天帮帮主
+粉丝 - 6 关注 - 2
++加关注
+0
+0
+« 上一篇： java获取视频弹幕
+» 下一篇： Idea新建Javaweb项目无法继承HttpServlet
+posted @ 2022-03-20 23:36  炸天帮帮主  阅读(2034)  评论(2)  编辑  收藏  举报
+登录后才能查看或发表评论，立即 登录 或者 逛逛 博客园首页
+【推荐】编程路上的催化剂：大道至简，给所有人看的编程课
+【推荐】会员力量，点亮园子希望，期待您升级成为园子会员
+【推荐】阿里云普惠权益，2核2G(3M带宽)云服务器99元/年
+编辑推荐：
+· Chrome 扩展程序是如何进行消息传递的
+· 聊一聊 C# 线程切换后上下文都去了哪里
+· 一文聊透 Linux 缺页异常的处理 —— 图解 Page Faults
+· 如果让你来设计消息加密
+· 同样的 SQL，怎么突然就慢了？
+阅读排行：
+· 码农的转型之路-多年以来的反思
+· Semantic Kernel 正式发布 v1.0.1 版本
+· 年度盘点，四年的精华合集「GitHub 热点速览」
+· 我们的商城首页卡死了。。。
+· .NET开发中合理使用对象映射库，简化和提高工作效率
+Tomcat Caused by: java.lang.ClassNotFoundException: java.util.logging.Logger _
+22/03/20 23:36203420583411:40 ~ 19:26
+
+那些年遇到的BUG
+
+
+This blog has running : 863 d 23 h 49 m 11 s ღゝ◡╹)ノ♡
+Copyright © 2023 炸天帮帮主 Powered by .NET 8.0 on Kubernetes

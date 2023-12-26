@@ -50,3 +50,9 @@ PanGu-Coder: Program Synthesis with Function-Level Language Modeling
 
 universise
 https://www.cornell.edu/
+
+java jdk
+https://repo.huaweicloud.com/java/jdk/
+
+国内镜像
+https://mirrors.tuna.tsinghua.edu.cn/
