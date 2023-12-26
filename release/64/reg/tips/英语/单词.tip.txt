@@ -1,3 +1,41 @@
+a preprocessor directive：预处理指令 
+step-wise explanation：分步解释 
+placeholder ：点位符
+code snippet ：代码片段
+explicitly ：明确地
+handling functionalities ：处理功能 
+it can be inferred that ：推断
+ is related to：与以下方面有关
+as well as:以及
+as well as network namespaces and netfilter ARP：以及网络命名空间和 netfilter ARP
+generic neighbour cache：通用邻居缓存
+resolve ：解决、解析
+resolve the MAC address of a given IP address：解析给定 IP 地址的 MAC 地址
+variable ：变量
+used for resolving：用于解析
+sending ARP replies.：发送ARP应答 
+the curly braces ：大括号 {}
+another constant struct variable：另一个常量结构变量
+specify the operations ：指定操作
+using the array indexing notation：使用数组索引表示法
+multicast and unicast probes：组播和单播探测器
+retransmission time：重传时间
+reachable time：可到达时间
+delay probe time：延迟探测时间
+GC stale time：GC过时时间
+queue length：队列长度
+proxy queue length：代理队列长度
+anycast delay：任播延迟
+proxy delay：代理延迟
+lock time：锁定时间
+gc:garbage collection, 垃圾回收
+ is exported：已导出
+In summary：综上所述
+If none of the above cases match and "dir" is false, it returns -EINVAL, indicating an invalid argument. 
+EINVAL：invalid argument
+
+
+
 homogeneous 同质性
 notation 标记
 complexity 复杂度
