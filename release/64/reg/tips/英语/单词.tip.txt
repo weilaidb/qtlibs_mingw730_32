@@ -33,6 +33,33 @@ gc:garbage collection, 垃圾回收
 In summary：综上所述
 If none of the above cases match and "dir" is false, it returns -EINVAL, indicating an invalid argument. 
 EINVAL：invalid argument
+the key value is extracted from:键值是从中提出来的
+using a typecast to：使用类型转换
+by performing a bitwise XOR operation：通过执行按位异或运算
+The XOR operation combines the key and the hash value.：XOR操作将键值和哈希值组合在一起。
+ is multiplied by：乘以
+indicating whether:指示是否
+be expanded inline at the call site：在调用处内联扩展/展开
+within the same translation unit:在同一个作用域内
+ is decremented ：递减
+an atomic fetch and subtract operation：原子读取和减法操作
+ memory barriers ：内存屏障
+the KCSAN (Kernel Concurrency Sanitizer) tool：KCSAN（内核并发清理程序）工具
+enforce ordering：强制排序
+a compiler intrinsic：编译器内部函数
+ takes a single argument：采用单个参数
+have a significant performance impact.：对性能产生重大影响
+which is interpreted specially：这是特别解释的
+repurposed：重新利用
+intercepted：截获
+dereferencing：取消引用 
+This is a simple wrapper:这是一个简单的包装器
+
+
+
+
+
+
 
 
 
