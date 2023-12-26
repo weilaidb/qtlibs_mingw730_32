@@ -54,10 +54,20 @@ repurposed：重新利用
 intercepted：截获
 dereferencing：取消引用 
 This is a simple wrapper:这是一个简单的包装器
-
-
-
-
+dereference ：引用 
+Read-Copy-Update (RCU) 
+is a type qualifier：是类型限定符
+Dependency：依赖，依赖性
+create a compound statement：创建复合语句
+the compound statement：复合语句 
+is used to suppress certain type-checking warnings：用于禁止显示某些类型检查警告
+could lead to incorrect behavior in certain scenarios：在某些情况下可能会导致不正确的行为
+a compile-time assertion：编译时断言
+preprocessor directive：预处理器指令 
+a 32-bit quantity：32位数量
+Billing and Plans：计费和计划
+discounts：折扣
+Inc. :公司，Inc. 是 Incoporated 的缩写， 意思是 ‘股份有限的’ 。Incoporated company 或者 corporation 就是我们说的 ‘股份有限公司’。
 
 
 
