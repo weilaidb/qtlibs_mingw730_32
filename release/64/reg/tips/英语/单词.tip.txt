@@ -1,3 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 a preprocessor directive：预处理指令 
 step-wise explanation：分步解释 
 placeholder ：点位符
@@ -69,7 +83,7 @@ Billing and Plans：计费和计划
 discounts：折扣
 Inc. :公司，Inc. 是 Incoporated 的缩写， 意思是 ‘股份有限的’ 。Incoporated company 或者 corporation 就是我们说的 ‘股份有限公司’。
 deallocated :已解除分配
-
+validated:验证
 
 
 
