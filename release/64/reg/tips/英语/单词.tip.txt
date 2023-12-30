@@ -1,5 +1,4 @@
-
-
+RAID:Redundant Array of Indepenedent Disk 独立冗余磁盘阵列
 
 
 
