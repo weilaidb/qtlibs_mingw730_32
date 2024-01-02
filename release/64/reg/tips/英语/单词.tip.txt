@@ -1,5 +1,5 @@
 RAID:Redundant Array of Indepenedent Disk 独立冗余磁盘阵列
-
+DMT-Discrete Multi Tone Modulation，离散多音调制技术
 
 
 

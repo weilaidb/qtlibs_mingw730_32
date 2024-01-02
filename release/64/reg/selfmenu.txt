@@ -1,4 +1,3 @@
-
 API Manual/API参考手册模板
 API Manual/API参考手册模板2
 API Manual/API参考手册模板3
@@ -3587,6 +3586,7 @@ path路径/常用文件夹
 术语/网络/1000base-t
 术语/网络/3DES
 术语/网络/ABR(OSPF)
+术语/网络/ADSL技术原理
 术语/网络/ALL 常见计算
 术语/网络/ALL 汇总
 术语/网络/ATM网络
@@ -3679,6 +3679,7 @@ path路径/常用文件夹
 术语/网络/代理ARP 混杂ARP
 术语/网络/以太网(Ethernet)与802.3(IEEE 802.3)简史
 术语/网络/以太网最小帧长度
+术语/网络/信噪比的定义及计算方法
 术语/网络/信道(channel)
 术语/网络/傻傻分不清楚：裸纤、专线、SDH、MSTP、MSTP+、OTN、PTN、IP-RAN
 术语/网络/协议
