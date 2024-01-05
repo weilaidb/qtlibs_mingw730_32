@@ -56,3 +56,7 @@ https://repo.huaweicloud.com/java/jdk/
 
 国内镜像
 https://mirrors.tuna.tsinghua.edu.cn/
+
+股票数据查询
+https://tushare.pro/webclient/
+002848.SZ
