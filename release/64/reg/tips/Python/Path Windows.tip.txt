@@ -2,3 +2,13 @@ C:\Users\weilaidb\AppData\Local\Programs\Python\Python311
 
 
 C:\Users\weilaidb\AppData\Local\Programs\Python\Python311
+
+
+#备份
+D:\Program Files\Python\Python310\Scripts
+D:\Program Files\Python\Python310\
+
+
+#新的
+C:\Users\weilaidb\AppData\Local\Programs\Python\Python312
+C:\Users\weilaidb\AppData\Local\Programs\Python\Python312\Scripts\
