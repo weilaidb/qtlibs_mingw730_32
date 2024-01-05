@@ -60,3 +60,4 @@ https://mirrors.tuna.tsinghua.edu.cn/
 股票数据查询
 https://tushare.pro/webclient/
 002848.SZ
+601360.SH
