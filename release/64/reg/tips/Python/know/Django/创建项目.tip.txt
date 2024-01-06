@@ -10,3 +10,62 @@ MyDjango项目里包含MyDjango文件夹和manage.py文件，而MyDjango文件�
 
 从D盘进入项目MyDjango，然后使用python manage.py startapp XXX创建，其中XXX是应用的名称，读者可以自行命名。
 python manage.py startapp index -- 创建index的app
+
+
+
+
+从图1-3可以看到，项目新建了index文件夹，其可作为网站首页。在index文件夹可以看到有多个.py文件和migrations文件夹，说明如下：
+●　migrations：用于生成数据迁移文件，通过数据迁移文件可自动在数据库里生成相应的数据表。
+●　__init__.py：index文件夹的初始化文件。
+●　admin.py：用于设置当前App的后台管理功能。
+●　apps.py：当前App的配置信息，在Django 1.9版本后自动生成，一般情况下无须修改。
+●　models.py：定义数据库的映射类，每个类可以关联一张数据表，实现数据持久化，即MTV里面的模型（Model）。
+●　tests.py：自动化测试的模块，用于实现单元测试。
+●　views.py：视图文件，处理功能的业务逻辑，即MTV里面的视图（Views）。
+完成项目和App的创建后，最后在命令提示符窗口输入以下指令启动项目：
+
+C:\Users\000>d:
+D:\>cd MyDjango
+D:\MyDjango>python manage.py runserver 8001
+将命令提示符窗口的路径切换到项目的路径，输入运行指令python manage.py runserver 8001，如图1-4所示。其中8001是端口号，如果在指令里没有设置端口，端口就默认为8000。最后在浏览器上输入http://127.0.0.1:8001/，可看到项目的运行情况，如图1-5所示。
+
+
+
+1.8.2　开启Hello World之旅
+相信读者现在对Django已经有了大概的认知，在本节，我们在MyDjango项目里实现Hello World网页，让读者打开Django的大门。
+首先在templates文件夹里新建index.html文件，该文件是Django的模板文件，如果MyDjango项目是在命令提示符窗口下创建的，就需要在MyDjango项目的路径下自行创建templates文件夹，如图1-13所示。
+接着打开MyDjango文件夹的配置文件settings.py，找到配置属性INSTALLED_APPS和TEMPLATES，分别将项目应用index和模板文件夹templates添加到相应的配置属性，其配置如下所示：
+Django所有的功能都必须在配置文件settings.py中设置，否则项目在运行的时候无法生成相应的功能，有关配置文件settings.py的配置属性将会在第2章讲述。
+最后在项目的urls.py（MyDjango文件夹的urls.py）、views.py（项目应用index的views.py文件）和index.html（templates文件夹的
+
+index.html）文件里编写相应的代码，即可实现简单的Hello World网页，代码如下：
+
+# index的urls.py
+from django.contrib import admin
+from django.urls import path
+# 导入项目应用index
+from index.views import index
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', index)
+]
+# index的views.py
+from django.shortcuts import render
+def index(request):
+    return render(request, 'index.html')
+# templates的index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+</head>
+<body>
+    <span>Hello World!!</span>
+</body>
+</html>
+在上述代码里可以简单映射出用户访问网页的过程，说明如下：
+●　当用户在浏览器访问网址的时候，该网址在项目所设置的路由（urls.py文件）里找到相应的路由信息。
+●　然后从路由信息里找到对应的视图函数（views.py文件），由视图函数处理用户请求。
+●　视图函数将处理结果传递到模板文件（index.html文件），由模板文件生成网页内容，并在浏览器里展现。
+启动MyDjango项目，并在浏览器上访问路由地址（http://127.0.0.1:8000）即可看到Hello World网页，如图1-14所示。
