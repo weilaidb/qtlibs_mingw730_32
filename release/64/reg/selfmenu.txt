@@ -2721,6 +2721,8 @@ Python/idea插件
 Python/idea插件 V起来 nextchatgpt
 Python/idea配置说明
 Python/know/Django-详解settings.py 文件作用
+Python/know/Django/manage.py help
+Python/know/Django/创建项目
 Python/know/Django/打包
 Python/know/NumPy教程：19种数据类型及对象（dtype）示例
 Python/know/Python pip3 install

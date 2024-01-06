@@ -1,0 +1,54 @@
+C:\Users\weilaidb\AppData\Local\Programs\Python\Python312\python.exe D:\code\python\pythonweb\djangoProject\manage.py 
+
+Type 'manage.py help <subcommand>' for help on a specific subcommand.
+
+Available subcommands:
+
+[auth]
+    changepassword
+    createsuperuser
+
+[contenttypes]
+    remove_stale_contenttypes
+
+[django]
+    check
+    compilemessages
+    createcachetable
+    dbshell
+    diffsettings
+    dumpdata
+    flush
+    inspectdb
+    loaddata
+    makemessages
+    makemigrations
+    migrate
+    optimizemigration
+    sendtestemail
+    shell
+    showmigrations
+    sqlflush
+    sqlmigrate
+    sqlsequencereset
+    squashmigrations
+    startapp
+    startproject
+    test
+    testserver
+
+[sessions]
+    clearsessions
+
+[staticfiles]
+    collectstatic
+    findstatic
+    runserver
+
+Process finished with exit code 0
+
+
+
+运行服务端：
+PS D:\code\python\pythonweb\djangoProject> python manage.py runserver 127.0.0.1:8001
+
