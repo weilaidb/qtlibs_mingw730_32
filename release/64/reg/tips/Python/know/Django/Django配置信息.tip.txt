@@ -1,0 +1,72 @@
+第2章Django配置信息
+Django的配置文件settings.py用于配置整个网站的环境和功能，核心配置必须有项目路径、密钥配置、域名访问权限、App列表、中间件、资源文件、模板配置、数据库的连接方式。
+2.1　基本配置信息
+一个简单的项目必须具备的基本配置信息有：项目路径、密钥配置、域名访问权限、App列表和中间件。以MyDjango项目为例，settings.py的基本配置如下：
+
+from pathlib import Path
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+# 密钥配置
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '@p_m^!ha=$6m$9#m%gobzo&b0^g2obt4teod84xs6=f%$4a66x'
+# SECURITY WARNING: don't run with debug turned on in production!
+# 调试模式
+DEBUG = True
+# 域名访问权限
+ALLOWED_HOSTS = []
+# App列表
+# Application definition
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+   'django.contrib.staticfiles',
+]
+上述代码列出了项目路径BASE_DIR、密钥配置SECRET_KEY、调试模式DEBUG、域名访问权限ALLOWED_HOSTS和App列表INSTALLED_APPS，各个配置说明如下。
+项目路径BASE_DIR：主要通过os模块读取当前项目在计算机系统的具体路径，该代码在创建项目时自动生成，一般情况下无须修改。
+
+
+
+密钥配置SECRET_KEY：这是一个随机值，在项目创建的时候自动生成，一般情况下无须修改。主要用于重要数据的加密处理，提高项目的安全性，避免遭到攻击者恶意破坏。密钥主要用于用户密码、CSRF机制和会话Session等数据加密。
+●　用户密码：Django内置一套Auth认证系统，该系统具有用户认证和存储用户信息等功能，在创建用户的时候，将用户密码通过密钥进行加密处理，保证用户的安全性。
+●　CSRF机制：该机制主要用于表单提交，防止窃取网站的用户信息来制造恶意请求。
+●　会话Session：Session的信息存放在Cookie中，以一串随机的字符串表示，用于标识当前访问网站的用户身份，记录相关用户信息。
+调试模式DEBUG：该值为布尔类型。如果在开发调试阶段，那么应设置为True，在开发调试过程中会自动检测代码是否发生更改，根据检测结果执行是否刷新重启系统。如果项目部署上线，那么应将其改为False，否则会泄漏项目的相关信息。
+域名访问权限ALLOWED_HOSTS：设置可访问的域名，默认值为空列表。当DEBUG为True并且ALLOWED_HOSTS为空列表时，项目只允许以localhost或127.0.0.1在浏览器上访问。当DEBUG为False时，ALLOWED_HOSTS为必填项，否则程序无法启动，如果想允许所有域名访问，可设置ALLOW_HOSTS = ['*']。
+App列表INSTALLED_APPS：告诉Django有哪些App。在项目创建时已有admin、auth和sessions等配置信息，这些都是Django内置的应用功能，各个功能说明如下：
+●　admin：内置的后台管理系统。
+●　auth：内置的用户认证系统。
+●　contenttypes：记录项目中所有model元数据（Django的ORM框架）。
+●　sessions：Session会话功能，用于标识当前访问网站的用户身份，记录相关用户信息。
+●　messages：消息提示功能。
+●　staticfiles：查找静态资源路径。
+如果在项目中创建了App，就必须在App列表INSTALLED_APPS添
+
+
+
+加App名称。将MyDjango项目已创建的App添加到App列表，代码如下：
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'index',
+]
+2.2　资源文件配置
+资源文件配置分为静态资源和媒体资源。静态资源的配置方式由配置属性STATIC_URL、STATICFILES_DIRS和STATIC_ROOT进行设置；媒体资源的配置方式由配置属性MEDIA_URL和MEDIA_ROOT决定。
+2.2.1　资源路由——STATIC_URL
+静态资源指的是网站中不会改变的文件。在一般的应用程序中，静态资源包括CSS文件、JavaScript文件以及图片等资源文件。此处简单介绍CSS和JavaScript文件。
+CSS也称层叠样式表（Cascading Style Sheets），是一种用来表现HTML（标准通用标记语言的一个应用）或XML（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。
+JavaScript是一种直译式脚本语言，也是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用的，用来给HTML网页增加动态功能。
+一个项目在开发过程中肯定需要使用CSS和JavaScript文件，这些静态文件的存放主要由配置文件settings.py设置，Django默认配置信息如下：
+
+
+
+
+
+
