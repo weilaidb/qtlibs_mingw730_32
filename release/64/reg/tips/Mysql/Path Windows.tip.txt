@@ -39,6 +39,7 @@ net start mysql
 
 
 #修改密码
+##老的方式，8.0之前的
 ②进入mysql，登录
 　　　　mysql -u root -p
 　　　　不用输入密码，直接回车（出现Enter Password 也一样直接回车，即可登陆成功）
@@ -50,3 +51,15 @@ net start mysql
 use mysql
 update user set authentication_string=password('123456') where user='root';
 flush privileges;
+
+
+
+#新的方式，8.0及之后的
+
+mysql> alter user 'root'@'localhost' identified with mysql_native_password by '123456';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.10 sec)
+
+

@@ -2728,8 +2728,10 @@ Python/know/Django-详解settings.py 文件作用
 Python/know/Django/1.11　本章小结
 Python/know/Django/Django配置信息
 Python/know/Django/manage.py help
+Python/know/Django/middleware中间件
 Python/know/Django/创建项目
 Python/know/Django/打包
+Python/know/Django/第3章初探路由
 Python/know/NumPy教程：19种数据类型及对象（dtype）示例
 Python/know/Python pip3 install
 Python/know/Python pip3 install Python之pip命令指定安装源和版本

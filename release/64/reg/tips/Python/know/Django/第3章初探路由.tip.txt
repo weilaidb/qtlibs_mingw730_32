@@ -1,0 +1,111 @@
+第3章初探路由
+一个完整的路由包含：路由地址、视图函数（或者视图类）、可选变量和路由命名。本章讲述Django的路由编写规则与使用方法，内容分为：路由定义规则、命名空间与路由命名、路由的使用方式。
+3.1　路由定义规则
+路由称为URL（Uniform Resource Locator，统一资源定位符），也可以称为URLconf，是对可以从互联网上得到的资源位置和访问方法的一种简洁的表示，是互联网上标准资源的地址。互联网上的每个文件都有一个唯一的路由，用于指出网站文件的路径位置。简单地说，路由可视为我们常说的网址，每个网址代表不同的网页。
+3.1.1　Django 2以上版本路由定义
+我们知道完整的路由包含：路由地址、视图函数（或者视图类）、可选变量和路由命名。其中基本的信息必须有：路由地址和视图函数（或者视图类），路由地址即我们常说的网址，视图函数（或者视图类）即App的views.py文件所定义的函数或类。
+在讲解路由定义规则之前，需对MyDjango项目的目录进行调整，使其更符合开发规范性。在项目的index文件夹里添加一个空白内容的.py文件，命为urls.py。项目结构如图3-1所示。
+
+
+
+
+在App（index文件夹）里添加urls.py是将所有属于App的路由都写入该文件中，这样更容易管理和区分每个App的路由地址，而MyDjango文件夹的urls.py是将每个App的urls.py统一管理。这种路由设计模式是Django常用的，其工作原理如下：
+（1）运行MyDjango项目时，Django从MyDjango文件夹的urls.py找到各个App所定义的路由信息，生成完整的路由列表。
+（2）当用户在浏览器上访问某个路由地址时，Django就会收到该用户的请求信息。
+（3）Django从当前请求信息获取路由地址，并在路由列表里匹配相应的路由信息，再执行路由信息所指向的视图函数（或视图类），从而完成整个请求响应过程。
+在这种路由设计模式下，MyDjango文件夹的urls.py代码如下所示：
+
+from django.contrib import admin
+from django.urls import path, include
+urlpatterns = [
+    # 指向内置Admin后台系统的路由文件sites.py
+    path('admin/', admin.site.urls),
+
+
+
+
+# 指向index的路由文件urls.py
+    path('', include('index.urls')),
+]
+MyDjango文件夹的urls.py定义两条路由信息，分别是Admin站点管理和首页地址（index）。其中，Admin站点管理在创建项目时已自动生成，一般情况下无须更改；首页地址是指index文件夹的urls.py。MyDjango文件夹的urls.py的代码解释如下：
+●　from django.contrib import admin：导入内置Admin功能模块。
+●　from django.urls import path,include：导入Django的路由函数模块。
+●　urlpatterns：代表整个项目的路由集合，以列表格式表示，每个元素代表一条路由信息。
+●　path('admin/', admin.site.urls)：设定Admin的路由信息。'admin/'代表127.0.0.1:8000/admin的路由地址，admin后面的斜杠是路径分隔符，其作用等同于计算机中文件目录的斜杠符号；admin.site.urls指向内置Admin功能所自定义的路由信息，可以在Python目录Lib\site-packages\django\contrib\admin\sites.py找到具体定义过程。
+●　path('',include('index.urls'))：路由地址为“\”，即127.0.0.1:8000，通常是网站的首页；路由函数include是将该路由信息分发给index的urls.py处理。
+由于首页地址分发给index的urls.py处理，因此下一步需要对index的urls.py编写路由信息，代码如下：
+
+# index的urls.py
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('', views.index)
+]
+index的urls.py的编写规则与MyDjango文件夹的urls.py大致相同，这是最为简单的定义方法，此外还可以参考内置Admin功能的路由定义方法。
+在index的urls.py导入index的views.py文件，该文件用于编写视图函数或视图类，主要用于处理当前请求信息并返回响应内容给用户。路由信息path('', views.
+
+
+
+
+
+index)的views.index是指视图函数index处理网站首页的用户请求和响应过程。因此，在index的views.py中编写index函数的处理过程，代码如下：
+
+from django.shortcuts import render
+def index(request):
+    value = 'This is test!'
+    print(value)
+    return render(request, 'index.html')
+index函数必须设置一个参数，参数命名不固定，但常以request进行命名，代表当前用户的请求对象，该对象包含当前请求的用户名、请求内容和请求方式等。
+视图函数执行完成后必须使用return将处理结果返回，否则程序会抛出异常信息。启动MyDjango项目，在浏览器里访问127.0.0.1:8000，运行结果如图3-2所示。
+图3-2　首页内容
+从上述例子看到，当启动MyDjango项目时，Django会从配置文件settings.py读取属性ROOT_URLCONF的值，默认值为MyDjango.urls，其代表MyDjango文件夹的urls.py文件，然后根据ROOT_URLCONF的值来生成整个项目的路由列表。
+路由文件urls.py的路由定义规则是相对固定的，路由列表由urlpatterns表示，每个列表元素代表一条路由。路由是由Django的path函数定义的，该函数第一个参数是路由地址，第二个参数是路由所对应的处理函数（视图函数或视图类），这两个参数是路由定义的必选参数。
+
+
+
+
+
+
+综上所述，Django 1的路由规则是使用Django的url函数实现路由定义，并且路由地址设有路由符号^和$，读者需要区分路由符号^和$的作用与使用规则，在某程度上，它比Django 2版本复杂并且代码可读性差，因此Django 1的路由规则在Django 2版本里将逐渐淘汰。
+3.1.3　路由变量的设置
+在日常开发过程中，有时一个路由可以代表多个不同的页面，如编写带有日期的路由，若根据前面的编写方式，按一年计算，则需要开发者编写365个不同的路由才能实现，这种做法明显是不可取的。因此，Django在定义路由时，可以对路由设置变量值，使路由具有多样性。
+路由的变量类型有字符类型、整型、slug和uuid，最为常用的是字符类型和整型。各个类型说明如下：
+●　字符类型：匹配任何非空字符串，但不含斜杠。如果没有指定类型，就默认使用该类型。
+●　整型：匹配0和正整数。
+●　slug：可理解为注释、后缀或附属等概念，常作为路由的解释性字符。可匹配任何ASCII字符以及连接符和下画线，能使路由更加清晰易懂。比如网页的标题是“13岁的孩子”，其路由地址可以设置为“13-sui-de-hai-zi”。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

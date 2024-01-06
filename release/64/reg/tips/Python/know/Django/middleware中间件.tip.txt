@@ -1,0 +1,63 @@
+.5　中间件
+中间件（Middleware）是一个用来处理Django的请求（Request）和响应（Response）的框架级别的钩子，它是一个轻量、低级别的插件系统，用于在全局范围内改变Django的输入和输出。
+当用户在网站中进行某个操作时，这个过程是用户向网站发送HTTP请求（Request）；而网站会根据用户的操作返回相关的网页内容，这个过程称为响应处理（Response）。从请求到响应的过程中，当Django接收到用户请求时，首先经过中间件处理请求信息，执行相关的处理，然后将处理结果返回给用户。中间件的执行流程如图2-19所示。
+
+
+图2-19　中间件的执行流程
+从图2-19中能清晰地看到，中间件的作用是处理用户请求信息和返回响应内容。开发者可以根据自己的开发需求自定义中间件，只要将自定义的中间件添加到配置属性MIDDLEWARE中即可激活。
+一般情况下，Django默认的中间件配置均可满足大部分的开发需求。我们在项目的MIDDLEWARE中添加LocaleMiddleware中间件，使得Django内置的功能支持中文显示，代码如下：
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    # 添加中间件LocaleMiddleware
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+配置属性MIDDLEWARE的数据格式为列表类型，每个中间件的设置顺序是固定
+
+
+
+
+的，如果随意变更中间件，就很容易导致程序异常。每个中间件的说明如下：
+●　SecurityMiddleware：内置的安全机制，保护用户与网站的通信安全。
+●　SessionMiddleware：会话Session功能。
+●　LocaleMiddleware：国际化和本地化功能。
+●　CommonMiddleware：处理请求信息，规范化请求内容。
+●　CsrfViewMiddleware：开启CSRF防护功能。
+●　AuthenticationMiddleware：开启内置的用户认证系统。
+●　MessageMiddleware：开启内置的信息提示功能。
+●　XFrameOptionsMiddleware：防止恶意程序单击劫持。
+2.6　本章小结
+项目配置是根据实际开发需求对整个Web框架编写相关配置信息。配置信息主要由项目的settings.py实现，主要配置有项目路径、密钥配置、域名访问权限、App列表、配置静态资源、配置模板文件、数据库配置、中间件和缓存配置。
+当DEBUG为True并且ALLOWED_HOSTS为空时，项目只允许以localhost或127.0.0.1在浏览器上访问。当DEBUG为False时，ALLOWED_HOSTS为必填项，否则程序无法启动，如果想允许所有域名访问，那么可设置ALLOW_HOSTS = ['*']。
+App列表INSTALLED_APPS的各个功能说明如下：
+●　admin：内置的后台管理系统。
+●　auth：内置的用户认证系统。
+●　contenttypes：记录项目中所有model元数据（Django的ORM框架）。
+●　sessions：Session会话功能，用于标识当前访问网站的用户身份，记录相关用户信息。
+●　messages：消息提示功能。
+●　staticfiles：查找静态资源路径。
+资源文件配置分为静态资源和媒体资源。静态资源指的是网站中不会改变的文件。在一般的应用程序中，静态资源包括CSS文件、JavaScript文件以及图片等资源文件；媒体资源是指经常变动的资源，通常将其存放在媒体资源文件夹，如用户头像、歌曲文件等。
+静态资源的配置属性包括：STATIC_URL、STATICFILES_DIRS和STATIC_
+
+
+
+ROOT，三者说明如下：
+●　STATIC_URL：设置静态资源的路由地址。
+●　STATICFILES_DIRS：将项目里自定义的静态资源文件夹绑定到Django里。
+●　STATIC_ROOT：收集整个项目的静态资源并存放在一个新的文件夹，然后由该文件夹与服务器之间构建映射关系。
+媒体资源的配置属性包括：MEDIA_URL和MEDIA_ROOT，说明如下：
+●　MEDIA_URL：设置媒体资源的路由地址。
+●　MEDIA_ROOT：获取项目里自定义的媒体资源文件的文件路径。
+模板信息是以列表格式呈现的，每个元素具有不同的含义，其含义说明如下：
+●　BACKEND：定义模板引擎，用于识别模板里面的变量和指令。内置的模板引擎有DjangoTemplates和jinja2.Jinja2，每个模板引擎都有自己的变量和指令语法。
+●　DIRS：设置模板所在的路径，告诉Django在哪个地方查找模板的位置，默认为空列表。
+●　APP_DIRS：是否在App里查找模板文件。
+●　OPTIONS：用于填充在RequestContext的上下文（模板里面的变量和指令），一般情况下不做任何修改。
+Django可以选择不同的模块连接MySQL，但配置信息有固定的写法，如下所示：
+中间件由属性MIDDLEWARE完成配置，属性MIDDLEWARE的数据格式为列表类型，每个中间件的设置顺序是固定的，如果随意变更中间件，就很容易导致程序异常。
