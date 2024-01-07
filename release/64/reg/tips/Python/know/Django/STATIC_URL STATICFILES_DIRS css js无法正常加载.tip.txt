@@ -1,0 +1,40 @@
+目录结构 
+
+Mode                 LastWriteTime         Length Name                                                                                                                                
+----                 -------------         ------ ----                                                                                                                                
+d-----          2024/1/7      9:42                .idea                                                                                                                               
+d-----          2024/1/7      9:42                index                                                                                                                               
+d-----          2024/1/7      9:42                MyDjango                                                                                                                            
+d-----          2024/1/7      9:42                static                                                                                                                              
+d-----          2024/1/7      9:42                templates                                                                                                                           
+-a----         2019/6/28     15:20              0 db.sqlite3                                                                                                                          
+-a----         2019/6/28     15:20            555 manage.py                                                                                                                           
+
+
+
+
+
+
+settings.py
+
+
+
+STATIC_URL = '/static/'
+# 将MyDjango的static文件夹添加到静态资源
+STATICFILES_DIRS = [BASE_DIR / 'static',]
+
+
+
+templates/index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/hw_index.css" %}" >
+    <link rel="icon" href="{% static "img/hw.ico" %}">
+    <script src="{% static "js/hw_index.js" %}"></script>
+</head>
+
+

@@ -1,0 +1,7 @@
+PS D:\code\python\pythonweb\djangoProject> 
+
+pyinstaller -D -w manage.py
+
+--发现生成的exe无法正常运行
+
+

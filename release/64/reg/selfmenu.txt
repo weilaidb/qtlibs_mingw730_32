@@ -2727,6 +2727,7 @@ Python/idea配置说明
 Python/know/Django-详解settings.py 文件作用
 Python/know/Django/1.11　本章小结
 Python/know/Django/Django配置信息
+Python/know/Django/STATIC_URL STATICFILES_DIRS css js无法正常加载
 Python/know/Django/manage.py help
 Python/know/Django/middleware中间件
 Python/know/Django/创建项目
