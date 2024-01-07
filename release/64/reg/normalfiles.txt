@@ -22,7 +22,7 @@ https://github.com/weilaidb/linux_driver
 【AskOpenAI 主页】https://askopenai.cn/
 【AskOpenAI 智能问答】https://www.askopenai.co/
 【CSDN】https://www.csdn.net/
-【Django示例】http://59.110.236.102:8000/
+【PythonWeb计算器】http://59.110.236.102:8000/
 【ROS Answer】https://answers.ros.org/questions/
 【StackOverFlow】https://stackoverflow.com/
 【VUE Demo】http://101.201.79.164:8080
