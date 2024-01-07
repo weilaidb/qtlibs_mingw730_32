@@ -1,0 +1,78 @@
+ go/go/settings.py       |  5 +++++
+ go/static/css/index.css | 21 +++++++++++++++++++++
+ go/static/js/index.js   |  9 +++++++++
+ go/templates/index.html |  2 ++
+ 4 files changed, 37 insertions(+)
+
+diff --git a/go/go/settings.py b/go/go/settings.py
+index 2f82348..b7ddcb6 100644
+--- a/go/go/settings.py
++++ b/go/go/settings.py
+@@ -119,6 +119,11 @@ USE_TZ = True
+ 
+ STATIC_URL = 'static/'
+ 
++# 将MyDjango的static文件夹添加到静态资源
++STATICFILES_DIRS = [BASE_DIR / 'static',]
++
++
++
+ # Default primary key field type
+ # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+ 
+diff --git a/go/static/css/index.css b/go/static/css/index.css
+new file mode 100644
+index 0000000..15a07d5
+--- /dev/null
++++ b/go/static/css/index.css
+@@ -0,0 +1,21 @@
++
++/*通用选择器*/
++* {
++font-size:30px
++}
++/*标签选择器*/
++h1 {
++color:blue;
++}
++/*类别选择器*/
++.content {
++text-align:center;
++}
++/*ID选择器*/
++#message {
++width:500px;
++}
++/*群组选择器*/
++#submit, p {
++color:red;
++}
+\ No newline at end of file
+diff --git a/go/static/js/index.js b/go/static/js/index.js
+new file mode 100644
+index 0000000..7a1b0cd
+--- /dev/null
++++ b/go/static/js/index.js
+@@ -0,0 +1,9 @@
++
++function getInfo(){
++var txt = document.getElementById("message").value
++if (txt){
++    alert("你的留言：" + txt + "，已提交成功")
++} else {
++    alert("请输入你的留言");
++}
++}
+diff --git a/go/templates/index.html b/go/templates/index.html
+index 0fd7b06..7aed565 100644
+--- a/go/templates/index.html
++++ b/go/templates/index.html
+@@ -3,6 +3,8 @@
+ <head>
+     <meta charset="UTF-8">
+     <title>Hello World</title>
++    {% load static %}
++    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
+ </head>
+ <body>
+ <h1>

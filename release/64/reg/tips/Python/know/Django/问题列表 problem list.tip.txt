@@ -1,0 +1,35 @@
+1.#render和HttpResponse的区别？
+
+
+
+HttpResponse、JsonResponse和Response的区别
+
+.明天的自己
+
+于 2020-12-17 20:59:25 发布
+
+阅读量2.7k
+ 收藏 4
+
+点赞数
+文章标签： django
+版权
+HttpResponse：
+
+是由Django创造的，他的返回格式为：
+
+HttpResponse(content=响应体，content_type=响应体数据类型，status=状态码)、可以修改返回的数据类型，适用于返回图片，视频，音频等二进制文件。返回的类型是字符串形式的，没有具体的格式要求。
+
+JsonResponse：
+
+JsonResponse是HttpResponse的子类，适用于处理json格式的数据，但是不能返回模板。帮助我们将数据转换为json字符串、设置响应头Content-Type为application/json。
+
+Response：
+
+是Django rest-framework框架中封装好的响应对象。它的返回格式为：
+
+Response(data,status=None,template_name=None,headers=None,content_type=None),data只需传递Python的内建类型数据即可，如果是Django的模型类对象，那么就是用序列化数据（Python的字典数据）传递给data。只能用在继承了APIView的类模型下，推荐使用。
+————————————————
+版权声明：本文为CSDN博主「.明天的自己」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_44870612/article/details/111333094
+
