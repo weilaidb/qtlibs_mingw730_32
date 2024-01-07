@@ -1,4 +1,10 @@
 1.#render和HttpResponse的区别？
+2.# DEBUG = False
+DEBUG = True
+改为False后，css和js无法加载，找了个例子，也无法搞定。
+//TODO:先不解决了，
+
+
 
 
 
