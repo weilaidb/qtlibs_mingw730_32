@@ -1,0 +1,4 @@
+requests
+django
+
+django_redis
