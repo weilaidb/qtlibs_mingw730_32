@@ -1,10 +1,18 @@
+D:\code\python\TaskSaas\venv>
+D:\code\python\TaskSaas\venv>D:\code\python\TaskSaas\venv\Scripts\python.exe
+
+
+
 
 D:\code\python\TaskSaas\venv\Scripts\pip3.exe install Django==1.11.28
 
 
 
 
+使用pip3安装： pip3 install -r requirements.txt
+D:\code\python\TaskSaas>
 
+D:\code\python\TaskSaas\venv\Scripts\pip3.exe install -r requirements.txt
 
 
 
