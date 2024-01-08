@@ -2711,6 +2711,7 @@ Python/ROS/learning_topic/topic_helloworld_sub.py
 Python/ROS/learning_topic/topic_webcam_pub.py
 Python/ROS/learning_topic/topic_webcam_sub.py
 Python/Regex/split
+Python/Venv/虚拟环境
 Python/WEB/简介
 Python/common/id
 Python/excel/Python 自动化操作 Excel
