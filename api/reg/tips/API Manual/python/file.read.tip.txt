@@ -11,6 +11,32 @@ def fileread(filename):
         return result
 
 
+指定编码
+# -*- coding: utf-8 -*-
+import os
+
+
+def fileread(filename):
+    with open(filename, encoding='utf-8', mode='r') as f:
+        # print(f.read())
+        result = f.read()
+        f.close()
+        return result
+
+
+def filewrite(filename, content):
+    with open(filename, encoding='utf-8', mode='w') as f:
+        # print(f.read())
+        f.write(content)
+        f.close()
+        return 0
+
+
+def getcurrentpath():
+    return os.getcwd()
+
+
+
 ☆ 参数
 
 

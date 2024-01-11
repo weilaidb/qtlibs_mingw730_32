@@ -400,6 +400,7 @@ BUG管理/JSP/请求的资源[/HelloJavaEE4/log/uploadServlet]不可用
 BUG管理/Linux/Ctags out of memory
 BUG管理/MSTP/长时PING大包丢包
 BUG管理/PHY自协商/偶发一些子架ping不通线卡
+BUG管理/Shell/IF Test不好使
 BUG管理/代码管理系统/git clone报 error  invalid path
 BUG管理/代码管理系统/网页复制后数据丢失
 BUG管理/内存改写/新建的静态全局变量初始化为0，但是读写不是0，被篡改

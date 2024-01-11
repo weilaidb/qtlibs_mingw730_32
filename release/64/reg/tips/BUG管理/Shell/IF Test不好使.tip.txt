@@ -1,0 +1,109 @@
+测试BUG模板
+☆Bug标题
+Shell/IF Test不好使
+
+☆Bug详细描述（含步骤）
+脚本运行时，一直提示无法正常kill掉进程，报start.sh: line 6: [: too many arguments
+或start.sh: line 6: [: 1770283: binary operator expected
+
+
+[weilaidb@iZ2ze2qkhz3rta9wnyxb8zZ] ~/work/git/pythonweb/djweb
+$ git diff .
+diff --git a/djweb/start.sh b/djweb/start.sh
+index e13cb43..db593b9 100644
+--- a/djweb/start.sh
++++ b/djweb/start.sh
+@@ -1,7 +1,10 @@
+ #!/bin/sh
+ 
+-killpid=`ps aux | grep start.sh | grep -v grep  | awk '{print $2}'`
++##killpid=`ps aux | grep start.sh | grep -v grep  | awk '{print $2}'`
++killpid=`ps aux | grep manage.py | grep -v grep  | awk '{print $2}'`
+ echo "prepare kill pid:$killpid"
+-kill -9 $killpid
++
++[ ! -z "$killpid" ] &&  kill -9 $killpid
++##[ ! -z $killpid -gt 0 ] &&  kill -9 $killpid
+ 
+ nohup python3 manage.py runserver 0.0.0.0:8000 &
+[weilaidb@iZ2ze2qkhz3rta9wnyxb8zZ] ~/work/git/pythonweb/djweb
+$ cat start.sh 
+#!/bin/sh
+
+##killpid=`ps aux | grep start.sh | grep -v grep  | awk '{print $2}'`
+killpid=`ps aux | grep manage.py | grep -v grep  | awk '{print $2}'`
+echo "prepare kill pid:$killpid"
+
+[ ! -z "$killpid" ] &&  kill -9 $killpid
+##[ ! -z $killpid -gt 0 ] &&  kill -9 $killpid
+
+nohup python3 manage.py runserver 0.0.0.0:8000 &
+
+
+
+☆项目模块
+
+☆严重程度
+A-崩溃
+B-严重
+C-一般
+D-轻微
+
+☆优先级
+
+☆Bug类别
+代码错误
+设计缺陷
+界面优化
+性能问题
+配置相关
+安装部署
+安全相关
+标准规范
+其他划分
+
+☆Bug状态
+New
+Open
+Reopen
+Fixed
+Closed
+Rejected
+Deferred
+
+☆提交人
+ME
+
+☆提交日期
+2024-01-11 23:29:06
+
+☆附加信息
+需要将比较的对象使用引号括起来，否则比较的时候不好。
+ps aux | grep xxx --过滤出来的PID，感觉不是一个字段，也不是一个简单的数字
+需要转换成字符串的形式，使用-z来判断 
+
+
+附加：
+数字判断是-gt
+-ne
+-lt
+-eq
+等
+
+字符串判断是
+-z
+! -z
+
+
+
+
+☆解决人
+
+☆解决日期
+
+☆解决方式
+
+☆解决用时
+
+========================================================================
+========================================================================
