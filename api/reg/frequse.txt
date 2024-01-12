@@ -43,6 +43,7 @@ API Manual/glibc/setjmp
 API Manual/kernel/0 linux api 网址
 API Manual/kernel/__class_create
 API Manual/kernel/alloc_chrdev_region
+API Manual/kernel/alloc_page
 API Manual/kernel/cdev_add
 API Manual/kernel/cdev_del
 API Manual/kernel/cdev_init
@@ -53,6 +54,7 @@ API Manual/kernel/copy_from_user
 API Manual/kernel/copy_to_user
 API Manual/kernel/device_create
 API Manual/kernel/device_destroy
+API Manual/kernel/kmem_cache_create
 API Manual/kernel/list_head
 API Manual/kernel/man7.org > Linux > man-pages
 API Manual/kernel/readahead

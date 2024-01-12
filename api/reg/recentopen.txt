@@ -10,6 +10,7 @@ file
 glibc
 ioctl
 kernel
+kernel cache
 kernel man
 kernel man page
 kernel readahead 
