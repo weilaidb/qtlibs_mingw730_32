@@ -2,7 +2,9 @@
 JAVA
 JAVA/
 JSP
+atom
 c/
+cache
 dup
 dup2
 exec

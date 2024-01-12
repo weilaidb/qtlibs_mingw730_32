@@ -2,6 +2,110 @@
 kernel/kmem_cache_create
 
 ☆ 简介
+分配小块内存，slab机制为处理（SUN公司研发，被移植到Linux内核）。slab的变种（slob机制 slub机制）
+slab分配接口：
+创建slab:kmeme_cache_create(....)
+释放slab:kmem_cache_destroy(...)
+分配缓存对象：kmem_cache_alloc(...)
+释放缓存对象：kmem_cache_free(...)
+
+
+slab分配的基本思想
+slab机制核心为：在空闲时创建缓存对象池）本地对象缓冲池和共享对象缓冲池）。
+
+本地对象缓存池就是在创建每个slab描述符时为每个CPU创建一个本地对象缓存池，这样当需要从slab描述符中分配空闲对象时，优先从当前CPU的本地对象缓存池中分配。
+
+
+共享对象缓冲池就是所有CPU共享的，当本地缓存池中没有空闲对象时，会从共享对象缓冲池中取一批空间对象搬移到本地缓冲池中。
+
+
+slab分配器当中的数据结构为struct kmem_cache，我们也把它称为slab描述符；具体内核源码如下：
+# slab_def.h
+
+/*
+ * Definitions unique to the original Linux SLAB allocator.
+ */
+...第一个slab描述符有如下数据结构来抽象
+struct kmem_cache {
+    struct array_cache __percpu *cpu_cache; //每个处理器CPU一个，表示本地CPU的对象缓冲池
+
+    /* 1) Cache tunables. Protected by slab_mutex */
+    unsigned int batchcount;  //表示当前CPU对象缓冲池array_cache为空时，从共享缓冲池获取对象数目
+    unsigned int limit;       //当本地对象缓冲池空闲对象大于limit时，系统会主动释放batchcount个对象
+    unsigned int shared;      //主要用于多核系统
+
+    unsigned int size;   //对象的大小
+    struct reciprocal_value reciprocal_buffer_size;
+    /* 2) touched by every alloc & free from the backend */
+
+    slab_flags_t flags;		/* constant flags */   //对象分配的掩码
+    unsigned int num;		/* # of objs per slab */   //一个slab最多可以有多少个对象
+
+    /* 3) cache_grow/shrink */
+    /* order of pgs per slab (2^n) */
+    unsigned int gfporder;     //一个slab中占用2的gfporder页面
+    
+
+    /* force GFP flags, e.g. GFP_DMA */
+    gfp_t allocflags;
+
+    size_t colour;			/* cache colouring range */
+    unsigned int colour_off;	/* colour offset */
+    unsigned int freelist_size;
+
+    /* constructor func */
+    void (*ctor)(void *obj);
+
+    /* 4) cache creation/removal */
+    const char *name;
+    struct list_head list;
+    int refcount;
+    int object_size;
+    int align;
+
+    /* 5) statistics */
+#ifdef CONFIG_DEBUG_SLAB
+    unsigned long num_active;
+    unsigned long num_allocations;
+    unsigned long high_mark;
+    unsigned long grown;
+    unsigned long reaped;
+    unsigned long errors;
+    unsigned long max_freeable;
+    unsigned long node_allocs;
+    unsigned long node_frees;
+    unsigned long node_overflow;
+    atomic_t allochit;
+    atomic_t allocmiss;
+    atomic_t freehit;
+    atomic_t freemiss;
+
+    /*
+     * If debugging is enabled, then the allocator can add additional
+     * fields and/or padding to every object. 'size' contains the total
+     * object size including these internal fields, while 'obj_offset'
+     * and 'object_size' contain the offset to the user object and its
+     * size.
+     */
+    int obj_offset;
+#endif /* CONFIG_DEBUG_SLAB */
+
+#ifdef CONFIG_KASAN
+    struct kasan_cache kasan_info;
+#endif
+
+#ifdef CONFIG_SLAB_FREELIST_RANDOM
+    unsigned int *random_seq;
+#endif
+
+#ifdef CONFIG_HARDENED_USERCOPY
+    unsigned int useroffset;	/* Usercopy region offset */
+    unsigned int usersize;		/* Usercopy region size */
+#endif
+
+    struct kmem_cache_node *node[MAX_NUMNODES];
+};
+
 
 
 
