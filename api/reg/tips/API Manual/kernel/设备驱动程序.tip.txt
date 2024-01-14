@@ -5,6 +5,409 @@ kernel/设备驱动程序
 一、设备驱动程序架构分析
 1、Linux当中输入/输出设备被分为三大类：字符设备、块设备和网络设备。
 2、Linux启动过程、基于x86架构系统启动流程如下：
+给硬件设备通电
+BIOS
+系统引导程序
+实模式内核
+保护模式内核
+init进程
+用户进程和守护进程
+
+初始化代码如下：
+
+asmlinkage __visible void __init __no_sanitize_address start_kernel(void)
+{
+	char *command_line;
+	char *after_dashes;
+
+	set_task_stack_end_magic(&init_task);
+	smp_setup_processor_id();
+	debug_objects_early_init();
+	init_vmlinux_build_id();
+
+	cgroup_init_early();
+
+	local_irq_disable();
+	early_boot_irqs_disabled = true;
+
+	/*
+	 * Interrupts are still disabled. Do necessary setups, then
+	 * enable them.
+	 */
+	boot_cpu_init();
+	page_address_init();
+	pr_notice("%s", linux_banner);
+	early_security_init();
+	setup_arch(&command_line);
+	setup_boot_config();
+	setup_command_line(command_line);
+	setup_nr_cpu_ids();
+	setup_per_cpu_areas();
+	smp_prepare_boot_cpu();	/* arch-specific boot-cpu hooks */
+	boot_cpu_hotplug_init();
+
+	build_all_zonelists(NULL);
+	page_alloc_init();
+
+	pr_notice("Kernel command line: %s\n", saved_command_line);
+	/* parameters may set static keys */
+	jump_label_init();
+	parse_early_param();
+	after_dashes = parse_args("Booting kernel",
+				  static_command_line, __start___param,
+				  __stop___param - __start___param,
+				  -1, -1, NULL, &unknown_bootoption);
+	print_unknown_bootoptions();
+	if (!IS_ERR_OR_NULL(after_dashes))
+		parse_args("Setting init args", after_dashes, NULL, 0, -1, -1,
+			   NULL, set_init_arg);
+	if (extra_init_args)
+		parse_args("Setting extra init args", extra_init_args,
+			   NULL, 0, -1, -1, NULL, set_init_arg);
+
+	/* Architectural and non-timekeeping rng init, before allocator init */
+	random_init_early(command_line);
+
+	/*
+	 * These use large bootmem allocations and must precede
+	 * kmem_cache_init()
+	 */
+	setup_log_buf(0);
+	vfs_caches_init_early();
+	sort_main_extable();
+	trap_init();
+	mm_init();
+	poking_init();
+	ftrace_init();
+
+	/* trace_printk can be enabled here */
+	early_trace_init();
+
+	/*
+	 * Set up the scheduler prior starting any interrupts (such as the
+	 * timer interrupt). Full topology setup happens at smp_init()
+	 * time - but meanwhile we still have a functioning scheduler.
+	 */
+	sched_init();
+
+	if (WARN(!irqs_disabled(),
+		 "Interrupts were enabled *very* early, fixing it\n"))
+		local_irq_disable();
+	radix_tree_init();
+	maple_tree_init();
+
+	/*
+	 * Set up housekeeping before setting up workqueues to allow the unbound
+	 * workqueue to take non-housekeeping into account.
+	 */
+	housekeeping_init();
+
+	/*
+	 * Allow workqueue creation and work item queueing/cancelling
+	 * early.  Work item execution depends on kthreads and starts after
+	 * workqueue_init().
+	 */
+	workqueue_init_early();
+
+	rcu_init();
+
+	/* Trace events are available after this */
+	trace_init();
+
+	if (initcall_debug)
+		initcall_debug_enable();
+
+	context_tracking_init();
+	/* init some links before init_ISA_irqs() */
+	early_irq_init();
+	init_IRQ();
+	tick_init();
+	rcu_init_nohz();
+	init_timers();
+	srcu_init();
+	hrtimers_init();
+	softirq_init();
+	timekeeping_init();
+	time_init();
+
+	/* This must be after timekeeping is initialized */
+	random_init();
+
+	/* These make use of the fully initialized rng */
+	kfence_init();
+	boot_init_stack_canary();
+
+	perf_event_init();
+	profile_init();
+	call_function_init();
+	WARN(!irqs_disabled(), "Interrupts were enabled early\n");
+
+	early_boot_irqs_disabled = false;
+	local_irq_enable();
+
+	kmem_cache_init_late();
+
+	/*
+	 * HACK ALERT! This is early. We're enabling the console before
+	 * we've done PCI setups etc, and console_init() must be aware of
+	 * this. But we do want output early, in case something goes wrong.
+	 */
+	console_init();
+	if (panic_later)
+		panic("Too many boot %s vars at `%s'", panic_later,
+		      panic_param);
+
+	lockdep_init();
+
+	/*
+	 * Need to run this when irqs are enabled, because it wants
+	 * to self-test [hard/soft]-irqs on/off lock inversion bugs
+	 * too:
+	 */
+	locking_selftest();
+
+	/*
+	 * This needs to be called before any devices perform DMA
+	 * operations that might use the SWIOTLB bounce buffers. It will
+	 * mark the bounce buffers as decrypted so that their usage will
+	 * not cause "plain-text" data to be decrypted when accessed.
+	 */
+	mem_encrypt_init();
+
+#ifdef CONFIG_BLK_DEV_INITRD
+	if (initrd_start && !initrd_below_start_ok &&
+	    page_to_pfn(virt_to_page((void *)initrd_start)) < min_low_pfn) {
+		pr_crit("initrd overwritten (0x%08lx < 0x%08lx) - disabling it.\n",
+		    page_to_pfn(virt_to_page((void *)initrd_start)),
+		    min_low_pfn);
+		initrd_start = 0;
+	}
+#endif
+	setup_per_cpu_pageset();
+	numa_policy_init();
+	acpi_early_init();
+	if (late_time_init)
+		late_time_init();
+	sched_clock_init();
+	calibrate_delay();
+	pid_idr_init();
+	anon_vma_init();
+#ifdef CONFIG_X86
+	if (efi_enabled(EFI_RUNTIME_SERVICES))
+		efi_enter_virtual_mode();
+#endif
+	thread_stack_cache_init();
+	cred_init();
+	fork_init();
+	proc_caches_init();
+	uts_ns_init();
+	key_init();
+	security_init();
+	dbg_late_init();
+	net_ns_init();
+	vfs_caches_init();
+	pagecache_init();
+	signals_init();
+	seq_file_init();
+	proc_root_init();
+	nsfs_init();
+	cpuset_init();
+	cgroup_init();
+	taskstats_init_early();
+	delayacct_init();
+
+	check_bugs();
+
+	acpi_subsystem_init();
+	arch_post_acpi_subsys_init();
+	kcsan_init();
+
+	/* Do the rest non-__init'ed, we're now alive */
+	arch_call_rest_init();
+
+	prevent_tail_call_optimization();
+}
+
+字符设备驱动程序：顺序存储设备数据的内核代码。字符设备驱动程序能从打印机、键盘、鼠标、内存、时钟等等几类设备获取原始数据。设备驱动程序通过/dev目录给用户提供的接口如下：
+[root@iZ2ze2qkhz3rta9wnyxb8zZ ~]# ls -l /dev/
+total 0
+crw------- 1 root root     10, 125 Nov 26 14:30 AliSecGuard
+crw-r--r-- 1 root root     10, 235 Nov 26 14:28 autofs
+drwxr-xr-x 2 root root          80 Nov 26 14:28 block
+drwxr-xr-x 2 root root        2640 Nov 26 14:30 char
+crw------- 1 root root      5,   1 Dec 20 18:29 console
+lrwxrwxrwx 1 root root          11 Nov 26 14:28 core -> /proc/kcore
+drwxr-xr-x 4 root root          80 Nov 26 14:28 cpu
+crw------- 1 root root     10, 126 Nov 26 14:28 cpu_dma_latency
+drwxr-xr-x 6 root root         120 Nov 26 14:28 disk
+drwxr-xr-x 3 root root          80 Nov 26 14:28 dri
+crw-rw---- 1 root video    29,   0 Nov 26 14:28 fb0
+lrwxrwxrwx 1 root root          13 Nov 26 14:28 fd -> /proc/self/fd
+crw-rw-rw- 1 root root      1,   7 Nov 26 14:28 full
+crw-rw-rw- 1 root root     10, 229 Nov 26 14:28 fuse
+crw------- 1 root root     10, 228 Nov 26 14:28 hpet
+drwxr-xr-x 2 root root           0 Nov 26 14:28 hugepages
+crw------- 1 root root     10, 183 Nov 26 14:28 hwrng
+lrwxrwxrwx 1 root root          12 Nov 26 14:28 initctl -> /run/initctl
+drwxr-xr-x 3 root root         240 Nov 26 14:28 input
+crw-rw-rw- 1 root root     10, 129 Nov 26 14:28 ioasid
+crw-r--r-- 1 root root      1,  11 Nov 26 14:28 kmsg
+lrwxrwxrwx 1 root root          28 Nov 26 14:28 log -> /run/systemd/journal/dev-log
+crw-rw---- 1 root disk     10, 237 Nov 26 14:28 loop-control
+drwxr-xr-x 2 root root          60 Nov 26 14:28 mapper
+crw------- 1 root root     10, 227 Nov 26 14:28 mcelog
+crw-r----- 1 root kmem      1,   1 Nov 26 14:28 mem
+drwxrwxrwt 2 root root          40 Nov 26 14:28 mqueue
+drwxr-xr-x 2 root root          60 Nov 26 14:28 net
+crw-rw-rw- 1 root root      1,   3 Nov 26 14:28 null
+crw------- 1 root root     10, 144 Nov 26 14:28 nvram
+crw-r----- 1 root kmem      1,   4 Nov 26 14:28 port
+crw------- 1 root root    108,   0 Nov 26 14:28 ppp
+crw-rw-rw- 1 root tty       5,   2 Jan 15 06:18 ptmx
+drwxr-xr-x 2 root root           0 Nov 26 14:28 pts
+crw-rw-rw- 1 root root      1,   8 Nov 26 14:28 random
+drwxr-xr-x 2 root root          60 Nov 26 14:28 raw
+crw-rw-r-- 1 root root     10, 242 Nov 26 14:28 rfkill
+lrwxrwxrwx 1 root root           4 Nov 26 14:28 rtc -> rtc0
+crw------- 1 root root    249,   0 Nov 26 14:28 rtc0
+drwxrwxrwt 2 root root          60 Nov 26 14:28 shm
+crw------- 1 root root     10, 231 Nov 26 14:28 snapshot
+lrwxrwxrwx 1 root root          15 Nov 26 14:28 stderr -> /proc/self/fd/2
+lrwxrwxrwx 1 root root          15 Nov 26 14:28 stdin -> /proc/self/fd/0
+lrwxrwxrwx 1 root root          15 Nov 26 14:28 stdout -> /proc/self/fd/1
+crw-rw-rw- 1 root tty       5,   0 Jan  6 23:17 tty
+crw--w---- 1 root tty       4,   0 Nov 26 14:28 tty0
+crw--w---- 1 root tty       4,   1 Nov 26 14:29 tty1
+crw--w---- 1 root tty       4,  10 Nov 26 14:28 tty10
+crw--w---- 1 root tty       4,  11 Nov 26 14:28 tty11
+crw--w---- 1 root tty       4,  12 Nov 26 14:28 tty12
+crw--w---- 1 root tty       4,  13 Nov 26 14:28 tty13
+crw--w---- 1 root tty       4,  14 Nov 26 14:28 tty14
+crw--w---- 1 root tty       4,  15 Nov 26 14:28 tty15
+crw--w---- 1 root tty       4,  16 Nov 26 14:28 tty16
+crw--w---- 1 root tty       4,  17 Nov 26 14:28 tty17
+crw--w---- 1 root tty       4,  18 Nov 26 14:28 tty18
+crw--w---- 1 root tty       4,  19 Nov 26 14:28 tty19
+crw--w---- 1 root tty       4,   2 Nov 26 14:28 tty2
+crw--w---- 1 root tty       4,  20 Nov 26 14:28 tty20
+crw--w---- 1 root tty       4,  21 Nov 26 14:28 tty21
+crw--w---- 1 root tty       4,  22 Nov 26 14:28 tty22
+crw--w---- 1 root tty       4,  23 Nov 26 14:28 tty23
+crw--w---- 1 root tty       4,  24 Nov 26 14:28 tty24
+crw--w---- 1 root tty       4,  25 Nov 26 14:28 tty25
+crw--w---- 1 root tty       4,  26 Nov 26 14:28 tty26
+crw--w---- 1 root tty       4,  27 Nov 26 14:28 tty27
+crw--w---- 1 root tty       4,  28 Nov 26 14:28 tty28
+crw--w---- 1 root tty       4,  29 Nov 26 14:28 tty29
+crw--w---- 1 root tty       4,   3 Nov 26 14:28 tty3
+crw--w---- 1 root tty       4,  30 Nov 26 14:28 tty30
+crw--w---- 1 root tty       4,  31 Nov 26 14:28 tty31
+crw--w---- 1 root tty       4,  32 Nov 26 14:28 tty32
+crw--w---- 1 root tty       4,  33 Nov 26 14:28 tty33
+crw--w---- 1 root tty       4,  34 Nov 26 14:28 tty34
+crw--w---- 1 root tty       4,  35 Nov 26 14:28 tty35
+crw--w---- 1 root tty       4,  36 Nov 26 14:28 tty36
+crw--w---- 1 root tty       4,  37 Nov 26 14:28 tty37
+crw--w---- 1 root tty       4,  38 Nov 26 14:28 tty38
+crw--w---- 1 root tty       4,  39 Nov 26 14:28 tty39
+crw--w---- 1 root tty       4,   4 Nov 26 14:28 tty4
+crw--w---- 1 root tty       4,  40 Nov 26 14:28 tty40
+crw--w---- 1 root tty       4,  41 Nov 26 14:28 tty41
+crw--w---- 1 root tty       4,  42 Nov 26 14:28 tty42
+crw--w---- 1 root tty       4,  43 Nov 26 14:28 tty43
+crw--w---- 1 root tty       4,  44 Nov 26 14:28 tty44
+crw--w---- 1 root tty       4,  45 Nov 26 14:28 tty45
+crw--w---- 1 root tty       4,  46 Nov 26 14:28 tty46
+crw--w---- 1 root tty       4,  47 Nov 26 14:28 tty47
+crw--w---- 1 root tty       4,  48 Nov 26 14:28 tty48
+crw--w---- 1 root tty       4,  49 Nov 26 14:28 tty49
+crw--w---- 1 root tty       4,   5 Nov 26 14:28 tty5
+crw--w---- 1 root tty       4,  50 Nov 26 14:28 tty50
+crw--w---- 1 root tty       4,  51 Nov 26 14:28 tty51
+crw--w---- 1 root tty       4,  52 Nov 26 14:28 tty52
+crw--w---- 1 root tty       4,  53 Nov 26 14:28 tty53
+crw--w---- 1 root tty       4,  54 Nov 26 14:28 tty54
+crw--w---- 1 root tty       4,  55 Nov 26 14:28 tty55
+crw--w---- 1 root tty       4,  56 Nov 26 14:28 tty56
+crw--w---- 1 root tty       4,  57 Nov 26 14:28 tty57
+crw--w---- 1 root tty       4,  58 Nov 26 14:28 tty58
+crw--w---- 1 root tty       4,  59 Nov 26 14:28 tty59
+crw--w---- 1 root tty       4,   6 Nov 26 14:28 tty6
+crw--w---- 1 root tty       4,  60 Nov 26 14:28 tty60
+crw--w---- 1 root tty       4,  61 Nov 26 14:28 tty61
+crw--w---- 1 root tty       4,  62 Nov 26 14:28 tty62
+crw--w---- 1 root tty       4,  63 Nov 26 14:28 tty63
+crw--w---- 1 root tty       4,   7 Nov 26 14:28 tty7
+crw--w---- 1 root tty       4,   8 Nov 26 14:28 tty8
+crw--w---- 1 root tty       4,   9 Nov 26 14:28 tty9
+crw--w---- 1 root tty       4,  64 Nov 26 14:29 ttyS0
+crw-rw---- 1 root dialout   4,  65 Nov 26 14:28 ttyS1
+crw-rw---- 1 root dialout   4,  66 Nov 26 14:28 ttyS2
+crw-rw---- 1 root dialout   4,  67 Nov 26 14:28 ttyS3
+crw------- 1 root root     10, 239 Nov 26 14:28 uhid
+crw------- 1 root root     10, 223 Nov 26 14:28 uinput
+crw-rw-rw- 1 root root      1,   9 Nov 26 14:28 urandom
+crw------- 1 root root    244,   0 Nov 26 14:28 usbmon0
+crw-rw---- 1 root tty       7,   0 Nov 26 14:28 vcs
+crw-rw---- 1 root tty       7,   1 Nov 26 14:28 vcs1
+crw-rw---- 1 root tty       7,   2 Nov 26 14:28 vcs2
+crw-rw---- 1 root tty       7,   3 Nov 26 14:28 vcs3
+crw-rw---- 1 root tty       7,   4 Nov 26 14:28 vcs4
+crw-rw---- 1 root tty       7,   5 Nov 26 14:28 vcs5
+crw-rw---- 1 root tty       7,   6 Nov 26 14:28 vcs6
+crw-rw---- 1 root tty       7, 128 Nov 26 14:28 vcsa
+crw-rw---- 1 root tty       7, 129 Nov 26 14:28 vcsa1
+crw-rw---- 1 root tty       7, 130 Nov 26 14:28 vcsa2
+crw-rw---- 1 root tty       7, 131 Nov 26 14:28 vcsa3
+crw-rw---- 1 root tty       7, 132 Nov 26 14:28 vcsa4
+crw-rw---- 1 root tty       7, 133 Nov 26 14:28 vcsa5
+crw-rw---- 1 root tty       7, 134 Nov 26 14:28 vcsa6
+crw-rw---- 1 root tty       7,  64 Nov 26 14:28 vcsu
+crw-rw---- 1 root tty       7,  65 Nov 26 14:28 vcsu1
+crw-rw---- 1 root tty       7,  66 Nov 26 14:28 vcsu2
+crw-rw---- 1 root tty       7,  67 Nov 26 14:28 vcsu3
+crw-rw---- 1 root tty       7,  68 Nov 26 14:28 vcsu4
+crw-rw---- 1 root tty       7,  69 Nov 26 14:28 vcsu5
+crw-rw---- 1 root tty       7,  70 Nov 26 14:28 vcsu6
+brw-rw---- 1 root disk    253,   0 Nov 26 14:28 vda
+brw-rw---- 1 root disk    253,   1 Nov 26 14:28 vda1
+drwxr-xr-x 2 root root          60 Nov 26 14:28 vfio
+crw------- 1 root root     10, 127 Nov 26 14:28 vga_arbiter
+crw------- 1 root root     10, 137 Nov 26 14:28 vhci
+crw------- 1 root root     10, 238 Nov 26 14:28 vhost-net
+crw------- 1 root root     10, 241 Nov 26 14:28 vhost-vsock
+drwxr-xr-x 2 root root          60 Nov 26 14:28 virtio-ports
+crw------- 1 root root    242,   1 Nov 26 14:28 vport0p1
+crw-rw-rw- 1 root root      1,   5 Nov 26 14:28 zero
+
+
+Linux系统块I/O系统架构如下：
+用户空间 ||  文件I/O   文件I/O   文件I/O
+-----------------------------------
+内核空间 ||  VFS层(虚拟文件系统)
+       文件系统(ext2/ext3/ext/JFFS2/Reiseris等）
+       缓冲区调整缓冲区（页面缓存）
+       I/O调度
+       块设备驱动程序
+-----------------------------------
+硬件层面  ||    磁盘     CD驱动设备
+
+------------------------------------
+
+用户进程请求设备服务的流程：用户进程--》文件系统--》设备驱动程序--》设备控制器--》设备本身。
+Linux设备驱动程序功能：对设备进行初始化，使设备加入运转和退出服务工作，从设备接收数据并且将它返回给内核，将数据从内核传递到设备，检测和处理设备出现的异常错误。
+
+【驱动程序属于内核代码】
+
+
+
+
+
+
+
+
+
+
 
 
 

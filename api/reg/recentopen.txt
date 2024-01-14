@@ -22,4 +22,5 @@ mysql
 python
 read
 sigaction
+套接
 驱动 
