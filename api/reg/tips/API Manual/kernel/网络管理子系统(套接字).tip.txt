@@ -29,16 +29,182 @@ OSI模型
 
 
 TCP/IP模型
-应用层
-传输层
-网络层
-网络接口(物理层+数据链路层)
+应用层 （FTP、DNS ...)
+传输层  (TCP UDP）
+网络层  (IP)
+网络接口(物理层+数据链路层) (PPP/SLIP ARPANET SATNET LAN)
 
 
 
 
 
 一、套接字接口类型及原理 
+socket在所有网络操作系统当中是必不可少的，它是网络通信中应用程序对应的进程和网络协议之间的接口，具体如下图所示：
+
+应用程序(进程1)   应用程序(进程2)
+
+套接字             套接字
+
+网络协议(TCP UDP...) 网络协议(TCP UDP...)
+
+
+以太网络 
+
+-------------------------------
+1、Linux支持的套接字的地址族，具体如下：
+套接字地址族      说明
+UNIX            UNIX域套接字
+INET            通过TCP/IP协议支持的Internet地址族
+AX25            Amater radio X25
+APPLETALK       Appletalk DDP
+IPX             Novell IPX
+X25             X25
+
+---------------------------
+2、Linux操作系统支持BSD套接字类型
+1、流(stream)  
+2、数据报（datagram)
+3、顺序数据包
+4、数据包(packet)
+5、原始(raw)
+6、可靠发送的消息
+
+3、INET和BSD套接字之间接口通过Internet地址族套接字操作集实现，这些操作实际是一组协议的操作例程，具体内核源码如下：
+
+include/linux/net.h
+
+struct proto_ops {
+	int		family;
+	struct module	*owner;
+	int		(*release)   (struct socket *sock);
+	int		(*bind)	     (struct socket *sock,
+				      struct sockaddr *myaddr,
+				      int sockaddr_len);
+	int		(*connect)   (struct socket *sock,
+				      struct sockaddr *vaddr,
+				      int sockaddr_len, int flags);
+	int		(*socketpair)(struct socket *sock1,
+				      struct socket *sock2);
+	int		(*accept)    (struct socket *sock,
+				      struct socket *newsock, int flags, bool kern);
+	int		(*getname)   (struct socket *sock,
+				      struct sockaddr *addr,
+				      int peer);
+	__poll_t	(*poll)	     (struct file *file, struct socket *sock,
+				      struct poll_table_struct *wait);
+	int		(*ioctl)     (struct socket *sock, unsigned int cmd,
+				      unsigned long arg);
+#ifdef CONFIG_COMPAT
+	int	 	(*compat_ioctl) (struct socket *sock, unsigned int cmd,
+				      unsigned long arg);
+#endif
+	int		(*gettstamp) (struct socket *sock, void __user *userstamp,
+				      bool timeval, bool time32);
+	int		(*listen)    (struct socket *sock, int len);
+	int		(*shutdown)  (struct socket *sock, int flags);
+	int		(*setsockopt)(struct socket *sock, int level,
+				      int optname, sockptr_t optval,
+				      unsigned int optlen);
+	int		(*getsockopt)(struct socket *sock, int level,
+				      int optname, char __user *optval, int __user *optlen);
+	void		(*show_fdinfo)(struct seq_file *m, struct socket *sock);
+	int		(*sendmsg)   (struct socket *sock, struct msghdr *m,
+				      size_t total_len);
+	/* Notes for implementing recvmsg:
+	 * ===============================
+	 * msg->msg_namelen should get updated by the recvmsg handlers
+	 * iff msg_name != NULL. It is by default 0 to prevent
+	 * returning uninitialized memory to user space.  The recvfrom
+	 * handlers can assume that msg.msg_name is either NULL or has
+	 * a minimum size of sizeof(struct sockaddr_storage).
+	 */
+	int		(*recvmsg)   (struct socket *sock, struct msghdr *m,
+				      size_t total_len, int flags);
+	int		(*mmap)	     (struct file *file, struct socket *sock,
+				      struct vm_area_struct * vma);
+	ssize_t		(*sendpage)  (struct socket *sock, struct page *page,
+				      int offset, size_t size, int flags);
+	ssize_t 	(*splice_read)(struct socket *sock,  loff_t *ppos,
+				       struct pipe_inode_info *pipe, size_t len, unsigned int flags);
+	int		(*set_peek_off)(struct sock *sk, int val);
+	int		(*peek_len)(struct socket *sock);
+
+	/* The following functions are called internally by kernel with
+	 * sock lock already held.
+	 */
+	int		(*read_sock)(struct sock *sk, read_descriptor_t *desc,
+				     sk_read_actor_t recv_actor);
+	/* This is different from read_sock(), it reads an entire skb at a time. */
+	int		(*read_skb)(struct sock *sk, skb_read_actor_t recv_actor);
+	int		(*sendpage_locked)(struct sock *sk, struct page *page,
+					   int offset, size_t size, int flags);
+	int		(*sendmsg_locked)(struct sock *sk, struct msghdr *msg,
+					  size_t size);
+	int		(*set_rcvlowat)(struct sock *sk, int val);
+};
+
+
+socket数据结构在Linux内核源码如下：
+/**
+ *  struct socket - general BSD socket
+ *  @state: socket state (%SS_CONNECTED, etc)
+ *  @type: socket type (%SOCK_STREAM, etc)
+ *  @flags: socket flags (%SOCK_NOSPACE, etc)
+ *  @ops: protocol specific socket operations
+ *  @file: File back pointer for gc
+ *  @sk: internal networking protocol agnostic socket representation
+ *  @wq: wait queue for several uses
+ */
+struct socket {
+	socket_state		state;
+
+	short			type;
+
+	unsigned long		flags;
+
+	struct file		*file;
+	struct sock		*sk;
+	const struct proto_ops	*ops;
+
+	struct socket_wq	wq;
+};
+
+
+sockaddr数据结构，Linux内核源码如下：
+/*
+ *	1003.1g requires sa_family_t and that sa_data is char.
+ */
+
+struct sockaddr {
+	sa_family_t	sa_family;	/* address family, AF_xxx	*/
+	union {
+		char sa_data_min[14];		/* Minimum 14 bytes of protocol address	*/
+		DECLARE_FLEX_ARRAY(char, sa_data);
+	};
+};
+
+
+在Linux内核中，地址族和协议信息保存在inet_protos向量里面，源码如下：
+
+
+/* This is used to register socket interfaces for IP protocols.  */
+struct inet_protosw {
+	struct list_head list;
+
+        /* These two fields form the lookup key.  */
+	unsigned short	 type;	   /* This is the 2nd argument to socket(2). */
+	unsigned short	 protocol; /* This is the L4 protocol number.  */
+
+	struct proto	 *prot;
+	const struct proto_ops *ops;
+  
+	unsigned char	 flags;      /* See INET_PROTOSW_* below.  */
+};
+
+
+
+
+
 
 
 
